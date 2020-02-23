@@ -146,7 +146,7 @@ namespace SecretProject.Class.TileStuff
 
             this.PlayerI = 0;
             this.PlayerJ = 0;
-            
+
             this.OldPlayerI = 0;
             this.OldPlayerJ = 0;
 
@@ -162,8 +162,8 @@ namespace SecretProject.Class.TileStuff
                     if (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
                     {
                         GenerationType generationIndex = GenerationType.None;
-                        bool didSucceed = Enum.TryParse( this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"], out generationIndex);
-                        if(!didSucceed)
+                        bool didSucceed = Enum.TryParse(this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"], out generationIndex);
+                        if (!didSucceed)
                         {
                             throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
                         }
@@ -246,7 +246,7 @@ namespace SecretProject.Class.TileStuff
         {
             Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkWidth), (int)(entityPosition.Y / 16 / TileUtility.ChunkHeight));
             Chunk chunk = ChunkUtility.GetChunk(ChunkUnderEntity.X, ChunkUnderEntity.Y, this.ActiveChunks);
-            if(chunk == null)
+            if (chunk == null)
             {
                 return ChunkUnderPlayer;
             }
@@ -275,7 +275,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                if(j == 0)
+                                if (j == 0)
                                 {
                                     SaveAndDiscardChunk(this.ActiveChunks[i, j]);
                                 }
@@ -300,7 +300,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                if(j == RenderDistance - 1)
+                                if (j == RenderDistance - 1)
                                 {
                                     SaveAndDiscardChunk(this.ActiveChunks[i, j]);
                                 }
@@ -351,7 +351,7 @@ namespace SecretProject.Class.TileStuff
 
                             else
                             {
-                                if(i == RenderDistance - 1)
+                                if (i == RenderDistance - 1)
                                 {
                                     SaveAndDiscardChunk(this.ActiveChunks[i, j]);
                                 }
@@ -402,7 +402,7 @@ namespace SecretProject.Class.TileStuff
 
                             else
                             {
-                                if(i == 0)
+                                if (i == 0)
                                 {
                                     SaveAndDiscardChunk(this.ActiveChunks[i, j]);
                                 }
@@ -446,11 +446,11 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        
+
 
         public void SaveAndDiscardChunk(Chunk chunk)
         {
-            if(chunk.IsDoneLoading && chunk.IsLoaded)
+            if (chunk.IsDoneLoading && chunk.IsLoaded)
             {
                 Chunk newChunk = chunk;
                 Task.Run(() => newChunk.Save());
@@ -614,7 +614,7 @@ namespace SecretProject.Class.TileStuff
                                 this.ChunkUnderMouse = currentChunk;
                             }
 
-                            for(int item = 0; item < currentChunk.AllItems.Count; item++)
+                            for (int item = 0; item < currentChunk.AllItems.Count; item++)
                             {
                                 currentChunk.AllItems[item].Update(gameTime);
                             }
@@ -634,18 +634,18 @@ namespace SecretProject.Class.TileStuff
             OldPlayerJ = PlayerJ;
             int mouseI = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
             int mouseJ = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
-             PlayerI = (int)((Game1.Player.ColliderRectangle.X  + 8)/ 16  - (this.ChunkUnderPlayer.X * 16));
-             PlayerJ = (int)(Game1.Player.ColliderRectangle.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
-            if(PlayerI > 15)
+            PlayerI = (int)((Game1.Player.ColliderRectangle.X + 8) / 16 - (this.ChunkUnderPlayer.X * 16));
+            PlayerJ = (int)(Game1.Player.ColliderRectangle.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
+            if (PlayerI > 15)
             {
                 PlayerI = 15;
             }
-            if(PlayerJ > 15)
+            if (PlayerJ > 15)
             {
                 PlayerJ = 15;
             }
 
-            
+
             for (int z = 0; z < 4; z++)
             {
 
@@ -673,7 +673,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             this.ChunkUnderPlayerLastFrame.PathGrid.UpdateGrid(OldPlayerI, OldPlayerJ, GridStatus.Clear);
                             this.ChunkUnderPlayer.PathGrid.UpdateGrid(PlayerI, PlayerJ, GridStatus.Obstructed);
-                            
+
 
                             if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID))
                             {
@@ -696,9 +696,6 @@ namespace SecretProject.Class.TileStuff
 
                         if (tileUnderMouse.GID != -1)
                         {
-
-                            //int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
-
 
 
                             if (tileUnderMouse.DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
@@ -792,114 +789,69 @@ namespace SecretProject.Class.TileStuff
                     if (this.ActiveChunks[a, b].IsLoaded)
                     {
                         //if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
-                       // {
-                            int startI = (Game1.cam.CameraScreenRectangle.X - 48 )/ 16 - this.ActiveChunks[a, b].X * 16;
-                            int endI = Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16  - this.ActiveChunks[a, b].X * 16;
+                        // {
 
-                            int startY = (Game1.cam.CameraScreenRectangle.Y - 48) / 16  - this.ActiveChunks[a, b].Y * 16;
-                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128 )/ 16 - this.ActiveChunks[a, b].Y * 16;
+                        Chunk chunk = this.ActiveChunks[a, b];
+                        int startI = CheckArrayLimits((Game1.cam.CameraScreenRectangle.X - 48) / 16 - chunk.X * 16);
+                        int endI = CheckArrayLimits(Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16 - chunk.X * 16);
 
-
-                            if (startI < 0)
-                            {
-                                startI = 0;
-                            }
-                            else if (startI > 15)
-                            {
-                                startI = 15;
-                            }
-                            if (endI < 0)
-                            {
-                                endI = 0;
-                            }
-                            else if (endI > 15)
-                            {
-                                endI = 15;
-                            }
+                        int startY = CheckArrayLimits((Game1.cam.CameraScreenRectangle.Y - 48) / 16 - chunk.Y * 16);
+                        int endY = CheckArrayLimits(Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128) / 16 - chunk.Y * 16);
 
 
 
-                            if (startY < 0)
-                            {
-                                startY = 0;
-                            }
-                            else if (startY > 15)
-                            {
-                                startY = 15;
-                            }
-                            if (endY < 0)
-                            {
-                                endY = 0;
-                            }
-                            else if (endY > 15)
-                            {
-                                endY = 15;
-                            }
 
 
 
-                            if (Game1.GetCurrentStage().ShowBorders)
+                        if (Game1.GetCurrentStage().ShowBorders)
+                        {
+                            spriteBatch.Draw(chunk.RectangleTexture, new Vector2(chunk.GetChunkRectangle().X, chunk.GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
+                            spriteBatch.DrawString(Game1.AllTextures.MenuText, chunk.ArrayI.ToString() + chunk.ArrayJ.ToString(),
+                                new Vector2(chunk.GetChunkRectangle().X + 100, chunk.GetChunkRectangle().Y), Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, 1f);
+                        }
+                        for (int z = 0; z < 4; z++)
+                        {
+                            for (int i = startI; i <= endI; i++)
                             {
-                                spriteBatch.Draw(this.ActiveChunks[a, b].RectangleTexture, new Vector2(this.ActiveChunks[a, b].GetChunkRectangle().X, this.ActiveChunks[a, b].GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActiveChunks[a, b].ArrayI.ToString() + this.ActiveChunks[a, b].ArrayJ.ToString(),
-                                    new Vector2(this.ActiveChunks[a, b].GetChunkRectangle().X + 100, this.ActiveChunks[a, b].GetChunkRectangle().Y), Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, 1f);
-                            }
-                            for (int z = 0; z < 4; z++)
-                            {
-                                for (int i = startI; i <= endI; i++)
+                                for (int j = startY; j <= endY; j++)
                                 {
-                                    for (int j = startY; j <= endY; j++)
+                                    Tile tile = chunk.AllTiles[z][i, j];
+                                    if (chunk.AllTiles[z][i, j].GID != -1)
                                     {
-                                    Tile tile = this.ActiveChunks[a, b].AllTiles[z][i, j];
-                                        if (this.ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
+
+                                        if (z == 3)
                                         {
 
-                                            if (z == 3)
-                                            {
-
-                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White * tile.ColorMultiplier,
-                                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
-
-                                            }
-                                            else
-                                            {
-                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
-                                            }
+                                            spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White * tile.ColorMultiplier,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                                         }
-                                        if (Game1.GetCurrentStage().ShowBorders)
+                                        else
                                         {
-                                            if(ActiveChunks[a,b].PathGrid.Weight[i,j] == (int)GridStatus.Obstructed)
-                                            {
-                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.Red,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
-                                            }
+                                            spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                                         }
 
-
-
-
+                                    }
+                                    if (Game1.GetCurrentStage().ShowBorders)
+                                    {
+                                        if (ActiveChunks[a, b].PathGrid.Weight[i, j] == (int)GridStatus.Obstructed)
+                                        {
+                                            spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.Red,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
                                         }
-                                }
-                            }
-                            foreach (KeyValuePair<string, List<GrassTuft>> entry in this.ActiveChunks[a, b].Tufts)
-                            {
-                                for (int i = 0; i < entry.Value.Count; i++)
-                                {
+                                    }
 
-                                    entry.Value[i].Draw(spriteBatch);
+
+
 
                                 }
                             }
+                        }
 
-                            for (int item = 0; item < this.ActiveChunks[a, b].AllItems.Count; item++)
-                            {
-                                this.ActiveChunks[a, b].AllItems[item].Draw(spriteBatch);
-                            }
-
-
-                        //}
+                        DrawGrassTufts(spriteBatch, chunk);
+                        DrawItems(spriteBatch, chunk);
+                        
                     }
                 }
             }
@@ -910,14 +862,49 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        public void DrawGrassTufts(SpriteBatch spriteBatch, Chunk chunk)
+        {
+            foreach (KeyValuePair<string, List<GrassTuft>> entry in chunk.Tufts)
+            {
+                for (int i = 0; i < entry.Value.Count; i++)
+                {
 
+                    entry.Value[i].Draw(spriteBatch);
+
+                }
+            }
+        }
+        public void DrawItems(SpriteBatch spriteBatch, Chunk chunk)
+        {
+            for (int item = 0; item < chunk.AllItems.Count; item++)
+            {
+                chunk.AllItems[item].Draw(spriteBatch);
+            }
+        }
 
         public void LoadInitialTileObjects(ILocation location)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// We dont want the index of the array to be out of bounds. If it is just adjust it to min or max values.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public int CheckArrayLimits(int index)
+        {
 
+            if (index < 0)
+            {
+                index = 0;
+            }
+            else if (index > 15)
+            {
+                index = 15;
+            }
+            return index;
+        }
 
         public void UpdateCropTile()
         {
@@ -929,9 +916,9 @@ namespace SecretProject.Class.TileStuff
                     {
                         Crop crop = this.ActiveChunks[i, j].Crops.ElementAt(x).Value;
                         crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
-                        if(crop.CurrentGrowth >= crop.DaysToGrow)
+                        if (crop.CurrentGrowth >= crop.DaysToGrow)
                         {
-                            crop.CurrentGrowth = crop.DaysToGrow -1 ;
+                            crop.CurrentGrowth = crop.DaysToGrow - 1;
                         }
                         if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
                         {
