@@ -8,6 +8,9 @@ namespace SecretProject.Class.TileStuff
 {
     public static class ChunkUtility
     {
+
+        public const int ChunkWidth = 16;
+        public const int ChunkHeight = 16;
         public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
         {
             int chunkX = GetChunkX(tileX);
@@ -21,27 +24,10 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            int localX = (int)Math.Floor((float)(tileX - chunkX * 16));
-            int localY = (int)Math.Floor((float)(tileY - chunkY * 16));
+            int localX = CheckArrayLimits((int)Math.Floor((float)(tileX - chunkX * ChunkWidth)));
+            int localY = CheckArrayLimits((int)Math.Floor((float)(tileY - chunkY * ChunkHeight)));
 
-            if (localX > 15)
-            {
-                localX = 15;
-            }
-            else if (localX < 0)
-            {
-                localX = 0;
-            }
 
-            if (localY > 15)
-            {
-                localY = 15;
-            }
-            else if (localY < 0)
-            {
-                localY = 0;
-            }
-            // = tile;
             return (chunk.AllTiles[layer][localX, localY]);
 
         }
@@ -49,12 +35,12 @@ namespace SecretProject.Class.TileStuff
 
         public static int GetChunkX(int tileX)
         {
-           return (int)Math.Floor((float)tileX / 16.0f);
+           return (int)Math.Floor((float)tileX / ChunkWidth);
         }
 
         public static int GetChunkY(int tileY)
         {
-            return (int)Math.Floor((float)tileY / 16.0f);
+            return (int)Math.Floor((float)tileY / ChunkHeight);
         }
 
 
@@ -79,8 +65,8 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            int localX = CheckArrayLimits((int)Math.Floor((float)(tileX - chunkX * 16)));
-            int localY = CheckArrayLimits((int)Math.Floor((float)(tileY - chunkY * 16)));
+            int localX = CheckArrayLimits((int)Math.Floor((float)(tileX - chunkX * ChunkWidth)));
+            int localY = CheckArrayLimits((int)Math.Floor((float)(tileY - chunkY * ChunkHeight)));
 
 
             if (returnX)
@@ -113,8 +99,8 @@ namespace SecretProject.Class.TileStuff
         /// <returns></returns>
         public static int GetLocalChunkCoord(int globalCoord)
         {
-            int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
-            int localCoord = (int)Math.Floor((float)(globalCoord / 16 - chunkCoord * 16));
+            int chunkCoord = (int)Math.Floor((float)globalCoord / ChunkWidth / ChunkWidth);
+            int localCoord = (int)Math.Floor((float)(globalCoord / ChunkHeight - chunkCoord * ChunkHeight));
 
             if (globalCoord < 0)
             {

@@ -151,6 +151,10 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+
+        /// <summary>
+        /// Loads tiling dictionaries in from tileset and assigns them into Game1.procedural so that the wangmanager knows what to do.
+        /// </summary>
         public void LoadGeneratableTileLists()
         {
             string generationProperty = string.Empty;
@@ -260,14 +264,14 @@ namespace SecretProject.Class.TileStuff
 
             switch (direction)
             {
-                //CORRECT
+                
                 case Dir.Down:
                     //shifts everything down one
                     for (int i = 0; i < RenderDistance; i++)
                     {
                         for (int j = 0; j < RenderDistance; j++)
                         {
-                            if (j == RenderDistance - 1)
+                            if (j == RenderDistance - 1) // if J index is at the bottom and will become a new chunk
                             {
                                 this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ChunkPositions.Length - RenderDistance + i].X - 1,
                                     ChunkPositions[ChunkPositions.Length - RenderDistance + i].Y - 1, i, j);
@@ -275,11 +279,11 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                if (j == 0)
+                                if (j == 0) //Chunk is in top row (we are moving down) so it will be saved and removed from memory.
                                 {
                                     SaveAndDiscardChunk(this.ActiveChunks[i, j]);
                                 }
-                                this.ActiveChunks[i, j] = this.ActiveChunks[i, j + 1];
+                                this.ActiveChunks[i, j] = this.ActiveChunks[i, j + 1]; //the new chunk on the top row will be the one which was originally below it.
                                 ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
                             }
@@ -292,7 +296,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (int j = RenderDistance - 1; j > -1; j--)
                         {
-                            if (j == 0)
+                            if (j == 0) // We are moving up. Top row chunks will get new chunks.
                             {
                                 this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i].X - 1,
                                     ChunkPositions[i].Y - 1, i, j);
@@ -362,7 +366,6 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                     break;
-                //CORRECT
                 case Dir.Right:
                     for (int i = 0; i < RenderDistance; i++)
                     {

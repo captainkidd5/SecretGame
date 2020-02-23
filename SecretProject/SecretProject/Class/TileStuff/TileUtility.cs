@@ -921,13 +921,15 @@ namespace SecretProject.Class.TileStuff
             //{
             //    container.AllTiles[layer][x, y].TileKey = container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container);
             //}
-            if (container.Objects.ContainsKey(container.AllTiles[layer][x, y].TileKey))
+            Tile tile = container.AllTiles[layer][x, y];
+
+            if (container.Objects.ContainsKey(tile.TileKey))
             {
-                container.Objects.Remove(container.AllTiles[layer][x, y].TileKey);
+                container.Objects.Remove(tile.TileKey);
                 bool atLeastOneObjectExists = false;
                 for (int i = 0; i < 4; i++)
                 {
-                    if (container.Objects.ContainsKey(container.AllTiles[i][x, y].GetTileKeyStringNew(i, container)))
+                    if (container.Objects.ContainsKey(tile.GetTileKeyStringNew(i, container)))
                     {
                         atLeastOneObjectExists = true;
                     }
@@ -938,32 +940,32 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].TileKey))
+            if (container.TileHitPoints.ContainsKey(tile.TileKey))
             {
-                container.TileHitPoints.Remove(container.AllTiles[layer][x, y].TileKey);
+                container.TileHitPoints.Remove(tile.TileKey);
             }
             //if tileset has loot value, then use that. otherwise check the loot xml data.
             Item itemToCheckForReassasignTiling = null;
-            if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("loot"))
+            if (container.TileSetDictionary[tile.GID].Properties.ContainsKey("loot"))
             {
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"] == string.Empty)
+                if (container.TileSetDictionary[tile.GID].Properties["loot"] == string.Empty)
                 {
-                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container), container);
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(tile.GID, tile.GetPosition(container), container);
                 }
                 else
                 {
-                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromTileset(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container), container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"], container);
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromTileset(tile.GID, tile.GetPosition(container), container.TileSetDictionary[tile.GID].Properties["loot"], container);
                 }
                 //// List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
                 // itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container));
                 //   //  Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
 
-            if (container.Crops.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))
+            if (container.Crops.ContainsKey(tile.GetTileKeyStringNew(layer, container)))
             {
-                container.Crops.Remove(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container));
+                container.Crops.Remove(tile.GetTileKeyStringNew(layer, container));
 
-                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]));
+                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.TileSetDictionary[tile.GID].Properties["destructable"]));
                 TileUtility.ReplaceTile(0, x, y, 86, container);
                 TileUtility.ReplaceTile(layer, x, y, 0, container);
             }
