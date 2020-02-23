@@ -20,6 +20,7 @@ namespace SecretProject.Class.UI
         public double ElapsedMS { get; set; }
 
         public Button DebugButton1 { get; set; }
+        public Button DebugButton2 { get; set; }
         public Button SpeedClockUp { get; set; }
         public Button SlowClockDown { get; set; }
 
@@ -38,6 +39,7 @@ namespace SecretProject.Class.UI
             this.GraphicsDevice = graphics;
             this.ElapsedMS = 0d;
             this.DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(position.X, position.Y - 200), CursorType.Normal);
+            this.DebugButton2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(position.X, position.Y ), CursorType.Normal);
             this.SpeedClockUp = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
             this.SlowClockDown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 32, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
             this.IncrementDay = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(384, 528, 32, 16), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 64, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
@@ -59,6 +61,7 @@ namespace SecretProject.Class.UI
                 base.Update(gameTime, Keys.F1);
                 this.ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
                 this.DebugButton1.Update(Game1.myMouseManager);
+                this.DebugButton2.Update(Game1.myMouseManager);
                 if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
                 {
                     Game1.GlobalClock.IncrementDay();
@@ -69,10 +72,14 @@ namespace SecretProject.Class.UI
 
                     //Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     //Game1.GlobalClock.IncrementDay();
+                    OutPutChunks(WriteChunkArrayValue);
+                   // Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, Game1.Player.position);
 
-                    Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, Game1.Player.position);
 
-
+                }
+                else if(this.DebugButton2.isClicked)
+                {
+                    OutPutChunks(WriteChunkCoordinateValue);
                 }
                 this.SpawnAnimalPack.Update(Game1.myMouseManager);
                 if (this.SpawnAnimalPack.isClicked)
@@ -117,6 +124,32 @@ namespace SecretProject.Class.UI
             }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
+
+        public void OutPutChunks(Func<Chunk, string> result)
+        {
+            string outputString = string.Empty;
+            Chunk[,] worldChunks = Game1.OverWorld.AllTiles.ActiveChunks;
+            for (int i = 0; i <= worldChunks.GetUpperBound(0); i++)
+            {
+                for(int j =0; j <= worldChunks.GetUpperBound(1); j++)
+                {
+                    
+                   outputString+= result(worldChunks[i, j]);
+                }
+                outputString += "\n";
+            }
+            Console.WriteLine(outputString);
+        }
+
+        public string WriteChunkCoordinateValue(Chunk chunk)
+        {
+            return "[" + chunk.X + "," + chunk.Y + "] ";
+        }
+
+        public string WriteChunkArrayValue(Chunk chunk)
+        {
+            return "["+chunk.ArrayI + "," + chunk.ArrayJ + "] ";
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -134,6 +167,7 @@ namespace SecretProject.Class.UI
 
 
                 this.DebugButton1.Draw(spriteBatch);
+                this.DebugButton2.Draw(spriteBatch);
                 this.SpeedClockUp.Draw(spriteBatch);
                 this.SlowClockDown.Draw(spriteBatch);
                 this.IncrementDay.Draw(spriteBatch);

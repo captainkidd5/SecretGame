@@ -161,7 +161,13 @@ namespace SecretProject.Class.TileStuff
                     //If this errors its because there's a property in tiled which contains generate but has a value which isn't supported. Capitals matter!
                     if (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
                     {
-                        GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"]);
+                        GenerationType generationIndex = GenerationType.None;
+                        bool didSucceed = Enum.TryParse( this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"], out generationIndex);
+                        if(!didSucceed)
+                        {
+                            throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
+                        }
+
                         if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
                         {
                             Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
@@ -181,15 +187,16 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < RenderDistance; j++)
                 {
-                    if (!this.ActiveChunks[i, j].IsLoaded)
+                    Chunk chunk = ActiveChunks[i, j];
+                    if (!chunk.IsLoaded)
                     {
-                        if (Chunk.CheckIfChunkExistsInMemory(this.ActiveChunks[i, j].ChunkPath, this.ActiveChunks[i, j].X, this.ActiveChunks[i, j].Y))
+                        if (Chunk.CheckIfChunkExistsInMemory(chunk.ChunkPath, chunk.X, chunk.Y))
                         {
-                            this.ActiveChunks[i, j].Load();
+                            chunk.Load();
                         }
                         else
                         {
-                            this.ActiveChunks[i, j].Generate();
+                            chunk.Generate();
 
                         }
                     }
@@ -536,25 +543,26 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int b = WorldTileManager.RenderDistance / 2 - 1; b < WorldTileManager.RenderDistance / 2 + 2; b++)
                 {
-                    if (this.ActiveChunks[a, b].IsLoaded)
+                    Chunk currentChunk = this.ActiveChunks[a, b];
+                    if (currentChunk.IsLoaded)
                     {
 
 
-                        if (this.ActiveChunks[a, b].GetChunkRectangle().Intersects(Game1.cam.CameraScreenRectangle))
+                        if (currentChunk.GetChunkRectangle().Intersects(Game1.cam.CameraScreenRectangle))
                         {
 
                             List<string> AnimationFrameKeysToRemove = new List<string>();
-                            foreach (EditableAnimationFrameHolder frameholder in this.ActiveChunks[a, b].AnimationFrames.Values)
+                            foreach (EditableAnimationFrameHolder frameholder in currentChunk.AnimationFrames.Values)
                             {
                                 frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                                 {
                                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                    this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                                    currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
                                     if (frameholder.HasNewSource)
                                     {
-                                        Rectangle newSourceRectangle = this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
-                                        this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
+                                        Rectangle newSourceRectangle = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
+                                        currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
                                             newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
                                     }
 
@@ -569,12 +577,12 @@ namespace SecretProject.Class.TileStuff
                                             if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                             {
 
-                                                //this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                                // this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey = this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this.ActiveChunks[a, b]);
-                                                AnimationFrameKeysToRemove.Add(this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey);
+                                                //currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                                                // currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, currentChunk);
+                                                AnimationFrameKeysToRemove.Add(currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey);
                                                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                                 {
-                                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this.ActiveChunks[a, b]);
+                                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
                                                 }
 
                                             }
@@ -596,19 +604,19 @@ namespace SecretProject.Class.TileStuff
 
                             foreach (string key in AnimationFrameKeysToRemove)
                             {
-                                this.ActiveChunks[a, b].AnimationFrames.Remove(key);
+                                currentChunk.AnimationFrames.Remove(key);
                             }
-                            Rectangle ActiveChunkRectangle = this.ActiveChunks[a, b].GetChunkRectangle();
+                            Rectangle ActiveChunkRectangle = currentChunk.GetChunkRectangle();
 
 
                             if (mouse.IsHoveringTile(ActiveChunkRectangle))
                             {
-                                this.ChunkUnderMouse = this.ActiveChunks[a, b];
+                                this.ChunkUnderMouse = currentChunk;
                             }
 
-                            for(int item = 0; item < this.ActiveChunks[a, b].AllItems.Count; item++)
+                            for(int item = 0; item < currentChunk.AllItems.Count; item++)
                             {
-                                this.ActiveChunks[a, b].AllItems[item].Update(gameTime);
+                                currentChunk.AllItems[item].Update(gameTime);
                             }
 
                         }
@@ -618,7 +626,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     else
                     {
-                        ChunkCheck(this.ActiveChunks[a, b]);
+                        ChunkCheck(currentChunk);
                     }
                 }
             }
@@ -681,19 +689,19 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                 {
-
-                    if (this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ] != null)
+                    Tile tileUnderMouse = this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ];
+                    if (tileUnderMouse != null)
                     {
 
 
-                        if (this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
+                        if (tileUnderMouse.GID != -1)
                         {
 
                             //int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
 
 
 
-                            if (this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                            if (tileUnderMouse.DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
 
 
@@ -704,21 +712,21 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.UserInterface.TileSelector.WorldY = this.ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
 
 
-                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(tileUnderMouse.GID))
                                 {
 
 
 
-                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
+                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties.ContainsKey("destructable"))
                                     {
 
                                         Game1.isMyMouseVisible = false;
 
                                         if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                                         {
-                                            if ((AnimationType)Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
+                                            if ((AnimationType)Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties["destructable"]))
                                             {
-                                                mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+                                                mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties["destructable"])));
                                             }
                                         }
 
@@ -728,19 +736,19 @@ namespace SecretProject.Class.TileStuff
 
                                         if (mouse.IsClicked)
                                         {
-                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle, this.ChunkUnderMouse);
+                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, tileUnderMouse.DestinationRectangle, this.ChunkUnderMouse);
 
                                         }
 
                                     }
 
 
-                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
+                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(tileUnderMouse.GID))
                                     {
-                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
+                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties.ContainsKey("action"))
                                         {
 
-                                            TileUtility.ActionHelper(z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, this.ChunkUnderMouse);
+                                            TileUtility.ActionHelper(z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties["action"], mouse, this.ChunkUnderMouse);
 
                                         }
                                     }
@@ -760,12 +768,6 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            //Tile tile = ChunkUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, this.ActiveChunks);
-            //if (tile != null)
-            //{
-            //    tile.ColorMultiplier = .25f;
-            //}
-
 
             if (this.GridItem != null)
             {
@@ -848,19 +850,20 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     for (int j = startY; j <= endY; j++)
                                     {
+                                    Tile tile = this.ActiveChunks[a, b].AllTiles[z][i, j];
                                         if (this.ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
                                         {
 
                                             if (z == 3)
                                             {
 
-                                                spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White * this.ActiveChunks[a, b].AllTiles[z][i, j].ColorMultiplier,
-                                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White * tile.ColorMultiplier,
+                                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                                             }
                                             else
                                             {
-                                                spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White,
+                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                                             }
 
@@ -869,7 +872,7 @@ namespace SecretProject.Class.TileStuff
                                         {
                                             if(ActiveChunks[a,b].PathGrid.Weight[i,j] == (int)GridStatus.Obstructed)
                                             {
-                                                spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.Red,
+                                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.Red,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
                                             }
                                         }

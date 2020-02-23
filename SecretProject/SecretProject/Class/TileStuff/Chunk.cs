@@ -906,6 +906,13 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region STATIC METHODS
+        /// <summary>
+        /// Checks the directory where chunks are stored. Simple if file Exists method.
+        /// </summary>
+        /// <param name="chunkPath"></param>
+        /// <param name="idX"></param>
+        /// <param name="idY"></param>
+        /// <returns></returns>
         public static bool CheckIfChunkExistsInMemory(string chunkPath, int idX, int idY)
         {
 
