@@ -113,10 +113,10 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public static bool GetProperty(Dictionary<int, TmxTilesetTile> tileSet, Tile tile, ref string property)
+        public static bool GetProperty(Dictionary<int, TmxTilesetTile> tileSet, int tileGID, ref string property)
         {
 
-            return tileSet[tile.GID].Properties.TryGetValue(property, out property);
+            return tileSet[tileGID].Properties.TryGetValue(property, out property);
 
         }
 
@@ -142,7 +142,7 @@ namespace SecretProject.Class.TileStuff
                 //replaces tiles with wheat grass
 
                 propertyString = "replace";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
 
@@ -179,7 +179,7 @@ namespace SecretProject.Class.TileStuff
                         bool hasNewSource = false;
                         EditableAnimationFrameHolder frameHolder;
                         propertyString = "newSource";
-                        if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                        if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                         {
 
 
@@ -207,7 +207,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
                 propertyString = "lightSource";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
 
@@ -234,13 +234,13 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 propertyString = "destructable";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     container.TileHitPoints[tileToAssign.TileKey] = Game1.Utility.GetTileHitpoints(propertyString);
                 }
 
                 propertyString = "layer";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     tileToAssign.LayerToDrawAt = int.Parse(propertyString);
                 }
@@ -249,7 +249,7 @@ namespace SecretProject.Class.TileStuff
                 //grass = 1, stone = 2, wood = 3, sand = 4
 
                 propertyString = "generate";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     tileToAssign.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), propertyString);
                 }
@@ -258,7 +258,7 @@ namespace SecretProject.Class.TileStuff
                 //grass = 1, stone = 2, wood = 3, sand = 4
 
                 propertyString = "action";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
                     if (propertyString == "chestLoot")
@@ -304,7 +304,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
                 propertyString = "newSource";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
                 }
@@ -324,7 +324,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 propertyString = "newHitBox";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
 
@@ -429,7 +429,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 propertyString = "transparent";
-                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
 
@@ -457,9 +457,10 @@ namespace SecretProject.Class.TileStuff
 
         public static void AddCropToTile(Tile tileToAssign, int x, int y, int layer, IInformationContainer container, bool randomize = false)
         {
-            if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("crop"))
+            string cropString = string.Empty;
+            if(GetProperty(container.MapName.Tilesets[container.TileSetNumber].Tiles, tileToAssign.GID, ref cropString))
             {
-                int cropID = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["crop"]);
+                int cropID = int.Parse(cropString);
                 Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
 
                 tempCrop.X = x;
@@ -481,6 +482,9 @@ namespace SecretProject.Class.TileStuff
 
                 container.Crops[tileToAssign.GetTileKeyStringNew(layer, container)] = tempCrop;
             }
+       
+                
+            
         }
 
         /// <summary>
@@ -514,6 +518,7 @@ namespace SecretProject.Class.TileStuff
 
                                 if (mouse.IsClicked)
                                 {
+
                                     switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["generate"])
                                     {
                                         case "Dirt":
@@ -981,7 +986,7 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
 
-        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
+         public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
         {
             if (container.AllTiles[layer][tileX, tileY].GID != -1)
             {
@@ -1048,7 +1053,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="zeroLayerOnly">Will only spawn on layer zero when path layer is not occupied</param>
         /// <param name="assertLeftAndRight">will only be considered if tiles to the right and left are also in the acceptable tiles list</param>
         public static bool RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
-            int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
+             int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
         {
             int newTileX = container.Random.Next(0, container.AllTiles[0].GetLength(0));
             int newTileY = container.Random.Next(1, container.AllTiles[0].GetLength(0));
@@ -1088,6 +1093,7 @@ namespace SecretProject.Class.TileStuff
                 return false;
             }
         }
+
 
         #endregion
 

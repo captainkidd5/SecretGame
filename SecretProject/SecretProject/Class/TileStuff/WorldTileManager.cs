@@ -93,6 +93,8 @@ namespace SecretProject.Class.TileStuff
 
         int OldPlayerI;
         int OldPlayerJ;
+
+        public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -150,29 +152,35 @@ namespace SecretProject.Class.TileStuff
             this.OldPlayerI = 0;
             this.OldPlayerJ = 0;
 
+            this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
+
         }
 
         public void LoadGeneratableTileLists()
         {
+
+
             for (int i = 0; i < 10000; i++)
             {
                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(i))
                 {
-                    //If this errors its because there's a property in tiled which contains generate but has a value which isn't supported. Capitals matter!
-                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
-                    {
-                        GenerationType generationIndex = GenerationType.None;
-                        bool didSucceed = Enum.TryParse(this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"], out generationIndex);
-                        if (!didSucceed)
-                        {
-                            throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
-                        }
 
+                    string generationProperty = string.Empty;
+                    bool didSucceed = this.TileSetDictionary[i].Properties.TryGetValue("generate", out generationProperty);
+                    if(didSucceed)
+                    {
+                        GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), generationProperty);
                         if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
                         {
                             Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
                         }
                     }
+                    else
+                    {
+                       // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
+
+                    }
+                       
                 }
             }
         }
