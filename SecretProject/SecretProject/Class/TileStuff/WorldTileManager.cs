@@ -66,9 +66,6 @@ namespace SecretProject.Class.TileStuff
 
         public GridItem GridItem { get; set; }
 
-        public List<int> DirtGeneratableTiles;
-        public List<int> SandGeneratableTiles;
-        public List<int> GrassGeneratableTiles;
 
         public Dictionary<string, Crop> Crops { get; set; }
 
@@ -123,9 +120,7 @@ namespace SecretProject.Class.TileStuff
             this.MaximumChunksLoaded = 3;
             this.ChunkPointUnderPlayerLastFrame = new Point(1000, 1000);
 
-            DirtGeneratableTiles = new List<int>();
-            SandGeneratableTiles = new List<int>();
-            GrassGeneratableTiles = new List<int>();
+
             this.AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             this.Tufts = new Dictionary<string, List<GrassTuft>>();
             this.TileHitPoints = new Dictionary<string, int>();
@@ -782,11 +777,11 @@ namespace SecretProject.Class.TileStuff
   
 
                         Chunk chunk = this.ActiveChunks[a, b];
-                        int startI = CheckArrayLimits((Game1.cam.CameraScreenRectangle.X - 48) / 16 - chunk.X * 16);
-                        int endI = CheckArrayLimits(Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16 - chunk.X * 16);
+                        int startI = ChunkUtility.CheckArrayLimits((Game1.cam.CameraScreenRectangle.X - 48) / 16 - chunk.X * 16);
+                        int endI = ChunkUtility.CheckArrayLimits(Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16 - chunk.X * 16);
 
-                        int startY = CheckArrayLimits((Game1.cam.CameraScreenRectangle.Y - 48) / 16 - chunk.Y * 16);
-                        int endY = CheckArrayLimits(Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128) / 16 - chunk.Y * 16);
+                        int startY = ChunkUtility.CheckArrayLimits((Game1.cam.CameraScreenRectangle.Y - 48) / 16 - chunk.Y * 16);
+                        int endY = ChunkUtility.CheckArrayLimits(Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128) / 16 - chunk.Y * 16);
 
                         if (Game1.GetCurrentStage().ShowBorders)
                         {
@@ -872,24 +867,7 @@ namespace SecretProject.Class.TileStuff
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// We dont want the index of the array to be out of bounds. If it is just adjust it to min or max values.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public int CheckArrayLimits(int index)
-        {
 
-            if (index < 0)
-            {
-                index = 0;
-            }
-            else if (index > 15)
-            {
-                index = 15;
-            }
-            return index;
-        }
 
         public void UpdateCropTile()
         {

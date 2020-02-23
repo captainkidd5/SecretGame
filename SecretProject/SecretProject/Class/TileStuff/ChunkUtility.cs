@@ -79,26 +79,10 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            int localX = (int)Math.Floor((float)(tileX - chunkX * 16));
-            int localY = (int)Math.Floor((float)(tileY - chunkY * 16));
+            int localX = CheckArrayLimits((int)Math.Floor((float)(tileX - chunkX * 16)));
+            int localY = CheckArrayLimits((int)Math.Floor((float)(tileY - chunkY * 16)));
 
-            if (localX > 15)
-            {
-                localX = 15;
-            }
-            else if (localX < 0)
-            {
-                localX = 0;
-            }
 
-            if (localY > 15)
-            {
-                localY = 15;
-            }
-            else if (localY < 0)
-            {
-                localY = 0;
-            }
             if (returnX)
             {
                 return localX;
@@ -107,6 +91,20 @@ namespace SecretProject.Class.TileStuff
             {
                 return localY;
             }
+        }
+
+        public static int CheckArrayLimits(int index)
+        {
+
+            if (index < 0)
+            {
+                index = 0;
+            }
+            else if (index > 15)
+            {
+                index = 15;
+            }
+            return index;
         }
         /// <summary>
         /// Given a world position, returns the index of the x or y coordinate within a found chunk.
@@ -137,9 +135,9 @@ namespace SecretProject.Class.TileStuff
 
         public static Chunk GetChunk(int chunkX, int chunkY, Chunk[,] ActiveChunks)
         {
-            for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
+            for (int i = 0; i < ActiveChunks.GetUpperBound(0) + 1; i++)
             {
-                for (int j = 0; j < ActiveChunks.GetUpperBound(1); j++)
+                for (int j = 0; j < ActiveChunks.GetUpperBound(1) + 1; j++)
                 {
                     if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
                     {

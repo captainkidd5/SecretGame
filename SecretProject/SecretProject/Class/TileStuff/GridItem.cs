@@ -151,14 +151,23 @@ namespace SecretProject.Class.TileStuff
                             int testX = ChunkUtility.GetLocalChunkCoord(subX);
                             int testY = ChunkUtility.GetLocalChunkCoord(subY);
 
-                            if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
+                            if(newChunk != null)
                             {
+                                if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
+                                {
+
+                                }
+                                else
+                                {
+                                    CanPlaceTotal = false;
+                                }
 
                             }
                             else
                             {
                                 CanPlaceTotal = false;
                             }
+
 
 
                         }
