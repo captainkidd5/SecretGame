@@ -34,7 +34,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Update(GameTime gameTime, Vector2 backGroundPosition, float scale)
         {
-            this.Button.Update(Game1.myMouseManager);
+            this.Button.Update(Game1.MouseManager);
             this.Pages[this.ActivePage].Update(gameTime, backGroundPosition, scale);
         }
 

@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI
         public virtual void Update(GameTime gameTime, Keys activationKey)
         {
 
-            if (Game1.OldKeyBoardState.IsKeyDown(activationKey) && !Game1.NewKeyBoardState.IsKeyDown(activationKey))
+            if (Game1.KeyboardManager.WasKeyPressed(activationKey))
             {
                 this.IsActivated = !this.IsActivated;
             }

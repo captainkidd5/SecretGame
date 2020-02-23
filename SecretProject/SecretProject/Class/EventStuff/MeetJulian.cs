@@ -107,8 +107,8 @@ namespace SecretProject.Class.EventStuff
             {
                 //Game1.Player.UserInterface.BlackTransition(gameTime);
             }
-            Game1.Player.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, Game1.Player.Inventory, Game1.myMouseManager);
-            Game1.DobbinHouse.AllTiles.Update(gameTime, Game1.myMouseManager);
+            Game1.Player.UserInterface.Update(gameTime,Game1.Player.Inventory);
+            Game1.DobbinHouse.AllTiles.Update(gameTime, Game1.MouseManager);
             Game1.Player.UserInterface.CinematicMode = true;
             Game1.cam.pos = new Vector2(500, 430);
             Game1.Player.Direction = Dir.Right;

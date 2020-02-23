@@ -150,7 +150,7 @@ namespace SecretProject.Class.DialogueStuff
         {
             if (this.IsActive)
             {
-                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                 {
                     Reset();
                     this.IsActive = false;
@@ -173,9 +173,9 @@ namespace SecretProject.Class.DialogueStuff
                 else
                 {
 
-                    if (this.IsPaused && this.NumberOfClicks == 0 && Game1.myMouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
+                    if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
                     {
-                        Game1.myMouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
+                        Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
                     }
 
 
@@ -220,7 +220,7 @@ namespace SecretProject.Class.DialogueStuff
                         }
 
                     }
-                    if (Game1.myMouseManager.IsClicked)
+                    if (Game1.MouseManager.IsClicked)
                     {
                         this.NumberOfClicks++;
                     }
@@ -467,7 +467,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Update(GameTime gameTime, Character characterTalking)
         {
-            this.Button.UpdateSelectableText(Game1.myMouseManager);
+            this.Button.UpdateSelectableText(Game1.MouseManager);
             if (this.Button.isClicked)
             {
                 Game1.Utility.PerformSpeechAction(this.Action, characterTalking);

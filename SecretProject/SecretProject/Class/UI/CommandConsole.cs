@@ -40,18 +40,18 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
             Game1.freeze = true;
-            Keys[] pressedKeys = Game1.OldKeyBoardState.GetPressedKeys();
-            if(Game1.myMouseManager.HasScrollWheelValueIncreased)
+            Keys[] pressedKeys = Game1.KeyboardManager.OldKeyBoardState.GetPressedKeys();
+            if(Game1.MouseManager.HasScrollWheelValueIncreased)
             {
                 this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y - 20);
             }
-            else if (Game1.myMouseManager.HasScrollWheelValueDecreased)
+            else if (Game1.MouseManager.HasScrollWheelValueDecreased)
             {
                 this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y + 20);
             }
             foreach (Keys key in pressedKeys)
             {
-                if ((Game1.OldKeyBoardState.IsKeyDown(key)) && (Game1.NewKeyBoardState.IsKeyUp(key)))
+                if (Game1.KeyboardManager.WasKeyPressed(key))
                 {
                     string keyValue = string.Empty;
                     if (key == Keys.Space)

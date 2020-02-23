@@ -91,16 +91,16 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
 
             FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 104, position.Y - 16);
-            FinalRewardButton.Update(Game1.myMouseManager);
+            FinalRewardButton.Update(Game1.MouseManager);
             if (FinalRewardButton.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
                 //Game1.Player.UserInterface.InfoBox.FitText("Complete the page to unlock the " + FinalRewardButton.Item.Name, 1f);
                 Game1.Player.UserInterface.InfoBox.StringToWrite = FinalRewardButton.Description;
-                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.Position.X + 48, Game1.MouseManager.Position.Y + 48);
             }
-            ScrollUpButton.Update(Game1.myMouseManager);
-            ScrollDownButton.Update(Game1.myMouseManager);
+            ScrollUpButton.Update(Game1.MouseManager);
+            ScrollDownButton.Update(Game1.MouseManager);
             if (ScrollUpButton.isClicked)
             {
      
@@ -114,11 +114,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     CurrentRackIndex++;
                 
             }
-            if(Game1.myMouseManager.HasScrollWheelValueIncreased)
+            if(Game1.MouseManager.HasScrollWheelValueIncreased)
             {
                 CurrentRackIndex--;
             }
-            else if(Game1.myMouseManager.HasScrollWheelValueDecreased)
+            else if(Game1.MouseManager.HasScrollWheelValueDecreased)
             {
                 CurrentRackIndex++;
             }

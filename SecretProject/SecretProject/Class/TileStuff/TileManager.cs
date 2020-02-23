@@ -310,8 +310,8 @@ namespace SecretProject.Class.TileStuff
 
 
             Game1.Player.CollideOccured = false;
-            int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X / 16);
-            int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16);
+            int mouseI = (int)(Game1.MouseManager.WorldMousePosition.X / 16);
+            int mouseJ = (int)(Game1.MouseManager.WorldMousePosition.Y / 16);
             int playerI = (int)((Game1.Player.Position.X + 16) / 16);
             int playerJ = (int)((Game1.Player.Position.Y + 16) / 16);
 
@@ -380,7 +380,7 @@ namespace SecretProject.Class.TileStuff
 
 
                                 //trees new source layer isnt the same tile as destructable, need to fix
-                                if (Game1.myMouseManager.WorldMouseRectangle.Intersects(newIntersectionRectangle))
+                                if (Game1.MouseManager.WorldMouseRectangle.Intersects(newIntersectionRectangle))
                                 {
                                     if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mi, mj].GID))
                                     {
@@ -394,7 +394,7 @@ namespace SecretProject.Class.TileStuff
                                                 if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"]))
                                                 {
                                                     mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"])));
-                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                                    Game1.MouseManager.ToggleGeneralInteraction = true;
                                                 }
                                             }
 

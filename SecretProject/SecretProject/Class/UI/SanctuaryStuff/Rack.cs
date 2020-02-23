@@ -102,7 +102,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             for (int i = 0; i < this.RewardIcons.Count; i++)
             {
                 this.RewardIcons[i].Position = new Vector2(position.X + 48 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 120 + (32 * rackIndex * scale * (float)1.25f));
-                this.RewardIcons[i].Update(Game1.myMouseManager);
+                this.RewardIcons[i].Update(Game1.MouseManager);
                 if (this.RewardIcons[i].IsHovered)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
@@ -120,7 +120,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
 
 
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.Position.X + 48, Game1.MouseManager.Position.Y + 48);
 
                     if (this.Requirement.Satisfied && !this.Requirement.IndividualRewards[i])
                     {

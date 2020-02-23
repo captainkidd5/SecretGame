@@ -232,13 +232,13 @@ namespace SecretProject.Class.StageFolder
                 {
                     if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
-
-                        if (this.AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
+                        Chunk chunk = this.AllTiles.ActiveChunks[i, j];
+                        if (chunk.GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
                             {
 
 
 
-                            foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.ActiveChunks[i, j].Objects)
+                            foreach (KeyValuePair<string, List<ICollidable>> obj in chunk.Objects)
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
                                 {
@@ -252,7 +252,7 @@ namespace SecretProject.Class.StageFolder
                                 }
                             }
 
-                            foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.ActiveChunks[i, j].Tufts)
+                            foreach (KeyValuePair<string, List<GrassTuft>> grass in chunk.Tufts)
                             {
                                 for (int g = 0; g < grass.Value.Count; g++)
                                 {
@@ -282,9 +282,9 @@ namespace SecretProject.Class.StageFolder
                                 
                             }
 
-                            for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
+                            for (int item = 0; item < chunk.AllItems.Count; item++)
                             {
-                                this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
+                                this.QuadTree.Insert(chunk.AllItems[item].ItemSprite);
                                 
                             }
                         }
@@ -298,7 +298,7 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree.Insert(Game1.Player.MainCollider);
            
             this.QuadTree.Insert(Game1.Player.BigCollider);
-            this.QuadTree.Insert(Game1.myMouseManager.MouseCollider);
+            this.QuadTree.Insert(Game1.MouseManager.MouseCollider);
             
         }
 
@@ -320,16 +320,16 @@ namespace SecretProject.Class.StageFolder
             //    ParticleEngines[p].Update(gameTime);
             //}
 
-            Game1.myMouseManager.ToggleGeneralInteraction = false;
+            Game1.MouseManager.ToggleGeneralInteraction = false;
             Game1.isMyMouseVisible = true;
 
 
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
+            if ((Game1.KeyboardManager.WasKeyPressed(Keys.F1)))
             {
                 this.ShowBorders = !this.ShowBorders;
 
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            if ((Game1.KeyboardManager.WasKeyPressed(Keys.F2)))
             {
 
                 player.Position = new Vector2(0, 0);
@@ -391,7 +391,7 @@ namespace SecretProject.Class.StageFolder
 
             }
             Game1.Player.controls.UpdateKeys();
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            Game1.Player.UserInterface.Update(gameTime,  player.Inventory);
 
 
         }

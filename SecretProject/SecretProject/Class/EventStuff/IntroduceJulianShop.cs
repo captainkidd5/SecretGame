@@ -53,7 +53,7 @@ namespace SecretProject.Class.EventStuff
             if (!Game1.freeze)
             {
                 Game1.cam.Follow(new Vector2(Game1.Player.Position.X + 8, Game1.Player.Position.Y + 16), Game1.GetCurrentStage().MapRectangle);
-                Game1.Player.Update(gameTime, Game1.GetCurrentStage().AllTiles.AllItems, Game1.myMouseManager);
+                Game1.Player.Update(gameTime, Game1.GetCurrentStage().AllTiles.AllItems, Game1.MouseManager);
                 Game1.Julian.EventUpdate(gameTime);
             }
 

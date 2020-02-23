@@ -29,16 +29,16 @@ namespace SecretProject.Class.UI
 
         public float Update(float valueToAffect)
         {
-            this.SliderButton.Update(Game1.myMouseManager);
+            this.SliderButton.Update(Game1.MouseManager);
             if (this.SliderButton.isClickedAndHeld)
             {
-                if (Game1.myMouseManager.UIPosition.X > Game1.myMouseManager.OldMouseInterfacePosition.X)
+                if (Game1.MouseManager.UIPosition.X > Game1.MouseManager.OldMouseInterfacePosition.X)
                 {
-                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X + Game1.myMouseManager.UIPosition.X - Game1.myMouseManager.OldMouseInterfacePosition.X, this.SliderButton.Position.Y);
+                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X + Game1.MouseManager.UIPosition.X - Game1.MouseManager.OldMouseInterfacePosition.X, this.SliderButton.Position.Y);
                 }
-                else if (Game1.myMouseManager.UIPosition.X < Game1.myMouseManager.OldMouseInterfacePosition.X)
+                else if (Game1.MouseManager.UIPosition.X < Game1.MouseManager.OldMouseInterfacePosition.X)
                 {
-                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X - Math.Abs(Game1.myMouseManager.OldMouseInterfacePosition.X - Game1.myMouseManager.UIPosition.X), this.SliderButton.Position.Y);
+                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X - Math.Abs(Game1.MouseManager.OldMouseInterfacePosition.X - Game1.MouseManager.UIPosition.X), this.SliderButton.Position.Y);
                 }
             }
 

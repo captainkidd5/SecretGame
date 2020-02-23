@@ -31,8 +31,8 @@ namespace SecretProject.Class.Transportation
 
         public void Update(GameTime gameTime)
         {
-            this.Yes.Update(Game1.myMouseManager);
-            this.No.Update(Game1.myMouseManager);
+            this.Yes.Update(Game1.MouseManager);
+            this.No.Update(Game1.MouseManager);
             if (this.Yes.isClicked)
             {
                

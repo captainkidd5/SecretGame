@@ -88,8 +88,8 @@ namespace SecretProject.Class.EventStuff
             }
 
             //Game1.Player.UserInterface.TextBuilder.Update(gameTime);
-            Game1.Player.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, Game1.Player.Inventory, Game1.myMouseManager);
-            Game1.OverWorld.AllTiles.Update(gameTime, Game1.myMouseManager);
+            Game1.Player.UserInterface.Update(gameTime, Game1.Player.Inventory);
+            Game1.OverWorld.AllTiles.Update(gameTime, Game1.MouseManager);
             Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, StageFolder.LocationType.Exterior);
             Game1.Player.UserInterface.CinematicMode = true;
 

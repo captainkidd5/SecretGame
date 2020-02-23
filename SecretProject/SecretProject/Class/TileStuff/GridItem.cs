@@ -134,8 +134,8 @@ namespace SecretProject.Class.TileStuff
                             this.CanPlace = true;
 
 
-                            subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
-                            subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
+                            subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
+                            subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
                             //if (Game1.myMouseManager.WorldMousePosition.X < 0)
                             //{
                             //    subX -= 16;
@@ -167,7 +167,7 @@ namespace SecretProject.Class.TileStuff
 
                     if (CanPlaceTotal)
                     {
-                        if (Game1.myMouseManager.IsClicked)
+                        if (Game1.MouseManager.IsClicked)
                         {
                             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                             {
@@ -196,7 +196,7 @@ namespace SecretProject.Class.TileStuff
 
 
                                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(item.GenerationType);
-                                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
+                                    WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
                                 tilingContainer.TilingDictionary, item.TilingLayer, tileManager);
                                 }
 
@@ -240,14 +240,14 @@ namespace SecretProject.Class.TileStuff
                     for (int j = this.NegativeYDraw; j < 1; j++)
                     {
 
-                        subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
-                        subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
+                        subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
+                        subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
 
-                        if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                        if (Game1.MouseManager.WorldMousePosition.X < 0)
                         {
                             subX -= 16;
                         }
-                        if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                        if (Game1.MouseManager.WorldMousePosition.Y < 0)
                         {
                             subY -= 16;
                         }
@@ -358,7 +358,7 @@ namespace SecretProject.Class.TileStuff
 
                     if (canPlaceTotal)
                     {
-                        if (Game1.myMouseManager.IsClicked)
+                        if (Game1.MouseManager.IsClicked)
                         {
                             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                             {

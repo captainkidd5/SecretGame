@@ -181,7 +181,7 @@ namespace SecretProject.Class.StageFolder
 
                 }
             }
-            Back.Update(Game1.myMouseManager);
+            Back.Update(Game1.MouseManager);
             if (Back.isClicked)
             {
                 CurrentMenuState = MenuState.Primary;
@@ -193,7 +193,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in PrimaryButtons)
             {
-                button.Update(Game1.myMouseManager);
+                button.Update(Game1.MouseManager);
             }
 
 
@@ -243,7 +243,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in DevPanelButtons)
             {
-                button.Update(Game1.myMouseManager);
+                button.Update(Game1.MouseManager);
             }
             if (StartGameInTown.isClicked)
             {
@@ -297,7 +297,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in this.SettingsButtons)
             {
-                button.Update(Game1.myMouseManager);
+                button.Update(Game1.MouseManager);
             }
             if (FullScreen.isClicked)
             {
@@ -331,7 +331,7 @@ namespace SecretProject.Class.StageFolder
         {
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null,SamplerState.PointClamp);
-            Game1.myMouseManager.Draw(spriteBatch, 1f);
+            Game1.MouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), null, Color.White, 0f, Game1.Utility.Origin, .75f, SpriteEffects.None, .5f);
 
             for (int i = 0; i < AllAlerts.Count; i++)

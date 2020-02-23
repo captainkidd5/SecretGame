@@ -57,7 +57,7 @@ namespace SecretProject.Class.MenuStuff
 
             for (int i = 0; i < this.Tabs.Count; i++)
             {
-                this.Tabs[i].Button.Update(Game1.myMouseManager);
+                this.Tabs[i].Button.Update(Game1.MouseManager);
                 if (this.Tabs[i].Button.isClicked)
                 {
                     this.ActiveTab = i;
@@ -151,7 +151,7 @@ namespace SecretProject.Class.MenuStuff
         {
             for (int i = 0; i < this.Buttons.Count; i++)
             {
-                this.Buttons[i].Update(Game1.myMouseManager);
+                this.Buttons[i].Update(Game1.MouseManager);
             }
             if (this.MenuButton.isClicked)
             {

@@ -158,11 +158,11 @@ namespace SecretProject.Class.StageFolder
            
             float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
-            Game1.myMouseManager.ToggleGeneralInteraction = false;
+            Game1.MouseManager.ToggleGeneralInteraction = false;
             Game1.isMyMouseVisible = true;
             //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
-            Nelja.Update(gameTime, Game1.myMouseManager);
+            Nelja.Update(gameTime, Game1.MouseManager);
             for (int p = 0; p < this.AllPortals.Count; p++)
             {
                 if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart) && this.AllPortals[p].MustBeClicked)
@@ -170,7 +170,7 @@ namespace SecretProject.Class.StageFolder
                     if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart))
                     {
                         Game1.isMyMouseVisible = false;
-                        Game1.myMouseManager.ToggleGeneralInteraction = true;
+                        Game1.MouseManager.ToggleGeneralInteraction = true;
                         mouse.ChangeMouseTexture(CursorType.Door);
                         if (mouse.IsClicked)
                         {
@@ -196,13 +196,13 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.F1))
             {
                 this.ShowBorders = !this.ShowBorders;
                 
 
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.F2))
             {
 
                 player.Position = new Vector2(400, 400);
@@ -214,7 +214,7 @@ namespace SecretProject.Class.StageFolder
             this.TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            Game1.Player.UserInterface.Update(gameTime, player.Inventory);
             if(Game1.GetCurrentStage() != this)
             {
                 return;

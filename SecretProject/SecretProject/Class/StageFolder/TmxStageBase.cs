@@ -335,7 +335,7 @@ namespace SecretProject.Class.StageFolder
                 }
             }
 
-            Game1.myMouseManager.ToggleGeneralInteraction = false;
+            Game1.MouseManager.ToggleGeneralInteraction = false;
 
             if (Game1.CurrentWeather != WeatherType.None)
             {
@@ -343,16 +343,16 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            Game1.Player.UserInterface.Update(gameTime,  player.Inventory);
             if (Game1.GetCurrentStage() != this)
             {
                 return;
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.F1))
             {
                 this.ShowBorders = !this.ShowBorders;
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.F2))
             {
 
                 player.Position = new Vector2(400, 400);

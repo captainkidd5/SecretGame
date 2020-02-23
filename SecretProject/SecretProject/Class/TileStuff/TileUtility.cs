@@ -534,8 +534,8 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            int cx = (int)Game1.myMouseManager.WorldMousePosition.X;
-                                            int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
+                                            int cx = (int)Game1.MouseManager.WorldMousePosition.X;
+                                            int cy = (int)Game1.MouseManager.WorldMousePosition.Y;
 
                                             //might be wonky
                                             WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[GenerationType.Dirt].GeneratableTiles,
@@ -976,7 +976,7 @@ namespace SecretProject.Class.TileStuff
                 if (itemToCheckForReassasignTiling.GenerationType != 0)
                 {
                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
-                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
+                    WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
                         tilingContainer.TilingDictionary,
                    itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
                 }

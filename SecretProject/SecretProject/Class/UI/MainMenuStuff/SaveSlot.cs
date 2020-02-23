@@ -48,7 +48,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.myMouseManager);
+            this.Button.Update(Game1.MouseManager);
             if(this.Button.isClicked)
             {
                 Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);

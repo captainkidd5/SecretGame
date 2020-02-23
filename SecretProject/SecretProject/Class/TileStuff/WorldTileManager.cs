@@ -158,14 +158,13 @@ namespace SecretProject.Class.TileStuff
 
         public void LoadGeneratableTileLists()
         {
-
-
+            string generationProperty = string.Empty;
             for (int i = 0; i < 10000; i++)
             {
-                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(i))
+                if (TileSetDictionary.ContainsKey(i))
                 {
 
-                    string generationProperty = string.Empty;
+                    
                     bool didSucceed = this.TileSetDictionary[i].Properties.TryGetValue("generate", out generationProperty);
                     if(didSucceed)
                     {
@@ -175,11 +174,9 @@ namespace SecretProject.Class.TileStuff
                             Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
                         }
                     }
-                    else
-                    {
                        // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
 
-                    }
+                    
                        
                 }
             }
@@ -726,7 +723,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                        Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                        Game1.MouseManager.ToggleGeneralInteraction = true;
 
                                         if (mouse.IsClicked)
                                         {

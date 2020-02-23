@@ -114,7 +114,7 @@ namespace SecretProject.Class.UI
                     ExpandButton.BackGroundSourceRectangle = this.ExpandedButtonRectangle;
 
                 }
-                ExpandButton.Update(Game1.myMouseManager);
+                ExpandButton.Update(Game1.MouseManager);
                 if (ExpandButton.isClicked)
                 {
                     this.Expanded = !this.Expanded;
@@ -127,7 +127,7 @@ namespace SecretProject.Class.UI
                         Game1.SoundManager.PlayCloseUI();
                     }
                 }
-                UpdateScrollWheel(Game1.myMouseManager);
+                UpdateScrollWheel(Game1.MouseManager);
                 this.DragSprite = null;
                 this.MouseIntersectsBackDrop = false;
                 if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount > 0)
@@ -154,7 +154,7 @@ namespace SecretProject.Class.UI
                     AllActions[i].Update(gameTime, AllActions);
                 }
 
-                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Q)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Q)))
+                if (Game1.KeyboardManager.WasKeyPressed(Keys.Q))
                 {
                     if (this.Inventory.currentInventory[currentSliderPosition - 1].ItemCount > 0)
                     {
@@ -168,7 +168,7 @@ namespace SecretProject.Class.UI
                 TextBuilder.Update(gameTime);
                 this.IsAnySlotHovered = false;
 
-                if (Game1.myMouseManager.IsRightClicked)
+                if (Game1.MouseManager.IsRightClicked)
                 {
                     Item item = GetCurrentEquippedToolAsItem();
                     if(item != null)
@@ -184,7 +184,7 @@ namespace SecretProject.Class.UI
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
                     UpdateInventorySlotTexture(this.Inventory, i);
-                    this.AllSlots[i].Update(Game1.myMouseManager);
+                    this.AllSlots[i].Update(Game1.MouseManager);
                     if (this.AllSlots[i].IsHovered)
                     {
                         this.IsAnySlotHovered = true;
@@ -202,7 +202,7 @@ namespace SecretProject.Class.UI
                                     if (this.AllSlots[i].isRightClicked)
                                     {
                                         int numberToSell = 1;
-                                        if(Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                                        if(Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                         {
                                             numberToSell = this.Inventory.currentInventory[i].ItemCount;
                                         }
@@ -222,9 +222,9 @@ namespace SecretProject.Class.UI
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     break;
                             }
-                            if (Game1.myMouseManager.IsClicked)
+                            if (Game1.MouseManager.IsClicked)
                             {
-                                if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                                if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                 {
                                     Item item = this.Inventory.currentInventory[i].GetItem();
                                     if (item != null)
@@ -285,11 +285,11 @@ namespace SecretProject.Class.UI
                         Item tempItem = this.Inventory.currentInventory[i].GetItem();
 
                         Sprite tempSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).GetItem().SourceTextureRectangle,
-                            Game1.myMouseManager.WorldMousePosition, 16, 16)
+                            Game1.MouseManager.WorldMousePosition, 16, 16)
                         { IsBeingDragged = true, TextureScaleX = 5f, TextureScaleY = 5f };
                         this.DragSprite = tempSprite;
-                        this.DragSprite.Update(gameTime, new Vector2(Game1.myMouseManager.Position.X - 16, Game1.myMouseManager.Position.Y - 16));
-                        Game1.myMouseManager.ChangeMouseTexture(CursorType.Normal);
+                        this.DragSprite.Update(gameTime, new Vector2(Game1.MouseManager.Position.X - 16, Game1.MouseManager.Position.Y - 16));
+                        Game1.MouseManager.ChangeMouseTexture(CursorType.Normal);
 
 
                     }
@@ -360,7 +360,7 @@ namespace SecretProject.Class.UI
         {
             if (this.Expanded)
             {
-                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale), (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale))))
+                if (Game1.MouseManager.MouseRectangle.Intersects(new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale), (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale))))
                 {
                     return true;
 
@@ -372,7 +372,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale), (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale))))
+                if (Game1.MouseManager.MouseRectangle.Intersects(new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale), (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale))))
                 {
                     return true;
 

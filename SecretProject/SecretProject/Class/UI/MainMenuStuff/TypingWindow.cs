@@ -42,8 +42,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.myMouseManager);
-            if (this.IsActive && Game1.myMouseManager.IsClicked && !this.Button.isClicked)
+            this.Button.Update(Game1.MouseManager);
+            if (this.IsActive && Game1.MouseManager.IsClicked && !this.Button.isClicked)
             {
                 this.IsActive = false;
                 this.IsIconDrawn = false;
@@ -58,10 +58,10 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
 
 
-                Keys[] pressedKeys = Game1.OldKeyBoardState.GetPressedKeys();
+                Keys[] pressedKeys = Game1.KeyboardManager.OldKeyBoardState.GetPressedKeys();
                 foreach (Keys key in pressedKeys)
                 {
-                    if ((Game1.OldKeyBoardState.IsKeyDown(key)) && (Game1.NewKeyBoardState.IsKeyUp(key)))
+                    if (Game1.KeyboardManager.WasKeyPressed(key))
                     {
                         string keyValue = string.Empty;
                         if (key == Keys.Space)

@@ -68,7 +68,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     string action = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties["action"];
 
-                    TileUtility.ActionHelper((int)this.LayerToDrawAt, this.X, this.Y, action, Game1.myMouseManager, chunk);
+                    TileUtility.ActionHelper((int)this.LayerToDrawAt, this.X, this.Y, action, Game1.MouseManager, chunk);
                     //z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[LayerToDrawAt][X, Y].GID].Properties["action"], mouse, this.ChunkUnderMouse
                 }
             }

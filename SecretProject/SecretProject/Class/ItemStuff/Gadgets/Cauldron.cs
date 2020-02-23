@@ -150,7 +150,7 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
 
-            redEsc.Update(Game1.myMouseManager);
+            redEsc.Update(Game1.MouseManager);
 
 
             if (redEsc.isClicked)
@@ -163,7 +163,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
-            this.CookButton.Update(Game1.myMouseManager);
+            this.CookButton.Update(Game1.MouseManager);
             this.CookedItemSlot.Update(gameTime);
 
             if (this.CookButton.isClicked)

@@ -148,7 +148,7 @@ namespace SecretProject.Class.ItemStuff
                 this.FireSound.Stop();
             }
 
-            redEsc.Update(Game1.myMouseManager);
+            redEsc.Update(Game1.MouseManager);
 
 
             if (redEsc.isClicked)

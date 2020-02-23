@@ -156,7 +156,7 @@ namespace SecretProject.Class.UI
             for (int i = 0; i < this.Tabs.Length; i++)
             {
 
-                this.Tabs[i].Button.Update(Game1.myMouseManager);
+                this.Tabs[i].Button.Update(Game1.MouseManager);
                 if (this.Tabs[i].Button.isClicked)
                 {
                     this.ActiveTab = i;
@@ -177,7 +177,7 @@ namespace SecretProject.Class.UI
 
 
             }
-            this.FowardButton.Update(Game1.myMouseManager);
+            this.FowardButton.Update(Game1.MouseManager);
 
             if (this.FowardButton.isClicked)
             {
@@ -189,7 +189,7 @@ namespace SecretProject.Class.UI
             }
 
 
-            this.BackButton.Update(Game1.myMouseManager);
+            this.BackButton.Update(Game1.MouseManager);
 
             if (this.BackButton.isClicked)
             {
@@ -199,7 +199,7 @@ namespace SecretProject.Class.UI
                 }
             }
             this.CraftableRecipeBar.Update(gameTime);
-            redEsc.Update(Game1.myMouseManager);
+            redEsc.Update(Game1.MouseManager);
 
 
             if (redEsc.isClicked)
@@ -361,14 +361,14 @@ namespace SecretProject.Class.UI
 
                 }
 
-                this.ItemToCraftButton.Update(Game1.myMouseManager);
-                this.CraftButton.Update(Game1.myMouseManager);
+                this.ItemToCraftButton.Update(Game1.MouseManager);
+                this.CraftButton.Update(Game1.MouseManager);
                 if (this.ItemToCraftButton.IsHovered)
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
                     Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(item.ID).Name + ": " + Game1.ItemVault.GetItem(item.ID).Description, 1f);
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X, Game1.myMouseManager.Position.Y + 64);
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.Position.X, Game1.MouseManager.Position.Y + 64);
                 }
                 if (this.CraftButton.isClicked && craftable)
                 {
@@ -452,7 +452,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.myMouseManager);
+            this.Button.Update(Game1.MouseManager);
 
             this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(this.Item.ID);
             if (this.CurrentCount >= this.CountRequired)
@@ -619,7 +619,7 @@ namespace SecretProject.Class.UI
             {
                 this.Color = Color.White;
             }
-            this.Button.Update(Game1.myMouseManager);
+            this.Button.Update(Game1.MouseManager);
             if (this.Button.isClicked)
             {
                 this.CraftingMenu.ActiveToolTip = this;

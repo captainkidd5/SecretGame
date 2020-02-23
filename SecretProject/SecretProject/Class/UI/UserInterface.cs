@@ -180,7 +180,7 @@ namespace SecretProject.Class.UI
 
         public void AddAlert(AlertType type, AlertSize size, Vector2 position, string text, Action positiveAction = null, Action negativeAction = null)
         {
-            switch(type)
+            switch (type)
             {
                 case AlertType.Confirmation:
                     this.AllAlerts.Add(new ConfirmationAlert(positiveAction, negativeAction, this.GraphicsDevice, size, position, text));
@@ -189,11 +189,11 @@ namespace SecretProject.Class.UI
                     this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
                     break;
             }
-            
+
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
-        public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
+        public void Update(GameTime gameTime, Inventory inventory)
         {
             this.InfoBox.IsActive = false;
             //  Notes.IsActive = false;
@@ -207,7 +207,7 @@ namespace SecretProject.Class.UI
                     this.IsAnyStorageItemOpen = true;
                 }
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
             {
 
                 Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
@@ -215,7 +215,7 @@ namespace SecretProject.Class.UI
             if (this.BottomBar.IsActive)
             {
                 this.InfoBox.Update(gameTime);
-                this.BottomBar.Update(gameTime, inventory, mouse);
+                this.BottomBar.Update(gameTime, inventory, Game1.MouseManager);
             }
 
             for (int i = 0; i < AllUISprites.Count; i++)
@@ -232,19 +232,19 @@ namespace SecretProject.Class.UI
             {
                 case ExclusiveInterfaceItem.None:
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F6)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F6)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.F6))
                     {
                         Game1.cam.Zoom++;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F5)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F5)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.F5))
                     {
                         Game1.cam.Zoom--;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
                     {
                         Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Enter)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Enter)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Enter))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CommandConsole;
                     }
@@ -252,7 +252,7 @@ namespace SecretProject.Class.UI
                     {
                         Game1.freeze = false;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Tab))
                     {
                         if (this.BackPack.Expanded)
                         {
@@ -268,14 +268,14 @@ namespace SecretProject.Class.UI
 
 
                     this.Esc.isTextChanged = false;
-    
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
 
                     }
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.P))
                     {
                         Game1.SoundManager.PlayOpenUI();
                         ActivateShop(OpenShop.ToolShop);
@@ -283,13 +283,13 @@ namespace SecretProject.Class.UI
 
                     }
 
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
                     {
                         this.TextBuilder.IsActive = !this.TextBuilder.IsActive;
                         this.TextBuilder.UseTextBox = true;
                     }
 
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.N))
                     {
                         Game1.SoundManager.PlayOpenUI();
                         if (!this.Notes.IsActive)
@@ -300,18 +300,18 @@ namespace SecretProject.Class.UI
                         this.Notes.WindowPosition = Game1.Utility.centerScreen;
                     }
 
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.B))
                     {
                         Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
 
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.Z))
                     {
                         Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
                     }
-                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.L))
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleOpen, true, .1f);
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.QuestLog;
@@ -319,11 +319,11 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
 
-                    this.Esc.Update(gameTime, mouse);
+                    this.Esc.Update(gameTime, Game1.MouseManager);
 
                     Game1.freeze = true;
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                    {
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
+                        {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
@@ -333,15 +333,15 @@ namespace SecretProject.Class.UI
 
                     Game1.isMyMouseVisible = true;
                     Game1.freeze = true;
-                    this.CurrentShop.Update(gameTime, mouse);
+                    this.CurrentShop.Update(gameTime, Game1.MouseManager);
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.P))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -349,25 +349,25 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
                     this.CraftingMenu.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.B))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Tab))
                     {
                         this.BackPack.Expanded = !this.BackPack.Expanded;
                     }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
-                    Game1.SanctuaryCheckList.Update(gameTime, mouse);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    Game1.SanctuaryCheckList.Update(gameTime, Game1.MouseManager);
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -376,7 +376,7 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.CommandConsole:
                     CommandConsole.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Enter)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Enter)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Enter))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -390,7 +390,7 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.WarpGate:
                     Game1.freeze = true;
                     this.WarpGate.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -399,7 +399,7 @@ namespace SecretProject.Class.UI
                     break;
 
                 case ExclusiveInterfaceItem.CompletionHub:
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Z))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -408,7 +408,7 @@ namespace SecretProject.Class.UI
                     break;
 
                 case ExclusiveInterfaceItem.QuestLog:
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.L))
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleClose, true, .1f);
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -440,7 +440,7 @@ namespace SecretProject.Class.UI
             if (this.IsTransitioning)
             {
                 BlackTransition(gameTime);
-               
+
             }
 
             this.StaminaBar.Update(gameTime);
@@ -448,8 +448,8 @@ namespace SecretProject.Class.UI
         }
 
 
-          
-        
+
+
 
         public void BeginBlackTransition(float transitionSpeed = .005f, float targetTime = 2f, bool startOfNewDay = false)
         {
@@ -458,12 +458,12 @@ namespace SecretProject.Class.UI
             this.IsTransitioning = true;
             this.TransitionSpeed = transitionSpeed;
             this.TransitionTimer.TargetTime = targetTime;
-            if(startOfNewDay)
+            if (startOfNewDay)
             {
                 this.DayTransitioner.UpdateText();
                 this.DayTransitioner.IsActive = true;
             }
-            
+
         }
 
         private void BlackTransition(GameTime gameTime)
@@ -476,7 +476,7 @@ namespace SecretProject.Class.UI
             {
                 this.BlackTransitionColorMultiplier += this.TransitionSpeed;
             }
-            if(this.TransitionTimer.Run(gameTime))
+            if (this.TransitionTimer.Run(gameTime))
             {
                 this.BlackTransitionColorMultiplier = 1f;
                 this.IsTransitioning = false;
@@ -511,7 +511,7 @@ namespace SecretProject.Class.UI
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
             Game1.GlobalClock.Draw(spriteBatch);
-            Game1.myMouseManager.Draw(spriteBatch, 1f);
+            Game1.MouseManager.Draw(spriteBatch, 1f);
             for (int i = 0; i < AllUISprites.Count; i++)
             {
                 AllUISprites[i].Draw(spriteBatch);

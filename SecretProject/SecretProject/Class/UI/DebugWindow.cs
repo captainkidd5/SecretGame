@@ -60,9 +60,9 @@ namespace SecretProject.Class.UI
 
                 base.Update(gameTime, Keys.F1);
                 this.ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
-                this.DebugButton1.Update(Game1.myMouseManager);
-                this.DebugButton2.Update(Game1.myMouseManager);
-                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
+                this.DebugButton1.Update(Game1.MouseManager);
+                this.DebugButton2.Update(Game1.MouseManager);
+                if (Game1.KeyboardManager.WasKeyPressed(Keys.G))
                 {
                     Game1.GlobalClock.IncrementDay();
 
@@ -81,14 +81,14 @@ namespace SecretProject.Class.UI
                 {
                     OutPutChunks(WriteChunkCoordinateValue);
                 }
-                this.SpawnAnimalPack.Update(Game1.myMouseManager);
+                this.SpawnAnimalPack.Update(Game1.MouseManager);
                 if (this.SpawnAnimalPack.isClicked)
                 {
                     Game1.OverWorld.Enemies.AddRange(Game1.OverWorld.AllTiles.ChunkUnderPlayer.NPCGenerator.SpawnNpcPack(GenerationType.Dirt, Game1.Player.position));
                 }
-                this.SpeedClockUp.Update(Game1.myMouseManager);
-                this.SlowClockDown.Update(Game1.myMouseManager);
-                this.IncrementDay.Update(Game1.myMouseManager);
+                this.SpeedClockUp.Update(Game1.MouseManager);
+                this.SlowClockDown.Update(Game1.MouseManager);
+                this.IncrementDay.Update(Game1.MouseManager);
                 if (this.IncrementDay.isClicked)
                 {
                     Game1.GlobalClock.IncrementDay();
@@ -104,7 +104,7 @@ namespace SecretProject.Class.UI
 
                 for (int i = 0; i < this.WeatherButtons.Count; i++)
                 {
-                    this.WeatherButtons[i].Update(Game1.myMouseManager);
+                    this.WeatherButtons[i].Update(Game1.MouseManager);
                 }
                 if (this.WeatherNone.isClicked)
                 {
@@ -161,9 +161,9 @@ namespace SecretProject.Class.UI
                 //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None, Utility.StandardButtonDepth);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + this.ElapsedMS + " \n \n Mouse I  " +
-                   (int)(Game1.myMouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.OverWorld.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
-                    + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
-                    Game1.myMouseManager.WorldMousePosition.Y + "\n\n Mouse Angle" + Game1.myMouseManager.MouseAngleInRelationToPlayer.ToString(), position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                   (int)(Game1.MouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.OverWorld.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
+                    + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.MouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
+                    Game1.MouseManager.WorldMousePosition.Y + "\n\n Mouse Angle" + Game1.MouseManager.MouseAngleInRelationToPlayer.ToString(), position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
 
                 this.DebugButton1.Draw(spriteBatch);

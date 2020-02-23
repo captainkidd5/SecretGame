@@ -37,7 +37,7 @@ namespace SecretProject.Class.ItemStuff
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.myMouseManager);
+            this.Button.Update(Game1.MouseManager);
             if (this.Inventory.currentInventory.Count > 0)
             {
                 this.Count = this.Inventory.currentInventory[this.Index].ItemCount;
@@ -49,7 +49,7 @@ namespace SecretProject.Class.ItemStuff
                         if (this.Retrievable)
                         {
 
-                            if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                            if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                             {
                                 Item item = this.Inventory.currentInventory[this.Index].GetItem();
                                 if (item != null)

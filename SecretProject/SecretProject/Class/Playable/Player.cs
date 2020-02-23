@@ -409,7 +409,7 @@ namespace SecretProject.Class.Playable
                             ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false, arrowData.Damage));
+                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                         }
                         
@@ -786,7 +786,7 @@ namespace SecretProject.Class.Playable
 
         public void CheckMouseRotationFromEntity(Vector2 positionToCheck)
         {
-            Vector2 direction = positionToCheck - Game1.myMouseManager.WorldMousePosition;
+            Vector2 direction = positionToCheck - Game1.MouseManager.WorldMousePosition;
 
 
             // Vector2 direction = Game1.myMouseManager.WorldMousePosition - positionToCheck;
@@ -797,28 +797,28 @@ namespace SecretProject.Class.Playable
             }
 
 
-            Game1.myMouseManager.MouseAngleInRelationToPlayer = angle;
+            Game1.MouseManager.MouseAngleInRelationToPlayer = angle;
         }
 
         public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
             CheckMouseRotationFromEntity(this.Position);
-            if (Game1.myMouseManager.MouseAngleInRelationToPlayer > 285 || Game1.myMouseManager.MouseAngleInRelationToPlayer < 45)
+            if (Game1.MouseManager.MouseAngleInRelationToPlayer > 285 || Game1.MouseManager.MouseAngleInRelationToPlayer < 45)
             {
                 controls.Direction = Dir.Up;
 
             }
 
-            else if( Game1.myMouseManager.MouseAngleInRelationToPlayer >= 135 && Game1.myMouseManager.MouseAngleInRelationToPlayer <= 225)
+            else if( Game1.MouseManager.MouseAngleInRelationToPlayer >= 135 && Game1.MouseManager.MouseAngleInRelationToPlayer <= 225)
             {
                 controls.Direction = Dir.Down;
             }
 
-            else if (Game1.myMouseManager.MouseAngleInRelationToPlayer >= 45 && Game1.myMouseManager.MouseAngleInRelationToPlayer < 135)
+            else if (Game1.MouseManager.MouseAngleInRelationToPlayer >= 45 && Game1.MouseManager.MouseAngleInRelationToPlayer < 135)
             {
                 controls.Direction = Dir.Right;
             }
-            else if (Game1.myMouseManager.MouseAngleInRelationToPlayer > 225 && Game1.myMouseManager.MouseAngleInRelationToPlayer <=285)
+            else if (Game1.MouseManager.MouseAngleInRelationToPlayer > 225 && Game1.MouseManager.MouseAngleInRelationToPlayer <=285)
             {
                 controls.Direction = Dir.Left;
             }
