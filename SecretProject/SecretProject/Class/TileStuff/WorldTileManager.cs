@@ -78,8 +78,7 @@ namespace SecretProject.Class.TileStuff
         //Number of chunks loaded from disk at once
         public static int RenderDistance { get; set; }
 
-        //Number of Chunks fully active 
-        public static int FullyActiveChunks { get; set; }
+
         public List<SPlot> AllPlots { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Point[,] ChunkPositions;
@@ -137,8 +136,8 @@ namespace SecretProject.Class.TileStuff
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += HandleClockChange;
-            RenderDistance = 5;
-            FullyActiveChunks = 3;
+            RenderDistance = 7; //render distance MUST be odd.
+
             ChunkPositions = new Point[RenderDistance, RenderDistance];
 
             this.PlayerI = 0;
@@ -437,8 +436,8 @@ namespace SecretProject.Class.TileStuff
         {
             Point rootPosition = GetChunkPositionFromCamera(Game1.Player.position.X, Game1.Player.position.Y);
             //int i = 0;
-            int posX = rootPosition.X - 2;
-            int posY = rootPosition.Y - 2;
+            int posX = rootPosition.X - RenderDistance/2;
+            int posY = rootPosition.Y - RenderDistance / 2;
 
             for(int i =0; i < ChunkPositions.GetLength(0); i++)
             {
@@ -448,7 +447,7 @@ namespace SecretProject.Class.TileStuff
                     posY++;
                 }
                 posX++;
-                posY = rootPosition.Y - 2;
+                posY = rootPosition.Y - RenderDistance / 2;
             }
 
             //for (int y = rootPosition.Y - 1; y < rootPosition.Y + RenderDistance - 1; y++)
