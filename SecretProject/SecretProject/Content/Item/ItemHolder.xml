@@ -169,6 +169,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sharp Tooth</Name>
+<ID>214</ID>
+<Description>A brittle, jagged tooth.</Description>
+<InvMaximum>99</InvMaximum><Price>3</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>LifeGiver Flask</Name>
 <ID>228</ID>
 <Description>Nature in a bottle.</Description>

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
@@ -9,6 +11,10 @@ using System;
 
 namespace SecretProject.Class.TileStuff
 {
+    /// <summary>
+    /// Grid Items are any placeable item. Floorboard, barrels, chests etc. This class makes sure that the proper conditions are met for their placement. Update happens
+    /// in tile manager update loop
+    /// </summary>
     public class GridItem : IEntity
     {
         public GraphicsDevice GraphicsDevice { get; set; }
