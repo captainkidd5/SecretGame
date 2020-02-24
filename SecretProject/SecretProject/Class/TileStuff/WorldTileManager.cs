@@ -136,7 +136,7 @@ namespace SecretProject.Class.TileStuff
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += HandleClockChange;
-            RenderDistance = 7; //render distance MUST be odd.
+            RenderDistance = 9; //render distance MUST be odd.
 
             ChunkPositions = new Point[RenderDistance, RenderDistance];
 
@@ -449,15 +449,6 @@ namespace SecretProject.Class.TileStuff
                 posX++;
                 posY = rootPosition.Y - RenderDistance / 2;
             }
-
-            //for (int y = rootPosition.Y - 1; y < rootPosition.Y + RenderDistance - 1; y++)
-            //{
-            //    for (int x = rootPosition.X - 1; x < rootPosition.X + RenderDistance - 1; x++)
-            //    {
-            //        ChunkPositions[i++] = new Point(x, y);
-            //    }
-            //}
-
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {

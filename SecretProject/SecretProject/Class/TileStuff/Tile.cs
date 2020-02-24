@@ -56,7 +56,7 @@ namespace SecretProject.Class.TileStuff
 
         public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
-            this.ColorMultiplier = .5f;
+            this.ColorMultiplier = .25f;
         }
 
         public void MouseCollisionInteraction()

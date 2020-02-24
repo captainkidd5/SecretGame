@@ -457,8 +457,9 @@ namespace SecretProject.Class.TileStuff
 
         public static void AddCropToTile(Tile tileToAssign, int x, int y, int layer, IInformationContainer container, bool randomize = false)
         {
-            string cropString = string.Empty;
-            if(GetProperty(container.MapName.Tilesets[container.TileSetNumber].Tiles, tileToAssign.GID, ref cropString))
+            string cropString = "crop";
+
+            if (GetProperty(container.TileSetDictionary, tileToAssign.GID, ref cropString))
             {
                 int cropID = int.Parse(cropString);
                 Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
