@@ -98,6 +98,8 @@ namespace SecretProject.Class.TileStuff
         /// <returns></returns>
         public static int GetSquareTileCoord(int worldPos)
         {
+            int result = (int)Math.Floor((float)((float)worldPos / 16f));
+            return result;
             return worldPos / 16;
         }
         /// <summary>
