@@ -2910,7 +2910,9 @@
  <tile id="1755">
   <properties>
    <property name="action" value="chestLoot"/>
+   <property name="destructable" value="22,0,0,8"/>
    <property name="idleStart" value=""/>
+   <property name="loot" value="1240"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -3134,6 +3136,8 @@
  </tile>
  <tile id="2051">
   <properties>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1160"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -3204,6 +3208,8 @@
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1055"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -3214,6 +3220,8 @@
  <tile id="2142">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1200"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -3339,6 +3347,8 @@
  </tile>
  <tile id="2341">
   <properties>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1206"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="3">
