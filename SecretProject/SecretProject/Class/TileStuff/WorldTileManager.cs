@@ -522,33 +522,26 @@ namespace SecretProject.Class.TileStuff
                                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                                 {
                                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                    currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                                    Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
+                                    animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
                                     if (frameholder.HasNewSource)
                                     {
-                                        Rectangle newSourceRectangle = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
-                                        currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
+                                        Rectangle newSourceRectangle = animationTile.SourceRectangle;
+                                        animationTile.SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
                                             newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
                                     }
-
-
-                                    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
-
                                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                                     {
                                         if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                                         {
 
-                                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                            if (this.TileSetDictionary[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                             {
 
-                                                //currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                                // currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, currentChunk);
-                                                AnimationFrameKeysToRemove.Add(currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey);
-                                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
-                                                {
+                                                AnimationFrameKeysToRemove.Add(animationTile.TileKey);
+            
                                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
-                                                }
-
+                                                
                                             }
                                         }
 
@@ -621,6 +614,8 @@ namespace SecretProject.Class.TileStuff
                             PlayerJ < this.ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
                             PlayerI >= 0 &&
                             PlayerJ >= 0 &&
+                             OldPlayerI >= 0
+                            && OldPlayerJ >= 0 &&
 
                              this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ] != null)
                         {
