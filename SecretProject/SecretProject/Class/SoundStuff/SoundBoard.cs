@@ -340,16 +340,16 @@ namespace SecretProject.Class.SoundStuff
             switch (Game1.gameStages)
             {
                 case Stages.MainMenu:
-                    return MelodyOfTheSea;
+                    return TitleSongs.FetchSong();
                 case Stages.OverWorld:
 
-                    return DustStorm;
+                    return WorldSongs.FetchSong();
                 case Stages.Town:
-                    return MelodyOfTheSea;
+                    return TownSongs.FetchSong();
                 case Stages.UnderWorld:
-                    return DeeperAndDeeper;
+                    return UnRaiSongs.FetchSong();
                 default:
-                    return Title;
+                    return InteriorSongs.FetchSong();
 
             }
 

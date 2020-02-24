@@ -9,6 +9,7 @@ namespace SecretProject.Class.SoundStuff
 {
     public class SongChooser
     {
+        public static int NumberOfSongsBeforeRepeatAllowed = 3;
         public List<SoundEffect> Songs { get; set; }
         public List<SoundEffect> LastPlayedSongs { get; set; }
 
@@ -18,12 +19,23 @@ namespace SecretProject.Class.SoundStuff
             this.LastPlayedSongs = new List<SoundEffect>();
         }
 
-        public void PlaySong()
+        public SoundEffect FetchSong()
         {
             int songIndex = Game1.Utility.RNumber(0, Songs.Count);
-            if(!LastPlayedSongs.Contains(Songs[songIndex]))
+            if (LastPlayedSongs.Count > NumberOfSongsBeforeRepeatAllowed || LastPlayedSongs.Count >= Songs.Count)
             {
-
+                LastPlayedSongs.RemoveAt(LastPlayedSongs.Count - 1);
+            }
+            if (!LastPlayedSongs.Contains(Songs[songIndex]))
+            {
+                
+                LastPlayedSongs.Add(Songs[songIndex]);
+                return Songs[songIndex];
+                
+            }
+            else
+            {
+                return FetchSong();
             }
         }
     }
