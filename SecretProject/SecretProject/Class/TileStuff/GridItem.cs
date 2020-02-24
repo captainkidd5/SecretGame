@@ -153,7 +153,18 @@ namespace SecretProject.Class.TileStuff
 
                             if(newChunk != null)
                             {
-                                if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
+                                if(item.TilingLayer == 1)
+                                {
+                                    if (newChunk.AllTiles[1][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        CanPlaceTotal = false;
+                                    }
+                                }
+                                else if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
                                 {
 
                                 }
@@ -252,14 +263,6 @@ namespace SecretProject.Class.TileStuff
                         subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
                         subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
 
-                        //if (Game1.MouseManager.WorldMousePosition.X < 0)
-                        //{
-                        //    subX -= 16;
-                        //}
-                        //if (Game1.MouseManager.WorldMousePosition.Y < 0)
-                        //{
-                        //    subY -= 16;
-                        //}
                         Tile tile = ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks);
                         if (tile != null)
                         {
