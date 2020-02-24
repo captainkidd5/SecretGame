@@ -252,14 +252,14 @@ namespace SecretProject.Class.TileStuff
                         subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
                         subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
 
-                        if (Game1.MouseManager.WorldMousePosition.X < 0)
-                        {
-                            subX -= 16;
-                        }
-                        if (Game1.MouseManager.WorldMousePosition.Y < 0)
-                        {
-                            subY -= 16;
-                        }
+                        //if (Game1.MouseManager.WorldMousePosition.X < 0)
+                        //{
+                        //    subX -= 16;
+                        //}
+                        //if (Game1.MouseManager.WorldMousePosition.Y < 0)
+                        //{
+                        //    subY -= 16;
+                        //}
                         Tile tile = ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks);
                         if (tile != null)
                         {
