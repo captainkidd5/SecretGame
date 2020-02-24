@@ -1514,3 +1514,9 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/Swiping/Shirts/swipingShirts.png
 
+#begin Songs/ForestersTheme.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/ForestersTheme.wav
+

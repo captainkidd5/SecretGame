@@ -39,7 +39,7 @@ namespace XMLData.RouteStuff
         Cafe = 8,
 
         DobbinHouseUpper = 9,
-        SanctuaryHub = 10,
+        MarcusHouse = 10,
         Forest = 11,
         ResearchStation = 12,
         CaveWorld = 13,

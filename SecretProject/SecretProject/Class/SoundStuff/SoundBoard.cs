@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.SoundStuff
 {
@@ -128,6 +129,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Title;
         public SoundEffect MelodyOfTheSea;
         public SoundEffect DeeperAndDeeper;
+        public SoundEffect ForestersTheme;
 
         //Event songs
         //Intro Scene
@@ -144,6 +146,13 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Alert1;
         public SoundEffect PageRuffleOpen;
         public SoundEffect PageRuffleClose;
+
+        public SongChooser TitleSongs { get; set; }
+        public SongChooser TownSongs { get; set; }
+        public SongChooser WorldSongs { get; set; }
+        public SongChooser UnRaiSongs { get; set; }
+        public SongChooser InteriorSongs { get; set; }
+
         public SoundBoard(Game1 game, ContentManager content)
         {
             this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -261,6 +270,8 @@ namespace SecretProject.Class.SoundStuff
             MelodyOfTheSea = content.Load<SoundEffect>("Songs/MelodyOfTheSea");
             DeeperAndDeeper = content.Load<SoundEffect>("Songs/DeeperAndDeeper");
 
+            ForestersTheme = content.Load<SoundEffect>("Songs/ForestersTheme");
+
             this.CurrentSong = Title;
             this.CurrentSongInstance = this.CurrentSong.CreateInstance();
 
@@ -273,6 +284,42 @@ namespace SecretProject.Class.SoundStuff
             PageRuffleOpen = content.Load<SoundEffect>("SoundEffects/paperRuffleOpen");
             PageRuffleClose = content.Load<SoundEffect>("SoundEffects/paperRuffleClose");
 
+            this.TitleSongs = new SongChooser(new List<SoundEffect>()
+            {
+                MelodyOfTheSea,
+                ForestersTheme,
+                Title,
+                Lakescape
+
+            });
+
+            this.TownSongs = new SongChooser(new List<SoundEffect>()
+            {
+                MelodyOfTheSea,
+                ForestersTheme,
+                Title,
+                Lakescape
+
+            });
+
+            this.WorldSongs = new SongChooser(new List<SoundEffect>()
+            {
+                DustStorm,
+                ForestersTheme,
+
+            });
+
+            this.UnRaiSongs = new SongChooser(new List<SoundEffect>()
+            {
+                DeeperAndDeeper,
+
+            });
+
+            this.InteriorSongs = new SongChooser(new List<SoundEffect>()
+            {
+                MelodyOfTheSea,
+
+            });
         }
         public void PlaySong()
         {
@@ -284,6 +331,9 @@ namespace SecretProject.Class.SoundStuff
             }
 
         }
+
+
+
 
         public SoundEffect FetchNewSong()
         {

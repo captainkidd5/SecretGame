@@ -104,6 +104,8 @@ namespace SecretProject.Class.StageFolder
 
         List<ParticleEngine> ParticleEngines { get; set; }
 
+        
+
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
