@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
         public static int FullyActiveChunks { get; set; }
         public List<SPlot> AllPlots { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        Point[] ChunkPositions;
+        Point[,] ChunkPositions;
 
         public int PlayerI { get; set; }
         public int PlayerJ { get; set; }
@@ -139,7 +139,7 @@ namespace SecretProject.Class.TileStuff
             Game1.GlobalClock.DayChanged += HandleClockChange;
             RenderDistance = 5;
             FullyActiveChunks = 3;
-            ChunkPositions = new Point[RenderDistance * RenderDistance];
+            ChunkPositions = new Point[RenderDistance, RenderDistance];
 
             this.PlayerI = 0;
             this.PlayerJ = 0;
@@ -208,7 +208,7 @@ namespace SecretProject.Class.TileStuff
             }
             GetProperArrayData();
             this.ChunkUnderPlayer = this.ActiveChunks[RenderDistance / 2, RenderDistance / 2];
-            this.ChunkPointUnderPlayer = ChunkPositions[ChunkPositions.Length / 2 + 1];
+            this.ChunkPointUnderPlayer = ChunkPositions[0,0];
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
         }
 
@@ -273,8 +273,8 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j == RenderDistance - 1) // if J index is at the bottom and will become a new chunk
                             {
-                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ChunkPositions.Length - RenderDistance + i].X - 1,
-                                    ChunkPositions[ChunkPositions.Length - RenderDistance + i].Y - 1, i, j);
+                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i,j].X,
+                                    ChunkPositions[i,j].Y, i, j);
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
                             else
@@ -298,8 +298,8 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j == 0) // We are moving up. Top row chunks will get new chunks.
                             {
-                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i].X - 1,
-                                    ChunkPositions[i].Y - 1, i, j);
+                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                     ChunkPositions[i, j].Y, i, j);
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
                             else
@@ -322,34 +322,12 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (i == 0)
                             {
-                                if (j == 0)
+                                if(j >= 0)
                                 {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[0].X - 1,
-                                    ChunkPositions[0].Y - 1, i, j);
+                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                    ChunkPositions[i, j].Y, i, j);
                                 }
-                                else if (j == 1)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[5].X - 1,
-                                    ChunkPositions[5].Y - 1, i, j);
-
-                                }
-                                else if (j == 2)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[10].X - 1,
-                                    ChunkPositions[10].Y - 1, i, j);
-                                }
-                                else if (j == 3)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[15].X - 1,
-                                    ChunkPositions[15].Y - 1, i, j);
-
-                                }
-                                else if (j == 4)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[20].X - 1,
-                                    ChunkPositions[20].Y - 1, i, j);
-                                }
-
+                               
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
 
@@ -373,33 +351,12 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (i == RenderDistance - 1)
                             {
-                                if (j == 0)
+                                if (j >= 0)
                                 {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[4].X - 1,
-                                    ChunkPositions[4].Y - 1, i, j);
+                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                     ChunkPositions[i, j].Y, i, j);
                                 }
-                                else if (j == 1)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[9].X - 1,
-                                    ChunkPositions[9].Y - 1, i, j);
-
-                                }
-                                else if (j == 2)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[14].X - 1,
-                                    ChunkPositions[14].Y - 1, i, j);
-                                }
-                                else if (j == 3)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[19].X - 1,
-                                    ChunkPositions[19].Y - 1, i, j);
-                                }
-                                else if (j == 4)
-                                {
-                                    this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[24].X - 1,
-                                    ChunkPositions[24].Y - 1, i, j);
-                                }
-
+                              
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
 
@@ -479,23 +436,35 @@ namespace SecretProject.Class.TileStuff
         public void GetProperArrayData()
         {
             Point rootPosition = GetChunkPositionFromCamera(Game1.Player.position.X, Game1.Player.position.Y);
-            int i = 0;
+            //int i = 0;
+            int posX = rootPosition.X - 2;
+            int posY = rootPosition.Y - 2;
 
-
-            for (int y = rootPosition.Y - 1; y < rootPosition.Y + RenderDistance - 1; y++)
+            for(int i =0; i < ChunkPositions.GetLength(0); i++)
             {
-                for (int x = rootPosition.X - 1; x < rootPosition.X + RenderDistance - 1; x++)
+                for(int j =0; j < ChunkPositions.GetLength(1); j++)
                 {
-                    ChunkPositions[i++] = new Point(x, y);
+                    ChunkPositions[i, j] = new Point(posX, posY);
+                    posY++;
                 }
+                posX++;
+                posY = rootPosition.Y - 2;
             }
+
+            //for (int y = rootPosition.Y - 1; y < rootPosition.Y + RenderDistance - 1; y++)
+            //{
+            //    for (int x = rootPosition.X - 1; x < rootPosition.X + RenderDistance - 1; x++)
+            //    {
+            //        ChunkPositions[i++] = new Point(x, y);
+            //    }
+            //}
 
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             GetProperArrayData();
 
-            this.ChunkPointUnderPlayer = ChunkPositions[ChunkPositions.Length / 2 + 1];
+            this.ChunkPointUnderPlayer = ChunkPositions[0,0];
 
             if (this.ChunkPointUnderPlayerLastFrame != this.ChunkPointUnderPlayer)
             {
