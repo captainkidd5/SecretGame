@@ -514,55 +514,8 @@ namespace SecretProject.Class.TileStuff
 
                         if (currentChunk.GetChunkRectangle().Intersects(Game1.cam.CameraScreenRectangle))
                         {
-
-                            List<string> AnimationFrameKeysToRemove = new List<string>();
-                            foreach (EditableAnimationFrameHolder frameholder in currentChunk.AnimationFrames.Values)
-                            {
-                                frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                                if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
-                                {
-                                    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                    Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
-                                    animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
-                                    if (frameholder.HasNewSource)
-                                    {
-                                        Rectangle newSourceRectangle = animationTile.SourceRectangle;
-                                        animationTile.SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
-                                            newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
-                                    }
-                                    if (frameholder.Counter == frameholder.Frames.Count - 1)
-                                    {
-                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
-                                        {
-
-                                            if (this.TileSetDictionary[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
-                                            {
-
-                                                AnimationFrameKeysToRemove.Add(animationTile.TileKey);
-            
-                                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
-                                                
-                                            }
-                                        }
-
-                                        frameholder.Counter = 0;
-
-
-                                    }
-                                    else
-                                    {
-
-                                        frameholder.Counter++;
-
-                                    }
-
-                                }
-                            }
-
-                            foreach (string key in AnimationFrameKeysToRemove)
-                            {
-                                currentChunk.AnimationFrames.Remove(key);
-                            }
+                            UpdateAnimationFrames(gameTime, currentChunk);
+                            
                             Rectangle ActiveChunkRectangle = currentChunk.GetChunkRectangle();
 
 
@@ -591,7 +544,7 @@ namespace SecretProject.Class.TileStuff
             OldPlayerJ = PlayerJ;
             int mouseI = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
             int mouseJ = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
-            PlayerI = (int)((Game1.Player.ColliderRectangle.X + 8) / 16 - (this.ChunkUnderPlayer.X * 16));
+            PlayerI = (int)((Game1.Player.ColliderRectangle.X + 4) / 16 - (this.ChunkUnderPlayer.X * 16));
             PlayerJ = (int)(Game1.Player.ColliderRectangle.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
             if (PlayerI > 15)
             {
@@ -833,6 +786,58 @@ namespace SecretProject.Class.TileStuff
             for (int item = 0; item < chunk.AllItems.Count; item++)
             {
                 chunk.AllItems[item].Draw(spriteBatch);
+            }
+        }
+
+        public void UpdateAnimationFrames(GameTime gameTime, Chunk currentChunk)
+        {
+            List<string> AnimationFrameKeysToRemove = new List<string>();
+            foreach (EditableAnimationFrameHolder frameholder in currentChunk.AnimationFrames.Values)
+            {
+                frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
+                {
+                    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
+                    Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
+                    animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                    if (frameholder.HasNewSource)
+                    {
+                        Rectangle newSourceRectangle = animationTile.SourceRectangle;
+                        animationTile.SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
+                            newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
+                    }
+                    if (frameholder.Counter == frameholder.Frames.Count - 1)
+                    {
+                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
+                        {
+
+                            if (this.TileSetDictionary[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                            {
+
+                                AnimationFrameKeysToRemove.Add(animationTile.TileKey);
+
+                                TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
+
+                            }
+                        }
+
+                        frameholder.Counter = 0;
+
+
+                    }
+                    else
+                    {
+
+                        frameholder.Counter++;
+
+                    }
+
+                }
+            }
+
+            foreach (string key in AnimationFrameKeysToRemove)
+            {
+                currentChunk.AnimationFrames.Remove(key);
             }
         }
 

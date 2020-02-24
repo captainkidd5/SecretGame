@@ -116,6 +116,7 @@ namespace SecretProject.Class.TileStuff
         public bool CanPlaceTotal { get; set; }
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
+            this.CanPlace = false;
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
                 Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
@@ -137,21 +138,16 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (int j = this.NegativeYTest; j < this.PositiveYTest; j++)
                         {
-                            this.CanPlace = true;
+                            
 
 
                             subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
                             subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
-                            //if (Game1.myMouseManager.WorldMousePosition.X < 0)
-                            //{
-                            //    subX -= 16;
-                            //}
-                            //if (Game1.myMouseManager.WorldMousePosition.Y < 0)
-                            //{
-                            //    subY -= 16;
-                            //}
 
-                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subX / 16 / 16), ChunkUtility.GetChunkY(container.Y * 16 + subY / 16 / 16), Game1.GetCurrentStage().AllTiles.ActiveChunks);
+                            int subResultX = (int)Math.Floor((float)((float)subX / 16f / 16f));
+                            int subResultY = (int)Math.Floor((float)((float)subY / 16f / 16f));
+
+                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subResultX), ChunkUtility.GetChunkY(container.Y * 16 + subResultY), Game1.GetCurrentStage().AllTiles.ActiveChunks);
 
 
                             int testX = ChunkUtility.GetLocalChunkCoord(subX);
@@ -193,6 +189,7 @@ namespace SecretProject.Class.TileStuff
 
                     if (CanPlaceTotal)
                     {
+                        CanPlace = true;
                         if (Game1.MouseManager.IsClicked)
                         {
                             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
@@ -235,21 +232,12 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                    else
-                    {
-                        ///this.IsDrawn = false;
-                    }
+
 
                 }
-                else
-                {
-                  //  this.IsDrawn = false;
-                }
+
             }
-            else
-            {
-                //this.IsDrawn = false;
-            }
+
 
         }
         
@@ -276,24 +264,15 @@ namespace SecretProject.Class.TileStuff
                             {
 
                             }
-                            else
-                            {
-                                this.CanPlace = false;
-
-                            }
+                            
                         }
 
-                        else
-                        {
-                            this.CanPlace = false;
-                            //return;
-                        }
 
                         int newGID = this.PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
 
-                        if (CanPlaceTotal)
+                        if (CanPlace)
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),

@@ -100,12 +100,8 @@ namespace SecretProject.Class.TileStuff
         public static int GetLocalChunkCoord(int globalCoord)
         {
             int chunkCoord = (int)Math.Floor((float)globalCoord / ChunkWidth / ChunkWidth);
-            int localCoord = (int)Math.Floor((float)(globalCoord / ChunkHeight - chunkCoord * ChunkHeight));
+            int localCoord = (int)Math.Floor((float)(globalCoord / (float)ChunkHeight - (float)chunkCoord * (float)ChunkHeight));
 
-            if (globalCoord < 0)
-            {
-                localCoord--;
-            }
             if (localCoord > 15)
             {
                 localCoord = 15;
