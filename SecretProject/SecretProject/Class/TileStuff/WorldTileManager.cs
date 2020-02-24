@@ -91,6 +91,8 @@ namespace SecretProject.Class.TileStuff
         int OldPlayerJ;
 
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
+
+        public GridStatus PreviousTileUnderPlayerGridStatus { get; set; }
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -162,9 +164,9 @@ namespace SecretProject.Class.TileStuff
                 if (TileSetDictionary.ContainsKey(i))
                 {
 
-                    
+
                     bool didSucceed = this.TileSetDictionary[i].Properties.TryGetValue("generate", out generationProperty);
-                    if(didSucceed)
+                    if (didSucceed)
                     {
                         GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), generationProperty);
                         if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
@@ -172,10 +174,10 @@ namespace SecretProject.Class.TileStuff
                             Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
                         }
                     }
-                       // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
+                    // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
 
-                    
-                       
+
+
                 }
             }
         }
@@ -207,7 +209,7 @@ namespace SecretProject.Class.TileStuff
             }
             GetProperArrayData();
             this.ChunkUnderPlayer = this.ActiveChunks[RenderDistance / 2, RenderDistance / 2];
-            this.ChunkPointUnderPlayer = ChunkPositions[0,0];
+            this.ChunkPointUnderPlayer = ChunkPositions[0, 0];
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
         }
 
@@ -263,7 +265,7 @@ namespace SecretProject.Class.TileStuff
 
             switch (direction)
             {
-                
+
                 case Dir.Down:
                     //shifts everything down one
                     for (int i = 0; i < RenderDistance; i++)
@@ -272,8 +274,8 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j == RenderDistance - 1) // if J index is at the bottom and will become a new chunk
                             {
-                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i,j].X,
-                                    ChunkPositions[i,j].Y, i, j);
+                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                    ChunkPositions[i, j].Y, i, j);
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
                             else
@@ -321,12 +323,12 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (i == 0)
                             {
-                                if(j >= 0)
+                                if (j >= 0)
                                 {
                                     this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
                                     ChunkPositions[i, j].Y, i, j);
                                 }
-                               
+
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
 
@@ -355,7 +357,7 @@ namespace SecretProject.Class.TileStuff
                                     this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
                                      ChunkPositions[i, j].Y, i, j);
                                 }
-                              
+
                                 ChunkCheck(this.ActiveChunks[i, j]);
                             }
 
@@ -436,12 +438,12 @@ namespace SecretProject.Class.TileStuff
         {
             Point rootPosition = GetChunkPositionFromCamera(Game1.Player.position.X, Game1.Player.position.Y);
             //int i = 0;
-            int posX = rootPosition.X - RenderDistance/2;
+            int posX = rootPosition.X - RenderDistance / 2;
             int posY = rootPosition.Y - RenderDistance / 2;
 
-            for(int i =0; i < ChunkPositions.GetLength(0); i++)
+            for (int i = 0; i < ChunkPositions.GetLength(0); i++)
             {
-                for(int j =0; j < ChunkPositions.GetLength(1); j++)
+                for (int j = 0; j < ChunkPositions.GetLength(1); j++)
                 {
                     ChunkPositions[i, j] = new Point(posX, posY);
                     posY++;
@@ -454,7 +456,7 @@ namespace SecretProject.Class.TileStuff
         {
             GetProperArrayData();
 
-            this.ChunkPointUnderPlayer = ChunkPositions[0,0];
+            this.ChunkPointUnderPlayer = ChunkPositions[0, 0];
 
             if (this.ChunkPointUnderPlayerLastFrame != this.ChunkPointUnderPlayer)
             {
@@ -622,7 +624,22 @@ namespace SecretProject.Class.TileStuff
 
                              this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ] != null)
                         {
-                            this.ChunkUnderPlayerLastFrame.PathGrid.UpdateGrid(OldPlayerI, OldPlayerJ, GridStatus.Clear);
+                            if (OldPlayerI != PlayerI || OldPlayerJ != PlayerJ)
+                            {
+                                GridStatus oldGridStatus = GridStatus.Clear;
+                                for(int layerz = 0; layerz < 4; layerz++)
+                                {
+                                    if (this.ChunkUnderPlayerLastFrame.Objects.ContainsKey(this.ChunkUnderPlayerLastFrame.AllTiles[layerz][OldPlayerI, OldPlayerJ].TileKey))
+                                    {
+                                        oldGridStatus = GridStatus.Obstructed;
+                                    }
+                                }
+                                
+
+                                this.ChunkUnderPlayerLastFrame.PathGrid.UpdateGrid(OldPlayerI, OldPlayerJ, oldGridStatus);
+
+                            }
+
                             this.ChunkUnderPlayer.PathGrid.UpdateGrid(PlayerI, PlayerJ, GridStatus.Obstructed);
 
 
@@ -736,7 +753,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (this.ActiveChunks[a, b].IsLoaded)
                     {
-  
+
 
                         Chunk chunk = this.ActiveChunks[a, b];
                         int startI = ChunkUtility.CheckArrayLimits((Game1.cam.CameraScreenRectangle.X - 48) / 16 - chunk.X * 16);
@@ -793,7 +810,7 @@ namespace SecretProject.Class.TileStuff
 
                         DrawGrassTufts(spriteBatch, chunk);
                         DrawItems(spriteBatch, chunk);
-                        
+
                     }
                 }
             }
