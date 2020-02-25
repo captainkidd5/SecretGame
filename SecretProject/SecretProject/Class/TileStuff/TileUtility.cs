@@ -682,6 +682,30 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
+                case "portal":
+                    mouse.ChangeMouseTexture(CursorType.Door);
+                    if (mouse.IsClicked)
+                    {
+
+                        string propertyString = "portal";
+                        if (GetProperty(container.TileSetDictionary, container.AllTiles[z][i, j].GID, ref propertyString))
+                        {
+
+
+
+                            string[] portalString = propertyString.Split(',');
+                            int from = (int)Enum.Parse(typeof(Stages), portalString[1]);
+                            int to = (int)Enum.Parse(typeof(Stages), portalString[2]);
+
+
+                            Portal portal = container.ITileManager.Stage.AllPortals.Find(x => x.To == to && x.From == from);
+
+                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
+                            Game1.SwitchStage((Stages)from, (Stages)to, portal);
+                        }
+                    }
+                    break;
+
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
