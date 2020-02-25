@@ -37,7 +37,7 @@ namespace SecretProject.Class.CollisionDetection
             this.rectangle = rectangle;
             this.ColliderType = colliderType;
 
-            SetRectangleTexture(graphicsDevice);
+          //  SetRectangleTexture(graphicsDevice);
 
             this.ShowRectangle = true;
             this.Entity = entity;
@@ -143,7 +143,7 @@ namespace SecretProject.Class.CollisionDetection
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), Color.White);
+           // spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), Color.White);
 
 
 
@@ -152,7 +152,7 @@ namespace SecretProject.Class.CollisionDetection
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
 
-            spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+          //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
 
         }
 

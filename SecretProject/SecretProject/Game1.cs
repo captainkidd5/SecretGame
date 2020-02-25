@@ -818,11 +818,6 @@ namespace SecretProject
                 {
                     Player.Position = new Vector2(1232, 304);
                 }
-                else if (Game1.GetCurrentStage() == OverWorld)
-                {
-                    Player.Position = new Vector2(128, 128);
-                    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
-                }
 
 
                 //Player.UpdateMovementAnimationsOnce(gameTime);
@@ -833,6 +828,10 @@ namespace SecretProject
                 Player.Position = new Vector2(473, 670);
             }
             Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
+            if (Game1.GetCurrentStage() == OverWorld)
+            {
+                Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
+            }
         }
 
 
