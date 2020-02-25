@@ -160,11 +160,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
                 }
-                
+
             }
             else
             {
-               
+
                 if (Game1.SaveLoadManager.CurrentSave != null)
                 {
                     this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
@@ -174,7 +174,7 @@ namespace SecretProject.Class.TileStuff
                     this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
                 }
 
-                   
+
             }
 
             this.TileSetDictionary = tileManager.MapName.Tilesets[this.TileSetNumber].Tiles;
@@ -423,7 +423,7 @@ namespace SecretProject.Class.TileStuff
                                     Harvestable = harvestable,
                                     DayPlanted = dayPlanted,
                                     CurrentGrowth = currentGrow,
-                               
+
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
                                 this.Crops.Add(cropKey, crop);
@@ -509,7 +509,38 @@ namespace SecretProject.Class.TileStuff
             return null;
         }
 
+        public void GenerateFromTown()
+        {
 
+                
+                    IsDoneLoading = true;
+                    this.IsGenerating = true;
+                    for (int z = 0; z < 4; z++)
+                    {
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                        {
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            {
+
+
+
+                                this.AllTiles[z][i, j] = Game1.Town.AllTiles.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
+                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                            }
+                        }
+                    }
+
+                        
+                        this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+
+
+
+                    
+                
+            
+        }
 
         public void Generate()
         {
@@ -522,69 +553,78 @@ namespace SecretProject.Class.TileStuff
 
                     IsDoneLoading = true;
                     this.IsGenerating = true;
-                    this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-                    float[,] bottomNoise = new float[16, 16];
-                    float[,] topNoise = new float[16, 16];
-                    FastNoise bottomNoiseGenerator;
-                    FastNoise topNoiseGenerator;
 
-                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                    if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 7)
                     {
-                        bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
-                        topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
+                        GenerateFromTown();
                     }
                     else
                     {
-                        bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
-                        topNoiseGenerator = Game1.Procedural.OverworldFrontNoise; //change
-                    }
 
-                    for (int i = 0; i < 16; i++)
-                    {
-                        for (int j = 0; j < 16; j++)
+
+                        this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+                        float[,] bottomNoise = new float[16, 16];
+                        float[,] topNoise = new float[16, 16];
+                        FastNoise bottomNoiseGenerator;
+                        FastNoise topNoiseGenerator;
+
+                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                         {
-                            bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
-                            topNoise[i, j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                            bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
+                            topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
                         }
-                    }
+                        else
+                        {
+                            bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
+                            topNoiseGenerator = Game1.Procedural.OverworldFrontNoise; //change
+                        }
 
-                    #region AdjacentNoise
-
-                    //Four chunks, four layers, 16 rows, 16 columns, phew!
-                    int[,,] chunkAboveNoise = new int[4, 16, 16];
-                    int[,,] ChunkBelowNoise = new int[4, 16, 16];
-                    int[,,] ChunkLeftNoise = new int[4, 16, 16];
-                    int[,,] ChunkRightNoise = new int[4, 16, 16];
-
-
-                    FastNoise noise;
-                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                    {
-                        noise = Game1.Procedural.OverworldBackNoise;
-
-                    }
-                    else
-                    {
-                        noise = Game1.Procedural.UnderWorldNoise;
-
-                    }
-
-                    for (int z = 0; z < 4; z++)
-                    {
                         for (int i = 0; i < 16; i++)
                         {
                             for (int j = 0; j < 16; j++)
                             {
-                                chunkAboveNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                ChunkBelowNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                ChunkLeftNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                ChunkRightNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                                topNoise[i, j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
                             }
                         }
-                    }
+
+                        #region AdjacentNoise
+
+                        //Four chunks, four layers, 16 rows, 16 columns, phew!
+                        int[,,] chunkAboveNoise = new int[4, 16, 16];
+                        int[,,] ChunkBelowNoise = new int[4, 16, 16];
+                        int[,,] ChunkLeftNoise = new int[4, 16, 16];
+                        int[,,] ChunkRightNoise = new int[4, 16, 16];
 
 
-                    List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
+                        FastNoise noise;
+                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        {
+                            noise = Game1.Procedural.OverworldBackNoise;
+
+                        }
+                        else
+                        {
+                            noise = Game1.Procedural.UnderWorldNoise;
+
+                        }
+
+                        for (int z = 0; z < 4; z++)
+                        {
+                            for (int i = 0; i < 16; i++)
+                            {
+                                for (int j = 0; j < 16; j++)
+                                {
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                }
+                            }
+                        }
+
+
+                        List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
             {
                 chunkAboveNoise,
                 ChunkBelowNoise,
@@ -592,167 +632,168 @@ namespace SecretProject.Class.TileStuff
                 ChunkRightNoise
             };
 
-                    #endregion
+                        #endregion
 
 
-                    for (int z = 0; z < 4; z++)
-                    {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                        for (int z = 0; z < 4; z++)
                         {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
                             {
-
-
-                                int newGID = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, bottomNoise[i, j], z);
-                                this.AllTiles[z][i, j] = new Tile(i, j, newGID);
-
-
-
-                            }
-                        }
-                    }
-
-
-
-
-
-                    for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
-                    {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                        {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                            {
-                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
                                 {
-                                    if (MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties.ContainsKey("generate"))
-                                    {
-                                        this.AllTiles[z][i, j].GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties["generate"]);
-                                        //grass = 1, stone = 2, wood = 3, sand = 4
-                                    }
-
-                                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GenerationType);
-                                    if (container != null)
-                                    {
 
 
-                                        this.MainGid = this.AllTiles[z][i, j].GID + 1;
-                                        Game1.Procedural.GenerationReassignForTiling(this.MainGid, container.GeneratableTiles, container.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
-                                    }
+                                    int newGID = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, bottomNoise[i, j], z);
+                                    this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+
+
+
                                 }
-
-
                             }
                         }
-                    }
-
-                    if (this.X == 0 && this.Y == 0)
-                    {
-                        //STARTING CHUNK
-                        //  this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
-
-                        //  player house
-                        this.AllTiles[3][8, 6] = new Tile(8, 6, 7127);
-
-                        this.AllTiles[3][12, 12] = new Tile(12, 12, 3176);
 
 
-                    }
-                    else
-                    {
-                        HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                        if (Game1.GenerateChunkLandscape)
+
+
+
+                        for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
                         {
-                            GenerateLandscape(topNoise);
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                            {
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                {
+                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                    {
+                                        if (MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties.ContainsKey("generate"))
+                                        {
+                                            this.AllTiles[z][i, j].GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties["generate"]);
+                                            //grass = 1, stone = 2, wood = 3, sand = 4
+                                        }
+
+                                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GenerationType);
+                                        if (container != null)
+                                        {
+
+
+                                            this.MainGid = this.AllTiles[z][i, j].GID + 1;
+                                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, container.GeneratableTiles, container.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
+                                        }
+                                    }
+
+
+                                }
+                            }
                         }
 
-                    }
+                        if (this.X == 0 && this.Y == 0)
+                        {
+                            //STARTING CHUNK
+                            //  this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
 
-                    List<int> CliffBottomTiles;
+                            //  player house
+                            this.AllTiles[3][8, 6] = new Tile(8, 6, 7127);
 
-                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                    {
-                        CliffBottomTiles = new List<int>()
+                            this.AllTiles[3][12, 12] = new Tile(12, 12, 3176);
+
+
+                        }
+                        else
+                        {
+                            HandleCliffEdgeCases(AllAdjacentChunkNoise);
+                            if (Game1.GenerateChunkLandscape)
+                            {
+                                GenerateLandscape(topNoise);
+                            }
+
+                        }
+
+                        List<int> CliffBottomTiles;
+
+                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        {
+                            CliffBottomTiles = new List<int>()
                         {
                             4222, 4223, 4224,4021,4025,4026,4027,4028
                         };
-                    }
-                    else
-                    {
-                        CliffBottomTiles = new List<int>()
+                        }
+                        else
+                        {
+                            CliffBottomTiles = new List<int>()
                         {
                             4726, 4927, 4928,4929,4730,4731,4732,4733
                         };
-                    }
+                        }
 
 
 
 
 
-                    for (int z = 0; z < 4; z++)
-                    {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                        for (int z = 0; z < 4; z++)
                         {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
                             {
-                                if (z == 2)
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
                                 {
-                                    if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
+                                    if (z == 2)
                                     {
-
-                                        int counter = 1;
-
-                                        for (int c = j; c < j + 5; c++)
+                                        if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
                                         {
-                                            if (j + counter < 16)
+
+                                            int counter = 1;
+
+                                            for (int c = j; c < j + 5; c++)
                                             {
-
-
-                                                this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
-
-                                                this.AllTiles[3][i, j + counter].GID = 0;
-                                                if (c < j + 4)
+                                                if (j + counter < 16)
                                                 {
-                                                    this.AllTiles[0][i, j + counter].GID = 0;
+
+
+                                                    this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
+
+                                                    this.AllTiles[3][i, j + counter].GID = 0;
+                                                    if (c < j + 4)
+                                                    {
+                                                        this.AllTiles[0][i, j + counter].GID = 0;
+                                                    }
+
+                                                    counter++;
                                                 }
-
-                                                counter++;
                                             }
+
                                         }
-
                                     }
+
+                                    this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                                    this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+
+                                    TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+                                    if (z == 3)
+                                    {
+                                        AddGrassTufts(this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
+                                    }
+
                                 }
-
-                                this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
-                                this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
-
-                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
-                                if (z == 3)
-                                {
-                                    AddGrassTufts(this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
-                                }
-
                             }
                         }
-                    }
 
-                    if (this.X != 0 && this.Y != 0)
-                    {
-                        if (Game1.OverWorld.Enemies.Count < 10)
+                        if (this.X != 0 && this.Y != 0)
                         {
-                            Tile tile = SearchForEmptyTile(3);
-                            if (tile != null)
+                            if (Game1.OverWorld.Enemies.Count < 10)
                             {
-                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                                if (container != null)
+                                Tile tile = SearchForEmptyTile(3);
+                                if (tile != null)
                                 {
-                                    Game1.GetCurrentStage().Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                                    if (container != null)
+                                    {
+                                        Game1.GetCurrentStage().Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                    }
+
+
                                 }
-
-
                             }
+
+
                         }
-
-
                     }
                     this.IsLoaded = true;
                     this.IsGenerating = false;

@@ -23,6 +23,7 @@ namespace SecretProject.Class.TileStuff
     /// </summary>
     public class TileManager : ITileManager, IInformationContainer
     {
+        public ILocation Stage { get; set; }
         public int Type { get; set; }
         protected Game1 game;
         public Texture2D TileSet { get; set; }
@@ -96,6 +97,7 @@ namespace SecretProject.Class.TileStuff
 
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
         {
+            this.Stage = currentStage;
             this.Type = 0;
             this.TileSet = tileSet;
             this.MapName = mapName;

@@ -23,6 +23,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class WorldTileManager : ITileManager
     {
+        public ILocation Stage { get; set; }
         //temporarily unused
         public List<Tile[,]> AllTiles { get; set; }
         public int mapWidth { get; set; }
@@ -95,6 +96,7 @@ namespace SecretProject.Class.TileStuff
         public GridStatus PreviousTileUnderPlayerGridStatus { get; set; }
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
+            this.Stage = world;
             this.MapName = mapName;
             this.TileSet = tileSet;
 
@@ -202,11 +204,10 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             chunk.Generate();
-
                         }
                     }
                 }
-            }
+            } 
             GetProperArrayData();
             this.ChunkUnderPlayer = this.ActiveChunks[RenderDistance / 2, RenderDistance / 2];
             this.ChunkPointUnderPlayer = ChunkPositions[0, 0];

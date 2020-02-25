@@ -19,6 +19,7 @@ namespace SecretProject.Class.StageFolder
             this.SafteyOffSetX = safteyX;
             this.SafteyOffSetY = safteyY;
             this.MustBeClicked = mustBeClicked;
+
         }
     }
 }

@@ -19,6 +19,8 @@ namespace SecretProject.Class.TileStuff
 {
     public interface ITileManager
     {
+
+        ILocation Stage { get; set; }
         TmxMap MapName { get; set; }
         Texture2D TileSet { get; set; }
         List<Tile[,]> AllTiles { get; set; }

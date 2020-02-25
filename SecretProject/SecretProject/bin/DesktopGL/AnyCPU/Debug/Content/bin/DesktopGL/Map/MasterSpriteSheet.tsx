@@ -5441,6 +5441,7 @@
   <properties>
    <property name="newHitBox" value="-32, -64, 80, 80"/>
    <property name="newSource" value="-32, -112, 80,128"/>
+   <property name="portal" value="true,Town,JulianHouse,"/>
   </properties>
  </tile>
  <tile id="6228">

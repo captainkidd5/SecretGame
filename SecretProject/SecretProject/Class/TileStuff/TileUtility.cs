@@ -160,9 +160,24 @@ namespace SecretProject.Class.TileStuff
                     ReplaceTile(layer, x, y, 0, container);
                     return;
                 }
+                propertyString = "portal";
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
+                {
+                    string[] portalString = propertyString.Split(',');
+                    bool clickRequired = bool.Parse(portalString[0]);
+                    int from = (int)Enum.Parse(typeof(Stages), portalString[1]);
+                    int to = (int)Enum.Parse(typeof(Stages), portalString[2]);
+                    Portal portal = new Portal(from, to, 0, 50, clickRequired);
+                    if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+                    {
+                        Game1.PortalGraph.AddEdge(portal.From, portal.To);
+                    }
+                    portal.PortalStart = new Rectangle(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + 64, tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+                    container.TileManager.Stage.AllPortals.Add(portal);
+                }
 
 
-                if (tileSet[tileToAssign.GID].AnimationFrames.Count > 0 && !tileSet[tileToAssign.GID].Properties.ContainsKey("idleStart"))
+                    if (tileSet[tileToAssign.GID].AnimationFrames.Count > 0 && !tileSet[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
 
                     if (!container.AnimationFrames.ContainsKey(tileToAssign.TileKey))
