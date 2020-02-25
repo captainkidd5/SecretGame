@@ -8,7 +8,7 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>8AM</Time>
-       <EndStage>Town</EndStage>
+       <EndStage>OverWorld</EndStage>
       <EndX>82</EndX>
       <EndY>60</EndY>
     </Item>
@@ -26,7 +26,7 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>4PM</Time>
-       <EndStage>Town</EndStage>
+       <EndStage>OverWorld</EndStage>
       <EndX>14</EndX>
       <EndY>59</EndY>
     </Item>
@@ -35,7 +35,7 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>6PM</Time>
-       <EndStage>Town</EndStage>
+       <EndStage>OverWorld</EndStage>
       <EndX>65</EndX>
       <EndY>70</EndY>
     </Item>

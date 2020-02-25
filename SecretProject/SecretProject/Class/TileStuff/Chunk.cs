@@ -101,6 +101,7 @@ namespace SecretProject.Class.TileStuff
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
+            this.ITileManager = tileManager;
             if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 this.ChunkType = ChunkType.Rai;

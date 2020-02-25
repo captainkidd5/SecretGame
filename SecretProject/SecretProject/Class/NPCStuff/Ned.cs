@@ -15,7 +15,7 @@ namespace SecretProject.Class.NPCStuff
     public class Ned : Character
     {
 
-        public Ned(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Town, false, questHandler, characterPortraitTexture)
+        public Ned(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.OverWorld, false, questHandler, characterPortraitTexture)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

@@ -152,6 +152,9 @@ namespace SecretProject.Class.TileStuff
 
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
 
+            this.PathGrid = Game1.Town.AllTiles.PathGrid;
+            
+
         }
 
 
