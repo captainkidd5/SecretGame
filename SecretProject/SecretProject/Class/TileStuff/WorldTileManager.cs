@@ -233,20 +233,26 @@ namespace SecretProject.Class.TileStuff
             int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkWidth);
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkHeight);
 
-            Chunk[,] ChunksToReturn = new Chunk[RenderDistance, RenderDistance];
             int x = (RenderDistance / 2) * -1;
             int y = (RenderDistance / 2) * -1;
             for (int i = 0; i < RenderDistance; i++)
             {
                 for (int j = 0; j < RenderDistance; j++)
                 {
-                    ChunksToReturn[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
+                    for (int b = 0; b < RenderDistance;b++)
+                    {
+                        for (int j = 0; j < RenderDistance; j++)
+                        {
+                        }
+                    }
+
+                            ActiveChunks[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
                     y++;
                 }
                 y = (RenderDistance / 2) * -1;
                 x++;
             }
-            return ChunksToReturn;
+            return ActiveChunks;
 
 
         }

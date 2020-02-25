@@ -369,15 +369,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         }
                     }
 
-
-
-
-
-
                     FinishUpDialogue(frameToSet, textToWrite, skeleton);
-
-
-
 
                 }
 
