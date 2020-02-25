@@ -26,6 +26,9 @@ namespace SecretProject.Class.TileStuff
         public int[] RectangleCoordinates { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
+        //only to see if intersects player collider.
+        public Rectangle DestinationRectangle { get; set; }
+
 
 
         public int NegativeXTest { get; set; }
@@ -107,7 +110,7 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-
+            
             this.SourceRectangle = new Rectangle(this.SourceRectangle.X + this.RectangleCoordinates[0], this.SourceRectangle.Y + this.RectangleCoordinates[1],
                                    this.SourceRectangle.Width + this.RectangleCoordinates[2], this.SourceRectangle.Height + this.RectangleCoordinates[3]);
 
@@ -117,6 +120,9 @@ namespace SecretProject.Class.TileStuff
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
             this.CanPlace = false;
+            this.DestinationRectangle = new Rectangle((int)(Game1.MouseManager.WorldMousePosition.X + NegativeXDraw * 16),
+                (int)(Game1.MouseManager.WorldMousePosition.Y + NegativeYDraw * 16),
+                PositiveXDraw * 16, PositiveYDraw * 16);
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
                 Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
@@ -155,6 +161,10 @@ namespace SecretProject.Class.TileStuff
 
                             if(newChunk != null)
                             {
+                                if(Game1.Player.ColliderRectangle.Intersects(this.DestinationRectangle))
+                                {
+                                    CanPlaceTotal = false;
+                                }
                                 if(item.TilingLayer == 1)
                                 {
                                     if (newChunk.AllTiles[1][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
@@ -174,6 +184,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     CanPlaceTotal = false;
                                 }
+                              
 
                             }
                             else

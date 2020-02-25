@@ -2808,6 +2808,12 @@
    <property name="loot" value="1098"/>
   </properties>
  </tile>
+ <tile id="1682">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="1007"/>
+  </properties>
+ </tile>
  <tile id="1690">
   <properties>
    <property name="idleStart" value=""/>
@@ -3231,6 +3237,7 @@
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="22,0,0,8"/>
    <property name="loot" value="1202"/>
    <property name="newSource" value="0,-32,16,48"/>

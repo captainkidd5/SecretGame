@@ -690,6 +690,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Red Shell</Name>
+<ID>1007</ID>
+<Description>Once the home of a little sea creature.</Description>
+<InvMaximum>99</InvMaximum><Price>6</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Canvas</Name>
 <ID>1040</ID>
 <Description>A fabric made from plants.</Description>
