@@ -118,7 +118,7 @@ namespace SecretProject.Class.TileStuff
 
             this.AllDepths = allDepths;
 
-            this.ActiveChunks = new Chunk[this.MaximumChunksLoaded, this.MaximumChunksLoaded];
+           
 
             this.MaximumChunksLoaded = 3;
             this.ChunkPointUnderPlayerLastFrame = new Point(1000, 1000);
@@ -141,6 +141,7 @@ namespace SecretProject.Class.TileStuff
 
             Game1.GlobalClock.DayChanged += HandleClockChange;
             RenderDistance = 9; //render distance MUST be odd.
+            this.ActiveChunks = new Chunk[RenderDistance, RenderDistance];
 
             ChunkPositions = new Point[RenderDistance, RenderDistance];
 
@@ -233,20 +234,44 @@ namespace SecretProject.Class.TileStuff
             int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkWidth);
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkHeight);
 
+
             int x = (RenderDistance / 2) * -1;
             int y = (RenderDistance / 2) * -1;
+
+            
             for (int i = 0; i < RenderDistance; i++)
             {
                 for (int j = 0; j < RenderDistance; j++)
                 {
+                    bool hasChunkBeenFilled = false;
                     for (int b = 0; b < RenderDistance;b++)
                     {
-                        for (int j = 0; j < RenderDistance; j++)
+                        
+                        for (int g = 0; g < RenderDistance; g++)
                         {
+                            if (ActiveChunks[b, g] != null)
+                            {
+
+
+                                if (ActiveChunks[b, g].X == currentChunkX + x && ActiveChunks[b, g].Y == currentChunkY + y)
+                                {
+                                    ActiveChunks[i, j] = ActiveChunks[b, g];
+                                    hasChunkBeenFilled = true;
+                                    break;
+                                }
+                                if (hasChunkBeenFilled)
+                                {
+                                    break;
+                                }
+                            }
                         }
                     }
 
-                            ActiveChunks[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
+                    if(!hasChunkBeenFilled)
+                    {
+                        ActiveChunks[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
+                    }
+                            
                     y++;
                 }
                 y = (RenderDistance / 2) * -1;
