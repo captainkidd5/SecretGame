@@ -16,18 +16,19 @@ namespace SecretProject.Class.NPCStuff
         Butterfly = 4,
         WarChicken =5,
         CaveToad = 6,
-        SporeShooter = 7
+        SporeShooter = 7,
+        Goat = 8
     }
 
     public class NPCGenerator
     {
         public static List<NPCSpawnData> DirtCreatures = new List<NPCSpawnData>()
         {
-            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 0f, .2f, .75f),
+            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 0f, .2f, .4f),
             new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .75f),
-            
+
              new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
-             
+             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .5f),
 
 
         };
@@ -203,6 +204,8 @@ namespace SecretProject.Class.NPCStuff
                     return new CaveToad("CaveToad", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true };
                 case NPCType.SporeShooter:
                     return new SporeShooter("SporeShooter", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                case NPCType.Goat:
+                    return new Goat("Goat", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 default:
                     return null;
             }

@@ -577,7 +577,7 @@ namespace SecretProject.Class.TileStuff
                                 GridStatus oldGridStatus = GridStatus.Clear;
                                 for(int layerz = 0; layerz < 4; layerz++)
                                 {
-                                    if (this.ChunkUnderPlayerLastFrame.Objects.ContainsKey(this.ChunkUnderPlayerLastFrame.AllTiles[layerz][OldPlayerI, OldPlayerJ].TileKey))
+                                    if (this.ChunkUnderPlayerLastFrame.AllTiles[layerz][OldPlayerI, OldPlayerJ]!= null && this.ChunkUnderPlayerLastFrame.Objects.ContainsKey(this.ChunkUnderPlayerLastFrame.AllTiles[layerz][OldPlayerI, OldPlayerJ].TileKey))
                                     {
                                         oldGridStatus = GridStatus.Obstructed;
                                     }
