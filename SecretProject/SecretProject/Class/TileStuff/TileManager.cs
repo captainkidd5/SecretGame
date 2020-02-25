@@ -84,7 +84,7 @@ namespace SecretProject.Class.TileStuff
         public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        WorldTileManager IInformationContainer.TileManager { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ITileManager ITileManager { get; set; }
         public List<int[,]> AdjacentNoise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Random Random { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<SPlot> AllPlots { get; set; }
@@ -98,6 +98,7 @@ namespace SecretProject.Class.TileStuff
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
         {
             this.Stage = currentStage;
+            this.ITileManager = this;
             this.Type = 0;
             this.TileSet = tileSet;
             this.MapName = mapName;

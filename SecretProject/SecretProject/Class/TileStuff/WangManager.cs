@@ -39,7 +39,7 @@ namespace SecretProject.Class.TileStuff
             //if top tile is 0 we look at the chunk above it
 
 
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
+            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
             {
                 keyToCheck += 1;
             }
@@ -52,7 +52,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 8;
                 }
             }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
+            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
             {
                 keyToCheck += 8;
             }
@@ -66,7 +66,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 4;
                 }
             }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
+            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
             {
                 keyToCheck += 4;
             }
@@ -81,7 +81,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 2;
                 }
             }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
+            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
             {
                 keyToCheck += 2;
             }

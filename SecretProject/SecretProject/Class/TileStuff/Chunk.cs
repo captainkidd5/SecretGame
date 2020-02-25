@@ -30,7 +30,7 @@ namespace SecretProject.Class.TileStuff
     {
         public ChunkType ChunkType { get; set; }
         public Texture2D RectangleTexture { get; set; }
-        //public WorldTileManager TileManager { get; set; }
+        public ITileManager ITileManager { get; set; }
         public int Type { get; set; }
 
         public GraphicsDevice GraphicsDevice { get; set; }

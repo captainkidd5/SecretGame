@@ -173,7 +173,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.PortalGraph.AddEdge(portal.From, portal.To);
                     }
                     portal.PortalStart = new Rectangle(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + 64, tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
-                    container.TileManager.Stage.AllPortals.Add(portal);
+                    container.ITileManager.Stage.AllPortals.Add(portal);
                 }
 
 
