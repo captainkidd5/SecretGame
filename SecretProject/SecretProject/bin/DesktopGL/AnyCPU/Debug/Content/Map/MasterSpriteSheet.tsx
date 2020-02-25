@@ -5515,9 +5515,10 @@
  </tile>
  <tile id="7126">
   <properties>
-   <property name="action" value="enterPlayerHouse"/>
+   <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
+   <property name="portal" value="true,OverWorld,PlayerHouse,"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>

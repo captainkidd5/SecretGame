@@ -821,7 +821,7 @@ namespace SecretProject
                 else if (Game1.GetCurrentStage() == OverWorld)
                 {
                     Player.Position = new Vector2(128, 128);
-                  //  Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
+                    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
                 }
 
 
