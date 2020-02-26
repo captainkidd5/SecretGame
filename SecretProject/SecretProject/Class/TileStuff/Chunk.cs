@@ -29,6 +29,7 @@ namespace SecretProject.Class.TileStuff
     public class Chunk : IInformationContainer
     {
         public ChunkType ChunkType { get; set; }
+        public bool Purchased { get; set; }
         public Texture2D RectangleTexture { get; set; }
         public ITileManager ITileManager { get; set; }
         public int Type { get; set; }
@@ -208,7 +209,7 @@ namespace SecretProject.Class.TileStuff
 
                         using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                         {
-
+                            binaryWriter.Write(this.Purchased);
 
                             for (int z = 0; z < 4; z++)
                             {
@@ -319,7 +320,7 @@ namespace SecretProject.Class.TileStuff
 
                         using (BinaryReader binaryReader = new BinaryReader(fileStream))
                         {
-
+                            this.Purchased = binaryReader.ReadBoolean();
 
                             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
                             for (int z = 0; z < 4; z++)

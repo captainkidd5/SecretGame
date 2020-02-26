@@ -124,7 +124,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             OverworldBackNoise.SetFractalGain(.35f);
 
             //larger the smaller the biomes
-            OverworldBackNoise.SetFrequency(.008f);
+            OverworldBackNoise.SetFrequency(.004f);
 
             OverworldFrontNoise = new FastNoise(500);
             OverworldFrontNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);

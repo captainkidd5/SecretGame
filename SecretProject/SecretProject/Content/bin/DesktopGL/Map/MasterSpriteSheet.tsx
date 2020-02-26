@@ -3917,6 +3917,7 @@
  </tile>
  <tile id="3160">
   <properties>
+   <property name="destructable" value="21,4,5,3"/>
    <property name="newHitBox" value="-16,0,48,16"/>
    <property name="newSource" value="-16,-16,48,32"/>
    <property name="transparent" value="-16,-16, 48, 16"/>

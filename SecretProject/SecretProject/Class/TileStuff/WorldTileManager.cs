@@ -238,7 +238,7 @@ namespace SecretProject.Class.TileStuff
             int x = (RenderDistance / 2) * -1;
             int y = (RenderDistance / 2) * -1;
 
-            
+            int numUnrecycledChunks = 0;
             for (int i = 0; i < RenderDistance; i++)
             {
                 for (int j = 0; j < RenderDistance; j++)
@@ -270,6 +270,7 @@ namespace SecretProject.Class.TileStuff
                     if(!hasChunkBeenFilled)
                     {
                         ActiveChunks[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
+                        numUnrecycledChunks++;
                     }
                             
                     y++;
@@ -913,7 +914,7 @@ namespace SecretProject.Class.TileStuff
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {
 
-            UpdateCropTile();
+            //UpdateCropTile();
         }
 
         public ObstacleGrid GetPathGrid(Vector2 entityPosition)
