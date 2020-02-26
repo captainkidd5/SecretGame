@@ -31,7 +31,7 @@ namespace SecretProject.Class.ItemStuff
         private Button redEsc;
         public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
-            this.StorableItemType = StorableItemType.Cauldron;
+            this.StorableItemType = StorableItemType.Chest;
             this.ID = iD;
             this.Size = size;
             this.Inventory = new Inventory(this.Size);

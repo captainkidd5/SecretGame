@@ -43,7 +43,7 @@ namespace SecretProject.Class.ItemStuff
         public SoundEffectInstance FireSound { get; set; }
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
-            this.StorableItemType = StorableItemType.Cauldron;
+            this.StorableItemType = StorableItemType.Furnace;
             this.ID = iD;
             this.Size = size;
             this.Inventory = new Inventory(this.Size);
