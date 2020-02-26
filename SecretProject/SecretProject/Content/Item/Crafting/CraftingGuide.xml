@@ -4,9 +4,11 @@
   <CraftingRecipes>
   <!-- stone axe !-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Tools</Category>
     <ItemToCraftID>0</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
+    
     <ItemID>1005</ItemID>
     <Count>3</Count>
     </Item>
@@ -20,6 +22,7 @@
 
 <!-- steel axe !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>1</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -36,6 +39,7 @@
 
     <!-- Turquoise axe !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>3</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -54,6 +58,7 @@
 
 <!-- stone hammer !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>40</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -69,6 +74,7 @@
 
     <!-- steel hammer !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>41</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -84,6 +90,7 @@
 
 <!-- Dark Hammer !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>42</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -100,6 +107,7 @@
 
 <!-- stone shovel !-->
    <Item Type="XMLData.ItemStuff.ItemRecipe">
+   <Category>Tools</Category>
     <ItemToCraftID>120</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -116,6 +124,7 @@
 
 <!-- stone sword !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Tools</Category>
     <ItemToCraftID>160</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -131,6 +140,7 @@
 
 <!-- Bow !-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Tools</Category>
     <ItemToCraftID>240</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -146,6 +156,7 @@
 
     <!-- Stone Arrow !-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Tools</Category>
     <ItemToCraftID>280</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -153,11 +164,11 @@
     <Count>1</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>520</ItemID>
-    <Count>2</Count>
+    <ItemID>1005</ItemID>
+    <Count>1</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>1040</ItemID>
+    <ItemID>1041</ItemID>
     <Count>1</Count>
     </Item>
     </AllItemsRequired>
@@ -165,6 +176,7 @@
 
 <!--Wooden Fence Post -->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Outdoor</Category>
     <ItemToCraftID>1162</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -176,6 +188,7 @@
 
     <!--Stone Wall -->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
+<Category>Outdoor</Category>
     <ItemToCraftID>1164</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -187,6 +200,7 @@
 
 <!--Cauldron -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Utility</Category>
     <ItemToCraftID>1055</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -202,53 +216,51 @@
 
     <!--Saw Table -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+     <Category>Utility</Category>
     <ItemToCraftID>1201</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>520</ItemID>
-    <Count>100</Count>
+    <Count>15</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>521</ItemID>
-    <Count>50</Count>
+    <Count>2</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>680</ItemID>
-    <Count>5</Count>
+    <ItemID>1041</ItemID>
+    <Count>2</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
      <!--Furnace -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+     <Category>Utility</Category>
     <ItemToCraftID>1202</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>640</ItemID>
-    <Count>20</Count>
+    <ItemID>1001</ItemID>
+    <Count>15</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
      <!--Small Chest -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+     <Category>Utility</Category>
     <ItemToCraftID>1240</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>520</ItemID>
     <Count>8</Count>
     </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>1040</ItemID>
-    <Count>2</Count>
-    </Item>
     </AllItemsRequired>
     </Item>
 
     <!--Capture Crate -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+     <Category>Utility</Category>
     <ItemToCraftID>333</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -261,7 +273,21 @@
 
     <!--Small Cog -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+     <Category>Parts</Category>
     <ItemToCraftID>760</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>680</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
+    <!--Large Cog -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Parts</Category>
+    <ItemToCraftID>800</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>680</ItemID>
@@ -271,20 +297,9 @@
     <Locked>true</Locked>
     </Item>
 
-    <!--Large Cog -->
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>800</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>680</ItemID>
-    <Count>16</Count>
-    </Item>
-    </AllItemsRequired>
-    <Locked>true</Locked>
-    </Item>
-
     <!--steel spring-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Parts</Category>
     <ItemToCraftID>720</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -297,30 +312,31 @@
 
     <!--Rope-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Parts</Category>
     <ItemToCraftID>1041</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>1002</ItemID>
-    <Count>12</Count>
+    <ItemID>1040</ItemID>
+    <Count>2</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
      <!--Canvas-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Parts</Category>
     <ItemToCraftID>1040</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>1002</ItemID>
-    <Count>18</Count>
+    <Count>3</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
     <!--Oak Floor-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Indoor</Category>
     <ItemToCraftID>480</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -328,11 +344,11 @@
     <Count>1</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
     <!--Stone Floor-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Indoor</Category>
     <ItemToCraftID>482</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -340,11 +356,11 @@
     <Count>3</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
     
     <!--Barrel-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Indoor</Category>
     <ItemToCraftID>1160</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -360,11 +376,11 @@
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
     <!--Oak Dresser-->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <Category>Indoor</Category>
     <ItemToCraftID>1440</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
@@ -372,7 +388,6 @@
     <Count>14</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
 

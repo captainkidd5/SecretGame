@@ -9,6 +9,7 @@ namespace XMLData.ItemStuff
 {
     public class ItemRecipe
     {
+        public CraftingCategory Category { get; set; }
         public int ItemToCraftID { get; set; }
         public List<ItemsRequired> AllItemsRequired { get; set; }
         [ContentSerializer(Optional = true)]
