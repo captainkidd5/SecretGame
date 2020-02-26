@@ -172,7 +172,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.PortalGraph.AddEdge(portal.From, portal.To);
                     }
-                    portal.PortalStart = new Rectangle(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + 64, tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+                    portal.PortalStart = new Rectangle(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + 32, tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                     container.ITileManager.Stage.AllPortals.Add(portal);
                 }
 
@@ -398,7 +398,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = startJ; j < endJ; j++)
                             {
-                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + x + i), ChunkUtility.GetChunkY(container.Y * 16 + y + j), Game1.GetCurrentStage().AllTiles.ActiveChunks);
+                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + x + i), ChunkUtility.GetChunkY(container.Y * 16 + y + j), container.ITileManager.ActiveChunks);
                                 if (newChunk != null)
                                 {
                                     newChunk.PathGrid.UpdateGrid(ChunkUtility.GetLocalChunkCoord(x * 16 + i * 16), ChunkUtility.GetLocalChunkCoord(y * 16 + j * 16), 0);

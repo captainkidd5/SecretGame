@@ -237,6 +237,7 @@ namespace SecretProject.Class.StageFolder
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
             Game1.SwitchStage(0, Stages.PlayerHouse);
             Game1.Player.UserInterface.BeginBlackTransition(.005f);
+            Game1.OverWorld.AllTiles.LoadInitialChunks(new Vector2(1368, 288));
         }
 
         public void UpdateDevPanel(GameTime gameTime)

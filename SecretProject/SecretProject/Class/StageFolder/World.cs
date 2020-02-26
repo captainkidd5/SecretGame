@@ -177,7 +177,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Enemies = new List<Enemy>();
             this.AllRisingText = new List<RisingText>();
-            // AllTiles.LoadInitialChunks();
+             
 
             // Game1.SoundManager.DustStormInstance.Play();
         }

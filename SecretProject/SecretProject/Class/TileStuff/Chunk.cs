@@ -103,7 +103,7 @@ namespace SecretProject.Class.TileStuff
 
         {
             this.ITileManager = tileManager;
-            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (this.ITileManager.Stage == Game1.OverWorld)
             {
                 this.ChunkType = ChunkType.Rai;
             }
@@ -151,7 +151,7 @@ namespace SecretProject.Class.TileStuff
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
 
-            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (this.ITileManager.Stage == Game1.OverWorld)
             {
                 //just for debugging to save time not having to create a save every time we want to go directly to the wilderness
                 if (Game1.SaveLoadManager.CurrentSave != null)
@@ -450,7 +450,7 @@ namespace SecretProject.Class.TileStuff
                             }
 
                             World world;
-                            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                            if (this.ITileManager.Stage == Game1.OverWorld)
                             {
                                 world = Game1.OverWorld;
                             }
@@ -570,7 +570,7 @@ namespace SecretProject.Class.TileStuff
                         FastNoise bottomNoiseGenerator;
                         FastNoise topNoiseGenerator;
 
-                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        if (this.ITileManager.Stage == Game1.OverWorld)
                         {
                             bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
                             topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
@@ -600,7 +600,7 @@ namespace SecretProject.Class.TileStuff
 
 
                         FastNoise noise;
-                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        if (this.ITileManager.Stage == Game1.OverWorld)
                         {
                             noise = Game1.Procedural.OverworldBackNoise;
 
@@ -711,7 +711,7 @@ namespace SecretProject.Class.TileStuff
 
                         List<int> CliffBottomTiles;
 
-                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        if (this.ITileManager.Stage == Game1.OverWorld)
                         {
                             CliffBottomTiles = new List<int>()
                         {
@@ -787,7 +787,7 @@ namespace SecretProject.Class.TileStuff
                                     TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                                     if (container != null)
                                     {
-                                        Game1.GetCurrentStage().Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                        this.ITileManager.Stage.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                                     }
 
 
@@ -812,7 +812,7 @@ namespace SecretProject.Class.TileStuff
         public void GenerateLandscape(float[,] noise)
         {
             List<SpawnElement> spawnElements;
-            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (this.ITileManager.Stage == Game1.OverWorld)
             {
                 spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
             }
@@ -840,7 +840,7 @@ namespace SecretProject.Class.TileStuff
         {
             int gidToTest = 0;
             int gidBottomToTest = 0;
-            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (this.ITileManager.Stage == Game1.OverWorld)
             {
                 gidToTest = 4124;
                 gidBottomToTest = 4724;
