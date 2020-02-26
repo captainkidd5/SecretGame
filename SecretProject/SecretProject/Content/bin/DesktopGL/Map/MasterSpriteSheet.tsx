@@ -1320,7 +1320,7 @@
   <properties>
    <property name="destructable" value="22,0,0,8"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="1001"/>
+   <property name="loot" value=""/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -2146,7 +2146,7 @@
  <tile id="1277">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="640"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">

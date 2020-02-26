@@ -44,9 +44,23 @@ namespace SecretProject.Class.ItemStuff
             {
                 if (data.LootPieces[i].Unlocked)
                 {
+                    for(int g =0; g < data.LootPieces[i].MinNumberToSpawn; g++)
+                    {
+                        Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, container.AllItems);
+                    }
 
-                    Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, container.AllItems);
-
+                    for (int g = 0; g < data.LootPieces[i].MaxNumberToSpawn; g++) 
+                    {
+                        if (Game1.Utility.RNumber(0, 100) < data.LootPieces[i].ProbabilityAdditionalSpawn)
+                        {
+                            Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, container.AllItems);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
+                    }
 
 
                 }
