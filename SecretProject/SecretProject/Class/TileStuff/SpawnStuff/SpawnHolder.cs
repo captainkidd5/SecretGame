@@ -19,6 +19,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 
                 new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone
                 new SpawnElement(879, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone2
+                 new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Steel Vein
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //rock
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //Stick
@@ -35,24 +36,42 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(3161, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5, false, true){Unlocked = true }, //big stump
                 new SpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
                 new SpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = false }, //Pumpkin
-                new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
+                
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
                 new SpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Red Mushroom
                 new SpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Blue Mushroom
                  new SpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25, true){Unlocked = true }, //Carrotte
+                 new SpawnElement(1682, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 25){Unlocked = true }, //Carrotte
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new SpawnElement(3439, MapLayer.ForeGround, MapLayer.ForeGround, GenerationType.DirtCliff, 50){Unlocked = true }, //mineshaft
 
-                ////CROPS - goes by GID, not by item id
-                new SpawnElement(487, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloomberry
 
-                new SpawnElement(287, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloodcorn
+                //STONE BIOME
+                new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
+                new SpawnElement(1277, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 50){Unlocked = true }, //Copper Vein
+
+                new SpawnElement(1276, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 25){Unlocked = true }, // Monzanite Vein
+
+                new SpawnElement(1275, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 25){Unlocked = true }, // Bluenate Vein
+                 new SpawnElement(1274, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 25){Unlocked = true }, // Red Vein
+                ////CROPS - goes by GID, not by item id
+                ///
+                new SpawnElement(487, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //bloomberry
+
+                new SpawnElement(287, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //bloodcorn
+
+                 new SpawnElement(687, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Brine Bulb
+
+
+                  new SpawnElement(493, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Yallon
 
                 //DESERT
                 new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
                 new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
                 new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
                 new SpawnElement(1683, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 25, true){Unlocked = true }, //Red Shell
+
+                new SpawnElement(1573, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //Reeds
 
                 //Wooden Boards
                 new SpawnElement(2052, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.OakFloorTiling, 50, false){Unlocked = true }, //Wood Barrel
