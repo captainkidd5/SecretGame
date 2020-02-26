@@ -856,7 +856,7 @@ namespace SecretProject.Class.TileStuff
             container.WasModifiedDuringInterval = true;
         }
 
-        public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, int setSoundInt, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)
+        public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, string destructableString, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)
         {
 
 
@@ -865,14 +865,16 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.TileHitPoints[tile.TileKey] > 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt);
+                    int soundInt = Game1.Utility.GetTileDestructionSound(destructableString);
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
                     Game1.GetCurrentStage().ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                     return;
                 }
 
                 if (container.TileHitPoints[tile.TileKey] < 1)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt);
+                    int soundInt = Game1.Utility.GetTileDestructionSound(destructableString,true); //different sound will play if its the final hit.
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
                     container.TileHitPoints.Remove(tile.TileKey);
 
                 }
@@ -931,7 +933,7 @@ namespace SecretProject.Class.TileStuff
 
 
                         Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
-                        ToolInteraction(tile, gameTime, layer, x, y, Game1.Utility.GetTileDestructionSound(container.TileSetDictionary[tile.GID].Properties["destructable"]),
+                        ToolInteraction(tile, gameTime, layer, x, y, container.TileSetDictionary[tile.GID].Properties["destructable"],
                             Game1.Utility.GetTileEffectColor(container.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, container);
                         Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
                         if (container.TileHitPoints.ContainsKey(tile.TileKey))

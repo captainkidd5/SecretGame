@@ -1520,3 +1520,9 @@
 /processorParam:Quality=Best
 /build:Songs/ForestersTheme.wav
 
+#begin SoundEffects/treeFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/treeFall.wav
+

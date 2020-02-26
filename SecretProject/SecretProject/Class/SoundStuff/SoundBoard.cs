@@ -30,6 +30,8 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect MiningHit;
 
 
+        public SoundEffect TreeFall;
+
         public SoundEffect WalkGrass;
 
 
@@ -173,6 +175,7 @@ namespace SecretProject.Class.SoundStuff
             StoneSmash = content.Load<SoundEffect>("SoundEffects/stoneSmash");
             MiningHit = content.Load<SoundEffect>("SoundEffects/miningHit");
 
+            TreeFall = content.Load<SoundEffect>("SoundEffects/treeFall");
 
             WalkGrass = content.Load<SoundEffect>("SoundEffects/walkGrass");
 
@@ -494,6 +497,10 @@ namespace SecretProject.Class.SoundStuff
 
                     case 18:
                         PlaySoundEffect(WalkSand);
+                        break;
+
+                    case 19:
+                        PlaySoundEffect(TreeFall, true, .2f);
                         break;
 
 

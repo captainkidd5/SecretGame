@@ -2760,7 +2760,7 @@
  </tile>
  <tile id="1663">
   <properties>
-   <property name="destructable" value="21,4,5,3"/>
+   <property name="destructable" value="21,4,5,3,19"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-16,-64,48,80"/>
    <property name="transparent" value="-16,-48, 48, 60"/>
@@ -3742,7 +3742,7 @@
  </tile>
  <tile id="2963">
   <properties>
-   <property name="destructable" value="21,4,5,3"/>
+   <property name="destructable" value="21,4,5,3,19"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-16,-80,48,96"/>
    <property name="transparent" value="-16,-64, 48, 75"/>
@@ -4668,7 +4668,7 @@
  </tile>
  <tile id="4263">
   <properties>
-   <property name="destructable" value="21,4,1,3"/>
+   <property name="destructable" value="21,4,5,3,19"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-32,-64,80,80"/>
    <property name="transparent" value="-16,-48, 48, 60"/>

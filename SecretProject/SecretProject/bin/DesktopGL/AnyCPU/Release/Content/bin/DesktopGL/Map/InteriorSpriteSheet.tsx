@@ -674,6 +674,11 @@
    <property name="newSource" value="0,-32, 16,48"/>
   </properties>
  </tile>
+ <tile id="2055">
+  <properties>
+   <property name="newSource" value="-16,-16,64,32"/>
+  </properties>
+ </tile>
  <tile id="4743">
   <objectgroup draworder="index">
    <object id="1" x="0" y="15" width="16" height="1"/>

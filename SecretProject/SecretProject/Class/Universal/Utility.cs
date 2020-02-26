@@ -150,9 +150,19 @@ namespace SecretProject.Class.Universal
             }
 
         }
-        public int GetTileDestructionSound(string info)
+        public int GetTileDestructionSound(string info, bool isFinalHit = false)
         {
-            int soundToReturn = int.Parse(info.Split(',')[3]);
+            string[] splitString = info.Split(',');
+            int index = 3;
+            if(isFinalHit)
+            {
+                if(splitString.Length > 4)
+                {
+                    index = 4;
+                }
+                
+            }
+            int soundToReturn = int.Parse(splitString[index]);
             return soundToReturn;
         }
 
