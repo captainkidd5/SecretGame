@@ -544,6 +544,44 @@ namespace SecretProject.Class.TileStuff
             
         }
 
+        public void GenerateSea()
+        {
+            IsDoneLoading = true;
+            this.IsGenerating = true;
+            for (int z = 0; z < 4; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    {
+
+                        if(z == 0)
+                        {
+                            this.AllTiles[z][i, j] = new Tile(i, j, 125); //sea tile
+                        }
+                        else
+                        {
+                            this.AllTiles[z][i, j] = new Tile(i, j, 0); 
+                        }
+
+                        
+                            this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                        this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                    }
+                }
+            }
+
+
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+
+
+
+
+        }
+
         public void Generate()
         {
             if (!IsDoneLoading)
@@ -555,8 +593,11 @@ namespace SecretProject.Class.TileStuff
 
                     IsDoneLoading = true;
                     this.IsGenerating = true;
-
-                    if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 7)
+                    if(this.Y < 0)
+                    {
+                        GenerateSea();
+                    }
+                    else if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 7)
                     {
                         GenerateFromTown();
                     }
