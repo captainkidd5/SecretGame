@@ -11,7 +11,7 @@ namespace SecretProject.Class.Physics
     public class Bouncer
     {
         public Vector2 BounceObjectPosition { get; set; }
-        public Vector2 BaseVelocity { get; set; }
+        public Vector2 BaseVelocity;
         public Vector2 Velocity { get; set; }
         public Dir DirectionToBounce { get; set; }
         public float VerticalFloor { get; set; }

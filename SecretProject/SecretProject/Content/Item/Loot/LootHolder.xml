@@ -100,6 +100,13 @@
                         <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>1</MaxNumberToSpawn>
                     </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>668</ItemToSpawnID> <!-- Oak Seed -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
+                    </Item>
                 </LootPieces>
             </Item>
         <!-- Fur Tree -->
@@ -119,6 +126,13 @@
                         <MinNumberToSpawn>0</MinNumberToSpawn>
                         <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>1</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>668</ItemToSpawnID> <!-- Oak Seed -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
                     </Item>
                 </LootPieces>
             </Item>
@@ -141,6 +155,13 @@
                         <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>1</MaxNumberToSpawn>
                     </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>669</ItemToSpawnID> <!-- Thunderbirch Seed -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
+                    </Item>
                 </LootPieces>
             </Item>
 
@@ -161,6 +182,13 @@
                         <MinNumberToSpawn>0</MinNumberToSpawn>
                         <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>1</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>668</ItemToSpawnID> <!-- Oak Seed -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
                     </Item>
                 </LootPieces>
             </Item>

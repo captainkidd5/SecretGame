@@ -33,7 +33,7 @@ namespace SecretProject.Class.UI
                 
             }
 
-            this.YEnd = this.Start.Y - yEnd;
+            this.YEnd =  yEnd;
             this.RisingTextString = stringToWrite;
             this.Speed = speed;
             this.Color = color;

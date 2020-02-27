@@ -56,14 +56,18 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  new SpawnElement(1274, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 25){Unlocked = true }, // Red Vein
                 ////CROPS - goes by GID, not by item id
                 ///
-                new SpawnElement(487, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //bloomberry
+                new SpawnElement(487, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //bloomberry
 
-                new SpawnElement(287, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //bloodcorn
+                new SpawnElement(287, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //bloodcorn
 
-                 new SpawnElement(687, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Brine Bulb
+                 new SpawnElement(687, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Brine Bulb
 
 
-                  new SpawnElement(493, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Yallon
+                  new SpawnElement(493, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 2){Unlocked = true }, //Yallon
+
+                   new SpawnElement(2272, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //ThunderBirch seed
+
+                   new SpawnElement(1671, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Oak seed
 
                 //DESERT
                 new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree

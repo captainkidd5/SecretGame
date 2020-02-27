@@ -503,6 +503,10 @@ namespace SecretProject.Class.SoundStuff
                         PlaySoundEffect(TreeFall, true, .2f);
                         break;
 
+                    case 20:
+                        PlaySoundEffect(StoneSmash, true, .2f);
+                        break;
+
 
                 }
             }

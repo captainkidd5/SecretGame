@@ -108,8 +108,14 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle,
                     WorldPosition, 16, 16)
-                {  TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item,
-                    Entity = this };
+                {
+                    TextureScaleX = .75f,
+                    TextureScaleY = .75f,
+                    IsWorldItem = true,
+                    LayerDepth = .7f,
+                    ColliderType = ColliderType.Item,
+                    Entity = this
+                };
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
                 AllItems.Add(this);
@@ -126,13 +132,15 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite.Update(gameTime);
 
-                if(this.Bouncer != null)
+                if (this.Bouncer != null)
                 {
+
                     this.ItemSprite.Position = Bouncer.Update(gameTime);
-                    if(!this.Bouncer.IsActive)
+                    if (!this.Bouncer.IsActive)
                     {
                         this.Bouncer = null;
                     }
+                    CheckAndHandleCollisions();
                 }
                 if (this.IsTossable == true)
                 {
@@ -148,6 +156,85 @@ namespace SecretProject.Class.ItemStuff
                 {
                     this.Ignored = false;
                 }
+            }
+        }
+
+        public bool DidCollide(Vector2 velocity, ICollidable objectBody)
+        {
+            Rectangle rect = this.ItemSprite.Rectangle;
+
+            rect.X += (int)velocity.X;
+            rect.Y += (int)velocity.Y;
+
+            if (rect.Intersects(objectBody.Rectangle))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
+        {
+            bool didEitherCollide = false;
+            Vector2 newMove = Vector2.Zero;
+            //Check collision in X direction
+            if (moveAmount.X != 0f)
+            {
+                newMove.Y = 0;
+                newMove.X = moveAmount.X;
+
+                bool collided = DidCollide(newMove, objectBody);
+                if (collided)
+                {
+                    moveAmount = new Vector2(0, moveAmount.Y);
+                    didEitherCollide = true;
+                }
+            }
+
+            //Check collision in Y direction
+            if (moveAmount.Y != 0f)
+            {
+                newMove.Y = moveAmount.Y;
+                newMove.X = 0;
+
+                bool collided = DidCollide(newMove, objectBody);
+                if (collided)
+                {
+                    moveAmount = new Vector2(moveAmount.X, 0);
+                    didEitherCollide = true;
+                }
+            }
+            return didEitherCollide;
+        }
+
+        private void CheckAndHandleCollisions()
+        {
+            List<ICollidable> returnObjects = new List<ICollidable>();
+
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
+
+
+
+            for (int i = 0; i < returnObjects.Count; i++)
+            {
+
+                if (returnObjects[i].ColliderType == ColliderType.inert)
+                {
+
+                    if (this.ItemSprite.DestinationRectangle.Intersects(returnObjects[i].Rectangle))
+                    {
+                        HandleMove(this.ItemSprite.Position, ref this.Bouncer.BaseVelocity, returnObjects[i]);
+
+
+                    }
+                }
+
+
+
             }
         }
 
@@ -173,27 +260,27 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                
 
 
-                    if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
-                    {
+
+                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
+                {
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
-                        this.AllItems.Remove(this);
-                        // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
+                    this.AllItems.Remove(this);
+                    // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
 
 
-                        Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
-                        Game1.Player.UserInterface.BackPack.CheckGridItem();
+                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
+                    Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
 
-                    }
-                    Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
-                    dir.Normalize();
-                    this.ItemSprite.Position += dir;
-                
+                }
+                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
+                dir.Normalize();
+                this.ItemSprite.Position += dir;
+
 
             }
         }
