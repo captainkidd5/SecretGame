@@ -140,7 +140,7 @@ namespace SecretProject.Class.ItemStuff
                     {
                         this.Bouncer = null;
                     }
-                    CheckAndHandleCollisions();
+                   // CheckAndHandleCollisions();
                 }
                 if (this.IsTossable == true)
                 {
@@ -211,32 +211,32 @@ namespace SecretProject.Class.ItemStuff
             return didEitherCollide;
         }
 
-        private void CheckAndHandleCollisions()
-        {
-            List<ICollidable> returnObjects = new List<ICollidable>();
+        //private void CheckAndHandleCollisions()
+        //{
+        //    List<ICollidable> returnObjects = new List<ICollidable>();
 
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
-
-
-
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-
-                if (returnObjects[i].ColliderType == ColliderType.inert)
-                {
-
-                    if (this.ItemSprite.DestinationRectangle.Intersects(returnObjects[i].Rectangle))
-                    {
-                        HandleMove(this.ItemSprite.Position, ref this.Bouncer.BaseVelocity, returnObjects[i]);
-
-
-                    }
-                }
+        //    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
 
 
 
-            }
-        }
+        //    for (int i = 0; i < returnObjects.Count; i++)
+        //    {
+
+        //        if (returnObjects[i].ColliderType == ColliderType.inert)
+        //        {
+
+        //            if (this.ItemSprite.DestinationRectangle.Intersects(returnObjects[i].Rectangle))
+        //            {
+        //                HandleMove(this.ItemSprite.Position, ref this.Bouncer.BaseVelocity, returnObjects[i]);
+
+
+        //            }
+        //        }
+
+
+
+        //    }
+        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {

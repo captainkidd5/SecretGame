@@ -536,12 +536,76 @@ namespace SecretProject.Class.TileStuff
 
                         
                         this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+        }
+
+        public void GenerateBeach()
+        {
+            IsDoneLoading = true;
+            this.IsGenerating = true;
+            float[,] beachNoise = new float[1, 16];
+            for (int z = 0; z < 4; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    {
+
+                        if (z == 0)
+                        {
+                            if(j ==0)
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 225); // sand wave top
+                            }
+                            else
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 1322); // sand tile
+                            }
+                            
+                            
+                        }
+                        else
+                        {
+                            this.AllTiles[z][i, j] = new Tile(i, j, 0);
+                        }
 
 
 
-                    
+
+                    }
+                   
+                }
                 
-            
+            }
+            for(int i =0; i < 16; i++)
+            {
+                beachNoise[0, i] = 1322;
+
+            }
+
+            GenerateLandscape(beachNoise);
+
+            for (int z = 0; z < 4; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    {
+
+
+
+                        this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                        this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                    }
+
+                }
+
+            }
+
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+
         }
 
         public void GenerateSea()
@@ -597,9 +661,14 @@ namespace SecretProject.Class.TileStuff
                     {
                         GenerateSea();
                     }
+
                     else if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 7)
                     {
                         GenerateFromTown();
+                    }
+                    else if(this.Y == 0)
+                    {
+                        GenerateBeach();
                     }
                     else
                     {
