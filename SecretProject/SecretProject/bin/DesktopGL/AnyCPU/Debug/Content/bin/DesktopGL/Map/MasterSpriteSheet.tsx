@@ -538,7 +538,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="11"/>
+   <object id="1" x="0" y="5" width="16" height="6"/>
   </objectgroup>
  </tile>
  <tile id="455">
@@ -3005,7 +3005,7 @@
    <property name="transparent" value="0,-48,16,64"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="3" x="6.09091" y="3" width="4.90909" height="6.63636"/>
+   <object id="3" x="6.09091" y="8" width="4.90909" height="1.63636"/>
   </objectgroup>
  </tile>
  <tile id="1846">

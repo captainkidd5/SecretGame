@@ -460,20 +460,25 @@ namespace SecretProject.Class.TileStuff
                             }
                             if (this.X != 0 && this.Y != 0)
                             {
-                                if (world.Enemies.Count < 10)
+                                if (Game1.AllowNaturalNPCSpawning)
                                 {
 
 
-                                    Tile tile = SearchForEmptyTile(3);
-                                    if (tile != null)
+                                    if (world.Enemies.Count < Game1.NPCSpawnCountLimit)
                                     {
-                                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                                        if (tilingContainer != null)
+
+
+                                        Tile tile = SearchForEmptyTile(3);
+                                        if (tile != null)
                                         {
+                                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                                            if (tilingContainer != null)
+                                            {
 
-                                            world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                                world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                            }
+
                                         }
-
                                     }
                                 }
 
@@ -889,18 +894,23 @@ namespace SecretProject.Class.TileStuff
 
                         if (this.X != 0 && this.Y != 0)
                         {
-                            if (Game1.OverWorld.Enemies.Count < 10)
+                            if (Game1.AllowNaturalNPCSpawning)
                             {
-                                Tile tile = SearchForEmptyTile(3);
-                                if (tile != null)
+
+
+                                if (Game1.OverWorld.Enemies.Count < Game1.NPCSpawnCountLimit)
                                 {
-                                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                                    if (container != null)
+                                    Tile tile = SearchForEmptyTile(3);
+                                    if (tile != null)
                                     {
-                                        this.ITileManager.Stage.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                                        if (container != null)
+                                        {
+                                            this.ITileManager.Stage.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                        }
+
+
                                     }
-
-
                                 }
                             }
 
