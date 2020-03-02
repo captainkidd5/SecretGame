@@ -376,17 +376,21 @@ namespace SecretProject.Class.StageFolder
 
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {
-
-                    if (this.Cam.CameraScreenRectangle.Intersects(this.Enemies[i].NPCHitBoxRectangle))
+                    if (this.Enemies[i] != null)
                     {
-                        this.Enemies[i].TimeInUnloadedChunk = 0f;
-                    }
 
-                    else
-                    {
-                        this.Enemies[i].TimeInUnloadedChunk += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                        if (this.Cam.CameraScreenRectangle.Intersects(this.Enemies[i].NPCHitBoxRectangle))
+                        {
+                            this.Enemies[i].TimeInUnloadedChunk = 0f;
+                        }
+
+                        else
+                        {
+                            this.Enemies[i].TimeInUnloadedChunk += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        }
+                        this.Enemies[i].Update(gameTime, mouse, this.Enemies);
                     }
-                    this.Enemies[i].Update(gameTime, mouse, this.Enemies);
                 }
 
             }

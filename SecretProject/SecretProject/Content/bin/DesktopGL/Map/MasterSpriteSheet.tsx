@@ -538,7 +538,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="11"/>
+   <object id="1" x="0" y="5" width="16" height="6"/>
   </objectgroup>
  </tile>
  <tile id="455">
@@ -1324,7 +1324,7 @@
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="1" width="14" height="14"/>
+   <object id="1" x="1" y="4" width="14" height="11"/>
   </objectgroup>
   <animation>
    <frame tileid="979" duration="80"/>
@@ -1552,7 +1552,7 @@
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="1" width="14" height="14"/>
+   <object id="1" x="1" y="3" width="14" height="12"/>
   </objectgroup>
  </tile>
  <tile id="978">
@@ -1563,7 +1563,7 @@
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="1" width="14" height="14"/>
+   <object id="1" x="1" y="3" width="14" height="12"/>
   </objectgroup>
   <animation>
    <frame tileid="979" duration="80"/>
@@ -1781,8 +1781,8 @@
    <property name="loot" value="1002"/>
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="2" y="2" width="12" height="11"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="3" width="12" height="10"/>
   </objectgroup>
   <animation>
    <frame tileid="1079" duration="100"/>
@@ -3001,12 +3001,11 @@
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
    <property name="lightSource" value="1,0,-48,NightTime"/>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
    <property name="transparent" value="0,-48,16,64"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="3" x="6.09091" y="0.727273" width="4.90909" height="8.90909"/>
+  <objectgroup draworder="index" id="2">
+   <object id="3" x="6.09091" y="8" width="4.90909" height="1.63636"/>
   </objectgroup>
  </tile>
  <tile id="1846">
@@ -5519,7 +5518,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
-   <property name="portal" value="true,OverWorld,PlayerHouse,"/>
+   <property name="portal" value="true,OverWorld,PlayerHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>

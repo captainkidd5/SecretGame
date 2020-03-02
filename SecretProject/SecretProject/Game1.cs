@@ -135,7 +135,7 @@ namespace SecretProject
 
 
         public static List<ILocation> AllStages;
-        public static int CurrentStage;
+        public static ILocation CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
 
@@ -349,87 +349,13 @@ namespace SecretProject
 
         public static ILocation GetCurrentStage()
         {
-            switch (gameStages)
-            {
-
-                case Stages.OverWorld:
-                    return OverWorld;
-
-
-                case Stages.Town:
-                    return Town;
-
-
-                case Stages.ElixirHouse:
-                    return ElixirHouse;
-                case Stages.JulianHouse:
-                    return JulianHouse;
-                case Stages.DobbinHouse:
-                    return DobbinHouse;
-                case Stages.PlayerHouse:
-                    return PlayerHouse;
-                case Stages.GeneralStore:
-                    return GeneralStore;
-                case Stages.KayaHouse:
-                    return KayaHouse;
-                case Stages.Cafe:
-                    return Cafe;
-                case Stages.UnderWorld:
-                    return UnderWorld;
-                case Stages.DobbinHouseUpper:
-                    return DobbinHouseUpper;
-                case Stages.MarcusHouse:
-                    return MarcusHouse;
-                case Stages.Forest:
-                    return Forest;
-                case Stages.LightHouse:
-                    return LightHouse;
-
-                default:
-                    return null;
-
-            }
+            return CurrentStage;
         }
 
         public static ILocation GetStageFromInt(Stages stage)
         {
-
-            switch (stage)
-            {
-                case Stages.Town:
-                    return Town;
-
-                case Stages.OverWorld:
-                    return OverWorld;
-
-                case Stages.ElixirHouse:
-                    return ElixirHouse;
-                case Stages.JulianHouse:
-                    return JulianHouse;
-                case Stages.DobbinHouse:
-                    return DobbinHouse;
-                case Stages.PlayerHouse:
-                    return PlayerHouse;
-                case Stages.GeneralStore:
-                    return GeneralStore;
-                case Stages.KayaHouse:
-                    return KayaHouse;
-                case Stages.Cafe:
-                    return Cafe;
-                case Stages.UnderWorld:
-                    return UnderWorld;
-                case Stages.DobbinHouseUpper:
-                    return DobbinHouseUpper;
-                case Stages.MarcusHouse:
-                    return MarcusHouse;
-                case Stages.Forest:
-                    return Forest;
-                case Stages.LightHouse:
-                    return LightHouse;
-                default:
-                    return null;
-
-            }
+            return (AllStages[(int)stage]);
+           
 
         }
 
@@ -552,12 +478,13 @@ namespace SecretProject
             Town = new Town("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
             { StageIdentifier = (int)Stages.Town };
 
-            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
+           
 
 
 
             ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
             JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
+            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
             DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
             GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
@@ -574,7 +501,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, Forest, LightHouse, UnderWorld };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld,  DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, Forest, LightHouse, UnderWorld };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -804,7 +731,7 @@ namespace SecretProject
             {
                 //  ILocation location = GetCurrentStage();
                 // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
-                Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
+                Portal tempPortal = GetStageFromInt(stageToSwitchTo).AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 if(tempPortal != null)
                 {
                     float x = tempPortal.PortalStart.X;
@@ -828,10 +755,12 @@ namespace SecretProject
                 Player.Position = new Vector2(473, 670);
             }
             Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
-            if (Game1.GetCurrentStage() == OverWorld)
+            if (GetStageFromInt(stageToSwitchTo) == OverWorld)
             {
                 Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
             }
+
+            CurrentStage = newLocation;
         }
 
 
