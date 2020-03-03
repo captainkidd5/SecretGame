@@ -173,11 +173,13 @@ namespace SecretProject.Class.ItemStuff
             binaryWriter.Write(this.TotalSlots);
             binaryWriter.Write(this.Money);
             binaryWriter.Write(this.currentInventory.Count);
+            binaryWriter.Write(this.SlotCapacity);
 
             for (int i = 0; i < this.currentInventory.Count; i++)
             {
 
                 binaryWriter.Write(this.currentInventory[i].ItemCount);
+                
                 if(this.currentInventory[i].ItemCount > 0)
                 {
                     binaryWriter.Write(this.currentInventory[i].Item.ID);
@@ -197,6 +199,7 @@ namespace SecretProject.Class.ItemStuff
             this.TotalSlots = reader.ReadInt32();
             this.Money = reader.ReadInt32();
             int currentInventoryCount = reader.ReadInt32();
+            this.SlotCapacity = reader.ReadInt32();
             for(int i =0; i < currentInventoryCount; i++)
             {
                 InventorySlot slot = new InventorySlot(this.SlotCapacity);
@@ -270,12 +273,17 @@ namespace SecretProject.Class.ItemStuff
 
         public bool IsPossibleToAddItem(Item item)
         {
+            if (this.Capacity < 50)
+            {
+                System.Console.WriteLine("hi");
+            }
             if (this.Item == null)
             {
 
                 return true;
             }
-            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount <= this.Capacity)
+            
+            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount < this.Capacity)
             {
 
                 return true;
