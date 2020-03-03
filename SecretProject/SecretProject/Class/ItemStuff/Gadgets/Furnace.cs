@@ -136,7 +136,7 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
             this.IsInventoryHovered = false;
-            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 10 * this.TimeActivated / this.CookTimeRequired);
+            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 20 * this.TimeActivated / this.CookTimeRequired);
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 this.IsUpdating = false;
