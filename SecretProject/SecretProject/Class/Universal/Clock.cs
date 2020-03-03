@@ -22,6 +22,8 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
+        public float SecondsPassedToday;
+
         public int TotalHours { get; set; } = 5;
         public int TotalDays { get; set; } = 0;
 
@@ -91,6 +93,7 @@ namespace SecretProject.Class.Universal
         public void IncrementDay()
         {
             this.TotalDays++;
+            this.SecondsPassedToday = 0;
             if (this.WeekDay < WeekDay.Sunday)
             {
                 this.WeekDay++;
@@ -274,6 +277,7 @@ namespace SecretProject.Class.Universal
             this.ClockSpeed = BaseClockSpeed / ClockMultiplier;
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
+            this.SecondsPassedToday += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (LocalTime.TotalSeconds > this.ClockSpeed)
             {

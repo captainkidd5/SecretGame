@@ -41,6 +41,9 @@ namespace SecretProject.Class.ItemStuff
 
 
         public SoundEffectInstance FireSound { get; set; }
+
+
+        public float TimeActivated { get; set; }
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Furnace;
@@ -78,6 +81,7 @@ namespace SecretProject.Class.ItemStuff
         {
             this.IsUpdating = true;
             this.Tile = tile;
+            this.TimeActivated = Game1.GlobalClock.SecondsPassedToday;
             //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
 
         }
@@ -131,7 +135,7 @@ namespace SecretProject.Class.ItemStuff
                     {
                         FireSound.Play();
                     }
-                    if (this.SimpleTimer.Run(gameTime))
+                    if (Game1.GlobalClock.SecondsPassedToday - this.TimeActivated > 5)
                     {
                         int newID = this.SmeltSlot.Inventory.currentInventory[0].GetItemData().SmeltedItem;
                         this.SmeltSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
