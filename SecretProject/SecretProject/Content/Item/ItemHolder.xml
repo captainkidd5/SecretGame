@@ -8,6 +8,7 @@
 <ID>0</ID>
 <Description>A basic tool for chopping trees. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
+<Tier>1</Tier>
 <Durability>25</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
@@ -18,6 +19,7 @@
 <ID>1</ID>
 <Description>A basic tool for chopping trees. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
+<Tier>2</Tier>
 <Durability>25</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
@@ -67,6 +69,7 @@
 <ID>40</ID>
 <Description>A basic tool for smashing rocks. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
+<Tier>1</Tier>
 <Durability>25</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
@@ -77,6 +80,7 @@
 <ID>41</ID>
 <Description>A strong tool for smashing rocks.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
+<Tier>2</Tier>
 <Durability>25</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>

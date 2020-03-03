@@ -177,6 +177,10 @@ namespace SecretProject.Class.Playable
             this.PlayerWardrobe = new Wardrobe(graphics,position);
         }
 
+        public ItemData GetCurrentEquippedToolData()
+        {
+            return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
+        }
 
 
         public void PlayAnimation(AnimationType action, int textureColumn = 0)

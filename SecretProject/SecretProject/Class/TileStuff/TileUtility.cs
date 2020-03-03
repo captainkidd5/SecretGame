@@ -856,26 +856,42 @@ namespace SecretProject.Class.TileStuff
             container.WasModifiedDuringInterval = true;
         }
 
-        public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, string destructableString, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)
+        public static bool ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, string destructableString, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)
         {
 
 
             if (container.TileHitPoints.ContainsKey(tile.TileKey))
             {
-
+                string[] info = destructableString.Split(',');
                 if (container.TileHitPoints[tile.TileKey] > 0)
                 {
-                    int soundInt = Game1.Utility.GetTileDestructionSound(destructableString);
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
-                    Game1.GetCurrentStage().ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
-                    return;
+                    if(Game1.Utility.GetTileTierRequired(info))
+                    {
+                        int soundInt = Game1.Utility.GetTileDestructionSound(info);
+                        Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
+                        Game1.GetCurrentStage().ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                   
+                    return true;
                 }
 
                 if (container.TileHitPoints[tile.TileKey] < 1)
                 {
-                    int soundInt = Game1.Utility.GetTileDestructionSound(destructableString,true); //different sound will play if its the final hit.
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
-                    container.TileHitPoints.Remove(tile.TileKey);
+                    if (Game1.Utility.GetTileTierRequired(info))
+                    {
+                        int soundInt = Game1.Utility.GetTileDestructionSound(info, true); //different sound will play if its the final hit.
+                        Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
+                        container.TileHitPoints.Remove(tile.TileKey);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                       
 
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0)
@@ -894,7 +910,9 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 Game1.GetCurrentStage().ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                return true;
             }
+            return false;
         }
 
 
@@ -932,17 +950,21 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
-                        ToolInteraction(tile, gameTime, layer, x, y, container.TileSetDictionary[tile.GID].Properties["destructable"],
-                            Game1.Utility.GetTileEffectColor(container.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, container);
-                        Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
-                        if (container.TileHitPoints.ContainsKey(tile.TileKey))
+                       
+                        if(ToolInteraction(tile, gameTime, layer, x, y, container.TileSetDictionary[tile.GID].Properties["destructable"],
+                            Game1.Utility.GetTileEffectColor(container.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, container))
                         {
-                            container.TileHitPoints[tile.TileKey]--;
+                            Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
+                            Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
+                            if (container.TileHitPoints.ContainsKey(tile.TileKey))
+                            {
+                                container.TileHitPoints[tile.TileKey]--;
 
 
+                            }
+                            Game1.Player.UserInterface.StaminaBar.DecreaseStamina(1);
                         }
-                        Game1.Player.UserInterface.StaminaBar.DecreaseStamina(1);
+                        
 
                     }
                 }
@@ -1008,8 +1030,8 @@ namespace SecretProject.Class.TileStuff
             if (container.Crops.ContainsKey(tile.GetTileKeyStringNew(layer, container)))
             {
                 container.Crops.Remove(tile.GetTileKeyStringNew(layer, container));
-
-                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.TileSetDictionary[tile.GID].Properties["destructable"]));
+                string[] info = container.TileSetDictionary[tile.GID].Properties["destructable"].Split(',');
+                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(info));
                 TileUtility.ReplaceTile(0, x, y, 86, container);
                 TileUtility.ReplaceTile(layer, x, y, 0, container);
             }

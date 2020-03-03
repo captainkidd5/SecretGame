@@ -470,6 +470,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public IInformationContainer NewChunk { get; set; }
 
 
+        #region PATHFINDING
         public bool IsCoordinateInCurrentChunk(int x, int y)
         {
             if (x < TileUtility.ChunkWidth && x > 0 && y < TileUtility.ChunkHeight && y > 0)
@@ -626,7 +627,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
             }
         }
-
+        #endregion
 
         private float WanderTimer = 2f;
 

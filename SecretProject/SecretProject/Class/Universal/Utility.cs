@@ -150,19 +150,37 @@ namespace SecretProject.Class.Universal
             }
 
         }
-        public int GetTileDestructionSound(string info, bool isFinalHit = false)
+
+        public bool GetTileTierRequired(string[] info)
         {
-            string[] splitString = info.Split(',');
+            if(info.Length > 4)
+            {
+                int tierRequired = int.Parse(info[5]);
+                if(Game1.Player.GetCurrentEquippedToolData().Tier >= tierRequired)
+                {
+                    return true;
+                }
+                else
+                {
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Higher level tool required!");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int GetTileDestructionSound(string[] info, bool isFinalHit = false)
+        {
             int index = 3;
             if(isFinalHit)
             {
-                if(splitString.Length > 4)
+                if(info.Length > 4)
                 {
                     index = 4;
                 }
                 
             }
-            int soundToReturn = int.Parse(splitString[index]);
+            int soundToReturn = int.Parse(info[index]);
             return soundToReturn;
         }
 
