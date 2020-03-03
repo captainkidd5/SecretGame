@@ -424,6 +424,7 @@
 <ID>641</ID>
 <Description>Unrefined copper.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>681</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -431,6 +432,7 @@
 <ID>642</ID>
 <Description>Unrefined Monazite.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>682</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -438,6 +440,7 @@
 <ID>643</ID>
 <Description>Unrefined Blunite Ore.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>683</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -445,6 +448,7 @@
 <ID>644</ID>
 <Description>Unrefined Santalite Ore.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>684</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -452,6 +456,7 @@
 <ID>645</ID>
 <Description>An ominous Ore.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>685</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -459,6 +464,7 @@
 <ID>646</ID>
 <Description>Unrefined Zaittaane.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
+<SmeltedItem>686</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

@@ -417,8 +417,8 @@ namespace SecretProject.Class.UI
                     {
                         if (item.Durability > 0)
                         {
-                            spriteBatch.Draw(Game1.AllTextures.redPixel, new Rectangle((int)AllSlots[i].Position.X + 4, (int)AllSlots[i].Position.Y + (int)AllSlots[i].HitBoxRectangle.Height - 8, (int)(item.DurabilityLineWidth * 50), 5), null,
-    Color.Blue, 0f, Game1.Utility.Origin, SpriteEffects.None, .9f);
+                            spriteBatch.Draw(Game1.AllTextures.redPixel, new Rectangle((int)AllSlots[i].Position.X + 4, (int)AllSlots[i].Position.Y + (int)AllSlots[i].HitBoxRectangle.Height - 8, (int)(item.DurabilityLineWidth * 50), 8), null,
+    Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .9f);
                         }
 
                     }
