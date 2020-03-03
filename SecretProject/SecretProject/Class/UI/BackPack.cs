@@ -404,14 +404,25 @@ namespace SecretProject.Class.UI
 
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
+                    float colorMultiplier = 1f;
                     if (this.AllSlots[i].IsHovered)
                     {
-                        this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White * .5f, 2f, 2f, Utility.StandardButtonDepth);
+                        colorMultiplier = .5f;
+                       
+
                     }
-                    else
+                    this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White * colorMultiplier, 2f, 2f, Utility.StandardButtonDepth);
+                    Item item = this.Inventory.currentInventory[i].GetItem();
+                    if(item != null)
                     {
-                        this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White, 2f, 2f, Utility.StandardButtonDepth);
+                        if (item.Durability > 0)
+                        {
+                            spriteBatch.Draw(Game1.AllTextures.redPixel, new Rectangle((int)AllSlots[i].Position.X + 4, (int)AllSlots[i].Position.Y + (int)AllSlots[i].HitBoxRectangle.Height - 8, (int)(item.DurabilityLineWidth * 50), 5), null,
+    Color.Blue, 0f, Game1.Utility.Origin, SpriteEffects.None, .9f);
+                        }
+
                     }
+
 
                 }
                 if (this.DragSprite != null)

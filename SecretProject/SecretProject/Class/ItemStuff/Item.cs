@@ -45,6 +45,7 @@ namespace SecretProject.Class.ItemStuff
 
         public Rectangle SourceTextureRectangle { get; set; }
         public Rectangle DestinationTextureRectangle { get; set; }
+        public float DurabilityLineWidth { get; set; }
 
 
 
@@ -118,12 +119,23 @@ namespace SecretProject.Class.ItemStuff
                 };
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
+                
                 AllItems.Add(this);
             }
             else
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
+                if(this.Durability > 0)
+                {
+
+                }
+                this.DurabilityLineWidth = GetDurabilityLineLength();
             }
+        }
+
+        public float GetDurabilityLineLength()
+        {
+            return (float)this.Durability / (float)Game1.ItemVault.GetItem(this.ID).Durability;
         }
 
         public void Update(GameTime gameTime)
@@ -243,6 +255,12 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Draw(spriteBatch, .4f);
+    //            if(this.Durability > 0)
+    //            {
+     
+    //                spriteBatch.Draw(Game1.AllTextures.redPixel, this.DurabilityRectangle, null,
+    //Color.Blue, 0f,Game1.Utility.Origin, SpriteEffects.None, 1f);
+    //            }
             }
 
         }
@@ -294,6 +312,11 @@ namespace SecretProject.Class.ItemStuff
                 Game1.Player.Inventory.RemoveItem(this);
                 Game1.SoundManager.ToolBreak.Play();
             }
+            else
+            {
+                this.DurabilityLineWidth = GetDurabilityLineLength();
+            }
+
         }
 
         public void KnockBack(Dir direction, int amount)
