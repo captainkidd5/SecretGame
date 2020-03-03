@@ -70,6 +70,21 @@ namespace SecretProject.Class.ItemStuff
             this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1755, 100);
         }
 
+        public bool DepositItem(Item item)
+        {
+
+                for (int i = 0; i < this.ItemSlots.Count; i++)
+                {
+                    if (this.ItemSlots[i].Inventory.TryAddItem(item))
+                    {
+                        return true;
+                    }
+                }
+            
+
+            return false;
+        }
+
         public bool IsItemAllowedToBeStored(Item item)
         {
             return true;

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
@@ -25,7 +26,6 @@ namespace SecretProject.Class.ItemStuff
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
 
-        public SimpleTimer SimpleTimer { get; set; }
         public ItemStorageSlot SmeltSlot { get; set; }
 
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
@@ -33,7 +33,7 @@ namespace SecretProject.Class.ItemStuff
         public Vector2 TimerStringLocation { get; set; }
         public Tile Tile { get; set; }
 
-        private Button redEsc;
+        private RedEsc redEsc;
 
         public Vector2 OrangeFlamePosition { get; set; }
         public Vector2 OrangeFlameCurrentPosition { get; set; }
@@ -44,12 +44,18 @@ namespace SecretProject.Class.ItemStuff
 
 
         public float TimeActivated { get; set; }
+        public float CookTimeRequired { get; set; }
+
+        public int OldSmeltSlotCount { get; set; }
+        public int CurrentSmeltSlotCount { get; set; }
+
+        public bool IsCooking { get; set; }
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Furnace;
             this.ID = iD;
             this.Size = size;
-            this.Inventory = new Inventory(this.Size);
+            this.Inventory = new Inventory(1);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(224, 128, 48, 96);
@@ -65,27 +71,32 @@ namespace SecretProject.Class.ItemStuff
                 this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
-            this.SimpleTimer = new SimpleTimer(5f);
-            this.SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
+            this.SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1,1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
             this.TimerStringLocation = new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height);
 
-            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
-               new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
+            redEsc = new RedEsc(
+               new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), graphics);
 
             this.OrangeFlamePosition = new Vector2(this.BackDropPosition.X + 32, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * BackDropScale - 40 * BackDropScale);
             this.OrangeFlameCurrentPosition = this.OrangeFlamePosition;
             this.OrangeFlameSourceRectangle = new Rectangle(272, 160, 32, 32);
             this.FireSound = Game1.SoundManager.FurnaceFire.CreateInstance();
+
+            this.CookTimeRequired = 5f;
         }
         public void Activate(Tile tile)
         {
             this.IsUpdating = true;
             this.Tile = tile;
-            this.TimeActivated = Game1.GlobalClock.SecondsPassedToday;
-            //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
+            
 
         }
 
+        public void StartCook()
+        {
+            this.TimeActivated = Game1.GlobalClock.SecondsPassedToday;
+            this.IsCooking = true;
+        }
 
 
         public void Deactivate()
@@ -93,14 +104,39 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
+        public bool DepositItem(Item item)
+        {
+            if(Game1.ItemVault.GetItem(item.ID).SmeltedItem != 0)
+            {
+                if(this.SmeltSlot.Inventory.IsPossibleToAddItem(item))
+                {
+                    return this.SmeltSlot.Inventory.TryAddItem(item);
+                }
+            }
+            else if(Game1.ItemVault.GetItem(item.ID).FuelValue > 0)
+            {
+                if (this.ItemSlots[0].Inventory.IsPossibleToAddItem(item))
+                {
+                    return this.ItemSlots[0].Inventory.TryAddItem(item);
+                }
+            }
+            return false;
+        }
         public bool IsItemAllowedToBeStored(Item item)
         {
-            return true;
+           
+
+            if(this.ItemSlots[0].Inventory.IsPossibleToAddItem(item) || this.SmeltSlot.Inventory.IsPossibleToAddItem(item))
+            {
+                return true;
+            }
+
+            return false;
         }
         public void Update(GameTime gameTime)
         {
             this.IsInventoryHovered = false;
-            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 10 * this.SimpleTimer.Time);
+            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 10 * this.TimeActivated / this.CookTimeRequired);
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 this.IsUpdating = false;
@@ -126,31 +162,37 @@ namespace SecretProject.Class.ItemStuff
                 this.IsInventoryHovered = true;
 
             }
-            
-            if (this.SmeltSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
+            InventorySlot smeltSlot = this.SmeltSlot.Inventory.currentInventory[0];
+            OldSmeltSlotCount = CurrentSmeltSlotCount;
+            CurrentSmeltSlotCount = smeltSlot.ItemCount;
+
+            if(CurrentSmeltSlotCount != OldSmeltSlotCount && CurrentSmeltSlotCount > 0) //if change was made to smelted item
             {
-                if (this.SmeltSlot.Inventory.currentInventory[0].GetItemData().SmeltedItem != 0 && this.ItemSlots[0].Inventory.currentInventory[0].GetItemData().FuelValue > 0)
+                if(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0) // if at least one fuel is in furnace
                 {
-                    if(FireSound.State == SoundState.Stopped)
-                    {
-                        FireSound.Play();
-                    }
-                    if (Game1.GlobalClock.SecondsPassedToday - this.TimeActivated > 5)
-                    {
-                        int newID = this.SmeltSlot.Inventory.currentInventory[0].GetItemData().SmeltedItem;
-                        this.SmeltSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
-                        this.SmeltSlot.Inventory.currentInventory[0].AddItemToSlot(Game1.ItemVault.GenerateNewItem(newID, null));
-                        this.ItemSlots[0].Inventory.currentInventory[0].RemoveItemFromSlot();
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.FurnaceDone, true, .25f);
-                    }
+                    StartCook();
                 }
             }
-            else
-
+            if(this.IsCooking)
             {
-                this.SimpleTimer.Time = 0;
+                if (FireSound.State == SoundState.Stopped)
+                {
+                    FireSound.Play();
+                }
+            }
+            if(this.IsCooking && Game1.GlobalClock.SecondsPassedToday - this.TimeActivated > 5)
+            {
+                int newID = smeltSlot.GetItemData().SmeltedItem;
+                smeltSlot.RemoveItemFromSlot();
+                smeltSlot.AddItemToSlot(Game1.ItemVault.GenerateNewItem(newID, null));
+                this.ItemSlots[0].Inventory.currentInventory[0].RemoveItemFromSlot();
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.FurnaceDone, true, .25f);
+
+                this.TimeActivated = 0;
+                this.IsCooking = false;
                 this.FireSound.Stop();
             }
+            
 
             redEsc.Update(Game1.MouseManager);
 
@@ -176,7 +218,7 @@ namespace SecretProject.Class.ItemStuff
 
             this.SmeltSlot.Draw(spriteBatch);
 
-           // spriteBatch.DrawString(Game1.AllTextures.MenuText, this.SimpleTimer.Time.ToString(), this.TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
+            // spriteBatch.DrawString(Game1.AllTextures.MenuText, this.SimpleTimer.Time.ToString(), this.TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
 
             redEsc.Draw(spriteBatch);
         }

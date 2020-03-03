@@ -72,6 +72,22 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
+        public bool DepositItem(Item item)
+        {
+            if (Game1.ItemVault.GetItem(item.ID).Food == true)
+            {
+                for (int i = 0; i < this.ItemSlots.Count; i++)
+                {
+                    if (this.ItemSlots[i].Inventory.TryAddItem(item))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public bool IsItemAllowedToBeStored(Item item)
         {
             return true;

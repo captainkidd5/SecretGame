@@ -96,6 +96,21 @@ namespace SecretProject.Class.UI
         }
 
 
+        /// <summary>
+        /// If held item has a food value, try to eat it. If eaten, remove from inventory and restore stamina based on item food value.
+        /// </summary>
+        public void HandleFoodItem()
+        {
+            Item item = GetCurrentEquippedToolAsItem();
+            if (item != null)
+            {
+                if (Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount > 0)
+                {
+                    Game1.Player.UserInterface.StaminaBar.IncreaseStamina(Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount);
+                    this.Inventory.RemoveItem(item.ID);
+                }
+            }
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -170,15 +185,7 @@ namespace SecretProject.Class.UI
 
                 if (Game1.MouseManager.IsRightClicked)
                 {
-                    Item item = GetCurrentEquippedToolAsItem();
-                    if(item != null)
-                    {
-                        if (Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount > 0)
-                        {
-                            Game1.Player.UserInterface.StaminaBar.IncreaseStamina(Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount);
-                            this.Inventory.RemoveItem(item.ID);
-                        }
-                    }
+                    HandleFoodItem();
                 }
 
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
@@ -193,12 +200,14 @@ namespace SecretProject.Class.UI
                             ItemData itemData = Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID);
                             TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
                       new Vector2(this.AllSlots[i].Position.X, this.AllSlots[i].Position.Y - 32), 200f);
-                            Game1.Player.UserInterface.InfoBox.IsActive = true;
+
+                            InfoPopUp infoBox = Game1.Player.UserInterface.InfoBox;
+                            infoBox.IsActive = true;
                             switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
                             {
                                 case ExclusiveInterfaceItem.ShopMenu:
-                                    Game1.Player.UserInterface.InfoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
-                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
+                                    infoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
+                                    infoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - infoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     if (this.AllSlots[i].isRightClicked)
                                     {
                                         int numberToSell = 1;
@@ -216,10 +225,10 @@ namespace SecretProject.Class.UI
                                     break;
 
                                 default:
-                                    Game1.Player.UserInterface.InfoBox.DisplayTitle = true;
-                                    Game1.Player.UserInterface.InfoBox.FitTitleText(itemData.Name, 1f);
-                                    Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
-                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
+                                    infoBox.DisplayTitle = true;
+                                    infoBox.FitTitleText(itemData.Name, 1f);
+                                    infoBox.FitText(itemData.Description, 1f);
+                                    infoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - infoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     break;
                             }
                             if (Game1.MouseManager.IsClicked)
@@ -237,7 +246,7 @@ namespace SecretProject.Class.UI
                                                 bool playAnimation = false;
                                                 for (int shiftItem = this.Inventory.currentInventory[i].ItemCount - 1; shiftItem >= 0; shiftItem--)
                                                 {
-                                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+                                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.DepositItem(item))
                                                     {
                                                         playAnimation = true;
                                                         this.Inventory.currentInventory[i].RemoveItemFromSlot();

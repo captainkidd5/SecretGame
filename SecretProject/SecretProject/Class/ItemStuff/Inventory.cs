@@ -16,7 +16,8 @@ namespace SecretProject.Class.ItemStuff
 
 
         public int ID { get; set; }
-        public int Capacity { get; set; }
+        public int TotalSlots { get; set; }
+        public int SlotCapacity { get; set; }
 
         public int Money { get; set; } = 0;
 
@@ -28,14 +29,15 @@ namespace SecretProject.Class.ItemStuff
 
 
 
-        public Inventory(int capacity)
+        public Inventory(int totalSlots, int slotCapacity = 999)
         {
-            this.Capacity = capacity;
-            currentInventory = new List<InventorySlot>(this.Capacity - 1);
-            for (int i = 0; i < this.Capacity; i++)
+            this.TotalSlots = totalSlots;
+            this.SlotCapacity = slotCapacity;
+            currentInventory = new List<InventorySlot>(this.TotalSlots - 1);
+            for (int i = 0; i < this.TotalSlots; i++)
             {
 
-                    currentInventory.Add(new InventorySlot());
+                    currentInventory.Add(new InventorySlot(slotCapacity));
                 
 
             }
@@ -168,7 +170,7 @@ namespace SecretProject.Class.ItemStuff
         public void Save(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(this.ID);
-            binaryWriter.Write(this.Capacity);
+            binaryWriter.Write(this.TotalSlots);
             binaryWriter.Write(this.Money);
             binaryWriter.Write(this.currentInventory.Count);
 
@@ -192,12 +194,12 @@ namespace SecretProject.Class.ItemStuff
             
             this.currentInventory = new List<InventorySlot>();
             this.ID = reader.ReadInt32();
-            this.Capacity = reader.ReadInt32();
+            this.TotalSlots = reader.ReadInt32();
             this.Money = reader.ReadInt32();
             int currentInventoryCount = reader.ReadInt32();
             for(int i =0; i < currentInventoryCount; i++)
             {
-                InventorySlot slot = new InventorySlot();
+                InventorySlot slot = new InventorySlot(this.SlotCapacity);
                 
                 int itemCount = reader.ReadInt32();
                 if(itemCount > 0)
@@ -223,20 +225,22 @@ namespace SecretProject.Class.ItemStuff
     {
         public Item Item { get; set; }
         public int ItemCount { get; set; }
-
+        public int Capacity { get; set; }
         public bool IsCurrentSelection = false;
 
         public InventorySlot(Item item)
         {
             this.Item = item;
             this.ItemCount = 1;
+            this.Capacity = 999;
         }
 
 
 
-        public InventorySlot()
+        public InventorySlot(int capacity)
         {
             this.ItemCount = 0;
+            this.Capacity = capacity;
         }
 
         public ItemData GetItemData()
@@ -271,7 +275,7 @@ namespace SecretProject.Class.ItemStuff
 
                 return true;
             }
-            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum)
+            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount <= this.Capacity)
             {
 
                 return true;
@@ -288,7 +292,7 @@ namespace SecretProject.Class.ItemStuff
                 this.ItemCount = 1;
                 return true;
             }
-            else if (item.ID == this.Item.ID && this.ItemCount < Game1.ItemVault.GetItem(item.ID).InvMaximum)
+            else if (item.ID == this.Item.ID && this.ItemCount < Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount <= this.Capacity)
             {
                 this.ItemCount++;
                 return true;

@@ -35,5 +35,7 @@ namespace SecretProject.Class.ItemStuff
         void Activate(Tile tile);
         void Deactivate();
         void Draw(SpriteBatch spriteBatch);
+
+        bool DepositItem(Item item);
     }
 }

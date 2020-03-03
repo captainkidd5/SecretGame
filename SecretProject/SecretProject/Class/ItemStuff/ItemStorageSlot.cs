@@ -40,10 +40,10 @@ namespace SecretProject.Class.ItemStuff
             this.Button.Update(Game1.MouseManager);
             if (this.Inventory.currentInventory.Count > 0)
             {
-                this.Count = this.Inventory.currentInventory[this.Index].ItemCount;
-                if (this.Inventory.currentInventory[this.Index].ItemCount > 0)
+                InventorySlot slot = this.Inventory.currentInventory[this.Index];
+                this.Count = slot.ItemCount;
+                if (slot.ItemCount > 0)
                 {
-                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].Item.SourceTextureRectangle;
                     if (this.Button.isClicked)
                     {
                         if (this.Retrievable)
@@ -51,16 +51,16 @@ namespace SecretProject.Class.ItemStuff
 
                             if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                             {
-                                Item item = this.Inventory.currentInventory[this.Index].GetItem();
+                                Item item = slot.GetItem();
                                 if (item != null)
                                 {
 
 
-                                    for (int shiftItem = this.Inventory.currentInventory[this.Index].ItemCount - 1; shiftItem >= 0; shiftItem--)
+                                    for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
                                     {
                                         if (Game1.Player.Inventory.TryAddItem(item))
                                         {
-                                            this.Inventory.currentInventory[this.Index].RemoveItemFromSlot();
+                                            slot.RemoveItemFromSlot();
                                             this.Count--;
                                         }
                                         else
@@ -78,8 +78,8 @@ namespace SecretProject.Class.ItemStuff
 
                 if (this.Count != 0)
                 {
-                    this.Button.Texture = this.Inventory.currentInventory[this.Index].Item.ItemSprite.AtlasTexture;
-                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].Item.SourceTextureRectangle;
+                    this.Button.Texture = slot.Item.ItemSprite.AtlasTexture;
+                    this.Button.ItemSourceRectangleToDraw = slot.Item.SourceTextureRectangle;
                 }
                 else
                 {
@@ -96,8 +96,6 @@ namespace SecretProject.Class.ItemStuff
             this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
                 this.Button.Position, Color.White, this.Scale, this.Scale);
 
-            //Button.Draw(spriteBatch, ItemSourceRectangleToDraw, BackGroundSourceRectangle, Game1.AllTextures.MenuText, ItemCounter.ToString(),
-            //      Position, Color.White, Scale, Scale);
         }
 
     }
