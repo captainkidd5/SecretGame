@@ -115,6 +115,7 @@ namespace SecretProject.Class.Universal
 
             
             AdjustClockText();
+            Game1.Player.RestorePlayerToFull();
             Game1.SaveLoadManager.Save(Game1.SaveLoadManager.CurrentSave);
         }
 

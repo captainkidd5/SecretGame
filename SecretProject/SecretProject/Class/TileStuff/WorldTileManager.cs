@@ -591,10 +591,10 @@ namespace SecretProject.Class.TileStuff
                 PlayerJ = 15;
             }
 
-
+            int inverseLayer = 4;
             for (int z = 0; z < 4; z++)
             {
-
+                inverseLayer--;
                 if (Game1.Player.IsMoving)
                 {
                     if (z == 0)
@@ -641,7 +641,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                 {
-                    Tile tileUnderMouse = this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ];
+                    Tile tileUnderMouse = this.ChunkUnderMouse.AllTiles[inverseLayer][mouseI, mouseJ];
                     if (tileUnderMouse != null)
                     {
 
@@ -660,7 +660,7 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.UserInterface.TileSelector.WorldX = this.ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
                                 Game1.Player.UserInterface.TileSelector.WorldY = this.ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
 
-
+                                
                                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(tileUnderMouse.GID))
                                 {
 
@@ -685,7 +685,7 @@ namespace SecretProject.Class.TileStuff
 
                                         if (mouse.IsClicked)
                                         {
-                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, tileUnderMouse.DestinationRectangle, this.ChunkUnderMouse);
+                                            TileUtility.InteractWithDestructableTile(inverseLayer, gameTime, mouseI, mouseJ, tileUnderMouse.DestinationRectangle, this.ChunkUnderMouse);
 
                                         }
 
@@ -697,7 +697,7 @@ namespace SecretProject.Class.TileStuff
                                         if (this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties.ContainsKey("action"))
                                         {
 
-                                            TileUtility.ActionHelper(z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties["action"], mouse, this.ChunkUnderMouse);
+                                            TileUtility.ActionHelper(inverseLayer, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[tileUnderMouse.GID].Properties["action"], mouse, this.ChunkUnderMouse);
 
                                         }
                                     }

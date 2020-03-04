@@ -373,16 +373,23 @@ namespace SecretProject.Class.UI
                 if (this.CraftButton.isClicked && craftable)
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
-                    Game1.Player.Inventory.TryAddItem(item);
-                    for (int i = 0; i < this.Ingredients.Count; i++)
+                    if (Game1.Player.Inventory.TryAddItem(item))
                     {
-                        for (int j = 0; j < this.Ingredients[i].CountRequired; j++)
-                        {
-                            Game1.Player.Inventory.RemoveItem(this.Ingredients[i].Item.ID);
-                        }
-                    }
-                    Game1.SoundManager.CraftMetal.Play();
 
+
+                        for (int i = 0; i < this.Ingredients.Count; i++)
+                        {
+                            for (int j = 0; j < this.Ingredients[i].CountRequired; j++)
+                            {
+                                Game1.Player.Inventory.RemoveItem(this.Ingredients[i].Item.ID);
+                            }
+                        }
+                        Game1.SoundManager.CraftMetal.Play();
+                    }
+                    else
+                    {
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Inventory full!");
+                    }
                 }
 
             }

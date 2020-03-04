@@ -490,10 +490,14 @@ namespace SecretProject.Class.StageFolder
                 }
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {
-                    this.Enemies[i].Draw(spriteBatch, this.Graphics, ref CurrentEffect);
-                    if (this.ShowBorders)
+                    if (this.Enemies[i] != null)
                     {
-                        this.Enemies[i].DrawDebug(spriteBatch, 1f);
+
+                        this.Enemies[i].Draw(spriteBatch, this.Graphics, ref CurrentEffect);
+                        if (this.ShowBorders)
+                        {
+                            this.Enemies[i].DrawDebug(spriteBatch, 1f);
+                        }
                     }
                 }
                 for(int p = 0; p < this.AllProjectiles.Count; p++)
