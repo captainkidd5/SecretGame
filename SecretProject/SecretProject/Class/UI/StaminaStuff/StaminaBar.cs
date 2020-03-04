@@ -81,16 +81,27 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public void IncreaseStamina(int amount)
         {
-            int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(amount);
-            if (spillOverStamina > 0)
+            if (this.CurrentStamina > 0)
             {
-                if (this.CurrentStamina < this.MaximumStamina)
-                {
-                    this.CurrentStamina++;
-                    this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(spillOverStamina);
-                    CheckStaminaEnergyColor();
-                }
 
+
+                int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(amount);
+                if (spillOverStamina > 0)
+                {
+                    if (this.CurrentStamina < this.MaximumStamina)
+                    {
+                        this.CurrentStamina++;
+                        this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(spillOverStamina);
+                        CheckStaminaEnergyColor();
+                    }
+
+                }
+            }
+            else
+            {
+                this.CurrentStamina++;
+                this.EnergyPoints[0].IncreaseStamina(amount);
+                CheckStaminaEnergyColor();
             }
         }
 

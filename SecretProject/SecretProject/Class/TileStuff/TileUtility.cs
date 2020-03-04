@@ -894,7 +894,7 @@ namespace SecretProject.Class.TileStuff
                        
 
                 }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0)
+                if (container.TileSetDictionary[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0 && !container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("crop"))
                 {
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
                     for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count; i++)
