@@ -9,8 +9,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>5AM</Time>
        <EndStage>OverWorld</EndStage>
-      <EndX>43</EndX>
-      <EndY>14</EndY>
+      <EndX>116</EndX>
+      <EndY>32</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>

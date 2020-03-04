@@ -204,7 +204,7 @@ namespace SecretProject.Class.StageFolder
             SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.IsLoaded = true;
 
-            Game1.Player.Position = new Vector2(0, 0);
+            //Game1.Player.Position = new Vector2(0, 0);
 
 
             this.AllTiles.LoadInitialChunks(Vector2.Zero);

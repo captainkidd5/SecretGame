@@ -3285,17 +3285,24 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="3" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="2234">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="5">
+   <object id="4" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
  </tile>
  <tile id="2235">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
  </tile>
  <tile id="2236">
   <properties>
@@ -3303,6 +3310,7 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="13" y="0" width="3" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="2263">

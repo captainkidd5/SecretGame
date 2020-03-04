@@ -734,6 +734,7 @@ namespace SecretProject
             {
                 //  ILocation location = GetCurrentStage();
                 // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
+                List<Portal> portalTest = GetStageFromInt(stageToSwitchTo).AllPortals;
                 Portal tempPortal = GetStageFromInt(stageToSwitchTo).AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 if(tempPortal != null)
                 {
@@ -753,10 +754,7 @@ namespace SecretProject
                 //Player.UpdateMovementAnimationsOnce(gameTime);
 
             }
-            if (Game1.GetCurrentStage() == PlayerHouse)
-            {
-                Player.Position = new Vector2(473, 670);
-            }
+ 
             Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
             if (GetStageFromInt(stageToSwitchTo) == OverWorld)
             {

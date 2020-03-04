@@ -772,16 +772,6 @@ namespace SecretProject.Class.TileStuff
 
                     }
                     break;
-                case "enterPlayerHouse":
-                    mouse.ChangeMouseTexture(CursorType.Door);
-                    {
-                        if (mouse.IsClicked)
-                        {
-                            Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.To == 5);
-                            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.PlayerHouse, portal);
-                        }
-                    }
-                    break;
                 case "enterBurrow":
                     mouse.ChangeMouseTexture(CursorType.Door);
                     {
