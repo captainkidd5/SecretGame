@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/MippinRouteSchedule.xml</SourceFile>
-  <SourceTime>2020-02-25T10:26:34.0774058-08:00</SourceTime>
+  <SourceTime>2020-03-04T12:55:16.7012703-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Route/MippinRouteSchedule.xnb</DestFile>
-  <DestTime>2020-02-25T10:27:04.6758998-08:00</DestTime>
+  <DestTime>2020-03-04T12:55:23.0164948-08:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

@@ -16,7 +16,7 @@
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
-   <TextToWrite>I think I spotted a first robin of the year this morning.</TextToWrite>
+   <TextToWrite>I think I spotted the first robin of the year this morning.</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

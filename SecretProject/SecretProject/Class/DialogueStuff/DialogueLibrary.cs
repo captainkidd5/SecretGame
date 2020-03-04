@@ -30,6 +30,10 @@ namespace SecretProject.Class.DialogueStuff
         {
             DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
             DialogueDay dialogueDay = holder.AllDialogue.Find(x => x.Month == month && x.Day == day);
+            if(dialogueDay == null)
+            {
+                return new DialogueSkeleton() { TextToWrite = "Dialogue hasn't been created for me at this time!" };
+            }
             int skeletonIndex = dialogueDay.DialogueSkeletons.BinarySearch(new DialogueSkeleton { Time = time }, new TimeComparer());
 
             if (skeletonIndex < 0)
@@ -47,7 +51,7 @@ namespace SecretProject.Class.DialogueStuff
 
             if (skeleton == null)
             {
-                return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
+                return new DialogueSkeleton() { TextToWrite = "Dialogue hasn't been created for me at this time!" };
             }
             if (skeleton.HasOccurredAtleastOnce)
             {
