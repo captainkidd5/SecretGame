@@ -167,7 +167,7 @@ namespace SecretProject.Class.TileStuff
                     bool clickRequired = bool.Parse(portalString[0]);
                     int from = (int)Enum.Parse(typeof(Stages), portalString[1]);
                     int to = (int)Enum.Parse(typeof(Stages), portalString[2]);
-                    Portal portal = new Portal(from, to, 0, 50, clickRequired);
+                    Portal portal = new Portal(from, to, 0, -32, clickRequired);
                     if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
                     {
                         Game1.PortalGraph.AddEdge(portal.From, portal.To);

@@ -5972,7 +5972,6 @@
  </tile>
  <tile id="8347">
   <properties>
-   <property name="action" value="enterPortal"/>
    <property name="lightSource" value="1,0,-48,DayTime"/>
    <property name="newHitBox" value="-32,-64, 80,80 "/>
    <property name="newSource" value="-32,-64, 80,80"/>
