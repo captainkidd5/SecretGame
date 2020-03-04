@@ -136,7 +136,8 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
             this.IsInventoryHovered = false;
-            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 20 * this.TimeActivated / this.CookTimeRequired);
+            float flameYOffSet = 10 * (Game1.GlobalClock.SecondsPassedToday - this.TimeActivated);
+            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y -  flameYOffSet );
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 this.IsUpdating = false;
@@ -180,7 +181,7 @@ namespace SecretProject.Class.ItemStuff
                     FireSound.Play();
                 }
             }
-            if(this.IsCooking && Game1.GlobalClock.SecondsPassedToday - this.TimeActivated > 5)
+            if(this.IsCooking && Game1.GlobalClock.SecondsPassedToday - this.TimeActivated > this.CookTimeRequired)
             {
                 int newID = smeltSlot.GetItemData().SmeltedItem;
                 smeltSlot.RemoveItemFromSlot();

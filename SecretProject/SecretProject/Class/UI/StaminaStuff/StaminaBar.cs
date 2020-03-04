@@ -64,6 +64,16 @@ namespace SecretProject.Class.UI.StaminaStuff
             }
         }
 
+        public void RefillStamina()
+        {
+            for(int i =0; i < this.EnergyPoints.Count; i++)
+            {
+                this.EnergyPoints[i].CompletelyRefill();
+            }
+            this.CurrentStamina = this.MaximumStamina;
+            this.StaminaEnergyColor = Color.White;
+        }
+
         public float FetchStaminaDrainRate()
         {
             return Game1.Player.CalculateStaminaRateOfDrain();
@@ -102,10 +112,13 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public void DecreaseStamina(int amount)
         {
-            //removing will give error, but do it to enable death mechanic
-            if (CurrentStamina > 0)
-            {
 
+            if (CurrentStamina <= 0)
+            {
+                Game1.Player.TakeDamage(1);
+            }
+            else
+            {
 
                 int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(amount);
                 if (spillOverStamina > 0)
@@ -123,6 +136,7 @@ namespace SecretProject.Class.UI.StaminaStuff
 
                 }
             }
+
         }
 
 
@@ -131,7 +145,7 @@ namespace SecretProject.Class.UI.StaminaStuff
             this.StaminaStatus.Draw(spriteBatch);
             for (int i = 0; i < this.EnergyPoints.Count; i++)
             {
-                this.EnergyPoints[i].Draw(spriteBatch,this.StaminaEnergyColor);
+                this.EnergyPoints[i].Draw(spriteBatch, this.StaminaEnergyColor);
             }
             //if (CurrentStamina > 0)
             //{

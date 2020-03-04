@@ -100,7 +100,7 @@ namespace SecretProject
     public class Game1 : Game
     {
         #region FIELDS
-
+        public static bool EnablePlayerInvincibility = false;
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
         public static bool EnableMusic = false;

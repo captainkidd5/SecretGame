@@ -31,6 +31,12 @@ namespace SecretProject.Class.UI.StaminaStuff
             this.EnergyRectangle = new Rectangle(224, 320, 16, 32);
 
         }
+
+        public void CompletelyRefill()
+        {
+            this.CurrentEnergy = this.MaximumEnergy;
+            this.IsDepleted = false;
+        }
         public int IncreaseStamina(int amount)
         {
             this.CurrentEnergy += amount;

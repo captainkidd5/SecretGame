@@ -59,6 +59,7 @@ namespace SecretProject.Class.Playable
             set { position = value; }
         }
 
+        public int MaxHealth { get; set; }
         public int Health { get; set; }
 
 
@@ -145,7 +146,8 @@ namespace SecretProject.Class.Playable
         {
             this.content = content;
             this.Name = name;
-            this.Health = 10;
+            this.MaxHealth = 10;
+            this.Health = this.MaxHealth;
             this.Position = position;
             this.Graphics = graphics;
             this.Texture = texture;
@@ -870,17 +872,34 @@ namespace SecretProject.Class.Playable
             throw new NotImplementedException();
         }
 
-
+        public void RestorePlayerToFull()
+        {
+            this.UserInterface.StaminaBar.RefillStamina();
+            this.Health = this.MaxHealth;
+        }
 
         public void TakeDamage(int dmgAmount)
         {
-            this.Health -= (int)dmgAmount;
-            if(this.Health == 0)
+            if(!Game1.EnablePlayerInvincibility)
             {
-                this.Health = 6;
+                this.Health -= (int)dmgAmount;
+                if (this.Health == 0)
+                {
+                    this.Health = 6;
+                    Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.PlayerHouse);
+                    this.Position = new Vector2(600, 600);
+                    Game1.GlobalClock.IncrementDay();
+                    UserInterface.BackPack.Inventory.Money -= 200;
+                    RestorePlayerToFull();
+                }
+                this.IsImmuneToDamage = true;
+                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
             }
-            this.IsImmuneToDamage = true;
-            UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X +600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
+            else
+            {
+                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100,"Invincible!", 50f, Color.Red, true, 3f, true));
+            }
+            
         }
 
         public void Reset()
