@@ -38,7 +38,7 @@ namespace SecretProject.Class.CameraStuff
 
         public Camera2D(Viewport viewport)
         {
-            zoom = 3.0f;
+            zoom = 5.0f;
             rotation = 0.0f;
             pos = Vector2.Zero;
 

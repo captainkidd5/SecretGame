@@ -855,16 +855,16 @@ namespace SecretProject.Class.Playable
         public void KnockBack(GameTime gameTime)
         {
 
-            if(KnockBackTimer.Run(gameTime))
-            {
-                this.IsBeingKnockedBack = false;
-                EnableControls = true;
-            }
-            else
-            {
-                MoveAwayFromPoint(this.KnockBackVector, gameTime);
-                EnableControls = false;
-            }
+            //if(KnockBackTimer.Run(gameTime))
+            //{
+            //    this.IsBeingKnockedBack = false;
+            //    EnableControls = true;
+            //}
+            //else
+            //{
+            //    MoveAwayFromPoint(this.KnockBackVector, gameTime);
+            //    EnableControls = false;
+            //}
         }
 
         public void Interact()
