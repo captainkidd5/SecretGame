@@ -46,15 +46,13 @@ namespace SecretProject.Class.ItemStuff
         public float TimeActivated { get; set; }
         public float CookTimeRequired { get; set; }
 
-        public int OldSmeltSlotCount { get; set; }
-        public int CurrentSmeltSlotCount { get; set; }
 
         public bool IsCooking { get; set; }
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Furnace;
             this.ID = iD;
-            this.Size = size;
+            this.Size = 1;
             this.Inventory = new Inventory(1);
             this.Location = location;
             this.GraphicsDevice = graphics;
@@ -137,6 +135,10 @@ namespace SecretProject.Class.ItemStuff
         {
             this.IsInventoryHovered = false;
             float flameYOffSet = 10 * (Game1.GlobalClock.SecondsPassedToday - this.TimeActivated);
+            if(this.TimeActivated <= 0) //otherwise yoffset will increase forever
+            {
+                flameYOffSet = 0;
+            }
             this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y -  flameYOffSet );
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
@@ -164,15 +166,13 @@ namespace SecretProject.Class.ItemStuff
 
             }
             InventorySlot smeltSlot = this.SmeltSlot.Inventory.currentInventory[0];
-            OldSmeltSlotCount = CurrentSmeltSlotCount;
-            CurrentSmeltSlotCount = smeltSlot.ItemCount;
 
-            if(CurrentSmeltSlotCount != OldSmeltSlotCount && CurrentSmeltSlotCount > 0) //if change was made to smelted item
+
+            if(!this.IsCooking && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0 &&  smeltSlot.ItemCount > 0 && smeltSlot.GetItemData().SmeltedItem > 0) //if change was made to smelted item
             {
-                if(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0) // if at least one fuel is in furnace
-                {
+
                     StartCook();
-                }
+                
             }
             if(this.IsCooking)
             {

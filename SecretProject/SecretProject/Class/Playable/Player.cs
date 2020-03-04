@@ -407,6 +407,8 @@ namespace SecretProject.Class.Playable
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordSwing, true, 1f);
                         DoPlayerAnimation(AnimationType.Swiping);
+                        item.AlterDurability(1);
+                        UserInterface.StaminaBar.DecreaseStamina(1);
                     }
                     else if(item.ItemType == XMLData.ItemStuff.ItemType.Bow)
                     {
@@ -417,6 +419,8 @@ namespace SecretProject.Class.Playable
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
                             Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
+                            item.AlterDurability(1);
+                            UserInterface.StaminaBar.DecreaseStamina(1);
                         }
                         
                     }

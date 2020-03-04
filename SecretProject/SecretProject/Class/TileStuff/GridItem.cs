@@ -235,6 +235,7 @@ namespace SecretProject.Class.TileStuff
                                 }
 
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
+                                Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
                                 return;
