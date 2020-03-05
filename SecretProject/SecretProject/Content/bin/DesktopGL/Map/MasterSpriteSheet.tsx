@@ -4311,7 +4311,7 @@
  <tile id="3663">
   <properties>
    <property name="destructable" value="21,4,5,3,19,0"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="-16,-80,48,96"/>
    <property name="transparent" value="-16,-64, 48, 75"/>
   </properties>

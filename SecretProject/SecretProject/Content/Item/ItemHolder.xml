@@ -540,6 +540,8 @@
 <ID>708</ID>
 <Description>A rather plump-looking fruit.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
+<Food>true</Food>
+<StaminaRestoreAmount>10</StaminaRestoreAmount>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -784,8 +786,6 @@
 <ID>1092</ID>
 <Description>A shuffle of wheat.</Description>
 <InvMaximum>99</InvMaximum><Price>2</Price>
-<Food>true</Food>
-<StaminaRestoreAmount>1</StaminaRestoreAmount>
 <VegetableValue>1</VegetableValue>
 </Item>
 

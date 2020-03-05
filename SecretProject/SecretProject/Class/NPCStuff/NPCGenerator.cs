@@ -25,10 +25,10 @@ namespace SecretProject.Class.NPCStuff
         public static List<NPCSpawnData> DirtCreatures = new List<NPCSpawnData>()
         {
             new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 0f, .2f, .4f),
-            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .75f),
+            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .2f),
 
-             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
-             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .5f),
+             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .4f),
+             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .3f),
 
 
         };

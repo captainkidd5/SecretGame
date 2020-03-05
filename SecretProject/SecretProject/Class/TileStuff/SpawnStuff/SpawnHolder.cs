@@ -19,7 +19,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 
                 new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone
                 new SpawnElement(879, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone2
-                 new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Steel Vein
+                 new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Steel Vein
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //rock
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //Stick
@@ -35,7 +35,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(1586, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
                 new SpawnElement(3161, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5, false, true){Unlocked = true }, //big stump
                 new SpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
-                new SpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = false }, //Pumpkin
+                new SpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 15, true){Unlocked = true }, //Pumpkin
+                new SpawnElement(1381, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15, true){Unlocked = true }, //Pumpkin
                 
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
                 new SpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Red Mushroom

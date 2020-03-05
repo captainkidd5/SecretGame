@@ -165,6 +165,34 @@
                 </LootPieces>
             </Item>
 
+            <!-- Cedar Tree -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>3363</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>520</ItemToSpawnID>
+                        <MinNumberToSpawn>6</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1003</ItemToSpawnID> <!-- Bird Nest -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>1</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>668</ItemToSpawnID> <!-- Oak Seed -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
             <!-- Pine Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>4263</GID>
