@@ -167,7 +167,7 @@
 
             <!-- Cedar Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>3363</GID>
+                <GID>3663</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -238,6 +238,13 @@
                         <MinNumberToSpawn>1</MinNumberToSpawn>
                         <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1001</ItemToSpawnID><!-- Stone -->
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>3</MaxNumberToSpawn>
                     </Item>
                 </LootPieces>
             </Item>

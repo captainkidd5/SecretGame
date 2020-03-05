@@ -20,7 +20,7 @@
 <Description>A basic tool for chopping trees. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
 <Tier>2</Tier>
-<Durability>25</Durability>
+<Durability>60</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
@@ -31,7 +31,7 @@
 <Description>A basic tool for chopping trees. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
 <Tier>3</Tier>
-<Durability>25</Durability>
+<Durability>100</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
@@ -41,7 +41,7 @@
 <ID>3</ID>
 <Description>A beautiful blue axe. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
-<Durability>25</Durability>
+<Durability>100</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
@@ -92,7 +92,7 @@
 <Description>A strong tool for smashing rocks.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
 <Tier>2</Tier>
-<Durability>25</Durability>
+<Durability>60</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
@@ -103,7 +103,7 @@
 <Description>A strong tool for smashing rocks.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
 <Tier>3</Tier>
-<Durability>25</Durability>
+<Durability>100</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
@@ -113,7 +113,7 @@
 <ID>43</ID>
 <Description>A cold, dark hammer.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
-<Durability>25</Durability>
+<Durability>150</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
@@ -183,7 +183,7 @@
 <ID>161</ID>
 <Description>A strong sword.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
-<Durability>25</Durability>
+<Durability>60</Durability>
 <Damage>2</Damage>
 <Type>Sword</Type>
 </Item>
@@ -193,7 +193,7 @@
 <ID>162</ID>
 <Description>A strong sword.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
-<Durability>25</Durability>
+<Durability>100</Durability>
 <Damage>3</Damage>
 <Type>Sword</Type>
 </Item>
@@ -203,7 +203,7 @@
 <ID>163</ID>
 <Description>A blade of shadows.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
-<Durability>25</Durability>
+<Durability>150</Durability>
 <Damage>4</Damage>
 <Type>Sword</Type>
 </Item>
