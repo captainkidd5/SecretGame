@@ -981,12 +981,9 @@
  </tile>
  <tile id="649">
   <properties>
-   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newHitBox" value="0,0, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="9" width="6" height="5"/>
-  </objectgroup>
  </tile>
  <tile id="650">
   <properties>
@@ -2464,7 +2461,7 @@
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="520"/>
-   <property name="newHitBox" value="0,0,48,16"/>
+   <property name="newHitBox" value="0,8,48,8"/>
    <property name="newSource" value="0,0,48,16"/>
   </properties>
   <objectgroup draworder="index">
@@ -4699,7 +4696,7 @@
    <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="2" y="0" width="12" height="14"/>
+   <object id="1" x="2" y="6" width="12" height="8"/>
   </objectgroup>
  </tile>
  <tile id="4280">

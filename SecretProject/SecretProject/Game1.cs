@@ -574,17 +574,17 @@ namespace SecretProject
                 BuisnessSnailShop,
                 SarahShop
             };
-            for (int i = 0; i < 30; i++)
-            {
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(604, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(280, null));
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(604, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(280, null));
 
-            }
+            //}
 
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(240, null));
+            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(240, null));
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(162, null));
 
 
@@ -745,10 +745,10 @@ namespace SecretProject
                     float safteyY = tempPortal.SafteyOffSetY;
                     Player.position = new Vector2(x + width + safteyX, y + safteyY);
                 }
-                else if (Game1.GetCurrentStage() == Town)
-                {
-                    Player.Position = new Vector2(1232, 304);
-                }
+                //else if (Game1.GetCurrentStage() == Town)
+                //{
+                //    Player.Position = new Vector2(1232, 304);
+                //}
 
 
                 //Player.UpdateMovementAnimationsOnce(gameTime);
