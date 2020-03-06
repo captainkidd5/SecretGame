@@ -20,21 +20,50 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public float Scale { get; set; }
 
-        public CraftingCategoryTab(CraftingWindow craftingWindow,  Vector2 position)
+        public List<RecipeContainer> RecipeContainers { get; set; }
+
+        public CraftingCategoryTab(CraftingWindow craftingWindow,CraftingCategory craftingCategory,  Vector2 position)
         {
             this.CraftingWindow = craftingWindow;
             this.Graphics = craftingWindow.Graphics;
             this.Scale = craftingWindow.Scale;
             this.TabButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(272, 384 * (int)this.Category, 32, 32), this.Graphics,
                 position, Controls.CursorType.Normal, this.Scale);
+
+            this.Category = craftingCategory;
+
+            CraftingPage craftingPage = craftingWindow.CraftingGuide.CraftingPages.Find(x => x.CategoryName == this.Category);
+
+            this.RecipeContainers = new List<RecipeContainer>();
+
+
+            int row = 0;
+            int column = 0;
+            for (int i =0; i < craftingPage.CraftingRecipes.Count; i++)
+            {
+                if(column % 5 == 0)
+                {
+                    row++;
+                    column = 0;
+                }
+                this.RecipeContainers.Add(new RecipeContainer(craftingWindow, craftingPage.CraftingRecipes[i],
+                    new Vector2(CraftingWindow.Position.X + column * 32 * Scale, CraftingWindow.Position.Y + row * 32 * Scale)));
+            }
+           
         }
         public void Update(GameTime gameTime)
         {
-
+            for(int i =0; i < this.RecipeContainers.Count; i++)
+            {
+                this.RecipeContainers[i].Update(gameTime);
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            for (int i = 0; i < this.RecipeContainers.Count; i++)
+            {
+                this.RecipeContainers[i].Draw(spriteBatch);
+            }
         }
     }
 }

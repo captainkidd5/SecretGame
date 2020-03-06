@@ -24,7 +24,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         public RedEsc RedEsc { get; set; }
 
         public List<CraftingCategoryTab> CategoryTabs { get; set; }
-        public CraftingCategory CurrentOpenTab { get; set; }
+        public CraftingCategoryTab CurrentOpenTab { get; set; }
 
 
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -38,22 +38,32 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.Position = Game1.Utility.CenterRectangleOnScreen(this.BackSourceRectangle, this.Scale);
             this.RedEsc = new RedEsc(this.Position, graphics);
             this.CraftingGuide = this.CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
-
-            this.CategoryTabs = new List<CraftingCategoryTab>()
+            this.CategoryTabs = new List<CraftingCategoryTab>();
+            for (int i = 0; i < 5; i++)
             {
-                new CraftingCategoryTab(this, this.Position),
+                CategoryTabs.Add(new CraftingCategoryTab(this, (CraftingCategory)i, this.Position));
+            }
+            this.CurrentOpenTab = CategoryTabs[0];
 
-            };
-           // for(int i =0; i < CraftingGuide.)
         }
 
         public void Update(GameTime gameTime)
         {
             this.RedEsc.Update(Game1.MouseManager);
-            if(RedEsc.isClicked)
+            if (RedEsc.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             }
+            for (int i = 0; i < CategoryTabs.Count; i++)
+            {
+                CategoryTabs[i].TabButton.Update(Game1.MouseManager);
+                if(CategoryTabs[i].TabButton.isClicked)
+                {
+                    this.CurrentOpenTab = CategoryTabs[i];
+                }
+            }
+
+            this.CurrentOpenTab.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -61,6 +71,12 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.RedEsc.Draw(spriteBatch);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle,
                 Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
+            for (int i = 0; i < CategoryTabs.Count; i++)
+            {
+                CategoryTabs[i].TabButton.Draw(spriteBatch);
+            }
+
+            this.CurrentOpenTab.Draw(spriteBatch);
         }
     }
 }
