@@ -33,6 +33,10 @@ namespace SecretProject.Class.UI.CraftingStuff
         public void Update(GameTime gameTime)
         {
             this.ItemButton.Update(Game1.MouseManager);
+            if(this.ItemButton.isClicked)
+            {
+                CraftingWindow.ExternalCraftingWindow.IsActive = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

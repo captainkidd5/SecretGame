@@ -26,6 +26,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         public List<CraftingCategoryTab> CategoryTabs { get; set; }
         public CraftingCategoryTab CurrentOpenTab { get; set; }
 
+        public ExternalCraftingWindow ExternalCraftingWindow { get; set; }
 
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -36,7 +37,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.Scale = 3f;
             this.BackSourceRectangle = new Rectangle(304, 365, 112, 164);
             this.Position = Game1.Utility.CenterRectangleOnScreen(this.BackSourceRectangle, this.Scale);
-            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.BackGroundSourceRectangle,this.Position, this.Scale), graphics);
+            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
             this.CraftingGuide = this.CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
             this.CategoryTabs = new List<CraftingCategoryTab>();
             for (int i = 0; i < 5; i++)
@@ -44,6 +45,8 @@ namespace SecretProject.Class.UI.CraftingStuff
                 CategoryTabs.Add(new CraftingCategoryTab(this, (CraftingCategory)i, new Vector2(this.Position.X - 32 * Scale, this.Position.Y + 32 * Scale * i)));
             }
             this.CurrentOpenTab = CategoryTabs[0];
+
+            this.ExternalCraftingWindow = new ExternalCraftingWindow(this, new Vector2(this.Position.X + this.BackSourceRectangle.Width * Scale, this.Position.Y));
 
         }
 
@@ -64,6 +67,8 @@ namespace SecretProject.Class.UI.CraftingStuff
             }
 
             this.CurrentOpenTab.Update(gameTime);
+
+            this.ExternalCraftingWindow.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -77,6 +82,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             }
 
             this.CurrentOpenTab.Draw(spriteBatch);
+            this.ExternalCraftingWindow.Draw(spriteBatch);
         }
     }
 }
