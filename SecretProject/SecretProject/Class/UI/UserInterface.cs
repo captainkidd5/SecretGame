@@ -11,6 +11,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.AlertStuff;
+using SecretProject.Class.UI.CraftingStuff;
 using SecretProject.Class.UI.DayTransitionStuff;
 using SecretProject.Class.UI.QuestStuff;
 using SecretProject.Class.UI.SanctuaryStuff;
@@ -83,7 +84,9 @@ namespace SecretProject.Class.UI
         public OpenShop CurrentOpenShop { get; set; } = OpenShop.None;
         public IShop CurrentShop { get; set; }
 
-        public CraftingMenu CraftingMenu { get; set; }
+       // public CraftingMenu CraftingMenu { get; set; }
+
+        public CraftingWindow CraftingWindow { get; set; }
 
         public BackPack BackPack { get; set; }
 
@@ -138,7 +141,8 @@ namespace SecretProject.Class.UI
             this.cam = cam;
             this.TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
-            this.CraftingMenu = new CraftingMenu(content, graphicsDevice);
+            //this.CraftingMenu = new CraftingMenu(content, graphicsDevice);
+            this.CraftingWindow = new CraftingWindow(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
             this.QuestLog = new QuestLog(graphicsDevice);
 
@@ -348,7 +352,8 @@ namespace SecretProject.Class.UI
                     }
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
-                    this.CraftingMenu.Update(gameTime);
+                    this.CraftingWindow.Update(gameTime);
+                   // this.CraftingMenu.Update(gameTime);
                     if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                     {
                         Game1.SoundManager.PlayCloseUI();
@@ -539,7 +544,8 @@ namespace SecretProject.Class.UI
                         this.CurrentShop.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.CraftingMenu:
-                        this.CraftingMenu.Draw(spriteBatch);
+                        //this.CraftingMenu.Draw(spriteBatch);
+                        this.CraftingWindow.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.SanctuaryCheckList:
                         Game1.SanctuaryCheckList.Draw(spriteBatch);

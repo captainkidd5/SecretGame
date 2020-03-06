@@ -38,13 +38,14 @@
     <Compile Include="DialogueStuff\DialogueSkeleton.cs" />
     <Compile Include="ItemStuff\CookingRecipe.cs" />
     <Compile Include="ItemStuff\CookingGuide.cs" />
-    <Compile Include="ItemStuff\CraftingGuide.cs" />
+    <Compile Include="ItemStuff\CraftingStuff\CraftingPage.cs" />
+    <Compile Include="ItemStuff\CraftingStuff\CraftingGuide.cs" />
     <Compile Include="ItemStuff\Crop.cs" />
     <Compile Include="ItemStuff\CropHolder.cs" />
     <Compile Include="ItemStuff\ItemData.cs" />
     <Compile Include="ItemStuff\ItemHolder.cs" />
-    <Compile Include="ItemStuff\ItemRecipe.cs" />
-    <Compile Include="ItemStuff\ItemsRequired.cs" />
+    <Compile Include="ItemStuff\CraftingStuff\ItemRecipe.cs" />
+    <Compile Include="ItemStuff\CraftingStuff\ItemsRequired.cs" />
     <Compile Include="ItemStuff\LootStuff\LootData.cs" />
     <Compile Include="ItemStuff\LootStuff\LootHolder.cs" />
     <Compile Include="ItemStuff\LootStuff\LootPiece.cs" />

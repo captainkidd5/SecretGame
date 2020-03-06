@@ -77,8 +77,8 @@ namespace SecretProject.Class.QuestFolder
             switch (options[0])
             {
                 case "unlockCraftingRecipe":
-                    Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(int.Parse(options[1]));
-                    ;
+                  //  Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(int.Parse(options[1]));
+                    
                     break;
 
                 case "unlockWorldLoot":

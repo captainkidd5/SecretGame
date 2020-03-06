@@ -137,7 +137,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             if (CanClaimFinalReward())
             {
-                Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item.ID);
+                //Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item.ID);
                 FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GetItem((int)FinalReward.ItemUnlock).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
                 Game1.Player.UserInterface.AddAlert(AlertType.Normal,AlertSize.Large, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
                 if (this.GIDUnlock != 0)
