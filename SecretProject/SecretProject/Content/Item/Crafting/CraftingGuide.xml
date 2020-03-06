@@ -18,6 +18,18 @@
     </AllItemsRequired>
     <Unlocked>false</Unlocked>
     </Item>
+
+    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+    <ItemToCraftID>3</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+    
+    <ItemID>1005</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    <Unlocked>false</Unlocked>
+    </Item>
     </CraftingRecipes>
 
 </Item>

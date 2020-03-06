@@ -27,7 +27,8 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.CraftingWindow = craftingWindow;
             this.Graphics = craftingWindow.Graphics;
             this.Scale = craftingWindow.Scale;
-            this.TabButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(272, 384 * (int)this.Category, 32, 32), this.Graphics,
+            this.Category = craftingCategory;
+            this.TabButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(272, 384 + 32 * (int)this.Category, 32, 32), this.Graphics,
                 position, Controls.CursorType.Normal, this.Scale);
 
             this.Category = craftingCategory;
@@ -41,13 +42,14 @@ namespace SecretProject.Class.UI.CraftingStuff
             int column = 0;
             for (int i =0; i < craftingPage.CraftingRecipes.Count; i++)
             {
+                column++;
                 if(column % 5 == 0)
                 {
                     row++;
                     column = 0;
                 }
                 this.RecipeContainers.Add(new RecipeContainer(craftingWindow, craftingPage.CraftingRecipes[i],
-                    new Vector2(CraftingWindow.Position.X + column * 32 * Scale, CraftingWindow.Position.Y + row * 32 * Scale)));
+                    new Vector2(CraftingWindow.Position.X + 64 + column * 16 * Scale, CraftingWindow.Position.Y + row * 16 * Scale)));
             }
            
         }

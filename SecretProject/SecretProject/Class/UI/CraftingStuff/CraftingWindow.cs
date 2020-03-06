@@ -36,12 +36,12 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.Scale = 3f;
             this.BackSourceRectangle = new Rectangle(304, 365, 112, 164);
             this.Position = Game1.Utility.CenterRectangleOnScreen(this.BackSourceRectangle, this.Scale);
-            this.RedEsc = new RedEsc(this.Position, graphics);
+            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.BackGroundSourceRectangle,this.Position, this.Scale), graphics);
             this.CraftingGuide = this.CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
             this.CategoryTabs = new List<CraftingCategoryTab>();
             for (int i = 0; i < 5; i++)
             {
-                CategoryTabs.Add(new CraftingCategoryTab(this, (CraftingCategory)i, this.Position));
+                CategoryTabs.Add(new CraftingCategoryTab(this, (CraftingCategory)i, new Vector2(this.Position.X - 32 * Scale, this.Position.Y + 32 * Scale * i)));
             }
             this.CurrentOpenTab = CategoryTabs[0];
 
