@@ -115,6 +115,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
             this.Inventory = Game1.Player.Inventory;
+            this.Inventory.HasChangedSinceLastFrame = false;
             if (this.IsActive)
             {
                 if (this.Expanded)

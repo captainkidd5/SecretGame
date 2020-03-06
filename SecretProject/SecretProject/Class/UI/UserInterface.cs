@@ -203,6 +203,7 @@ namespace SecretProject.Class.UI
             //  Notes.IsActive = false;
             this.IsAnyStorageItemOpen = false;
             this.BottomBar.IsActive = true;
+            this.BackPack.Update(gameTime);
             if (this.CurrentAccessedStorableItem != null)
             {
                 if (this.CurrentAccessedStorableItem.IsUpdating)
@@ -434,7 +435,7 @@ namespace SecretProject.Class.UI
 
             }
 
-            this.BackPack.Update(gameTime);
+          
             for (int i = 0; i < this.AllRisingText.Count; i++)
             {
                 this.AllRisingText[i].Update(gameTime, this.AllRisingText);

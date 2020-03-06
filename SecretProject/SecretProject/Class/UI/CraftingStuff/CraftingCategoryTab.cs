@@ -59,6 +59,17 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
                 this.RecipeContainers[i].Update(gameTime);
             }
+            if(Game1.Player.Inventory.HasChangedSinceLastFrame)
+            {
+                UpdateToolTips();
+            }
+        }
+        public void UpdateToolTips()
+        {
+            for (int i = 0; i < this.RecipeContainers.Count; i++)
+            {
+                this.RecipeContainers[i].CheckIfCanCraft();
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {

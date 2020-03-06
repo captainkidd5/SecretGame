@@ -14,7 +14,7 @@ namespace SecretProject.Class.ItemStuff
 
         public List<InventorySlot> currentInventory;
 
-
+        public bool HasChangedSinceLastFrame { get; set; }
         public int ID { get; set; }
         public int TotalSlots { get; set; }
         public int SlotCapacity { get; set; }
@@ -55,7 +55,9 @@ namespace SecretProject.Class.ItemStuff
             {
                 if (s.AddItemToSlot(item))
                 {
+                    this.HasChangedSinceLastFrame = true;
                     return true;
+                    
                 }
             }
             return false;
@@ -70,6 +72,7 @@ namespace SecretProject.Class.ItemStuff
                 if (s.ItemCount == 0)
                 {
                     s.AddItemToSlot(item);
+                    this.HasChangedSinceLastFrame = true;
                     return true;
                 }
 
@@ -102,6 +105,7 @@ namespace SecretProject.Class.ItemStuff
                     if (s.Item.ID == id)
                     {
                         s.RemoveItemFromSlot();
+                        this.HasChangedSinceLastFrame = true;
                         return true;
                     }
                 }
@@ -118,6 +122,7 @@ namespace SecretProject.Class.ItemStuff
                 if (s.Item == item)
                 {
                     s.RemoveItemFromSlot();
+                    this.HasChangedSinceLastFrame = true;
                     return true;
                 }
 
@@ -142,6 +147,32 @@ namespace SecretProject.Class.ItemStuff
 
             }
             return counter;
+        }
+        /// <summary>
+        /// returns true if inventory contains at least countToCheck amount of itemIDToCheckFor
+        /// </summary>
+        /// <param name="itemIDToCheckFor"></param>
+        /// <param name="countToCheck"></param>
+        /// <returns></returns>
+        public bool ContainsAtLeastX(int itemIDToCheckFor, int countToCheck)
+        {
+            int count = 0;
+            foreach (InventorySlot s in currentInventory)
+            {
+                if (s.Item != null)
+                {
+                    if(s.Item.ID == itemIDToCheckFor)
+                    {
+                        count += s.ItemCount;
+                    }
+
+                }
+                if(count >= countToCheck)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool ContainsAtLeastOne(int id)

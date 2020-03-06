@@ -20,6 +20,8 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public bool Unlocked { get; set; }
 
+        public bool CanCraft { get; set; }
+
         public RecipeContainer(CraftingWindow craftingWindow, ItemRecipe itemRecipe, Vector2 position)
         {
             this.CraftingWindow = craftingWindow;
@@ -33,10 +35,27 @@ namespace SecretProject.Class.UI.CraftingStuff
         public void Update(GameTime gameTime)
         {
             this.ItemButton.Update(Game1.MouseManager);
+            this.CanCraft = CheckIfCanCraft();
             if(this.ItemButton.isClicked)
             {
                 CraftingWindow.ExternalCraftingWindow.IsActive = true;
+                CraftingWindow.ExternalCraftingWindow.CurrentRecipe = this;
             }
+        }
+
+        public bool CheckIfCanCraft()
+        {
+            for(int i =0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
+            {
+                ItemsRequired item = ItemRecipe.AllItemsRequired[i];
+                if (Game1.Player.Inventory.FindNumberOfItemInInventory(item.ItemID) < item.Count)
+                {
+                    this.CanCraft = false;
+                    return false;
+                }
+            }
+            this.CanCraft = true;
+            return true;
         }
 
         public void Draw(SpriteBatch spriteBatch)

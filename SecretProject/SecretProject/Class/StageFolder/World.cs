@@ -304,6 +304,7 @@ namespace SecretProject.Class.StageFolder
 
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            Game1.Player.UserInterface.Update(gameTime, player.Inventory);
             player.CollideOccured = false;
             this.QuadTree = new QuadTree(0, this.Cam.CameraScreenRectangle);
 
@@ -395,7 +396,7 @@ namespace SecretProject.Class.StageFolder
 
             }
             Game1.Player.controls.UpdateKeys();
-            Game1.Player.UserInterface.Update(gameTime,  player.Inventory);
+            
 
 
         }
