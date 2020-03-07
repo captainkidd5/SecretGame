@@ -59,10 +59,10 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
                 this.RecipeContainers[i].Update(gameTime);
             }
-            if(Game1.Player.Inventory.HasChangedSinceLastFrame)
-            {
+            //if(Game1.Player.Inventory.HasChangedSinceLastFrame)
+            //{
                 UpdateToolTips();
-            }
+           // }
         }
         public void UpdateToolTips()
         {

@@ -34,9 +34,9 @@ namespace SecretProject.Class.UI.CraftingStuff
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
             this.ToolTips = new List<ExternalToolTip>();
             Vector2 tooltipsPosition = new Vector2(craftingWindow.ExternalCraftingWindow.Position.X, craftingWindow.ExternalCraftingWindow.Position.Y + 96);
-            for(int i =0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
+            for (int i = 0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
             {
-                this.ToolTips.Add(new ExternalToolTip(craftingWindow, this.ItemRecipe.AllItemsRequired[i].ItemID, new Vector2(tooltipsPosition.X + 32+ 24 * craftingWindow.Scale * i, tooltipsPosition.Y), this.ItemRecipe.AllItemsRequired[i].Count));
+                this.ToolTips.Add(new ExternalToolTip(craftingWindow, this.ItemRecipe.AllItemsRequired[i].ItemID, new Vector2(tooltipsPosition.X + 32 + 24 * craftingWindow.Scale * i, tooltipsPosition.Y), this.ItemRecipe.AllItemsRequired[i].Count));
             }
         }
 
@@ -44,7 +44,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         {
             this.ItemButton.Update(Game1.MouseManager);
             this.CanCraft = CheckIfCanCraft();
-            if(this.ItemButton.isClicked)
+            if (this.ItemButton.isClicked)
             {
                 CraftingWindow.ExternalCraftingWindow.IsActive = true;
                 CraftingWindow.ExternalCraftingWindow.CurrentRecipe = this;
@@ -56,7 +56,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public void UpdateToolTips(GameTime gameTime)
         {
-            for(int i = 0; i < this.ToolTips.Count; i++)
+            for (int i = 0; i < this.ToolTips.Count; i++)
             {
                 ToolTips[i].Update(gameTime);
             }
@@ -71,17 +71,19 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public bool CheckIfCanCraft()
         {
-            for(int i =0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
+            this.CanCraft = true;
+            for (int i = 0; i < this.ToolTips.Count; i++)
             {
-                ItemsRequired item = ItemRecipe.AllItemsRequired[i];
-                if (Game1.Player.Inventory.FindNumberOfItemInInventory(item.ItemID) < item.Count)
+                if (!this.ToolTips[i].UpdateItemCount())
                 {
                     this.CanCraft = false;
-                    return false;
+
                 }
+
             }
-            this.CanCraft = true;
-            return true;
+            return this.CanCraft;
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
