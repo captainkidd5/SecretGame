@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ItemStuff.CraftingStuff;
 
 namespace SecretProject.Class.UI.CraftingStuff
 {
@@ -20,12 +22,18 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public RedEsc RedEsc { get; set; }
 
-        public ExternalCraftingWindow(CraftingWindow craftingMenu, Vector2 position)
+ 
+
+        public Button ItemToCraftButton { get; set; }
+        public ExternalToolTip ToolTip { get; set; }
+
+        public ExternalCraftingWindow(CraftingWindow craftingMenu,ItemRecipe itemRecipe, Vector2 position)
         {
             this.CraftingWindow = craftingMenu;
             this.Position = position;
             this.BackSourceRectangle = new Rectangle(432, 400, 80, 96);
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, craftingMenu.Scale), craftingMenu.Graphics);
+            
         }
 
         public void Update(GameTime gameTime)
@@ -39,6 +47,9 @@ namespace SecretProject.Class.UI.CraftingStuff
                 {
                     this.IsActive = false;
                 }
+
+                this.CurrentRecipe.UpdateToolTips(gameTime);
+
             }
         }
 
@@ -51,6 +62,9 @@ namespace SecretProject.Class.UI.CraftingStuff
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle,
                     Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
                 this.RedEsc.Draw(spriteBatch);
+
+                this.CurrentRecipe.DrawToolTips(spriteBatch);
+
             }
         }
     }

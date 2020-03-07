@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -38,15 +39,21 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.BackSourceRectangle = new Rectangle(304, 365, 112, 164);
             this.Position = Game1.Utility.CenterRectangleOnScreen(this.BackSourceRectangle, this.Scale);
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
-            this.CraftingGuide = this.CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
+            this.CraftingGuide  = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
             this.CategoryTabs = new List<CraftingCategoryTab>();
+            this.ExternalCraftingWindow = new ExternalCraftingWindow(this,CraftingGuide.CraftingPages[0].CraftingRecipes[0],new Vector2(this.Position.X + this.BackSourceRectangle.Width * Scale, this.Position.Y));
             for (int i = 0; i < 5; i++)
             {
                 CategoryTabs.Add(new CraftingCategoryTab(this, (CraftingCategory)i, new Vector2(this.Position.X - 32 * Scale, this.Position.Y + 32 * Scale * i)));
             }
             this.CurrentOpenTab = CategoryTabs[0];
 
-            this.ExternalCraftingWindow = new ExternalCraftingWindow(this, new Vector2(this.Position.X + this.BackSourceRectangle.Width * Scale, this.Position.Y));
+            RecipeContainer container = CategoryTabs[0].RecipeContainers[0];
+            
+            this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, container.Item.SourceTextureRectangle, Graphics,
+                ExternalCraftingWindow.Position, Controls.CursorType.Normal, Scale, container.Item);
+
+
 
         }
 

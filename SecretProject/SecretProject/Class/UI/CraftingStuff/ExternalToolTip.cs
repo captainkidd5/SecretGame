@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +12,31 @@ namespace SecretProject.Class.UI.CraftingStuff
 {
     public class ExternalToolTip
     {
+        public CraftingWindow CraftingWindow { get; set; }
+        public Item Item { get; set; }
         public Vector2 Position { get; set; }
         public int CurrentCount { get; set; }
         public int CountRequired { get; set; }
 
-        public ExternalToolTip(Vector2 position)
+        public Button Button { get; set; }
+
+        public ExternalToolTip(CraftingWindow craftingWindow, int itemID, Vector2 position)
         {
+            this.CraftingWindow = craftingWindow;
+            this.Item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Position = position;
+            this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
+                position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item );
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Button.Update(Game1.MouseManager);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Button.Draw(spriteBatch);
         }
 
     }

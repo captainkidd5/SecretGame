@@ -22,6 +22,8 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public bool CanCraft { get; set; }
 
+        public List<ExternalToolTip> ToolTips { get; set; }
+
         public RecipeContainer(CraftingWindow craftingWindow, ItemRecipe itemRecipe, Vector2 position)
         {
             this.CraftingWindow = craftingWindow;
@@ -30,6 +32,12 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.Item = Game1.ItemVault.GenerateNewItem(this.ItemRecipe.ItemToCraftID, null);
             this.ItemButton = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, craftingWindow.Graphics,
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
+            this.ToolTips = new List<ExternalToolTip>();
+            Vector2 tooltipsPosition = new Vector2(craftingWindow.ExternalCraftingWindow.Position.X, craftingWindow.ExternalCraftingWindow.Position.Y + 64);
+            for(int i =0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
+            {
+                this.ToolTips.Add(new ExternalToolTip(craftingWindow, this.ItemRecipe.AllItemsRequired[i].ItemID, new Vector2(tooltipsPosition.X + 16 * craftingWindow.Scale, tooltipsPosition.Y)));
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -40,6 +48,21 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
                 CraftingWindow.ExternalCraftingWindow.IsActive = true;
                 CraftingWindow.ExternalCraftingWindow.CurrentRecipe = this;
+            }
+        }
+
+        public void UpdateToolTips(GameTime gameTime)
+        {
+            for(int i = 0; i < this.ToolTips.Count; i++)
+            {
+                ToolTips[i].Update(gameTime);
+            }
+        }
+        public void DrawToolTips(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < this.ToolTips.Count; i++)
+            {
+                ToolTips[i].Draw(spriteBatch);
             }
         }
 
