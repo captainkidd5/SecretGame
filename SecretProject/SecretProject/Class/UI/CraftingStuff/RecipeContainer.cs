@@ -33,10 +33,10 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.ItemButton = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, craftingWindow.Graphics,
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
             this.ToolTips = new List<ExternalToolTip>();
-            Vector2 tooltipsPosition = new Vector2(craftingWindow.ExternalCraftingWindow.Position.X, craftingWindow.ExternalCraftingWindow.Position.Y + 64);
+            Vector2 tooltipsPosition = new Vector2(craftingWindow.ExternalCraftingWindow.Position.X, craftingWindow.ExternalCraftingWindow.Position.Y + 96);
             for(int i =0; i < this.ItemRecipe.AllItemsRequired.Count; i++)
             {
-                this.ToolTips.Add(new ExternalToolTip(craftingWindow, this.ItemRecipe.AllItemsRequired[i].ItemID, new Vector2(tooltipsPosition.X + 16 * craftingWindow.Scale, tooltipsPosition.Y)));
+                this.ToolTips.Add(new ExternalToolTip(craftingWindow, this.ItemRecipe.AllItemsRequired[i].ItemID, new Vector2(tooltipsPosition.X + 32 * craftingWindow.Scale * i, tooltipsPosition.Y)));
             }
         }
 
@@ -48,6 +48,9 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
                 CraftingWindow.ExternalCraftingWindow.IsActive = true;
                 CraftingWindow.ExternalCraftingWindow.CurrentRecipe = this;
+                CraftingWindow.ExternalCraftingWindow.Item = this.Item;
+                CraftingWindow.ExternalCraftingWindow.ItemToCraftButton.Item = this.Item;
+                CraftingWindow.ExternalCraftingWindow.ItemToCraftButton.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
             }
         }
 

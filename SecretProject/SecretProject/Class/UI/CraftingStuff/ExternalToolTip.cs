@@ -2,11 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI.CraftingStuff
 {
@@ -32,11 +34,26 @@ namespace SecretProject.Class.UI.CraftingStuff
         public void Update(GameTime gameTime)
         {
             Button.Update(Game1.MouseManager);
+            if(Button.IsHovered)
+            {
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.DisplayTitle = true;
+                ItemData itemData = Game1.ItemVault.GetItem(Item.ID);
+                Game1.Player.UserInterface.InfoBox.FitTitleText(itemData.Name, 1f);
+                Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
+
+
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.UIPosition.X + 32, Game1.MouseManager.Position.Y + 32);
+
+            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Button.Draw(spriteBatch);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
+                new Vector2(this.Button.Position.X, this.Button.Position.Y + 32), Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale - 1f, SpriteEffects.None, Utility.StandardButtonDepth + .02f);
         }
 
     }

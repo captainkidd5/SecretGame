@@ -13,6 +13,11 @@
     <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
     
     <ItemID>1005</ItemID>
+    <Count>2</Count>
+    </Item>
+     <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+    
+    <ItemID>1000</ItemID>
     <Count>3</Count>
     </Item>
     </AllItemsRequired>

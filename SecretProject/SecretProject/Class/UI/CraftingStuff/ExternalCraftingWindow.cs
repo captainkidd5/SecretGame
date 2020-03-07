@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
@@ -22,18 +23,20 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public RedEsc RedEsc { get; set; }
 
- 
 
+        public Item Item{ get; set; }
         public Button ItemToCraftButton { get; set; }
         public ExternalToolTip ToolTip { get; set; }
 
-        public ExternalCraftingWindow(CraftingWindow craftingMenu,ItemRecipe itemRecipe, Vector2 position)
+        public ExternalCraftingWindow(CraftingWindow craftingWindow,ItemRecipe itemRecipe, Vector2 position)
         {
-            this.CraftingWindow = craftingMenu;
+            this.CraftingWindow = craftingWindow;
             this.Position = position;
             this.BackSourceRectangle = new Rectangle(432, 400, 80, 96);
-            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, craftingMenu.Scale), craftingMenu.Graphics);
-            
+            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, craftingWindow.Scale), craftingWindow.Graphics);
+            this.Item = Game1.ItemVault.GenerateNewItem(1, null);
+            this.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
+                new Vector2(this.Position.X + this.BackSourceRectangle.Width * craftingWindow.Scale /2, this.Position.Y + this.BackSourceRectangle.Height * craftingWindow.Scale / 2), Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
         }
 
         public void Update(GameTime gameTime)
@@ -50,6 +53,12 @@ namespace SecretProject.Class.UI.CraftingStuff
 
                 this.CurrentRecipe.UpdateToolTips(gameTime);
 
+                this.ItemToCraftButton.Update(Game1.MouseManager);
+                if(this.ItemToCraftButton.IsHovered)
+                {
+
+                }
+
             }
         }
 
@@ -64,6 +73,8 @@ namespace SecretProject.Class.UI.CraftingStuff
                 this.RedEsc.Draw(spriteBatch);
 
                 this.CurrentRecipe.DrawToolTips(spriteBatch);
+
+                this.ItemToCraftButton.Draw(spriteBatch);
 
             }
         }
