@@ -49,6 +49,12 @@ namespace SecretProject.Class.Universal
             return new Vector2(centerScreen.X - fontLength.X * scale / 2, CenterScreenY - fontLength.Y * scale / 2);
         }
 
+        public Vector2 CenterTextOnRectangle(SpriteFont font,Vector2 rectangleCenter, string text, float scale)
+        {
+            Vector2 fontLength = font.MeasureString(text);
+            return new Vector2(rectangleCenter.X - fontLength.X * scale / 2, rectangleCenter.Y - fontLength.Y * scale / 2);
+        }
+
         public Vector2 CenterOnTopRightCorner(Rectangle sourceRectangle,Rectangle rectangleToPlace, Vector2 position, float scale)
         {
             return new Vector2(position.X + sourceRectangle.Width * scale - rectangleToPlace.Width * scale, position.Y);

@@ -70,6 +70,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                 if(CategoryTabs[i].TabButton.isClicked)
                 {
                     this.CurrentOpenTab = CategoryTabs[i];
+                    this.ExternalCraftingWindow.IsActive = false;
                 }
             }
 

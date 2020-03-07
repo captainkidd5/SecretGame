@@ -46,7 +46,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                 if(column % 5 == 0)
                 {
                     row++;
-                    column = 0;
+                    column = 1;
                 }
                 this.RecipeContainers.Add(new RecipeContainer(craftingWindow, craftingPage.CraftingRecipes[i],
                     new Vector2(CraftingWindow.Position.X + column * 16 * Scale, CraftingWindow.Position.Y + 32+ row * 16 * Scale)));

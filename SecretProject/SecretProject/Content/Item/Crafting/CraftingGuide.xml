@@ -1,66 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-<Asset Type ="XMLData.ItemStuff.CraftingStuff.CraftingGuide">
-  <CraftingPages>
+    <Asset Type ="XMLData.ItemStuff.CraftingStuff.CraftingGuide">
+        <CraftingPages>
 
-  <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
-  <CategoryName>Tools</CategoryName>
-  <CraftingRecipes>
-    <!-- stone axe !-->
-    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
-    <ItemToCraftID>0</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
-    
-    <ItemID>1005</ItemID>
-    <Count>2</Count>
-    </Item>
-     <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
-    
-    <ItemID>1000</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    <Unlocked>false</Unlocked>
-    </Item>
+            <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
+                <CategoryName>Tools</CategoryName>
+                <CraftingRecipes>
+                    <!-- stone axe !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>0</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
 
-    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
-    <ItemToCraftID>3</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
-    
-    <ItemID>1005</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    <Unlocked>false</Unlocked>
-    </Item>
-    </CraftingRecipes>
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
 
-</Item>
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
 
-  <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
-  <CategoryName>Parts</CategoryName>
-  <CraftingRecipes></CraftingRecipes>
-  </Item>
+                    <!-- stone hammer !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>40</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
 
-  <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
-  <CategoryName>Utility</CategoryName>
-  <CraftingRecipes></CraftingRecipes>
-  </Item>
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
 
-  <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
-  <CategoryName>Outdoor</CategoryName>
-  <CraftingRecipes></CraftingRecipes>
-  </Item>
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
 
-    <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
-  <CategoryName>Indoor</CategoryName>
-  <CraftingRecipes></CraftingRecipes>
-  </Item>
+                    <!-- stone shovel !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>120</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                     <!-- stone sword !-->
+             <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>160</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+                    <!-- steel axe !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>1</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                    <!-- steel hammer !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>41</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                    <!-- steel shovel !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>121</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                     <!-- steel sword !-->
+             <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>161</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+ <!-- Turquoise Axe !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>3</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+                </CraftingRecipes>
+
+            </Item>
 
 
 
-  </CraftingPages>
-  </Asset>
+            <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
+                <CategoryName>Parts</CategoryName>
+                <CraftingRecipes></CraftingRecipes>
+            </Item>
+
+            <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
+                <CategoryName>Utility</CategoryName>
+                 <CraftingRecipes>
+                 <!-- Basic Chest !-->
+                 <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>1240</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>520</ItemID>
+                                <Count>15</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+<!-- furnace-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>1202</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1001</ItemID>
+                                <Count>15</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+            
+
+            <!-- Cauldron-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>1055</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1001</ItemID>
+                                <Count>15</Count>
+                            </Item>
+                             <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>680</ItemID>
+                                <Count>6</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+               </CraftingRecipes>
+            </Item>
+
+            <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
+                <CategoryName>Outdoor</CategoryName>
+                <CraftingRecipes></CraftingRecipes>
+            </Item>
+
+            <Item Type="XMLData.ItemStuff.CraftingStuff.CraftingPage">
+                <CategoryName>Indoor</CategoryName>
+                <CraftingRecipes></CraftingRecipes>
+            </Item>
+
+
+
+        </CraftingPages>
+    </Asset>
 </XnaContent>

@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         public bool UpdateItemCount()
         {
             this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(this.Item.ID);
-            if (this.CurrentCount < CountRequired)
+            if (this.CurrentCount >= CountRequired)
             {
                 return true;
             }

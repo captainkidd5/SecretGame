@@ -29,6 +29,9 @@ namespace SecretProject.Class.UI.CraftingStuff
         public Button ItemToCraftButton { get; set; }
         public ExternalToolTip ToolTip { get; set; }
 
+        public Button CraftButton { get; set; }
+        public Vector2 CraftButtonTextPosition { get; set; }
+
         public ExternalCraftingWindow(CraftingWindow craftingWindow,ItemRecipe itemRecipe, Vector2 position)
         {
             this.CraftingWindow = craftingWindow;
@@ -39,6 +42,12 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
                 new Vector2(this.Position.X + this.BackSourceRectangle.Width * craftingWindow.Scale /2 - 32 , this.Position.Y + 32),
                 Controls.CursorType.Normal, craftingWindow.Scale + 2f, this.Item);
+
+            this.CraftButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441,496, 62,16), craftingWindow.Graphics,
+               new Vector2(this.Position.X , this.Position.Y + this.BackSourceRectangle.Height * craftingWindow.Scale),
+               Controls.CursorType.Normal, craftingWindow.Scale + 1f, this.Item);
+            this.CraftButtonTextPosition = Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText,
+                new Vector2(CraftButton.Position.X + CraftButton.BackGroundSourceRectangle.Width/2 * CraftButton.HitBoxScale, CraftButton.Position.Y + CraftButton.BackGroundSourceRectangle.Height / 2 * CraftButton.HitBoxScale), "Craft", CraftingWindow.Scale);
         }
 
         public void Update(GameTime gameTime)
@@ -65,11 +74,34 @@ namespace SecretProject.Class.UI.CraftingStuff
                     Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
 
 
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.UIPosition.X + 32, Game1.MouseManager.Position.Y + 32);
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.UIPosition.X + 64, Game1.MouseManager.Position.Y + 64);
 
                 }
 
+                if(this.CurrentRecipe.CanCraft)
+                {
+                    this.CraftButton.Update(Game1.MouseManager);
+                    if(this.CraftButton.isClicked)
+                    {
+                        CraftItem(this.CurrentRecipe);
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.CraftMetal, true, .25f);
+                    }
+                }
+
             }
+        }
+
+        public void CraftItem(RecipeContainer container)
+        {
+            for(int i =0; i < container.ItemRecipe.AllItemsRequired.Count; i++)
+            {
+                for(int j =0; j < container.ItemRecipe.AllItemsRequired[i].Count; j++)
+                {
+                    Game1.Player.Inventory.RemoveItem(container.ItemRecipe.AllItemsRequired[i].ItemID);
+                }
+                
+            }
+            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(container.ItemRecipe.ItemToCraftID,null));
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -85,6 +117,8 @@ namespace SecretProject.Class.UI.CraftingStuff
                 this.CurrentRecipe.DrawToolTips(spriteBatch);
 
                 this.ItemToCraftButton.Draw(spriteBatch);
+
+                this.CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", this.CraftButtonTextPosition, Color.White, Utility.StandardButtonDepth + .01f,Game1.Utility.StandardTextDepth, CraftingWindow.Scale);
 
             }
         }
