@@ -51,7 +51,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             RecipeContainer container = CategoryTabs[0].RecipeContainers[0];
             
             this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, container.Item.SourceTextureRectangle, Graphics,
-                ExternalCraftingWindow.Position, Controls.CursorType.Normal, Scale, container.Item);
+                ExternalCraftingWindow.ItemToCraftButton.Position, Controls.CursorType.Normal, Scale + 1f, container.Item);
 
 
 

@@ -22,13 +22,14 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public Button Button { get; set; }
 
-        public ExternalToolTip(CraftingWindow craftingWindow, int itemID, Vector2 position)
+        public ExternalToolTip(CraftingWindow craftingWindow, int itemID, Vector2 position,int countRequired)
         {
             this.CraftingWindow = craftingWindow;
             this.Item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Position = position;
             this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item );
+            this.CountRequired = countRequired;
         }
 
         public void Update(GameTime gameTime)
@@ -43,7 +44,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                 Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
 
 
-                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.UIPosition.X + 32, Game1.MouseManager.Position.Y + 32);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.UIPosition.X + 64, Game1.MouseManager.Position.Y + 64);
 
             }
             

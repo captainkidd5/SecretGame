@@ -49,7 +49,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                     column = 0;
                 }
                 this.RecipeContainers.Add(new RecipeContainer(craftingWindow, craftingPage.CraftingRecipes[i],
-                    new Vector2(CraftingWindow.Position.X + 64 + column * 16 * Scale, CraftingWindow.Position.Y + row * 16 * Scale)));
+                    new Vector2(CraftingWindow.Position.X + column * 16 * Scale, CraftingWindow.Position.Y + 32+ row * 16 * Scale)));
             }
            
         }

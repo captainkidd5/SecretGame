@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.MenuStuff
 {
@@ -82,6 +83,13 @@ namespace SecretProject.Class.MenuStuff
                 this.Item = item;
                 this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
             }
+        }
+
+        public void ChangeItemTexture(Item item)
+        {
+            this.Item = item;
+            this.ItemSourceRectangleToDraw = item.SourceTextureRectangle;
+            this.BackGroundSourceRectangle = item.SourceTextureRectangle;
         }
 
         public void UpdateHitBoxRectanlge(Rectangle newSourceRectangle)
