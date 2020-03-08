@@ -56,7 +56,7 @@ namespace SecretProject.Class.Universal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Message, Position, Color.White * this.ColorOpacity, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Message, Position, Color.White * this.ColorOpacity, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
         }
     }
 }

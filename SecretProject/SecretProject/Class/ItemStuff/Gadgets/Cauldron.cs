@@ -234,9 +234,9 @@ namespace SecretProject.Class.ItemStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth - .01f);
+                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
             redEsc.Draw(spriteBatch);
-            this.CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", new Vector2(this.CookButton.Position.X + this.CookButton.BackGroundSourceRectangle.Width / 2, this.CookButton.Position.Y), Color.White, Utility.StandardButtonDepth + .02f, Utility.StandardButtonDepth + .03f, 2f);
+            this.CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", new Vector2(this.CookButton.Position.X + this.CookButton.BackGroundSourceRectangle.Width / 2, this.CookButton.Position.Y), Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
                 this.ItemSlots[i].Draw(spriteBatch);
@@ -245,7 +245,7 @@ namespace SecretProject.Class.ItemStuff
 
             if (this.IsCooking)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CookTimer.Time.ToString(), this.CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .03f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CookTimer.Time.ToString(), this.CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             }
         }
 

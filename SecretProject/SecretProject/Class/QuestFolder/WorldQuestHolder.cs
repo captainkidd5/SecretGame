@@ -9,13 +9,12 @@ namespace SecretProject.Class.QuestFolder
 {
     public class WorldQuestHolder
     {
-        public List<WorldQuest> AllWorldQuests { get; set; }
+        public Dictionary<int,WorldQuest> AllWorldQuests { get; set; }
 
         public WorldQuestHolder()
         {
-            this.AllWorldQuests = new List<WorldQuest>()
-            {
-                new WorldQuest(0, "Repair clock for", new List<ItemsRequired>()
+            this.AllWorldQuests = new Dictionary<int, WorldQuest>();
+            AllWorldQuests.Add(7039, new WorldQuest(7039, "Repair clock for", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -23,9 +22,12 @@ namespace SecretProject.Class.QuestFolder
                         Count = 25,
                     }
 
-                }),
+                }));
+        }
 
-            };
+        public WorldQuest RetrieveQuest(int id)
+        {
+            return this.AllWorldQuests[id];
         }
 
 

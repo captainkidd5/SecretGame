@@ -83,7 +83,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.String, Button.Position, Button.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+            this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.String, Button.Position, Button.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
 
         
             }

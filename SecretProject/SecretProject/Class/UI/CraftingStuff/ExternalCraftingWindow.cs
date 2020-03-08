@@ -111,14 +111,14 @@ namespace SecretProject.Class.UI.CraftingStuff
 
 
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle,
-                    Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
+                    Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 this.RedEsc.Draw(spriteBatch);
 
                 this.CurrentRecipe.DrawToolTips(spriteBatch);
 
                 this.ItemToCraftButton.Draw(spriteBatch);
 
-                this.CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", this.CraftButtonTextPosition, Color.White, Utility.StandardButtonDepth + .01f,Game1.Utility.StandardTextDepth, CraftingWindow.Scale);
+                this.CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", this.CraftButtonTextPosition, Color.White, Game1.Utility.StandardButtonDepth + .01f,Game1.Utility.StandardTextDepth, CraftingWindow.Scale);
 
             }
         }

@@ -17,9 +17,9 @@ namespace SecretProject.Class.QuestFolder
         public List<ItemsRequired> ItemsRequired { get; set; }
 
 
-        public WorldQuest(int id, string description, List<ItemsRequired> itemsRequired)
+        public WorldQuest(int gid, string description, List<ItemsRequired> itemsRequired)
         {
-            this.ID = id;
+            this.ID = gid;
             this.Description = description;
             this.ItemsRequired = itemsRequired;
 

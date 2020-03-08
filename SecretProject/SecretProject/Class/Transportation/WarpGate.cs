@@ -52,8 +52,8 @@ namespace SecretProject.Class.Transportation
         public void Draw(SpriteBatch spriteBatch)
         {
             this.TextBox.Draw(spriteBatch, true);
-            this.Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", this.Yes.Position, Color.White, Utility.StandardButtonDepth, Utility.StandardButtonDepth + .01f);
-            this.No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", this.No.Position, Color.White, Utility.StandardButtonDepth, Utility.StandardButtonDepth + .01f);
+            this.Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", this.Yes.Position, Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardButtonDepth + .01f);
+            this.No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", this.No.Position, Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardButtonDepth + .01f);
         }
 
 

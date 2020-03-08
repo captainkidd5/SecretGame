@@ -405,11 +405,11 @@ namespace SecretProject.Class.UI
                 TextBuilder.Draw(spriteBatch, .75f);
                 if (this.Expanded)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BigPosition, this.LargeBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth - .1f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BigPosition, this.LargeBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
                 }
                 else
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.SmallPosition, this.SmallBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth - .1f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.SmallPosition, this.SmallBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
                 }
 
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
@@ -421,7 +421,7 @@ namespace SecretProject.Class.UI
                        
 
                     }
-                    this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White * colorMultiplier, 2f, 2f, Utility.StandardButtonDepth);
+                    this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White * colorMultiplier, 2f, 2f, Game1.Utility.StandardButtonDepth);
                     Item item = this.Inventory.currentInventory[i].GetItem();
                     if(item != null)
                     {

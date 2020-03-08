@@ -115,11 +115,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.DrawPosition, this.BackGroundSourceRectangle,
-                   Color.White, 0f, Game1.Utility.Origin, this.BackGroundScale, SpriteEffects.None, Utility.StandardButtonDepth);
+                   Color.White, 0f, Game1.Utility.Origin, this.BackGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             this.ActiveTab.Draw(spriteBatch, new Vector2(this.DrawPosition.X + 16 * this.BackGroundScale, this.DrawPosition.Y + 16 * this.BackGroundScale));
             for (int tab = 0; tab < this.CategoryTabs.Count; tab++)
             {
-                this.CategoryTabs[tab].Button.DrawNormal(spriteBatch, this.CategoryTabs[tab].Button.Position, this.CategoryTabs[tab].Button.BackGroundSourceRectangle, Color.White * this.CategoryTabs[tab].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.CategoryTabs[tab].Button.HitBoxScale, SpriteEffects.None, Utility.StandardButtonDepth);
+                this.CategoryTabs[tab].Button.DrawNormal(spriteBatch, this.CategoryTabs[tab].Button.Position, this.CategoryTabs[tab].Button.BackGroundSourceRectangle, Color.White * this.CategoryTabs[tab].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.CategoryTabs[tab].Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
         }
     }

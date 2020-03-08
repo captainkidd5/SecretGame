@@ -79,7 +79,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         }
 
 

@@ -140,7 +140,7 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, ShopMenuPosition, this.ShopBackDropSourceRectangle, Color.White,
                 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,
-                Utility.StandardButtonDepth - .04f);
+                Game1.Utility.StandardButtonDepth - .04f);
             for (int i = 0; i < this.Pages[this.CurrentPage].Count; i++)
             {
                 this.Pages[this.CurrentPage][i].Draw(spriteBatch, this.BackDropScale);
@@ -148,23 +148,23 @@ namespace SecretProject.Class.UI
             if (this.CurrentPage >= this.Pages.Count - 1)
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White * .5f,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
             else
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
             if (this.CurrentPage <= 0)
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White * .5f,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
             }
             else
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
             }
             redEsc.Draw(spriteBatch);
@@ -247,7 +247,7 @@ namespace SecretProject.Class.UI
         {
             this.Button.Draw(spriteBatch, this.Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
                Stock.ToString() + "\n \n                   " + Game1.ItemVault.GetItem(Item.ID).Name + "\n \n                   Price: " + Game1.ItemVault.GetItem(Item.ID).Price, drawPosition,
-               Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Utility.StandardButtonDepth);
+               Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 
     }

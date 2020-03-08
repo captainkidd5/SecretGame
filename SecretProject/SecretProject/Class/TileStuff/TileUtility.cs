@@ -682,6 +682,17 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
+                case "triggerQuest":
+                    mouse.ChangeMouseTexture(CursorType.Normal);
+                    if (mouse.IsClicked)
+                    {
+                        
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WorldQuestMenu;
+                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID));
+                     //   Game1.Player.UserInterface.InfoBox.Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID + 1);
+                    }
+                    break;
+
                 case "portal":
                     mouse.ChangeMouseTexture(CursorType.Door);
                     if (mouse.IsClicked)

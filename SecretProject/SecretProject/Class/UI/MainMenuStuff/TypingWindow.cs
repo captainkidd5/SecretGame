@@ -115,7 +115,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.EnteredString, Button.FontLocation, Button.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
+            this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.EnteredString, Button.FontLocation, Button.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
             if(this.IsIconDrawn)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.InsertionIconPosition, this.IconSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .9f);

@@ -54,7 +54,8 @@ namespace SecretProject.Class.UI
         WarpGate = 5,
         CompletionHub = 7,
         CommandConsole = 8,
-        QuestLog = 9
+        QuestLog = 9,
+        WorldQuestMenu = 10
 
     }
     public class UserInterface
@@ -107,6 +108,8 @@ namespace SecretProject.Class.UI
         public QuestLog QuestLog { get; set; }
         public DayTransitioner DayTransitioner { get; set; }
 
+        public WorldQuestMenu WorldQuestMenu { get; set; }
+
 
         //keyboard
 
@@ -145,6 +148,8 @@ namespace SecretProject.Class.UI
             this.CraftingWindow = new CraftingWindow(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
             this.QuestLog = new QuestLog(graphicsDevice);
+
+            this.WorldQuestMenu = new WorldQuestMenu(graphicsDevice);
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -422,6 +427,18 @@ namespace SecretProject.Class.UI
                     QuestLog.Update(gameTime);
                     break;
 
+                case ExclusiveInterfaceItem.WorldQuestMenu:
+                    Game1.freeze = true;
+
+                    WorldQuestMenu.Update(gameTime);
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
+                    {
+                        Game1.SoundManager.PlayCloseUI();
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
+
 
                     //case ExclusiveInterfaceItem.CookingMenu:
                     //    //Game1.freeze = true;
@@ -570,6 +587,10 @@ namespace SecretProject.Class.UI
                         break;
                     case ExclusiveInterfaceItem.QuestLog:
                         QuestLog.Draw(spriteBatch);
+                        break;
+
+                    case ExclusiveInterfaceItem.WorldQuestMenu:
+                        this.WorldQuestMenu.Draw(spriteBatch);
                         break;
                 }
 

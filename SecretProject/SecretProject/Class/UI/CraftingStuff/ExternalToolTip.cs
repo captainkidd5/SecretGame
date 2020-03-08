@@ -64,7 +64,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         {
             Button.Draw(spriteBatch);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
-                new Vector2(this.Button.Position.X, this.Button.Position.Y + 48), Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale - 1.5f, SpriteEffects.None, Utility.StandardButtonDepth + .02f);
+                new Vector2(this.Button.Position.X, this.Button.Position.Y + 48), Color.White, 0f, Game1.Utility.Origin, CraftingWindow.Scale - 1.5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
         }
 
     }
