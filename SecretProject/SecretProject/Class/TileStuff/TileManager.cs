@@ -91,6 +91,7 @@ namespace SecretProject.Class.TileStuff
         public bool WasModifiedDuringInterval { get; set; }
 
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
+        public Dictionary<string, Sprite> QuestIcons { get; set; }
 
         #region CONSTRUCTORS
 
@@ -134,6 +135,7 @@ namespace SecretProject.Class.TileStuff
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
+            QuestIcons = new Dictionary<string, Sprite>();
             for (int i = 0; i < allLayers.Count; i++)
             {
                 this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -205,6 +207,7 @@ namespace SecretProject.Class.TileStuff
             }
             currentStage.AllNightLights = this.NightTimeLights;
             currentStage.AllDayTimeLights = this.DayTimeLights;
+            
         }
 
 

@@ -249,8 +249,13 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
+                propertyString = "addQuest";
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
+                {
+                    Game1.Player.UserInterface.WorldQuestMenu.AddSpriteToDictionary(container.QuestIcons, container, tileToAssign);
+                }
 
-                propertyString = "destructable";
+                    propertyString = "destructable";
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     container.TileHitPoints[tileToAssign.TileKey] = Game1.Utility.GetTileHitpoints(propertyString);
@@ -688,7 +693,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WorldQuestMenu;
-                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID));
+                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID), container.AllTiles[z][i, j]);
                      //   Game1.Player.UserInterface.InfoBox.Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID + 1);
                     }
                     break;

@@ -36,6 +36,8 @@ namespace SecretProject.Class.TileStuff
 
         Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
 
+        Dictionary<string, Sprite> QuestIcons { get; set; }
+
         //specific to chunks
         int X { get; set; }
         int Y { get; set; }

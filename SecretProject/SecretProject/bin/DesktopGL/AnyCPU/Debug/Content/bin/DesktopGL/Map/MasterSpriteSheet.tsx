@@ -5518,6 +5518,7 @@
  <tile id="7039">
   <properties>
    <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
    <property name="newHitBox" value="0, -8, 32, 24"/>
    <property name="newSource" value="0,-80,32,96"/>
    <property name="transparent" value="0,-48,16,64"/>
