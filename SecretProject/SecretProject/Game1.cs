@@ -199,7 +199,8 @@ namespace SecretProject
         //ITEMS
         public static ItemBank ItemVault;
 
-        
+        //World Quests
+        public static WorldQuestHolder WorldQuestHolder;
 
         //XMLDATA
 
@@ -457,10 +458,12 @@ namespace SecretProject
 
             LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
 
+            WorldQuestHolder = new WorldQuestHolder();
 
-           
 
-            
+
+
+
             Procedural = new Procedural();
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content, cam) { graphics = graphics.GraphicsDevice };
