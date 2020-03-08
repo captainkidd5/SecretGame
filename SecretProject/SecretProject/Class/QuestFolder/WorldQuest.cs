@@ -14,14 +14,17 @@ namespace SecretProject.Class.QuestFolder
 
         public string Description { get; set; }
 
+        public int ReplacementGID { get; set; }
+
         public List<ItemsRequired> ItemsRequired { get; set; }
 
 
-        public WorldQuest(int gid, string description, List<ItemsRequired> itemsRequired)
+        public WorldQuest(int gid, string description, List<ItemsRequired> itemsRequired, int replacementGID)
         {
             this.ID = gid;
             this.Description = description;
             this.ItemsRequired = itemsRequired;
+            this.ReplacementGID = replacementGID;
 
         }
     }

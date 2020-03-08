@@ -18,16 +18,43 @@ namespace SecretProject.Class.QuestFolder
                 {
                     new ItemsRequired()
                     {
-                        ItemID = 280,
-                        Count = 25,
+                        ItemID = 680,
+                        Count = 2,
+                        
                     }
 
-                }));
+                }, 7037));
         }
 
         public WorldQuest RetrieveQuest(int id)
         {
             return this.AllWorldQuests[id];
+        }
+
+        public bool CheckIfRequirementsMet(WorldQuest quest)
+        {
+            for(int i =0; i < quest.ItemsRequired.Count; i++)
+            {
+                if(!Game1.Player.Inventory.ContainsAtLeastX(quest.ItemsRequired[i].ItemID, quest.ItemsRequired[i].Count))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+            
+        }
+
+        public void RemoveItemsFromPlayerInventory(WorldQuest quest)
+        {
+            for (int i = 0; i < quest.ItemsRequired.Count; i++)
+            {
+                for(int j =0; j < quest.ItemsRequired[i].Count; j++)
+                {
+                    Game1.Player.Inventory.RemoveItem(quest.ItemsRequired[i].ItemID);
+                }
+                
+            }
         }
 
 

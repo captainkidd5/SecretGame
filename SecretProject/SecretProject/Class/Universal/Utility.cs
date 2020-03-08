@@ -60,6 +60,11 @@ namespace SecretProject.Class.Universal
             return new Vector2(position.X + sourceRectangle.Width * scale - rectangleToPlace.Width * scale, position.Y);
         }
 
+        public Vector2 CenterRectangleInRectangle(Rectangle sourceRectangle, Rectangle rectangleToPlace, Vector2 sourcePosition, float scale)
+        {
+            return new Vector2(sourcePosition.X + (sourceRectangle.Width * scale / 2 - rectangleToPlace.Width / 2 * scale), sourcePosition.Y + (sourceRectangle.Height * scale / 2 - rectangleToPlace.Height / 2 * scale));
+        }
+
 
 
 

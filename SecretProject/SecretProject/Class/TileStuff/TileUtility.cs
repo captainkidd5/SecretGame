@@ -694,8 +694,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WorldQuestMenu;
-                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID), container.AllTiles[z][i, j]);
-                     //   Game1.Player.UserInterface.InfoBox.Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID + 1);
+                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID), z,i,j, container);
+
                     }
                     break;
 
@@ -862,6 +862,8 @@ namespace SecretProject.Class.TileStuff
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
             container.WasModifiedDuringInterval = true;
         }
+
+
 
         public static bool ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, string destructableString, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)
         {

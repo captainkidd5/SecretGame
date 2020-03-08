@@ -5515,6 +5515,13 @@
    <object id="1" x="11" y="0" width="5" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="7036">
+  <properties>
+   <property name="newHitBox" value="0, -8, 32, 24"/>
+   <property name="newSource" value="0,-80,32,96"/>
+   <property name="transparent" value="0,-48,16,64"/>
+  </properties>
+ </tile>
  <tile id="7039">
   <properties>
    <property name="action" value="triggerQuest"/>
