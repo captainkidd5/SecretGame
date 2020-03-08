@@ -80,6 +80,11 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool ChangesFrames { get; set; } // set to false if you don't want the animations to continue but still need a certain number of frames to maintain animation functionality
 
+
+        //For Bobber
+        private int bobberMultiplier;
+        public Vector2 AnchorPosition { get; set; }
+
         //for non animated sprites
         public Sprite(GraphicsDevice graphics, Texture2D atlasTexture, Rectangle sourceRectangle, Vector2 position, int width, int height)
         {
@@ -93,6 +98,8 @@ namespace SecretProject.Class.SpriteFolder
             this.Rotation = 0f;
             this.RotationAnchor = 0f;
             this.Origin = Game1.Utility.Origin;
+            this.bobberMultiplier = 1;
+            this.AnchorPosition = position;
 
         }
 
@@ -405,6 +412,22 @@ namespace SecretProject.Class.SpriteFolder
                 this.Color = Color.White;
             }
 
+        }
+
+        public void BobInPlace(GameTime gameTime,float minHeight, float maxHeight, float bobSpeed)
+        {
+            float newY = (float)gameTime.ElapsedGameTime.TotalSeconds * bobSpeed;
+            if((this.Position.Y + newY) < maxHeight )
+            {
+                this.bobberMultiplier = 1;
+            }
+            else if((this.Position.Y + newY) > minHeight)
+            {
+                this.bobberMultiplier = -1;
+            }
+                newY = newY * this.bobberMultiplier;
+
+            this.Position = new Vector2(this.Position.X, this.Position.Y + newY);
         }
 
         public void Update(GameTime gameTime, Dir direction)

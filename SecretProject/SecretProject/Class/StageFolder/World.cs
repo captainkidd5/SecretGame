@@ -281,11 +281,16 @@ namespace SecretProject.Class.StageFolder
                                 this.QuadTree.Insert(AllProjectiles[p].Collider);
                                 
                             }
-
+                          
                             for (int item = 0; item < chunk.AllItems.Count; item++)
                             {
                                 this.QuadTree.Insert(chunk.AllItems[item].ItemSprite);
                                 
+                            }
+
+                            foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
+                            {
+                                sprite.Value.BobInPlace(gameTime, sprite.Value.AnchorPosition.Y -20, sprite.Value.AnchorPosition.Y - 25, 5f);
                             }
                         }
                     }
@@ -420,24 +425,26 @@ namespace SecretProject.Class.StageFolder
                     graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 1; i++)
+
+                    for (int i = 0; i < WorldTileManager.RenderDistance; i++)
                     {
-                        for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 1; j++)
+                        for (int j = 0; j < WorldTileManager.RenderDistance; j++)
                         {
                             if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
                             {
-                                for (int l = 0; l < this.AllTiles.ActiveChunks[i, j].NightTimeLights.Count; l++)
+                                Chunk chunk = this.AllTiles.ActiveChunks[i, j];
+                                if (chunk.GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
                                 {
-                                    spriteBatch.Draw(this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].LightTexture,
-                                        this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].Position, Color.White);
-                                }
-                                foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
-                                {
-                                    sprite.Value.Draw(spriteBatch, .85f);
+                                    for (int l = 0; l < this.AllTiles.ActiveChunks[i, j].NightTimeLights.Count; l++)
+                                    {
+                                        spriteBatch.Draw(this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].LightTexture,
+                                            this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].Position, Color.White);
+                                    }
                                 }
                             }
                         }
                     }
+
 
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
@@ -483,20 +490,24 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.AllTiles.DrawTiles(spriteBatch);
-                for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 1; i++)
+                for (int i = 0; i < WorldTileManager.RenderDistance; i++)
                 {
-                    for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 1; j++)
+                    for (int j = 0; j < WorldTileManager.RenderDistance; j++)
                     {
                         if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
                         {
-
-                            foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
+                            Chunk chunk = this.AllTiles.ActiveChunks[i, j];
+                            if (chunk.GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
                             {
-                                sprite.Value.Draw(spriteBatch, .85f);
+                                foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
+                                {
+                                    sprite.Value.Draw(spriteBatch, .85f);
+                                }
                             }
                         }
                     }
                 }
+
 
                     if (Game1.Player.UserInterface.DrawTileSelector)
                 {
