@@ -27,8 +27,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>6PM</Time>
        <EndStage>OverWorld</EndStage>
-      <EndX>89</EndX>
-      <EndY>104</EndY>
+      <EndX>75</EndX>
+      <EndY>60</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>5</ID>
@@ -36,8 +36,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>3AM</Time>
        <EndStage>OverWorld</EndStage>
-      <EndX>42</EndX>
-      <EndY>110</EndY>
+      <EndX>60</EndX>
+      <EndY>70</EndY>
     </Item>
     </Routes>
   </Asset>

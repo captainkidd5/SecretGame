@@ -139,6 +139,73 @@
                         <Unlocked>false</Unlocked>
                     </Item>
 
+                    <!-- Monzanite axe !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>2</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                    <!-- Monzanite hammer !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>42</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                    <!-- Monzanite shovel !-->
+                    <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>122</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>2</Count>
+                            </Item>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1000</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
+                     <!-- Monzanite sword !-->
+             <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
+                        <ItemToCraftID>162</ItemToCraftID>
+                        <AllItemsRequired>
+                            <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
+
+                                <ItemID>1005</ItemID>
+                                <Count>3</Count>
+                            </Item>
+                        </AllItemsRequired>
+                        <Unlocked>false</Unlocked>
+                    </Item>
+
  <!-- Turquoise Axe !-->
                     <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
                         <ItemToCraftID>3</ItemToCraftID>

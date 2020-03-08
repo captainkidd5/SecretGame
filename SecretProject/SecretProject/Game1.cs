@@ -621,7 +621,7 @@ namespace SecretProject
             };
 
             Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5],MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
-            Ned = new Ned("Ned", new Vector2(45, 110), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6],NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
+            Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6],NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
             Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7],TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
             Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8],MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
