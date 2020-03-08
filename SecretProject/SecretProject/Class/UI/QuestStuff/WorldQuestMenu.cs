@@ -117,7 +117,7 @@ namespace SecretProject.Class.UI.QuestStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, this.Position, Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(this.Position.X + 32, this.Position.Y + 32), Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             this.RedEsc.Draw(spriteBatch);
 
             this.RepairButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Repair!", this.RepairButton.Position, Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardTextDepth + .03f, 2f);

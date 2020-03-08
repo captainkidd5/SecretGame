@@ -762,7 +762,12 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void ResetEndOfDay()
         {
             this.Position = this.HomePosition;
+            for (int i = 0; i < 4; i++)
+            {
+                this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+            }
             this.CurrentStageLocation = this.HomeStage;
+            
 
         }
 
