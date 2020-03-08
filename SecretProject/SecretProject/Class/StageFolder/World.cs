@@ -431,6 +431,10 @@ namespace SecretProject.Class.StageFolder
                                     spriteBatch.Draw(this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].LightTexture,
                                         this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].Position, Color.White);
                                 }
+                                foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
+                                {
+                                    sprite.Value.Draw(spriteBatch, .85f);
+                                }
                             }
                         }
                     }
@@ -460,6 +464,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     character.Draw(spriteBatch);
                 }
+
+                
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
 
                 for (int i = 0; i < this.AllRisingText.Count; i++)
@@ -477,8 +483,22 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.AllTiles.DrawTiles(spriteBatch);
+                for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 1; i++)
+                {
+                    for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 1; j++)
+                    {
+                        if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
+                        {
 
-                if (Game1.Player.UserInterface.DrawTileSelector)
+                            foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
+                            {
+                                sprite.Value.Draw(spriteBatch, .85f);
+                            }
+                        }
+                    }
+                }
+
+                    if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
                 }

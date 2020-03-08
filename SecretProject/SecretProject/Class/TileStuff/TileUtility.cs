@@ -247,13 +247,8 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-
                 }
-                propertyString = "addQuest";
-                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
-                {
-                    Game1.Player.UserInterface.WorldQuestMenu.AddSpriteToDictionary(container.QuestIcons, container, tileToAssign);
-                }
+                
 
                     propertyString = "destructable";
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
@@ -417,6 +412,12 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
 
+                }
+
+                propertyString = "addQuest";
+                if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
+                {
+                    Game1.Player.UserInterface.WorldQuestMenu.AddSpriteToDictionary(container.QuestIcons, container, tileToAssign);
                 }
                 if (tileSet[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
