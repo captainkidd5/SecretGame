@@ -5491,6 +5491,22 @@
    <property name="transparent" value="-64,-80,144,96"/>
   </properties>
  </tile>
+ <tile id="6252">
+  <properties>
+   <property name="newHitBox" value="0, -8, 32, 24"/>
+   <property name="newSource" value="0,-80,48,96"/>
+   <property name="transparent" value="0,-48,48,64"/>
+  </properties>
+ </tile>
+ <tile id="6255">
+  <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
+   <property name="newHitBox" value="0, -8, 32, 24"/>
+   <property name="newSource" value="0,-80,48,96"/>
+   <property name="transparent" value="0,-48,48,64"/>
+  </properties>
+ </tile>
  <tile id="6320">
   <properties>
    <property name="newHitBox" value="-32,-64, 96,64"/>

@@ -14,7 +14,7 @@ namespace SecretProject.Class.QuestFolder
         public WorldQuestHolder()
         {
             this.AllWorldQuests = new Dictionary<int, WorldQuest>();
-            AllWorldQuests.Add(7039, new WorldQuest(7039, "Repair clock for", new List<ItemsRequired>()
+            AllWorldQuests.Add(7039, new WorldQuest(7039, "Repair clock?", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -23,7 +23,18 @@ namespace SecretProject.Class.QuestFolder
                         
                     }
 
-                }, 7037));
+                }, 7037)); //should be one larger
+
+            AllWorldQuests.Add(6255, new WorldQuest(7039, "Repair windmill?", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 6253));
         }
 
         public WorldQuest RetrieveQuest(int id)
