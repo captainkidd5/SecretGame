@@ -5459,12 +5459,12 @@
    <property name="action" value="readSanctuary"/>
   </properties>
  </tile>
- <tile id="6209">
+ <tile id="6216">
   <properties>
    <property name="action" value="portal"/>
-   <property name="newHitBox" value="-32, -64, 80, 80"/>
-   <property name="newSource" value="-32, -112, 80,128"/>
-   <property name="portal" value="true,OverWorld,JulianHouse"/>
+   <property name="newHitBox" value="-48, -48, 112,64"/>
+   <property name="newSource" value="-48, -96, 128,112"/>
+   <property name="portal" value="true,OverWorld,ElixirHouse"/>
   </properties>
  </tile>
  <tile id="6228">
@@ -5517,14 +5517,6 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
- <tile id="6907">
-  <properties>
-   <property name="action" value="portal"/>
-   <property name="newHitBox" value="-16, -64, 112, 80"/>
-   <property name="newSource" value="-16, -80, 112,96"/>
-   <property name="portal" value="true,OverWorld,Cafe,"/>
-  </properties>
- </tile>
  <tile id="6946">
   <objectgroup draworder="index" id="2">
    <object id="1" x="11" y="0" width="5" height="16"/>
@@ -5550,6 +5542,22 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="11" y="0" width="5" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="7103">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newHitBox" value="-32, -64, 80, 80"/>
+   <property name="newSource" value="-32, -112, 80,128"/>
+   <property name="portal" value="true,OverWorld,JulianHouse"/>
+  </properties>
+ </tile>
+ <tile id="7107">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newHitBox" value="-16, -64, 112, 80"/>
+   <property name="newSource" value="-16, -80, 112,96"/>
+   <property name="portal" value="true,OverWorld,Cafe,"/>
+  </properties>
  </tile>
  <tile id="7115">
   <properties>
@@ -5718,12 +5726,6 @@
    <object id="1" x="6" y="0" width="5" height="16"/>
   </objectgroup>
  </tile>
- <tile id="7607">
-  <properties>
-   <property name="newHitBox" value="-16, -64, 112, 80"/>
-   <property name="newSource" value="-32, -96, 128,112"/>
-  </properties>
- </tile>
  <tile id="7639">
   <animation>
    <frame tileid="7839" duration="400"/>
@@ -5836,18 +5838,6 @@
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
- <tile id="7914">
-  <animation>
-   <frame tileid="7614" duration="100"/>
-   <frame tileid="7314" duration="100"/>
-  </animation>
- </tile>
- <tile id="7915">
-  <animation>
-   <frame tileid="7615" duration="100"/>
-   <frame tileid="7315" duration="100"/>
-  </animation>
- </tile>
  <tile id="7945">
   <animation>
    <frame tileid="8445" duration="200"/>
@@ -5871,18 +5861,6 @@
  <tile id="7949">
   <animation>
    <frame tileid="8449" duration="200"/>
-  </animation>
- </tile>
- <tile id="8014">
-  <animation>
-   <frame tileid="7714" duration="100"/>
-   <frame tileid="7414" duration="100"/>
-  </animation>
- </tile>
- <tile id="8015">
-  <animation>
-   <frame tileid="7715" duration="100"/>
-   <frame tileid="7415" duration="100"/>
   </animation>
  </tile>
  <tile id="8033">
@@ -5920,18 +5898,6 @@
  <tile id="8049">
   <animation>
    <frame tileid="8549" duration="200"/>
-  </animation>
- </tile>
- <tile id="8114">
-  <animation>
-   <frame tileid="7814" duration="100"/>
-   <frame tileid="7514" duration="100"/>
-  </animation>
- </tile>
- <tile id="8115">
-  <animation>
-   <frame tileid="7815" duration="100"/>
-   <frame tileid="7515" duration="100"/>
   </animation>
  </tile>
  <tile id="8133">
@@ -6058,6 +6024,16 @@
    <frame tileid="8031" duration="500"/>
    <frame tileid="8431" duration="500"/>
    <frame tileid="8831" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="8910">
+  <properties>
+   <property name="newHitBox" value="-32,-48,96,60"/>
+   <property name="newSource" value="-32,-80,96,96"/>
+  </properties>
+  <animation>
+   <frame tileid="8310" duration="100"/>
+   <frame tileid="7710" duration="100"/>
   </animation>
  </tile>
  <tile id="8928">
@@ -6365,6 +6341,13 @@
    <frame tileid="8243" duration="100"/>
    <frame tileid="7643" duration="100"/>
   </animation>
+ </tile>
+ <tile id="9510">
+  <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
+   <property name="newSource" value="-32,-80,96,96"/>
+  </properties>
  </tile>
  <tile id="9542">
   <animation>

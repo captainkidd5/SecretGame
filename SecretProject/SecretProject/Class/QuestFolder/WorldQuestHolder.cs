@@ -48,6 +48,17 @@ namespace SecretProject.Class.QuestFolder
                     }
 
                 }, 9338));
+
+            AllWorldQuests.Add(9510, new WorldQuest(9510, "Repair fountain?", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 8911));
         }
 
         public WorldQuest RetrieveQuest(int id)

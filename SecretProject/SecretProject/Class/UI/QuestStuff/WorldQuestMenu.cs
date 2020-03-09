@@ -96,6 +96,8 @@ namespace SecretProject.Class.UI.QuestStuff
                     TileUtility.ReplaceTile(this.TileLayer,this.TileI,this.TileJ, WorldQuest.ReplacementGID, Container);
                     this.WorldQuest.Completed = true;
                     Container.QuestIcons.Remove(Container.AllTiles[TileLayer][TileI, TileJ].GetTileKeyStringNew(TileLayer, Container));
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Repaired!");
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
             }
 
