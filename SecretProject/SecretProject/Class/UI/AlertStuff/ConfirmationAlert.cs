@@ -14,6 +14,8 @@ namespace SecretProject.Class.UI.AlertStuff
     {
         public Button Yes { get; set; }
         public Button No { get; set; }
+        public Vector2 YesTextPosition { get; set; }
+        public Vector2 NoTextPosition { get; set; }
         private Action positiveAction;
         private Action negativeAction;
         /// <summary>
@@ -31,6 +33,8 @@ namespace SecretProject.Class.UI.AlertStuff
             this.negativeAction = negativeAction;
             this.Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X + 120, position.Y + 40), Controls.CursorType.Normal, 3f);
             this.No = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X, position.Y + 40), Controls.CursorType.Normal, 3f);
+            this.YesTextPosition = new Vector2(this.Yes.Position.X + 32, this.Yes.Position.Y + 32);
+            this.NoTextPosition = new Vector2(this.No.Position.X + 32, this.No.Position.Y + 32);
         }
 
         public override void Update(GameTime gameTime, List<Alert> alerts)
@@ -71,8 +75,8 @@ namespace SecretProject.Class.UI.AlertStuff
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", Yes.Position, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
-            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", No.Position, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
+            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", this.YesTextPosition, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
+            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", this.NoTextPosition, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
         }
     
     }

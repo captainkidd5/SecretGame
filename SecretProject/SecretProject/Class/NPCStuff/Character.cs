@@ -30,7 +30,7 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)this.Position.X + this.NPCRectangleXOffSet, (int)this.Position.Y + this.NPCRectangleYOffSet, this.NPCRectangleWidthOffSet, this.NPCRectangleHeightOffSet); } }
-        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)this.Position.X, (int)this.Position.Y, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Width, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Height); } }
+        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)this.Position.X , (int)this.Position.Y - 32, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Width, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Height); } }
 
         public float BaseSpeed { get; private set; } = .65f;
         public float Speed { get; set; } = .65f; //.65
