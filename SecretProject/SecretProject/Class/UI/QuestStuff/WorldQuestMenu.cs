@@ -35,7 +35,7 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public Button RepairButton { get; set; }
 
-        public List<Button> ItemRequirementButtons { get; set; }
+        public List<ItemButton> ItemRequirementButtons { get; set; }
 
 
         public WorldQuestMenu(GraphicsDevice graphics)
@@ -50,7 +50,7 @@ namespace SecretProject.Class.UI.QuestStuff
                 graphics, Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, new Rectangle(441, 496, 62, 16),
                 this.Position, this.Scale), Controls.CursorType.Normal, this.Scale + 1);
 
-            this.ItemRequirementButtons = new List<Button>();
+            this.ItemRequirementButtons = new List<ItemButton>();
         }
 
         public void LoadQuest(WorldQuest worldQuest, int tileLayer, int tileI, int tileJ, IInformationContainer container)
@@ -62,20 +62,21 @@ namespace SecretProject.Class.UI.QuestStuff
      
             this.Description = worldQuest.Description;
             this.Container = container;
-            this.ItemRequirementButtons = new List<Button>();
+            this.ItemRequirementButtons = new List<ItemButton>();
 
             for(int i =0; i < worldQuest.ItemsRequired.Count; i++)
             {
                 Item item = Game1.ItemVault.GenerateNewItem(worldQuest.ItemsRequired[i].ItemID, null);
-                this.ItemRequirementButtons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, item.SourceTextureRectangle,
-                    this.Graphics, new Vector2(this.Position.X + i * 64, this.Position.Y + 112), Controls.CursorType.Normal, this.Scale, item));
+
+                this.ItemRequirementButtons.Add(new ItemButton(Graphics, new Vector2(this.Position.X + i * 64, this.Position.Y + 112), worldQuest.ItemsRequired[i].Count, this.Scale, item));
+
             }
         }
 
         public void AddSpriteToDictionary(Dictionary<string, Sprite> dictionary, IInformationContainer container, Tile tile)
         {
             dictionary.Add(tile.TileKey, new Sprite(this.Graphics, Game1.AllTextures.UserInterfaceTileSet,
-                new Rectangle(16,48, 16, 32),new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), 16,32));
+                new Rectangle(16,48, 16, 32),new Vector2(tile.DestinationRectangle.X + tile.SourceRectangle.Width / 4, tile.DestinationRectangle.Y), 16,32));
         }
 
         public void Update(GameTime gameTime)
@@ -124,7 +125,7 @@ namespace SecretProject.Class.UI.QuestStuff
 
             for (int i = 0; i < this.ItemRequirementButtons.Count; i++)
             {
-                ItemRequirementButtons[i].Draw(spriteBatch);
+                ItemRequirementButtons[i].DrawItemButton(spriteBatch);
             }
         }
     }

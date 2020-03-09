@@ -163,10 +163,15 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void ResetAnimations()
         {
-            for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+            for (int i = 0; i < NPCAnimatedSprite.Length; i++)
             {
-                this.NPCAnimatedSprite[i].SetFrame(0);
+                if (this.NPCAnimatedSprite[i].CurrentFrame != 0)
+                {
+                    this.NPCAnimatedSprite[i].SetFrame(0);
+                }
+
             }
+            this.CurrentDirection = Dir.Down;
 
         }
 
@@ -198,21 +203,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.PrimaryVelocity = new Vector2(1, 1);
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
-            //Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
-            //for (int i = 0; i < returnObjects.Count; i++)
-            //{
-            //    //if obj collided with item in list stop it from moving boom badda bing
-
-            //    if (returnObjects[i].ColliderType != ColliderType.NPC && returnObjects[i].ColliderType != ColliderType.Undetectable && Collider.DidCollide(returnObjects[i], Position))
-            //    {
-            //        this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-            //        CollideOccured = true;
-            //        IsMoving = false;
-            //    }
-
-            //}
-            //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
-
 
 
             for (int i = 0; i < 4; i++)
@@ -246,7 +236,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             else
             {
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].SetFrame(0);
+                ResetAnimations();
             }
 
         }
@@ -259,7 +249,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             if (this.IsMoving)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
                 }
@@ -267,13 +257,12 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             else
             {
 
-                for (int i = 0; i < 4; i++)
-                {
-                    this.NPCAnimatedSprite[i].SetFrame(0);
-                }
+                ResetAnimations();
             }
 
         }
+
+ 
 
         //meant for non-moving, non-Primary NPCS
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
@@ -762,7 +751,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void ResetEndOfDay()
         {
             this.Position = this.HomePosition;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }

@@ -3035,6 +3035,11 @@
    <object id="1" x="2" y="4" width="11" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="1850">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
  <tile id="1852">
   <properties>
    <property name="action" value="chestLoot"/>

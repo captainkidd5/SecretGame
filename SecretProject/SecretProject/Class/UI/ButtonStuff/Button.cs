@@ -105,7 +105,7 @@ namespace SecretProject.Class.MenuStuff
         }
 
 
-        public void Update(MouseManager mouse)
+        public virtual void Update(MouseManager mouse)
         {
             this.wasJustReleased = false;
             this.isRightClicked = false;
@@ -207,7 +207,7 @@ namespace SecretProject.Class.MenuStuff
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, Position, this.BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
         }
