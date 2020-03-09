@@ -28,7 +28,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 24;
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.IdleSoundEffect = Game1.SoundManager.PigGrunt;
+            this.IdleSoundEffect = Game1.SoundManager.GoatBleat;
             this.SoundLowerBound = 20f;
             this.SoundUpperBound = 30f;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
@@ -36,7 +36,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitPoints = 5;
             this.DamageColor = Color.White;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100), new Loot(254, 50), new Loot(214, 25) };
-            this.MakesPeriodicSound = false;
+            this.MakesPeriodicSound = true;
         }
     }
 }

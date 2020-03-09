@@ -80,6 +80,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect RabbitWeet;
         public SoundEffect DogBark;
         public SoundEffect ToadCroak;
+        public SoundEffect GoatBleat;
 
         public SoundEffect CropPluck;
 
@@ -223,6 +224,7 @@ namespace SecretProject.Class.SoundStuff
             RabbitWeet = content.Load<SoundEffect>("SoundEffects/RabbitWeet");
             DogBark = content.Load<SoundEffect>("SoundEffects/dogbarking");
             ToadCroak = content.Load<SoundEffect>("SoundEffects/toadCroak");
+            GoatBleat = content.Load<SoundEffect>("SoundEffects/goatBleat");
 
             CropPluck = content.Load<SoundEffect>("SoundEffects/ropePop");
 

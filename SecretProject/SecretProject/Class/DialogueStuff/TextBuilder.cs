@@ -350,6 +350,11 @@ namespace SecretProject.Class.DialogueStuff
             this.HaveOptionsBeenChecked = false;
             this.AreSelectableOptionsActivated = false;
             this.MoveToSelectableOptions = false;
+            if(this.CharacterTalking != null)
+            {
+                this.CharacterTalking.IsBeingSpokenTo = false;
+            }
+            
             this.SpeakerName = null;
             this.SpeakerID = -1;
 

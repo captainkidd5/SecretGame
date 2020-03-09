@@ -1346,12 +1346,6 @@
    <frame tileid="982" duration="80"/>
   </animation>
  </tile>
- <tile id="896">
-  <properties>
-   <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="729:100:2,728:20:2"/>
-  </properties>
- </tile>
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
@@ -6272,6 +6266,9 @@
   </animation>
  </tile>
  <tile id="9337">
+  <properties>
+   <property name="newSource" value="0,-48,32,64"/>
+  </properties>
   <animation>
    <frame tileid="8937" duration="200"/>
    <frame tileid="8537" duration="200"/>
@@ -6586,21 +6583,27 @@
    <frame tileid="8010" duration="100"/>
   </animation>
  </tile>
- <tile id="9735">
+ <tile id="9731">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="6" width="16" height="8"/>
-  </objectgroup>
+ </tile>
+ <tile id="9732">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
  </tile>
  <tile id="9736">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
-  <objectgroup draworder="index" id="3">
-   <object id="3" x="0" y="6" width="16" height="8"/>
-  </objectgroup>
+ </tile>
+ <tile id="9737">
+  <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
+   <property name="newSource" value="-32,-48,96,64"/>
+  </properties>
  </tile>
  <tile id="9742">
   <animation>

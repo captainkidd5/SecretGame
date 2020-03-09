@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SecretProject.Class.SavingStuff;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using XMLData.ItemStuff.CraftingStuff;
 
 namespace SecretProject.Class.QuestFolder
 {
-    public class WorldQuestHolder
+    public class WorldQuestHolder : ISaveable
     {
         public Dictionary<int,WorldQuest> AllWorldQuests { get; set; }
 
@@ -25,7 +27,7 @@ namespace SecretProject.Class.QuestFolder
 
                 }, 7037)); //should be one larger
 
-            AllWorldQuests.Add(6255, new WorldQuest(7039, "Repair windmill?", new List<ItemsRequired>()
+            AllWorldQuests.Add(6255, new WorldQuest(6255, "Repair windmill?", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -35,6 +37,17 @@ namespace SecretProject.Class.QuestFolder
                     }
 
                 }, 6253));
+
+            AllWorldQuests.Add(9737, new WorldQuest(9737, "Repair water wheel?", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 9338));
         }
 
         public WorldQuest RetrieveQuest(int id)
@@ -68,6 +81,23 @@ namespace SecretProject.Class.QuestFolder
             }
         }
 
+        public void Save(BinaryWriter writer)
+        {
+            writer.Write(this.AllWorldQuests.Count);
+            foreach (KeyValuePair<int, WorldQuest> quest in this.AllWorldQuests)
+            {
+                writer.Write(quest.Key);
+                writer.Write(quest.Value.Completed);
+            }
+            }
 
+        public void Load(BinaryReader reader)
+        {
+            int questCount = reader.ReadInt32();
+            for(int i = 0; i < questCount; i++)
+            {
+                this.AllWorldQuests[reader.ReadInt32()].Completed = reader.ReadBoolean();
+            }
+        }
     }
 }

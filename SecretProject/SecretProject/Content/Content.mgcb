@@ -754,6 +754,30 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/Chopping/Tools/IronAxeTool.png
 
+#begin Player/PlayerParts/Hair/playerHair.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Hair/playerHair.png
+
+#begin Player/PlayerParts/Pants/pants.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Pants/pants.png
+
 #begin Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -874,6 +898,30 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png
 
+#begin Player/PlayerParts/Shirts/shirts.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Shirts/shirts.png
+
+#begin Player/PlayerParts/Shoes/shoes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Shoes/shoes.png
+
 #begin Player/PlayerParts/Swiping/Base/swipingBase.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -897,6 +945,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/Swiping/Shirts/swipingRedShirt.png
+
+#begin Player/PlayerParts/Swiping/Shirts/swipingShirts.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Swiping/Shirts/swipingShirts.png
 
 #begin QuestStuff/BusinessSnailQuests.xml
 /importer:XmlImporter
@@ -1020,6 +1080,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Songs/DustStorm.wav
+
+#begin Songs/ForestersTheme.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/ForestersTheme.wav
 
 #begin Songs/Lakescape.wav
 /importer:WavImporter
@@ -1164,6 +1230,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/gearspin.wav
+
+#begin SoundEffects/goatBleat.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/goatBleat.wav
 
 #begin SoundEffects/grassCut.wav
 /importer:WavImporter
@@ -1363,6 +1435,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/toolBreak.wav
 
+#begin SoundEffects/treeFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/treeFall.wav
+
 #begin SoundEffects/UIClick.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1453,76 +1531,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin Player/PlayerParts/Hair/playerHair.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/Hair/playerHair.png
-
-#begin Player/PlayerParts/Pants/pants.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/Pants/pants.png
-
-#begin Player/PlayerParts/Shirts/shirts.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/Shirts/shirts.png
-
-#begin Player/PlayerParts/Shoes/shoes.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/Shoes/shoes.png
-
-#begin Player/PlayerParts/Swiping/Shirts/swipingShirts.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/Swiping/Shirts/swipingShirts.png
-
-#begin Songs/ForestersTheme.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/ForestersTheme.wav
-
-#begin SoundEffects/treeFall.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/treeFall.wav
 

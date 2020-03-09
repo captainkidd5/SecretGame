@@ -101,6 +101,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public bool HasActiveQuest { get; set; }
         public bool HasBeenSpokenToAtLeastOnce { get; set; }
 
+        public bool IsBeingSpokenTo { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
@@ -186,6 +188,10 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             this.IsMoving = false;
             this.CollideOccured = false;
+            if(IsBeingSpokenTo)
+            {
+                return;
+            }
             this.Speed = this.BaseSpeed * Clock.ClockMultiplier;
             if (this.IsBasicNPC)
             {
@@ -202,6 +208,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             this.PrimaryVelocity = new Vector2(1, 1);
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
+
             List<ICollidable> returnObjects = new List<ICollidable>();
 
 
@@ -291,77 +298,90 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public bool LoadNewQuest()
         {
-            Quest newQuest = QuestHandler.FetchCurrentQuest();
-            if (newQuest != null && !QuestHandler.ActiveQuest.Completed)
+            if(this.QuestHandler != null)
             {
-                this.HasActiveQuest = true;
-                return true;
+                Quest newQuest = QuestHandler.FetchCurrentQuest();
+                if (newQuest != null && !QuestHandler.ActiveQuest.Completed)
+                {
+                    this.HasActiveQuest = true;
+                    return true;
+                }
             }
+            else
+            {
+                Console.WriteLine(Name + " does not have a propery quest handler!");
+            }
+            
             return false;
 
         }
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
-            {
-                mouse.ChangeMouseTexture(CursorType.Chat);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
-                if (mouse.IsClicked)
+            if (Game1.Player.BigCollider.Rectangle.Intersects(this.NPCDialogueRectangle))
                 {
-                    DialogueSkeleton skeleton;
-                    string textToWrite;
 
-                    if (!this.HasActiveQuest && HasBeenSpokenToAtLeastOnce)
+                if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
+                {
+                    mouse.ChangeMouseTexture(CursorType.Chat);
+                    mouse.ToggleGeneralInteraction = true;
+                    Game1.isMyMouseVisible = false;
+                    if (mouse.IsClicked)
                     {
-                        if (LoadNewQuest())
+                        Game1.freeze = true;
+                        DialogueSkeleton skeleton;
+                        string textToWrite;
+
+                        if (!this.HasActiveQuest && HasBeenSpokenToAtLeastOnce)
                         {
-                            Game1.Player.UserInterface.QuestLog.AddNewQuest(QuestHandler);
-                            skeleton = QuestHandler.ActiveQuest.MidQuestSkeleton;
-                            textToWrite = QuestHandler.ActiveQuest.StartupSpeech;
-                            FinishUpDialogue(frameToSet, textToWrite, skeleton);
-                            return;
-                        }
-
-
-                    }
-
-
-                    skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-                    if (HasBeenSpokenToAtLeastOnce)
-                    {
-                        if (!skeleton.HasQuestOptionBeenAdded)
-                        {
-                            skeleton.TextToWrite += "`";
-                            skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
-                            skeleton.HasQuestOptionBeenAdded = true;
-                        }
-
-                    }
-                    HasBeenSpokenToAtLeastOnce = true;
-                    textToWrite = skeleton.TextToWrite;
-                    if (HasActiveQuest)
-                    {
-                        if (QuestHandler.CheckActiveQuestState())
-                        {
-                            for (int i = 0; i < QuestHandler.ActiveQuest.AllRequiredItems.Count; i++)
+                            if (LoadNewQuest())
                             {
-                                Game1.Player.UserInterface.BackPack.Inventory.RemoveItem(QuestHandler.ActiveQuest.AllRequiredItems[i]);
-                                textToWrite = QuestHandler.ActiveQuest.CompletionSpeech;
-                                HasActiveQuest = false;
-                                QuestHandler.ActiveQuest.Completed = true;
+                                Game1.Player.UserInterface.QuestLog.AddNewQuest(QuestHandler);
+                                skeleton = QuestHandler.ActiveQuest.MidQuestSkeleton;
+                                textToWrite = QuestHandler.ActiveQuest.StartupSpeech;
+                                FinishUpDialogue(frameToSet, textToWrite, skeleton);
+                                return;
                             }
-                            QuestHandler.PerformReward();
 
 
                         }
-                    }
 
-                    FinishUpDialogue(frameToSet, textToWrite, skeleton);
+
+                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                        if (HasBeenSpokenToAtLeastOnce)
+                        {
+                            if (!skeleton.HasQuestOptionBeenAdded)
+                            {
+                                skeleton.TextToWrite += "`";
+                                skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
+                                skeleton.HasQuestOptionBeenAdded = true;
+                            }
+
+                        }
+                        HasBeenSpokenToAtLeastOnce = true;
+                        textToWrite = skeleton.TextToWrite;
+                        if (HasActiveQuest)
+                        {
+                            if (QuestHandler.CheckActiveQuestState())
+                            {
+                                for (int i = 0; i < QuestHandler.ActiveQuest.AllRequiredItems.Count; i++)
+                                {
+                                    Game1.Player.UserInterface.BackPack.Inventory.RemoveItem(QuestHandler.ActiveQuest.AllRequiredItems[i]);
+                                    textToWrite = QuestHandler.ActiveQuest.CompletionSpeech;
+                                    HasActiveQuest = false;
+                                    QuestHandler.ActiveQuest.Completed = true;
+                                }
+                                QuestHandler.PerformReward();
+
+
+                            }
+                        }
+
+                        FinishUpDialogue(frameToSet, textToWrite, skeleton);
+
+                    }
 
                 }
-
             }
         }
 
@@ -375,6 +395,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             UpdateDirectionVector(Game1.Player.position);
             this.NPCAnimatedSprite[(int)this.CurrentDirection].SetFrame(frameToSet);
+            this.IsBeingSpokenTo = true;
         }
 
 

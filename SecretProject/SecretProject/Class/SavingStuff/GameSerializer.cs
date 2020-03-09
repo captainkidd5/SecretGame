@@ -75,6 +75,7 @@ namespace SecretProject.Class.SavingStuff
             Game1.GlobalClock.Save(writer);
 
             Game1.cam.Save(writer);
+            Game1.WorldQuestHolder.Save(writer);
         }
 
         public static void LoadGameFile(BinaryReader reader, float version, SaveSlot saveSlot)
@@ -87,6 +88,7 @@ namespace SecretProject.Class.SavingStuff
             Game1.GlobalClock.Load(reader);
 
             Game1.cam.Load(reader);
+            Game1.WorldQuestHolder.Load(reader);
         }
 
 
