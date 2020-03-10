@@ -655,6 +655,87 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public void GenerateUnraiNorthCliffs()
+        {
+            IsDoneLoading = true;
+            this.IsGenerating = true;
+            int cliffGID = 4929;
+            if(this.Y == 0)
+            {
+                for (int z = 0; z < 4; z++)
+                {
+                    for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                    {
+                        for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                        {
+
+                            if (z == 0)
+                            {
+                                if (j >10)
+                                {
+                                    this.AllTiles[z][i, j] = new Tile(i, j, cliffGID); //Underground cliff Solid
+                                    cliffGID += 100;
+                                }
+                                else
+                                {
+                                    this.AllTiles[z][i, j] = new Tile(i, j, 4829); //Underground cliff Solid
+                                }
+
+                            }
+                            else
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 0);
+                            }
+
+
+                            this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                            this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                            TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                        }
+                        cliffGID = 4929;
+                    }
+                }
+            }
+            else
+            {
+                for (int z = 0; z < 4; z++)
+                {
+                    for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                    {
+                        for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                        {
+
+                            if (z == 0)
+                            {
+   
+                                    this.AllTiles[z][i, j] = new Tile(i, j, 4829); //Underground cliff Solid
+                                
+
+                            }
+                            else
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 0);
+                            }
+
+
+                            this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                            this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                            TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                        }
+
+                    }
+                }
+            }
+            
+
+
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+        }
+
         public void GenerateNormal()
         {
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
@@ -930,7 +1011,15 @@ namespace SecretProject.Class.TileStuff
                     
                     else
                     {
-                        GenerateNormal();
+                        if (this.Y <= 0)
+                        {
+                            GenerateUnraiNorthCliffs();
+                        }
+                        else
+                        {
+                            GenerateNormal();
+                        }
+                        
 
                        
                     }

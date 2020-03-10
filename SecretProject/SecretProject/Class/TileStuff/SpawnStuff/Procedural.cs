@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             UnderWorldNoise.SetFractalGain(.04f);
 
             //larger the smaller the biomes
-            UnderWorldNoise.SetFrequency(.12f);
+            UnderWorldNoise.SetFrequency(.1f);
 
 
 
@@ -228,7 +228,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
             this.UnderworldForegroundNoise = new List<NoiseInterval>()
             {
-                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveCliff),.0001f, 1f ),
+                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveCliff),.2f, 1f ),
             };
             List<List<NoiseInterval>> allUnderWorldNoise = new List<List<NoiseInterval>>()
             {
