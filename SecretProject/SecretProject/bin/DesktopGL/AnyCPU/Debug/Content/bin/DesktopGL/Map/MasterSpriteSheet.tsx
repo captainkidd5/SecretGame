@@ -4217,6 +4217,7 @@
  </tile>
  <tile id="3438">
   <properties>
+   <property name="action" value="enterBurrow"/>
    <property name="newHitBox" value="-16,-32,48,48"/>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>

@@ -796,6 +796,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.UnderWorld, null);
+                            Game1.UnderWorld.AllTiles.LoadInitialChunks(Game1.Player.position) ;
                         }
                     }
                     break;
