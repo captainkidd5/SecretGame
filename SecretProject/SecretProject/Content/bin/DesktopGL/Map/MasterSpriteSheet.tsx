@@ -4543,6 +4543,12 @@
    <object id="1" x="6" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
+ <tile id="4057">
+  <properties>
+   <property name="newHitBox" value="-16,0,64,16"/>
+   <property name="newSource" value="-64,-128,144,144"/>
+  </properties>
+ </tile>
  <tile id="4117">
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="10" height="9"/>
@@ -5514,7 +5520,7 @@
  </tile>
  <tile id="6759">
   <properties>
-   <property name="lightSource" value="1"/>
+   <property name="newSource" value="0,-64,96,80"/>
   </properties>
  </tile>
  <tile id="6946">
