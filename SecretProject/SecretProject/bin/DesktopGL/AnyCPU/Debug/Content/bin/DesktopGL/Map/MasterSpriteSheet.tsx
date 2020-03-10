@@ -981,8 +981,10 @@
  </tile>
  <tile id="649">
   <properties>
+   <property name="destructable" value="22,3,0,8,20,1"/>
+   <property name="loot" value="1000"/>
    <property name="newHitBox" value="0,0, 32, 16"/>
-   <property name="newSource" value="0,-16,32,32"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="650">
@@ -995,6 +997,8 @@
  </tile>
  <tile id="651">
   <properties>
+   <property name="destructable" value="22,3,0,8,20,1"/>
+   <property name="loot" value="1000"/>
    <property name="newHitBox" value="0,8, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
@@ -1018,7 +1022,7 @@
  <tile id="663">
   <properties>
    <property name="destructable" value="21,4,1,3,3,0"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="-16,-80,48,96"/>
   </properties>
   <objectgroup draworder="index">
@@ -5467,10 +5471,8 @@
  </tile>
  <tile id="6216">
   <properties>
-   <property name="action" value="portal"/>
-   <property name="newHitBox" value="-48, -48, 112,64"/>
-   <property name="newSource" value="-48, -96, 128,112"/>
-   <property name="portal" value="true,OverWorld,ElixirHouse"/>
+   <property name="newHitBox" value="-96, -64, 112,80"/>
+   <property name="newSource" value="-96, -96, 128,112"/>
   </properties>
  </tile>
  <tile id="6228">
@@ -5552,8 +5554,8 @@
  <tile id="7103">
   <properties>
    <property name="action" value="portal"/>
-   <property name="newHitBox" value="-32, -64, 80, 80"/>
-   <property name="newSource" value="-32, -112, 80,128"/>
+   <property name="newHitBox" value="-48, -64, 96, 80"/>
+   <property name="newSource" value="-48, -112, 96,128"/>
    <property name="portal" value="true,OverWorld,JulianHouse"/>
   </properties>
  </tile>

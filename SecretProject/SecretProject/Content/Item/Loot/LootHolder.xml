@@ -82,6 +82,28 @@
                     </Item>
                 </LootPieces>
             </Item>
+
+            <!-- Coconut Tree -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>663</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>520</ItemToSpawnID>
+                        <MinNumberToSpawn>6</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1008</ItemToSpawnID> <!-- Coconut -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>65</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>5</MaxNumberToSpawn>
+                    </Item>
+
+                </LootPieces>
+            </Item>
         <!-- Oak -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>1663</GID>

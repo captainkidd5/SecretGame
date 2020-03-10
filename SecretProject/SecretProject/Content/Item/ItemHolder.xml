@@ -759,6 +759,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Coconut</Name>
+<ID>1008</ID>
+<Description>Hard to open.</Description>
+<InvMaximum>99</InvMaximum><Price>3</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Canvas</Name>
 <ID>1040</ID>
 <Description>A fabric made from plants.</Description>
