@@ -776,7 +776,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }
+            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
             this.CurrentStageLocation = this.HomeStage;
+            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
             
 
         }
