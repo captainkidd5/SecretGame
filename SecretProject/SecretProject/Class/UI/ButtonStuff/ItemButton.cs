@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI.ButtonStuff
         {
             spriteBatch.Draw(this.Texture, this.Position, this.ItemSourceRectangleToDraw,
                 this.Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, this.TextPosition, Color.White, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None,
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, this.TextPosition, Color.Black, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None,
                 Game1.Utility.StandardTextDepth + .02f);
         }
     }

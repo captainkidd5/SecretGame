@@ -37,6 +37,9 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public List<ItemButton> ItemRequirementButtons { get; set; }
 
+        public Rectangle TileSourceRectangle { get; set; }
+        public Vector2 TileDrawPosition { get; set; }
+
 
         public WorldQuestMenu(GraphicsDevice graphics)
         {
@@ -47,7 +50,7 @@ namespace SecretProject.Class.UI.QuestStuff
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
 
             this.RepairButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 16),
-                graphics, Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, new Rectangle(441, 496, 62, 16),
+                graphics, Game1.Utility.CenterRectangleInRectangleLowerThird(this.BackSourceRectangle, new Rectangle(441, 496, 62, 16),
                 this.Position, this.Scale), Controls.CursorType.Normal, this.Scale + 1);
 
             this.ItemRequirementButtons = new List<ItemButton>();
@@ -64,11 +67,14 @@ namespace SecretProject.Class.UI.QuestStuff
             this.Container = container;
             this.ItemRequirementButtons = new List<ItemButton>();
 
+            this.TileSourceRectangle = container.AllTiles[tileLayer][tileI, tileJ].SourceRectangle;
+            this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, this.Position, this.Scale);
+
             for(int i =0; i < worldQuest.ItemsRequired.Count; i++)
             {
                 Item item = Game1.ItemVault.GenerateNewItem(worldQuest.ItemsRequired[i].ItemID, null);
 
-                this.ItemRequirementButtons.Add(new ItemButton(Graphics, new Vector2(this.Position.X + i * 64, this.Position.Y + 112), worldQuest.ItemsRequired[i].Count, this.Scale, item));
+                this.ItemRequirementButtons.Add(new ItemButton(Graphics, new Vector2(this.Position.X + 64 + i * 64, this.Position.Y + 112), worldQuest.ItemsRequired[i].Count, this.Scale, item));
 
             }
         }
@@ -99,6 +105,10 @@ namespace SecretProject.Class.UI.QuestStuff
                     Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Repaired!");
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
+                else
+                {
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Not enough resources");
+                }
             }
 
             for(int i =0; i < this.ItemRequirementButtons.Count; i++)
@@ -121,6 +131,7 @@ namespace SecretProject.Class.UI.QuestStuff
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(this.Position.X + 32, this.Position.Y + 32), Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, this.TileDrawPosition, this.TileSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             this.RedEsc.Draw(spriteBatch);
 
             this.RepairButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Repair!", this.RepairButton.Position, Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardTextDepth + .03f, 2f);
