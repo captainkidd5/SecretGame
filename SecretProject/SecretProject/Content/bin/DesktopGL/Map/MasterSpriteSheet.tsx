@@ -5570,10 +5570,8 @@
  </tile>
  <tile id="7115">
   <properties>
-   <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -80, 96, 80"/>
    <property name="newSource" value="-32, -112, 96, 128"/>
-   <property name="portal" value="true,OverWorld,DobbinHouse,"/>
   </properties>
  </tile>
  <tile id="7120">
@@ -5806,6 +5804,14 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="6" y="0" width="5" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="7819">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newHitBox" value="-80, -64, 112, 80"/>
+   <property name="newSource" value="-80, -80, 112, 96"/>
+   <property name="portal" value="true,OverWorld,DobbinHouse,"/>
+  </properties>
  </tile>
  <tile id="7847">
   <objectgroup draworder="index" id="2">
