@@ -14,6 +14,9 @@ namespace SecretProject.Class.TextureStuff
     public class TextureBook
     {
         //Player
+
+        public Texture2D PlayerBaseAtlas;
+
         public Texture2D PlayerBase;
         public Texture2D PlayerHair;
         public Texture2D PlayerShirt;
@@ -155,6 +158,8 @@ namespace SecretProject.Class.TextureStuff
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             //Player
+
+            PlayerBaseAtlas = content.Load<Texture2D>("Player/playerBaseAtlas");
             PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
             PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/playerHair");
             PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Shirts/shirts");

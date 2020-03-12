@@ -71,6 +71,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/raindrop.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/rockparticle.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/smokeParticle.png</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/playerBaseAtlas.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Base/base.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Chopping/Base/ChoppingBase.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Chopping/Hair/ChoppingBlondeHair.png</File>
@@ -193,6 +194,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/tallGrass.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
