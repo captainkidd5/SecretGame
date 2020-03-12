@@ -32,6 +32,10 @@ namespace SecretProject.Class.UI.QuestStuff
         public IInformationContainer Container { get; set; }
 
         public string Description { get; set; }
+        public Vector2 DescriptionPosition { get; set; }
+
+        public string RewardDescription { get; set; }
+        public Vector2 RewardDescriptionPosition { get; set; }
 
         public Button RepairButton { get; set; }
 
@@ -64,17 +68,21 @@ namespace SecretProject.Class.UI.QuestStuff
             this.TileJ = tileJ;
      
             this.Description = worldQuest.Description;
+            this.DescriptionPosition = new Vector2(Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, Game1.Utility.GetCenterOfRectangle(this.BackSourceRectangle, this.Position, this.Scale), this.Description, this.Scale).X, this.Position.Y + 32);
+
+            this.RewardDescription = worldQuest.RewardDescription;
+            this.RewardDescriptionPosition = new Vector2(Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, Game1.Utility.GetCenterOfRectangle(this.BackSourceRectangle, this.Position, this.Scale), this.Description, this.Scale).X, this.Position.Y + this.BackSourceRectangle.Height * Scale * .75f);
             this.Container = container;
             this.ItemRequirementButtons = new List<ItemButton>();
 
             this.TileSourceRectangle = container.AllTiles[tileLayer][tileI, tileJ].SourceRectangle;
-            this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, this.Position, this.Scale);
+            this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, new Vector2(this.Position.X, this.Position.Y - 32), this.Scale);
 
             for(int i =0; i < worldQuest.ItemsRequired.Count; i++)
             {
                 Item item = Game1.ItemVault.GenerateNewItem(worldQuest.ItemsRequired[i].ItemID, null);
 
-                this.ItemRequirementButtons.Add(new ItemButton(Graphics, new Vector2(this.Position.X + 64 + i * 64, this.Position.Y + 112), worldQuest.ItemsRequired[i].Count, this.Scale, item));
+                this.ItemRequirementButtons.Add(new ItemButton(Graphics, new Vector2(this.Position.X + 64 + i * 64, this.Position.Y + this.BackSourceRectangle.Height * Scale * .75f), worldQuest.ItemsRequired[i].Count, this.Scale, item));
 
             }
         }
@@ -130,7 +138,8 @@ namespace SecretProject.Class.UI.QuestStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(this.Position.X + 32, this.Position.Y + 32), Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description,this.DescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RewardDescription, this.RewardDescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.Draw(Game1.AllTextures.MasterTileSet, this.TileDrawPosition, this.TileSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             this.RedEsc.Draw(spriteBatch);
 

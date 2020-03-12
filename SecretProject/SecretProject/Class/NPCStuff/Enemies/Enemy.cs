@@ -177,12 +177,6 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
-
-            if (this.TimeInUnloadedChunk > 25)
-            {
-                enemies.Remove(this);
-                return;
-            }
             if (this.HitPoints <= 0)
             {
                 RollPeriodicDrop(this.Position);

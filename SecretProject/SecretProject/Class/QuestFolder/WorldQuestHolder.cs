@@ -16,7 +16,7 @@ namespace SecretProject.Class.QuestFolder
         public WorldQuestHolder()
         {
             this.AllWorldQuests = new Dictionary<int, WorldQuest>();
-            AllWorldQuests.Add(7039, new WorldQuest(7039, "Repair clock?", new List<ItemsRequired>()
+            AllWorldQuests.Add(7039, new WorldQuest(7039, "Repair clock?","Unlocks test", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -27,7 +27,7 @@ namespace SecretProject.Class.QuestFolder
 
                 }, 7037)); //should be one larger
 
-            AllWorldQuests.Add(6255, new WorldQuest(6255, "Repair windmill?", new List<ItemsRequired>()
+            AllWorldQuests.Add(6255, new WorldQuest(6255, "Repair windmill?", "May harvest Dobbin's crops", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -38,7 +38,7 @@ namespace SecretProject.Class.QuestFolder
 
                 }, 6253));
 
-            AllWorldQuests.Add(9737, new WorldQuest(9737, "Repair water wheel?", new List<ItemsRequired>()
+            AllWorldQuests.Add(9737, new WorldQuest(9737, "Repair water wheel?", "Restores extra power to buildings", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
@@ -49,7 +49,7 @@ namespace SecretProject.Class.QuestFolder
 
                 }, 9338));
 
-            AllWorldQuests.Add(9510, new WorldQuest(9510, "Repair fountain?", new List<ItemsRequired>()
+            AllWorldQuests.Add(9510, new WorldQuest(9510, "Repair fountain?", "test", new List<ItemsRequired>()
                 {
                     new ItemsRequired()
                     {
