@@ -16,6 +16,10 @@ namespace SecretProject.Class.TextureStuff
         //Player
 
         public Texture2D PlayerBaseAtlas;
+        public Texture2D ShirtAtlas;
+        public Texture2D ShoesAtlas;
+        public Texture2D HairAtlas;
+        public Texture2D PantsAtlas;
 
         public Texture2D PlayerBase;
         public Texture2D PlayerHair;
@@ -159,7 +163,12 @@ namespace SecretProject.Class.TextureStuff
         {
             //Player
 
+            HairAtlas = content.Load<Texture2D>("Player/hairAtlas");
             PlayerBaseAtlas = content.Load<Texture2D>("Player/playerBaseAtlas");
+            ShirtAtlas = content.Load<Texture2D>("Player/shirtAtlas");
+            PantsAtlas = content.Load<Texture2D>("Player/pantsAtlas");
+            ShoesAtlas = content.Load<Texture2D>("Player/shoesAtlas");
+
             PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
             PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/playerHair");
             PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Shirts/shirts");

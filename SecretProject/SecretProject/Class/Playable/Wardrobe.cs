@@ -24,6 +24,12 @@ namespace SecretProject.Class.Playable
     {
         public GraphicsDevice Graphics { get; set; }
 
+        public Texture2D HairAtlasTexture { get; set; }
+        public Texture2D MainAtlasTexture { get; set; }
+        public Texture2D ShirtAtlasTexture { get; set; }
+        public Texture2D PantsAtlasTexture { get; set; }
+        public Texture2D ShoesAtlasTexture { get; set; }
+
         public int MaxSpriteIndex { get; set; }
 
 
@@ -45,6 +51,8 @@ namespace SecretProject.Class.Playable
         public Wardrobe(GraphicsDevice graphics, Vector2 playerPosition)
         {
             this.Graphics = graphics;
+            this.MainAtlasTexture = Game1.AllTextures.PlayerBaseAtlas;
+            this.ShirtAtlasTexture = Game1.AllTextures.ShirtAtlas;
             //Height of player part spritesheet. All should be the same. Each part has a width of 16 and a height of 32 so 64 would mean two different clothing options!
             this.MaxSpriteIndex = 64;
 
