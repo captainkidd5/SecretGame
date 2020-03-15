@@ -91,6 +91,14 @@
    <object id="1" x="0" y="1" width="16" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="311">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="2" width="16" height="13"/>
+  </objectgroup>
+ </tile>
  <tile id="344">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -605,6 +613,14 @@
  <tile id="1175">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="1404">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="4">
+   <object id="3" x="2" y="5" width="12" height="10"/>
   </objectgroup>
  </tile>
  <tile id="1433">

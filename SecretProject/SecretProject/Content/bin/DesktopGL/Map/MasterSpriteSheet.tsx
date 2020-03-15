@@ -2757,6 +2757,12 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
+ <tile id="1644">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1648">
   <properties>
    <property name="newHitBox" value="-16, -10, 48, 26"/>
