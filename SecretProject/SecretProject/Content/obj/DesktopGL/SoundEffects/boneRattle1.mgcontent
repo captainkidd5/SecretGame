@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/boneRattle1.wav</SourceFile>
+  <SourceTime>2020-03-17T18:38:44.4075087-10:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/boneRattle1.xnb</DestFile>
+  <DestTime>2020-03-17T18:40:44.2641735-10:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-09-23T11:55:52-10:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

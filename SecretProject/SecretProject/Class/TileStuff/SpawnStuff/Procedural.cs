@@ -21,7 +21,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         WaterSwamp = 940,
         CaveCliff = 4828,
         CaveDirt = 2001,
-        CaveWater = 640
+        CaveWater = 640,
+        VillageFloor = 4142,
+        VillageFence = 3937,
+        ArcaneFloor = 3346,
+        ArcaneFence = 3946,
 
     };
 
@@ -174,6 +178,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.CaveCliff, new TilingContainer(GenerationType.CaveCliff, FillCliffTilingDictionary((int)GenerationType.CaveCliff), new List<int>()) },
                  { GenerationType.CaveDirt, new TilingContainer(GenerationType.CaveDirt, FillTilingDictionary((int)GenerationType.CaveDirt), new List<int>()) },
                  { GenerationType.CaveWater, new TilingContainer(GenerationType.CaveWater, FillTilingDictionary((int)GenerationType.CaveWater), new List<int>()) },
+                 { GenerationType.VillageFloor, new TilingContainer(GenerationType.VillageFloor, FillTilingDictionary((int)GenerationType.VillageFloor), new List<int>()) },
+                 { GenerationType.VillageFence, new TilingContainer(GenerationType.VillageFence, FillFenceTilingDictionary((int)GenerationType.VillageFence), new List<int>()) },
+                 { GenerationType.ArcaneFloor, new TilingContainer(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
+                 { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
 
             };
 

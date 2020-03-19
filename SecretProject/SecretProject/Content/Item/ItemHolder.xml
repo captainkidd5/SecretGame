@@ -230,6 +230,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bone</Name>
+<ID>215</ID>
+<Description>High in calcium.</Description>
+<InvMaximum>99</InvMaximum><Price>3</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>LifeGiver Flask</Name>
 <ID>228</ID>
 <Description>Nature in a bottle.</Description>
@@ -344,6 +351,26 @@
 <InvMaximum>99</InvMaximum><Price>1</Price>
 <PlaceID>1621</PlaceID>
 <TilingSet>SandRuin</TilingSet>
+<TilingLayer>1</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Thatch Floor</Name>
+<ID>483</ID>
+<Description>Rough and patchy.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<PlaceID>4142</PlaceID>
+<TilingSet>VillageFloor</TilingSet>
+<TilingLayer>1</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Arcane Floor</Name>
+<ID>484</ID>
+<Description>Smooth and warm.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<PlaceID>3346</PlaceID>
+<TilingSet>ArcaneFloor</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
 
@@ -945,6 +972,26 @@
 <InvMaximum>99</InvMaximum><Price>5</Price>
 <PlaceID>452</PlaceID>
 <TilingSet>StoneWallTiling</TilingSet>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Rope Fence</Name>
+<ID>1165</ID>
+<Description>A weak barrier.</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+<PlaceID>3937</PlaceID>
+<TilingSet>VillageFence</TilingSet>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Arcane Fence</Name>
+<ID>1166</ID>
+<Description>A strong magical barrier.</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+<PlaceID>3946</PlaceID>
+<TilingSet>ArcaneFence</TilingSet>
 <TilingLayer>3</TilingLayer>
 </Item>
 

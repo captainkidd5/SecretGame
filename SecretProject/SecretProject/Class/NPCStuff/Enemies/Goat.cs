@@ -29,8 +29,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.GoatBleat;
-            this.SoundLowerBound = 20f;
-            this.SoundUpperBound = 30f;
+            this.SoundLowerBound = 40f;
+            this.SoundUpperBound = 100f;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.HitPoints = 5;

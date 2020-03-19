@@ -984,7 +984,7 @@
    <property name="destructable" value="22,3,0,8,20,1"/>
    <property name="loot" value="1000"/>
    <property name="newHitBox" value="0,0, 32, 16"/>
-   <property name="newSource" value="0,-16,16,32"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="650">
@@ -3636,6 +3636,22 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="2783">
+  <properties>
+   <property name="newSource" value="-16,-48,64,64"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2787">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="2804">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -4057,6 +4073,54 @@
    <object id="1" x="7" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3245">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3246">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3247">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3248">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3249">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3250">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="3304">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -4169,6 +4233,46 @@
    <object id="1" x="7" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3345">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3346">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3347">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3348">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3349">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="3392">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -4237,6 +4341,46 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="7" y="0" width="9" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="3445">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3446">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3447">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3448">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="3449">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="ArcaneFloor"/>
+   <property name="loot" value="484"/>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="3504">
   <objectgroup draworder="index" id="2">
@@ -4354,6 +4498,60 @@
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3734">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3735">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3736">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3743">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3744">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3745">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="3805">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="4"/>
@@ -4464,6 +4662,78 @@
    <object id="1" x="0" y="0" width="16" height="6"/>
   </objectgroup>
  </tile>
+ <tile id="3934">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3935">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3936">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3937">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3943">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3944">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3945">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3946">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="4018">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="10" height="9"/>
@@ -4554,6 +4824,62 @@
    <object id="1" x="6" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
+ <tile id="4041">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4042">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4043">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4044">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4045">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4046">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4051">
+  <properties>
+   <property name="newSource" value="-16,-48,48,64"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="3" width="14" height="13"/>
+  </objectgroup>
+ </tile>
  <tile id="4057">
   <properties>
    <property name="newHitBox" value="-16,0,64,16"/>
@@ -4631,6 +4957,80 @@
    <object id="1" x="6" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
+ <tile id="4137">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="13" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="4138">
+  <properties>
+   <property name="destructable" value="22,0,5,21"/>
+   <property name="loot" value=""/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="5" width="5" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="4139">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="8" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="4140">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="4141">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4142">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4143">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4144">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4145">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="4180">
   <properties>
    <property name="layer" value="3"/>
@@ -4704,11 +5104,71 @@
    <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
+ <tile id="4233">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="7" width="16" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="4234">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="2" y="5" width="12" height="9"/>
+  </objectgroup>
+ </tile>
+ <tile id="4235">
+  <properties>
+   <property name="newHitBox" value="0, -16, 32, 32"/>
+   <property name="newSource" value="0,-32,32,48"/>
+  </properties>
+ </tile>
+ <tile id="4241">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4242">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4243">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4244">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="4245">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="VillageFloor"/>
+   <property name="loot" value="483"/>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="4263">
   <properties>
    <property name="destructable" value="21,4,5,3,19,0"/>
    <property name="loot" value=""/>
-   <property name="newSource" value="-32,-64,80,80"/>
+   <property name="newSource" value="-32,-64,64,80"/>
    <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
   <objectgroup draworder="index" id="2">

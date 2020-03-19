@@ -335,6 +335,20 @@
                 </LootPieces>
             </Item>
 
+             <!-- Bone idol -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>4138</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>215</ItemToSpawnID> <!-- Bone -->
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
         </AllLoot>
     </Asset>
 </XnaContent>

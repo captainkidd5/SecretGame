@@ -111,6 +111,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect CoinGet;
         public SoundEffect MiniReward;
 
+        public SoundEffect BoneRattle1;
+        public SoundEffect BoneRattle2;
+
         //COMBAT
         public SoundEffect Slash1;
         public SoundEffect SwordSwing;
@@ -251,6 +254,9 @@ namespace SecretProject.Class.SoundStuff
 
             CoinGet = content.Load<SoundEffect>("SoundEffects/CoinGet");
             MiniReward = content.Load<SoundEffect>("SoundEffects/MiniReward");
+
+            BoneRattle1 = content.Load<SoundEffect>("SoundEffects/boneRattle1");
+            BoneRattle2 = content.Load<SoundEffect>("SoundEffects/boneRattle2");
 
             //COMBAT
             Slash1 = content.Load<SoundEffect>("SoundEffects/Slash1");
@@ -507,6 +513,10 @@ namespace SecretProject.Class.SoundStuff
 
                     case 20:
                         PlaySoundEffect(StoneSmash, true, .2f);
+                        break;
+
+                    case 21:
+                        PlaySoundEffect(BoneRattle1, true, .2f);
                         break;
 
 

@@ -259,14 +259,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
                 if (this.IdleSoundEffect != null)
                 {
-                    this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (this.SoundTimer <= 0)
-                    {
-                        Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
-                        this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
+
+                        if ((Game1.GlobalClock.SecondsPassedToday - this.SoundTimer) > this.SoundUpperBound)
+                        {
+                            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
+                            this.SoundTimer = Game1.GlobalClock.SecondsPassedToday;
 
 
-                    }
+                        }
                 }
             }
 
@@ -449,7 +449,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
                 int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
                 int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
-                
+
 
                 FindPathToNewTile(new Point(newX, newY));
 
@@ -492,7 +492,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
 
                         Point startPoint = new Point(newPoint.X, newPoint.Y);
-                        
+
 
                         this.NewStartPoint = new Point(startPoint.X, startPoint.Y);
                         this.OutOfChunkDestinationX = startPoint.X;
@@ -513,7 +513,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         {
                             startPoint.Y = 15;
                             this.OutOfChunkDestinationY = newPoint.Y - 16;
-                            this.NewStartPoint = new Point(NewStartPoint.X,0);
+                            this.NewStartPoint = new Point(NewStartPoint.X, 0);
                         }
                         if (startPoint.Y < 0)
                         {

@@ -1177,6 +1177,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/arrowMiss.wav
 
+#begin SoundEffects/boneRattle1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/boneRattle1.wav
+
+#begin SoundEffects/boneRattle2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/boneRattle2.wav
+
 #begin SoundEffects/bowdraw.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

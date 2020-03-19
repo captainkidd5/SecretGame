@@ -563,6 +563,34 @@
    <object id="1" x="0" y="0" width="16" height="10"/>
   </objectgroup>
  </tile>
+ <tile id="1026">
+  <properties>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
+ <tile id="1028">
+  <properties>
+   <property name="newSource" value="0,-32,32,48"/>
+  </properties>
+ </tile>
+ <tile id="1030">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1031">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="1032">
+  <properties>
+   <property name="newSource" value="0,-32,32,48"/>
+  </properties>
+ </tile>
  <tile id="1044">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
