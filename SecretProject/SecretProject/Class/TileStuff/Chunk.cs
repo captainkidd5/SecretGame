@@ -1035,8 +1035,14 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
         }
 
+
+
         public void GenerateLandscape(float[,] noise)
         {
+            if(Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
+            {
+                
+            }
             List<SpawnElement> spawnElements;
             if (this.ITileManager.Stage == Game1.OverWorld)
             {

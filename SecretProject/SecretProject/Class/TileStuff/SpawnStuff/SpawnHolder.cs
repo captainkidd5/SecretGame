@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SecretProject.Class.TileStuff.SpawnStuff.CampStuff;
+using SecretProject.Class.Universal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     {
         public List<SpawnElement> OverWorldSpawnElements { get; set; }
         public List<SpawnElement> UnderWorldSpawnElements { get; set; }
+        public List<Camp> AllCamps { get; set; }
+
+        public static int CampSpawnRate { get; set; } = 5;
 
 
         public SpawnHolder()
@@ -90,38 +95,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 //TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
             //TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
             };
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
-            ////TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1277, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1276, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1275, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1274, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
 
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 293, GenerationType.Dirt, 100, 0, this, true); //ZodFern
+            this.AllCamps = new List<Camp>()
+            {
+                new CalciteCamp(80),
+ 
+            };
 
-            ////SANDRUINS
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1853, GenerationType.SandRuin, 5, 1, this); //Chest
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
+            
 
-
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
-
-            //// TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
-            //// TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-            ////TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Grass, 25, 1, this); //oak2
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Grass, 25, 1, this); //oak3
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
 
             this.UnderWorldSpawnElements = new List<SpawnElement>()
             {
@@ -136,6 +118,23 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  new SpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.CaveDirt, 25, true){Unlocked = true }, //Carrotte
         };
 
+        }
+
+        public bool CheckIfCampSpawns()
+        {
+            int num = Game1.Utility.RNumber(0, 100);
+            if(num < CampSpawnRate)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public Camp GetCamp()
+        {
+            List<IWeightable> list = AllCamps.ToList<IWeightable>();
+            return (Camp)Game1.Utility.WheelSelection.GetSelection(list);
         }
 
         public void UnlockSpawnElement(int gid)
