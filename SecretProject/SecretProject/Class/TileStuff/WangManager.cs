@@ -11,11 +11,22 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int q = -1; q < 2; q++)
                 {
-
-                    ReassignTileForTiling(mainGid, generatableTiles,
-                                        tilingDictionary, layer,
-                                        ChunkUtility.GetLocalChunkCoord(mouseWorldX + t * 16), ChunkUtility.GetLocalChunkCoord(mouseWorldY + q * 16),
-                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, ChunkUtility.GetChunk(ChunkUtility.GetChunkX(TileUtility.GetSquareTileCoord(mouseWorldX + t * 16)),ChunkUtility.GetChunkY( TileUtility.GetSquareTileCoord(mouseWorldY + q * 16)), tileManager.ActiveChunks));
+                    Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(TileUtility.GetSquareTileCoord(mouseWorldX + t * 16)), ChunkUtility.GetChunkY(TileUtility.GetSquareTileCoord(mouseWorldY + q * 16)), tileManager.ActiveChunks);
+                    if(chunk != null)
+                    {
+                        int indexX = ChunkUtility.GetLocalChunkCoord(mouseWorldX + t * 16);
+                        int indexY = ChunkUtility.GetLocalChunkCoord(mouseWorldY + q * 16);
+                        Tile tile = chunk.AllTiles[layer][indexX, indexY];
+                        if (tile != null)
+                        {
+                            ReassignTileForTiling(mainGid, generatableTiles,
+                                            tilingDictionary, layer,
+                                           indexX, indexY,
+                                            TileUtility.ChunkWidth, TileUtility.ChunkHeight, chunk);
+                        }
+                    }
+                    
+                    
                 }
             }
         }
@@ -23,7 +34,7 @@ namespace SecretProject.Class.TileStuff
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
     int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
-
+            bool chunkWithinBounds = IsContainerWithinArrayBounds(container);
             if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
             {
                 return;
@@ -39,7 +50,7 @@ namespace SecretProject.Class.TileStuff
             //if top tile is 0 we look at the chunk above it
 
 
-            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
+            else if (chunkWithinBounds && generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
             {
                 keyToCheck += 1;
             }
@@ -52,7 +63,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 8;
                 }
             }
-            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
+            else if (chunkWithinBounds && generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
             {
                 keyToCheck += 8;
             }
@@ -66,7 +77,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 4;
                 }
             }
-            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
+            else if (chunkWithinBounds && generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
             {
                 keyToCheck += 4;
             }
@@ -81,7 +92,7 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 2;
                 }
             }
-            else if (generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
+            else if (chunkWithinBounds && generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
             {
                 keyToCheck += 2;
             }
@@ -93,6 +104,14 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public static bool IsContainerWithinArrayBounds(IInformationContainer container)
+        {
+            if(container.ArrayI > 0 && container.ArrayJ > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }

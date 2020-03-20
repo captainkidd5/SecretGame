@@ -14,7 +14,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public List<SpawnElement> UnderWorldSpawnElements { get; set; }
         public List<Camp> AllCamps { get; set; }
 
-        public static int CampSpawnRate { get; set; } = 5;
+        public static int CampSpawnRate { get; set; } = 20;
 
 
         public SpawnHolder()
@@ -25,7 +25,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone
                 new SpawnElement(879, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone2
                  new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Steel Vein
-                 new SpawnElement(4139, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Bone idol
+                 
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //rock
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50, false){Unlocked = true }, //Stick
@@ -99,6 +99,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.AllCamps = new List<Camp>()
             {
                 new CalciteCamp(80),
+                new ArcaneCamp(70)
  
             };
 

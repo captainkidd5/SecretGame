@@ -10,6 +10,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.TileStuff.SpawnStuff.CampStuff;
 using SecretProject.Class.Universal;
 
 using System;
@@ -1039,31 +1040,36 @@ namespace SecretProject.Class.TileStuff
 
         public void GenerateLandscape(float[,] noise)
         {
-            if(Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
+            if (Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
             {
-                
-            }
-            List<SpawnElement> spawnElements;
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
-                spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
+               Camp camp =  Game1.OverWorldSpawnHolder.GetCamp();
+                camp.Spawn(this, this.ITileManager.Stage);
             }
             else
             {
-                spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
-            }
-            //Specify GID + 1
-            for (int s = 0; s < spawnElements.Count; s++)
-            {
-                SpawnElement element = spawnElements[s];
 
-                if (element.Unlocked)
+
+                List<SpawnElement> spawnElements;
+                if (this.ITileManager.Stage == Game1.OverWorld)
                 {
-                    TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
-                        (int)element.MapLayerToCheckIfEmpty, this, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+                    spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
                 }
-            };
+                else
+                {
+                    spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
+                }
+                //Specify GID + 1
+                for (int s = 0; s < spawnElements.Count; s++)
+                {
+                    SpawnElement element = spawnElements[s];
 
+                    if (element.Unlocked)
+                    {
+                        TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
+                            (int)element.MapLayerToCheckIfEmpty, this, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+                    }
+                };
+            }
 
 
         }

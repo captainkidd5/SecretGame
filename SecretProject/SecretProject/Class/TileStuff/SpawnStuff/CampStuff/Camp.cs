@@ -1,4 +1,6 @@
-﻿using SecretProject.Class.NPCStuff.Enemies;
+﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -16,14 +18,29 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
     public class Camp : IWeightable
     {
         public CampType CampType { get; set; }
-        public float SpawnChance { get; set; }
         public List<SpawnElement> SpawnElements { get; set; }
         public List<Enemy> PossibleEnemies { get; set; }
         public int Chance { get; set; }
 
+        public int FloorTileID { get; set; }
+
         public Camp(int probability)
         {
             this.Chance = probability;
+        }
+
+        public virtual void Spawn(IInformationContainer container, ILocation location)
+        {
+            for(int i =0; i < this.SpawnElements.Count; i++)
+            {
+                SpawnElement element = SpawnElements[i];
+                TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
+                                (int)element.MapLayerToCheckIfEmpty, container, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+            }
+            
+            
+            
+            
         }
     }
 }

@@ -4506,6 +4506,9 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3735">
   <properties>
@@ -4515,6 +4518,9 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3736">
   <properties>
@@ -4524,6 +4530,50 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3737">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="VillageFence"/>
+   <property name="loot" value="1165"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3739">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="9" width="10" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="3740">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="3741">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="7" width="3" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="3742">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="7" width="12" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="3743">
   <properties>
@@ -4533,6 +4583,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3744">
   <properties>
@@ -4542,6 +4595,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3745">
   <properties>
@@ -4551,6 +4607,21 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3746">
+  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="ArcaneFence"/>
+   <property name="loot" value="1166"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3805">
   <objectgroup draworder="index" id="2">
@@ -4670,6 +4741,9 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3935">
   <properties>
@@ -4679,6 +4753,9 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3936">
   <properties>
@@ -4688,6 +4765,9 @@
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3937">
   <properties>
@@ -4696,6 +4776,20 @@
    <property name="generate" value="VillageFence"/>
    <property name="loot" value="1165"/>
    <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="6" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3938">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="6" width="15" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="3939">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,0,32,16"/>
   </properties>
  </tile>
  <tile id="3943">
@@ -4706,6 +4800,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3944">
   <properties>
@@ -4715,6 +4812,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3945">
   <properties>
@@ -4724,6 +4824,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="-1" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3946">
   <properties>
@@ -4733,6 +4836,9 @@
    <property name="loot" value="1166"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="10" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="4018">
   <objectgroup draworder="index" id="2">

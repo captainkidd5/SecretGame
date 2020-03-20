@@ -17,7 +17,8 @@ namespace SecretProject.Class.NPCStuff
         WarChicken =5,
         CaveToad = 6,
         SporeShooter = 7,
-        Goat = 8
+        Goat = 8,
+        Bee = 9
     }
 
     public class NPCGenerator
@@ -28,7 +29,8 @@ namespace SecretProject.Class.NPCStuff
             new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .2f),
 
              new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .4f),
-             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .3f),
+             //new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .3f),
+             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt, .7f, .9f, .3f),
 
 
         };
@@ -206,6 +208,8 @@ namespace SecretProject.Class.NPCStuff
                     return new SporeShooter("SporeShooter", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 case NPCType.Goat:
                     return new Goat("Goat", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                case NPCType.Bee:
+                    return new Bee("Bee", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 default:
                     return null;
             }
