@@ -59,6 +59,39 @@ namespace SecretProject.Class.QuestFolder
                     }
 
                 }, 8911));
+
+            AllWorldQuests.Add(2783, new WorldQuest(2783, "Repair Painter Statue?", "test", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 3184));
+
+            AllWorldQuests.Add(2787, new WorldQuest(2787, "Repair Meteor Statue?", "test", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 3088));
+
+            AllWorldQuests.Add(3078, new WorldQuest(3078, "Repair Bird Statue?", "test", new List<ItemsRequired>()
+                {
+                    new ItemsRequired()
+                    {
+                        ItemID = 680,
+                        Count = 2,
+
+                    }
+
+                }, 3379));
         }
 
         public WorldQuest RetrieveQuest(int id)

@@ -3638,6 +3638,8 @@
  </tile>
  <tile id="2783">
   <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
    <property name="newSource" value="-16,-48,64,64"/>
   </properties>
   <objectgroup draworder="index" id="3">
@@ -3646,6 +3648,8 @@
  </tile>
  <tile id="2787">
   <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -3863,6 +3867,24 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3078">
+  <properties>
+   <property name="action" value="triggerQuest"/>
+   <property name="addQuest" value=""/>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3087">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3092">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -3977,6 +3999,14 @@
    <property name="newSource" value="-16,-16,48,32"/>
    <property name="transparent" value="-16,-16, 48, 16"/>
   </properties>
+ </tile>
+ <tile id="3183">
+  <properties>
+   <property name="newSource" value="-16,-48,64,64"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3204">
   <objectgroup draworder="index" id="2">
@@ -4272,6 +4302,14 @@
    <property name="loot" value="484"/>
    <property name="step" value="3"/>
   </properties>
+ </tile>
+ <tile id="3378">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3392">
   <properties>
