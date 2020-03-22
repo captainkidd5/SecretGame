@@ -3873,11 +3873,17 @@
    <property name="addQuest" value=""/>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3087">
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3092">
   <properties>
@@ -3993,6 +3999,14 @@
    <property name="newSource" value="-16,-16,48,32"/>
    <property name="transparent" value="-16,-16, 48, 16"/>
   </properties>
+ </tile>
+ <tile id="3183">
+  <properties>
+   <property name="newSource" value="-16,-48,64,64"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3204">
   <objectgroup draworder="index" id="2">
@@ -4293,6 +4307,9 @@
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3392">
   <properties>
