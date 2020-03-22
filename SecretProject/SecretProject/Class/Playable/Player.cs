@@ -142,6 +142,8 @@ namespace SecretProject.Class.Playable
 
         public Wardrobe PlayerWardrobe { get; set; }
 
+        public WardrobeNew Wardrobe { get; set; }
+
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;
@@ -177,6 +179,7 @@ namespace SecretProject.Class.Playable
             this.KnockBackTimer = new SimpleTimer(1f);
 
             this.PlayerWardrobe = new Wardrobe(graphics,position);
+            this.Wardrobe = new WardrobeNew(graphics, position);
         }
 
         public ItemData GetCurrentEquippedToolData()
@@ -399,6 +402,8 @@ namespace SecretProject.Class.Playable
                 {
                     this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)controls.Direction, i];
                 }
+
+                this.Wardrobe.UpdateMovementAnimations(gameTime, position, )
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {

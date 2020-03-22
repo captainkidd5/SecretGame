@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable
 {
-    public enum ClothingType
+    public enum AnimationSet
     {
-        Hair = 1,
-        Shirt = 2,
-        Pants = 3,
-        Shoes = 4,
-        Base = 5
+        Running = 1,
+        Chopping = 2,
+        PickUp = 3,
+
     }
 
     public class WardrobeNew : ISaveable
     {
+
         public GraphicsDevice Graphics { get; set; }
 
 
@@ -94,7 +94,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, int currentFrame, bool setFrameZero = false)
+        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, int currentFrame)
         {
 
             this.CurrentAnimationSet.Update(gameTime, position, currentFrame);
@@ -104,6 +104,17 @@ namespace SecretProject.Class.Playable
         public void Draw(SpriteBatch spriteBatch)
         {
             this.CurrentAnimationSet.Draw(spriteBatch);
+        }
+
+        public void SwapAnimations(AnimationSet set)
+        {
+            switch (set)
+            {
+                case AnimationSet.Running:
+                    this.CurrentAnimationSet = RunSet;
+                    break;
+            }
+            
         }
 
         public void CycleClothing(ClothingLayer layer, Vector2 playerPosition, bool backwards = false)

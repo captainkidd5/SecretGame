@@ -16,7 +16,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         }
 
 
-        public override void Update(GameTime gameTime, Vector2 position, int currentFrame)
+        public override void Update(GameTime gameTime, Vector2 position)
         {
             for (int i = 0; i < Pieces.Count; i++)
             {
