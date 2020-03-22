@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable
 {
-    public enum AnimationSet
+    public enum AnimationType
     {
         Running = 1,
         Chopping = 2,
@@ -94,10 +95,10 @@ namespace SecretProject.Class.Playable
 
 
 
-        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, int currentFrame)
+        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position)
         {
 
-            this.CurrentAnimationSet.Update(gameTime, position, currentFrame);
+            this.CurrentAnimationSet.Update(gameTime, position);
 
         }
 
@@ -110,7 +111,7 @@ namespace SecretProject.Class.Playable
         {
             switch (set)
             {
-                case AnimationSet.Running:
+                case AnimationType.Running:
                     this.CurrentAnimationSet = RunSet;
                     break;
             }

@@ -403,7 +403,7 @@ namespace SecretProject.Class.Playable
                     this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)controls.Direction, i];
                 }
 
-                this.Wardrobe.UpdateMovementAnimations(gameTime, position, )
+                this.Wardrobe.UpdateMovementAnimations(gameTime, position);
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {

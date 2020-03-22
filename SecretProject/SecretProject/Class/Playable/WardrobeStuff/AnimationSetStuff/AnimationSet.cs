@@ -32,8 +32,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
         public virtual void Update(GameTime gameTime, Vector2 position)
         {
-            
 
+            RunTimer(gameTime);
             for(int i =0; i < Pieces.Count; i++)
             {
                 Pieces[i].Update(gameTime, position, this.CurrentFrame);
