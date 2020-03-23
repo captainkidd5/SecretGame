@@ -53,6 +53,7 @@ namespace SecretProject.Class.Playable
         public AnimationSet RunSet { get; set; }
 
         public AnimationSet CurrentAnimationSet { get; set; }
+        public Dir CurrentDirection { get; set; }
 
 
         public WardrobeNew(GraphicsDevice graphics, Vector2 playerPosition)
@@ -93,7 +94,10 @@ namespace SecretProject.Class.Playable
 
         }
 
+        public void UpdateCurrentDirection(Dir direction)
+        {
 
+        }
 
         public void UpdateMovementAnimations(GameTime gameTime, Vector2 position)
         {
@@ -158,17 +162,6 @@ namespace SecretProject.Class.Playable
             //}
         }
 
-        public void CycleBasicAnimations()
-        {
-            for (int i = 0; i < this.AllIndexes.Length; i++)
-            {
-
-                for (int j = 0; j < this.AllIndexes.Length; j++)
-                {
-                  //  BasicMovementAnimations[i, j].FirstFrameY = this.AllIndexes[j];
-                }
-            }
-        }
 
         public void Save(BinaryWriter writer)
         {

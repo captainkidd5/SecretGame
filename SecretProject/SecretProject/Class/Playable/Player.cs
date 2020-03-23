@@ -140,7 +140,7 @@ namespace SecretProject.Class.Playable
 
         public Vector2 WorldSquarePosition { get; set; }
 
-        public Wardrobe PlayerWardrobe { get; set; }
+
 
         public WardrobeNew Wardrobe { get; set; }
 
@@ -178,7 +178,7 @@ namespace SecretProject.Class.Playable
             this.DamageImmunityTimer = new SimpleTimer(1.5f);
             this.KnockBackTimer = new SimpleTimer(1f);
 
-            this.PlayerWardrobe = new Wardrobe(graphics,position);
+
             this.Wardrobe = new WardrobeNew(graphics, position);
         }
 
@@ -223,7 +223,7 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
-                    CurrentAction = PlayerWardrobe.SwipingAnimations;
+                  //  CurrentAction = PlayerWardrobe.SwipingAnimations;
                     this.AnimationDirection = controls.Direction;
                     this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
@@ -376,7 +376,7 @@ namespace SecretProject.Class.Playable
                 TestImmunity(gameTime);
                 if(IsMovingTowardsPoint)
                 {
-                    this.PlayerWardrobe.UpdateMovementAnimations(this.Position,true);   
+                   // this.PlayerWardrobe.UpdateMovementAnimations(this.Position,true);   
                     if(MoveTowardsPoint(this.MoveToPosition, 1f, gameTime))
                     {
                         this.IsMovingTowardsPoint = false;
@@ -398,10 +398,7 @@ namespace SecretProject.Class.Playable
                 {
                     KnockBack(gameTime);
                 }
-                for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-                {
-                    this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)controls.Direction, i];
-                }
+
 
                 this.Wardrobe.UpdateMovementAnimations(gameTime, position);
 
@@ -476,16 +473,7 @@ namespace SecretProject.Class.Playable
                         UserInterface.StaminaBar.IsDraining = false;
                         UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
                     }
-                    for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < PlayerWardrobe.BasicMovementAnimations.GetLength(1); j++)
-                        {
-                            PlayerWardrobe.BasicMovementAnimations[i, j].UpdateAnimationPosition(this.Position);
-                            PlayerWardrobe.BasicMovementAnimations[i, j].UpdateAnimations(gameTime, position);
-
-                        }
-
-                    }
+                  
 
                 }
                 else if (IsPerformingAction)
