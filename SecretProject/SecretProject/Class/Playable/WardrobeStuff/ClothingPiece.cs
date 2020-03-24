@@ -43,6 +43,16 @@ namespace SecretProject.Class.Playable
             
         }
 
+        public void MoveUpPixel(int currentFrame, int pixelAmt)
+        {
+            UpdateSourceRectangle(currentFrame, 0, pixelAmt * -1);
+        }
+
+        public void MoveDownPixel(int currentFrame, int pixelAmt)
+        {
+            UpdateSourceRectangle(currentFrame, 0, pixelAmt);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.Position, this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, this.LayerDepth);

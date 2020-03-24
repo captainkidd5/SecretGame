@@ -19,18 +19,21 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         public float AnimationSpeed { get; set; }
         public SimpleTimer AnimationTimer { get; set; }
 
+        public int[] DirectionStartingFrame { get; set; }
 
         public AnimationSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces)
         {
             this.Graphics = graphics;
             this.Pieces = clothingPieces;
 
-            this.Pieces = new List<ClothingPiece>();
+            this.Pieces = clothingPieces;
 
             AnimationTimer = new SimpleTimer(.15f);
+
+            
         }
 
-        public virtual void Update(GameTime gameTime, Vector2 position)
+        public virtual void Update(GameTime gameTime, Vector2 position, Dir direction)
         {
 
             RunTimer(gameTime);

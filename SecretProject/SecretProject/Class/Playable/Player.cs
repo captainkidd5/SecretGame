@@ -551,7 +551,7 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        private void MoveFromKeys()
+        private void MoveFromKeys(GameTime gameTime)
         {
             if (this.IsMoving && !IsPerformingAction)
             {
@@ -582,33 +582,21 @@ namespace SecretProject.Class.Playable
                 {
                     case SecondaryDir.Right:
                         PrimaryVelocity.X = Speed1;
-                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-                        {
-                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Right, i];
-                        }
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right);
                         break;
                     case SecondaryDir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-                        {
-                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Left, i];
-                        }
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left);
 
                         break;
                     case SecondaryDir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-                        {
-                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Down, i];
-                        }
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down);
 
                         break;
                     case SecondaryDir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-                        {
-                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Up, i];
-                        }
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up);
                         break;
 
                     default:

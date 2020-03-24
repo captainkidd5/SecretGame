@@ -99,10 +99,10 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position)
+        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, Dir direction)
         {
 
-            this.CurrentAnimationSet.Update(gameTime, position);
+            this.CurrentAnimationSet.Update(gameTime, position,  direction);
 
         }
 

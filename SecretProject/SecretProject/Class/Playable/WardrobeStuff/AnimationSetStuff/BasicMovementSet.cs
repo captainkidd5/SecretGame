@@ -12,10 +12,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
     {
         public BasicMovementSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces) : base(graphics, clothingPieces)
         {
-            this.DirectionStartingFrame = new int[4]
-            {
-
-            }
+            this.DirectionStartingFrame = new int[4];
         }
 
 
