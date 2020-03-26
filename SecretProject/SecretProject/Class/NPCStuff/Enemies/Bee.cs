@@ -35,7 +35,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.HitPoints = 2;
             this.DamageColor = Color.Yellow;
-            this.PossibleLoot = new List<ItemStuff.Loot>() { new Loot(215, 100) };
+            this.PossibleLoot = new List<ItemStuff.Loot>() { new Loot(296, 100) };
         }
     }
 }

@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable
 {
-    public enum AnimationType
-    {
-        Running = 1,
-        Chopping = 2,
-        PickUp = 3,
+    //public enum AnimationType
+    //{
+    //    Running = 1,
+    //    Chopping = 2,
+    //    PickUp = 3,
 
-    }
+    //}
 
     public class WardrobeNew : ISaveable
     {
@@ -91,7 +91,13 @@ namespace SecretProject.Class.Playable
 
             this.RunSet = new AnimationSet(graphics, this.BasicClothing);
 
+            this.CurrentAnimationSet = this.RunSet;
 
+        }
+
+        public void SetZero()
+        {
+            this.CurrentAnimationSet.CurrentFrame = 0;
         }
 
         public void UpdateCurrentDirection(Dir direction)
@@ -115,9 +121,9 @@ namespace SecretProject.Class.Playable
         {
             switch (set)
             {
-                case AnimationType.Running:
-                    this.CurrentAnimationSet = RunSet;
-                    break;
+                //case AnimationSet.Running:
+                //    this.CurrentAnimationSet = RunSet;
+                //    break;
             }
             
         }
@@ -179,7 +185,7 @@ namespace SecretProject.Class.Playable
             {
                 AllIndexes[z] = reader.ReadInt32();
             }
-            CycleBasicAnimations();
+           // CycleBasicAnimations();
             CycleSwipingClothing();
 
         }

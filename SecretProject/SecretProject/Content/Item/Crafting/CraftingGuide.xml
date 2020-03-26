@@ -230,7 +230,7 @@
                 <CraftingRecipes>
                 <!-- steel spring !-->
                  <Item Type="XMLData.ItemStuff.CraftingStuff.ItemRecipe">
-                        <ItemToCraftID>720</ItemToCraftID>
+                        <ItemToCraftID>760</ItemToCraftID>
                         <AllItemsRequired>
                             <Item Type="XMLData.ItemStuff.CraftingStuff.ItemsRequired">
 

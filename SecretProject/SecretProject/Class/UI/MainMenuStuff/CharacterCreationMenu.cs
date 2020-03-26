@@ -130,47 +130,47 @@ namespace SecretProject.Class.UI.MainMenuStuff
            
             if (HairFoward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (HairBackward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (ShirtForward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (ShirtBackward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (PantsForward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (PantsBackward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (ShoesForward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (ShoesBackward.isClicked)
             {
-                Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             if(WasClothingChanged)
             {
-                Game1.Player.PlayerWardrobe.UpdateMovementAnimations(this.PlayerPortraitDrawLocation, true);
+               // Game1.Player.Wardrobe.UpdateMovementAnimations(this.PlayerPortraitDrawLocation, true, Dir.Down);
             }
         }
 
@@ -181,10 +181,12 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            for(int i =0; i < Game1.Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-            {
-                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 54, this.PlayerPortraitDrawLocation.Y + 16), .9f - .01f * i,0f,5f);
-            }
+            //for(int i =0; i < Game1.Player.Wardrobe.BasicMovementAnimations.GetLength(1); i++)
+            //{
+            //    Game1.Player.Wardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 54, this.PlayerPortraitDrawLocation.Y + 16), .9f - .01f * i,0f,5f);
+            //}
+
+            Game1.Player.Wardrobe.Draw(spriteBatch);
 
             for (int i = 0; i < this.CustomizationButtons.Count; i++)
             {

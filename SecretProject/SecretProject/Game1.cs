@@ -758,7 +758,7 @@ namespace SecretProject
 
             }
  
-            Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
+            //Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
             if (GetStageFromInt(stageToSwitchTo) == OverWorld)
             {
                 Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
@@ -1086,20 +1086,20 @@ namespace SecretProject
                 Player.PlayerActionAnimations[i] = Player.Mining[0, i];
             }
 
-            Player.PlayerMovementAnimations = new Sprite[5];
-            for (int i = 0; i < Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-            {
-                Player.PlayerMovementAnimations[i] = Player.PlayerWardrobe.BasicMovementAnimations[0, i];
-            }
+            //Player.PlayerMovementAnimations = new Sprite[5];
+            //for (int i = 0; i < Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
+            //{
+            //    Player.PlayerMovementAnimations[i] = Player.PlayerWardrobe.BasicMovementAnimations[0, i];
+            //}
 
-            for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
-            {
-                Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
-                    (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
-                Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
-                    (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
+            //for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
+            //{
+            //    Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
+            //        (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
+            //    Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
+            //        (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
 
-            }
+            //}
         }
 
     }

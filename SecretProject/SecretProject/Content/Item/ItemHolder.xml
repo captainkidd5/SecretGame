@@ -263,6 +263,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Tanned Hide</Name>
+<ID>253</ID>
+<Description>Cleaned from sitting out in the sun all day.</Description>
+<InvMaximum>99</InvMaximum><Price>12</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Leather Hide</Name>
 <ID>254</ID>
 <Description>A tough leather material.</Description>
@@ -291,7 +298,12 @@
 <InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
-
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Stinger</Name>
+<ID>296</ID>
+<Description>A small, toxic spine.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+</Item>
 
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -608,7 +620,7 @@
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Spring</Name>
-<ID>720</ID>
+<ID>760</ID>
 <Description>A bouncy metal part.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
@@ -705,7 +717,7 @@
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Small)</Name>
-<ID>760</ID>
+<ID>800</ID>
 <Description>Julian thinks it's cute.</Description>
 <InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
@@ -727,7 +739,7 @@
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Large)</Name>
-<ID>800</ID>
+<ID>840</ID>
 <Description>Part of something bigger than itself.</Description>
 <InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
@@ -1055,6 +1067,15 @@
 <Description>Extracts ore from the ground.</Description>
 <InvMaximum>99</InvMaximum><Price>500</Price>
 <PlaceID>2341</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Drying Rack</Name>
+<ID>1207</ID>
+<Description>Extracts ore from the ground.</Description>
+<InvMaximum>99</InvMaximum><Price>500</Price>
+<PlaceID>4139</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 

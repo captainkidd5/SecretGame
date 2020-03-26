@@ -25,6 +25,7 @@ namespace SecretProject.Class.Playable
     public enum AnimationType
     {
         HandsPicking = 0,
+        Walking = 1,
         Chopping = 21,
         Mining = 22,
         Digging = 23,
@@ -400,7 +401,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                this.Wardrobe.UpdateMovementAnimations(gameTime, position);
+                this.Wardrobe.UpdateMovementAnimations(gameTime, position, controls.Direction);
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
@@ -498,10 +499,11 @@ namespace SecretProject.Class.Playable
 
                 else if (!CurrentAction[0, 0].IsAnimated && !this.IsMoving)
                 {
-                    for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
-                    {
-                        this.PlayerMovementAnimations[i].SetFrame(0);
-                    }
+                    Wardrobe.SetZero();
+                    //for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
+                    //{
+                    //    this.PlayerMovementAnimations[i].SetFrame(0);
+                    //}
 
                 }
 
@@ -514,7 +516,7 @@ namespace SecretProject.Class.Playable
                 }
                 if(EnableControls)
                 {
-                    MoveFromKeys();
+                    MoveFromKeys(gameTime);
                 }
                 
 
@@ -736,23 +738,21 @@ namespace SecretProject.Class.Playable
             if (this.IsDrawn)
             {
 
-
+                Wardrobe.Draw(spriteBatch);
                 if (!IsPerformingAction)
                 {
 
-                    for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
-                    {
-                        this.PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.PlayerMovementAnimations[i].destinationVector, this.PlayerMovementAnimations[i].LayerDepth + layerDepth);
+
                         if (this.IsMoving)
                         {
-                            if ((this.PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (this.PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
-                            {
-                                Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
-                            }
+                            //if ((this.PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (this.PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                            //{
+                            //    Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
+                            //}
                         }
 
-                        oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
-                    }
+                       // oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
+                    
 
                 }
 
@@ -930,14 +930,14 @@ namespace SecretProject.Class.Playable
         {
             writer.Write(this.Name);
             this.Inventory.Save(writer);
-            this.PlayerWardrobe.Save(writer);
+            this.Wardrobe.Save(writer);
         }
         public void Load(BinaryReader reader)
         {
             this.Name = reader.ReadString();
             this.Inventory = new Inventory();
             this.Inventory.Load(reader);
-            this.PlayerWardrobe.Load(reader);
+            this.Wardrobe.Load(reader);
         }
     }
 }

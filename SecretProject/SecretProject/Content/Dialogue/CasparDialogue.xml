@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.DialogueStuff.DialogueHolder">
+  <SpeakerID>12</SpeakerID>
+  <AllDialogue>
+<Item Type="XMLData.DialogueStuff.DialogueDay">
+<Month>Spring</Month>
+<Day>1</Day>
+<DialogueSkeletons> 
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Time>4AM</Time>
+   <TextToWrite>You're up early, $. I'm guessing you get great pleasure from watching the sunrise as well? `</TextToWrite>
+    <SelectableOptions>There really is something magical about it. ~I wholeheardtedly agree.,Not particularly~ ...Oh?</SelectableOptions>
+    </Item>
+    
+       <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>2</SpeechID>
+    <Time>7AM</Time>
+   <TextToWrite>Sarah's coffee is fantastic. If you're not into caffeine she also serves hot chocolate which I can personally vouch for.</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>3</SpeechID>
+    <Time>10AM</Time>
+   <TextToWrite>$, good to see you. How can I help? `</TextToWrite>
+   <SelectableOptions>I'd like to see what's for sale.~OpenDobbinShop,Nevermind.~ExitDialogue</SelectableOptions>
+     <RequiredLocation>DobbinShop</RequiredLocation>
+    </Item>
+  
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>4</SpeechID>
+    <Time>5PM</Time>
+   <TextToWrite>I'm starved.</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>5</SpeechID>
+    <Time>8PM</Time>
+   <TextToWrite>Will you be waking up early tomorrow? `</TextToWrite>
+       <SelectableOptions>Yep! ~The early bird gets the worm after all.,Probably not~ Well, everyone needs their rest I suppose.</SelectableOptions>
+    </Item>
+</DialogueSkeletons>
+</Item>
+  </AllDialogue>
+  </Asset>
+</XnaContent>
+
