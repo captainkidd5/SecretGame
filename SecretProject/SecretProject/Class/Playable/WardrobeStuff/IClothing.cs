@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable.WardrobeStuff
 {
-    interface IClothing
+    public interface IClothing
     {
-
+        void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

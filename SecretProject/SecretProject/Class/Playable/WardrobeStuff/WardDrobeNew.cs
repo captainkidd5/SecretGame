@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable.WardrobeStuff;
 using SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
@@ -38,12 +39,15 @@ namespace SecretProject.Class.Playable
         public int[] AllIndexes { get; set; }
 
 
-        public ClothingPiece Hair { get; set; }
-        public ClothingPiece Shirt { get; set; }
-        public ClothingPiece Pants { get; set; }
-        public ClothingPiece Shoes { get; set; }
+        public HairPiece Hair { get; set; }
+        public ShirtPiece ShirtPiece { get; set; }
+        public PantsPiece PantsPiece { get; set; }
+        public BodyPiece BodyPiece { get; set; }
+        //public ClothingPiece Shirt { get; set; }
+        //public ClothingPiece Pants { get; set; }
+        //public ClothingPiece Shoes { get; set; }
 
-        public List<ClothingPiece> BasicClothing { get; set; }
+        public List<IClothing> BasicClothing { get; set; }
 
         public float HairDepth { get; private set; }
         public float ShirtDepth { get; private set; }
@@ -71,9 +75,7 @@ namespace SecretProject.Class.Playable
                 ShoesIndex,
             };
 
-            this.HairDepth = 00000011f;
-            this.ShirtDepth = .00000010f;
-            this.PantsDepth = .00000009f;
+
             this.ShoesDepth = .00000008f;
 
             this.HairIndex = 0;
@@ -81,15 +83,14 @@ namespace SecretProject.Class.Playable
             this.PantsIndex = 0;
             this.ShoesIndex = 0;
 
-            this.Hair = new ClothingPiece(graphics, Game1.AllTextures.PlayerHair, Color.White, this.HairIndex, this.HairDepth);
-            this.Shirt = new ClothingPiece(graphics, Game1.AllTextures.PlayerShirt, Color.White, this.ShirtIndex, this.ShirtDepth);
-            this.Pants = new ClothingPiece(graphics, Game1.AllTextures.PlayerPants, Color.White, this.PantsIndex, this.PantsDepth);
-            this.Shoes = new ClothingPiece(graphics, Game1.AllTextures.PlayerShoes, Color.White, this.ShoesIndex, this.ShoesDepth);
+            Hair = new HairPiece();
+            ShirtPiece = new ShirtPiece();
+            PantsPiece = new PantsPiece();
+            BodyPiece = new BodyPiece();
+            this.BasicClothing = new List<IClothing>()
+            { Hair,ShirtPiece, PantsPiece,BodyPiece};
 
-            this.BasicClothing = new List<ClothingPiece>()
-            { Hair, Shirt, Pants, Shoes};
-
-            this.RunSet = new AnimationSet(graphics, this.BasicClothing);
+            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
 
             this.CurrentAnimationSet = this.RunSet;
 
@@ -105,10 +106,10 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, Dir direction)
+        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, Dir direction, bool isMoving)
         {
 
-            this.CurrentAnimationSet.Update(gameTime, position,  direction);
+            this.CurrentAnimationSet.Update(gameTime, position,  direction, isMoving);
 
         }
 
