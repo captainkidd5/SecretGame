@@ -157,7 +157,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 8), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 3), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
         public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)
