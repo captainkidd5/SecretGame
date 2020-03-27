@@ -215,6 +215,7 @@ namespace SecretProject
         public DialogueHolder NedDialogue;
         public DialogueHolder TealDialogue;
         public DialogueHolder MarcusDialogue;
+        public DialogueHolder CasparDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
@@ -225,6 +226,7 @@ namespace SecretProject
         public RouteSchedule NedRouteSchedule;
         public RouteSchedule TealRouteSchedule;
         public RouteSchedule MarcusRouteSchedule;
+        public RouteSchedule CasparRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
 
         public QuestHandler DobbinQuests;
@@ -238,6 +240,7 @@ namespace SecretProject
         public QuestHandler MarcusQuests;
         public QuestHandler SnawQuests;
         public QuestHandler BusinessSnailQuests;
+        public QuestHandler CasparQuests;
         
         
 
@@ -280,6 +283,7 @@ namespace SecretProject
         public static Ned Ned;
         public static Teal Teal;
         public static Marcus Marcus;
+        public static Caspar Caspar;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -390,6 +394,7 @@ namespace SecretProject
             NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
             TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
             MarcusDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
+            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
 
             DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
@@ -400,7 +405,9 @@ namespace SecretProject
             NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
             TealRouteSchedule = this.Content.Load<RouteSchedule>("Route/TealRouteSchedule");
             MarcusRouteSchedule = this.Content.Load<RouteSchedule>("Route/MarcusRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule, MarcusRouteSchedule };
+            CasparRouteSchedule = this.Content.Load<RouteSchedule>("Route/CasparRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,
+                JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule, MarcusRouteSchedule, CasparRouteSchedule };
             for (int i = 0; i < AllSchedules.Count; i++)
             {
                 foreach (Route route in AllSchedules[i].Routes)
@@ -410,7 +417,8 @@ namespace SecretProject
             }
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue,
+                BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue,CasparDialogue };
             foreach (DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
@@ -627,6 +635,7 @@ namespace SecretProject
             Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6],NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
             Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7],TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
             Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8],MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
+            Caspar = new Caspar("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], CasparQuests, AllTextures.CasparPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixir,
@@ -639,7 +648,8 @@ namespace SecretProject
                 Mippin,
                 Ned,
                 Teal,
-                Marcus
+                Marcus,
+                Caspar
             };
 
 

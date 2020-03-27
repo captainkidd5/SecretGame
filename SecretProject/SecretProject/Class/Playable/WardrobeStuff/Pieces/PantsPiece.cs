@@ -99,26 +99,26 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
-            int column = 2;
+            int column = 9;
 
             switch (currentFrame)
             {
                 case 0:
                     break;
                 case 1:
-                    yAdjustment = -1;
+                    xAdjustment = 16;
                     break;
 
                 case 2:
-                    yAdjustment = -2;
+                    xAdjustment = 32;
                     break;
                 case 3:
                     break;
                 case 4:
-                    yAdjustment = -1;
+                    xAdjustment = 16;
                     break;
                 case 5:
-                    yAdjustment = -2;
+                    xAdjustment = 32;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -128,26 +128,27 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
-            int column = 1;
+            int column = 3;
 
             switch (currentFrame)
             {
                 case 0:
                     break;
                 case 1:
-                    yAdjustment = -1;
+                    xAdjustment = 16;
                     break;
 
                 case 2:
-                    yAdjustment = -2;
+                    xAdjustment = 32;
                     break;
                 case 3:
+                    xAdjustment = 48;
                     break;
                 case 4:
-                    yAdjustment = -1;
+                    xAdjustment = 64;
                     break;
                 case 5:
-                    yAdjustment = -2;
+                    xAdjustment = 80;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -157,7 +158,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 16), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 18), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
         public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)

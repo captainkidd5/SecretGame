@@ -44,16 +44,11 @@ namespace SecretProject.Class.Playable
         public PantsPiece PantsPiece { get; set; }
         public BodyPiece BodyPiece { get; set; }
         public ShoesPiece ShoesPiece { get; set; }
-        //public ClothingPiece Shirt { get; set; }
-        //public ClothingPiece Pants { get; set; }
-        //public ClothingPiece Shoes { get; set; }
+        public ArmsPiece ArmsPiece { get; set; }
+
 
         public List<IClothing> BasicClothing { get; set; }
 
-        public float HairDepth { get; private set; }
-        public float ShirtDepth { get; private set; }
-        public float PantsDepth { get; private set; }
-        public float ShoesDepth { get; private set; }
 
         public AnimationSet RunSet { get; set; }
 
@@ -77,7 +72,6 @@ namespace SecretProject.Class.Playable
             };
 
 
-            this.ShoesDepth = .00000008f;
 
             this.HairIndex = 0;
             this.ShirtIndex = 0;
@@ -89,8 +83,9 @@ namespace SecretProject.Class.Playable
             PantsPiece = new PantsPiece();
             BodyPiece = new BodyPiece();
             ShoesPiece = new ShoesPiece();
+            ArmsPiece = new ArmsPiece();
             this.BasicClothing = new List<IClothing>()
-            { Hair,ShirtPiece, PantsPiece,BodyPiece,ShoesPiece};
+            { Hair,ShirtPiece, PantsPiece,BodyPiece,ShoesPiece, ArmsPiece};
 
             this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
 

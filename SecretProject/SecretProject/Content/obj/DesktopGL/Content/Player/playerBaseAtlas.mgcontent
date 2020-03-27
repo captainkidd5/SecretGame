@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/playerBaseAtlas.png</SourceFile>
-  <SourceTime>2020-03-12T15:01:22.0959977-10:00</SourceTime>
+  <SourceTime>2020-03-26T12:08:19.3893981-10:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Player/playerBaseAtlas.xnb</DestFile>
-  <DestTime>2020-03-26T11:12:31.1412064-10:00</DestTime>
+  <DestTime>2020-03-26T12:19:12.438741-10:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

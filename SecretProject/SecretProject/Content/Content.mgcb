@@ -60,6 +60,16 @@
 /processor:PassThroughProcessor
 /build:Dialogue/BusinessSnailDialogue.xml
 
+#begin Dialogue/CasparDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/CasparDialogue.xml
+
+#begin Dialogue/CasparDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/CasparDialogue.xml
+
 #begin Dialogue/DobbinDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -297,6 +307,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/BusinessSnail/BusinessSnailPortrait.png
+
+#begin NPC/Caspar/Caspar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Caspar/Caspar.png
+
+#begin NPC/Caspar/CasparPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Caspar/CasparPortrait.png
 
 #begin NPC/Dobbin/dobbinPortrait.png
 /importer:TextureImporter
@@ -645,6 +679,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Particles/smokeParticle.png
+
+#begin Player/armsAtlas.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/armsAtlas.png
 
 #begin Player/hairAtlas.png
 /importer:TextureImporter
@@ -1072,6 +1118,11 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:QuestStuff/TealQuests.xml
+
+#begin Route/CasparRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/CasparRouteSchedule.xml
 
 #begin Route/DobbinRouteSchedule.xml
 /importer:XmlImporter

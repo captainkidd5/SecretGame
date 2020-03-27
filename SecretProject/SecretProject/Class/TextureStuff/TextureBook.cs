@@ -20,6 +20,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D ShoesAtlas;
         public Texture2D HairAtlas;
         public Texture2D PantsAtlas;
+        public Texture2D ArmsAtlas;
 
         public Texture2D PlayerBase;
         public Texture2D PlayerHair;
@@ -98,6 +99,9 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D Marcus;
         public Texture2D MarcusPotrait;
+
+        public Texture2D Caspar;
+        public Texture2D CasparPortrait;
 
 
         //playeractions
@@ -248,6 +252,9 @@ namespace SecretProject.Class.TextureStuff
 
             Marcus = content.Load<Texture2D>("NPC/Marcus/Marcus");
             MarcusPotrait = content.Load<Texture2D>("NPC/Marcus/MarcusPortrait");
+
+            Caspar = content.Load<Texture2D>("NPC/Caspar/Caspar");
+            CasparPortrait = content.Load<Texture2D>("NPC/Caspar/CasparPortrait");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
