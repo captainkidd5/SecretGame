@@ -28,9 +28,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public ArmsPiece()
         {
-            this.Texture = Game1.AllTextures.ShoesAtlas;
-            this.Color = Color.White;
-            this.LayerDepth = .00000008f;
+            this.Texture = Game1.AllTextures.ArmsAtlas;
+            this.Color = Color.Green;
+            this.LayerDepth = .00000015f;
             this.SpriteEffects = SpriteEffects.None;
 
         }
@@ -85,12 +85,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     xAdjustment = 32;
                     break;
                 case 3:
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
                 case 4:
                     xAdjustment = 16;
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
                 case 5:
                     xAdjustment = 32;
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -157,7 +160,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y +4), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y +14), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
         public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)

@@ -172,6 +172,8 @@ namespace SecretProject.Class.TextureStuff
             ShirtAtlas = content.Load<Texture2D>("Player/shirtAtlas");
             PantsAtlas = content.Load<Texture2D>("Player/pantsAtlas");
             ShoesAtlas = content.Load<Texture2D>("Player/shoesAtlas");
+            ArmsAtlas = content.Load<Texture2D>("Player/armsAtlas");
+
 
             PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
             PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/playerHair");

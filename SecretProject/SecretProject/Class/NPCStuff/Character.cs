@@ -578,11 +578,21 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                             Portal portalTo = Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation);
                             if (portalTo != null)
                             {
-                                this.Position = new Vector2(portalTo.PortalStart.X ,
-                            portalTo.PortalStart.Y);
+                                
+                               
                                 Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
                                 this.CurrentStageLocation = (Stages)nodeToEndAt;
                                 Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
+                                if (CurrentStageLocation == Stages.OverWorld)
+                                {
+                                    this.Position = new Vector2(portalTo.PortalStart.X + 16,
+                           portalTo.PortalStart.Y + 32);
+                                }
+                                else
+                                {
+                                    this.Position = new Vector2(portalTo.PortalStart.X,
+                           portalTo.PortalStart.Y);
+                                }
                             }
 
                         }

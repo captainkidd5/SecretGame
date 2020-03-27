@@ -76,22 +76,28 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
+                    yAdjustment = -3;
                     break;
                 case 1:
-                    yAdjustment = -1;
+                    yAdjustment = -3;
                     break;
 
                 case 2:
-                    yAdjustment = -1;
+                    yAdjustment = -4;
                     break;
                 case 3:
+
+                    yAdjustment = -3;
                     break;
                 case 4:
-                    yAdjustment = -1;
+
+                    yAdjustment = -3;
                     break;
                 case 5:
-                    yAdjustment = -1;
+
+                    yAdjustment = -4;
                     break;
+
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
@@ -157,7 +163,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 14), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 12), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
         public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)

@@ -59,7 +59,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             if (AnimationTimer.Run(gameTime))
             {
                 this.CurrentFrame ++;
-                if (this.CurrentFrame >= this.TotalFrames)
+                if (this.CurrentFrame > this.TotalFrames)
                 {
                     this.CurrentFrame = 0;
                 }
