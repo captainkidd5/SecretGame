@@ -394,7 +394,7 @@ namespace SecretProject
             NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
             TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
             MarcusDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
-            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
+            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/CasparDialogue");
 
             DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
@@ -417,7 +417,8 @@ namespace SecretProject
             }
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue,
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,
+                JulianDialogue, SarahDialogue,
                 BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue,CasparDialogue };
             foreach (DialogueHolder holder in tempListHolder)
             {
@@ -447,6 +448,7 @@ namespace SecretProject
             NedQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/NedQuests"));
             SnawQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/SnawQuests"));
             BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
+            CasparQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/CasparQuests"));
 
             //PLAYERS
 
