@@ -105,21 +105,27 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
+                    yAdjustment = -1;
                     break;
                 case 1:
                     xAdjustment = 16;
+                    yAdjustment = -1;
                     break;
 
                 case 2:
                     xAdjustment = 32;
+                    yAdjustment = -1;
                     break;
                 case 3:
+                    yAdjustment = -1;
                     break;
                 case 4:
                     xAdjustment = 16;
+                    yAdjustment = -1;
                     break;
                 case 5:
                     xAdjustment = 32;
+                    yAdjustment = -1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -137,18 +143,22 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 1:
                     xAdjustment = 16;
+                    yAdjustment = -3;
                     break;
 
                 case 2:
                     xAdjustment = 32;
+                    yAdjustment = -3;
                     break;
                 case 3:
                     break;
                 case 4:
                     xAdjustment = 16;
+                    yAdjustment = -2;
                     break;
                 case 5:
                     xAdjustment = 32;
+                    yAdjustment = -2;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

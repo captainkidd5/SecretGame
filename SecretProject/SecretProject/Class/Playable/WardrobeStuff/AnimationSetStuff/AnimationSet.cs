@@ -28,7 +28,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
             this.Pieces = clothingPieces;
 
-            AnimationTimer = new SimpleTimer(.15f);
+            AnimationTimer = new SimpleTimer(.12f);
 
             this.TotalFrames = totalFrames;
         }
