@@ -42,7 +42,7 @@ namespace SecretProject.Class.Playable
         public HairPiece Hair { get; set; }
         public ShirtPiece ShirtPiece { get; set; }
         public PantsPiece PantsPiece { get; set; }
-        public BodyPiece BodyPiece { get; set; }
+        public HeadPiece BodyPiece { get; set; }
         public ShoesPiece ShoesPiece { get; set; }
         public ArmsPiece ArmsPiece { get; set; }
 
@@ -81,7 +81,7 @@ namespace SecretProject.Class.Playable
             Hair = new HairPiece();
             ShirtPiece = new ShirtPiece();
             PantsPiece = new PantsPiece();
-            BodyPiece = new BodyPiece();
+            BodyPiece = new HeadPiece();
             ShoesPiece = new ShoesPiece();
             ArmsPiece = new ArmsPiece();
             this.BasicClothing = new List<IClothing>()

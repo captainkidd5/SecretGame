@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable.WardrobeStuff
 {
-    public class ShirtPiece : IClothing, ISaveable
+    public class ShirtPiece : ClothingPiece
     {
-        public Texture2D Texture { get; set; }
 
-        public int Row { get; set; }
-        public int Column { get; set; }
-
-        public Vector2 Position { get; set; }
-        public Rectangle SourceRectangle { get; set; }
-
-        public int OldFrame { get; set; }
-        public Color Color { get; set; }
-        public float LayerDepth { get; set; }
-
-        public SpriteEffects SpriteEffects { get; set; }
 
         public ShirtPiece()
         {
@@ -32,6 +21,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Color = Color.White;
             this.LayerDepth = .00000010f;
             this.SpriteEffects = SpriteEffects.None;
+            this.Row = 0;
 
         }
         public void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)

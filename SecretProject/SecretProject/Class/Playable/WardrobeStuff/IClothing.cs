@@ -12,5 +12,6 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
         void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction);
         void Draw(SpriteBatch spriteBatch);
+        void Cycle(int direction);
     }
 }
