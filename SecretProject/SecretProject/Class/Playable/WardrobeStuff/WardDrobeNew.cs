@@ -56,6 +56,9 @@ namespace SecretProject.Class.Playable
         public AnimationSet CurrentAnimationSet { get; set; }
         public Dir CurrentDirection { get; set; }
 
+        public List<Color> SkinColors { get; set; }
+        public int SkinIndex { get; set; }
+
 
         public WardrobeNew(GraphicsDevice graphics, Vector2 playerPosition)
         {
@@ -92,6 +95,32 @@ namespace SecretProject.Class.Playable
 
             this.CurrentAnimationSet = this.RunSet;
 
+            this.SkinColors = new List<Color>()
+            {
+                new Color(141, 85, 36),
+                new Color(198, 134, 66),
+                new Color(224, 172, 105),
+                new Color(241, 194, 125),
+                new Color(255, 219, 172),
+
+            };
+
+        }
+
+        public void IncreaseSkinShade()
+        {
+            if(this.SkinIndex < this.SkinColors.Count - 1)
+            {
+                this.SkinIndex++;
+            }
+            else
+            {
+                this.SkinIndex = 0;
+            }
+
+            this.BodyPiece.Color = this.SkinColors[this.SkinIndex];
+
+            this.ArmsPiece.Color = this.SkinColors[this.SkinIndex];
         }
 
         public void SetZero()

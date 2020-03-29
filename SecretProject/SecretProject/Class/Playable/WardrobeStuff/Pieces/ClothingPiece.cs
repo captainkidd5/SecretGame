@@ -89,6 +89,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.SourceRectangle = new Rectangle(column * 16 + xAdjustment, this.Row * 16 + yAdjustment, 16, 16);
         }
 
+        public virtual void ChangeColor()
+        {
+            this.Color = new Color(100, 100, 100);
+        }
+
         public void Load(BinaryReader reader)
         {
             throw new NotImplementedException();
