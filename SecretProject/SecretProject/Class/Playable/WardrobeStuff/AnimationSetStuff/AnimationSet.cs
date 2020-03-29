@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
     public class AnimationSet
     {
         public GraphicsDevice Graphics { get; set; }
-        public List<IClothing> Pieces { get; set; }
+        public List<ClothingPiece> Pieces { get; set; }
         public int CurrentFrame { get; set; }
         public int TotalFrames { get; set; }
         public float AnimationSpeed { get; set; }
@@ -21,7 +22,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
         public int[] DirectionStartingFrame { get; set; }
 
-        public AnimationSet(GraphicsDevice graphics, List<IClothing> clothingPieces, int totalFrames)
+        public AnimationSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames)
         {
             this.Graphics = graphics;
             this.Pieces = clothingPieces;

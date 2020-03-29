@@ -21,43 +21,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Color = Color.White;
             this.LayerDepth = .00000009f;
             this.SpriteEffects = SpriteEffects.None;
-
+            this.BaseYOffSet = 18;
         }
-        public void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
-        {
-
-            if (this.OldFrame != currentFrame)
-            {
-                switch (direction)
-                {
-                    case Dir.Down:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateDown(currentFrame);
-                        break;
-                    case Dir.Up:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateUp(currentFrame);
-                        break;
-                    case Dir.Left:
-                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
-                        UpdateRight(currentFrame);
-                        break;
-                    case Dir.Right:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateRight(currentFrame);
-                        break;
-
-                }
-
-
-            }
-            this.Position = position;
-
-            this.OldFrame = currentFrame;
-
-        }
+        
         #region DIRECTION UPDATES
-        public void UpdateDown(int currentFrame)
+        public override void UpdateDown(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -90,7 +58,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
-        public void UpdateUp(int currentFrame)
+        public override void UpdateUp(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -127,7 +95,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
-        public void UpdateRight(int currentFrame)
+        public override void UpdateRight(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;

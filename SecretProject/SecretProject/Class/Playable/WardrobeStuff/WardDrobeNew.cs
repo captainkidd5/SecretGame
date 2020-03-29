@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff;
 using SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff;
+using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -47,7 +48,7 @@ namespace SecretProject.Class.Playable
         public ArmsPiece ArmsPiece { get; set; }
 
 
-        public List<IClothing> BasicClothing { get; set; }
+        public List<ClothingPiece> BasicClothing { get; set; }
 
 
         public AnimationSet RunSet { get; set; }
@@ -84,7 +85,7 @@ namespace SecretProject.Class.Playable
             BodyPiece = new HeadPiece();
             ShoesPiece = new ShoesPiece();
             ArmsPiece = new ArmsPiece();
-            this.BasicClothing = new List<IClothing>()
+            this.BasicClothing = new List<ClothingPiece>()
             { Hair,ShirtPiece, PantsPiece,BodyPiece,ShoesPiece, ArmsPiece};
 
             this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);

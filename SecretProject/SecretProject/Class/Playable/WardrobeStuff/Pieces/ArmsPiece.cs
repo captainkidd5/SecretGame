@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable.WardrobeStuff
 {
-    public class ArmsPiece : IClothing, ISaveable
+    public class ArmsPiece : ClothingPiece
     {
-        public Texture2D Texture { get; set; }
 
-        public int Row { get; set; }
-        public int Column { get; set; }
-
-        public Vector2 Position { get; set; }
-        public Rectangle SourceRectangle { get; set; }
-
-        public int OldFrame { get; set; }
-        public Color Color { get; set; }
-        public float LayerDepth { get; set; }
-
-        public SpriteEffects SpriteEffects { get; set; }
 
         public ArmsPiece()
         {
@@ -32,43 +21,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Color = Color.Green;
             this.LayerDepth = .00000015f;
             this.SpriteEffects = SpriteEffects.None;
-
+            this.BaseYOffSet = 12;
         }
-        public void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
-        {
 
-            if (this.OldFrame != currentFrame)
-            {
-                switch (direction)
-                {
-                    case Dir.Down:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateDown(currentFrame);
-                        break;
-                    case Dir.Up:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateUp(currentFrame);
-                        break;
-                    case Dir.Left:
-                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
-                        UpdateRight(currentFrame);
-                        break;
-                    case Dir.Right:
-                        this.SpriteEffects = SpriteEffects.None;
-                        UpdateRight(currentFrame);
-                        break;
-
-                }
-
-
-            }
-            this.Position = position;
-
-            this.OldFrame = currentFrame;
-
-        }
         #region DIRECTION UPDATES
-        public void UpdateDown(int currentFrame)
+        public override void UpdateDown(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -98,7 +55,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
-        public void UpdateUp(int currentFrame)
+        public override void UpdateUp(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -129,7 +86,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
-        public void UpdateRight(int currentFrame)
+        public override void UpdateRight(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -166,24 +123,5 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         #endregion
 
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y +14), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
-        }
-
-        public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)
-        {
-            this.SourceRectangle = new Rectangle(column * 16 + xAdjustment, this.Row * 16 + yAdjustment, 16, 16);
-        }
-
-        public void Save(BinaryWriter writer)
-        {
-            writer.Write(this.Row);
-        }
-
-        public void Load(BinaryReader reader)
-        {
-            this.Row = reader.ReadInt32();
-        }
     }
 }

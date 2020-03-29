@@ -25,14 +25,61 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public float LayerDepth { get; set; }
 
         public SpriteEffects SpriteEffects { get; set; }
+        public int BaseYOffSet { get; set; }
+
         public virtual void Cycle(int direction)
         {
             this.Row += direction;
         }
 
+        public void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
+        {
+
+            if (this.OldFrame != currentFrame)
+            {
+                switch (direction)
+                {
+                    case Dir.Down:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateDown(currentFrame);
+                        break;
+                    case Dir.Up:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateUp(currentFrame);
+                        break;
+                    case Dir.Left:
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                        UpdateRight(currentFrame);
+                        break;
+                    case Dir.Right:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateRight(currentFrame);
+                        break;
+
+                }
+
+
+            }
+            this.Position = position;
+
+            this.OldFrame = currentFrame;
+
+        }
+        public virtual void UpdateDown(int currentFrame)
+        {
+        }
+
+        public virtual void UpdateUp(int currentFrame)
+        {
+        }
+
+        public virtual void UpdateRight(int currentFrame)
+        {
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + 18), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
         
