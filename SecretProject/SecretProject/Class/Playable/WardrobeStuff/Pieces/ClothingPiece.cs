@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.UI.MainMenuStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,9 +29,17 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public SpriteEffects SpriteEffects { get; set; }
         public int BaseYOffSet { get; set; }
 
-        public virtual void Cycle(int direction)
+        public virtual void Cycle(CycleDirection direction)
         {
-            this.Row += direction;
+            this.Row += (int)direction;
+            if(Row >= this.SourceRectangle.Height / 16)
+            {
+                this.Row = 0;
+            }
+            else if(this.Row <0)
+            {
+                this.Row = this.SourceRectangle.Height / 16;
+            }
         }
 
         public void Update(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
@@ -68,6 +77,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         }
         public virtual void UpdateDown(int currentFrame)
         {
+            
         }
 
         public virtual void UpdateUp(int currentFrame)

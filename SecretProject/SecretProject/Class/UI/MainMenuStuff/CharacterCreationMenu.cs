@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI.MainMenuStuff
 {
+    public enum CycleDirection
+    {
+        Backward = -1,
+        Forward = 1
+    }
     public class CharacterCreationMenu
     {
         public SaveSlot CurrentSaveSlot { get; set; }
@@ -132,42 +137,44 @@ namespace SecretProject.Class.UI.MainMenuStuff
            
             if (HairFoward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.Hair.Cycle(CycleDirection.Forward);
                 WasClothingChanged = true;
             }
             else if (HairBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing( this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.Hair.Cycle(CycleDirection.Backward);
                 WasClothingChanged = true;
             }
             else if (ShirtForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.ShirtPiece.Cycle(CycleDirection.Forward);
                 WasClothingChanged = true;
             }
             else if (ShirtBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
+
+                Game1.Player.Wardrobe.ShirtPiece.Cycle(CycleDirection.Backward);
                 WasClothingChanged = true;
             }
             else if (PantsForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Forward);
+
                 WasClothingChanged = true;
             }
             else if (PantsBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Backward);
                 WasClothingChanged = true;
             }
             else if (ShoesForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Forward);
                 WasClothingChanged = true;
             }
             else if (ShoesBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Backward);
                 WasClothingChanged = true;
             }
             if(WasClothingChanged)
