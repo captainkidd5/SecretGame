@@ -22,6 +22,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.LayerDepth = .000000007f;
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 2;
+            this.Scale = 1f;
         }
 
         #region DIRECTION UPDATES

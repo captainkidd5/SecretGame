@@ -55,7 +55,23 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             }
         }
 
-       public virtual void RunTimer(GameTime gameTime)
+        public void UpdateSourceRectangles()
+        {
+            for (int i = 0; i < Pieces.Count; i++)
+            {
+                Pieces[i].UpdateDown(0);
+            }
+        }
+
+        public virtual void DrawForCreationMenu(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < Pieces.Count; i++)
+            {
+                Pieces[i].DrawForCreationWindow(spriteBatch);
+            }
+        }
+
+        public virtual void RunTimer(GameTime gameTime)
         {
             if (AnimationTimer.Run(gameTime))
             {

@@ -145,6 +145,16 @@ namespace SecretProject.Class.Playable
             this.CurrentAnimationSet.Draw(spriteBatch);
         }
 
+        public void UpdateForCreationMenu()
+        {
+            this.CurrentAnimationSet.UpdateSourceRectangles();
+        }
+
+        public void DrawForCreationMenu(SpriteBatch spriteBatch)
+        {
+            this.CurrentAnimationSet.DrawForCreationMenu(spriteBatch);
+        }
+
         public void SwapAnimations(AnimationSet set)
         {
             switch (set)
@@ -156,7 +166,7 @@ namespace SecretProject.Class.Playable
             
         }
 
-        public void CycleClothing(ClothingLayer layer, Vector2 playerPosition, bool backwards = false)
+        public void CycleClothing( Vector2 playerPosition, bool backwards = false)
         {
             int frameChangeAmt = 32;
             ///if (backwards)

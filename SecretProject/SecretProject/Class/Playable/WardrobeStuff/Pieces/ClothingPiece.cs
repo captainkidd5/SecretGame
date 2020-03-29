@@ -19,6 +19,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 
         public Vector2 Position { get; set; }
         public Rectangle SourceRectangle { get; set; }
+        public float Scale { get; set; }
 
         public int OldFrame { get; set; }
         public Color Color { get; set; }
@@ -79,10 +80,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, 1f, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .5f + this.LayerDepth);
         }
 
-        
+        public virtual void DrawForCreationWindow(SpriteBatch spriteBatch)
+        {
+            this.Scale = 6f;
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f);
+        }
+
 
         public void UpdateSourceRectangle(int column, int xAdjustment = 0, int yAdjustment = 0)
         {

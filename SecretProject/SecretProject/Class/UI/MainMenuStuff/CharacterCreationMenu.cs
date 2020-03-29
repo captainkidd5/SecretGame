@@ -109,8 +109,10 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.StartNewGameButton.Update(Game1.MouseManager);
             this.TypingWindow.Update(gameTime);
             this.PlayerName = TypingWindow.EnteredString;
+            Game1.Player.Wardrobe.UpdateForCreationMenu();
+            Game1.Player.Wardrobe.UpdateMovementAnimations(gameTime, this.PlayerPortraitDrawLocation, Dir.Down, false);
 
-            if(this.StartNewGameButton.isClicked)
+            if (this.StartNewGameButton.isClicked)
             {
                 if(this.PlayerName == string.Empty)
                 {
@@ -130,42 +132,42 @@ namespace SecretProject.Class.UI.MainMenuStuff
            
             if (HairFoward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (HairBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Hair, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing( this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (ShirtForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (ShirtBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shirt, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (PantsForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (PantsBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Pants, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             else if (ShoesForward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation);
                 WasClothingChanged = true;
             }
             else if (ShoesBackward.isClicked)
             {
-                Game1.Player.Wardrobe.CycleClothing(Playable.ClothingLayer.Shoes, this.PlayerPortraitDrawLocation, true);
+                Game1.Player.Wardrobe.CycleClothing(this.PlayerPortraitDrawLocation, true);
                 WasClothingChanged = true;
             }
             if(WasClothingChanged)
@@ -181,12 +183,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            //for(int i =0; i < Game1.Player.Wardrobe.BasicMovementAnimations.GetLength(1); i++)
-            //{
-            //    Game1.Player.Wardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 54, this.PlayerPortraitDrawLocation.Y + 16), .9f - .01f * i,0f,5f);
-            //}
 
-            Game1.Player.Wardrobe.Draw(spriteBatch);
+
+            Game1.Player.Wardrobe.DrawForCreationMenu(spriteBatch);
 
             for (int i = 0; i < this.CustomizationButtons.Count; i++)
             {

@@ -23,6 +23,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.SpriteEffects = SpriteEffects.None;
             this.Row = 0;
             this.BaseYOffSet = 12;
+            this.Scale = 1f;
 
         }
 
