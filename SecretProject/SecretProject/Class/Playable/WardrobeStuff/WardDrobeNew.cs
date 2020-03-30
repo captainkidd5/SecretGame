@@ -64,22 +64,6 @@ namespace SecretProject.Class.Playable
 
 
             this.MaxSpriteIndex = 64;
-
-
-
-            Hair = new HairPiece();
-            ShirtPiece = new ShirtPiece();
-            PantsPiece = new PantsPiece();
-            HeadPiece = new HeadPiece();
-            ShoesPiece = new ShoesPiece();
-            ArmsPiece = new ArmsPiece();
-            this.BasicClothing = new List<ClothingPiece>()
-            { Hair,ShirtPiece, PantsPiece,HeadPiece,ShoesPiece, ArmsPiece};
-
-            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
-
-            this.CurrentAnimationSet = this.RunSet;
-
             this.SkinColors = new List<Color>()
             {
                 new Color(141, 85, 36),
@@ -95,6 +79,22 @@ namespace SecretProject.Class.Playable
                 new Color(139,69,19),//saddle brown
                 new Color(218,165,32) //goldenrod
             };
+
+
+            Hair = new HairPiece(this.HairColors[0]);
+            ShirtPiece = new ShirtPiece(Color.Red);
+            PantsPiece = new PantsPiece(Color.Blue);
+            HeadPiece = new HeadPiece(this.SkinColors[2]);
+            ShoesPiece = new ShoesPiece(Color.Brown);
+            ArmsPiece = new ArmsPiece(this.SkinColors[2]);
+            this.BasicClothing = new List<ClothingPiece>()
+            { Hair,ShirtPiece, PantsPiece,HeadPiece,ShoesPiece, ArmsPiece};
+
+            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
+
+            this.CurrentAnimationSet = this.RunSet;
+
+           
 
         }
 

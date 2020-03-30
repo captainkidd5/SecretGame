@@ -31,9 +31,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 
         //COLORS
         public Color Color { get; set; }
-        public int RedValue { get; set; }
-        public int GreenValue { get; set; }
-        public int BlueValue { get; set; }
+
+        public ClothingPiece(Color defaultColor)
+        {
+            this.Color = defaultColor;
+        }
 
         public virtual void Cycle(CycleDirection direction)
         {
@@ -119,15 +121,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public void Load(BinaryReader reader)
         {
             this.Row = reader.ReadInt32();
-            this.Color = new Color(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+            this.Color = new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
         }
 
         public void Save(BinaryWriter writer)
         {
             writer.Write(this.Row);
-            writer.Write(this.RedValue);
-            writer.Write(this.GreenValue);
-            writer.Write(this.BlueValue);
+            writer.Write(this.Color.R);
+            writer.Write(this.Color.G);
+            writer.Write(this.Color.B);
             
         }
     }

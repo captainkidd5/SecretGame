@@ -15,7 +15,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public ShirtPiece()
+        public ShirtPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.ShirtAtlas;
             this.Color = Color.White;
@@ -24,6 +24,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Row = 0;
             this.BaseYOffSet = 12;
             this.Scale = 1f;
+
+            this.Color = defaultColor;
 
         }
 

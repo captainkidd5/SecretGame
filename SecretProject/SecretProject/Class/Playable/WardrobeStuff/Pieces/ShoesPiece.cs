@@ -15,7 +15,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public ShoesPiece()
+        public ShoesPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.ShoesAtlas;
             this.Color = Color.Brown;
@@ -23,6 +23,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 15;
             this.Scale = 1f;
+
+
         }
 
         #region DIRECTION UPDATES

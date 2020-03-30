@@ -15,7 +15,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public HeadPiece()
+        public HeadPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.PlayerBaseAtlas;
             this.Color = Color.White;
@@ -24,9 +24,10 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.BaseYOffSet = 2;
             this.Scale = 1f;
 
-            this.RedValue = 255;
-            this.GreenValue = 255;
-            this.BlueValue = 255;
+
+
+
+            this.Color = defaultColor;
         }
 
         #region DIRECTION UPDATES

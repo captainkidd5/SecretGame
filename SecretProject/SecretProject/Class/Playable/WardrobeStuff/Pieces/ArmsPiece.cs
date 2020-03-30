@@ -15,7 +15,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public ArmsPiece()
+        public ArmsPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.ArmsAtlas;
             this.Color = Color.Green;
@@ -24,9 +24,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.BaseYOffSet = 12;
             this.Scale = 1f;
 
-            this.RedValue = 255;
-            this.GreenValue = 255;
-            this.BlueValue = 255;
+            this.Color = defaultColor;
+
         }
 
         #region DIRECTION UPDATES

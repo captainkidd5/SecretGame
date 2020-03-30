@@ -15,7 +15,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public HairPiece()
+        public HairPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.HairAtlas;
             this.Color = Color.White;
@@ -24,9 +24,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.BaseYOffSet = 0;
             this.Scale = 1f;
 
-            this.RedValue = 255;
-            this.GreenValue = 255;
-            this.BlueValue = 255;
+    
+
+            this.Color = defaultColor;
         }
 
         #region DIRECTION UPDATES
