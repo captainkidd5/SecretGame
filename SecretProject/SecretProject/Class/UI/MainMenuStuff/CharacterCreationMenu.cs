@@ -46,6 +46,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Button SkinToneForward { get; set; }
         public Button SkinToneBackWard { get; set; }
 
+        public Button HairColorForward { get; set; }
+        public Button HairColorBackward { get; set; }
+
         public List<Button> CustomizationButtons { get; set; }
 
         public Vector2 PlayerPortraitDrawLocation { get; set; }
@@ -76,29 +79,34 @@ namespace SecretProject.Class.UI.MainMenuStuff
             Vector2 customizationButtonPosition = new Vector2(PlayerPortraitDrawLocation.X + this.CharacterPortraitWindow.Width / 4 * Scale, PlayerPortraitDrawLocation.Y + this.CharacterPortraitWindow.Height  * this.Scale);
           
             this.HairFoward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y), CursorType.Normal, this.Scale - 1);
             this.HairBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y), CursorType.Normal, this.Scale - 1);
 
             this.ShirtForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
-              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 64), CursorType.Normal, this.Scale);
+              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 32), CursorType.Normal, this.Scale - 1);
             this.ShirtBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 64), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 32), CursorType.Normal, this.Scale - 1);
 
             this.PantsForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
-              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 128), CursorType.Normal, this.Scale);
+              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 64), CursorType.Normal, this.Scale - 1);
             this.PantsBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 128), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 64), CursorType.Normal, this.Scale - 1);
 
             this.ShoesForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
-              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 192), CursorType.Normal, this.Scale);
+              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 96), CursorType.Normal, this.Scale - 1);
             this.ShoesBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 192), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 96), CursorType.Normal, this.Scale - 1);
 
             this.SkinToneForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
-              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 256), CursorType.Normal, this.Scale);
+              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 128), CursorType.Normal, this.Scale - 1);
             this.SkinToneBackWard = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
-               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 256), CursorType.Normal, this.Scale);
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 128), CursorType.Normal, this.Scale - 1);
+
+            this.HairColorForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
+             new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 160), CursorType.Normal, this.Scale - 1);
+            this.HairColorBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 160), CursorType.Normal, this.Scale - 1);
 
             this.CustomizationButtons = new List<Button>()
             {
@@ -111,7 +119,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 ShoesForward,
                 ShoesBackward,
                 SkinToneForward,
-                SkinToneBackWard
+                SkinToneBackWard,
+                HairColorForward,
+                HairColorBackward
             };
 
 
@@ -195,6 +205,14 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
                 Game1.Player.Wardrobe.ChangeSkin(CycleDirection.Backward);
             }
+            else if(HairColorForward.isClicked)
+            {
+                Game1.Player.Wardrobe.ChangeHairColor(CycleDirection.Forward);
+            }
+            else if(HairColorBackward.isClicked)
+            {
+                Game1.Player.Wardrobe.ChangeHairColor(CycleDirection.Backward);
+            }
             if(WasClothingChanged)
             {
                // Game1.Player.Wardrobe.UpdateMovementAnimations(this.PlayerPortraitDrawLocation, true, Dir.Down);
@@ -229,7 +247,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shirt", new Vector2(ShirtForward.Position.X - 96, ShirtForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Pants", new Vector2(PantsForward.Position.X - 96, PantsForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shoes", new Vector2(ShoesForward.Position.X - 96, ShoesForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(ShoesForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(SkinToneForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair Color", new Vector2(HairColorForward.Position.X - 96, HairColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
         }
     }
 }

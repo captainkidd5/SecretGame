@@ -38,7 +38,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public virtual void Cycle(CycleDirection direction)
         {
             this.Row += (int)direction;
-            if(Row >= this.SourceRectangle.Height / 16)
+            if(Row > this.SourceRectangle.Height / 16)
             {
                 this.Row = 0;
             }

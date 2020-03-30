@@ -101,31 +101,31 @@ namespace SecretProject.Class.Playable
         public void ChangeHairColor(CycleDirection direction)
         {
             this.HairIndex += (int)direction;
-            if (this.SkinIndex < this.SkinColors.Count - 1)
+            if (this.HairIndex < this.HairColors.Count)
             {
-                this.SkinIndex++;
+               // this.HairIndex++;
             }
             else
             {
-                this.SkinIndex = 0;
+                this.HairIndex = 0;
             }
 
-            if (this.SkinIndex < 0)
+            if (this.HairIndex < 0)
             {
-                this.SkinIndex = this.SkinColors.Count - 1;
+                this.HairIndex = this.HairColors.Count - 1;
             }
 
-            this.HeadPiece.Color = this.SkinColors[this.SkinIndex];
+            this.Hair.Color = this.HairColors[this.HairIndex];
 
-            this.ArmsPiece.Color = this.SkinColors[this.SkinIndex];
+
         }
 
         public void ChangeSkin(CycleDirection direction)
         {
             this.SkinIndex += (int)direction;
-            if(this.SkinIndex < this.SkinColors.Count - 1)
+            if(this.SkinIndex < this.SkinColors.Count)
             {
-                this.SkinIndex++;
+              //  this.SkinIndex++;
             }
             else
             {
