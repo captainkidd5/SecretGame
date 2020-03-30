@@ -23,6 +23,10 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 12;
             this.Scale = 1f;
+
+            this.RedValue = 255;
+            this.GreenValue = 255;
+            this.BlueValue = 255;
         }
 
         #region DIRECTION UPDATES

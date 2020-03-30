@@ -23,11 +23,17 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public float Scale { get; set; }
 
         public int OldFrame { get; set; }
-        public Color Color { get; set; }
+        
         public float LayerDepth { get; set; }
 
         public SpriteEffects SpriteEffects { get; set; }
         public int BaseYOffSet { get; set; }
+
+        //COLORS
+        public Color Color { get; set; }
+        public int RedValue { get; set; }
+        public int GreenValue { get; set; }
+        public int BlueValue { get; set; }
 
         public virtual void Cycle(CycleDirection direction)
         {
@@ -105,19 +111,24 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.SourceRectangle = new Rectangle(column * 16 + xAdjustment, this.Row * 16 + yAdjustment, 16, 16);
         }
 
-        public virtual void ChangeColor()
+        public virtual void ChangeColor(int red, int green, int blue)
         {
-            this.Color = new Color(100, 100, 100);
+            this.Color = new Color(red, green, blue);
         }
 
         public void Load(BinaryReader reader)
         {
-            throw new NotImplementedException();
+            this.Row = reader.ReadInt32();
+            this.Color = new Color(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
         }
 
         public void Save(BinaryWriter writer)
         {
-            throw new NotImplementedException();
+            writer.Write(this.Row);
+            writer.Write(this.RedValue);
+            writer.Write(this.GreenValue);
+            writer.Write(this.BlueValue);
+            
         }
     }
 }

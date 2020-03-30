@@ -43,6 +43,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Button ShoesForward { get; set; }
         public Button ShoesBackward { get; set; }
 
+        public Button SkinToneForward { get; set; }
+        public Button SkinToneBackWard { get; set; }
+
         public List<Button> CustomizationButtons { get; set; }
 
         public Vector2 PlayerPortraitDrawLocation { get; set; }
@@ -92,6 +95,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.ShoesBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
                new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 192), CursorType.Normal, this.Scale);
 
+            this.SkinToneForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
+              new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 256), CursorType.Normal, this.Scale);
+            this.SkinToneBackWard = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 256), CursorType.Normal, this.Scale);
+
             this.CustomizationButtons = new List<Button>()
             {
                 HairFoward,
@@ -101,7 +109,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 PantsForward,
                 PantsBackward,
                 ShoesForward,
-                ShoesBackward
+                ShoesBackward,
+                SkinToneForward,
+                SkinToneBackWard
             };
 
 
@@ -177,6 +187,14 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Backward);
                 WasClothingChanged = true;
             }
+            else if(SkinToneForward.isClicked)
+            {
+                Game1.Player.Wardrobe.ChangeSkin(CycleDirection.Forward);
+            }
+            else if(SkinToneBackWard.isClicked)
+            {
+                Game1.Player.Wardrobe.ChangeSkin(CycleDirection.Backward);
+            }
             if(WasClothingChanged)
             {
                // Game1.Player.Wardrobe.UpdateMovementAnimations(this.PlayerPortraitDrawLocation, true, Dir.Down);
@@ -186,6 +204,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void EnterGame()
         {
             Game1.Player.Name = char.ToUpper(this.PlayerName[0]) + this.PlayerName.Substring(1).ToLower();
+            Game1.Player.Wardrobe.SetScale(1);
             this.CurrentSaveSlot.StartNewSave();
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -210,6 +229,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shirt", new Vector2(ShirtForward.Position.X - 96, ShirtForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Pants", new Vector2(PantsForward.Position.X - 96, PantsForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shoes", new Vector2(ShoesForward.Position.X - 96, ShoesForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(ShoesForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
         }
     }
 }

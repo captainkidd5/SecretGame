@@ -47,6 +47,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
                 Pieces[i].Update(gameTime, position, this.CurrentFrame, direction);
             }
         }
+
+        public void SetScale(int scale)
+        {
+            for (int i = 0; i < Pieces.Count; i++)
+            {
+                Pieces[i].Scale = scale;
+            }
+        }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < Pieces.Count; i++)

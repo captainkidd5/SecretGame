@@ -5,6 +5,7 @@ using SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.UI.MainMenuStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,18 +33,12 @@ namespace SecretProject.Class.Playable
 
 
 
-        public int HairIndex { get; set; }
-        public int ShirtIndex { get; set; }
-        public int PantsIndex { get; set; }
-        public int ShoesIndex { get; set; }
-
-        public int[] AllIndexes { get; set; }
 
 
         public HairPiece Hair { get; set; }
         public ShirtPiece ShirtPiece { get; set; }
         public PantsPiece PantsPiece { get; set; }
-        public HeadPiece BodyPiece { get; set; }
+        public HeadPiece HeadPiece { get; set; }
         public ShoesPiece ShoesPiece { get; set; }
         public ArmsPiece ArmsPiece { get; set; }
 
@@ -59,6 +54,9 @@ namespace SecretProject.Class.Playable
         public List<Color> SkinColors { get; set; }
         public int SkinIndex { get; set; }
 
+        public List<Color> HairColors { get; set; }
+        public int HairIndex { get; set; }
+
 
         public WardrobeNew(GraphicsDevice graphics, Vector2 playerPosition)
         {
@@ -67,29 +65,16 @@ namespace SecretProject.Class.Playable
 
             this.MaxSpriteIndex = 64;
 
-            this.AllIndexes = new int[4]
-            {
-                HairIndex,
-                ShirtIndex,
-                PantsIndex,
-                ShoesIndex,
-            };
 
-
-
-            this.HairIndex = 0;
-            this.ShirtIndex = 0;
-            this.PantsIndex = 0;
-            this.ShoesIndex = 0;
 
             Hair = new HairPiece();
             ShirtPiece = new ShirtPiece();
             PantsPiece = new PantsPiece();
-            BodyPiece = new HeadPiece();
+            HeadPiece = new HeadPiece();
             ShoesPiece = new ShoesPiece();
             ArmsPiece = new ArmsPiece();
             this.BasicClothing = new List<ClothingPiece>()
-            { Hair,ShirtPiece, PantsPiece,BodyPiece,ShoesPiece, ArmsPiece};
+            { Hair,ShirtPiece, PantsPiece,HeadPiece,ShoesPiece, ArmsPiece};
 
             this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
 
@@ -105,10 +90,39 @@ namespace SecretProject.Class.Playable
 
             };
 
+            this.HairColors = new List<Color>()
+            {
+                new Color(139,69,19),//saddle brown
+                new Color(218,165,32) //goldenrod
+            };
+
         }
 
-        public void IncreaseSkinShade()
+        public void ChangeHairColor(CycleDirection direction)
         {
+            this.HairIndex += (int)direction;
+            if (this.SkinIndex < this.SkinColors.Count - 1)
+            {
+                this.SkinIndex++;
+            }
+            else
+            {
+                this.SkinIndex = 0;
+            }
+
+            if (this.SkinIndex < 0)
+            {
+                this.SkinIndex = this.SkinColors.Count - 1;
+            }
+
+            this.HeadPiece.Color = this.SkinColors[this.SkinIndex];
+
+            this.ArmsPiece.Color = this.SkinColors[this.SkinIndex];
+        }
+
+        public void ChangeSkin(CycleDirection direction)
+        {
+            this.SkinIndex += (int)direction;
             if(this.SkinIndex < this.SkinColors.Count - 1)
             {
                 this.SkinIndex++;
@@ -118,7 +132,12 @@ namespace SecretProject.Class.Playable
                 this.SkinIndex = 0;
             }
 
-            this.BodyPiece.Color = this.SkinColors[this.SkinIndex];
+            if(this.SkinIndex < 0)
+            {
+                this.SkinIndex = this.SkinColors.Count - 1;
+            }
+
+            this.HeadPiece.Color = this.SkinColors[this.SkinIndex];
 
             this.ArmsPiece.Color = this.SkinColors[this.SkinIndex];
         }
@@ -166,33 +185,12 @@ namespace SecretProject.Class.Playable
             
         }
 
-        public void CycleClothing( Vector2 playerPosition, bool backwards = false)
+        public void SetScale(int scale)
         {
-            int frameChangeAmt = 32;
-            ///if (backwards)
-          //  {
-          //      frameChangeAmt = frameChangeAmt * -1;
-          //  }
-          ////  int newSpriteY = BasicMovementAnimations[0, (int)layer].FirstFrameY + frameChangeAmt;
-
-          //  if (newSpriteY > this.MaxSpriteIndex)
-          //  {
-          //      newSpriteY = 0;
-          //  }
-          //  if (newSpriteY < 0)
-          //  {
-          //      newSpriteY = this.MaxSpriteIndex;
-          //  }
-
-
-          //  for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
-          //  {
-          //     // BasicMovementAnimations[i, (int)layer].FirstFrameY = newSpriteY;
-
-
-          //  }
-          //  this.AllIndexes[(int)layer] = newSpriteY;
+            this.CurrentAnimationSet.SetScale(scale);
         }
+
+
 
         public void CycleSwipingClothing()
         {
@@ -209,21 +207,25 @@ namespace SecretProject.Class.Playable
 
         public void Save(BinaryWriter writer)
         {
-            for (int i = 0; i < this.AllIndexes.Length; i++)
-            {
-                writer.Write(this.AllIndexes[i]);
-            }
+
+
+            Hair.Save(writer);
+            HeadPiece.Save(writer);
+            ShirtPiece.Save(writer);
+            PantsPiece.Save(writer);
+            ShoesPiece.Save(writer);
+
         }
 
         public void Load(BinaryReader reader)
         {
+            Hair.Load(reader);
+            HeadPiece.Load(reader);
+            ShirtPiece.Load(reader);
+            PantsPiece.Load(reader);
+            ShoesPiece.Load(reader);
 
 
-            for (int z = 0; z < AllIndexes.Length; z++)
-            {
-                AllIndexes[z] = reader.ReadInt32();
-            }
-           // CycleBasicAnimations();
             CycleSwipingClothing();
 
         }
