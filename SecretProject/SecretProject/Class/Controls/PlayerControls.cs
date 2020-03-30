@@ -13,7 +13,7 @@ namespace SecretProject.Class.Controls
     {
         public ControlType controls { get; set; } = ControlType.Keyboard;
         public Dir Direction { get; set; }
-        public SecondaryDir SecondaryDirection { get; set; }
+        public Dir SecondaryDirection { get; set; }
         public Keys Up { get; set; }
         public Keys Right { get; set; }
         public Keys Down { get; set; }
@@ -172,27 +172,27 @@ namespace SecretProject.Class.Controls
                     switch (this.SecondMovementKey)
                     {
                         case Keys.D:
-                            this.SecondaryDirection = SecondaryDir.Right;
+                            this.SecondaryDirection = Dir.Right;
 
                             break;
 
                         case Keys.A:
-                            this.SecondaryDirection = SecondaryDir.Left;
+                            this.SecondaryDirection = Dir.Left;
 
                             break;
 
                         case Keys.W:
-                            this.SecondaryDirection = SecondaryDir.Up;
+                            this.SecondaryDirection = Dir.Up;
 
                             break;
 
                         case Keys.S:
-                            this.SecondaryDirection = SecondaryDir.Down;
+                            this.SecondaryDirection = Dir.Down;
 
                             break;
 
                         case Keys.None:
-                            this.SecondaryDirection = SecondaryDir.None;
+                            this.SecondaryDirection = Dir.None;
 
                             break;
 

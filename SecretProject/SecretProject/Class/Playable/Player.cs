@@ -65,7 +65,7 @@ namespace SecretProject.Class.Playable
 
 
         public Dir Direction { get; set; } = Dir.Down;
-        public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
+        public Dir SecondDirection { get; set; } = Dir.Down;
         public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
         public const float Speed1 = 1f;
@@ -401,7 +401,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                this.Wardrobe.UpdateMovementAnimations(gameTime, position, controls.Direction, this.IsMoving);
+               // this.Wardrobe.UpdateMovementAnimations(gameTime, position, controls.SecondaryDirection, this.IsMoving);
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
@@ -500,10 +500,7 @@ namespace SecretProject.Class.Playable
                 else if (!CurrentAction[0, 0].IsAnimated && !this.IsMoving)
                 {
                     Wardrobe.SetZero();
-                    //for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
-                    //{
-                    //    this.PlayerMovementAnimations[i].SetFrame(0);
-                    //}
+
 
                 }
 
@@ -555,24 +552,28 @@ namespace SecretProject.Class.Playable
 
         private void MoveFromKeys(GameTime gameTime)
         {
-            if (this.IsMoving && !IsPerformingAction)
+            if ( !IsPerformingAction)
             {
                 switch (controls.Direction)
                 {
                     case Dir.Right:
                         PrimaryVelocity.X = Speed1;
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right, this.IsMoving);
                         break;
 
                     case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
                         break;
 
                     case Dir.Down:
                         PrimaryVelocity.Y = Speed1;
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
                         break;
 
                     case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
+                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
                         break;
 
                     default:
@@ -582,23 +583,23 @@ namespace SecretProject.Class.Playable
 
                 switch (controls.SecondaryDirection)
                 {
-                    case SecondaryDir.Right:
+                    case Dir.Right:
                         PrimaryVelocity.X = Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right,this.IsMoving);
+                       // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right,this.IsMoving);
                         break;
-                    case SecondaryDir.Left:
+                    case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
+                       // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
 
                         break;
-                    case SecondaryDir.Down:
+                    case Dir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
+                        //Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
 
                         break;
-                    case SecondaryDir.Up:
+                    case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
+                      //  Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
                         break;
 
                     default:

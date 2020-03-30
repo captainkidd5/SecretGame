@@ -21,7 +21,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Color = Color.Brown;
             this.LayerDepth = .00000008f;
             this.SpriteEffects = SpriteEffects.None;
-            this.BaseYOffSet = 15;
+            this.BaseYOffSet = 18;
             this.Scale = 1f;
 
 
@@ -36,18 +36,22 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
+                    yAdjustment = 1;
                     break;
                 case 1:
                     xAdjustment = 16;
+                    yAdjustment = 1;
                     break;
 
                 case 2:
                     xAdjustment = 32;
                     break;
                 case 3:
+                    yAdjustment = 1;
                     break;
                 case 4:
                     xAdjustment = 16;
+                    yAdjustment = 1;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
                 case 5:
@@ -104,25 +108,27 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
+                    yAdjustment = 1;
                     break;
                 case 1:
                     xAdjustment = 16;
-                    yAdjustment = -3;
+                    yAdjustment = 1;
                     break;
 
                 case 2:
                     xAdjustment = 32;
-                    yAdjustment = -3;
+                    yAdjustment = 1;
                     break;
                 case 3:
+                    yAdjustment = 1;
                     break;
                 case 4:
                     xAdjustment = 16;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
                 case 5:
                     xAdjustment = 32;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

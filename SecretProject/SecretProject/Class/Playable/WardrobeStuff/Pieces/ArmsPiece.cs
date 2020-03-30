@@ -40,20 +40,24 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 1:
                     xAdjustment = 16;
+                    
                     break;
 
                 case 2:
                     xAdjustment = 32;
+                    yAdjustment = -2;
                     break;
                 case 3:
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
                 case 4:
                     xAdjustment = 16;
+                    yAdjustment = -2;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
                 case 5:
                     xAdjustment = 32;
+                    yAdjustment = -2;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
             }
@@ -99,27 +103,28 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
+                    yAdjustment = 1;
                     break;
                 case 1:
                     xAdjustment = 16;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
 
                 case 2:
                     xAdjustment = 32;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
                 case 3:
                     xAdjustment = 48;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
                 case 4:
                     xAdjustment = 64;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
                 case 5:
                     xAdjustment = 80;
-                    yAdjustment = -2;
+                    yAdjustment = 1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

@@ -51,20 +51,14 @@ namespace SecretProject
 
     public enum Dir
     {
+        None = -1,
         Down,
         Up,
         Left,
         Right
     }
 
-    public enum SecondaryDir
-    {
-        Down,
-        Up,
-        Left,
-        Right,
-        None
-    }
+
 
     public enum Stages
     {

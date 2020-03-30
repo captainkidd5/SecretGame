@@ -45,7 +45,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
 
                 case 2:
-                    yAdjustment = -4;
+                    yAdjustment = -3;
                     break;
                 case 3:
 
@@ -57,7 +57,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 5:
 
-                    yAdjustment = -4;
+                    yAdjustment = -3;
                     break;
 
             }
@@ -79,7 +79,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
 
                 case 2:
-                    yAdjustment = -2;
+                    yAdjustment = -1;
                     break;
                 case 3:
                     break;
@@ -87,7 +87,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     yAdjustment = -1;
                     break;
                 case 5:
-                    yAdjustment = -2;
+                    yAdjustment = -1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -102,23 +102,23 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
-                    yAdjustment = -2;
+                    yAdjustment = 0;
                     break;
                 case 1:
-                    yAdjustment = -3;
+                    yAdjustment = 0;
                     break;
 
                 case 2:
-                    yAdjustment = -3;
+                    yAdjustment = 1;
                     break;
                 case 3:
-                    yAdjustment = -2;
+                    yAdjustment = 0;
                     break;
                 case 4:
-                    yAdjustment = -3;
+                    yAdjustment = 0;
                     break;
                 case 5:
-                    yAdjustment = -3;
+                    yAdjustment = 1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

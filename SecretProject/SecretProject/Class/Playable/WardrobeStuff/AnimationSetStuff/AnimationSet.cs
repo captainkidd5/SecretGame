@@ -48,6 +48,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             }
         }
 
+
+
         public void SetScale(int scale)
         {
             for (int i = 0; i < Pieces.Count; i++)
