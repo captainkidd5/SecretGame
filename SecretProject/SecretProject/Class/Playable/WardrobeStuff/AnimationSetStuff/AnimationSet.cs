@@ -69,7 +69,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         {
             for (int i = 0; i < Pieces.Count; i++)
             {
-                Pieces[i].UpdateDown(0);
+                Pieces[i].UpdateWalkDown(0);
             }
         }
 

@@ -40,13 +40,13 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public virtual void Cycle(CycleDirection direction)
         {
             this.Row += (int)direction;
-            if(Row > this.SourceRectangle.Height / 16)
+            if(Row > this.SourceRectangle.Height / 16 - 1)
             {
                 this.Row = 0;
             }
             else if(this.Row <0)
             {
-                this.Row = this.SourceRectangle.Height / 16;
+                this.Row = this.SourceRectangle.Height / 16 ;
             }
         }
 
@@ -59,19 +59,19 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
                 {
                     case Dir.Down:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateDown(currentFrame);
+                        UpdateWalkDown(currentFrame);
                         break;
                     case Dir.Up:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateUp(currentFrame);
+                        UpdateWalkUp(currentFrame);
                         break;
                     case Dir.Left:
                         this.SpriteEffects = SpriteEffects.FlipHorizontally;
-                        UpdateRight(currentFrame);
+                        UpdateWalkRight(currentFrame);
                         break;
                     case Dir.Right:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateRight(currentFrame);
+                        UpdateWalkRight(currentFrame);
                         break;
 
                 }
@@ -83,19 +83,35 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.OldFrame = currentFrame;
 
         }
-        public virtual void UpdateDown(int currentFrame)
+        #region WALK
+        public virtual void UpdateWalkDown(int currentFrame)
         {
             
         }
 
-        public virtual void UpdateUp(int currentFrame)
+        public virtual void UpdateWalkUp(int currentFrame)
         {
         }
 
-        public virtual void UpdateRight(int currentFrame)
+        public virtual void UpdateWalkRight(int currentFrame)
+        {
+        }
+        #endregion
+
+        #region Chop
+        public virtual void UpdateChopDown(int currentFrame)
+        {
+
+        }
+
+        public virtual void UpdateChopUp(int currentFrame)
         {
         }
 
+        public virtual void UpdateChopRight(int currentFrame)
+        {
+        }
+        #endregion
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .5f + this.LayerDepth);
