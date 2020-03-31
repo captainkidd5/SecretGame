@@ -137,13 +137,13 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 
        
 
-        public void Load(BinaryReader reader)
+        public virtual void Load(BinaryReader reader)
         {
             this.Row = reader.ReadInt32();
             this.Color = new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
         }
 
-        public void Save(BinaryWriter writer)
+        public virtual void Save(BinaryWriter writer)
         {
             writer.Write(this.Row);
             writer.Write(this.Color.R);

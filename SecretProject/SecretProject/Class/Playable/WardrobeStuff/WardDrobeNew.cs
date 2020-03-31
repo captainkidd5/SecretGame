@@ -218,6 +218,7 @@ namespace SecretProject.Class.Playable
 
             Hair.Save(writer);
             HeadPiece.Save(writer);
+            EyePiece.Save(writer);
             ShirtPiece.Save(writer);
             PantsPiece.Save(writer);
             ShoesPiece.Save(writer);
@@ -228,6 +229,7 @@ namespace SecretProject.Class.Playable
         {
             Hair.Load(reader);
             HeadPiece.Load(reader);
+            EyePiece.Load(reader);
             ShirtPiece.Load(reader);
             PantsPiece.Load(reader);
             ShoesPiece.Load(reader);

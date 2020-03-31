@@ -129,7 +129,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         #endregion
 
-        public virtual void ChangeColorSpecific(CycleDirection direction)
+        public virtual void ChangeEyeColor(CycleDirection direction)
         {
             this.EyeColorIndex += (int)direction;
             if(EyeColorIndex > this.EyeColors.Count - 1)
@@ -140,26 +140,48 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             {
                 EyeColorIndex = this.EyeColors.Count - 1;
             }
+
+            SetEyeData(EyeColorIndex);
+
+        }
+
+        public void SetEyeData( int colorIndex)
+        {
             Color[] data = new Color[this.Texture.Width * Texture.Height];
             Texture.GetData(data);
 
-           
+
             for (int i = 0; i < data.Length; i++)
             {
                 if (data[i] == this.CurrentEyeColor)
                 {
-                    data[i] = this.EyeColors[EyeColorIndex];
+                    data[i] = this.EyeColors[colorIndex];
                 }
 
             }
 
-            this.CurrentEyeColor = this.EyeColors[EyeColorIndex];
+            this.CurrentEyeColor = this.EyeColors[colorIndex];
 
 
             this.Texture.SetData(data);
         }
 
+        public override void Load(BinaryReader reader)
+        {
+            base.Load(reader);
 
+
+            SetEyeData(reader.ReadInt32());
+        }
+
+        public override void Save(BinaryWriter writer)
+        {
+            base.Save(writer);
+
+
+            writer.Write(this.EyeColorIndex);
+
+        }
 
     }
 }

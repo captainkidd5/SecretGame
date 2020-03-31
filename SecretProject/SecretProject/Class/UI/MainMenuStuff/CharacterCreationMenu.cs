@@ -225,11 +225,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             }
             else if(EyeColorForward.isClicked)
             {
-                Game1.Player.Wardrobe.EyePiece.ChangeColorSpecific(CycleDirection.Forward);
+                Game1.Player.Wardrobe.EyePiece.ChangeEyeColor(CycleDirection.Forward);
             }
             else if (EyeColorBackward.isClicked)
             {
-                Game1.Player.Wardrobe.EyePiece.ChangeColorSpecific(CycleDirection.Backward);
+                Game1.Player.Wardrobe.EyePiece.ChangeEyeColor(CycleDirection.Backward);
             }
             if (WasClothingChanged)
             {
