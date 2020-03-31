@@ -32,6 +32,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         //COLORS
         public Color Color { get; set; }
 
+
         public ClothingPiece(Color defaultColor)
         {
             this.Color = defaultColor;
@@ -40,13 +41,13 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         public virtual void Cycle(CycleDirection direction)
         {
             this.Row += (int)direction;
-            if(Row > this.SourceRectangle.Height / 16 - 1)
+            if(Row >= this.Texture.Height / 16 )
             {
                 this.Row = 0;
             }
             else if(this.Row <0)
             {
-                this.Row = this.SourceRectangle.Height / 16 ;
+                this.Row = this.Texture.Height / 16 ;
             }
         }
 
@@ -133,6 +134,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         {
             this.Color = new Color(red, green, blue);
         }
+
+       
 
         public void Load(BinaryReader reader)
         {

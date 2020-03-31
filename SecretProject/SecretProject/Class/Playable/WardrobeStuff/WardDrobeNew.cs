@@ -36,8 +36,10 @@ namespace SecretProject.Class.Playable
 
 
         public HairPiece Hair { get; set; }
+
         public ShirtPiece ShirtPiece { get; set; }
         public PantsPiece PantsPiece { get; set; }
+        public EyePiece EyePiece { get; set; }
         public HeadPiece HeadPiece { get; set; }
         public ShoesPiece ShoesPiece { get; set; }
         public ArmsPiece ArmsPiece { get; set; }
@@ -52,10 +54,12 @@ namespace SecretProject.Class.Playable
         public Dir CurrentDirection { get; set; }
 
         public List<Color> SkinColors { get; set; }
-        public int SkinIndex { get; set; }
+        public int SkinColorIndex { get; set; }
 
         public List<Color> HairColors { get; set; }
-        public int HairIndex { get; set; }
+        public int HairColorIndex { get; set; }
+
+
 
 
         public WardrobeNew(GraphicsDevice graphics, Vector2 playerPosition)
@@ -81,14 +85,17 @@ namespace SecretProject.Class.Playable
             };
 
 
+
+
             Hair = new HairPiece(this.HairColors[0]);
             ShirtPiece = new ShirtPiece(Color.Red);
             PantsPiece = new PantsPiece(Color.Blue);
+            EyePiece = new EyePiece(Color.White);
             HeadPiece = new HeadPiece(this.SkinColors[2]);
             ShoesPiece = new ShoesPiece(Color.Brown);
             ArmsPiece = new ArmsPiece(this.SkinColors[2]);
             this.BasicClothing = new List<ClothingPiece>()
-            { Hair,ShirtPiece, PantsPiece,HeadPiece,ShoesPiece, ArmsPiece};
+            { Hair,ShirtPiece, PantsPiece,EyePiece,HeadPiece,ShoesPiece, ArmsPiece};
 
             this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
 
@@ -100,46 +107,46 @@ namespace SecretProject.Class.Playable
 
         public void ChangeHairColor(CycleDirection direction)
         {
-            this.HairIndex += (int)direction;
-            if (this.HairIndex < this.HairColors.Count)
+            this.HairColorIndex += (int)direction;
+            if (this.HairColorIndex < this.HairColors.Count)
             {
                // this.HairIndex++;
             }
             else
             {
-                this.HairIndex = 0;
+                this.HairColorIndex = 0;
             }
 
-            if (this.HairIndex < 0)
+            if (this.HairColorIndex < 0)
             {
-                this.HairIndex = this.HairColors.Count - 1;
+                this.HairColorIndex = this.HairColors.Count - 1;
             }
 
-            this.Hair.Color = this.HairColors[this.HairIndex];
+            this.Hair.Color = this.HairColors[this.HairColorIndex];
 
 
         }
 
         public void ChangeSkin(CycleDirection direction)
         {
-            this.SkinIndex += (int)direction;
-            if(this.SkinIndex < this.SkinColors.Count)
+            this.SkinColorIndex += (int)direction;
+            if(this.SkinColorIndex < this.SkinColors.Count)
             {
               //  this.SkinIndex++;
             }
             else
             {
-                this.SkinIndex = 0;
+                this.SkinColorIndex = 0;
             }
 
-            if(this.SkinIndex < 0)
+            if(this.SkinColorIndex < 0)
             {
-                this.SkinIndex = this.SkinColors.Count - 1;
+                this.SkinColorIndex = this.SkinColors.Count - 1;
             }
 
-            this.HeadPiece.Color = this.SkinColors[this.SkinIndex];
+            this.HeadPiece.Color = this.SkinColors[this.SkinColorIndex];
 
-            this.ArmsPiece.Color = this.SkinColors[this.SkinIndex];
+            this.ArmsPiece.Color = this.SkinColors[this.SkinColorIndex];
         }
 
         public void SetZero()

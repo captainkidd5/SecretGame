@@ -49,6 +49,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Button HairColorForward { get; set; }
         public Button HairColorBackward { get; set; }
 
+        public Button EyeColorForward { get; set; }
+        public Button EyeColorBackward { get; set; }
+
         public List<Button> CustomizationButtons { get; set; }
 
         public Vector2 PlayerPortraitDrawLocation { get; set; }
@@ -108,6 +111,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.HairColorBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
                new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 160), CursorType.Normal, this.Scale - 1);
 
+            this.EyeColorForward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
+             new Vector2(customizationButtonPosition.X + 96, customizationButtonPosition.Y + 192), CursorType.Normal, this.Scale - 1);
+            this.EyeColorBackward = new Button(Game1.AllTextures.UserInterfaceTileSet, backWardRectangle, this.Graphics,
+               new Vector2(customizationButtonPosition.X - 96, customizationButtonPosition.Y + 192), CursorType.Normal, this.Scale - 1);
+
             this.CustomizationButtons = new List<Button>()
             {
                 HairFoward,
@@ -121,7 +129,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 SkinToneForward,
                 SkinToneBackWard,
                 HairColorForward,
-                HairColorBackward
+                HairColorBackward,
+                EyeColorForward,
+                EyeColorBackward,
             };
 
 
@@ -213,7 +223,15 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
                 Game1.Player.Wardrobe.ChangeHairColor(CycleDirection.Backward);
             }
-            if(WasClothingChanged)
+            else if(EyeColorForward.isClicked)
+            {
+                Game1.Player.Wardrobe.EyePiece.ChangeColorSpecific(CycleDirection.Forward);
+            }
+            else if (EyeColorBackward.isClicked)
+            {
+                Game1.Player.Wardrobe.EyePiece.ChangeColorSpecific(CycleDirection.Backward);
+            }
+            if (WasClothingChanged)
             {
                // Game1.Player.Wardrobe.UpdateMovementAnimations(this.PlayerPortraitDrawLocation, true, Dir.Down);
             }
