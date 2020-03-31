@@ -267,6 +267,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shoes", new Vector2(ShoesForward.Position.X - 96, ShoesForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(SkinToneForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair Color", new Vector2(HairColorForward.Position.X - 96, HairColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Eye Color", new Vector2(EyeColorForward.Position.X - 96, EyeColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
         }
     }
 }

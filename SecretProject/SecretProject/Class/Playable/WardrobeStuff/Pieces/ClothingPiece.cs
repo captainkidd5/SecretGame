@@ -47,7 +47,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             }
             else if(this.Row <0)
             {
-                this.Row = this.Texture.Height / 16 ;
+                this.Row = this.Texture.Height / 16 - 1;
             }
         }
 
@@ -113,15 +113,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         {
         }
         #endregion
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .5f + this.LayerDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);
         }
 
         public virtual void DrawForCreationWindow(SpriteBatch spriteBatch)
         {
             this.Scale = 6f;
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f);
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f + this.LayerDepth);
         }
 
 

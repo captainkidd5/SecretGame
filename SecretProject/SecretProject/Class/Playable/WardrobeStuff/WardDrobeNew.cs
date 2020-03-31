@@ -166,9 +166,9 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {
-            this.CurrentAnimationSet.Draw(spriteBatch);
+            this.CurrentAnimationSet.Draw(spriteBatch, yLayerHeight);
         }
 
         public void UpdateForCreationMenu()

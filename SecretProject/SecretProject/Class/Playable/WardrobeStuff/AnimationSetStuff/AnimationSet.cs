@@ -57,11 +57,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
                 Pieces[i].Scale = scale;
             }
         }
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {
             for (int i = 0; i < Pieces.Count; i++)
             {
-                Pieces[i].Draw(spriteBatch);
+                Pieces[i].Draw(spriteBatch, yLayerHeight);
             }
         }
 

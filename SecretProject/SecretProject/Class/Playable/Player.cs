@@ -739,7 +739,7 @@ namespace SecretProject.Class.Playable
             if (this.IsDrawn)
             {
 
-                Wardrobe.Draw(spriteBatch);
+                Wardrobe.Draw(spriteBatch, layerDepth);
                 if (!IsPerformingAction)
                 {
 
