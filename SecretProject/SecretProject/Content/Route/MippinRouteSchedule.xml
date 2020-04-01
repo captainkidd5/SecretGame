@@ -10,7 +10,7 @@
       <Time>5AM</Time>
        <EndStage>OverWorld</EndStage>
       <EndX>116</EndX>
-      <EndY>32</EndY>
+      <EndY>20</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
@@ -19,7 +19,7 @@
       <Time>5PM</Time>
        <EndStage>OverWorld</EndStage>
       <EndX>36</EndX>
-      <EndY>25</EndY>
+      <EndY>30</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>

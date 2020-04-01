@@ -5,6 +5,12 @@ using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI
 {
+    public enum LineLimits
+    {
+        ItemDescriptions = 200,
+
+    }
+
     public class InfoPopUp
     {
         public Vector2 WindowPosition { get; set; }
@@ -19,6 +25,9 @@ namespace SecretProject.Class.UI
 
         public string TitleString { get; set; }
         public bool DisplayTitle { get; set; }
+
+        public NineSliceRectangle FittedRectangle { get; set; }
+        public float LineLimit { get; set; }
 
         public InfoPopUp(string stringToWrite, Rectangle sourceRectangle)
         {

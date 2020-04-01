@@ -46,12 +46,10 @@ namespace SecretProject.Class.UI
         {
 
             this.Graphics = graphics;
-            LeftRectangle = new Rectangle(1024, 64, 16, 48);
-            MiddleRectangle = new Rectangle(1040, 64, 16, 48);
-            RightRectangle = new Rectangle(1120, 64, 16, 48);
 
 
-                    this.NineSliceRectangle = new NineSliceRectangle(position, LeftRectangle, MiddleRectangle, RightRectangle, (RectangleSize)size);
+
+                    this.NineSliceRectangle = new NineSliceRectangle(position,(RectangleSize)size);
 
 
             this.Position = position;

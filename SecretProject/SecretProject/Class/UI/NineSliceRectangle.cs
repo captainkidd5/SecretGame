@@ -27,31 +27,35 @@ namespace SecretProject.Class.UI
         public int Height { get; private set; }
 
         public float Scale { get; set; }
-        public NineSliceRectangle(Vector2 position, Rectangle leftSideRectangle, Rectangle midSliceRectangle, Rectangle rightSideRectangle, RectangleSize size)
+
+        Rectangle LeftRectangle = new Rectangle(1024, 64, 16, 48);
+        Rectangle MiddleRectangle = new Rectangle(1040, 64, 16, 48);
+        Rectangle RightRectangle = new Rectangle(1120, 64, 16, 48);
+        public NineSliceRectangle(Vector2 position, RectangleSize size)
         {
             CombinedRectangle = new List<Rectangle>();
             int width = 0;
-            CombinedRectangle.Add(leftSideRectangle);
+            CombinedRectangle.Add(LeftRectangle);
             this.Scale = 2f;
-            width += leftSideRectangle.Width;
+            width += LeftRectangle.Width;
             
             for(int i =0; i < (int)size; i++)
             {
-                CombinedRectangle.Add(midSliceRectangle);
-                width += midSliceRectangle.Width;
+                CombinedRectangle.Add(MiddleRectangle);
+                width += MiddleRectangle.Width;
             }
-            CombinedRectangle.Add(rightSideRectangle);
-            width += rightSideRectangle.Width;
+            CombinedRectangle.Add(RightRectangle);
+            width += RightRectangle.Width;
 
             this.Width = width * (int)Scale;
-            this.Height = leftSideRectangle.Height;
+            this.Height = LeftRectangle.Height;
 
             RectanglePositions = new List<Vector2>();
             RectanglePositions.Add(position);
             for(int i =0; i < (int)size; i++)
             {
 
-                RectanglePositions.Add(new Vector2(RectanglePositions[i].X + midSliceRectangle.Width * Scale, position.Y));
+                RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
             }
             RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
         }
@@ -64,5 +68,36 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
         }
+
+        //public  NineSliceRectangle GetNineSliceRectangle(float lineLimit, Vector2 position)
+        //{
+        //    int numberOfMiddleSlicesNeeded = (int)Math.Ceiling(lineLimit / this.MiddleRectangle.Width * this.Scale);
+        //    CombinedRectangle = new List<Rectangle>();
+
+        //    CombinedRectangle.Add(LeftRectangle);
+
+        //    this.Width += (int)(numberOfMiddleSlicesNeeded * this.MiddleRectangle.Width * Scale);
+
+        //    this.Width += (int)(LeftRectangle.Width * Scale);
+
+        //    for (int i = 0; i < numberOfMiddleSlicesNeeded; i++)
+        //    {
+        //        CombinedRectangle.Add(MiddleRectangle);
+        //    }
+        //    CombinedRectangle.Add(RightRectangle);
+        //    this.Width += (int)(RightRectangle.Width * Scale);
+
+
+        //    this.Height = (int)(LeftRectangle.Height * Scale);
+
+        //    RectanglePositions = new List<Vector2>();
+        //    RectanglePositions.Add(position);
+        //    for (int i = 0; i < (int)size; i++)
+        //    {
+
+        //        RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
+        //    }
+        //    RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
+        //}
     }
 }
