@@ -6100,6 +6100,12 @@
    <property name="action" value="readSanctuary"/>
   </properties>
  </tile>
+ <tile id="6206">
+  <properties>
+   <property name="newHitBox" value="-32,-80,96,96"/>
+   <property name="newSource" value="-32,-112,96,128"/>
+  </properties>
+ </tile>
  <tile id="6216">
   <properties>
    <property name="newHitBox" value="-96, -64, 112,80"/>
