@@ -49,7 +49,6 @@ namespace SecretProject.Class.TileStuff
         public int OldIndexY { get; set; }
         public float Depth { get; set; }
         public int LayerIdentifier { get; set; }
-        public List<TmxLayer> AllLayers;
         public List<Tile[,]> AllTiles { get; set; }
         public List<float> AllDepths { get; set; }
         public bool TileInteraction { get; set; } = false;
@@ -98,13 +97,21 @@ namespace SecretProject.Class.TileStuff
         #region CONSTRUCTORS
 
 
-        public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
+        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage)
         {
             this.Stage = currentStage;
             this.ITileManager = this;
             this.Type = 0;
             this.TileSet = tileSet;
             this.MapName = mapName;
+
+            this.AllDepths = new List<float>()
+            {
+                .1f,
+                .2f,
+                .3f,
+                .5f,
+            };
 
             this.TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
             this.TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
@@ -119,8 +126,7 @@ namespace SecretProject.Class.TileStuff
             this.GraphicsDevice = graphicsDevice;
             this.Content = content;
 
-            this.AllDepths = allDepths;
-            AllLayers = allLayers;
+
             this.AllTiles = new List<Tile[,]>();
             this.TileSetNumber = tileSetNumber;
             DirtGeneratableTiles = new List<int>();
@@ -138,7 +144,7 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
             QuestIcons = new Dictionary<string, Sprite>();
-            for (int i = 0; i < allLayers.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
 
@@ -146,16 +152,11 @@ namespace SecretProject.Class.TileStuff
             this.Objects = new Dictionary<string, List<ICollidable>>();
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-            for (int i = 0; i < this.AllTiles.Count; i++)
+            if (Game1.IsFirstTimeStartup)
             {
-                foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
-                {
-                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid) { LayerToDrawAt = i };
-
-                    this.AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
-
-                }
+                StartNew(mapName);
             }
+
             #region PORTALS
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
             {
@@ -191,7 +192,34 @@ namespace SecretProject.Class.TileStuff
             }
             #endregion
 
+            currentStage.AllNightLights = this.NightTimeLights;
+            currentStage.AllDayTimeLights = this.DayTimeLights;
 
+        }
+
+        /// <summary>
+        /// Runs only when new save is started. Will not run on load game. See LoadNewSave for that.
+        /// </summary>
+        public void StartNew(TmxMap map)
+        {
+            List<TmxLayer> allLayers = new List<TmxLayer>()
+            {
+                map.Layers["background"],
+            map.Layers["midGround"],
+           map.Layers["buildings"],
+           map.Layers["foreGround"]
+        };
+
+            for (int i = 0; i < this.AllTiles.Count; i++)
+            {
+                foreach (TmxLayerTile layerNameTile in allLayers[i].Tiles)
+                {
+                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid) { LayerToDrawAt = i };
+
+                    this.AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
+
+                }
+            }
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.MapWidth; i++)
@@ -207,11 +235,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            currentStage.AllNightLights = this.NightTimeLights;
-            currentStage.AllDayTimeLights = this.DayTimeLights;
-            
         }
-
 
         public void AddItem(Item item, Vector2 position)
         {
@@ -222,16 +246,6 @@ namespace SecretProject.Class.TileStuff
             return AllItems;
         }
 
-        #region LOADTILESOBJECTS
-        public void LoadInitialTileObjects(ILocation stage)
-        {
-
-
-
-        }
-
-
-        #endregion
 
         #region UPDATE
 
@@ -270,13 +284,13 @@ namespace SecretProject.Class.TileStuff
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
                     this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
-                    if(frameholder.HasNewSource)
+                    if (frameholder.HasNewSource)
                     {
                         Rectangle newSourceRectangle = this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
-                       // Rectangle originalTileRectangle =
+                        // Rectangle originalTileRectangle =
                         this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
                     }
-                    
+
 
                     //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
 
@@ -326,10 +340,10 @@ namespace SecretProject.Class.TileStuff
             int playerI = (int)((Game1.Player.Position.X + 16) / 16);
             int playerJ = (int)((Game1.Player.Position.Y + 16) / 16);
 
-            
+
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
-               
+
                 if (Game1.Player.IsMoving)
                 {
 
@@ -367,11 +381,11 @@ namespace SecretProject.Class.TileStuff
 
 
                 }
-                if(mouseI - 5 < 0)
+                if (mouseI - 5 < 0)
                 {
-                    
+
                 }
-                
+
                 for (int mi = mouseI - 5; mi < mouseI + 5; mi++)
                 {
                     for (int mj = mouseJ - 5; mj < mouseJ + 5; mj++)
@@ -433,7 +447,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                             }
-                            
+
                         }
                     }
                 }
@@ -445,7 +459,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (this.AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                           // int TileKey = this.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
+                            // int TileKey = this.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
 
 
                             if (this.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
@@ -457,51 +471,11 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.UserInterface.TileSelector.WorldX = mouseI * 16;
                                 Game1.Player.UserInterface.TileSelector.WorldY = mouseJ * 16;
 
-                                //if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mouseI, mouseJ].GID))
-                                //{
-
-                                //    if (z == 1)
-                                //    {
-
-                                //        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
-                                //        {
-                                //            Game1.isMyMouseVisible = false;
-                                //            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
-                                //            {
-                                //                if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
-                                //                {
-                                //                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
-                                //                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                //                }
-                                //            }
-
-
-                                //            if (mouse.IsClicked)
-                                //            {
-                                //                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, this.AllTiles[z][mouseI, mouseJ].DestinationRectangle, this);
-
-                                //            }
-
-                                //        }
-                                //        //return;
-
-                                //    }
-                                //    if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mouseI, mouseJ].GID))
-                                //    {
-                                //        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
-                                //        {
-
-                                //            TileUtility.ActionHelper(z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, this);
-
-                                //        }
-                                //    }
-
-                                //}
 
                             }
                             else
                             {
-                               // Game1.Player.UserInterface.DrawTileSelector = false;
+                                // Game1.Player.UserInterface.DrawTileSelector = false;
                             }
                         }
 
@@ -519,7 +493,7 @@ namespace SecretProject.Class.TileStuff
                 this.GridItem.NormalUpdate(gameTime, this, this);
             }
 
-            for(int item =0; item < this.AllItems.Count; item++)
+            for (int item = 0; item < this.AllItems.Count; item++)
             {
                 this.AllItems[item].Update(gameTime);
             }
@@ -577,7 +551,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
 
-                            
+
 
 
                             if (z == 3)
@@ -668,14 +642,14 @@ namespace SecretProject.Class.TileStuff
         public void Save(BinaryWriter writer)
         {
             writer.Write(this.AllTiles.Count);
-            writer.Write(this.AllTiles[0].Length);
-            for(int z =0; z < this.AllTiles.Count; z++)
+            writer.Write(this.MapWidth);
+            for (int z = 0; z < this.AllTiles.Count; z++)
             {
-                for(int i =0; i < this.AllTiles[z].Length; i++)
+                for (int i = 0; i < this.MapWidth; i++)
                 {
-                    for(int j =0; j < this.AllTiles[z].Length; j++)
+                    for (int j = 0; j < this.MapHeight; j++)
                     {
-                        writer.Write(this.AllTiles[z][i, j].GID);
+                        writer.Write(this.AllTiles[z][i, j].GID + 1);
                     }
                 }
             }
@@ -684,17 +658,28 @@ namespace SecretProject.Class.TileStuff
         public void Load(BinaryReader reader)
         {
 
-            this.AllTiles = new List<Tile[,]>();
             int layerCount = reader.ReadInt32();
             int tileCount = reader.ReadInt32();
             for (int z = 0; z < layerCount; z++)
             {
-                this.AllTiles.Add(new Tile[tileCount, tileCount]);
+
                 for (int i = 0; i < tileCount; i++)
                 {
                     for (int j = 0; j < tileCount; j++)
                     {
                         this.AllTiles[z][i, j] = new Tile(i, j, reader.ReadInt32());
+                    }
+                }
+            }
+
+            for (int z = 0; z < layerCount; z++)
+            {
+
+                for (int i = 0; i < tileCount; i++)
+                {
+                    for (int j = 0; j < tileCount; j++)
+                    {
+                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                     }
                 }
             }

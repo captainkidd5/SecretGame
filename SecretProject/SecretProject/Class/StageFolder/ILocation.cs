@@ -12,6 +12,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
@@ -34,7 +35,7 @@ namespace SecretProject.Class.StageFolder
         Procedural = 2,
         Sanctuary = 3
     }
-    public interface ILocation
+    public interface ILocation : ISaveable
     {
         LocationType LocationType { get; set; }
         StageType StageType { get; set; }
@@ -65,7 +66,7 @@ namespace SecretProject.Class.StageFolder
 
         UserInterface MainUserInterface { get; set; }
 
-        ContentManager Content { get; set; }
+        ContentManager StageContentManager { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
 
@@ -79,21 +80,6 @@ namespace SecretProject.Class.StageFolder
         List<INPC> OnScreenNPCS { get; set; }
         List<Enemy> Enemies { get; set; }
         List<Projectile> AllProjectiles { get; set; }
-
-        List<float> AllDepths { get; set; }
-
-        TmxLayer Buildings { get; set; }
-
-        TmxLayer Background { get; set; }
-
-        TmxLayer Background1 { get; set; }
-
-        TmxLayer MidGround { get; set; }
-
-        TmxLayer foreGround { get; set; }
-
-        List<TmxLayer> AllLayers { get; set; }
-
         TmxMap Map { get; set; }
         event EventHandler SceneChanged;
         string TmxMapPath { get; set; }

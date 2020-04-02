@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.Playable;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.MainMenuStuff;
 using SecretProject.Class.Universal;
@@ -63,6 +64,10 @@ namespace SecretProject.Class.SavingStuff
             writer.Write(saveSlot.UnChunkPath);
 
             Game1.Player.Save(writer);
+            foreach(ILocation location in Game1.AllStages)
+            {
+                location.Save(writer);
+            }
             if(Game1.OverWorld.IsLoaded)
             {
                 Game1.OverWorld.SaveLocation();
@@ -80,11 +85,16 @@ namespace SecretProject.Class.SavingStuff
 
         public static void LoadGameFile(BinaryReader reader, float version, SaveSlot saveSlot)
         {
+            Game1.IsFirstTimeStartup = false;
             saveSlot.String = reader.ReadString();
             saveSlot.SavePath = reader.ReadString();
             saveSlot.ChunkPath = reader.ReadString();
             saveSlot.UnChunkPath = reader.ReadString();
             Game1.Player.Load(reader);
+            foreach (ILocation location in Game1.AllStages)
+            {
+                location.Load(reader);
+            }
             Game1.GlobalClock.Load(reader);
 
             Game1.cam.Load(reader);

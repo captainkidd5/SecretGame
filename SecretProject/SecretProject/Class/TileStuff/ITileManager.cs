@@ -7,6 +7,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 
 using SecretProject.Class.PathFinding;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
@@ -17,7 +18,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-    public interface ITileManager
+    public interface ITileManager : ISaveable
     {
 
         ILocation Stage { get; set; }
@@ -43,7 +44,6 @@ namespace SecretProject.Class.TileStuff
         bool AbleToDrawTileSelector { get; set; }
 
         GridItem GridItem { get; set; }
-        void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);
         void LoadGeneratableTileLists();
@@ -63,5 +63,7 @@ namespace SecretProject.Class.TileStuff
         List<Item> GetItems(Vector2 position);
 
         void SaveTiles();
+
+        
     }
 }

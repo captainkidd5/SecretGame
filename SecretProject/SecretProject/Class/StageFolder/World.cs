@@ -19,6 +19,7 @@ using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TiledSharp;
 using XMLData.ItemStuff;
 using XMLData.RouteStuff;
@@ -50,7 +51,7 @@ namespace SecretProject.Class.StageFolder
         public List<ActionTimer> AllActions { get; set; }
         public List<Portal> AllPortals { get; set; }
         public UserInterface MainUserInterface { get; set; }
-        public ContentManager Content { get; set; }
+        public ContentManager StageContentManager { get; set; }
         public GraphicsDevice Graphics { get; set; }
         public Rectangle MapRectangle { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
@@ -64,14 +65,8 @@ namespace SecretProject.Class.StageFolder
         public List<INPC> OnScreenNPCS { get; set; }
         public List<LightSource> AllNightLights { get; set; }
         public List<LightSource> AllDayTimeLights { get; set; }
-        public List<float> MyProperty { get; set; }
-        public List<float> AllDepths { get; set; }
-        public TmxLayer Buildings { get; set; }
-        public TmxLayer Background { get; set; }
-        public TmxLayer Background1 { get; set; }
-        public TmxLayer MidGround { get; set; }
-        public TmxLayer foreGround { get; set; }
-        public List<TmxLayer> AllLayers { get; set; }
+
+
         public string TmxMapPath { get; set; }
         public TmxMap Map { get; set; }
 
@@ -94,7 +89,7 @@ namespace SecretProject.Class.StageFolder
             this.LocationType = locationType;
             this.StageType = stageType;
             this.Graphics = graphics;
-            this.Content = content;
+            this.StageContentManager = content;
             this.TileSetNumber = tileSetNumber;
             this.TileSet = tileSet;
             this.TmxMapPath = tmxMapPath;
@@ -106,6 +101,8 @@ namespace SecretProject.Class.StageFolder
             this.ParticleEngines = new List<ParticleEngine>();
             this.StaminaSafeDistance = 16 * 8;
             this.AllProjectiles = new List<Projectile>();
+
+            LoadPreliminaryContent();
 
         }
 
@@ -133,33 +130,14 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.AllDepths = new List<float>()
-            {
-                0f,
-                .2f,
-                .3f,
-                .5f,
-            };
 
             this.Map = new TmxMap(this.TmxMapPath);
 
-            this.Background = this.Map.Layers["background"];
-            this.MidGround = this.Map.Layers["midGround"];
-            this.Buildings = this.Map.Layers["buildings"];
-            this.foreGround = this.Map.Layers["foreGround"];
-            this.AllLayers = new List<TmxLayer>()
-            {
-                this.Background,
-                this.MidGround,
-                this.Buildings,
-                this.foreGround
-
-            };
             this.AllPortals = new List<Portal>();
 
 
             // AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
-            this.AllTiles = new WorldTileManager(this, this.TileSet, this.AllLayers, this.Map, 5, 100, 100, this.Graphics, this.Content, this.TileSetNumber, this.AllDepths);
+            this.AllTiles = new WorldTileManager(this, this.TileSet, this.Map, 100, 100, this.Graphics, this.StageContentManager, this.TileSetNumber);
             this.AllTiles.LoadGeneratableTileLists();
             //AllTiles.LoadInitialTileObjects(this);
             this.TileWidth = this.Map.Tilesets[this.TileSetNumber].TileWidth;
@@ -591,6 +569,16 @@ namespace SecretProject.Class.StageFolder
         public void SaveLocation()
         {
             this.AllTiles.SaveTiles();
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+           // this.AllTiles.Save(writer);
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            //this.AllTiles.Load(reader);
         }
     }
 }

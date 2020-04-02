@@ -39,7 +39,7 @@ namespace SecretProject.Class.StageFolder
         public Town(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
             this.Graphics = graphics;
-            this.Content = content;
+            this.StageContentManager = content;
             this.TileSetNumber = tileSetNumber;
 
             if (this.BackDropNumber == 1)
@@ -74,11 +74,7 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree = new QuadTree(5, this.Cam.ViewPortRectangle);
             Nelja = new Dog("Nelja", null, new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.Nelja, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
             this.IsLoaded = true;
-            for(int b = 0; b < 5; b++)
-            {
-                this.Enemies.Add(new Butterfly("butterfly", null, new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
-                this.Enemies.Add(new Chicken("Chicken",null,  new Vector2(256, 512), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
-            }
+
           
         }
 

@@ -14,12 +14,14 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TiledSharp;
 using XMLData.DialogueStuff;
 using XMLData.ItemStuff;
@@ -54,15 +56,6 @@ namespace SecretProject.Class.StageFolder
 
         public List<TileManager> AllStageTiles { get; set; }
 
-        public TmxLayer Buildings { get; set; }
-
-        public TmxLayer Background { get; set; }
-
-        public TmxLayer Background1 { get; set; }
-
-        public TmxLayer MidGround { get; set; }
-
-        public TmxLayer foreGround { get; set; }
 
 
         public Camera2D Cam { get; set; }
@@ -79,18 +72,16 @@ namespace SecretProject.Class.StageFolder
 
         public UserInterface MainUserInterface { get; set; }
 
-        public List<TmxLayer> AllLayers { get; set; }
+
 
 
 
 
         public bool TilesLoaded { get; set; } = false;
 
-        public List<float> AllDepths { get; set; }
-
         public Rectangle MapRectangle { get; set; }
 
-        public ContentManager Content { get; set; }
+        public ContentManager StageContentManager { get; set; }
         public GraphicsDevice Graphics { get; set; }
 
         public ParticleEngine ParticleEngine { get; set; }
@@ -119,7 +110,6 @@ namespace SecretProject.Class.StageFolder
 
         public List<INPC> OnScreenNPCS { get; set; }
         public QuadTree QuadTree { get; set; }
-        public List<float> MyProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<RisingText> AllRisingText { get; set; }
 
         public SanctuaryTracker SanctuaryTracker { get; set; }
@@ -139,7 +129,10 @@ namespace SecretProject.Class.StageFolder
             this.LocationType = locationType;
             this.StageType = stageType;
             this.Graphics = graphics;
-            this.Content = content;
+            
+            this.StageContentManager = new ContentManager(content.ServiceProvider);
+            this.StageContentManager.RootDirectory = "Content";
+
             this.TileSetNumber = tileSetNumber;
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
@@ -157,6 +150,8 @@ namespace SecretProject.Class.StageFolder
 
             this.Enemies = new List<Enemy>();
             this.AllProjectiles = new List<Projectile>();
+
+            LoadPreliminaryContent();
         }
 
         public virtual void LoadPreliminaryContent()
@@ -180,36 +175,13 @@ namespace SecretProject.Class.StageFolder
             };
 
 
-
-            //AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
-
-
-
-
-            this.AllDepths = new List<float>()
-            {
-                .1f,
-                .2f,
-                .3f,
-                .5f,
-            };
+            
 
             this.Map = new TmxMap(this.TmxMapPath);
-            this.Background = this.Map.Layers["background"];
-            this.MidGround = this.Map.Layers["midGround"];
-            this.Buildings = this.Map.Layers["buildings"];
-            this.foreGround = this.Map.Layers["foreGround"];
-            this.AllLayers = new List<TmxLayer>()
-            {
-                this.Background,
-                this.MidGround,
-                this.Buildings,
-                this.foreGround
 
-            };
             this.AllPortals = new List<Portal>();
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.AllLayers, this.Graphics, this.Content, this.TileSetNumber, this.AllDepths, this);
-            this.AllTiles.LoadInitialTileObjects(this);
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, this.TileSetNumber,this);
+
             this.TileWidth = this.Map.Tilesets[this.TileSetNumber].TileWidth;
             this.TileHeight = this.Map.Tilesets[this.TileSetNumber].TileHeight;
 
@@ -222,9 +194,6 @@ namespace SecretProject.Class.StageFolder
             this.MapRectangle = new Rectangle(0, 0, this.TileWidth * this.Map.Width, this.TileHeight * this.Map.Height);
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();
-
-
-            //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
             this.QuadTree = new QuadTree(0, this.MapRectangle);
         }
 
@@ -535,6 +504,17 @@ namespace SecretProject.Class.StageFolder
         public void SaveLocation()
         {
 
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+
+            this.AllTiles.Save(writer);
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            this.AllTiles.Load(reader);
         }
     }
     

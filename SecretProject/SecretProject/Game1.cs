@@ -370,6 +370,7 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
+            IsFirstTimeStartup = true;
             SaveLoadManager = new SaveLoadManager();
             PresentationParameters = this.GraphicsDevice.PresentationParameters;
             MainTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
@@ -478,11 +479,11 @@ namespace SecretProject
                 new CheckListRequirement("SuperBulb",1792, 1, "plant", false)
                 });
 
-
+            GlobalClock = new Clock();
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, MouseManager, Player.UserInterface);
-           // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
-
+            // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
+            PortalGraph = new Graph(13);
 
             Town = new Town("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
             { StageIdentifier = (int)Stages.Town };
@@ -505,12 +506,12 @@ namespace SecretProject
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
 
 
-            GlobalClock = new Clock();
+            
 
 
 
             AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld,  DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld };
-            PortalGraph = new Graph(AllStages.Count);
+           
 
 
 

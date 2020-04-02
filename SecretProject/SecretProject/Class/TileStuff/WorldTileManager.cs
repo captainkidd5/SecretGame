@@ -14,6 +14,7 @@ using SecretProject.Class.TileStuff.SanctuaryStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TiledSharp;
@@ -94,7 +95,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
 
         public GridStatus PreviousTileUnderPlayerGridStatus { get; set; }
-        public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
+        public WorldTileManager(World world, Texture2D tileSet,  TmxMap mapName, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber)
         {
             this.Stage = world;
             this.MapName = mapName;
@@ -106,7 +107,13 @@ namespace SecretProject.Class.TileStuff
             this.tilesetTilesWide = tileSet.Width / this.TileWidth;
             this.tilesetTilesHigh = tileSet.Height / this.TileHeight;
 
-
+            this.AllDepths = new List<float>()
+            {
+                .1f,
+                .2f,
+                .3f,
+                .5f,
+            };
 
             this.mapWidth = worldWidth;
             this.mapHeight = worldHeight;
@@ -116,7 +123,7 @@ namespace SecretProject.Class.TileStuff
             this.GraphicsDevice = graphicsDevice;
             this.Content = content;
 
-            this.AllDepths = allDepths;
+
 
            
 
@@ -157,6 +164,8 @@ namespace SecretProject.Class.TileStuff
             
 
         }
+
+
 
 
         /// <summary>
@@ -944,6 +953,16 @@ namespace SecretProject.Class.TileStuff
                     this.ActiveChunks[i, j].Save();
                 }
             }
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            throw new NotImplementedException();
         }
     }
 }
