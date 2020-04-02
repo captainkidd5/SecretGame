@@ -671,18 +671,21 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
-            for (int z = 0; z < layerCount; z++)
+            if(this.Stage != Game1.Town)
             {
-
-                for (int i = 0; i < tileCount; i++)
+                for (int z = 0; z < layerCount; z++)
                 {
-                    for (int j = 0; j < tileCount; j++)
+
+                    for (int i = 0; i < tileCount; i++)
                     {
-                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        for (int j = 0; j < tileCount; j++)
+                        {
+                            TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        }
                     }
                 }
             }
+            
         }
 
         #endregion

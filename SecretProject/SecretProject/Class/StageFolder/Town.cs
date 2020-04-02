@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.NPCStuff;
@@ -13,6 +14,7 @@ using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
 using XMLData.RouteStuff;
@@ -38,14 +40,30 @@ namespace SecretProject.Class.StageFolder
 
         public Town(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
+            this.StageName = name;
+            this.LocationType = locationType;
+            this.StageType = stageType;
             this.Graphics = graphics;
-            this.StageContentManager = content;
-            this.TileSetNumber = tileSetNumber;
 
-            if (this.BackDropNumber == 1)
-            {
-                BackDropPosition = new Vector2(0, 200);
-            }
+            this.StageContentManager = new ContentManager(content.ServiceProvider);
+            this.StageContentManager.RootDirectory = "Content";
+
+            this.TileSetNumber = tileSetNumber;
+            this.TmxMapPath = tmxMapPath;
+            this.DialogueToRetrieve = dialogueToRetrieve;
+            this.IsLoaded = false;
+
+            this.CharactersPresent = new List<Character>();
+
+
+            this.OnScreenNPCS = new List<INPC>();
+            this.TileSet = tileSet;
+            this.AllRisingText = new List<RisingText>();
+
+            this.Enemies = new List<Enemy>();
+            this.AllProjectiles = new List<Projectile>();
+
+            LoadPreliminaryContent();
 
         }
 

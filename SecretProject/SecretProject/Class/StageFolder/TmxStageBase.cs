@@ -103,8 +103,7 @@ namespace SecretProject.Class.StageFolder
         public ITileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
-        public int BackDropNumber { get; set; }
-        public Vector2 BackDropPosition;
+
 
         public List<StringWrapper> AllTextToWrite { get; set; }
 
@@ -137,12 +136,9 @@ namespace SecretProject.Class.StageFolder
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
-            this.BackDropNumber = backDropNumber;
+
             this.CharactersPresent = new List<Character>();
-            if (this.BackDropNumber == 1)
-            {
-                BackDropPosition = new Vector2(0, 50);
-            }
+
 
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
@@ -361,14 +357,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     character.Update(gameTime, mouse);
                 }
-                if (this.BackDropNumber == 1)
-                {
-                    if (player.position.Y < 250)
-                    {
-                        BackDropPosition.Y += ((player.position.Y - playerOldYPosition) / 4);
-                    }
 
-                }
 
             }
         }
