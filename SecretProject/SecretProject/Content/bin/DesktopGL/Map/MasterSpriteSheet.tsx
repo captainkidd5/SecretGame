@@ -3233,6 +3233,11 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="2137">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
