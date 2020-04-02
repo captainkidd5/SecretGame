@@ -127,7 +127,6 @@ namespace SecretProject
         public static World UnderWorld;
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase MarcusHouse;
-        public static SanctuaryBase Forest;
         public static TmxStageBase LightHouse;
 
 
@@ -503,7 +502,6 @@ namespace SecretProject
             UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
-            Forest = new SanctuaryBase("Forest", LocationType.Exterior, StageType.Sanctuary, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
 
 
@@ -511,7 +509,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld,  DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, Forest, LightHouse, UnderWorld };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld,  DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -857,9 +855,6 @@ namespace SecretProject
                     case Stages.MarcusHouse:
                         MarcusHouse.Update(gameTime, MouseManager, Player);
                         break;
-                    case Stages.Forest:
-                        Forest.Update(gameTime, MouseManager, Player);
-                        break;
                     case Stages.LightHouse:
                         LightHouse.Update(gameTime, MouseManager, Player);
                         break;
@@ -966,10 +961,6 @@ namespace SecretProject
                 case Stages.MarcusHouse:
                     this.GraphicsDevice.Clear(Color.Black);
                     MarcusHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.Forest:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    Forest.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
                 case Stages.LightHouse:
                     this.GraphicsDevice.Clear(Color.Black);

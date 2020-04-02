@@ -7,11 +7,13 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.Playable;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TiledSharp;
 using XMLData.ItemStuff;
@@ -21,7 +23,7 @@ namespace SecretProject.Class.TileStuff
     /// <summary>
     /// background = 0, buildings = 1, midground =2, foreground =3, 
     /// </summary>
-    public class TileManager : ITileManager, IInformationContainer
+    public class TileManager : ITileManager, IInformationContainer, ISaveable
     {
         public ILocation Stage { get; set; }
         public int Type { get; set; }
@@ -661,6 +663,41 @@ namespace SecretProject.Class.TileStuff
         public void SaveTiles()
         {
 
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            writer.Write(this.AllTiles.Count);
+            writer.Write(this.AllTiles[0].Length);
+            for(int z =0; z < this.AllTiles.Count; z++)
+            {
+                for(int i =0; i < this.AllTiles[z].Length; i++)
+                {
+                    for(int j =0; j < this.AllTiles[z].Length; j++)
+                    {
+                        writer.Write(this.AllTiles[z][i, j].GID);
+                    }
+                }
+            }
+        }
+
+        public void Load(BinaryReader reader)
+        {
+
+            this.AllTiles = new List<Tile[,]>();
+            int layerCount = reader.ReadInt32();
+            int tileCount = reader.ReadInt32();
+            for (int z = 0; z < layerCount; z++)
+            {
+                this.AllTiles.Add(new Tile[tileCount, tileCount]);
+                for (int i = 0; i < tileCount; i++)
+                {
+                    for (int j = 0; j < tileCount; j++)
+                    {
+                        this.AllTiles[z][i, j] = new Tile(i, j, reader.ReadInt32());
+                    }
+                }
+            }
         }
 
         #endregion

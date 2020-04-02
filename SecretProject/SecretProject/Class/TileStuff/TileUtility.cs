@@ -628,54 +628,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
-                    else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
-                    {
-                        if (mouse.IsClicked)
-                        {
-                            for (int sp = 0; sp < Game1.Forest.AllTiles.AllPlots.Count; sp++)
-                            {
-                                if (mouse.WorldMouseRectangle.Intersects(Game1.Forest.AllTiles.AllPlots[sp].Bounds))
-                                {
-                                    if (Game1.Forest.AllTiles.AllPlots[sp].ItemIDAllowed == Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool())
-                                    {
-                                        SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
-                                        Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                                        if (testItem != null)
-                                        {
-                                            if (Game1.ItemVault.ItemDictionary[Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID].Plantable)
-                                            {
-
-                                                mouse.ChangeMouseTexture(CursorType.Planting);
-                                                if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(3, container)))
-                                                {
-                                                    if (tracker.UpdateCompletionGuide(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()))
-                                                    {
-                                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
-                                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-
-                                                        TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
-                                                        AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
-                                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-                                                    }
-                                                }
-
-                                            }
-                                        }
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        return;
-                                    }
-                                }
-
-                            }
-
-
-                        }
-
-                    }
-                    //}
+                   
                     break;
 
                 case "sleep":
