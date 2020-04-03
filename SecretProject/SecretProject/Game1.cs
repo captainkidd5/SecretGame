@@ -113,7 +113,7 @@ namespace SecretProject
         //STAGES
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
-        public static Town Town;
+        public static TmxStageBase Town;
         public static TmxStageBase ElixirHouse;
 
 
@@ -540,7 +540,7 @@ namespace SecretProject
         }
         private void LoadStages()
         {
-            Town = new Town("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
+            Town = new TmxStageBase("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
             { StageIdentifier = (int)Stages.Town };
 
 

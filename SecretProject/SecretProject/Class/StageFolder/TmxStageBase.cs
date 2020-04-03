@@ -126,7 +126,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, string savePath, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -153,7 +153,12 @@ namespace SecretProject.Class.StageFolder
 
             LoadPreliminaryContent();
 
-            this.SavePath = savePath;
+
+        }
+
+        public void AssignPath(string startPath)
+        {
+            this.SavePath = startPath + this.StageName;
         }
 
         public virtual void LoadPreliminaryContent()

@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
@@ -113,6 +114,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             
           //  Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
 
+
+            foreach(ILocation stage in Game1.AllStages)
+            {
+                stage.AssignPath(directoryPath);
+            }
             Game1.mainMenu.StartNewGame();
         }
 

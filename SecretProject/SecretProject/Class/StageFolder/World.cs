@@ -78,6 +78,8 @@ namespace SecretProject.Class.StageFolder
 
         public float StaminaSafeDistance { get; set; }
 
+        public string SavePath { get; set; }
+
         public World(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
@@ -113,6 +115,11 @@ namespace SecretProject.Class.StageFolder
                 return false;
             }
             return true;
+        }
+
+        public void AssignPath(string startPath)
+        {
+            this.SavePath = startPath + this.StageName;
         }
 
         public void LoadPreliminaryContent()

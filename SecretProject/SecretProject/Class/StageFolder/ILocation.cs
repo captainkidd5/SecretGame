@@ -91,7 +91,7 @@ namespace SecretProject.Class.StageFolder
 
         List<ParticleEngine> ParticleEngines { get; set; }
 
-        
+        string SavePath { get; set; }
 
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
@@ -103,6 +103,8 @@ namespace SecretProject.Class.StageFolder
 
         void SaveLocation();
 
+
+        void AssignPath(string startPath);
 
     }
 }
