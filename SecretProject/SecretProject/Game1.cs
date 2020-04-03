@@ -746,12 +746,14 @@ namespace SecretProject
             {
                 Game1.Player.LockBounds = true;
             }
-            if (!GetStageFromInt(stageToSwitchTo).IsLoaded)
+            ILocation newStage = GetStageFromInt(stageToSwitchTo);
+            if (!newStage.IsLoaded)
             {
 
-                GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
+                newStage.LoadContent(cam, AllSchedules);
+                
             }
-
+            newStage.ReloadContent();
             // List<Portal> testPortal = GetCurrentStage().AllPortals;
             if (portal != null)
             {

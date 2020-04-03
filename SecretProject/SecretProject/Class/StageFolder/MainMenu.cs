@@ -224,20 +224,21 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            //foreach (ILocation stage in Game1.AllStages)
-            //{
+            foreach (ILocation stage in Game1.AllStages)
+            {
 
-            //    stage.LoadPreliminaryContent();
+                stage.UnloadContent();
 
 
-            //}
+            }
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
             Game1.SwitchStage(0, Stages.PlayerHouse);
             Game1.Player.UserInterface.BeginBlackTransition(.005f);
-            Game1.OverWorld.AllTiles.LoadInitialChunks(new Vector2(1022, 1022));
+
+            //Game1.OverWorld.AllTiles.LoadInitialChunks(new Vector2(1022, 1022));
         }
 
         public void UpdateDevPanel(GameTime gameTime)

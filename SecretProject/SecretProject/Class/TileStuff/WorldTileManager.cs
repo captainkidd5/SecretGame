@@ -95,6 +95,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
 
         public GridStatus PreviousTileUnderPlayerGridStatus { get; set; }
+
         public WorldTileManager(World world, Texture2D tileSet,  TmxMap mapName, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber)
         {
             this.Stage = world;
@@ -161,6 +162,7 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
 
             this.PathGrid = Game1.Town.AllTiles.PathGrid;
+            this.AllTiles = Game1.Town.AllTiles.AllTiles;
             
 
         }

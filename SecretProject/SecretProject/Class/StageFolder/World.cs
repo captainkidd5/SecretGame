@@ -592,5 +592,10 @@ namespace SecretProject.Class.StageFolder
         {
             
         }
+
+        public void ReloadContent()
+        {
+           
+        }
     }
 }

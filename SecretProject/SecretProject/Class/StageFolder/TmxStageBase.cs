@@ -159,6 +159,7 @@ namespace SecretProject.Class.StageFolder
         public void AssignPath(string startPath)
         {
             this.SavePath = startPath + this.StageName;
+            File.WriteAllText(this.SavePath, string.Empty);
         }
 
         public virtual void LoadPreliminaryContent()
@@ -188,7 +189,10 @@ namespace SecretProject.Class.StageFolder
 
             this.AllPortals = new List<Portal>();
             this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, this.TileSetNumber,this);
-
+            if(this == Game1.Town)
+            {
+                Game1.OverWorld.AllTiles.AllTiles = this.AllTiles.AllTiles;
+            }
             this.TileWidth = this.Map.Tilesets[this.TileSetNumber].TileWidth;
             this.TileHeight = this.Map.Tilesets[this.TileSetNumber].TileHeight;
 
@@ -242,19 +246,38 @@ namespace SecretProject.Class.StageFolder
             FileStream fileStream = File.OpenWrite(this.SavePath);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
+          
 
 
 
 
 
-            binaryWriter.Flush();
-            binaryWriter.Close();
 
             Save(binaryWriter);
-            AllTiles.Unload();
+            binaryWriter.Flush();
+            binaryWriter.Close();
+            if(this != Game1.Town)
+            {
+               AllTiles.Unload();
+            }
+            
 
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
+        }
+
+        public void ReloadContent()
+        {
+            if (new FileInfo(this.SavePath).Length > 0)
+            {
+                FileStream fileStream = File.OpenRead(this.SavePath);
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+
+                Load(binaryReader);
+
+                binaryReader.Close();
+            }
+            
         }
 
 

@@ -536,7 +536,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                this.AllTiles[z][i, j] = Game1.Town.AllTiles.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
+                                this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
                                 TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
 

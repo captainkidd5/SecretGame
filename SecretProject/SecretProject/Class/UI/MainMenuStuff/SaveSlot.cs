@@ -103,7 +103,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.ChunkPath = directoryPath + "/" + Game1.Player.Name + "Chunks";
             this.UnChunkPath = directoryPath + "/" + Game1.Player.Name + "UnChunks";
 
-            string gameLocationPath = directoryPath + "/GameLocations";
+            string gameLocationPath = directoryPath + "/GameLocations/";
             System.IO.Directory.CreateDirectory(ChunkPath);
             System.IO.Directory.CreateDirectory(UnChunkPath);
             System.IO.Directory.CreateDirectory(gameLocationPath);
@@ -117,7 +117,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
             foreach(ILocation stage in Game1.AllStages)
             {
-                stage.AssignPath(directoryPath);
+
+                stage.AssignPath(gameLocationPath);
             }
             Game1.mainMenu.StartNewGame();
         }

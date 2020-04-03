@@ -297,10 +297,7 @@ namespace SecretProject.Class.SoundStuff
 
             this.TitleSongs = new SongChooser(new List<SoundEffect>()
             {
-                MelodyOfTheSea,
                 ForestersTheme,
-                Title,
-                Lakescape
 
             });
 
@@ -315,8 +312,11 @@ namespace SecretProject.Class.SoundStuff
 
             this.WorldSongs = new SongChooser(new List<SoundEffect>()
             {
-                DustStorm,
+               MelodyOfTheSea,
                 ForestersTheme,
+                Title,
+                Lakescape,
+                DeeperAndDeeper,
 
             });
 
