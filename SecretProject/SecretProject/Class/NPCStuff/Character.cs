@@ -142,6 +142,20 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             Game1.GlobalClock.HourChanged += OnHourIncreased;
 
             this.QuestHandler = questHandler;
+
+            
+        }
+        public void LoadLaterStuff(GraphicsDevice graphics)
+        {
+            NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
+            HitBoxTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
+            //DebugTexture = SetRectangleTexture(graphics, )
+            Collider = new Collider(graphics, NPCHitBoxRectangle, this, ColliderType.NPC);
+        }
+
+        public static Vector2 GetWorldPosition(Vector2 smallPosition)
+        {
+            return new Vector2(smallPosition.X * 16, smallPosition.Y * 16);
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null, QuestHandler questHandler = null)

@@ -32,6 +32,7 @@ using XMLData.RouteStuff;
 using static SecretProject.Class.UI.CheckList;
 using XMLData.QuestStuff;
 using SecretProject.Class.QuestFolder;
+using SecretProject.Class.CollisionDetection;
 
 
 
@@ -234,8 +235,8 @@ namespace SecretProject
         public QuestHandler SnawQuests;
         public QuestHandler BusinessSnailQuests;
         public QuestHandler CasparQuests;
-        
-        
+
+
 
         public static ItemHolder AllItems;
         public static LootBank LootBank;
@@ -276,7 +277,7 @@ namespace SecretProject
         public static Ned Ned;
         public static Teal Teal;
         public static Marcus Marcus;
-        public static Caspar Caspar;
+        public static Character Caspar;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -356,7 +357,7 @@ namespace SecretProject
         public static ILocation GetStageFromInt(Stages stage)
         {
             return (AllStages[(int)stage]);
-           
+
 
         }
 
@@ -427,14 +428,14 @@ namespace SecretProject
 
             LoadStages();
             LoadShops();
-            
+
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
             LoadCharacters();
 
 
-           
+
 
 
             AllEvents = new List<IEvent>()
@@ -670,7 +671,30 @@ namespace SecretProject
             Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
             Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
             Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
-            Caspar = new Caspar("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], CasparQuests, AllTextures.CasparPortrait) { FrameToSet = 0 };
+
+            Vector2 casparPosition = Character.GetWorldPosition(new Vector2(11, 30));
+            Caspar = new Character("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Stages.MarcusHouse,false, CasparQuests, AllTextures.CasparPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Caspar, 0, 0, 16, 32, 6, .15f, casparPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Caspar, 96, 0, 16, 32, 7, .15f, casparPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Caspar, 96, 0, 16, 32, 7, .15f, casparPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Caspar, 208, 0, 16, 32, 6, .15f, casparPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 12,
+                // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
+                
+                DebugColor = Color.HotPink,
+            };
+            Caspar.LoadLaterStuff(graphics.GraphicsDevice);
+
             AllCharacters = new List<Character>()
             {
                 Elixir,
@@ -740,7 +764,7 @@ namespace SecretProject
             if (newLocation.LocationType == LocationType.Interior || gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
             {
                 Game1.Player.LockBounds = false;
-                
+
             }
             else
             {
@@ -751,7 +775,7 @@ namespace SecretProject
             {
 
                 newStage.LoadContent(cam, AllSchedules);
-                
+
             }
             newStage.ReloadContent();
             // List<Portal> testPortal = GetCurrentStage().AllPortals;
@@ -761,7 +785,7 @@ namespace SecretProject
                 // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
                 List<Portal> portalTest = GetStageFromInt(stageToSwitchTo).AllPortals;
                 Portal tempPortal = GetStageFromInt(stageToSwitchTo).AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
-                if(tempPortal != null)
+                if (tempPortal != null)
                 {
                     float x = tempPortal.PortalStart.X;
                     float width = tempPortal.PortalStart.Width / 2;
@@ -779,7 +803,7 @@ namespace SecretProject
                 //Player.UpdateMovementAnimationsOnce(gameTime);
 
             }
- 
+
             //Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
             if (GetStageFromInt(stageToSwitchTo) == OverWorld)
             {
@@ -945,7 +969,7 @@ namespace SecretProject
 
                 case Stages.ElixirHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget,DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
                 case Stages.JulianHouse:
                     this.GraphicsDevice.Clear(Color.Black);
