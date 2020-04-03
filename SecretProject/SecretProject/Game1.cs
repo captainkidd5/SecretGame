@@ -377,48 +377,10 @@ namespace SecretProject
             NightLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             DayLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             //ORDER MATTERS!!!
-            ElixirDialogue = this.Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
-            DobbinDialogue = this.Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
-            SnawDialogue = this.Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
-            KayaDialogue = this.Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
-            JulianDialogue = this.Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
-            SarahDialogue = this.Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
-            BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
-            MippinDialogue = this.Content.Load<DialogueHolder>("Dialogue/MippinDialogue");
-            NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
-            TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
-            MarcusDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
-            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/CasparDialogue");
 
-            DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
-            ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
-            KayaRouteSchedule = this.Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
-            JulianRouteSchedule = this.Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
-            SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
-            MippinRouteSchedule = this.Content.Load<RouteSchedule>("Route/MippinRouteSchedule");
-            NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
-            TealRouteSchedule = this.Content.Load<RouteSchedule>("Route/TealRouteSchedule");
-            MarcusRouteSchedule = this.Content.Load<RouteSchedule>("Route/MarcusRouteSchedule");
-            CasparRouteSchedule = this.Content.Load<RouteSchedule>("Route/CasparRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,
-                JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule, MarcusRouteSchedule, CasparRouteSchedule };
-            for (int i = 0; i < AllSchedules.Count; i++)
-            {
-                foreach (Route route in AllSchedules[i].Routes)
-                {
-                    route.ProcessStageToEndAt();
-                }
-            }
+            LoadDialogue();
+
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
-
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,
-                JulianDialogue, SarahDialogue,
-                BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue,CasparDialogue };
-            foreach (DialogueHolder holder in tempListHolder)
-            {
-                holder.RemoveAllNewLines();
-            }
-            DialogueLibrary = new DialogueLibrary(tempListHolder);
             AllCookingRecipes = this.Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
             //TEXTURES
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
@@ -432,40 +394,17 @@ namespace SecretProject
             //SOUND
             SoundManager = new SoundBoard(this, this.Content);
 
-            DobbinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/DobbinQuests"));
-            ElixirQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/ElixirQuests"));
-            KayaQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/KayaQuests"));
-            JulianQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/JulianQuests"));
-            MippinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MippinQuests"));
-            TealQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/TealQuests"));
-            MarcusQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MarcusQuests"));
-            NedQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/NedQuests"));
-            SnawQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/SnawQuests"));
-            BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
-            CasparQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/CasparQuests"));
+            LoadQuests();
 
-            //PLAYERS
+            LoadSchedules();
 
             LoadPlayer();
-            //UI
+
 
             DebugWindow = new DebugWindow(this.GraphicsDevice, AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, this.GraphicsDevice);
 
-            //ITEMS
-            ItemVault = new ItemBank();
-            AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
-            ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
-            for (int i = 0; i < AllItems.AllItems.Count; i++)
-            {
-                ItemVault.ItemDictionary.Add(AllItems.AllItems[i].ID, AllItems.AllItems[i]);
-            }
-
-            LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
-
+            LoadItems();
             WorldQuestHolder = new WorldQuestHolder();
-
-
-
 
 
             Procedural = new Procedural();
@@ -485,10 +424,126 @@ namespace SecretProject
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
             PortalGraph = new Graph(13);
 
+
+            LoadStages();
+            LoadShops();
+            
+            LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            LineTexture.SetData<Color>(new Color[] { Color.White });
+
+            LoadCharacters();
+
+
+           
+
+
+            AllEvents = new List<IEvent>()
+            {
+               // new IntroduceSanctuary(),
+               // new IntroduceJulianShop(GraphicsDevice),
+                new IntroScene(this.GraphicsDevice),
+                new MeetJulian(this.GraphicsDevice)
+            };
+            IsEventActive = false;
+
+            RectangleOutlineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            RectangleOutlineTexture.SetData(new Color[] { Color.Red });
+
+            AllWeather = new Dictionary<WeatherType, IWeather>()
+            {
+                {WeatherType.Sunny, new Sunny() },
+                {WeatherType.Rainy, new Rainy(this.GraphicsDevice) }
+            };
+
+            CurrentWeather = WeatherType.Sunny;
+
+            ForestTracker = new SanctuaryTracker(Player.UserInterface.CompletionHub.AllGuides[0]);
+            OverWorldSpawnHolder = new SpawnHolder();
+
+        }
+
+        private void LoadDialogue()
+        {
+            ElixirDialogue = this.Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
+            DobbinDialogue = this.Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+            SnawDialogue = this.Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
+            KayaDialogue = this.Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
+            JulianDialogue = this.Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
+            SarahDialogue = this.Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
+            BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
+            MippinDialogue = this.Content.Load<DialogueHolder>("Dialogue/MippinDialogue");
+            NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
+            TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
+            MarcusDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
+            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/CasparDialogue");
+
+
+
+
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,
+                JulianDialogue, SarahDialogue,
+                BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue,CasparDialogue };
+            foreach (DialogueHolder holder in tempListHolder)
+            {
+                holder.RemoveAllNewLines();
+            }
+            DialogueLibrary = new DialogueLibrary(tempListHolder);
+        }
+        private void LoadItems()
+        {
+            ItemVault = new ItemBank();
+            AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
+            ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                ItemVault.ItemDictionary.Add(AllItems.AllItems[i].ID, AllItems.AllItems[i]);
+            }
+
+            LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
+
+        }
+        private void LoadSchedules()
+        {
+            DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
+            ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
+            KayaRouteSchedule = this.Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
+            JulianRouteSchedule = this.Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
+            SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
+            MippinRouteSchedule = this.Content.Load<RouteSchedule>("Route/MippinRouteSchedule");
+            NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
+            TealRouteSchedule = this.Content.Load<RouteSchedule>("Route/TealRouteSchedule");
+            MarcusRouteSchedule = this.Content.Load<RouteSchedule>("Route/MarcusRouteSchedule");
+            CasparRouteSchedule = this.Content.Load<RouteSchedule>("Route/CasparRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,
+                JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule, MarcusRouteSchedule, CasparRouteSchedule };
+            for (int i = 0; i < AllSchedules.Count; i++)
+            {
+                foreach (Route route in AllSchedules[i].Routes)
+                {
+                    route.ProcessStageToEndAt();
+                }
+            }
+        }
+        private void LoadQuests()
+        {
+            DobbinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/DobbinQuests"));
+            ElixirQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/ElixirQuests"));
+            KayaQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/KayaQuests"));
+            JulianQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/JulianQuests"));
+            MippinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MippinQuests"));
+            TealQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/TealQuests"));
+            MarcusQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MarcusQuests"));
+            NedQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/NedQuests"));
+            SnawQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/SnawQuests"));
+            BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
+            CasparQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/CasparQuests"));
+        }
+        private void LoadStages()
+        {
             Town = new Town("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
             { StageIdentifier = (int)Stages.Town };
 
-           
+
 
 
 
@@ -506,15 +561,15 @@ namespace SecretProject
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
 
 
-            
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld,  DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld };
-           
 
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld };
 
-
+        }
+        private void LoadShops()
+        {
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
             for (int i = 0; i < AllItems.AllItems.Count; i++)
@@ -580,29 +635,14 @@ namespace SecretProject
                 BuisnessSnailShop,
                 SarahShop
             };
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(604, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(280, null));
-
-            //}
-
-            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(240, null));
-            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(162, null));
-
-
-
-            LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
-            LineTexture.SetData<Color>(new Color[] { Color.White });
-
-            Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1],ElixirQuests, AllTextures.ElixirPortrait) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0],DobbinQuests, AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2],KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
+        }
+        private void LoadCharacters()
+        {
+            Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], ElixirQuests, AllTextures.ElixirPortrait) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], DobbinQuests, AllTextures.DobbinPortrait) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(121, 67), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3,  AllTextures.SnawPortrait, SnawQuests)
+                3, AllTextures.SnawPortrait, SnawQuests)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
@@ -612,10 +652,10 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], JulianQuests,AllTextures.JulianPortrait) { FrameToSet = 0 };
-            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4],SarahQuests, AllTextures.SarahPortrait) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], JulianQuests, AllTextures.JulianPortrait) { FrameToSet = 0 };
+            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], SarahQuests, AllTextures.SarahPortrait) { FrameToSet = 0 };
             BusinessSnail = new Character("Business Snail", new Vector2(34, 80), graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
-                1,  AllTextures.BusinessSnailPortrait, BusinessSnailQuests)
+                1, AllTextures.BusinessSnailPortrait, BusinessSnailQuests)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
                 0, 0, 32, 32, 1, 1f, new Vector2(1280, 600)) { IsAnimated = true,  } },
@@ -626,10 +666,10 @@ namespace SecretProject
                 IsBasicNPC = true
             };
 
-            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5],MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
-            Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6],NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
-            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7],TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
-            Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8],MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
+            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
+            Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
+            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
+            Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
             Caspar = new Caspar("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], CasparQuests, AllTextures.CasparPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
@@ -647,7 +687,6 @@ namespace SecretProject
                 Caspar
             };
 
-
             foreach (ILocation stage in AllStages)
             {
                 foreach (Character character in AllCharacters)
@@ -659,33 +698,9 @@ namespace SecretProject
                 }
 
             }
-
-
-            AllEvents = new List<IEvent>()
-            {
-               // new IntroduceSanctuary(),
-               // new IntroduceJulianShop(GraphicsDevice),
-                new IntroScene(this.GraphicsDevice),
-                new MeetJulian(this.GraphicsDevice)
-            };
-            IsEventActive = false;
-
-            RectangleOutlineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
-            RectangleOutlineTexture.SetData(new Color[] { Color.Red });
-
-            AllWeather = new Dictionary<WeatherType, IWeather>()
-            {
-                {WeatherType.Sunny, new Sunny() },
-                {WeatherType.Rainy, new Rainy(this.GraphicsDevice) }
-            };
-
-            CurrentWeather = WeatherType.Sunny;
-
-            ForestTracker = new SanctuaryTracker(Player.UserInterface.CompletionHub.AllGuides[0]);
-            OverWorldSpawnHolder = new SpawnHolder();
-
         }
         #endregion
+
 
         #region UNLOADCONTENT
         protected override void UnloadContent()

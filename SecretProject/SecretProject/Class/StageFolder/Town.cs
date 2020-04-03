@@ -17,6 +17,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
+using System.IO;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder

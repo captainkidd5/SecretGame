@@ -639,6 +639,11 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public void Unload()
+        {
+            this.AllTiles = null;
+        }
+
         public void Save(BinaryWriter writer)
         {
             writer.Write(this.AllTiles.Count);
@@ -657,9 +662,16 @@ namespace SecretProject.Class.TileStuff
 
         public void Load(BinaryReader reader)
         {
-
+           
             int layerCount = reader.ReadInt32();
             int tileCount = reader.ReadInt32();
+
+            this.AllTiles = new List<Tile[,]>();
+            for (int i = 0; i < 4; i++)
+            {
+                this.AllTiles.Add(new Tile[tileCount, tileCount]);
+
+            }
             for (int z = 0; z < layerCount; z++)
             {
 

@@ -116,13 +116,17 @@ namespace SecretProject.Class.StageFolder
         public List<Enemy> Enemies { get; set; }
         public List<Projectile> AllProjectiles { get; set; }
         public List<ParticleEngine> ParticleEngines { get; set; }
+
+
+        //SAVE STUFF
+        public string SavePath { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, string savePath, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -148,6 +152,8 @@ namespace SecretProject.Class.StageFolder
             this.AllProjectiles = new List<Projectile>();
 
             LoadPreliminaryContent();
+
+            this.SavePath = savePath;
         }
 
         public virtual void LoadPreliminaryContent()
@@ -226,18 +232,22 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void UnloadContent()
         {
-            //Content.Unload();
-            //AllObjects = null;
-            //AllLayers = null;
-            //AllTiles = null;
-            //AllSprites = null;
-            //AllDepths = null;
-            //AllItems = null;
-            //Background = null;
-            //MidGround = null;
-            //foreGround = null;
+            File.WriteAllText(this.SavePath, string.Empty);
 
-            //this.Cam = null;
+            FileStream fileStream = File.OpenWrite(this.SavePath);
+            BinaryWriter binaryWriter = new BinaryWriter(fileStream);
+
+
+
+
+
+
+            binaryWriter.Flush();
+            binaryWriter.Close();
+
+            Save(binaryWriter);
+            AllTiles.Unload();
+
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
         }

@@ -580,5 +580,10 @@ namespace SecretProject.Class.StageFolder
         {
             //this.AllTiles.Load(reader);
         }
+
+        public void UnloadContent(BinaryWriter writer)
+        {
+            
+        }
     }
 }
