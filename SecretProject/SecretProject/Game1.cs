@@ -275,8 +275,8 @@ namespace SecretProject
         public static Sarah Sarah;
         public static Mippin Mippin;
         public static Ned Ned;
-        public static Teal Teal;
-        public static Marcus Marcus;
+        public static Character Teal;
+        public static Character Marcus;
         public static Character Caspar;
         public static List<Character> AllCharacters;
 
@@ -669,8 +669,55 @@ namespace SecretProject
 
             Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
             Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
-            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
-            Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
+
+
+
+            Vector2 tealPosition = Character.GetWorldPosition(new Vector2(45, 80));
+            Teal = new Character("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.OverWorld, false, TealQuests, AllTextures.TealPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Teal, 0, 0, 16, 32, 6, .15f, tealPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Teal, 96, 0, 16, 32, 7, .15f, tealPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Teal, 96, 0, 16, 32, 7, .15f, tealPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Teal, 208, 0, 16, 32, 6, .15f, tealPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 10,
+
+                DebugColor = Color.HotPink,
+            };
+            Teal.LoadLaterStuff(graphics.GraphicsDevice);
+
+
+            Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(11, 30));
+            Marcus = new Character("Marcus", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], Stages.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Marcus, 0, 0, 16, 32, 6, .15f, marcusPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Marcus, 96, 0, 16, 32, 7, .15f, marcusPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Marcus, 96, 0, 16, 32, 7, .15f, marcusPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Marcus, 208, 0, 16, 32, 6, .15f, marcusPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 11,
+                // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
+
+                DebugColor = Color.HotPink,
+            };
+            Marcus.LoadLaterStuff(graphics.GraphicsDevice);
+
 
             Vector2 casparPosition = Character.GetWorldPosition(new Vector2(11, 30));
             Caspar = new Character("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Stages.MarcusHouse,false, CasparQuests, AllTextures.CasparPortrait)
