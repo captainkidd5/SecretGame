@@ -265,8 +265,8 @@ namespace SecretProject
         public static IEvent CurrentEvent;
 
         //NPCS
-        public static Elixir Elixir;
-        public static Dobbin Dobbin;
+        public static Character Elixir;
+        public static Character Dobbin;
         public static Character Kaya;
 
         public static Character Snaw;
@@ -639,9 +639,58 @@ namespace SecretProject
         }
         private void LoadCharacters()
         {
-            Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], ElixirQuests, AllTextures.ElixirPortrait) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], DobbinQuests, AllTextures.DobbinPortrait) { FrameToSet = 0 };
-          //  Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
+
+            Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(23, 10));
+            Elixir = new Character("Elixir", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Stages.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, 48, 0, 16, 48, 6, .15f, elixirPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet,  144, 0, 28, 48, 6, .15f, elixirPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet,  240, 0, 16, 48, 6, .15f, elixirPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet,336, 0, 16, 48, 6, .15f, elixirPosition)
+                },
+
+                NPCRectangleXOffSet = 8,
+                NPCRectangleYOffSet = 34,
+                NPCRectangleHeightOffSet = 8,
+                NPCRectangleWidthOffSet = 8,
+                SpeakerID = 1,
+
+
+            DebugColor = Color.HotPink,
+            };
+            Elixir.LoadLaterStuff(graphics.GraphicsDevice);
+
+
+
+
+
+
+            Vector2 dobbinPosition = Character.GetWorldPosition(new Vector2(18, 8));
+            Dobbin = new Character("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], Stages.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet,0, 0, 28, 48, 6, .15f, dobbinPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet,  167, 0, 28, 48, 6, .15f, dobbinPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, 335, 0, 28, 48, 6, .15f, dobbinPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet,503, 0, 28, 48, 6, .15f, dobbinPosition)
+                },
+
+                NPCRectangleXOffSet = 15,
+            NPCRectangleYOffSet = 30,
+            NPCRectangleHeightOffSet = 2,
+           NPCRectangleWidthOffSet = 2,
+            SpeakerID = 2,
+
+            DebugColor = Color.HotPink,
+            };
+           Dobbin.LoadLaterStuff(graphics.GraphicsDevice);
+
+
 
             Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
             Kaya = new Character("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Stages.KayaHouse, false, KayaQuests, AllTextures.KayaPortrait)
