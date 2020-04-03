@@ -39,6 +39,7 @@ namespace SecretProject.Class.PathFinding
             {
                 if (indexJ >= 0)
                 {
+                    if(indexI < Weight.GetLength(0) && indexJ < Weight.GetLength(1))
                     Weight[indexI, indexJ] = (byte)newValue;
                     return;
                 }
