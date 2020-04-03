@@ -267,14 +267,14 @@ namespace SecretProject
         //NPCS
         public static Elixir Elixir;
         public static Dobbin Dobbin;
-        public static Kaya Kaya;
+        public static Character Kaya;
 
         public static Character Snaw;
         public static Character BusinessSnail;
-        public static Julian Julian;
-        public static Sarah Sarah;
-        public static Mippin Mippin;
-        public static Ned Ned;
+        public static Character Julian;
+        public static Character Sarah;
+        public static Character Mippin;
+        public static Character Ned;
         public static Character Teal;
         public static Character Marcus;
         public static Character Caspar;
@@ -641,7 +641,30 @@ namespace SecretProject
         {
             Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], ElixirQuests, AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], DobbinQuests, AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
+          //  Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
+
+            Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
+            Kaya = new Character("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Stages.KayaHouse, false, KayaQuests, AllTextures.KayaPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, 0, 0, 16, 34, 6, .15f, kayaPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, 112, 0, 16, 34, 7, .15f, kayaPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, 224, 0, 16, 34, 7, .15f, kayaPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, 336, 0, 16, 34, 6, .15f, kayaPosition)
+                },
+
+                NPCRectangleXOffSet = 5,
+                NPCRectangleYOffSet = 15,
+                NPCRectangleHeightOffSet = 12,
+                NPCRectangleWidthOffSet = 8,
+                SpeakerID = 4,
+
+                DebugColor = Color.HotPink,
+            };
+            Kaya.LoadLaterStuff(graphics.GraphicsDevice);
+
             Snaw = new Character("Snaw", new Vector2(121, 67), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3, AllTextures.SnawPortrait, SnawQuests)
             {
@@ -653,8 +676,53 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], JulianQuests, AllTextures.JulianPortrait) { FrameToSet = 0 };
-            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], SarahQuests, AllTextures.SarahPortrait) { FrameToSet = 0 };
+
+            Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 9));
+            Julian = new Character("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], Stages.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, 0, 0, 16, 34, 6, .15f, julianPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, 96, 0, 16, 34, 7, .15f, julianPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, 208, 0, 16, 34, 7, .15f, julianPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, 320, 0, 16, 34, 6, .15f, julianPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 5,
+
+                DebugColor = Color.HotPink,
+            };
+            Julian.LoadLaterStuff(graphics.GraphicsDevice);
+
+
+            Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(40, 21));
+            Sarah = new Character("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.OverWorld, false, SarahQuests, AllTextures.SarahPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, 0, 0, 16, 32, 6, .15f, sarahPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, 96, 0, 16, 32, 7, .15f, sarahPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, 96, 0, 16, 32, 7, .15f, sarahPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, 208, 0, 16, 32, 6, .15f, sarahPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 6,
+
+                DebugColor = Color.HotPink,
+            };
+            Sarah.LoadLaterStuff(graphics.GraphicsDevice);
+
+
             BusinessSnail = new Character("Business Snail", new Vector2(34, 80), graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
                 1, AllTextures.BusinessSnailPortrait, BusinessSnailQuests)
             {
@@ -667,8 +735,54 @@ namespace SecretProject
                 IsBasicNPC = true
             };
 
-            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
-            Ned = new Ned("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
+
+
+
+
+            Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(40, 21));
+            Mippin = new Character("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.OverWorld, false, MippinQuests, AllTextures.MippinPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Mippin, 0, 0, 16, 32, 6, .15f, mippinPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Mippin, 96, 0, 16, 32, 7, .15f, mippinPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Mippin, 96, 0, 16, 32, 7, .15f, mippinPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Mippin, 208, 0, 16, 32, 6, .15f, mippinPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 8,
+
+                DebugColor = Color.HotPink,
+            };
+            Mippin.LoadLaterStuff(graphics.GraphicsDevice);
+
+
+            Vector2 nedPosition = Character.GetWorldPosition(new Vector2(110, 11));
+            Ned = new Character("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.OverWorld, false, NedQuests, AllTextures.NedPortrait)
+            {
+                FrameToSet = 0,
+                NPCAnimatedSprite = new Sprite[]
+                {
+             new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Ned, 0, 0, 16, 32, 6, .15f, nedPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Ned, 96, 0, 16, 32, 7, .15f, nedPosition),
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Ned, 96, 0, 16, 32, 7, .15f, nedPosition) { Flip = true },
+            new Sprite(graphics.GraphicsDevice, Game1.AllTextures.Ned, 208, 0, 16, 32, 6, .15f, nedPosition)
+                },
+
+                NPCRectangleXOffSet = 7,
+                NPCRectangleYOffSet = 30,
+                NPCRectangleHeightOffSet = 2,
+                NPCRectangleWidthOffSet = 2,
+                SpeakerID = 9,
+
+                DebugColor = Color.HotPink,
+            };
+            Ned.LoadLaterStuff(graphics.GraphicsDevice);
 
 
 
