@@ -25,6 +25,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public string SavePath { get; set; }
         public string ChunkPath { get; set; }
         public string UnChunkPath { get; set; }
+        public string GameLocationPath { get; set; }
 
         public SaveSlot(GraphicsDevice graphics, int id, Button button, bool occupied, string saveName = null)
         {
@@ -103,24 +104,30 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.ChunkPath = directoryPath + "/" + Game1.Player.Name + "Chunks";
             this.UnChunkPath = directoryPath + "/" + Game1.Player.Name + "UnChunks";
 
-            string gameLocationPath = directoryPath + "/GameLocations/";
+            this.GameLocationPath = directoryPath + "/GameLocations/";
             System.IO.Directory.CreateDirectory(ChunkPath);
             System.IO.Directory.CreateDirectory(UnChunkPath);
-            System.IO.Directory.CreateDirectory(gameLocationPath);
+            System.IO.Directory.CreateDirectory(GameLocationPath);
 
             this.SavePath = directoryPath + "/" + Game1.Player.Name + "_PrimaryData";
             this.String = Game1.Player.Name + "\n Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString();
+            AssignPaths();
             Game1.SaveLoadManager.Save(this);
+
+            //  Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
+
+          
             
-          //  Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
+            Game1.mainMenu.StartNewGame();
+        }
 
-
-            foreach(ILocation stage in Game1.AllStages)
+        public void AssignPaths()
+        {
+            foreach (ILocation stage in Game1.AllStages)
             {
 
-                stage.AssignPath(gameLocationPath);
+                stage.AssignPath(this.GameLocationPath);
             }
-            Game1.mainMenu.StartNewGame();
         }
 
         public void SaveString(BinaryWriter writer)

@@ -62,12 +62,13 @@ namespace SecretProject.Class.SavingStuff
             writer.Write(saveSlot.SavePath);
             writer.Write(saveSlot.ChunkPath);
             writer.Write(saveSlot.UnChunkPath);
+            writer.Write(saveSlot.GameLocationPath);
 
             Game1.Player.Save(writer);
-            foreach(ILocation location in Game1.AllStages)
-            {
-                location.Save(writer);
-            }
+            //foreach(ILocation location in Game1.AllStages)
+            //{
+            //    location.Save(writer);
+            //}
             if(Game1.OverWorld.IsLoaded)
             {
                 Game1.OverWorld.SaveLocation();
@@ -85,16 +86,18 @@ namespace SecretProject.Class.SavingStuff
 
         public static void LoadGameFile(BinaryReader reader, float version, SaveSlot saveSlot)
         {
-            Game1.IsFirstTimeStartup = false;
+            Game1.IsFirstTimeStartup = true;
             saveSlot.String = reader.ReadString();
             saveSlot.SavePath = reader.ReadString();
             saveSlot.ChunkPath = reader.ReadString();
             saveSlot.UnChunkPath = reader.ReadString();
+            saveSlot.GameLocationPath = reader.ReadString();
             Game1.Player.Load(reader);
-            foreach (ILocation location in Game1.AllStages)
-            {
-                location.Load(reader);
-            }
+            saveSlot.AssignPaths();
+            //foreach (ILocation location in Game1.AllStages)
+            //{
+            //    location.Load(reader);
+            //}
             Game1.GlobalClock.Load(reader);
 
             Game1.cam.Load(reader);

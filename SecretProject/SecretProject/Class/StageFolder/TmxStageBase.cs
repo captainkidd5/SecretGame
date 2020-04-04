@@ -159,7 +159,17 @@ namespace SecretProject.Class.StageFolder
         public void AssignPath(string startPath)
         {
             this.SavePath = startPath + this.StageName;
-            File.WriteAllText(this.SavePath, string.Empty);
+
+                if (File.Exists(this.SavePath))
+                {
+
+                }
+                else
+                {
+                    File.WriteAllText(this.SavePath, string.Empty);
+                }
+            
+            
         }
 
         public virtual void LoadPreliminaryContent()
@@ -537,11 +547,13 @@ namespace SecretProject.Class.StageFolder
         {
 
             this.AllTiles.Save(writer);
+            writer.Write(this.SavePath);
         }
 
         public void Load(BinaryReader reader)
         {
             this.AllTiles.Load(reader);
+            this.SavePath = reader.ReadString();
         }
     }
     
