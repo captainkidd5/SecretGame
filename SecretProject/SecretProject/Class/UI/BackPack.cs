@@ -627,19 +627,19 @@ namespace SecretProject.Class.UI
                         Game1.GetCurrentStage().AllTiles.GridItem = null;
                     }
                 }
-                else if (Game1.GetCurrentStageInt() == Stages.Forest)
-                {
-                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+                //else if (Game1.GetCurrentStageInt() == Stages.Forest)
+                //{
+                //    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                //    {
+                //        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
 
 
-                    }
-                    else
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = null;
-                    }
-                }
+                //    }
+                //    else
+                //    {
+                //        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                //    }
+                //}
 
 
 

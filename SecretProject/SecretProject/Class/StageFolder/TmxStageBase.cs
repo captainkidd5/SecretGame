@@ -225,7 +225,10 @@ namespace SecretProject.Class.StageFolder
             this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
 
-
+            if(this == Game1.LightHouse)
+            {
+                Console.WriteLine("test");
+            }
             this.Cam = camera;
             this.Cam.pos.X = Game1.Player.position.X;
             this.Cam.pos.Y = Game1.Player.position.Y;

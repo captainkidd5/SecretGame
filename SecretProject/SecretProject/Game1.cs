@@ -75,9 +75,9 @@ namespace SecretProject
 
         DobbinHouseUpper = 9,
         MarcusHouse = 10,
-        Forest = 11,
-        LightHouse = 12,
-        UnderWorld = 13,
+
+        LightHouse = 11,
+        UnderWorld = 12,
         MainMenu = 50,
         Exit = 55,
 
@@ -947,8 +947,7 @@ namespace SecretProject
         {
             switch (stage)
             {
-                case Stages.Forest:
-                    return ForestTracker;
+
 
                 default:
                     return ForestTracker;
