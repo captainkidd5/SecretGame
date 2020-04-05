@@ -71,6 +71,9 @@
   <properties>
    <property name="generate" value="Water"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
   <animation>
    <frame tileid="122" duration="400"/>
    <frame tileid="121" duration="400"/>

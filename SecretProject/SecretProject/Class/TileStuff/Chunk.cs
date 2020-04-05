@@ -194,7 +194,7 @@ namespace SecretProject.Class.TileStuff
             return RectangleToReturn;
         }
 
-
+        #region IO
         public void Save()
         {
             if (!IsSaving)
@@ -303,9 +303,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-
-
-
         public void Load()
         {
             if (!IsDoneLoading)
@@ -501,6 +498,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        #endregion
         /// <summary>
         /// Tries X times at random to find a tile which doesn't contain an obstacle
         /// </summary>
@@ -520,7 +518,7 @@ namespace SecretProject.Class.TileStuff
 
             return null;
         }
-
+        #region OBSCURECASES
         public void GenerateFromTown()
         {
 
@@ -736,6 +734,7 @@ namespace SecretProject.Class.TileStuff
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
         }
+        #endregion
 
         public void GenerateNormal()
         {
@@ -877,10 +876,7 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                if (Game1.GenerateChunkLandscape)
-                {
-                    GenerateLandscape(topNoise);
-                }
+               
 
             }
 
@@ -954,6 +950,10 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
+                if (Game1.GenerateChunkLandscape)
+                {
+                    GenerateLandscape(topNoise);
+                }
                 if (Game1.AllowNaturalNPCSpawning)
                 {
 
@@ -1040,13 +1040,12 @@ namespace SecretProject.Class.TileStuff
 
         public void GenerateLandscape(float[,] noise)
         {
-            if (Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
-            {
-               Camp camp =  Game1.OverWorldSpawnHolder.GetCamp();
-                camp.Spawn(this, this.ITileManager.Stage);
-            }
-            else
-            {
+            //if (Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
+            //{
+            //   Camp camp =  Game1.OverWorldSpawnHolder.GetCamp();
+            //    camp.Spawn(this, this.ITileManager.Stage);
+            //}
+         
 
 
                 List<SpawnElement> spawnElements;
@@ -1058,18 +1057,39 @@ namespace SecretProject.Class.TileStuff
                 {
                     spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
                 }
-                //Specify GID + 1
-                for (int s = 0; s < spawnElements.Count; s++)
-                {
-                    SpawnElement element = spawnElements[s];
 
-                    if (element.Unlocked)
+                //TEST
+                PoissonSampler sampler = new PoissonSampler(2, 3, this.PathGrid);
+
+                ObstacleGrid grid = sampler.Generate();
+
+                for(int i = 0; i < grid.Weight.GetLength(0); i++)
+                {
+                    for(int j =0; j < grid.Weight.GetLength(1);j++)
                     {
-                        TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
-                            (int)element.MapLayerToCheckIfEmpty, this, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+                        if(grid.Weight[i,j] == (int)GridStatus.Obstructed)
+                        {
+                            Tile oldTile = AllTiles[3][i, j];
+                            TileUtility.ReplaceTile(3, oldTile.X, oldTile.Y, 2964, this);
+                        }
                     }
-                };
-            }
+                }
+
+
+
+
+                //Specify GID + 1
+                //for (int s = 0; s < spawnElements.Count; s++)
+                //{
+                //    SpawnElement element = spawnElements[s];
+
+                //    if (element.Unlocked)
+                //    {
+                //        TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
+                //            (int)element.MapLayerToCheckIfEmpty, this, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+                //    }
+                //};
+            
 
 
         }

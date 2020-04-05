@@ -98,6 +98,15 @@ namespace SecretProject.Class.Universal
 
         }
 
+        /// <summary>
+        /// Returns 1 or -1 at a 50% chance
+        /// </summary>
+        /// <returns></returns>
+        public int GetMultiplier()
+        {
+            return RGenerator.Next(0, 2) * 2 - 1;
+        }
+
         public Vector2 GetDistanceBetweenTwoVectors(Vector2 entity1, Vector2 entity2)
         {
             return entity1 - entity2;
