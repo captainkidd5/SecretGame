@@ -11,7 +11,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public class PoissonSampler
     {
         private const int CellSize = 16; //standard tile size
-        private const int MaxK  = 15; //Maximum number of tries for a new point.
+        private const int MaxK  = 5; //Maximum number of tries for a new point.
 
 
         public int MinDistance { get; private set; } //Minimum distance points must be separated from one another

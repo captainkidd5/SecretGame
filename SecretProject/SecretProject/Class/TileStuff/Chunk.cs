@@ -876,7 +876,10 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 HandleCliffEdgeCases(AllAdjacentChunkNoise);
-               
+                if (Game1.GenerateChunkLandscape)
+                {
+                    GenerateLandscape(topNoise);
+                }
 
             }
 
@@ -950,10 +953,6 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
-                if (Game1.GenerateChunkLandscape)
-                {
-                    GenerateLandscape(topNoise);
-                }
                 if (Game1.AllowNaturalNPCSpawning)
                 {
 
@@ -1059,7 +1058,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 //TEST
-                PoissonSampler sampler = new PoissonSampler(2, 3, this.PathGrid);
+                PoissonSampler sampler = new PoissonSampler(3, 4, this.PathGrid);
 
                 ObstacleGrid grid = sampler.Generate();
 
@@ -1067,10 +1066,10 @@ namespace SecretProject.Class.TileStuff
                 {
                     for(int j =0; j < grid.Weight.GetLength(1);j++)
                     {
-                        if(grid.Weight[i,j] == (int)GridStatus.Obstructed)
+                        if(grid.Weight[i,j] == (int)GridStatus.Obstructed && AllTiles[1][i, j].GenerationType == GenerationType.Grass)
                         {
                             Tile oldTile = AllTiles[3][i, j];
-                            TileUtility.ReplaceTile(3, oldTile.X, oldTile.Y, 2964, this);
+                            TileUtility.ReplaceTile(3, i, j, 2964, this);
                         }
                     }
                 }
