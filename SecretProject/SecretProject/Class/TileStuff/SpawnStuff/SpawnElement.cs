@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff.SpawnStuff
 {
+    public enum SpawnMethod
+    {
+        RandomScatter = 1,
+        Poisson = 2
+    }
     public class SpawnElement
     {
         public int GID { get; private set; }
+        public SpawnMethod SpawnMethod { get; set; }
         public MapLayer MapLayerToPlace { get; private set; }
         public MapLayer MapLayerToCheckIfEmpty { get; private set; }
         public GenerationType GenerationType { get; private set; }
@@ -36,9 +42,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// <param name="tries"></param>
         /// <param name="limit"></param>
 
-        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
+        public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
         {
             this.GID = gid + 1;
+            this.SpawnMethod = spawnMethod;
             this.MapLayerToPlace = mapLayerToPlace;
             this.MapLayerToCheckIfEmpty = mapLayerToCheckIfEmpty;
             this.GenerationType = generationType;
