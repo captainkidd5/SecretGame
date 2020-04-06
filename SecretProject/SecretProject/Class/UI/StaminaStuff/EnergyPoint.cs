@@ -24,7 +24,7 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public EnergyPoint(Vector2 position)
         {
-            this.MaximumEnergy = 10;
+            this.MaximumEnergy = 50;
             this.CurrentEnergy = MaximumEnergy;
             this.ColorMultiplier = 1f;
             this.Position = position;

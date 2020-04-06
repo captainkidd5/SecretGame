@@ -1029,6 +1029,29 @@
    <object id="1" x="3.125" y="0.25" width="8.25" height="12.625"/>
   </objectgroup>
  </tile>
+ <tile id="666">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="668">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="670">
+  <properties>
+   <property name="crop" value="669"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="669" duration="100"/>
+   <frame tileid="668" duration="100"/>
+   <frame tileid="666" duration="100"/>
+   <frame tileid="663" duration="100"/>
+  </animation>
+ </tile>
  <tile id="678">
   <properties>
    <property name="idleStart" value=""/>
@@ -2790,11 +2813,17 @@
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="7" width="8" height="7"/>
+  </objectgroup>
  </tile>
  <tile id="1668">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="11" width="4" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="1670">
   <properties>
@@ -3339,11 +3368,17 @@
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="6" width="6" height="7"/>
+  </objectgroup>
  </tile>
  <tile id="2269">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="8" width="2" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="2271">
   <properties>
@@ -3831,6 +3866,35 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="4" width="11.25" height="10.5"/>
   </objectgroup>
+ </tile>
+ <tile id="2966">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="7" width="7" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="2968">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="8" width="4" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="2970">
+  <properties>
+   <property name="crop" value="670"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="2969" duration="100"/>
+   <frame tileid="2968" duration="100"/>
+   <frame tileid="2966" duration="100"/>
+   <frame tileid="2963" duration="100"/>
+  </animation>
  </tile>
  <tile id="3004">
   <objectgroup draworder="index" id="2">
@@ -4665,6 +4729,29 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="5" width="13.6875" height="2.3125"/>
   </objectgroup>
+ </tile>
+ <tile id="3666">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="3668">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="3670">
+  <properties>
+   <property name="crop" value="671"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="3669" duration="100"/>
+   <frame tileid="3668" duration="100"/>
+   <frame tileid="3666" duration="100"/>
+   <frame tileid="3663" duration="100"/>
+  </animation>
  </tile>
  <tile id="3704">
   <objectgroup draworder="index" id="2">
@@ -5503,6 +5590,35 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="6" width="12" height="8"/>
   </objectgroup>
+ </tile>
+ <tile id="4265">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="8" width="4" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="4267">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="9" width="5" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="4269">
+  <properties>
+   <property name="crop" value="672"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="3669" duration="100"/>
+   <frame tileid="3668" duration="100"/>
+   <frame tileid="3666" duration="100"/>
+   <frame tileid="3663" duration="100"/>
+  </animation>
  </tile>
  <tile id="4280">
   <properties>

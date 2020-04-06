@@ -29,6 +29,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public bool Unlocked { get; set; }
 
+        public bool IsCrop { get; set; }
 
         /// <summary>
         /// 

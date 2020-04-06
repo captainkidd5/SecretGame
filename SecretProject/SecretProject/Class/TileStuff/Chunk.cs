@@ -430,7 +430,11 @@ namespace SecretProject.Class.TileStuff
 
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
-                                this.Crops.Add(cropKey, crop);
+                                if(!this.Crops.ContainsKey(cropKey))
+                                {
+                                    this.Crops.Add(cropKey, crop);
+                                }
+                                
                                 TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
                             }
 
