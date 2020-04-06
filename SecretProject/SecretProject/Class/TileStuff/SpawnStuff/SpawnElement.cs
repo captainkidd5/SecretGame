@@ -12,25 +12,39 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public MapLayer MapLayerToPlace { get; private set; }
         public MapLayer MapLayerToCheckIfEmpty { get; private set; }
         public GenerationType GenerationType { get; private set; }
-        public int Frequency { get; set; }
-
-        public bool ZeroLayerOnly { get; private set; }
+        public Rarity Rarity { get; set; }
+        public int DistanceBetweenNeighbors { get; set; }
         public bool AssertLeftAndRight { get; set; }
         public int Limit { get; set; }
+
+        public int Tries { get; set; }
 
 
         public bool Unlocked { get; set; }
 
 
-        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,int frequency, bool zeroLayerOnly = false, bool assertLeftAndRight = false, int limit = 0)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gid">Specify as is.</param>
+        /// <param name="mapLayerToPlace">Which layer object should be placed in</param>
+        /// <param name="mapLayerToCheckIfEmpty">will only spawn on previous layer, if this specified layer is empty.</param>
+        /// <param name="generationType"></param>
+        /// <param name="distanceBetweenNeighbors">how far must be away from any other given object.</param>
+        /// <param name="assertLeftAndRight"></param>
+        /// <param name="tries"></param>
+        /// <param name="limit"></param>
+
+        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
         {
-            this.GID = gid;
+            this.GID = gid + 1;
             this.MapLayerToPlace = mapLayerToPlace;
             this.MapLayerToCheckIfEmpty = mapLayerToCheckIfEmpty;
             this.GenerationType = generationType;
-            this.Frequency = frequency;
-            this.ZeroLayerOnly = zeroLayerOnly;
+            this.Rarity = rarity;
+            this.DistanceBetweenNeighbors = distanceBetweenNeighbors;
             this.AssertLeftAndRight = assertLeftAndRight;
+            this.Tries = tries;
             this.Limit = limit;
         }
     }

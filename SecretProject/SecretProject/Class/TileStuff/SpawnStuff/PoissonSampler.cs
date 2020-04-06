@@ -11,7 +11,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public class PoissonSampler
     {
         private const int CellSize = 16; //standard tile size
-        private const int MaxK  = 5; //Maximum number of tries for a new point.
+        private int MaxK; //Maximum number of tries for a new point.
 
 
         public int MinDistance { get; private set; } //Minimum distance points must be separated from one another
@@ -19,23 +19,24 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
         public List<Point> ActiveSamples { get; set; }
-        public ObstacleGrid Grid { get; set; }
+        public byte[,] Grid { get; set; }
         public Rectangle GridRectangle { get; set; }
 
-        public PoissonSampler(int minDistance, int maxDistance, ObstacleGrid grid)
+        public PoissonSampler(int minDistance, int maxDistance, ObstacleGrid grid, int tries)
         {
             this.MinDistance = minDistance;
             this.MaxDistance = maxDistance;
             this.ActiveSamples = new List<Point>();
-            this.Grid = grid; //dont forget to clear grid
+            this.Grid = (byte[,])grid.Weight.Clone(); //dont forget to clear grid
+            this.MaxK = tries;
 
         }
 
-        public ObstacleGrid Generate()
+        public void Generate(int gid, Tile[,] tiles, int layer, IInformationContainer container, GenerationType generationType)
         {
             //generate first point randomly within grid
-            ActiveSamples.Add(new Point(Game1.Utility.RGenerator.Next(0, Grid.Weight.GetLength(0) - 1),
-                Game1.Utility.RGenerator.Next(0, Grid.Weight.GetLength(0) - 1)));
+            ActiveSamples.Add(new Point(Game1.Utility.RGenerator.Next(0, Grid.GetLength(0) - 1),
+                Game1.Utility.RGenerator.Next(0, Grid.GetLength(0) - 1)));
 
             while(ActiveSamples.Count > 0)
             {
@@ -55,10 +56,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     {
                         if(IsFarEnough(newPoint))
                         {
-                            found = true;
-                            ActiveSamples.Add(newPoint);
-                            Grid.Weight[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
-                            break;
+                            if(container.AllTiles[0][newPoint.X,newPoint.Y].GenerationType == generationType)
+                            {
+                                found = true;
+                                ActiveSamples.Add(newPoint);
+                                Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
+                                TileUtility.ReplaceTile(layer, newPoint.X, newPoint.Y, gid, container);
+                                break;
+                            }
+                          
                         }
                     }
 
@@ -67,20 +73,20 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                 if(!found)
                 {
-                    ActiveSamples[sampleIndex] = ActiveSamples[ActiveSamples.Count - 1];
+                    this.ActiveSamples[sampleIndex] = ActiveSamples[ActiveSamples.Count - 1];
                     ActiveSamples.RemoveAt(ActiveSamples.Count - 1);
                 }
                 
 
             }
 
-            return Grid;
+            return;
 
         }
 
         private bool GridContains(Point sample)
         {
-            if(sample.X > 0 && sample.Y > 0 && sample.X < Grid.Weight.GetLength(0) && sample.Y < Grid.Weight.GetLength(1))
+            if(sample.X > 0 && sample.Y > 0 && sample.X < Grid.GetLength(0) && sample.Y < Grid.GetLength(1))
             {
                 return true;
             }
@@ -103,21 +109,21 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             int endingIndexX = sample.X + this.MinDistance;
             int endingIndexY = sample.Y + this.MinDistance;
 
-            if(endingIndexX >= Grid.Weight.GetLength(0))
+            if(endingIndexX >= Grid.GetLength(0))
             {
-                endingIndexX = Grid.Weight.GetLength(0) - 1;
+                endingIndexX = Grid.GetLength(0) - 1;
             }
 
-            if(endingIndexY >= Grid.Weight.GetLength(1))
+            if(endingIndexY >= Grid.GetLength(1))
             {
-                endingIndexY = Grid.Weight.GetLength(1) - 1;
+                endingIndexY = Grid.GetLength(1) - 1;
             }
 
             for (int i = startingX; i < endingIndexX; i++)
             {
                 for(int j = startingY; j < endingIndexY; j++)
                 {
-                    if(Grid.Weight[i,j] == (int)GridStatus.Obstructed)
+                    if(Grid[i,j] == (int)GridStatus.Obstructed)
                     {
                         return false;
                     }

@@ -19,9 +19,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
 
             this.SpawnElements = new List<SpawnElement>()
             {
-                new SpawnElement(3740, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Purple Orb
-                 new SpawnElement(3742, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Magic stick
-                  new SpawnElement(3743, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Arcane Crystal
+                //new SpawnElement(3740, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Purple Orb
+                // new SpawnElement(3742, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Magic stick
+                //  new SpawnElement(3743, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Arcane Crystal
             };
             this.FloorTileID = 3347;
 

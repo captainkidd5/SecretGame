@@ -19,9 +19,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
 
             this.SpawnElements = new List<SpawnElement>()
             {
-                new SpawnElement(4139, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Bone idol
-                 new SpawnElement(3939, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Drum
-                  new SpawnElement(4141, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Hide Rack
+                //new SpawnElement(4139, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Bone idol
+                // new SpawnElement(3939, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Drum
+                //  new SpawnElement(4141, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Hide Rack
             };
             this.FloorTileID = 4143;
 

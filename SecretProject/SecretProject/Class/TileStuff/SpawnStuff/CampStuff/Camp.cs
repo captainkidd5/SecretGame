@@ -31,12 +31,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
 
         public virtual void Spawn(IInformationContainer container, ILocation location)
         {
-            for(int i =0; i < this.SpawnElements.Count; i++)
-            {
-                SpawnElement element = SpawnElements[i];
-                TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
-                                (int)element.MapLayerToCheckIfEmpty, container, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
-            }
+            //for(int i =0; i < this.SpawnElements.Count; i++)
+            //{
+            //    SpawnElement element = SpawnElements[i];
+            //    TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
+            //                    (int)element.MapLayerToCheckIfEmpty, container, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+            //}
             
             
             

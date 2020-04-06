@@ -1057,22 +1057,23 @@ namespace SecretProject.Class.TileStuff
                     spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
                 }
 
-                //TEST
-                PoissonSampler sampler = new PoissonSampler(3, 4, this.PathGrid);
+            //TEST
+            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, this,this.Random);
+             //   PoissonSampler sampler = new PoissonSampler(3, 4, this.PathGrid);
 
-                ObstacleGrid grid = sampler.Generate();
+                //ObstacleGrid grid = sampler.Generate();
 
-                for(int i = 0; i < grid.Weight.GetLength(0); i++)
-                {
-                    for(int j =0; j < grid.Weight.GetLength(1);j++)
-                    {
-                        if(grid.Weight[i,j] == (int)GridStatus.Obstructed && AllTiles[1][i, j].GenerationType == GenerationType.Grass)
-                        {
-                            Tile oldTile = AllTiles[3][i, j];
-                            TileUtility.ReplaceTile(3, i, j, 2964, this);
-                        }
-                    }
-                }
+                //for(int i = 0; i < grid.Weight.GetLength(0); i++)
+                //{
+                //    for(int j =0; j < grid.Weight.GetLength(1);j++)
+                //    {
+                //        if(grid.Weight[i,j] == (int)GridStatus.Obstructed && AllTiles[1][i, j].GenerationType == GenerationType.Grass)
+                //        {
+                //            Tile oldTile = AllTiles[3][i, j];
+                //            TileUtility.ReplaceTile(3, i, j, 2964, this);
+                //        }
+                //    }
+                //}
 
 
 
