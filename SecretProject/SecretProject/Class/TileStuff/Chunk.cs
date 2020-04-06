@@ -876,10 +876,7 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                if (Game1.GenerateChunkLandscape)
-                {
-                    GenerateLandscape(topNoise);
-                }
+              
 
             }
 
@@ -949,6 +946,11 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
+            }
+
+            if (Game1.GenerateChunkLandscape)
+            {
+                GenerateLandscape(topNoise);
             }
 
             if (this.X != 0 && this.Y != 0)
@@ -1056,39 +1058,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
                 }
-
-            //TEST
             SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, this,this.Random);
-             //   PoissonSampler sampler = new PoissonSampler(3, 4, this.PathGrid);
 
-                //ObstacleGrid grid = sampler.Generate();
-
-                //for(int i = 0; i < grid.Weight.GetLength(0); i++)
-                //{
-                //    for(int j =0; j < grid.Weight.GetLength(1);j++)
-                //    {
-                //        if(grid.Weight[i,j] == (int)GridStatus.Obstructed && AllTiles[1][i, j].GenerationType == GenerationType.Grass)
-                //        {
-                //            Tile oldTile = AllTiles[3][i, j];
-                //            TileUtility.ReplaceTile(3, i, j, 2964, this);
-                //        }
-                //    }
-                //}
-
-
-
-
-                //Specify GID + 1
-                //for (int s = 0; s < spawnElements.Count; s++)
-                //{
-                //    SpawnElement element = spawnElements[s];
-
-                //    if (element.Unlocked)
-                //    {
-                //        TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
-                //            (int)element.MapLayerToCheckIfEmpty, this, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
-                //    }
-                //};
             
 
 

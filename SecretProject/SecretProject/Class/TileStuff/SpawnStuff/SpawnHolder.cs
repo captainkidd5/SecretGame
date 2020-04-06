@@ -17,7 +17,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         Rare = 15,
         Uncommon = 30,
         Common = 50,
-        Abundant = 70
+        VeryCommon = 70,
+        Abundant = 90
        
 
     }
@@ -34,11 +35,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             this.OverWorldSpawnElements = new List<SpawnElement>()
             {
-                new SpawnElement(2963, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant, 3, false, 15, 20){Unlocked = true }, //tree
-                new SpawnElement(978, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,1, false, 3, 2){Unlocked = true }, //Stone
-                new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,1, false, 3, 4){Unlocked = true }, //Stick
-                new SpawnElement(1579, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,1, false, 3, 3){Unlocked = true }, //Stone
-                new SpawnElement(1277, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,7, false, 3, 1){Unlocked = true }, //Steel
+                new SpawnElement(2963, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Pine Tree 
+                 new SpawnElement(3663, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Pine Tree 2 
+                  new SpawnElement(4263, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Fir Tree 
+                new SpawnElement(978, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 2){Unlocked = true }, //Stone
+                new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 4){Unlocked = true }, //Stick
+                new SpawnElement(1579, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 3){Unlocked = true }, //rock
+                new SpawnElement(1277, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,7, false, 1, 1){Unlocked = true }, //Steel
                // new SpawnElement(3663, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt,  Rarity.Abundant,3, false, 15, 20){Unlocked = true }, //tree
                // new SpawnElement(878, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone2
                  //new SpawnElement(1277, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //Steel Vein
@@ -94,8 +97,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //       new SpawnElement(1671, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Oak seed
 
             //    //DESERT
-            new SpawnElement(663, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,3, false, 15, 20){Unlocked = true }, //palm tree
-            new SpawnElement(1682, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,4, false, 10, 2){Unlocked = true }, //Red Shell
+            new SpawnElement(663, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.VeryCommon,Rarity.VeryCommon,3, false, 15, 20){Unlocked = true }, //palm tree
+            new SpawnElement(1682, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Sand, Rarity.VeryCommon,Rarity.VeryCommon,4, false, 10, 2){Unlocked = true }, //Red Shell
             //    new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
             //    new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
             //    new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
@@ -172,10 +175,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             foreach (SpawnElement element in holder.OverWorldSpawnElements)
             {
-                if(random.Next(0,101) < (int)element.Rarity)
+                if (element.Unlocked)
                 {
-                    PoissonSampler sampler = new PoissonSampler(element.DistanceBetweenNeighbors, 6, container.PathGrid, element.Tries);
-                    sampler.Generate(element.GID, container.AllTiles[(int)element.MapLayerToPlace], (int)element.MapLayerToPlace, container, element.GenerationType);
+                    if (random.Next(0, 101) < (int)element.Rarity) //odds of first one even spawning at all
+                    {
+                        PoissonSampler sampler = new PoissonSampler(element.DistanceBetweenNeighbors, 6, container.PathGrid, element.Tries, element.OddsOfAdditionalSpawn);
+                        sampler.Generate(element.GID, container.AllTiles[(int)element.MapLayerToPlace], (int)element.MapLayerToPlace, container, element.GenerationType, random);
+                    }
                 }
                 
             }

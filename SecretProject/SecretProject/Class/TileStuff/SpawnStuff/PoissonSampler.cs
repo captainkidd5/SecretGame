@@ -22,17 +22,19 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public byte[,] Grid { get; set; }
         public Rectangle GridRectangle { get; set; }
 
-        public PoissonSampler(int minDistance, int maxDistance, ObstacleGrid grid, int tries)
+        public Rarity OddsOfAdditionalSpawn { get; set; }
+
+        public PoissonSampler(int minDistance, int maxDistance, ObstacleGrid grid, int tries, Rarity oddsOfAdditionalSpawn)
         {
             this.MinDistance = minDistance;
             this.MaxDistance = maxDistance;
             this.ActiveSamples = new List<Point>();
             this.Grid = (byte[,])grid.Weight.Clone(); //dont forget to clear grid
             this.MaxK = tries;
-
+            this.OddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
         }
 
-        public void Generate(int gid, Tile[,] tiles, int layer, IInformationContainer container, GenerationType generationType)
+        public void Generate(int gid, Tile[,] tiles, int layer, IInformationContainer container, GenerationType generationType, Random random)
         {
             //generate first point randomly within grid
             ActiveSamples.Add(new Point(Game1.Utility.RGenerator.Next(0, Grid.GetLength(0) - 1),
@@ -45,6 +47,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
                 bool found = false;
+                if(random.Next(0,101) > (int)OddsOfAdditionalSpawn)
+                {
+                    return;
+                }
 
                 for(int k =0; k < MaxK; k++) //try MaxK times to find a valid point
                 {

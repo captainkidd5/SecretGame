@@ -13,6 +13,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public MapLayer MapLayerToCheckIfEmpty { get; private set; }
         public GenerationType GenerationType { get; private set; }
         public Rarity Rarity { get; set; }
+        public Rarity OddsOfAdditionalSpawn { get; set; }
         public int DistanceBetweenNeighbors { get; set; }
         public bool AssertLeftAndRight { get; set; }
         public int Limit { get; set; }
@@ -35,13 +36,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// <param name="tries"></param>
         /// <param name="limit"></param>
 
-        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
+        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
         {
             this.GID = gid + 1;
             this.MapLayerToPlace = mapLayerToPlace;
             this.MapLayerToCheckIfEmpty = mapLayerToCheckIfEmpty;
             this.GenerationType = generationType;
             this.Rarity = rarity;
+            this.OddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
             this.DistanceBetweenNeighbors = distanceBetweenNeighbors;
             this.AssertLeftAndRight = assertLeftAndRight;
             this.Tries = tries;
