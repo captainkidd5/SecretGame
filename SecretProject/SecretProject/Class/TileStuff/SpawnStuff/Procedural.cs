@@ -52,7 +52,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public class Procedural
     {
         public FastNoise OverworldBackNoise;
-        public FastNoise OverworldFrontNoise;
 
         public FastNoise UnderWorldNoise;
 
@@ -125,21 +124,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             OverworldBackNoise.SetFractalLacunarity(2.5f);
 
             //Smaller the smooth the biomes
-            OverworldBackNoise.SetFractalGain(.35f);
+            OverworldBackNoise.SetFractalGain(.38f);
 
             //larger the smaller the biomes
             OverworldBackNoise.SetFrequency(.004f);
-
-            OverworldFrontNoise = new FastNoise(500);
-            OverworldFrontNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
-            OverworldFrontNoise.SetFractalOctaves(6);
-            OverworldFrontNoise.SetFractalLacunarity(2.5f);
-
-            //Smaller the smooth the biomes
-            OverworldFrontNoise.SetFractalGain(.35f);
-
-            //larger the smaller the biomes
-            OverworldFrontNoise.SetFrequency(.0005f);
 
 
             //UNDERWORLDNOISE

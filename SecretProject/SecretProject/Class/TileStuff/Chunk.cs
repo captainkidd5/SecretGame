@@ -590,7 +590,7 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            GenerateLandscape(beachNoise);
+            GenerateLandscape();
 
             for (int z = 0; z < 4; z++)
             {
@@ -740,19 +740,18 @@ namespace SecretProject.Class.TileStuff
         {
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             float[,] bottomNoise = new float[16, 16];
-            float[,] topNoise = new float[16, 16];
             FastNoise bottomNoiseGenerator;
-            FastNoise topNoiseGenerator;
+
 
             if (this.ITileManager.Stage == Game1.OverWorld)
             {
                 bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
-                topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
+
             }
             else
             {
                 bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
-                topNoiseGenerator = Game1.Procedural.OverworldFrontNoise; //change
+
             }
 
             for (int i = 0; i < 16; i++)
@@ -760,7 +759,7 @@ namespace SecretProject.Class.TileStuff
                 for (int j = 0; j < 16; j++)
                 {
                     bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
-                    topNoise[i, j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+
                 }
             }
 
@@ -950,7 +949,7 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.GenerateChunkLandscape)
             {
-                GenerateLandscape(topNoise);
+                GenerateLandscape();
             }
 
             if (this.X != 0 && this.Y != 0)
@@ -1039,7 +1038,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void GenerateLandscape(float[,] noise)
+        public void GenerateLandscape()
         {
             //if (Game1.OverWorldSpawnHolder.CheckIfCampSpawns())
             //{
