@@ -177,15 +177,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //NOISE INTERVALS, must be sorted by interval
             this.OverWorldBackgroundNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.1f ),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Sand), -.1f, 0f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Sand), -.4f, 0f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, 1f)
 
 
             };
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.1f ),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.OakFloorTiling),-.05f, -.047f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .3f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.12f,.123f),

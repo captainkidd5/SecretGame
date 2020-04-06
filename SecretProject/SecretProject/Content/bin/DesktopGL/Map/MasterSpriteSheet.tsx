@@ -1808,6 +1808,65 @@
    <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="1070">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1071">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,5"/>
+   <property name="loot" value="646"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1072">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,5"/>
+   <property name="loot" value="645"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1073">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,4"/>
+   <property name="loot" value="644"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1074">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,3"/>
+   <property name="loot" value="643"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1075">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,2"/>
+   <property name="loot" value="642"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1076">
+  <properties>
+   <property name="destructable" value="22,3,0,8,20,2"/>
+   <property name="loot" value="641"/>
+  </properties>
+  <objectgroup draworder="index" id="4">
+   <object id="3" x="1" y="10" width="14" height="4"/>
+  </objectgroup>
+ </tile>
  <tile id="1078">
   <properties>
    <property name="destructable" value="2,0,3,6,6,0"/>

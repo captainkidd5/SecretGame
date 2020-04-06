@@ -12,8 +12,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public enum Rarity
     {
         None = 0,
-        Extremely = 1,
-        Very = 5,
+        ExtremelyRare = 1,
+        VeryRare = 5,
         Rare = 15,
         Uncommon = 30,
         Common = 50,
@@ -44,7 +44,17 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(1078,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Grass Tuft
                 new SpawnElement(1580,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Stick
                 new SpawnElement(1579,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //rock
-                new SpawnElement(1277,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //Steel
+                new SpawnElement(1077,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //Steel
+
+                 new SpawnElement(1076,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper
+                  new SpawnElement(1075,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite
+                   new SpawnElement(1074,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate
+                    new SpawnElement(1073,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite
+
+                    new SpawnElement(1076,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper
+                  new SpawnElement(1075,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite
+                   new SpawnElement(1074,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate
+                    new SpawnElement(1073,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite
 
                 new SpawnElement(1681,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //carrotte
                  new SpawnElement(1380,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //carrotte

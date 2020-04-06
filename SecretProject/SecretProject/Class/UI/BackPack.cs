@@ -352,7 +352,7 @@ namespace SecretProject.Class.UI
                                 this.Inventory.currentInventory[i].RemoveItemFromSlot();
                                 this.AllSlots[i].ItemCounter--;
 
-                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
                                 newWorldItem.IsTossable = true;
                                 Game1.GetCurrentStage().AllTiles.AddItem(newWorldItem, newWorldItem.WorldPosition);
 
