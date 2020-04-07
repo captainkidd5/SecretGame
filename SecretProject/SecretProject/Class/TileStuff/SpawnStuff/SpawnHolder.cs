@@ -255,7 +255,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public static void AddGrassTufts(IInformationContainer container, Tile tile, Tile zeroTile)
         {
-            if (tile.GID != -1)
+            if (tile.GID == -1)
             {
 
                 if (zeroTile.GenerationType == GenerationType.Grass)

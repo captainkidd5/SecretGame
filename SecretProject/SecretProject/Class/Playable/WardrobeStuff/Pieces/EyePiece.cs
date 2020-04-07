@@ -24,7 +24,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Texture = Game1.AllTextures.EyesAtlas;
             this.Color = Color.White;
-            this.LayerDepth = .00000012f;
+            this.LayerDepth = .00000009f;
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 2;
             this.Scale = 1f;
