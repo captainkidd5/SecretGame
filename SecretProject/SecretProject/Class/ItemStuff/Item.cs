@@ -119,13 +119,13 @@ namespace SecretProject.Class.ItemStuff
                 };
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
-                
+
                 AllItems.Add(this);
             }
             else
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
-                if(this.Durability > 0)
+                if (this.Durability > 0)
                 {
 
                 }
@@ -143,7 +143,7 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Update(gameTime);
-
+                CheckCollisions();
                 if (this.Bouncer != null)
                 {
 
@@ -152,7 +152,7 @@ namespace SecretProject.Class.ItemStuff
                     {
                         this.Bouncer = null;
                     }
-                   // CheckAndHandleCollisions();
+                    // CheckAndHandleCollisions();
                 }
                 if (this.IsTossable == true)
                 {
@@ -169,6 +169,31 @@ namespace SecretProject.Class.ItemStuff
                     this.Ignored = false;
                 }
             }
+        }
+
+        public void CheckCollisions()
+        {
+            if (this.Bouncer != null)
+            {
+                List<ICollidable> returnObjects = new List<ICollidable>();
+
+                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
+
+                for (int i = 0; i < returnObjects.Count; i++)
+                {
+                    if(returnObjects[i].ColliderType == ColliderType.inert)
+                    {
+                        if (returnObjects[i].Rectangle.Intersects(new Rectangle((int)this.WorldPosition.X, (int)this.WorldPosition.Y, 16, 16)))
+                        {
+                            Console.WriteLine("Debug!");
+                            this.Bouncer = null;
+                            this.IsTossable = false;
+                        }
+                    }
+                    
+                }
+            }
+
         }
 
         public bool DidCollide(Vector2 velocity, ICollidable objectBody)
@@ -254,13 +279,13 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                this.ItemSprite.Draw(spriteBatch, .4f);
-    //            if(this.Durability > 0)
-    //            {
-     
-    //                spriteBatch.Draw(Game1.AllTextures.redPixel, this.DurabilityRectangle, null,
-    //Color.Blue, 0f,Game1.Utility.Origin, SpriteEffects.None, 1f);
-    //            }
+                this.ItemSprite.Draw(spriteBatch, .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier);
+                //            if(this.Durability > 0)
+                //            {
+
+                //                spriteBatch.Draw(Game1.AllTextures.redPixel, this.DurabilityRectangle, null,
+                //Color.Blue, 0f,Game1.Utility.Origin, SpriteEffects.None, 1f);
+                //            }
             }
 
         }

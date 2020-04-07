@@ -944,7 +944,7 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
                         if (z == 3)
                         {
-                            AddGrassTufts(this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
+                           SpawnHolder.AddGrassTufts(this, this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
                         }
 
                     }
@@ -1120,40 +1120,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void AddGrassTufts(Tile tile, Tile zeroTile)
-        {
-            if (tile.GID != -1)
-            {
-
-                if (zeroTile.GenerationType == GenerationType.Grass)
-                {
-                    if (this.Random.Next(0, 10) < 2)
-                    {
-                        if ((this.Tufts.ContainsKey(tile.TileKey)))
-                        {
-                        }
-                        else
-                        {
-
-                            int numberOfGrassTuftsToSpawn = this.Random.Next(1, 4);
-                            List<GrassTuft> tufts = new List<GrassTuft>();
-                            for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
-                            {
-                                int grassType = this.Random.Next(1, 5);
-                                GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
-                                    + this.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + this.Random.Next(-8, 8)));
-                                grassTuft.TuftsIsPartOf = tufts;
-                                tufts.Add(grassTuft);
-
-
-                            }
-                            this.Tufts.Add(tile.TileKey, tufts);
-
-                        }
-                    }
-                }
-            }
-        }
+       
         //DEBUG
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {

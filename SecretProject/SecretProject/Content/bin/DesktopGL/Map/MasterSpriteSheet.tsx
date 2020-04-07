@@ -1033,11 +1033,22 @@
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="10" width="7" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="668">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="10" width="5" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="669">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="12" width="7" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="670">
   <properties>
@@ -1866,6 +1877,21 @@
   <objectgroup draworder="index" id="4">
    <object id="3" x="1" y="10" width="14" height="4"/>
   </objectgroup>
+ </tile>
+ <tile id="1077">
+  <properties>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+   <property name="loot" value="1002"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+  <animation>
+   <frame tileid="1079" duration="100"/>
+   <frame tileid="1080" duration="100"/>
+   <frame tileid="1081" duration="100"/>
+   <frame tileid="1082" duration="100"/>
+   <frame tileid="1083" duration="100"/>
+  </animation>
  </tile>
  <tile id="1078">
   <properties>
@@ -3942,6 +3968,11 @@
    <object id="1" x="7" y="8" width="4" height="6"/>
   </objectgroup>
  </tile>
+ <tile id="2969">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="12" width="5" height="3"/>
+  </objectgroup>
+ </tile>
  <tile id="2970">
   <properties>
    <property name="crop" value="670"/>
@@ -4798,6 +4829,14 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="11" width="4" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="3669">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="14" width="3" height="2"/>
+  </objectgroup>
  </tile>
  <tile id="3670">
   <properties>
@@ -5664,6 +5703,11 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="6" y="9" width="5" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="4268">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="13" width="4" height="3"/>
   </objectgroup>
  </tile>
  <tile id="4269">

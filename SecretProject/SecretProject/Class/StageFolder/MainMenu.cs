@@ -348,11 +348,11 @@ namespace SecretProject.Class.StageFolder
                 {
                     case MenuState.Primary:
 
-                        Play.Draw(spriteBatch, Game1.AllTextures.MenuText, "Play", Play.FontLocation, Play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
-                        Settings.Draw(spriteBatch, Game1.AllTextures.MenuText, "Settings", Settings.FontLocation, Settings.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        Play.Draw(spriteBatch, Game1.AllTextures.BitFont, "Play", Play.FontLocation, Play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        Settings.Draw(spriteBatch, Game1.AllTextures.BitFont, "Settings", Settings.FontLocation, Settings.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
 
-                        Exit.Draw(spriteBatch, Game1.AllTextures.MenuText, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
-                        DevPanel.Draw(spriteBatch, Game1.AllTextures.MenuText, "Dev Panel", DevPanel.FontLocation, DevPanel.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        Exit.Draw(spriteBatch, Game1.AllTextures.BitFont, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        DevPanel.Draw(spriteBatch, Game1.AllTextures.BitFont, "Dev Panel", DevPanel.FontLocation, DevPanel.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
 
                         break;
 

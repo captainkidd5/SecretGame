@@ -118,6 +118,8 @@ namespace SecretProject.Class.TextureStuff
 
         //Fonts
         public SpriteFont MenuText;
+        public SpriteFont BitFont;
+        public SpriteFont ArialFont;
 
         //Maps
 
@@ -260,7 +262,8 @@ namespace SecretProject.Class.TextureStuff
             CasparPortrait = content.Load<Texture2D>("NPC/Caspar/CasparPortrait");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
-
+            BitFont = content.Load<SpriteFont>("SpriteFont/grakFont");
+            ArialFont = content.Load<SpriteFont>("SpriteFont/arial_22");
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             InteriorTileSet1 = content.Load<Texture2D>("Map/InteriorSpriteSheet1");

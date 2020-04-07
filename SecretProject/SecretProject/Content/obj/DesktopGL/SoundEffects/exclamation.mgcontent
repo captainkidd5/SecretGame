@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/exclamation.wav</SourceFile>
-  <SourceTime>2020-01-15T16:47:24-08:00</SourceTime>
+  <SourceTime>2020-01-15T14:47:24-10:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/exclamation.xnb</DestFile>
-  <DestTime>2020-03-06T11:03:37.8626477-08:00</DestTime>
+  <DestTime>2020-04-07T10:44:50.0503456-10:00</DestTime>
   <Importer>WavImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T11:55:52-10:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>
