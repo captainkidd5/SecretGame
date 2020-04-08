@@ -143,7 +143,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public WardrobeNew Wardrobe { get; set; }
+        public Wardrobe Wardrobe { get; set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
@@ -180,7 +180,7 @@ namespace SecretProject.Class.Playable
             this.KnockBackTimer = new SimpleTimer(1f);
 
 
-            this.Wardrobe = new WardrobeNew(graphics, position);
+            this.Wardrobe = new Wardrobe(graphics, position);
         }
 
         public ItemData GetCurrentEquippedToolData()

@@ -23,7 +23,7 @@ namespace SecretProject.Class.Playable
 
     //}
 
-    public class WardrobeNew : ISaveable
+    public class Wardrobe : ISaveable
     {
 
         public GraphicsDevice Graphics { get; set; }
@@ -53,8 +53,16 @@ namespace SecretProject.Class.Playable
         public AnimationSet CurrentAnimationSet { get; set; }
         public Dir CurrentDirection { get; set; }
 
+        //SKIN
         public List<Color> SkinColors { get; set; }
         public int SkinColorIndex { get; set; }
+
+        public Color DarkSkinColor { get; set; }
+        public Color MediumSkinColor { get; set; }
+        public Color LightSkinColor { get; set; }
+
+        public List<Color> ReplacementSkinColors { get; set; }
+
 
         public List<Color> HairColors { get; set; }
         public int HairColorIndex { get; set; }
@@ -62,7 +70,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public WardrobeNew(GraphicsDevice graphics, Vector2 playerPosition)
+        public Wardrobe(GraphicsDevice graphics, Vector2 playerPosition)
         {
             this.Graphics = graphics;
 
@@ -101,7 +109,16 @@ namespace SecretProject.Class.Playable
 
             this.CurrentAnimationSet = this.RunSet;
 
-           
+            this.DarkSkinColor = new Color(89, 86, 82);
+            this.MediumSkinColor = new Color(220, 229, 246);
+            this.LightSkinColor = new Color(255, 255, 255);
+
+            this.ReplacementSkinColors = new List<Color>()
+            {
+                DarkSkinColor,
+                MediumSkinColor,
+                LightSkinColor
+            };
 
         }
 

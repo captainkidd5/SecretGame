@@ -29,6 +29,17 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         }
 
+        public Color GetMainShirtColor()
+        {
+
+                Color[] data = new Color[this.Texture.Width * Texture.Height];
+                Texture.GetData(0, new Rectangle(6,4,1,1), data,0, Texture.Width * Texture.Height) ;
+            return data[0];
+
+
+            
+        }
+
         #region DIRECTION UPDATES
         public override void UpdateWalkDown(int currentFrame)
         {

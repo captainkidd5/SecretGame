@@ -13,7 +13,13 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 {
     public class ArmsPiece : ClothingPiece
     {
+        public Color DarkestShirtReplaceColor { get; set; }
+        public Color MediumShirtReplaceColor { get; set; }
+        public Color LightShirtReplaceColor { get; set; }
 
+        public List<Color> ShirtReplacementColors { get; set; }
+
+        public List<Color> SkinReplacementColors { get; set; }
 
         public ArmsPiece(Color defaultColor) : base(defaultColor)
         {
@@ -25,6 +31,42 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Scale = 1f;
 
             this.Color = defaultColor;
+
+
+            this.DarkestShirtReplaceColor = new Color(48, 26, 22);
+            this.MediumShirtReplaceColor = new Color(172, 50, 50);
+            this.LightShirtReplaceColor = new Color(203, 50, 50);
+            this.ShirtReplacementColors = new List<Color>()
+            { DarkestShirtReplaceColor, MediumShirtReplaceColor, LightShirtReplaceColor};
+            
+
+        }
+
+        public void SetArmSleeves()
+        {
+            Color mainShirtColor = Game1.Player.Wardrobe.ShirtPiece.GetMainShirtColor();
+
+            Color[] armData = new Color[this.Texture.Width * Texture.Height];
+            Texture.GetData(armData);
+
+
+            for (int i = 0; i < armData.Length; i++)
+            {
+                if (this.ShirtReplacementColors.Contains(armData[i]))
+                {
+                    Console.WriteLine("yo");
+                }
+
+            }
+
+           // this.CurrentEyeColor = this.EyeColors[colorIndex];
+
+
+         //   this.Texture.SetData(armData);
+        }
+
+        public void SetSkinTone(Color color)
+        {
 
         }
 
@@ -74,7 +116,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
-                     yAdjustment = 2;
+                    yAdjustment = 2;
                     break;
                 case 1:
                     xAdjustment = 16;
