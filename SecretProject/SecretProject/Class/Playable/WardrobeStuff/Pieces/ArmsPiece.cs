@@ -44,28 +44,30 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public void SetArmSleeves(Color color)
         {
-            Color mainShirtColor = color;
 
             Color[] armData = new Color[this.Texture.Width * Texture.Height];
             Texture.GetData(armData);
 
 
-            for (int i = 0; i < armData.Length; i++)
+            for(int i = 0; i < this.ShirtReplacementColors.Count; i++)
             {
-                for(int j = 0; j < this.ShirtReplacementColors.Count; j++)
+                bool wasReplaced = false;
+                Color newColor = Color.White;
+                for (int j = 0; j < armData.Length; j++)
                 {
-                    if(this.ShirtReplacementColors[j] == armData[i])
+                    if(armData[j] == this.ShirtReplacementColors[i])
                     {
-                        armData[i] = mainShirtColor;
-                        this.ShirtReplacementColors[j] = mainShirtColor;
+                        wasReplaced = true;
+                        armData[j] = color;
+                        newColor = color;
                     }
                 }
 
-
+                if(wasReplaced)
+                {
+                    ShirtReplacementColors[i] = newColor; //need to update new replacement colors with the new data so it can be changed again in the future.
+                }
             }
-
-           // this.CurrentEyeColor = this.EyeColors[colorIndex];
-
 
             this.Texture.SetData(armData);
         }
