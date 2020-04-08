@@ -163,7 +163,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         /// </summary>
         public void ChangeArmSleeves()
         {
-            Game1.Player.Wardrobe.ArmsPiece.SetArmSleeves(GetMainShirtColor());
+            Game1.Player.Wardrobe.ArmsPiece.ChangePartOfTexture(GetMainShirtColor(), Game1.Player.Wardrobe.ArmsPiece.ShirtReplacementColors);
         }
 
 

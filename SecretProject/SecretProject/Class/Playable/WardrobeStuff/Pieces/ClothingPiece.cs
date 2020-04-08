@@ -135,7 +135,38 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.Color = new Color(red, green, blue);
         }
 
-       
+        public virtual void ChangePartOfTexture(Color color, List<Color> replaceMentColors)
+        {
+
+            Color[] textureData = new Color[this.Texture.Width * Texture.Height];
+            Texture.GetData(textureData);
+
+
+            for (int i = 0; i < replaceMentColors.Count; i++)
+            {
+                bool wasReplaced = false;
+                Color newColor = Color.White;
+                for (int j = 0; j < textureData.Length; j++)
+                {
+                    if (textureData[j] == replaceMentColors[i])
+                    {
+                        wasReplaced = true;
+
+                        newColor = new Color(color.R, color.G, color.B);
+                        newColor = Game1.Player.Wardrobe.ChangeColorLevel(newColor, i);
+                        textureData[j] = newColor;
+                    }
+                }
+
+                if (wasReplaced)
+                {
+                    replaceMentColors[i] = newColor; //need to update new replacement colors with the new data so it can be changed again in the future.
+                }
+            }
+
+            this.Texture.SetData(textureData);
+        }
+
 
         public virtual void Load(BinaryReader reader)
         {

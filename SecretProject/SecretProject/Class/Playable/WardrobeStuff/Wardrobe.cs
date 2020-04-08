@@ -170,7 +170,9 @@ namespace SecretProject.Class.Playable
 
             this.HeadPiece.Color = this.SkinColors[this.SkinColorIndex];
 
-            this.ArmsPiece.Color = this.SkinColors[this.SkinColorIndex];
+            this.ArmsPiece.ChangePartOfTexture(this.SkinColors[this.SkinColorIndex], SkinColors);
+
+            //this.ArmsPiece.Color = this.SkinColors[this.SkinColorIndex];
         }
 
         public void SetZero()
@@ -205,9 +207,24 @@ namespace SecretProject.Class.Playable
             this.CurrentAnimationSet.DrawForCreationMenu(spriteBatch);
         }
 
-        public Color ChangeColorLevel(Color color, Brightness brightNess)
+        public Color ChangeColorLevel(Color color, int listIndex)
         {
-            float brightNessValue = (float)brightNess / 100;
+            Brightness brightness = Brightness.Bright;
+            switch (listIndex)
+            {
+                case 0:
+                    brightness = Brightness.Dark;
+                    break;
+                case 1:
+                    brightness = Brightness.Normal;
+                    break;
+                case 2:
+                    brightness = Brightness.Bright;
+                    break;
+            }
+
+
+            float brightNessValue = (float)brightness / 100;
             int newR = (int)(color.R * brightNessValue);
             int newG = (int)(color.G * brightNessValue);
             int newB = (int)(color.B * brightNessValue);

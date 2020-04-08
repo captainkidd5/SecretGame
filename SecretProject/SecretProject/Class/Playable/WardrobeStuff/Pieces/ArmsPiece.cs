@@ -42,48 +42,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         }
 
-        public void SetArmSleeves(Color color)
-        {
-
-            Color[] armData = new Color[this.Texture.Width * Texture.Height];
-            Texture.GetData(armData);
-
-
-            for(int i = 0; i < this.ShirtReplacementColors.Count; i++)
-            {
-                bool wasReplaced = false;
-                Color newColor = Color.White;
-                for (int j = 0; j < armData.Length; j++)
-                {
-                    if(armData[j] == this.ShirtReplacementColors[i])
-                    {
-                        wasReplaced = true;
-                        
-                        newColor = new Color(color.R, color.G, color.B);
-                        switch(i)
-                        {
-                            case 0:
-                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Dark);
-                                break;
-                            case 1:
-                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Normal);
-                                break;
-                            case 2:
-                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Bright);
-                                break;
-                        }
-                        armData[j] = newColor;
-                    }
-                }
-
-                if(wasReplaced)
-                {
-                    ShirtReplacementColors[i] = newColor; //need to update new replacement colors with the new data so it can be changed again in the future.
-                }
-            }
-
-            this.Texture.SetData(armData);
-        }
+        
 
         public void SetSkinTone(Color color)
         {
