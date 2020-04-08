@@ -58,8 +58,21 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     if(armData[j] == this.ShirtReplacementColors[i])
                     {
                         wasReplaced = true;
-                        armData[j] = color;
-                        newColor = color;
+                        
+                        newColor = new Color(color.R, color.G, color.B);
+                        switch(i)
+                        {
+                            case 0:
+                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Dark);
+                                break;
+                            case 1:
+                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Normal);
+                                break;
+                            case 2:
+                                newColor = Game1.Player.Wardrobe.ChangeColorLevel(color, Brightness.Bright);
+                                break;
+                        }
+                        armData[j] = newColor;
                     }
                 }
 

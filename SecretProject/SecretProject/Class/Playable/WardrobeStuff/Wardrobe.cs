@@ -22,6 +22,13 @@ namespace SecretProject.Class.Playable
     //    PickUp = 3,
 
     //}
+    public enum Brightness
+    {
+        Dark = 75,
+        Normal = 100,
+        Bright = 105
+
+    }
 
     public class Wardrobe : ISaveable
     {
@@ -196,6 +203,15 @@ namespace SecretProject.Class.Playable
         public void DrawForCreationMenu(SpriteBatch spriteBatch)
         {
             this.CurrentAnimationSet.DrawForCreationMenu(spriteBatch);
+        }
+
+        public Color ChangeColorLevel(Color color, Brightness brightNess)
+        {
+            float brightNessValue = (float)brightNess / 100;
+            int newR = (int)(color.R * brightNessValue);
+            int newG = (int)(color.G * brightNessValue);
+            int newB = (int)(color.B * brightNessValue);
+            return new Color(newR, newG, newB);
         }
 
         public void SwapAnimations(AnimationSet set)
