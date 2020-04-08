@@ -96,7 +96,7 @@ namespace SecretProject.Class.Playable
 
 
             Hair = new HairPiece(this.HairColors[0]);
-            ShirtPiece = new ShirtPiece(Color.Red);
+            ShirtPiece = new ShirtPiece(Color.White);
             PantsPiece = new PantsPiece(Color.Blue);
             EyePiece = new EyePiece(Color.White);
             HeadPiece = new HeadPiece(this.SkinColors[2]);

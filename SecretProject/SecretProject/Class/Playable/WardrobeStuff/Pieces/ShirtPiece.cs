@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.UI.MainMenuStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,11 +30,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         }
 
+        /// <summary>
+        /// samples the color at pixel 6,4,1,1.
+        /// </summary>
+        /// <returns></returns>
         public Color GetMainShirtColor()
         {
 
-                Color[] data = new Color[this.Texture.Width * Texture.Height];
-                Texture.GetData(0, new Rectangle(6,4,1,1), data,0, Texture.Width * Texture.Height) ;
+                Color[] data = new Color[1];
+                Texture.GetData(0, new Rectangle(6,4 + 16 * this.Row,1,1), data,0,1) ;
             return data[0];
 
 
@@ -137,6 +142,29 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         #endregion
 
+
+        public override void Cycle(CycleDirection direction)
+        {
+            this.Row += (int)direction;
+            if (Row >= this.Texture.Height / 16)
+            {
+                this.Row = 0;
+            }
+            else if (this.Row < 0)
+            {
+                this.Row = this.Texture.Height / 16 - 1;
+            }
+
+            ChangeArmSleeves();
+        }
+
+        /// <summary>
+        /// Contacts arm piece and tells them to exchange their sleeve colors to match the shirt.
+        /// </summary>
+        public void ChangeArmSleeves()
+        {
+            Game1.Player.Wardrobe.ArmsPiece.SetArmSleeves(GetMainShirtColor());
+        }
 
 
     }

@@ -42,9 +42,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         }
 
-        public void SetArmSleeves()
+        public void SetArmSleeves(Color color)
         {
-            Color mainShirtColor = Game1.Player.Wardrobe.ShirtPiece.GetMainShirtColor();
+            Color mainShirtColor = color;
 
             Color[] armData = new Color[this.Texture.Width * Texture.Height];
             Texture.GetData(armData);
@@ -52,17 +52,22 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
             for (int i = 0; i < armData.Length; i++)
             {
-                if (this.ShirtReplacementColors.Contains(armData[i]))
+                for(int j = 0; j < this.ShirtReplacementColors.Count; j++)
                 {
-                    Console.WriteLine("yo");
+                    if(this.ShirtReplacementColors[j] == armData[i])
+                    {
+                        armData[i] = mainShirtColor;
+                        this.ShirtReplacementColors[j] = mainShirtColor;
+                    }
                 }
+
 
             }
 
            // this.CurrentEyeColor = this.EyeColors[colorIndex];
 
 
-         //   this.Texture.SetData(armData);
+            this.Texture.SetData(armData);
         }
 
         public void SetSkinTone(Color color)
@@ -180,6 +185,17 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
         #endregion
+
+        public override void Draw(SpriteBatch spriteBatch, float yLayerHeight)
+        {
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+        }
+
+        public override void DrawForCreationWindow(SpriteBatch spriteBatch)
+        {
+            this.Scale = 6f;
+            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f + this.LayerDepth);
+        }
 
 
     }
