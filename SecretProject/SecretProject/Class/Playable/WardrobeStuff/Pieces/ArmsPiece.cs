@@ -171,6 +171,30 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f + this.LayerDepth);
         }
 
+       
+
+        public override void Load(BinaryReader reader)
+        {
+            this.Row = reader.ReadInt32();
+            this.Color = new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
+
+            int shirtReplacementColorsCount = reader.ReadInt32();
+            this.ShirtReplacementColors.Clear();
+            Game1.Player.Wardrobe.LoadColorList(reader, this.ShirtReplacementColors);
+
+        }
+
+        public override void Save(BinaryWriter writer)
+        {
+            writer.Write(this.Row);
+            Game1.Player.Wardrobe.SaveColor(writer, this.Color);
+
+            Game1.Player.Wardrobe.SaveColorList(writer, this.ShirtReplacementColors);
+
+
+
+        }
+
 
     }
 }

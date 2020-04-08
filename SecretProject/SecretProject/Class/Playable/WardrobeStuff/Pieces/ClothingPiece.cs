@@ -182,5 +182,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             writer.Write(this.Color.B);
             
         }
+
+        
+
+       
     }
 }

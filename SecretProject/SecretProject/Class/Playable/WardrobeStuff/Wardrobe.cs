@@ -170,9 +170,8 @@ namespace SecretProject.Class.Playable
 
             this.HeadPiece.Color = this.SkinColors[this.SkinColorIndex];
 
-            this.ArmsPiece.ChangePartOfTexture(this.SkinColors[this.SkinColorIndex], SkinColors);
+            this.ArmsPiece.ChangePartOfTexture(this.SkinColors[this.SkinColorIndex], ReplacementSkinColors);
 
-            //this.ArmsPiece.Color = this.SkinColors[this.SkinColorIndex];
         }
 
         public void SetZero()
@@ -261,6 +260,32 @@ namespace SecretProject.Class.Playable
             //}
         }
 
+        public virtual void SaveColor(BinaryWriter writer, Color color)
+        {
+            writer.Write(color.R);
+            writer.Write(color.G);
+            writer.Write(color.B);
+        }
+
+        public void SaveColorList(BinaryWriter writer, List<Color> colorList)
+        {
+            writer.Write(colorList.Count);
+            for (int i = 0; i < colorList.Count; i++)
+            {
+                SaveColor(writer, colorList[i]);
+            }
+        }
+
+        public void LoadColorList(BinaryReader reader, List<Color> colorList)
+        {
+            int colorCount = reader.ReadInt32();
+            colorList.Clear();
+            for (int i = 0; i < colorCount; i++)
+            {
+                colorList.Add(new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
+            }
+        }
+
 
         public void Save(BinaryWriter writer)
         {
@@ -273,6 +298,9 @@ namespace SecretProject.Class.Playable
             PantsPiece.Save(writer);
             ShoesPiece.Save(writer);
 
+           
+            writer.Write(this.SkinColorIndex);
+            SaveColorList(writer, this.ReplacementSkinColors);
         }
 
         public void Load(BinaryReader reader)
@@ -283,6 +311,11 @@ namespace SecretProject.Class.Playable
             ShirtPiece.Load(reader);
             PantsPiece.Load(reader);
             ShoesPiece.Load(reader);
+
+            this.SkinColorIndex = reader.ReadInt32();
+            this.ArmsPiece.ChangePartOfTexture(this.SkinColors[this.SkinColorIndex], ReplacementSkinColors);
+            LoadColorList(reader, this.ReplacementSkinColors);
+            
 
 
             CycleSwipingClothing();
