@@ -50,7 +50,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
 
         #region DIRECTION UPDATES
-        public override void UpdateWalkDown(int currentFrame)
+        protected override void UpdateWalkDown(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -86,7 +86,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
-        public override void UpdateWalkUp(int currentFrame)
+        protected override void UpdateWalkUp(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -123,7 +123,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
-        public override void UpdateWalkRight(int currentFrame)
+        protected override void UpdateWalkRight(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -157,6 +157,52 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+        #endregion
+
+        #region ChoppingUpdates
+        protected override void UpdateChopDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 0;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+
+                case 2:
+                    xAdjustment = 32;
+                    yAdjustment = 1;
+                    break;
+                case 3:
+                    xAdjustment = 48;
+                    yAdjustment = 0;
+                    break;
+                case 4:
+                    xAdjustment = 64;
+                    yAdjustment = 1;
+                    break;
+                case 5:
+                    xAdjustment = 80;
+                    yAdjustment = 1;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+
+        protected override void UpdateChopUp(int currentFrame)
+        {
+        }
+
+        protected override void UpdateChopRight(int currentFrame)
+        {
         }
         #endregion
 

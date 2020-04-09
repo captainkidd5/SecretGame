@@ -84,32 +84,66 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.OldFrame = currentFrame;
 
         }
+
+        public void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
+        {
+
+            if (this.OldFrame != currentFrame)
+            {
+                switch (direction)
+                {
+                    case Dir.Down:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopDown(currentFrame);
+                        break;
+                    case Dir.Up:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopUp(currentFrame);
+                        break;
+                    case Dir.Left:
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                        UpdateChopRight(currentFrame);
+                        break;
+                    case Dir.Right:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopRight(currentFrame);
+                        break;
+
+                }
+
+
+            }
+            this.Position = position;
+
+            this.OldFrame = currentFrame;
+
+        }
         #region WALK
-        public virtual void UpdateWalkDown(int currentFrame)
+        protected virtual void UpdateWalkDown(int currentFrame)
         {
             
         }
 
-        public virtual void UpdateWalkUp(int currentFrame)
+        protected virtual void UpdateWalkUp(int currentFrame)
         {
         }
 
-        public virtual void UpdateWalkRight(int currentFrame)
+        protected virtual void UpdateWalkRight(int currentFrame)
         {
         }
         #endregion
 
         #region Chop
-        public virtual void UpdateChopDown(int currentFrame)
+        protected virtual void UpdateChopDown(int currentFrame)
         {
 
         }
 
-        public virtual void UpdateChopUp(int currentFrame)
+        protected virtual void UpdateChopUp(int currentFrame)
         {
         }
 
-        public virtual void UpdateChopRight(int currentFrame)
+        protected virtual void UpdateChopRight(int currentFrame)
         {
         }
         #endregion

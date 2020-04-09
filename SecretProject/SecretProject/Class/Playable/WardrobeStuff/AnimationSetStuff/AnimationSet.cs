@@ -22,14 +22,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
         public int[] DirectionStartingFrame { get; set; }
 
-        public AnimationSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames)
+        public AnimationSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed)
         {
             this.Graphics = graphics;
             this.Pieces = clothingPieces;
 
             this.Pieces = clothingPieces;
 
-            AnimationTimer = new SimpleTimer(.115f);
+            AnimationTimer = new SimpleTimer(speed);
 
             this.TotalFrames = totalFrames;
         }
@@ -69,7 +69,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         {
             for (int i = 0; i < Pieces.Count; i++)
             {
-                Pieces[i].UpdateWalkDown(0);
+                Pieces[i].UpdateOnceForCreationMenu(0);
             }
         }
 

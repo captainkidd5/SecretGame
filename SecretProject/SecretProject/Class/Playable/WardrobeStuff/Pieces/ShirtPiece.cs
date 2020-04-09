@@ -46,7 +46,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
 
         #region DIRECTION UPDATES
-        public override void UpdateWalkDown(int currentFrame)
+        protected override void UpdateWalkDown(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -79,7 +79,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
-        public override void UpdateWalkUp(int currentFrame)
+        protected override void UpdateWalkUp(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
@@ -110,7 +110,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
-        public override void UpdateWalkRight(int currentFrame)
+        protected override void UpdateWalkRight(int currentFrame)
         {
             int xAdjustment = 0;
             int yAdjustment = 0;

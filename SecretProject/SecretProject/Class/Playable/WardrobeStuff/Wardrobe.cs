@@ -56,6 +56,7 @@ namespace SecretProject.Class.Playable
 
 
         public AnimationSet RunSet { get; set; }
+        public AnimationSet ChopSet { get; set; }
 
         public AnimationSet CurrentAnimationSet { get; set; }
         public Dir CurrentDirection { get; set; }
@@ -112,7 +113,8 @@ namespace SecretProject.Class.Playable
             this.BasicClothing = new List<ClothingPiece>()
             { Hair,ShirtPiece, PantsPiece,EyePiece,HeadPiece,ShoesPiece, ArmsPiece};
 
-            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5);
+            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5, .115f);
+            this.ChopSet = new AnimationSet(graphics, this.BasicClothing, 4, .115f);
 
             this.CurrentAnimationSet = this.RunSet;
 
