@@ -153,7 +153,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
                         wasReplaced = true;
 
                         newColor = new Color(color.R, color.G, color.B);
-                        newColor = Game1.Player.Wardrobe.ChangeColorLevel(newColor, i);
+                        newColor = Wardrobe.ChangeColorLevel(newColor, i);
                         textureData[j] = newColor;
                     }
                 }

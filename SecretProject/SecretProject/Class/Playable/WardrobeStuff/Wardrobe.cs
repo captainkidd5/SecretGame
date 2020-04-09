@@ -126,6 +126,8 @@ namespace SecretProject.Class.Playable
                 MediumSkinColor,
                 LightSkinColor
             };
+            this.ArmsPiece.ChangePartOfTexture(this.SkinColors[2], ReplacementSkinColors);
+
 
         }
 
@@ -206,7 +208,7 @@ namespace SecretProject.Class.Playable
             this.CurrentAnimationSet.DrawForCreationMenu(spriteBatch);
         }
 
-        public Color ChangeColorLevel(Color color, int listIndex)
+        public static Color ChangeColorLevel(Color color, int listIndex)
         {
             Brightness brightness = Brightness.Bright;
             switch (listIndex)
