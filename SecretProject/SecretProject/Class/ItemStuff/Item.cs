@@ -143,7 +143,7 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Update(gameTime);
-                CheckCollisions();
+                //CheckCollisions();
                 if (this.Bouncer != null)
                 {
 

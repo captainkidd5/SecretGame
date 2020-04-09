@@ -316,6 +316,7 @@ namespace SecretProject.Class.Playable
 
             this.SkinColorIndex = reader.ReadInt32();
             this.ArmsPiece.ChangePartOfTexture(this.HeadPiece.Color, ReplacementSkinColors);
+            this.ShirtPiece.ChangeArmSleeves();
             LoadColorList(reader, this.ReplacementSkinColors);
             
 

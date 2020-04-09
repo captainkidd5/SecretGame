@@ -329,8 +329,29 @@
                         <Unlocked>true</Unlocked>
                         <ItemToSpawnID>1000</ItemToSpawnID><!-- Small Rock -->
                         <MinNumberToSpawn>0</MinNumberToSpawn>
-                        <ProbabilityAdditionalSpawn>15</ProbabilityAdditionalSpawn>
-                        <MaxNumberToSpawn>2</MaxNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>30</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+            <!-- Grassy Stone -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>978</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1001</ItemToSpawnID> <!-- Stone -->
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>0</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>1</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1000</ItemToSpawnID><!-- Small Rock -->
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>30</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
                     </Item>
                 </LootPieces>
             </Item>
