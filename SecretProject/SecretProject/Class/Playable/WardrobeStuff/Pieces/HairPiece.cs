@@ -19,7 +19,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Texture = Game1.AllTextures.HairAtlas;
             this.Color = Color.White;
-            this.LayerDepth = .00000011f;
+            this.LayerDepth = .00000009f;
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 0;
             this.Scale = 1f;
@@ -40,19 +40,19 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case 0:
                     break;
                 case 1:
-                    yAdjustment = -1;
+                    yAdjustment = 1;
                     break;
 
                 case 2:
-                    yAdjustment = -1;
+                    yAdjustment = 2;
                     break;
                 case 3:
                     break;
                 case 4:
-                    yAdjustment = -1;
+                    yAdjustment = 1;
                     break;
                 case 5:
-                    yAdjustment = -1;
+                    yAdjustment = 2;
                     break;
 
             }
@@ -74,7 +74,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
 
                 case 2:
-                    yAdjustment = 0;
+                    yAdjustment = 2;
                     break;
                 case 3:
                     yAdjustment = 0;
@@ -83,7 +83,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     yAdjustment = 1;
                     break;
                 case 5:
-                    yAdjustment = 0;
+                    yAdjustment = 2;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -101,20 +101,20 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     yAdjustment = -1;
                     break;
                 case 1:
-                    yAdjustment = -1;
+                    yAdjustment = 0;
                     break;
 
                 case 2:
-                    yAdjustment =0;
+                    yAdjustment =1;
                     break;
                 case 3:
                     yAdjustment = -1;
                     break;
                 case 4:
-                    yAdjustment = -1;
+                    yAdjustment = 0;
                     break;
                 case 5:
-                    yAdjustment = 0;
+                    yAdjustment = 1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

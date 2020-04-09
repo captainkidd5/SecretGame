@@ -67,7 +67,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
                 case 2:
                     xAdjustment = 32;
-                    yAdjustment = 1;
+                    yAdjustment = 2;
                     break;
                 case 3:
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
@@ -80,7 +80,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 5:
                     xAdjustment = 32;
-                    yAdjustment = 1;
+                    yAdjustment = 2;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
             }
@@ -104,7 +104,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
                 case 2:
                     xAdjustment = 32;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
                 case 3:
                     yAdjustment = 2;
@@ -116,7 +116,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 5:
                     xAdjustment = 32;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
                     break;
             }
@@ -136,12 +136,12 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 1:
                     xAdjustment = 16;
-                    yAdjustment = 0;
+                    yAdjustment = 1;
                     break;
 
                 case 2:
                     xAdjustment = 32;
-                    yAdjustment = 0;
+                    yAdjustment = 1;
                     break;
                 case 3:
                     xAdjustment = 48;
@@ -149,11 +149,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 4:
                     xAdjustment = 64;
-                    yAdjustment = 0;
+                    yAdjustment = 1;
                     break;
                 case 5:
                     xAdjustment = 80;
-                    yAdjustment = 0;
+                    yAdjustment = 1;
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
