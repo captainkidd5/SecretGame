@@ -113,7 +113,6 @@ namespace SecretProject
 
         //STAGES
         public static MainMenu mainMenu;
-        //public static NormalStage Iliad;
         public static TmxStageBase Town;
         public static TmxStageBase ElixirHouse;
 
@@ -557,7 +556,7 @@ namespace SecretProject
             KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
             UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
-            DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
+            DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
             MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
 
@@ -1013,7 +1012,7 @@ namespace SecretProject
 
             }
 
-            //Player.PlayerWardrobe.UpdateMovementAnimations(Player.Position, true);
+            Player.Wardrobe.UpdateForCreationMenu();
             if (GetStageFromInt(stageToSwitchTo) == OverWorld)
             {
                 Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);

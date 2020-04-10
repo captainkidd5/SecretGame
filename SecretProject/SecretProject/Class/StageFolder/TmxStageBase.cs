@@ -212,6 +212,10 @@ namespace SecretProject.Class.StageFolder
 
             this.AllActions = new List<ActionTimer>();
 
+            if(this == Game1.JulianHouse)
+            {
+                Console.WriteLine("hi");
+            }
             this.MapRectangle = new Rectangle(0, 0, this.TileWidth * this.Map.Width, this.TileHeight * this.Map.Height);
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();
@@ -224,10 +228,9 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-
-            if(this == Game1.LightHouse)
+            if (this == Game1.JulianHouse)
             {
-                Console.WriteLine("test");
+                Console.WriteLine("hi");
             }
             this.Cam = camera;
             this.Cam.pos.X = Game1.Player.position.X;

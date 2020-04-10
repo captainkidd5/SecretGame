@@ -199,13 +199,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 3:
                     xAdjustment = 16;
-                    yAdjustment = 0;
-                    break;
-                case 4:
-                    xAdjustment = 32;
                     yAdjustment = -1;
                     break;
-                case 5:
+                case 4:
                     xAdjustment = 32;
                     yAdjustment = -2;
                     break;

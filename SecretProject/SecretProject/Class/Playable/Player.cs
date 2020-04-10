@@ -202,7 +202,6 @@ namespace SecretProject.Class.Playable
                     this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
                     this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
-                    //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
 
                     break;
 
