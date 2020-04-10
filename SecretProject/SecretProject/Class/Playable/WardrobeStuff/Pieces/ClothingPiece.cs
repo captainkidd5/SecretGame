@@ -147,6 +147,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         {
         }
         #endregion
+
+        public void UpdateOnceForCreationMenu(int currentFrame)
+        {
+            UpdateWalkDown(currentFrame);
+        }
         public virtual void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {
             spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);

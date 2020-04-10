@@ -214,12 +214,10 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
+                    Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
+
                     CurrentAction = this.Mining;
                     this.AnimationDirection = controls.Direction;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        this.Mining[i, 0].FirstFrameY = textureColumn;
-                    }
                     break;
 
                 case AnimationType.Swiping:
@@ -247,6 +245,7 @@ namespace SecretProject.Class.Playable
 
 
         }
+        #region AUTOMOVEMENT
         private bool MoveTowardsPoint(Vector2 goal,float speed, GameTime gameTime)
         {
             this.controls.IsMoving  = true;
@@ -278,7 +277,7 @@ namespace SecretProject.Class.Playable
             this.PrimaryVelocity += direction * 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
-
+        #endregion
         //adjusts current equipped items position based on direction player is facing
         public void AdjustCurrentTool(Dir direction, Sprite sprite)
         {
@@ -335,24 +334,7 @@ namespace SecretProject.Class.Playable
             return staminaRateOfDrain;
         }
 
-        public void PlayCollectiveActions(GameTime gameTime)
-        {
-            for (int i = 0; i < CurrentAction.GetLength(1); i++)
-            {
-                this.PlayerActionAnimations[i] = CurrentAction[(int)this.AnimationDirection, i];
-                this.PlayerActionAnimations[i].IsAnimated = true;
-                this.PlayerActionAnimations[i].PlayOnce(gameTime, this.Position);
-            }
 
-        }
-        public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
-        {
-            for (int i = 0; i < CurrentAction.GetLength(1); i++)
-            {
-                this.PlayerActionAnimations[i].DrawAnimation(spriteBatch, this.PlayerActionAnimations[i].destinationVector, layerDepth + this.PlayerActionAnimations[i].LayerDepth);
-            }
-
-        }
 
 
         public void TestImmunity(GameTime gameTime)
@@ -479,8 +461,13 @@ namespace SecretProject.Class.Playable
                 }
                 else if (IsPerformingAction)
                 {
-                    PlayCollectiveActions(gameTime);
-                    IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
+                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position, this.Direction))
+                    {
+                        this.IsPerformingAction = false;
+                        Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;
+                    }
+
+                  //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
                     if (this.CurrentTool != null)
                     {
                         this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
@@ -497,12 +484,12 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                else if (!CurrentAction[0, 0].IsAnimated && !this.IsMoving)
-                {
-                    Wardrobe.SetZero();
+                //else if (!CurrentAction[0, 0].IsAnimated && !this.IsMoving)
+                //{
+                //    Wardrobe.SetZero();
 
 
-                }
+                //}
 
 
 
@@ -558,22 +545,22 @@ namespace SecretProject.Class.Playable
                 {
                     case Dir.Right:
                         PrimaryVelocity.X = Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right, this.IsMoving);
+                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Right, this.IsMoving);
                         break;
 
                     case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
+                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
                         break;
 
                     case Dir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
+                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
                         break;
 
                     case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
+                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
                         break;
 
                     default:
@@ -758,10 +745,10 @@ namespace SecretProject.Class.Playable
                 }
 
                 //????
-                if (IsPerformingAction)
-                {
-                    DrawCollectiveActions(spriteBatch, layerDepth);
-                }
+                //if (IsPerformingAction)
+                //{
+                //    DrawCollectiveActions(spriteBatch, layerDepth);
+                //}
 
                 if (this.CurrentTool != null)
                 {

@@ -13,6 +13,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
  
     public class AnimationSet
     {
+        public string Name { get; set; }
         public GraphicsDevice Graphics { get; set; }
         public List<ClothingPiece> Pieces { get; set; }
         public int CurrentFrame { get; set; }
@@ -22,8 +23,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
         public int[] DirectionStartingFrame { get; set; }
 
-        public AnimationSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed)
+        public AnimationSet(string name, GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed)
         {
+            this.Name = name;
             this.Graphics = graphics;
             this.Pieces = clothingPieces;
 
@@ -46,6 +48,22 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             {
                 Pieces[i].Update(gameTime, position, this.CurrentFrame, direction);
             }
+        }
+
+        public virtual bool UpdateOnce(GameTime gameTime, Vector2 position, Dir direction)
+        {
+            RunTimer(gameTime);
+
+            for (int i = 0; i < Pieces.Count; i++)
+            {
+                Pieces[i].Update(gameTime, position, this.CurrentFrame, direction);
+            }
+
+            if(CurrentFrame == this.TotalFrames)
+            {
+                return true;
+            }
+            return false;
         }
 
 

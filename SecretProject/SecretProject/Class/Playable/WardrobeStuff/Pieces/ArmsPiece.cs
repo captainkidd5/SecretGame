@@ -52,6 +52,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         #region DIRECTION UPDATES
         protected override void UpdateWalkDown(int currentFrame)
         {
+            this.BaseYOffSet = 12;
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 0;
@@ -88,6 +89,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         protected override void UpdateWalkUp(int currentFrame)
         {
+            this.BaseYOffSet = 12;
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 9;
@@ -125,6 +127,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         protected override void UpdateWalkRight(int currentFrame)
         {
+            this.BaseYOffSet = 12;
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 3;
@@ -163,6 +166,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         #region ChoppingUpdates
         protected override void UpdateChopDown(int currentFrame)
         {
+            this.BaseYOffSet = 28;
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 0;
@@ -185,24 +189,19 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     xAdjustment = 48;
                     yAdjustment = 0;
                     break;
-                case 4:
-                    xAdjustment = 64;
-                    yAdjustment = 1;
-                    break;
-                case 5:
-                    xAdjustment = 80;
-                    yAdjustment = 1;
-                    break;
+
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
         protected override void UpdateChopUp(int currentFrame)
         {
+            this.BaseYOffSet = 16;
         }
 
         protected override void UpdateChopRight(int currentFrame)
         {
+            this.BaseYOffSet = 16;
         }
         #endregion
 

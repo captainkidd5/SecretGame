@@ -113,8 +113,8 @@ namespace SecretProject.Class.Playable
             this.BasicClothing = new List<ClothingPiece>()
             { Hair,ShirtPiece, PantsPiece,EyePiece,HeadPiece,ShoesPiece, ArmsPiece};
 
-            this.RunSet = new AnimationSet(graphics, this.BasicClothing, 5, .115f);
-            this.ChopSet = new AnimationSet(graphics, this.BasicClothing, 4, .115f);
+            this.RunSet = new AnimationSet("basic",graphics, this.BasicClothing, 5, .115f);
+            this.ChopSet = new ChoppingSet("Chopping", graphics, this.BasicClothing, 4, .115f);
 
             this.CurrentAnimationSet = this.RunSet;
 
@@ -188,11 +188,23 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void UpdateMovementAnimations(GameTime gameTime, Vector2 position, Dir direction, bool isMoving)
+        public void UpdateAnimations(GameTime gameTime, Vector2 position, Dir direction, bool isMoving)
         {
 
             this.CurrentAnimationSet.Update(gameTime, position,  direction, isMoving);
 
+        }
+
+        public bool PlayAnimationOnce(GameTime gameTime, AnimationSet animationSet, Vector2 position, Dir direction)
+        {
+            if(animationSet.UpdateOnce(gameTime, position, direction))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, float yLayerHeight)

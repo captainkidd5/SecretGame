@@ -145,7 +145,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.TypingWindow.Update(gameTime);
             this.PlayerName = TypingWindow.EnteredString;
             Game1.Player.Wardrobe.UpdateForCreationMenu();
-            Game1.Player.Wardrobe.UpdateMovementAnimations(gameTime, this.PlayerPortraitDrawLocation, Dir.Down, false);
+            Game1.Player.Wardrobe.UpdateAnimations(gameTime, this.PlayerPortraitDrawLocation, Dir.Down, false);
 
             if (this.StartNewGameButton.isClicked)
             {

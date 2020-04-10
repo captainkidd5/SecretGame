@@ -11,23 +11,41 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 {
     public class ChoppingSet : AnimationSet
     {
-        public ChoppingSet(GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed) : base( graphics, clothingPieces, totalFrames, speed)
+        public ChoppingSet(string name, GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed) : base(name, graphics, clothingPieces, totalFrames, speed)
         {
 
         }
 
         public override void Update(GameTime gameTime, Vector2 position, Dir direction, bool isMoving)
         {
+            throw new Exception("Chopping set tried to update normally!");
+            //RunTimer(gameTime);
+            //if (!isMoving)
+            //{
+            //    CurrentFrame = 0;
+            //}
+            //for (int i = 0; i < Pieces.Count; i++)
+            //{
+            //    Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, direction);
+            //}
+        }
 
+        public override bool UpdateOnce(GameTime gameTime, Vector2 position, Dir direction)
+        {
             RunTimer(gameTime);
-            if (!isMoving)
-            {
-                CurrentFrame = 0;
-            }
+
             for (int i = 0; i < Pieces.Count; i++)
             {
                 Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, direction);
             }
+
+            if (CurrentFrame == this.TotalFrames)
+            {
+                CurrentFrame = 0;
+                return true;
+                
+            }
+            return false;
         }
     }
 }
