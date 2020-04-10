@@ -409,7 +409,7 @@ namespace SecretProject.Class.Playable
                 }
                 else if (IsPerformingAction)
                 {
-                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position, this.Direction))
+                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position,controls.Direction))
                     {
                         this.IsPerformingAction = false;
                         Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;

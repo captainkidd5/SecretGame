@@ -99,8 +99,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             }
         }
 
-        public virtual void RunTimer(GameTime gameTime)
+        public virtual bool RunTimer(GameTime gameTime)
         {
+
             if (AnimationTimer.Run(gameTime))
             {
                 this.CurrentFrame ++;
@@ -108,7 +109,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
                 {
                     this.CurrentFrame = 0;
                 }
+                return true;
             }
+            return false;
         }
     }
 }

@@ -176,6 +176,44 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
             this.Row = 0;
         }
+        protected override void UpdateChopRight(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 3;
+            this.Row = 1;
+
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = -1;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 0;
+                    break;
+
+                case 2:
+                    xAdjustment = 16;
+                    yAdjustment = 0;
+                    break;
+                case 3:
+                    xAdjustment = 16;
+                    yAdjustment = 0;
+                    break;
+                case 4:
+                    xAdjustment = 32;
+                    yAdjustment = -1;
+                    break;
+                case 5:
+                    xAdjustment = 32;
+                    yAdjustment = -2;
+                    break;
+
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
+        }
         #endregion
 
     }

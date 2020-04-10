@@ -33,18 +33,18 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         public override bool UpdateOnce(GameTime gameTime, Vector2 position, Dir direction)
         {
             RunTimer(gameTime);
+            if (CurrentFrame == this.TotalFrames)
+            {
+                CurrentFrame = 0;
+                return true;
 
+            }
             for (int i = 0; i < Pieces.Count; i++)
             {
                 Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, direction);
             }
 
-            if (CurrentFrame == this.TotalFrames)
-            {
-                CurrentFrame = 0;
-                return true;
-                
-            }
+            
             return false;
         }
     }
