@@ -190,6 +190,10 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     xAdjustment = 48;
                     yAdjustment = 0;
                     break;
+                case 4:
+                    xAdjustment = 64;
+                    yAdjustment = -1;
+                    break;
 
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);

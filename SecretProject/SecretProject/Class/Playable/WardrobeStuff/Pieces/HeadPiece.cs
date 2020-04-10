@@ -119,7 +119,35 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
         #endregion
+        #region ChoppingUpdates
+        protected override void UpdateChopDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            switch (currentFrame)
+            {
+                case 0:
+                    break;
+                case 1:
+                    yAdjustment = 1;
+                    break;
 
+                case 2:
+                    yAdjustment = 1;
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    yAdjustment = -1;
+                    break;
+                case 5:
+                    yAdjustment = -2;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+        #endregion
 
 
     }

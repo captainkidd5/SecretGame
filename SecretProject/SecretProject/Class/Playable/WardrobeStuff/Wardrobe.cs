@@ -114,7 +114,7 @@ namespace SecretProject.Class.Playable
             { Hair,ShirtPiece, PantsPiece,EyePiece,HeadPiece,ShoesPiece, ArmsPiece};
 
             this.RunSet = new AnimationSet("basic",graphics, this.BasicClothing, 5, .115f);
-            this.ChopSet = new ChoppingSet("Chopping", graphics, this.BasicClothing, 4, .115f);
+            this.ChopSet = new ChoppingSet("Chopping", graphics, this.BasicClothing, 5, .115f);
 
             this.CurrentAnimationSet = this.RunSet;
 
