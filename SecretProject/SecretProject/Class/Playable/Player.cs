@@ -70,8 +70,7 @@ namespace SecretProject.Class.Playable
         public bool IsMoving { get; set; } = false;
         public const float Speed1 = 1f;
 
-        public Sprite[] PlayerMovementAnimations { get; set; }
-        public Sprite[] PlayerActionAnimations { get; set; }
+
 
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -81,14 +80,6 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
-        public Sprite[,] CurrentAction;
-
-
-
-        public Sprite[,] Mining { get; set; }
-
-        public Sprite[,] PickUpItem { get; set; }
-        public Sprite[,] PortalJump { get; set; }
         public Line ToolLine { get; set; }
 
         public Sprite CurrentTool { get; set; }
@@ -156,10 +147,6 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
 
-            this.Mining = new Sprite[4, 6];
-
-            this.PickUpItem = new Sprite[4, 5];
-            this.PortalJump = new Sprite[4, 5];
 
             this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.PlayerMainCollider);
             this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
@@ -170,7 +157,7 @@ namespace SecretProject.Class.Playable
 
 
 
-            CurrentAction = this.Mining;
+
 
             BigHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, this.ClickRangeRectangle.Width, this.ClickRangeRectangle.Height, Color.White);
             LittleHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, this.ColliderRectangle.Width, this.ColliderRectangle.Height, Color.White);
@@ -196,53 +183,34 @@ namespace SecretProject.Class.Playable
             {
                 case AnimationType.HandsPicking:
                     IsPerformingAction = true;
-                    CurrentAction = this.PickUpItem;
-                    this.AnimationDirection = controls.Direction;
-
                     break;
 
                 case AnimationType.Mining:
                     IsPerformingAction = true;
-                    CurrentAction = this.Mining;
-                    this.AnimationDirection = controls.Direction;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        this.Mining[i, 0].FirstFrameY = textureColumn;
-                    }
-
+ 
                     break;
 
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
-
-                    CurrentAction = this.Mining;
-                    this.AnimationDirection = controls.Direction;
                     break;
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
                   //  CurrentAction = PlayerWardrobe.SwipingAnimations;
-                    this.AnimationDirection = controls.Direction;
                     this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
                     this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
                     //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
-                    //for (int i = 0; i < 4; i++)
-                    //{
-                    //    PlayerWardrobe.SwipingAnimations[i, 0].FirstFrameY = textureColumn;
-                    //}
+
                     break;
 
                 case AnimationType.PortalJump:
                     IsPerformingAction = true;
-                    CurrentAction = this.PortalJump;
-                    this.AnimationDirection = controls.Direction;
-
                     break;
             }
-
+            this.AnimationDirection = controls.Direction;
 
         }
         #region AUTOMOVEMENT
@@ -334,9 +302,6 @@ namespace SecretProject.Class.Playable
             return staminaRateOfDrain;
         }
 
-
-
-
         public void TestImmunity(GameTime gameTime)
         {
             if (IsImmuneToDamage)
@@ -354,8 +319,10 @@ namespace SecretProject.Class.Playable
             if (this.Activate)
             {
                 PrimaryVelocity = Vector2.Zero;
-
+                controls.UpdateKeys();
+                controls.Update();
                 this.IsMoving = controls.IsMoving;
+
                 TestImmunity(gameTime);
                 if(IsMovingTowardsPoint)
                 {
@@ -382,8 +349,6 @@ namespace SecretProject.Class.Playable
                     KnockBack(gameTime);
                 }
 
-
-               // this.Wardrobe.UpdateMovementAnimations(gameTime, position, controls.SecondaryDirection, this.IsMoving);
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
@@ -438,24 +403,7 @@ namespace SecretProject.Class.Playable
 
                 if (this.IsMoving && !IsMovingTowardsPoint && !IsPerformingAction)
                 {
-                    if(Game1.GetCurrentStage() == Game1.OverWorld)
-                    {
-                        if(!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
-                        {
-                            UserInterface.StaminaBar.IsDraining = true;
-                            UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(true);
-                        }
-                        else
-                        {
-                            UserInterface.StaminaBar.IsDraining = false;
-                            UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
-                        }
-                    }
-                    else if(UserInterface.StaminaBar.IsDraining)
-                    {
-                        UserInterface.StaminaBar.IsDraining = false;
-                        UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
-                    }
+                    HandleStamina();
                   
 
                 }
@@ -493,11 +441,6 @@ namespace SecretProject.Class.Playable
 
 
 
-
-                if (!CurrentAction[0, 0].IsAnimated)
-                {
-                    controls.Update();
-                }
                 if(EnableControls)
                 {
                     MoveFromKeys(gameTime);
@@ -695,6 +638,28 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        public void HandleStamina()
+        {
+            if (Game1.GetCurrentStage() == Game1.OverWorld)
+            {
+                if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
+                {
+                    UserInterface.StaminaBar.IsDraining = true;
+                    UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(true);
+                }
+                else
+                {
+                    UserInterface.StaminaBar.IsDraining = false;
+                    UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
+                }
+            }
+            else if (UserInterface.StaminaBar.IsDraining)
+            {
+                UserInterface.StaminaBar.IsDraining = false;
+                UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
+            }
+        }
+
         private void CheckOutOfBounds(Vector2 position)
         {
             if (position.X < Game1.GetCurrentStage().MapRectangle.Left)
@@ -744,11 +709,6 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                //????
-                //if (IsPerformingAction)
-                //{
-                //    DrawCollectiveActions(spriteBatch, layerDepth);
-                //}
 
                 if (this.CurrentTool != null)
                 {

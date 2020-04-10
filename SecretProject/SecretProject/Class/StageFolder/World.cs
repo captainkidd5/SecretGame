@@ -389,7 +389,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
             }
-            Game1.Player.controls.UpdateKeys();
+            //Game1.Player.controls.UpdateKeys();
             
 
 

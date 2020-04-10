@@ -166,10 +166,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         #region ChoppingUpdates
         protected override void UpdateChopDown(int currentFrame)
         {
-            this.BaseYOffSet = 28;
+            this.BaseYOffSet = 12;
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 0;
+            this.Row = 1;
 
             switch (currentFrame)
             {
@@ -192,6 +193,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
         }
 
         protected override void UpdateChopUp(int currentFrame)
