@@ -53,6 +53,8 @@ namespace SecretProject.Class.UI
 
         public List<ActionTimer> AllActions;
 
+        public Item CurrentEquippedItem { get; set; }
+
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
             this.Graphics = graphics;
@@ -112,57 +114,72 @@ namespace SecretProject.Class.UI
             }
         }
 
+        private void HandleInventoryExpansion()
+        {
+            if (this.Expanded)
+            {
+                this.NumberOfSlotsToUpdate = 30;
+                ExpandButton.BackGroundSourceRectangle = this.RetractedButtonRectangle;
+
+            }
+            else
+            {
+                this.NumberOfSlotsToUpdate = 10;
+                ExpandButton.BackGroundSourceRectangle = this.ExpandedButtonRectangle;
+
+            }
+            ExpandButton.Update(Game1.MouseManager);
+            if (ExpandButton.isClicked)
+            {
+                this.Expanded = !this.Expanded;
+                if (this.Expanded)
+                {
+                    Game1.SoundManager.PlayOpenUI();
+                }
+                else
+                {
+                    Game1.SoundManager.PlayCloseUI();
+                }
+            }
+        }
+
+        private void UpdateItemSwitchSourceRectangle()
+        {
+            if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount > 0)
+            {
+
+                this.ItemSwitchSourceRectangle = GetCurrentItemTexture();
+            }
+            else if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount <= 0)
+            {
+                this.ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             this.Inventory = Game1.Player.Inventory;
             this.Inventory.HasChangedSinceLastFrame = false;
             if (this.IsActive)
             {
-                if (this.Expanded)
-                {
-                    this.NumberOfSlotsToUpdate = 30;
-                    ExpandButton.BackGroundSourceRectangle = this.RetractedButtonRectangle;
-
-                }
-                else
-                {
-                    this.NumberOfSlotsToUpdate = 10;
-                    ExpandButton.BackGroundSourceRectangle = this.ExpandedButtonRectangle;
-
-                }
-                ExpandButton.Update(Game1.MouseManager);
-                if (ExpandButton.isClicked)
-                {
-                    this.Expanded = !this.Expanded;
-                    if (this.Expanded)
-                    {
-                        Game1.SoundManager.PlayOpenUI();
-                    }
-                    else
-                    {
-                        Game1.SoundManager.PlayCloseUI();
-                    }
-                }
                 UpdateScrollWheel(Game1.MouseManager);
+                this.CurrentEquippedItem = GetCurrentEquippedToolAsItem();
+
+                HandleInventoryExpansion();
+                
                 this.DragSprite = null;
                 this.MouseIntersectsBackDrop = false;
-                if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount > 0)
-                {
 
-                    this.ItemSwitchSourceRectangle = GetCurrentItemTexture();
-                }
-                else if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount <= 0)
-                {
-                    this.ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
-                }
+                UpdateItemSwitchSourceRectangle();
 
-
-                if (WasSliderUpdated && GetCurrentEquippedTool() != 666)
+                if (WasSliderUpdated && this.CurrentEquippedItem.ID != 666)
                 {
                     //this might be broken
                     CheckGridItem();
 
                     AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
+
+
                 }
 
                 for (int i = 0; i < AllActions.Count; i++)
@@ -627,22 +644,6 @@ namespace SecretProject.Class.UI
                         Game1.GetCurrentStage().AllTiles.GridItem = null;
                     }
                 }
-                //else if (Game1.GetCurrentStageInt() == Stages.Forest)
-                //{
-                //    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
-                //    {
-                //        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
-
-
-                //    }
-                //    else
-                //    {
-                //        Game1.GetCurrentStage().AllTiles.GridItem = null;
-                //    }
-                //}
-
-
-
             }
             else
             {
