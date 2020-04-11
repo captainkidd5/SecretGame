@@ -156,6 +156,43 @@ namespace SecretProject.Class.UI
             }
         }
 
+        public void ItemInfoInteraction(Button button, InventorySlot slot,  ItemData itemData)
+        {
+            TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
+                      new Vector2(button.Position.X, button.Position.Y - 32), 200f);
+
+            InfoPopUp infoBox = Game1.Player.UserInterface.InfoBox;
+            infoBox.IsActive = true;
+            switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
+            {
+                case ExclusiveInterfaceItem.ShopMenu:
+                    infoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
+                    infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                    if (button.isRightClicked)
+                    {
+                        int numberToSell = 1;
+                        if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                        {
+                            numberToSell = slot.ItemCount;
+                        }
+                        for (int numSell = 0; numSell < numberToSell; numSell++)
+                        {
+                            Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(slot.GetItem(), 1);
+                            slot.RemoveItemFromSlot();
+                        }
+
+                    }
+                    break;
+
+                default:
+                    infoBox.DisplayTitle = true;
+                    infoBox.FitTitleText(itemData.Name, 1f);
+                    infoBox.FitText(itemData.Description, 1f);
+                    infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                    break;
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             this.Inventory = Game1.Player.Inventory;
@@ -172,7 +209,7 @@ namespace SecretProject.Class.UI
 
                 UpdateItemSwitchSourceRectangle();
 
-                if (WasSliderUpdated && this.CurrentEquippedItem.ID != 666)
+                if (WasSliderUpdated && this.CurrentEquippedItem != null && this.CurrentEquippedItem.ID != 666)
                 {
                     //this might be broken
                     CheckGridItem();
@@ -213,42 +250,12 @@ namespace SecretProject.Class.UI
                     if (this.AllSlots[i].IsHovered)
                     {
                         this.IsAnySlotHovered = true;
+
+                        
                         if (this.AllSlots[i].ItemCounter > 0)
                         {
                             ItemData itemData = Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID);
-                            TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
-                      new Vector2(this.AllSlots[i].Position.X, this.AllSlots[i].Position.Y - 32), 200f);
-
-                            InfoPopUp infoBox = Game1.Player.UserInterface.InfoBox;
-                            infoBox.IsActive = true;
-                            switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
-                            {
-                                case ExclusiveInterfaceItem.ShopMenu:
-                                    infoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
-                                    infoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - infoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
-                                    if (this.AllSlots[i].isRightClicked)
-                                    {
-                                        int numberToSell = 1;
-                                        if(Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
-                                        {
-                                            numberToSell = this.Inventory.currentInventory[i].ItemCount;
-                                        }
-                                        for(int numSell =0; numSell < numberToSell; numSell++)
-                                        {
-                                            Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(this.Inventory.currentInventory[i].GetItem(), 1);
-                                            this.Inventory.currentInventory[i].RemoveItemFromSlot();
-                                        }
-                                       
-                                    }
-                                    break;
-
-                                default:
-                                    infoBox.DisplayTitle = true;
-                                    infoBox.FitTitleText(itemData.Name, 1f);
-                                    infoBox.FitText(itemData.Description, 1f);
-                                    infoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - infoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
-                                    break;
-                            }
+                            ItemInfoInteraction(AllSlots[i], this.Inventory.currentInventory[i], itemData);
                             if (Game1.MouseManager.IsClicked)
                             {
                                 if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
