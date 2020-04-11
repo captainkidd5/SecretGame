@@ -193,11 +193,6 @@ namespace SecretProject.Class.StageFolder
             };
 
 
-            if(this.StageName == "DobbinHouse")
-            {
-                Console.WriteLine("test");
-            }
-
             this.Map = new TmxMap(this.TmxMapPath);
 
             this.AllPortals = new List<Portal>();

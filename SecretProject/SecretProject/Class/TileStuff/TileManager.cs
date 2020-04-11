@@ -119,10 +119,7 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDimension = tileSet.Width / this.TileWidth;
 
             this.MapWidth = mapName.Width;
-            if(this.MapWidth > 32)
-            {
-                Console.WriteLine(this.Stage.StageName);
-            }
+
             this.MapHeight = mapName.Height;
 
             this.tileCounter = 0;
@@ -699,10 +696,6 @@ namespace SecretProject.Class.TileStuff
                         this.AllTiles[z][i, j] = new Tile(i, j, reader.ReadInt32());
                     }
                 }
-            }
-            if(this.Stage == Game1.DobbinHouse)
-            {
-                Console.WriteLine("hi");
             }
 
             if(this.Stage != Game1.Town)

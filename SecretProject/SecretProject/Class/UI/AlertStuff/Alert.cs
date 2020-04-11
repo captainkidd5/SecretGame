@@ -49,7 +49,8 @@ namespace SecretProject.Class.UI
 
 
 
-                    this.NineSliceRectangle = new NineSliceRectangle(position,(RectangleSize)size);
+                 //   this.NineSliceRectangle = new NineSliceRectangle(position,(RectangleSize)size);
+            this.NineSliceRectangle = new NineSliceRectangle(text);
 
 
             this.Position = position;

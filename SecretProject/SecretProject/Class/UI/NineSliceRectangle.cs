@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,42 @@ namespace SecretProject.Class.UI
 
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
+        }
+
+        public NineSliceRectangle(string text)
+        {
+            CombinedRectangle = new List<Rectangle>();
+            CombinedRectangle.Add(LeftRectangle);
+            this.Scale = 2f;
+
+
+            int totalWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
+            int totalHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
+
+
+
+
+            //width += LeftRectangle.Width;
+
+            //for (int i = 0; i < (int)size; i++)
+            //{
+            //    CombinedRectangle.Add(MiddleRectangle);
+            //    width += MiddleRectangle.Width;
+            //}
+            //CombinedRectangle.Add(RightRectangle);
+            //width += RightRectangle.Width;
+
+            //this.Width = width * (int)Scale;
+            //this.Height = LeftRectangle.Height;
+
+            //RectanglePositions = new List<Vector2>();
+            //RectanglePositions.Add(position);
+            //for (int i = 0; i < (int)size; i++)
+            //{
+
+            //    RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
+            //}
+            //RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
         }
 
         //public  NineSliceRectangle GetNineSliceRectangle(float lineLimit, Vector2 position)

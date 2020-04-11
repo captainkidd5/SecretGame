@@ -322,6 +322,40 @@ namespace SecretProject.Class.DialogueStuff
             return returnString + line;
         }
 
+        /// <summary>
+        /// Returns the width of the specified text line, separated at the new line.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="textScale"></param>
+        /// <param name="lineLevel">which new line to check. Might be irrelevant.</param>
+        /// <returns></returns>
+        public static float GetTextLength(string text, float textScale, int lineLevel)
+        {
+            String line = String.Empty;
+            String returnString = String.Empty;
+            String[] lineArray = text.Split('\n');
+
+           return Game1.AllTextures.MenuText.MeasureString(lineArray[lineLevel]).X * textScale;
+
+           
+        }
+
+        public static float GetTextHeight(string text, float textScale)
+        {
+ 
+            String returnString = String.Empty;
+            String[] lineArray = text.Split('\n');
+
+            float totalHeight = 0;
+
+            foreach(string line in lineArray)
+            {
+                totalHeight += Game1.AllTextures.MenuText.MeasureString(line).Y * textScale;
+            }
+
+            return totalHeight;
+        }
+
         public void Reset(bool unfreeze = true)
         {
             this.StringToWrite = "";
