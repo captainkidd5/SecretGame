@@ -85,18 +85,20 @@ namespace SecretProject.Class.UI
             this.Scale = 2f;
 
 
-            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
-            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
+            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale + 1, 0);
+            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale + 1);
 
 
             int currentWidth = (int)(LeftEdge.Width * Scale);
             int currentHeight = 0;
 
 
-
-            while(currentHeight < totalRequireHeight)
+            AddRow(totalRequiredWidth, position,TopLeftCorner, TopEdge, TopRightCorner);
+            currentHeight += (int)(16 * this.Scale);
+            position = new Vector2(position.X, position.Y + currentHeight);
+            while (currentHeight < totalRequireHeight)
             {
-                AddMiddleRow(totalRequiredWidth, position);
+                AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
                 currentHeight += (int)(16 * this.Scale);
             }
 
@@ -109,25 +111,29 @@ namespace SecretProject.Class.UI
             this.RectanglePositions.Add(position);
         }
 
-        private void AddMiddleRow(int length, Vector2 position)
+        private void AddRow(int length, Vector2 position, Rectangle left, Rectangle middle, Rectangle right)
         {
             int startingPositionX = (int)position.X;
-            int numberNeeded = (int)(length / this.Scale / 16);;
-            AddRectangle(LeftEdge, position);
+            int numberNeeded = (int)(length / this.Scale / 16); ;
+            AddRectangle(left, position);
             startingPositionX += (int)(16 * this.Scale);
 
             numberNeeded--;
 
-            while(numberNeeded > 1)
+            while (numberNeeded > 1)
             {
-                
+
                 Vector2 newPosition = new Vector2(startingPositionX, position.Y);
-                AddRectangle(Center, newPosition);
+                AddRectangle(middle, newPosition);
                 numberNeeded--;
                 startingPositionX += (int)(16 * this.Scale);
             }
-            AddRectangle(RightEdge, new Vector2(startingPositionX, position.Y));
+            AddRectangle(right, new Vector2(startingPositionX, position.Y));
         }
+
+       
+
+       
 
         public void Draw(SpriteBatch spriteBatch)
         {

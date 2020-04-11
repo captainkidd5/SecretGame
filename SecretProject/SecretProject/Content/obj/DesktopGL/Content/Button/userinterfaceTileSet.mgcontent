@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/userinterfaceTileSet.png</SourceFile>
-  <SourceTime>2020-02-25T13:29:20.1824002-08:00</SourceTime>
+  <SourceTime>2020-04-10T16:40:48.9364348-10:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Button/userinterfaceTileSet.xnb</DestFile>
-  <DestTime>2020-02-25T13:30:55.5896275-08:00</DestTime>
+  <DestTime>2020-04-10T16:41:28.2597194-10:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T11:55:52-10:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
