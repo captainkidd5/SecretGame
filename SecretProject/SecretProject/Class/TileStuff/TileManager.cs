@@ -119,6 +119,10 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDimension = tileSet.Width / this.TileWidth;
 
             this.MapWidth = mapName.Width;
+            if(this.MapWidth > 32)
+            {
+                Console.WriteLine(this.Stage.StageName);
+            }
             this.MapHeight = mapName.Height;
 
             this.tileCounter = 0;
@@ -144,6 +148,10 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
             QuestIcons = new Dictionary<string, Sprite>();
+            if(this.Stage == Game1.DobbinHouse)
+            {
+                Console.WriteLine("hi");
+            }
             for (int i = 0; i < 4; i++)
             {
                 this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -647,7 +655,15 @@ namespace SecretProject.Class.TileStuff
 
         public void Save(BinaryWriter writer)
         {
+            if(this.Stage == Game1.DobbinHouse)
+            {
+                Console.WriteLine("hi");
+            }
             writer.Write(this.AllTiles.Count);
+            if(this.MapWidth > 32)
+            {
+                Console.WriteLine("more than 32");
+            }
             writer.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
@@ -684,6 +700,11 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            if(this.Stage == Game1.DobbinHouse)
+            {
+                Console.WriteLine("hi");
+            }
+
             if(this.Stage != Game1.Town)
             {
                 for (int z = 0; z < layerCount; z++)
