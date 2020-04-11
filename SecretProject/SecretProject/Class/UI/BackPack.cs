@@ -55,6 +55,10 @@ namespace SecretProject.Class.UI
 
         public Item CurrentEquippedItem { get; set; }
 
+        public Item CurrentDraggedItem { get; set; }
+
+
+
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
             this.Graphics = graphics;
@@ -236,67 +240,52 @@ namespace SecretProject.Class.UI
 
 
                 TextBuilder.Update(gameTime);
-                this.IsAnySlotHovered = false;
+                
 
-                if (Game1.MouseManager.IsRightClicked)
+                if (this.CurrentDraggedItem == null && Game1.MouseManager.IsRightClicked)
                 {
                     HandleFoodItem();
                 }
 
+                this.IsAnySlotHovered = false;
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
+                    Button slot = AllSlots[i];
+
+                    InventorySlot inventorySlot = this.Inventory.currentInventory[i];
                     UpdateInventorySlotTexture(this.Inventory, i);
-                    this.AllSlots[i].Update(Game1.MouseManager);
-                    if (this.AllSlots[i].IsHovered)
+                    slot.Update(Game1.MouseManager);
+                    if (slot.IsHovered)
                     {
                         this.IsAnySlotHovered = true;
 
                         
-                        if (this.AllSlots[i].ItemCounter > 0)
+                        if (slot.ItemCounter > 0)
                         {
-                            ItemData itemData = Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID);
-                            ItemInfoInteraction(AllSlots[i], this.Inventory.currentInventory[i], itemData);
+                            ItemData itemData = Game1.ItemVault.GetItem(inventorySlot.GetItem().ID);
+                            ItemInfoInteraction(slot, inventorySlot, itemData);
                             if (Game1.MouseManager.IsClicked)
                             {
                                 if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                 {
-                                    Item item = this.Inventory.currentInventory[i].GetItem();
+                                    Item item = inventorySlot.GetItem();
                                     if (item != null)
                                     {
 
                                         if (Game1.Player.UserInterface.CurrentAccessedStorableItem != null)
                                         {
-                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[i].GetItem()))
-                                            {
-                                                bool playAnimation = false;
-                                                for (int shiftItem = this.Inventory.currentInventory[i].ItemCount - 1; shiftItem >= 0; shiftItem--)
-                                                {
-                                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.DepositItem(item))
-                                                    {
-                                                        playAnimation = true;
-                                                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
-
-                                                    }
-                                                    else
-                                                    {
-                                                        break;
-                                                    }
-                                                }
-                                                if (playAnimation)
-                                                {
-                                                    Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking, .25f);
-                                                }
-                                            }
+                                            HandleStorageItem(i, item);
                                         }
                                         else
                                         {
                                             if (Game1.Player.Inventory.AddToFirstEmptySlotOnly(item))
                                             {
-                                                for (int shiftItem = this.Inventory.currentInventory[i].ItemCount; shiftItem >= 0; shiftItem--)
+                                                inventorySlot.RemoveItemFromSlot();
+                                                for (int shiftItem = inventorySlot.ItemCount; shiftItem >= 0; shiftItem--)
                                                 {
                                                     if (Game1.Player.Inventory.TryAddItem(item))
                                                     {
-                                                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                                                        inventorySlot.RemoveItemFromSlot();
 
                                                     }
                                                     else
@@ -314,14 +303,11 @@ namespace SecretProject.Class.UI
                         }
 
                     }
-                    if (this.AllSlots[i].isClickedAndHeld && this.AllSlots[i].ItemCounter != 0)
+                    if (this.AllSlots[i].isClicked && this.AllSlots[i].ItemCounter != 0)
                     {
-                        Item tempItem = this.Inventory.currentInventory[i].GetItem();
+                        this.CurrentDraggedItem = this.Inventory.currentInventory[i].GetItem();
 
-                        Sprite tempSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).GetItem().SourceTextureRectangle,
-                            Game1.MouseManager.WorldMousePosition, 16, 16)
-                        { IsBeingDragged = true, TextureScaleX = 5f, TextureScaleY = 5f };
-                        this.DragSprite = tempSprite;
+                        this.DragSprite = CurrentDraggedItem.ItemSprite;
                         this.DragSprite.Update(gameTime, new Vector2(Game1.MouseManager.Position.X - 16, Game1.MouseManager.Position.Y - 16));
                         Game1.MouseManager.ChangeMouseTexture(CursorType.Normal);
 
@@ -333,59 +319,98 @@ namespace SecretProject.Class.UI
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
                     //INTERACTIONS WITH RELEASE ITEM 
-                    if (this.AllSlots[i].wasJustReleased && this.AllSlots[i].ItemCounter > 0)
+                    if (Game1.MouseManager.IsClicked)
                     {
-                        if (this.MouseIntersectsBackDrop)
+
+
+                        if (this.CurrentDraggedItem != null)
                         {
-
-
-                            this.WasSlotJustReleased = true;
-
-                            Item tempItem = this.Inventory.currentInventory[i].GetItem();
-                            this.ItemJustReleased = tempItem;
-
-                            if (this.IsAnySlotHovered)
+                            if (this.MouseIntersectsBackDrop)
                             {
-                                int index = 0;
-                                for (int m = 0; m < this.AllSlots.Count; m++)
+
+
+                                this.WasSlotJustReleased = true;
+
+                                Item tempItem = this.Inventory.currentInventory[i].GetItem();
+                                this.ItemJustReleased = tempItem;
+
+                                if (this.IsAnySlotHovered)
                                 {
-                                    index = m;
-                                    if (this.AllSlots[m].IsHovered)
+                                    int index = 0;
+                                    for (int m = 0; m < this.AllSlots.Count; m++)
                                     {
-                                        InventorySlot currentItems = this.Inventory.currentInventory[i];
-                                        this.Inventory.currentInventory[i] = this.Inventory.currentInventory[m];
-                                        this.Inventory.currentInventory[m] = currentItems;
+                                        Button newSlot = this.AllSlots[m];
 
-                                        return;
+                                        index = m;
+                                        if (newSlot.IsHovered)
+                                        {
+                                            InventorySlot oldSlot = this.Inventory.currentInventory[i];
+                                            InventorySlot newSlot = new InventorySlot(oldSlot.Item)
+                                            { ItemCount = oldSlot.ItemCount};
+
+                                            oldSlot = this.Inventory.currentInventory[m];
+                                            this.Inventory.currentInventory[m] = oldSlot;
+
+                                            return;
+                                        }
+
                                     }
-
                                 }
                             }
-                        }
-                        else if (InteractWithStorageItem(gameTime, i))
-                        {
-
-                        }
-                        else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
-                        {
-
-                            Item tempItem = this.Inventory.currentInventory[i].GetItem();
-                            int currentItemCount = this.AllSlots[i].ItemCounter;
-                            for (int j = 0; j < currentItemCount; j++)
+                            else if (InteractWithStorageItem(gameTime, i))
                             {
-                                this.Inventory.currentInventory[i].RemoveItemFromSlot();
-                                this.AllSlots[i].ItemCounter--;
-
-                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
-                                newWorldItem.IsTossable = true;
-                                Game1.GetCurrentStage().AllTiles.AddItem(newWorldItem, newWorldItem.WorldPosition);
 
                             }
+                            else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                            {
+
+                                Item tempItem = this.Inventory.currentInventory[i].GetItem();
+                                int currentItemCount = this.AllSlots[i].ItemCounter;
+                                for (int j = 0; j < currentItemCount; j++)
+                                {
+                                    this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                                    this.AllSlots[i].ItemCounter--;
+
+                                    Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+                                    newWorldItem.IsTossable = true;
+                                    Game1.GetCurrentStage().AllTiles.AddItem(newWorldItem, newWorldItem.WorldPosition);
+
+                                }
 
 
+                            }
                         }
                     }
+                    if (this.AllSlots[i].wasJustReleased && this.AllSlots[i].ItemCounter > 0)
+                    {
+                        
+                    }
 
+                }
+            }
+        }
+
+        private void HandleStorageItem(int i, Item item)
+        {
+            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[i].GetItem()))
+            {
+                bool playAnimation = false;
+                for (int shiftItem = this.Inventory.currentInventory[i].ItemCount - 1; shiftItem >= 0; shiftItem--)
+                {
+                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.DepositItem(item))
+                    {
+                        playAnimation = true;
+                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (playAnimation)
+                {
+                    Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking, .25f);
                 }
             }
         }
