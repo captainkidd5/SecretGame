@@ -339,5 +339,11 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
+        public void Clear()
+        {
+            this.Item = null;
+            this.ItemCount = 0;
+        }
+
     }
 }
