@@ -29,112 +29,114 @@ namespace SecretProject.Class.UI
 
         public float Scale { get; set; }
 
-        Rectangle LeftRectangle = new Rectangle(1024, 64, 16, 48);
-        Rectangle MiddleRectangle = new Rectangle(1040, 64, 16, 48);
-        Rectangle RightRectangle = new Rectangle(1120, 64, 16, 48);
-        public NineSliceRectangle(Vector2 position, RectangleSize size)
-        {
-            CombinedRectangle = new List<Rectangle>();
-            int width = 0;
-            CombinedRectangle.Add(LeftRectangle);
-            this.Scale = 2f;
-            width += LeftRectangle.Width;
-            
-            for(int i =0; i < (int)size; i++)
-            {
-                CombinedRectangle.Add(MiddleRectangle);
-                width += MiddleRectangle.Width;
-            }
-            CombinedRectangle.Add(RightRectangle);
-            width += RightRectangle.Width;
+        Rectangle TopLeftCorner = new Rectangle(1056, 128, 16, 16);
+        Rectangle TopEdge = new Rectangle(1072, 128, 16, 16);
+        Rectangle TopRightCorner = new Rectangle(1088, 128, 16, 16);
 
-            this.Width = width * (int)Scale;
-            this.Height = LeftRectangle.Height;
+        Rectangle LeftEdge = new Rectangle(1056, 144, 16, 16);
+        Rectangle Center = new Rectangle(1072, 144, 16, 16);
+        Rectangle RightEdge = new Rectangle(1088, 144, 16, 16);
 
-            RectanglePositions = new List<Vector2>();
-            RectanglePositions.Add(position);
-            for(int i =0; i < (int)size; i++)
-            {
-
-                RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
-            }
-            RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            for(int i =0; i< CombinedRectangle.Count; i++)
-            {
-
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            }
-        }
-
-        public NineSliceRectangle(string text)
-        {
-            CombinedRectangle = new List<Rectangle>();
-            CombinedRectangle.Add(LeftRectangle);
-            this.Scale = 2f;
-
-
-            int totalWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
-            int totalHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
+        Rectangle BottomLeftCorner = new Rectangle(1056, 164, 16, 16);
+        Rectangle BottomEdge = new Rectangle(1072, 164, 16, 16);
+        Rectangle BottomRightCorner = new Rectangle(1088, 164, 16, 16);
 
 
 
 
-            //width += LeftRectangle.Width;
-
-            //for (int i = 0; i < (int)size; i++)
-            //{
-            //    CombinedRectangle.Add(MiddleRectangle);
-            //    width += MiddleRectangle.Width;
-            //}
-            //CombinedRectangle.Add(RightRectangle);
-            //width += RightRectangle.Width;
-
-            //this.Width = width * (int)Scale;
-            //this.Height = LeftRectangle.Height;
-
-            //RectanglePositions = new List<Vector2>();
-            //RectanglePositions.Add(position);
-            //for (int i = 0; i < (int)size; i++)
-            //{
-
-            //    RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
-            //}
-            //RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
-        }
-
-        //public  NineSliceRectangle GetNineSliceRectangle(float lineLimit, Vector2 position)
+        //Rectangle LeftRectangle = new Rectangle(1024, 64, 16, 48);
+        //Rectangle MiddleRectangle = new Rectangle(1040, 64, 16, 48);
+        //Rectangle RightRectangle = new Rectangle(1120, 64, 16, 48);
+        //public NineSliceRectangle(Vector2 position, RectangleSize size)
         //{
-        //    int numberOfMiddleSlicesNeeded = (int)Math.Ceiling(lineLimit / this.MiddleRectangle.Width * this.Scale);
         //    CombinedRectangle = new List<Rectangle>();
-
+        //    int width = 0;
         //    CombinedRectangle.Add(LeftRectangle);
-
-        //    this.Width += (int)(numberOfMiddleSlicesNeeded * this.MiddleRectangle.Width * Scale);
-
-        //    this.Width += (int)(LeftRectangle.Width * Scale);
-
-        //    for (int i = 0; i < numberOfMiddleSlicesNeeded; i++)
+        //    this.Scale = 2f;
+        //    width += LeftRectangle.Width;
+            
+        //    for(int i =0; i < (int)size; i++)
         //    {
         //        CombinedRectangle.Add(MiddleRectangle);
+        //        width += MiddleRectangle.Width;
         //    }
         //    CombinedRectangle.Add(RightRectangle);
-        //    this.Width += (int)(RightRectangle.Width * Scale);
+        //    width += RightRectangle.Width;
 
-
-        //    this.Height = (int)(LeftRectangle.Height * Scale);
+        //    this.Width = width * (int)Scale;
+        //    this.Height = LeftRectangle.Height;
 
         //    RectanglePositions = new List<Vector2>();
         //    RectanglePositions.Add(position);
-        //    for (int i = 0; i < (int)size; i++)
+        //    for(int i =0; i < (int)size; i++)
         //    {
 
         //        RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
         //    }
         //    RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
         //}
+
+        
+
+        public NineSliceRectangle(Vector2 position, string text)
+        {
+            CombinedRectangle = new List<Rectangle>();
+            RectanglePositions = new List<Vector2>();
+            this.Scale = 2f;
+
+
+            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
+            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
+
+
+            int currentWidth = (int)(LeftEdge.Width * Scale);
+            int currentHeight = 0;
+
+
+
+            while(currentHeight < totalRequireHeight)
+            {
+                AddMiddleRow(totalRequiredWidth, position);
+                currentHeight += (int)(16 * this.Scale);
+            }
+
+  
+        }
+
+        private void AddRectangle(Rectangle rectangle, Vector2 position)
+        {
+            this.CombinedRectangle.Add(rectangle);
+            this.RectanglePositions.Add(position);
+        }
+
+        private void AddMiddleRow(int length, Vector2 position)
+        {
+            int startingPositionX = (int)position.X;
+            int numberNeeded = (int)(length / this.Scale / 16);;
+            AddRectangle(LeftEdge, position);
+            startingPositionX += (int)(16 * this.Scale);
+
+            numberNeeded--;
+
+            while(numberNeeded > 1)
+            {
+                
+                Vector2 newPosition = new Vector2(startingPositionX, position.Y);
+                AddRectangle(Center, newPosition);
+                numberNeeded--;
+                startingPositionX += (int)(16 * this.Scale);
+            }
+            AddRectangle(RightEdge, new Vector2(startingPositionX, position.Y));
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < CombinedRectangle.Count; i++)
+            {
+
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            }
+        }
+
     }
 }

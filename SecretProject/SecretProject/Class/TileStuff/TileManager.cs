@@ -652,15 +652,9 @@ namespace SecretProject.Class.TileStuff
 
         public void Save(BinaryWriter writer)
         {
-            if(this.Stage == Game1.DobbinHouse)
-            {
-                Console.WriteLine("hi");
-            }
+            
             writer.Write(this.AllTiles.Count);
-            if(this.MapWidth > 32)
-            {
-                Console.WriteLine("more than 32");
-            }
+           
             writer.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
