@@ -41,43 +41,7 @@ namespace SecretProject.Class.UI
         Rectangle BottomEdge = new Rectangle(1072, 164, 16, 16);
         Rectangle BottomRightCorner = new Rectangle(1088, 164, 16, 16);
 
-
-
-
-        //Rectangle LeftRectangle = new Rectangle(1024, 64, 16, 48);
-        //Rectangle MiddleRectangle = new Rectangle(1040, 64, 16, 48);
-        //Rectangle RightRectangle = new Rectangle(1120, 64, 16, 48);
-        //public NineSliceRectangle(Vector2 position, RectangleSize size)
-        //{
-        //    CombinedRectangle = new List<Rectangle>();
-        //    int width = 0;
-        //    CombinedRectangle.Add(LeftRectangle);
-        //    this.Scale = 2f;
-        //    width += LeftRectangle.Width;
-            
-        //    for(int i =0; i < (int)size; i++)
-        //    {
-        //        CombinedRectangle.Add(MiddleRectangle);
-        //        width += MiddleRectangle.Width;
-        //    }
-        //    CombinedRectangle.Add(RightRectangle);
-        //    width += RightRectangle.Width;
-
-        //    this.Width = width * (int)Scale;
-        //    this.Height = LeftRectangle.Height;
-
-        //    RectanglePositions = new List<Vector2>();
-        //    RectanglePositions.Add(position);
-        //    for(int i =0; i < (int)size; i++)
-        //    {
-
-        //        RectanglePositions.Add(new Vector2(RectanglePositions[i].X + MiddleRectangle.Width * Scale, position.Y));
-        //    }
-        //    RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
-        //}
-
-        
-
+       
         public NineSliceRectangle(Vector2 position, string text)
         {
             CombinedRectangle = new List<Rectangle>();
@@ -85,8 +49,8 @@ namespace SecretProject.Class.UI
             this.Scale = 2f;
 
 
-            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale + 1, 0);
-            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale + 1);
+            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
+            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
 
 
             int currentWidth = (int)(LeftEdge.Width * Scale);
@@ -100,7 +64,10 @@ namespace SecretProject.Class.UI
             {
                 AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
                 currentHeight += (int)(16 * this.Scale);
+                position = new Vector2(position.X, position.Y + currentHeight);
             }
+          //  position = new Vector2(position.X, position.Y + currentHeight);
+            AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
 
   
         }
@@ -131,9 +98,7 @@ namespace SecretProject.Class.UI
             AddRectangle(right, new Vector2(startingPositionX, position.Y));
         }
 
-       
 
-       
 
         public void Draw(SpriteBatch spriteBatch)
         {

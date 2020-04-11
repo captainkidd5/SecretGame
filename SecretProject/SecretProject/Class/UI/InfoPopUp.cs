@@ -38,6 +38,8 @@ namespace SecretProject.Class.UI
             this.Color = Color.White;
 
             this.TitleSourceRectangle = new Rectangle(1040, 41, 80, 23);
+
+            this.FittedRectangle = new NineSliceRectangle(this.WindowPosition, this.StringToWrite);
         }
 
         public void Update(GameTime gameTime)
@@ -64,7 +66,8 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
+                this.FittedRectangle.Draw(spriteBatch);
+              //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 16), this.Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
                 if(this.DisplayTitle)
                 {

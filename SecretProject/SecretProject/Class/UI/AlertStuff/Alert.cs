@@ -54,7 +54,7 @@ namespace SecretProject.Class.UI
 
 
             this.Position = position;
-            this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 1f);
+            this.Text = TextBuilder.ParseText(text, 600, 1f);
 
             redEsc = new RedEsc(new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32),this.Graphics);
         }
@@ -74,7 +74,7 @@ namespace SecretProject.Class.UI
         {
             redEsc.Draw(spriteBatch);
             this.NineSliceRectangle.Draw(spriteBatch);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, new Vector2(this.Position.X + 16, this.Position.Y + 16), Color.White, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, new Vector2(this.Position.X + 16, this.Position.Y + 16), Color.White, 0f, Game1.Utility.Origin,2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
         }
     }
 }

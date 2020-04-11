@@ -135,7 +135,7 @@ namespace SecretProject.Class.UI
                     }
                 }
             }
-            if (this.OpenCraftingMenu.IsHovered)
+            else if (this.OpenCraftingMenu.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
                 Game1.Player.UserInterface.InfoBox.FitText("Crafting Menu (b)", 2f);
@@ -155,7 +155,7 @@ namespace SecretProject.Class.UI
                     }
                 }
             }
-            if (this.OpenSanctuaryMenu.IsHovered)
+            else if (this.OpenSanctuaryMenu.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
                 Game1.Player.UserInterface.InfoBox.FitText("Sanctuary Log (z)", 2f);
