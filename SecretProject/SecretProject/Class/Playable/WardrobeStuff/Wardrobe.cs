@@ -51,6 +51,8 @@ namespace SecretProject.Class.Playable
         public ShoesPiece ShoesPiece { get; set; }
         public ArmsPiece ArmsPiece { get; set; }
 
+        public ToolPiece ToolPiece { get; set; }
+
 
         public List<ClothingPiece> BasicClothing { get; set; }
 
@@ -153,6 +155,11 @@ namespace SecretProject.Class.Playable
             this.Hair.Color = this.HairColors[this.HairColorIndex];
 
 
+        }
+
+        public void ChangeTool(int itemID)
+        {
+            this.ToolPiece.ChangeTool(itemID);
         }
 
         public void ChangeSkin(CycleDirection direction)

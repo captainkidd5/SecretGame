@@ -85,7 +85,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 
         }
 
-        public void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
+        public virtual void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
 
             if (this.OldFrame != currentFrame)

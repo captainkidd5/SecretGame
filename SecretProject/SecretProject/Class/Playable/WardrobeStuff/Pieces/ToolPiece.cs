@@ -18,6 +18,10 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         public Item Item { get; set; }
         public Sprite ItemSprite { get; set; }
 
+
+        public float Rotation { get; set; }
+        public float RotationSpeed { get; set; }
+
         public ToolPiece(Color defaultColor) : base(defaultColor)
         {
             this.Texture = Game1.AllTextures.ItemSpriteSheet;
@@ -28,115 +32,82 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Scale = 1f;
             this.Item = Game1.ItemVault.GenerateNewItem(0, null);
             this.ItemSprite = Item.ItemSprite;
+            this.SourceRectangle = Item.SourceTextureRectangle;
 
             this.Color = defaultColor;
 
         }
-      
+
+        public void ChangeTool(int id)
+        {
+            this.Item = Game1.ItemVault.GenerateNewItem(id, null);
+            this.ItemSprite = Item.ItemSprite;
+            this.SourceRectangle = Item.SourceTextureRectangle;
+        }
+
 
         #region ChoppingUpdates
-        protected override void UpdateChopDown(int currentFrame)
+
+        public override void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
-            this.BaseYOffSet = 12;
-            int xAdjustment = 0;
-            int yAdjustment = 0;
-            int column = 0;
-            this.Row = 1;
 
-            switch (currentFrame)
-            {
-                case 0:
-                    yAdjustment = 0;
-                    break;
-                case 1:
-                    xAdjustment = 16;
-                    yAdjustment = 1;
-                    break;
 
-                case 2:
-                    xAdjustment = 32;
-                    yAdjustment = 1;
-                    break;
-                case 3:
-                    xAdjustment = 48;
-                    yAdjustment = 0;
-                    break;
-                case 4:
-                    xAdjustment = 64;
-                    yAdjustment = -1;
-                    break;
+                switch (direction)
+                {
+                    case Dir.Down:
+                        this.SpriteEffects = SpriteEffects.None;
+                        SwingDown(gameTime);
+                        break;
+                    case Dir.Up:
+                        this.SpriteEffects = SpriteEffects.None;
+                        SwingUp(gameTime);
+                        break;
+                    case Dir.Left:
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                        SwingRight(gameTime);
+                        break;
+                    case Dir.Right:
+                        this.SpriteEffects = SpriteEffects.None;
+                    SwingRight(gameTime);
+                        break;
 
-            }
-            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
-            this.Row = 0;
+                }
+
+
+            
+            this.Position = position;
+
+            this.OldFrame = currentFrame;
+
+        }
+        public void SwingRight(GameTime gameTime)
+        {
+            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * this.RotationSpeed;
+        }
+        private void SwingUp(GameTime gameTime)
+        {
+
+        }
+        private void SwingDown(GameTime gameTime)
+        {
+
         }
 
-        protected override void UpdateChopUp(int currentFrame)
-        {
-            this.BaseYOffSet = 16;
-        }
-
-        protected override void UpdateChopRight(int currentFrame)
-        {
-            this.BaseYOffSet = 12;
-            int xAdjustment = 0;
-            int yAdjustment = 0;
-            int column = 5;
-            this.Row = 1;
-            switch (currentFrame)
-            {
-                case 0:
-                    yAdjustment = 0;
-                    break;
-                case 1:
-                    xAdjustment = 16;
-                    yAdjustment = 1;
-                    break;
-
-                case 2:
-                    xAdjustment = 32;
-                    yAdjustment = 1;
-                    break;
-                case 3:
-                    xAdjustment = 48;
-                    yAdjustment = 0;
-                    break;
-                case 4:
-                    xAdjustment = 64;
-                    yAdjustment = 1;
-                    break;
-                case 5:
-                    xAdjustment = 80;
-                    yAdjustment = 1;
-                    break;
-            }
-            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
-            this.Row = 0;
-        }
         #endregion
 
         public override void Draw(SpriteBatch spriteBatch, float yLayerHeight)
-        {
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+        {  
+            this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, 1f, Game1.Utility.centerScreen, yLayerHeight + this.LayerDepth, this.SpriteEffects);
         }
-
-        public override void DrawForCreationWindow(SpriteBatch spriteBatch)
-        {
-            this.Scale = 6f;
-            spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f + this.LayerDepth);
-        }
-
 
 
         public override void Load(BinaryReader reader)
         {
-            this.Row = reader.ReadInt32();
 
         }
 
         public override void Save(BinaryWriter writer)
         {
-            writer.Write(this.Row);
 
 
         }
