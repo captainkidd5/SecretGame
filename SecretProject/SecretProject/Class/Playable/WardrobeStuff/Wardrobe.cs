@@ -132,6 +132,8 @@ namespace SecretProject.Class.Playable
             };
             this.ArmsPiece.ChangePartOfTexture(this.SkinColors[2], ReplacementSkinColors);
 
+            
+
 
         }
 
@@ -157,9 +159,10 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void ChangeTool(int itemID)
+        public void ChangeTool(int itemID, Dir direction)
         {
-            this.ToolPiece.ChangeTool(itemID);
+            this.ToolPiece = new ToolPiece(Color.White);
+            this.ToolPiece.ChangeTool(itemID, direction);
         }
 
         public void ChangeSkin(CycleDirection direction)

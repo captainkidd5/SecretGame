@@ -36,11 +36,18 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             {
                 Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, direction);
             }
-            ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, direction);
+            Game1.Player.Wardrobe.ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, direction);
 
 
             
             return false;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, float yLayerHeight)
+        {
+            base.Draw(spriteBatch, yLayerHeight);
+
+            Game1.Player.Wardrobe.ToolPiece.Draw(spriteBatch, yLayerHeight);
         }
     }
 }

@@ -193,6 +193,7 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
+                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), controls.Direction);
                     break;
 
                 case AnimationType.Swiping:

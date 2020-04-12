@@ -21,6 +21,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public float Rotation { get; set; }
         public float RotationSpeed { get; set; }
+        public int RotationDirection { get; set; }
+
+        public Vector2 Origin { get; set; }
 
         public ToolPiece(Color defaultColor) : base(defaultColor)
         {
@@ -38,12 +41,25 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         }
 
-        public void ChangeTool(int id)
+        public void ChangeTool(int id, Dir direction)
         {
             this.Item = Game1.ItemVault.GenerateNewItem(id, null);
             this.ItemSprite = Item.ItemSprite;
             this.SourceRectangle = Item.SourceTextureRectangle;
+            this.Rotation = -.25f;
+            this.Origin = new Vector2(15, 15);
+
+            if(direction == Dir.Left)
+            {
+                this.Rotation =.6f;
+            }
+            else if(direction == Dir.Right)
+            {
+                this.Rotation = -.5f;
+            }
         }
+
+       
 
 
         #region ChoppingUpdates
@@ -63,26 +79,32 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                         SwingUp(gameTime);
                         break;
                     case Dir.Left:
-                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
-                        SwingRight(gameTime);
+                        this.SpriteEffects = SpriteEffects.None;
+                    this.Position = new Vector2(position.X + 3, position.Y +21);
+                    this.RotationDirection = -1;
+                    SwingRight(gameTime);
                         break;
                     case Dir.Right:
-                        this.SpriteEffects = SpriteEffects.None;
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    this.Position = new Vector2(position.X + 12, position.Y + 20);
+                    this.Origin = new Vector2(0, 15);
+                    this.RotationDirection = 1;
                     SwingRight(gameTime);
                         break;
 
                 }
 
 
-            
-            this.Position = position;
+
 
             this.OldFrame = currentFrame;
 
         }
+
+ 
         public void SwingRight(GameTime gameTime)
         {
-            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * this.RotationSpeed;
+            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .004f * this.RotationDirection;
         }
         private void SwingUp(GameTime gameTime)
         {
@@ -97,7 +119,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public override void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {  
-            this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, 1f, Game1.Utility.centerScreen, yLayerHeight + this.LayerDepth, this.SpriteEffects);
+            this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin,.9f, this.SpriteEffects, 1f);
         }
 
 

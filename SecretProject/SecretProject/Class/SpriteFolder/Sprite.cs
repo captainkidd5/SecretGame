@@ -275,10 +275,10 @@ namespace SecretProject.Class.SpriteFolder
         }
 
         //for ship sprites
-        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float rotation, Vector2 origin, float layerDepth, SpriteEffects spriteEffects = SpriteEffects.None)
+        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float rotation, Vector2 origin, float layerDepth, SpriteEffects spriteEffects = SpriteEffects.None, float scale = 1f)
         {
 
-            spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f, spriteEffects, layerDepth);
+            spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, scale, spriteEffects, layerDepth);
         }
 
   
