@@ -281,7 +281,24 @@ namespace SecretProject.Class.UI
                             {
                                 if(Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
                                 {
-                                    Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(newInventorySlot.GetItem(), 1);
+                                    Item item = newInventorySlot.GetItem();
+                                    
+                                    if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                                    {
+                                        int slotCounter = newInventorySlot.ItemCount;
+                                        for (int p = 0; p < slotCounter; p++)
+                                        {
+                                            Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(item, 1);
+                                            newInventorySlot.RemoveItemFromSlot();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(item, 1);
+                                        newInventorySlot.RemoveItemFromSlot();
+                                    }
+                                    
+                                    
                                 }
                                 else
                                 {
@@ -296,28 +313,41 @@ namespace SecretProject.Class.UI
                     UpdateInventorySlotTexture(this.Inventory, i);
                 }
 
-                if(Game1.MouseManager.IsClicked && this.IsDragSlotActive)
+                HandleDragOutOfInventory();
+            }
+        }
+
+        /// <summary>
+        /// If item is dragged outside of inventory bounds, drop it into the world.
+        /// </summary>
+        private void HandleDragOutOfInventory()
+        {
+            if (Game1.MouseManager.IsClicked && this.IsDragSlotActive)
+            {
+                if (!Game1.MouseManager.MouseRectangle.Intersects(this.InventoryAreaRectangle))
                 {
-                    if(!Game1.MouseManager.MouseRectangle.Intersects(this.InventoryAreaRectangle))
+                    Item tempItem = DraggedSlot.InventorySlot.GetItem();
+                    int currentItemCount = DraggedSlot.InventorySlot.ItemCount;
+
+                    for (int j = 0; j < currentItemCount; j++)
                     {
-                        Item tempItem = DraggedSlot.InventorySlot.GetItem();
-                        int currentItemCount = DraggedSlot.InventorySlot.ItemCount;
+                        this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
+                        Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+                        newWorldItem.IsTossable = true;
 
-                        for(int j = 0; j < currentItemCount; j++)
-                        {
-                            this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
-                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
-                            newWorldItem.IsTossable = true;
-                            Game1.GetCurrentStage().AllTiles.AddItem(newWorldItem, newWorldItem.WorldPosition);
-                        }
-
-                        this.DragSprite = null;
-                      
                     }
+
+                    this.DragSprite = null;
+                    this.IsDragSlotActive = false;
+
                 }
             }
         }
 
+        /// <summary>
+        /// Determines what happens when an item is clicked, and whether or not it is placed down into another inventory slot. Will change the drag sprite texture if needed.
+        /// </summary>
+        /// <param name="slotIndex"></param>
         private void HandleDragSlot( int slotIndex)
         {
             if (Inventory.currentInventory[slotIndex].ItemCount > 0) //some item already occupies the slot we are trying to interact with.
@@ -340,7 +370,7 @@ namespace SecretProject.Class.UI
                     this.DraggedSlot.Index = slotIndex;
                     Inventory.currentInventory[slotIndex] = newNewSlot;
 
-
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
                     this.IsDragSlotActive = false;
 
                 }
@@ -350,6 +380,8 @@ namespace SecretProject.Class.UI
                     this.DraggedSlot.InventorySlot = Inventory.currentInventory[slotIndex];
                     this.DraggedSlot.Index = slotIndex;
                     this.IsDragSlotActive = true;
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
+                    Game1.isMyMouseVisible = false;
                 }
 
 
@@ -365,14 +397,14 @@ namespace SecretProject.Class.UI
                     };
 
                     this.DraggedSlot.InventorySlot.Clear();
-
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
                     this.IsDragSlotActive = false;
                 }
 
             }
             if(this.IsDragSlotActive)
             {
-                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16);
+                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16) {TextureScaleX = 5f, TextureScaleY = 5f };
             }
             else
             {
