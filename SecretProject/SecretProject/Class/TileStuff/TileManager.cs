@@ -97,6 +97,7 @@ namespace SecretProject.Class.TileStuff
         #region CONSTRUCTORS
 
 
+
         public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage)
         {
             this.Stage = currentStage;
@@ -145,7 +146,7 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
             QuestIcons = new Dictionary<string, Sprite>();
-            if(this.Stage == Game1.DobbinHouse)
+            if (this.Stage == Game1.DobbinHouse)
             {
                 Console.WriteLine("hi");
             }
@@ -652,9 +653,9 @@ namespace SecretProject.Class.TileStuff
 
         public void Save(BinaryWriter writer)
         {
-            
+
             writer.Write(this.AllTiles.Count);
-           
+
             writer.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
@@ -670,7 +671,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Load(BinaryReader reader)
         {
-           
+
             int layerCount = reader.ReadInt32();
             int tileCount = reader.ReadInt32();
 
@@ -692,7 +693,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if(this.Stage != Game1.Town)
+            if (this.Stage != Game1.Town)
             {
                 for (int z = 0; z < layerCount; z++)
                 {
@@ -706,7 +707,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            
+
         }
 
         #endregion

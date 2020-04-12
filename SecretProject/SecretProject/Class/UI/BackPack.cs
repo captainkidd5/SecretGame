@@ -58,6 +58,7 @@ namespace SecretProject.Class.UI
         public bool IsDragSlotActive { get; private set; }
 
 
+        public Rectangle InventoryAreaRectangle { get; set; }
 
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
@@ -203,6 +204,17 @@ namespace SecretProject.Class.UI
         {
             this.Inventory = Game1.Player.Inventory;
             this.Inventory.HasChangedSinceLastFrame = false;
+            if(this.Expanded)
+            {
+                this.InventoryAreaRectangle = new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale),
+                    (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale)); 
+            }
+            else
+            {
+                this.InventoryAreaRectangle = new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale),
+                    (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale));
+            }
+           
             if (this.IsActive)
             {
                 UpdateScrollWheel(Game1.MouseManager);
@@ -254,6 +266,7 @@ namespace SecretProject.Class.UI
 
                     if (itemButton.IsHovered)
                     {
+
                         InventorySlot newInventorySlot = Inventory.currentInventory[i];
                         if (itemButton.isClicked)
                         {
@@ -281,6 +294,26 @@ namespace SecretProject.Class.UI
                     }
 
                     UpdateInventorySlotTexture(this.Inventory, i);
+                }
+
+                if(Game1.MouseManager.IsClicked && this.IsDragSlotActive)
+                {
+                    if(!Game1.MouseManager.MouseRectangle.Intersects(this.InventoryAreaRectangle))
+                    {
+                        Item tempItem = DraggedSlot.InventorySlot.GetItem();
+                        int currentItemCount = DraggedSlot.InventorySlot.ItemCount;
+
+                        for(int j = 0; j < currentItemCount; j++)
+                        {
+                            this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
+                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+                            newWorldItem.IsTossable = true;
+                            Game1.GetCurrentStage().AllTiles.AddItem(newWorldItem, newWorldItem.WorldPosition);
+                        }
+
+                        this.DragSprite = null;
+                      
+                    }
                 }
             }
         }
