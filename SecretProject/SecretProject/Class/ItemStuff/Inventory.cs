@@ -216,11 +216,7 @@ namespace SecretProject.Class.ItemStuff
                     binaryWriter.Write(this.currentInventory[i].Item.ID);
                     binaryWriter.Write(this.currentInventory[i].Item.Durability);
                 }
-
-               
-                
             }
-
         }
 
         public void Load(BinaryReader reader)

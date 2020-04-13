@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecretProject.Class.UI.DayTransitionStuff
+namespace SecretProject.Class.UI.Transitions
 {
     public class DayTransitioner
     {

@@ -12,10 +12,10 @@ using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.AlertStuff;
 using SecretProject.Class.UI.CraftingStuff;
-using SecretProject.Class.UI.DayTransitionStuff;
 using SecretProject.Class.UI.QuestStuff;
 using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.UI.StaminaStuff;
+using SecretProject.Class.UI.Transitions;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -265,11 +265,15 @@ namespace SecretProject.Class.UI
                     if (Game1.KeyboardManager.WasKeyPressed(Keys.Tab))
                     {
                         if (this.BackPack.Expanded)
-                        {
+                        {   
+     
+                                Game1.SoundManager.PlayCloseUI();
+                            
                             this.BackPack.Expanded = false;
                         }
                         else
                         {
+                            Game1.SoundManager.PlayOpenUI();
                             this.BackPack.Expanded = true;
 
                         }
