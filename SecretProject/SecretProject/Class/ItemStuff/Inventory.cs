@@ -214,6 +214,7 @@ namespace SecretProject.Class.ItemStuff
                 if(this.currentInventory[i].ItemCount > 0)
                 {
                     binaryWriter.Write(this.currentInventory[i].Item.ID);
+                    binaryWriter.Write(this.currentInventory[i].Item.Durability);
                 }
 
                
@@ -240,6 +241,12 @@ namespace SecretProject.Class.ItemStuff
                 {
                     int itemId = reader.ReadInt32();
                     Item item = Game1.ItemVault.GenerateNewItem(itemId, null);
+                    item.Durability = reader.ReadInt32();
+                    if(item.Durability > 0)
+                    {
+                        item.AlterDurability(0);
+                    }
+                    
                     slot.AddItemToSlot(item);
                     slot.Item = item;
                     slot.ItemCount = itemCount;
