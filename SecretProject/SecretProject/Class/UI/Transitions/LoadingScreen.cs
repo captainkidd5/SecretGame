@@ -24,6 +24,10 @@ namespace SecretProject.Class.UI.Transitions
         public float ColorMultiplier { get; set; }
         public float Speed { get; set; }
 
+        public readonly Object Locker;
+
+         
+
         public LoadingScreen(GraphicsDevice graphics)
         {
             this.Graphics = graphics;
@@ -31,17 +35,9 @@ namespace SecretProject.Class.UI.Transitions
             this.ColorMultiplier = 1f;
             this.Speed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);
+            this.Locker = new object();
         }
 
-        public void Update(GameTime gameTime)
-        {
-
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-
-        }
 
         public void BeginBlackTransition(float transitionSpeed = .005f, float targetTime = 2f, bool startOfNewDay = false)
         {
@@ -61,21 +57,25 @@ namespace SecretProject.Class.UI.Transitions
 
         public void BlackTransition(GameTime gameTime)
         {
-            if (this.TransitionTimer.Time <= this.TransitionTimer.TargetTime)
+            lock (this.Locker)
             {
-                this.ColorMultiplier -= this.Speed;
-            }
-            else
-            {
-                this.ColorMultiplier += this.Speed;
-            }
-            if (this.TransitionTimer.Run(gameTime))
-            {
-                this.ColorMultiplier = 1f;
-                this.IsTransitioning = false;
-                this.DayTransitioner.IsActive = false;
-            }
 
+
+                if (this.TransitionTimer.Time <= this.TransitionTimer.TargetTime)
+                {
+                    this.ColorMultiplier -= this.Speed;
+                }
+                else
+                {
+                    this.ColorMultiplier += this.Speed;
+                }
+                if (this.TransitionTimer.Run(gameTime))
+                {
+                    this.ColorMultiplier = 1f;
+                    this.IsTransitioning = false;
+                    this.DayTransitioner.IsActive = false;
+                }
+            }
         }
 
         public void DrawTransitionTexture(SpriteBatch spriteBatch)

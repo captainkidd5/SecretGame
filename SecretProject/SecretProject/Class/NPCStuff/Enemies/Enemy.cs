@@ -211,12 +211,12 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         break;
                     case CurrentBehaviour.Chase:
                         //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
-                        int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
-                        int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
-                        int newTargetX = (int)Game1.Player.WorldSquarePosition.X;
-                        int newTargetY = (int)Game1.Player.WorldSquarePosition.Y;
+                        //int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
+                        //int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
+                        //int newTargetX = (int)Game1.Player.WorldSquarePosition.X;
+                        //int newTargetY = (int)Game1.Player.WorldSquarePosition.Y;
 
-                        MoveTowardsTarget(gameTime, newTargetX, newTargetY);
+                        //MoveTowardsTarget(gameTime, newTargetX, newTargetY);
                         break;
                     case CurrentBehaviour.Hurt:
                         this.CurrentBehaviour = CurrentBehaviour.Chase;

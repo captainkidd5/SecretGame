@@ -110,7 +110,7 @@ namespace SecretProject.Class.StageFolder
 
         public bool CheckIfWithinStaminaSafeZone(Vector2 position)
         {
-            if(Math.Abs(position.X) > StaminaSafeDistance || Math.Abs(position.Y) > StaminaSafeDistance)
+            if (Math.Abs(position.X) > StaminaSafeDistance || Math.Abs(position.Y) > StaminaSafeDistance)
             {
                 return false;
             }
@@ -124,7 +124,7 @@ namespace SecretProject.Class.StageFolder
 
         public void LoadPreliminaryContent()
         {
- 
+
             this.AllNightLights = new List<LightSource>()
             {
 
@@ -162,7 +162,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Enemies = new List<Enemy>();
             this.AllRisingText = new List<RisingText>();
-             
+
 
             // Game1.SoundManager.DustStormInstance.Play();
         }
@@ -187,17 +187,17 @@ namespace SecretProject.Class.StageFolder
 
             this.TextBuilder = new TextBuilder("", .1f, 5f);
             SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
-            this.IsLoaded = true;
+
 
             //Game1.Player.Position = new Vector2(0, 0);
 
 
-            this.AllTiles.LoadInitialChunks(Vector2.Zero);
+            //this.AllTiles.LoadInitialChunks(Game1.Player.position);
             Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue(1f);
             Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.White.ToVector4());
             Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
             this.QuadTree = new QuadTree(0, this.Cam.CameraScreenRectangle);
-
+            this.IsLoaded = true;
         }
 
         public void UnloadContent()
@@ -219,10 +219,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         Chunk chunk = this.AllTiles.ActiveChunks[i, j];
                         if (chunk.GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
-                            {
-
-
-
+                        {
                             foreach (KeyValuePair<string, List<ICollidable>> obj in chunk.Objects)
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
@@ -232,7 +229,7 @@ namespace SecretProject.Class.StageFolder
                                         obj.Value[z].Entity.Reset();
                                     }
                                     this.QuadTree.Insert(obj.Value[z]);
-                                   
+
 
                                 }
                             }
@@ -247,7 +244,7 @@ namespace SecretProject.Class.StageFolder
                                     }
 
                                     this.QuadTree.Insert(grass.Value[g]);
-                                   
+
                                 }
                             }
 
@@ -256,26 +253,26 @@ namespace SecretProject.Class.StageFolder
                                 if (this.Enemies[e] != null)
                                 {
                                     this.QuadTree.Insert(this.Enemies[e].Collider);
-                                    
+
                                 }
 
                             }
 
-                            for(int p = 0; p < AllProjectiles.Count; p++)
+                            for (int p = 0; p < AllProjectiles.Count; p++)
                             {
                                 this.QuadTree.Insert(AllProjectiles[p].Collider);
-                                
+
                             }
-                          
+
                             for (int item = 0; item < chunk.AllItems.Count; item++)
                             {
                                 this.QuadTree.Insert(chunk.AllItems[item].ItemSprite);
-                                
+
                             }
 
                             foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
                             {
-                                sprite.Value.BobInPlace(gameTime, sprite.Value.AnchorPosition.Y -20, sprite.Value.AnchorPosition.Y - 25, 5f);
+                                sprite.Value.BobInPlace(gameTime, sprite.Value.AnchorPosition.Y - 20, sprite.Value.AnchorPosition.Y - 25, 5f);
                             }
                         }
                     }
@@ -286,10 +283,10 @@ namespace SecretProject.Class.StageFolder
 
 
             this.QuadTree.Insert(Game1.Player.MainCollider);
-           
+
             this.QuadTree.Insert(Game1.Player.BigCollider);
             this.QuadTree.Insert(Game1.MouseManager.MouseCollider);
-            
+
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
@@ -299,7 +296,7 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree = new QuadTree(0, this.Cam.CameraScreenRectangle);
 
             PerformQuadTreeInsertions(gameTime);
-            
+
 
 
 
@@ -320,11 +317,7 @@ namespace SecretProject.Class.StageFolder
                 this.ShowBorders = !this.ShowBorders;
 
             }
-            if ((Game1.KeyboardManager.WasKeyPressed(Keys.F2)))
-            {
 
-                player.Position = new Vector2(0, 0);
-            }
             for (int p = 0; p < AllProjectiles.Count; p++)
             {
                 AllProjectiles[p].Update(gameTime);
@@ -336,13 +329,14 @@ namespace SecretProject.Class.StageFolder
                 Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, this.LocationType);
             }
             this.ParticleEngine.Update(gameTime);
-            foreach (Character character in Game1.AllCharacters)
-            {
-                character.Update(gameTime, mouse);
-            }
+            
 
             if (!Game1.freeze)
             {
+                foreach (Character character in Game1.AllCharacters)
+                {
+                    character.Update(gameTime, mouse);
+                }
                 Game1.GlobalClock.Update(gameTime);
 
                 this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
@@ -369,7 +363,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     if (this.Enemies[i] != null)
                     {
-                        
+
 
                         if (this.Cam.CameraScreenRectangle.Intersects(this.Enemies[i].NPCHitBoxRectangle))
                         {
@@ -384,13 +378,13 @@ namespace SecretProject.Class.StageFolder
                             this.Enemies[i].Update(gameTime, mouse, this.Enemies);
                         }
 
-                       
+
                     }
                 }
 
             }
             //Game1.Player.controls.UpdateKeys();
-            
+
 
 
         }
@@ -461,7 +455,7 @@ namespace SecretProject.Class.StageFolder
                     character.Draw(spriteBatch);
                 }
 
-                
+
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
 
                 for (int i = 0; i < this.AllRisingText.Count; i++)
@@ -479,26 +473,8 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.AllTiles.DrawTiles(spriteBatch);
-                for (int i = 0; i < WorldTileManager.RenderDistance; i++)
-                {
-                    for (int j = 0; j < WorldTileManager.RenderDistance; j++)
-                    {
-                        if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
-                        {
-                            Chunk chunk = this.AllTiles.ActiveChunks[i, j];
-                            if (chunk.GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
-                            {
-                                foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
-                                {
-                                    sprite.Value.Draw(spriteBatch, .85f);
-                                }
-                            }
-                        }
-                    }
-                }
 
-
-                    if (Game1.Player.UserInterface.DrawTileSelector)
+                if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
                 }
@@ -521,7 +497,7 @@ namespace SecretProject.Class.StageFolder
                         }
                     }
                 }
-                for(int p = 0; p < this.AllProjectiles.Count; p++)
+                for (int p = 0; p < this.AllProjectiles.Count; p++)
                 {
                     AllProjectiles[p].Draw(spriteBatch);
                 }
@@ -580,7 +556,7 @@ namespace SecretProject.Class.StageFolder
 
         public void Save(BinaryWriter writer)
         {
-           // this.AllTiles.Save(writer);
+            // this.AllTiles.Save(writer);
         }
 
         public void Load(BinaryReader reader)
@@ -590,12 +566,12 @@ namespace SecretProject.Class.StageFolder
 
         public void UnloadContent(BinaryWriter writer)
         {
-            
+
         }
 
         public void ReloadContent()
         {
-           
+
         }
     }
 }

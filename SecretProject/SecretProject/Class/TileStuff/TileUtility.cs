@@ -474,6 +474,8 @@ namespace SecretProject.Class.TileStuff
 
                 }
 
+                tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
+
             }
 
         }

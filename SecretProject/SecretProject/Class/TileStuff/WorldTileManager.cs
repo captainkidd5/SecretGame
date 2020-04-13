@@ -776,13 +776,13 @@ namespace SecretProject.Class.TileStuff
                                         if (z == 3)
                                         {
 
-                                            spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White * tile.ColorMultiplier,
+                                            spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, Color.White * tile.ColorMultiplier,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                                         }
                                         else
                                         {
-                                            spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.White,
+                                            spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, Color.White,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                                         }
 
@@ -805,6 +805,10 @@ namespace SecretProject.Class.TileStuff
 
                         DrawGrassTufts(spriteBatch, chunk);
                         DrawItems(spriteBatch, chunk);
+                        foreach (KeyValuePair<string, Sprite> sprite in ActiveChunks[a,b].QuestIcons)
+                        {
+                            sprite.Value.Draw(spriteBatch, .85f);
+                        }
 
                     }
                 }

@@ -25,6 +25,7 @@ namespace SecretProject.Class.TileStuff
 
         public Rectangle SourceRectangle { get; set; }
         public Rectangle DestinationRectangle { get; set; }
+        public Vector2 Position { get; set; }
 
         public string TileKey { get; set; }
 

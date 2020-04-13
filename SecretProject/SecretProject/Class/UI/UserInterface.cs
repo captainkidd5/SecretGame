@@ -19,6 +19,7 @@ using SecretProject.Class.UI.Transitions;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -454,8 +455,7 @@ namespace SecretProject.Class.UI
 
             if (this.LoadingScreen.IsTransitioning)
             {
-                LoadingScreen.BlackTransition(gameTime);
-
+                Task.Run(() => LoadingScreen.BlackTransition(gameTime));
             }
 
             this.StaminaBar.Update(gameTime);

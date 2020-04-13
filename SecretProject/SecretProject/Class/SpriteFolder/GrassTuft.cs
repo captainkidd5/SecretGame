@@ -35,6 +35,8 @@ namespace SecretProject.Class.SpriteFolder
         protected Texture2D rectangleTexture;
         public List<GrassTuft> TuftsIsPartOf { get; set; }
 
+        public float LayerDepth { get; set; }
+
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
         {
             this.GrassType = grassType;
@@ -52,9 +54,10 @@ namespace SecretProject.Class.SpriteFolder
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
-            SetRectangleTexture(graphics);
+ 
             this.SourceRectangle = new Rectangle(grassType * 16, 0, 16, 32);
 
+            this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
 
         }
         public void Update(GameTime gameTime)
@@ -87,7 +90,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
             spriteBatch.Draw(Game1.AllTextures.TallGrass, this.DestinationRectangle, this.SourceRectangle,
-                Color.White, this.Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet);
+                Color.White, this.Rotation, new Vector2(8, 24), SpriteEffects.None, this.LayerDepth);
 
         }
 
@@ -197,30 +200,6 @@ namespace SecretProject.Class.SpriteFolder
             spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
-        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
-        {
-            var Colors = new List<Color>();
-            for (int y = 0; y < this.Rectangle.Height; y++)
-            {
-                for (int x = 0; x < this.Rectangle.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == this.Rectangle.Width - 1 || //right side
-                        y == this.Rectangle.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
 
-                    }
-
-                }
-            }
-            rectangleTexture = new Texture2D(graphicsDevice, this.Rectangle.Width, this.Rectangle.Height);
-            rectangleTexture.SetData<Color>(Colors.ToArray());
-        }
     }
 }

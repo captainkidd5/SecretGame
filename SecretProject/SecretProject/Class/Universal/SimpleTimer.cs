@@ -20,6 +20,8 @@ namespace SecretProject.Class.Universal
             Time += (float)gameTime.ElapsedGameTime.TotalSeconds * multiplier;
             return Test();
         }
+
+
         public bool Test()
         {
             if (Time >= TargetTime)

@@ -961,10 +961,9 @@ namespace SecretProject
 
         public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
         {
-            Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f);
+            Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
-            Game1.Player.UserInterface.LoadingScreen.Speed = .05f;
-            Game1.Player.UserInterface.LoadingScreen.TransitionTimer.TargetTime = 2f;
+            
             ILocation location = GetStageFromInt(currentStage);
             location.UnloadContent();
             ILocation newLocation = GetStageFromInt(stageToSwitchTo);
@@ -978,19 +977,16 @@ namespace SecretProject
             {
                 Game1.Player.LockBounds = true;
             }
-            ILocation newStage = GetStageFromInt(stageToSwitchTo);
-            if (!newStage.IsLoaded)
+            if (!newLocation.IsLoaded)
             {
 
-                newStage.LoadContent(cam, AllSchedules);
+                newLocation.LoadContent(cam, AllSchedules);
 
             }
-            newStage.ReloadContent();
-            // List<Portal> testPortal = GetCurrentStage().AllPortals;
+            newLocation.ReloadContent();
+
             if (portal != null)
             {
-                //  ILocation location = GetCurrentStage();
-                // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
                 List<Portal> portalTest = GetStageFromInt(stageToSwitchTo).AllPortals;
                 Portal tempPortal = GetStageFromInt(stageToSwitchTo).AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 if (tempPortal != null)
@@ -1002,14 +998,6 @@ namespace SecretProject
                     float safteyY = tempPortal.SafteyOffSetY;
                     Player.position = new Vector2(x + width + safteyX, y + safteyY);
                 }
-                //else if (Game1.GetCurrentStage() == Town)
-                //{
-                //    Player.Position = new Vector2(1232, 304);
-                //}
-
-
-                //Player.UpdateMovementAnimationsOnce(gameTime);
-
             }
 
             Player.Wardrobe.UpdateForCreationMenu();
