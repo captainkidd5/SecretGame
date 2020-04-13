@@ -13,6 +13,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
     {
         public ToolPiece ToolPiece { get; set; }
 
+        public bool HasGottenDirection { get; set; }
+        public Dir Direction { get; set; }
+
         public ChoppingSet(string name, GraphicsDevice graphics, List<ClothingPiece> clothingPieces, int totalFrames, float speed) : base(name, graphics, clothingPieces, totalFrames, speed)
         {
 
@@ -25,18 +28,25 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 
         public override bool UpdateOnce(GameTime gameTime, Vector2 position, Dir direction)
         {
+            if(!HasGottenDirection)
+            {
+                this.Direction = direction;
+                HasGottenDirection = true;
+            }
+            Game1.Player.EnableControls = false;
             RunTimer(gameTime);
             if (CurrentFrame == this.TotalFrames)
             {
                 CurrentFrame = 0;
+                this.HasGottenDirection = false;
                 return true;
 
             }
             for (int i = 0; i < Pieces.Count; i++)
             {
-                Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, direction);
+                Pieces[i].UpdateChopping(gameTime, position, this.CurrentFrame, Direction);
             }
-            Game1.Player.Wardrobe.ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, direction);
+            Game1.Player.Wardrobe.ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, Direction);
 
 
             

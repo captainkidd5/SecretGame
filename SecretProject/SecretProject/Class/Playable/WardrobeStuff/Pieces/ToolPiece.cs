@@ -87,11 +87,13 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 {
                     case Dir.Down:
                         this.SpriteEffects = SpriteEffects.None;
-                        SwingDown(gameTime);
+                    this.Position = new Vector2(position.X + 4, position.Y);
+                        SwingDown(gameTime, currentFrame);
                         break;
                     case Dir.Up:
                         this.SpriteEffects = SpriteEffects.None;
-                        SwingUp(gameTime);
+                    this.Position = new Vector2(position.X + 4, position.Y - 4);
+                        SwingUp(gameTime, currentFrame);
                         break;
                     case Dir.Left:
                         this.SpriteEffects = SpriteEffects.None;
@@ -121,13 +123,65 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
         }
-        private void SwingUp(GameTime gameTime)
+        private void SwingUp(GameTime gameTime, int currentFrame)
         {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 5;
+            this.Row = 0;
 
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 0;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    break;
+
+                case 2:
+                    xAdjustment = 32;
+                    break;
+                case 3:
+                    xAdjustment = 32;
+                    break;
+                case 4:
+                    xAdjustment = 32;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
-        private void SwingDown(GameTime gameTime)
+        private void SwingDown(GameTime gameTime, int currentFrame)
         {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            this.Row = 0;
 
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 7;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 7;
+                    break;
+
+                case 2:
+                    xAdjustment = 32;
+                    yAdjustment = 7;
+                    break;
+                case 3:
+                    xAdjustment = 48;
+                    yAdjustment =7;
+                    break;
+                case 4:
+                    xAdjustment = 64;
+                    yAdjustment = 3;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
 
         #endregion
@@ -136,11 +190,11 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {  
             if(this.IsRotational)
             {
-                this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin, .9f, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+                this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin, yLayerHeight + this.LayerDepth, this.SpriteEffects, 1f);
             }
             else
             {
-                spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+                spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, .9f);
             }
             
         }

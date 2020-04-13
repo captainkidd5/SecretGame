@@ -194,23 +194,25 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case 1:
                     xAdjustment = 16;
-                    yAdjustment = 3;
+                    yAdjustment = 2;
                     break;
 
                 case 2:
-                    xAdjustment = 32;
-                    yAdjustment = 3;
+                    xAdjustment = 16;
+                    yAdjustment = 2;
                     break;
                 case 3:
+                    xAdjustment = 0;
                     yAdjustment = 2;
                     break;
                 case 4:
-                    xAdjustment = 16;
-                    yAdjustment = 1;
+                    xAdjustment = 0;
+                    yAdjustment = 2;
                     break;
 
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
         }
 
         protected override void UpdateChopRight(int currentFrame)

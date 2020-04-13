@@ -322,6 +322,7 @@ namespace SecretProject.Class.Playable
                 controls.UpdateKeys();
                 controls.Update();
                 this.IsMoving = controls.IsMoving;
+                this.EnableControls = true;
 
                 TestImmunity(gameTime);
                 if(IsMovingTowardsPoint)
@@ -739,28 +740,35 @@ namespace SecretProject.Class.Playable
             Game1.MouseManager.MouseAngleInRelationToPlayer = angle;
         }
 
-        public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
+        public Dir GetAnimationDirection()
         {
             CheckMouseRotationFromEntity(this.Position);
             if (Game1.MouseManager.MouseAngleInRelationToPlayer > 285 || Game1.MouseManager.MouseAngleInRelationToPlayer < 45)
             {
-                controls.Direction = Dir.Up;
+                return Dir.Up;
 
             }
 
-            else if( Game1.MouseManager.MouseAngleInRelationToPlayer >= 135 && Game1.MouseManager.MouseAngleInRelationToPlayer <= 225)
+            else if (Game1.MouseManager.MouseAngleInRelationToPlayer >= 135 && Game1.MouseManager.MouseAngleInRelationToPlayer <= 225)
             {
-                controls.Direction = Dir.Down;
+                return Dir.Down;
             }
 
             else if (Game1.MouseManager.MouseAngleInRelationToPlayer >= 45 && Game1.MouseManager.MouseAngleInRelationToPlayer < 135)
             {
-                controls.Direction = Dir.Right;
+                return Dir.Right;
             }
-            else if (Game1.MouseManager.MouseAngleInRelationToPlayer > 225 && Game1.MouseManager.MouseAngleInRelationToPlayer <=285)
+            else if (Game1.MouseManager.MouseAngleInRelationToPlayer > 225 && Game1.MouseManager.MouseAngleInRelationToPlayer <= 285)
             {
                 controls.Direction = Dir.Left;
             }
+            return Dir.Up;
+        }
+
+        public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
+        {
+            CheckMouseRotationFromEntity(this.Position);
+
             if (item != null)
             {
                 PlayAnimation(animationType, this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
