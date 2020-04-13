@@ -209,6 +209,7 @@ namespace SecretProject.Class.Playable
         {
             if(animationSet.UpdateOnce(gameTime, position, direction))
             {
+                Game1.Player.controls.Direction = direction;
                 return true;
             }
             else

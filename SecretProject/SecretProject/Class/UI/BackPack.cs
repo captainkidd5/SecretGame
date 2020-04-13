@@ -523,8 +523,11 @@ namespace SecretProject.Class.UI
         public void EjectItem()
         {
 
+            Item oldItem = this.Inventory.currentInventory[currentSliderPosition - 1].GetItem();
+
             Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].GetItem().ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer.AllItems);
             newWorldItem.IsTossable = true;
+            newWorldItem.Durability = oldItem.Durability;
 
             this.Inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
             this.AllItemButtons[currentSliderPosition - 1].ItemCounter--;

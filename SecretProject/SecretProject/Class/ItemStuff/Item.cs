@@ -312,9 +312,12 @@ namespace SecretProject.Class.ItemStuff
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
                     this.AllItems.Remove(this);
                     // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
-
-
-                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
+                    this.IsWorldItem = false;
+                    if(this.Durability > 0)
+                    {
+                        this.AlterDurability(0);
+                    }
+                    Game1.Player.Inventory.TryAddItem(this);
                     Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 

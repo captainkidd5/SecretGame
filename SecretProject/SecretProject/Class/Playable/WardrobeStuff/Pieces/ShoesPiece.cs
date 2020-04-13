@@ -190,24 +190,24 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
                 case 1:
                     xAdjustment = 16;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
 
                 case 2:
                     xAdjustment = 16;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
                 case 3:
                     xAdjustment = 0;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
                 case 4:
                     xAdjustment = 0;
-                    yAdjustment = 2;
+                    yAdjustment = 3;
                     break;
 
             }

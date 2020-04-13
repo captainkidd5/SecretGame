@@ -71,7 +71,7 @@ namespace SecretProject.Class.Transportation
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
                 Game1.Player.position = new Vector2(1170, 690);
                 Game1.Player.controls.Direction = Dir.Down;
-                Game1.Player.PlayAnimation(AnimationType.PortalJump);
+              //  Game1.Player.PlayAnimation(AnimationType.PortalJump);
                 Game1.Player.MoveToPoint(new Vector2(1170, 730));
 
             }
@@ -80,7 +80,7 @@ namespace SecretProject.Class.Transportation
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
                 Game1.Player.position = new Vector2(85, 100);
                 Game1.Player.controls.Direction = Dir.Down;
-                Game1.Player.PlayAnimation(AnimationType.PortalJump);
+              //  Game1.Player.PlayAnimation(AnimationType.PortalJump);
                 Game1.Player.MoveToPoint(new Vector2(85, 150));
 
             }

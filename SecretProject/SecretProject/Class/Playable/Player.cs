@@ -176,7 +176,7 @@ namespace SecretProject.Class.Playable
         }
 
 
-        public void PlayAnimation(AnimationType action, int textureColumn = 0)
+        public void PlayAnimation(AnimationType action, Dir direction, int textureColumn = 0)
         {
 
             switch (action)
@@ -193,7 +193,7 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
-                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), controls.Direction);
+                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
                     break;
 
                 case AnimationType.Swiping:
@@ -410,7 +410,7 @@ namespace SecretProject.Class.Playable
                 }
                 else if (IsPerformingAction)
                 {
-                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position,controls.Direction))
+                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position,GetAnimationDirection()))
                     {
                         this.IsPerformingAction = false;
                         Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;
@@ -742,7 +742,7 @@ namespace SecretProject.Class.Playable
 
         public Dir GetAnimationDirection()
         {
-            CheckMouseRotationFromEntity(this.Position);
+            CheckMouseRotationFromEntity(new Vector2(this.Position.X + 8, this.Position.Y + 20));
             if (Game1.MouseManager.MouseAngleInRelationToPlayer > 285 || Game1.MouseManager.MouseAngleInRelationToPlayer < 45)
             {
                 return Dir.Up;
@@ -760,22 +760,22 @@ namespace SecretProject.Class.Playable
             }
             else if (Game1.MouseManager.MouseAngleInRelationToPlayer > 225 && Game1.MouseManager.MouseAngleInRelationToPlayer <= 285)
             {
-                controls.Direction = Dir.Left;
+                return Dir.Left;
             }
             return Dir.Up;
         }
 
         public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
-            CheckMouseRotationFromEntity(this.Position);
+          //  CheckMouseRotationFromEntity(this.Position);
 
             if (item != null)
             {
-                PlayAnimation(animationType, this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
+                PlayAnimation(animationType, GetAnimationDirection(),this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn );
             }
             else
             {
-                PlayAnimation(animationType);
+                PlayAnimation(animationType, GetAnimationDirection());
             }
             
         }

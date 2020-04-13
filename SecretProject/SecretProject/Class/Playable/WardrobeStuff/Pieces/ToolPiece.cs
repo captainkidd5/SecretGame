@@ -63,12 +63,12 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case Dir.Left:
                     IsRotational = true;
                     this.Texture = Game1.AllTextures.ItemSpriteSheet;
-                    this.Rotation = .6f;
+                    this.Rotation = .8f;
                     break;
                 case Dir.Right:
                     IsRotational = true;
                     this.Texture = Game1.AllTextures.ItemSpriteSheet;
-                    this.Rotation = -.5f;
+                    this.Rotation = -.7f;
                     break;
             }
 
