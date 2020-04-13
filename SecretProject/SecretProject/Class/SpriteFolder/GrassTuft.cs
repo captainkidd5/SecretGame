@@ -37,6 +37,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public float LayerDepth { get; set; }
 
+        public Vector2 GrassOffset { get; set; }
+
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
         {
             this.GrassType = grassType;
@@ -58,7 +60,7 @@ namespace SecretProject.Class.SpriteFolder
             this.SourceRectangle = new Rectangle(grassType * 16, 0, 16, 32);
 
             this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
-
+            this.GrassOffset = new Vector2(8, 24);
         }
         public void Update(GameTime gameTime)
         {
@@ -90,7 +92,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
             spriteBatch.Draw(Game1.AllTextures.TallGrass, this.DestinationRectangle, this.SourceRectangle,
-                Color.White, this.Rotation, new Vector2(8, 24), SpriteEffects.None, this.LayerDepth);
+                Color.White, this.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
 
         }
 

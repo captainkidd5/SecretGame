@@ -73,6 +73,8 @@ namespace SecretProject.Class.ItemStuff
         public List<Item> AllItems { get; set; }
         public Bouncer Bouncer { get; set; }
 
+        public float LayerDepth { get; set; }
+
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
@@ -120,6 +122,8 @@ namespace SecretProject.Class.ItemStuff
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
 
+
+                this.LayerDepth = .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier;
                 AllItems.Add(this);
             }
             else
@@ -279,13 +283,8 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                this.ItemSprite.Draw(spriteBatch, .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier);
-                //            if(this.Durability > 0)
-                //            {
+                this.ItemSprite.Draw(spriteBatch,this.LayerDepth);
 
-                //                spriteBatch.Draw(Game1.AllTextures.redPixel, this.DurabilityRectangle, null,
-                //Color.Blue, 0f,Game1.Utility.Origin, SpriteEffects.None, 1f);
-                //            }
             }
 
         }

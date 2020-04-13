@@ -770,7 +770,7 @@ namespace SecretProject.Class.TileStuff
                                 for (int j = startY; j <= endY; j++)
                                 {
                                     Tile tile = chunk.AllTiles[z][i, j];
-                                    if (chunk.AllTiles[z][i, j].GID != -1)
+                                    if (tile.GID != -1)
                                     {
 
                                         if (z == 3)
