@@ -106,7 +106,7 @@ namespace SecretProject.Class.Universal
             PickWeather();
             this.Calendar.IncrementCalendar();
 
-            Game1.Player.UserInterface.BeginBlackTransition(.005f,4f, true);
+            Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.005f,4f, true);
             Game1.GlobalClock.TotalHours = 6;
             foreach (Character character in Game1.AllCharacters)
             {

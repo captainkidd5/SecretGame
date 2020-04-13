@@ -91,7 +91,7 @@ namespace SecretProject.Class.UI
 
         public BackPack BackPack { get; set; }
 
-
+        public LoadingScreen LoadingScreen { get; set; }
 
         public bool IsAnyStorageItemOpen { get; set; }
 
@@ -106,7 +106,6 @@ namespace SecretProject.Class.UI
         public CompletionHub CompletionHub;
         public CommandConsole CommandConsole { get; set; }
         public QuestLog QuestLog { get; set; }
-        public DayTransitioner DayTransitioner { get; set; }
 
         public WorldQuestMenu WorldQuestMenu { get; set; }
 
@@ -117,15 +116,6 @@ namespace SecretProject.Class.UI
         public InfoPopUp Notes { get; set; }
 
         public List<RisingText> AllRisingText { get; set; }
-
-
-        //transition
-        public Texture2D BlackTransitionTexture { get; set; }
-        public bool IsTransitioning { get; private set; }
-        public SimpleTimer TransitionTimer { get; set; }
-        public float BlackTransitionColorMultiplier { get; set; }
-
-        public float TransitionSpeed { get; set; }
 
         public List<UISprite> AllUISprites { get; set; }
         public List<Alert> AllAlerts { get; set; }
@@ -151,6 +141,7 @@ namespace SecretProject.Class.UI
 
             this.WorldQuestMenu = new WorldQuestMenu(graphicsDevice);
 
+            this.LoadingScreen = new LoadingScreen(graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             this.PlayerHealthBar = new HealthBar();
@@ -167,14 +158,11 @@ namespace SecretProject.Class.UI
             this.AllRisingText = new List<RisingText>();
 
 
-            this.BlackTransitionTexture = Game1.Utility.GetColoredRectangle(this.GraphicsDevice, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
-            this.BlackTransitionColorMultiplier = 1f;
-            this.TransitionSpeed = .05f;
-            this.TransitionTimer = new SimpleTimer(2f);
+
             this.AllUISprites = new List<UISprite>();
 
             this.AllAlerts = new List<Alert>();
-            this.DayTransitioner = new DayTransitioner();
+
         }
 
         public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
@@ -464,58 +452,14 @@ namespace SecretProject.Class.UI
 
             this.TextBuilder.Update(gameTime);
 
-            if (this.IsTransitioning)
+            if (this.LoadingScreen.IsTransitioning)
             {
-                BlackTransition(gameTime);
+                LoadingScreen.BlackTransition(gameTime);
 
             }
 
             this.StaminaBar.Update(gameTime);
 
-        }
-
-
-
-
-
-        public void BeginBlackTransition(float transitionSpeed = .005f, float targetTime = 2f, bool startOfNewDay = false)
-        {
-            this.TransitionTimer.ResetToZero();
-            this.BlackTransitionColorMultiplier = 1f;
-            this.IsTransitioning = true;
-            this.TransitionSpeed = transitionSpeed;
-            this.TransitionTimer.TargetTime = targetTime;
-            if (startOfNewDay)
-            {
-                this.DayTransitioner.UpdateText();
-                this.DayTransitioner.IsActive = true;
-            }
-
-        }
-
-        private void BlackTransition(GameTime gameTime)
-        {
-            if (this.TransitionTimer.Time <= this.TransitionTimer.TargetTime)
-            {
-                this.BlackTransitionColorMultiplier -= this.TransitionSpeed;
-            }
-            else
-            {
-                this.BlackTransitionColorMultiplier += this.TransitionSpeed;
-            }
-            if (this.TransitionTimer.Run(gameTime))
-            {
-                this.BlackTransitionColorMultiplier = 1f;
-                this.IsTransitioning = false;
-                this.DayTransitioner.IsActive = false;
-            }
-
-        }
-
-        public void DrawTransitionTexture(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .99f);
-            this.DayTransitioner.Draw(spriteBatch, Color.White * this.BlackTransitionColorMultiplier);
         }
 
 
@@ -626,9 +570,9 @@ namespace SecretProject.Class.UI
 
 
 
-            if (this.IsTransitioning)
+            if (LoadingScreen.IsTransitioning)
             {
-                DrawTransitionTexture(spriteBatch);
+                LoadingScreen.DrawTransitionTexture(spriteBatch);
             }
 
             this.StaminaBar.Draw(spriteBatch);

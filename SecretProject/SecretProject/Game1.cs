@@ -961,10 +961,10 @@ namespace SecretProject
 
         public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
         {
-            Player.UserInterface.BeginBlackTransition(.05f);
+            Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f);
 
-            Game1.Player.UserInterface.TransitionSpeed = .05f;
-            Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;
+            Game1.Player.UserInterface.LoadingScreen.Speed = .05f;
+            Game1.Player.UserInterface.LoadingScreen.TransitionTimer.TargetTime = 2f;
             ILocation location = GetStageFromInt(currentStage);
             location.UnloadContent();
             ILocation newLocation = GetStageFromInt(stageToSwitchTo);

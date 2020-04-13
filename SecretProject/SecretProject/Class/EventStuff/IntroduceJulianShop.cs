@@ -57,10 +57,10 @@ namespace SecretProject.Class.EventStuff
                 Game1.Julian.EventUpdate(gameTime);
             }
 
-            if (Game1.Player.UserInterface.IsTransitioning)
-            {
+           // if (Game1.Player.UserInterface.IsTransitioning)
+            //{
               //  Game1.Player.UserInterface.BlackTransition(gameTime);
-            }
+            //}
 
             Game1.Player.UserInterface.TextBuilder.Update(gameTime);
             switch (this.CurrentStep)

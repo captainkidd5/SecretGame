@@ -85,7 +85,7 @@ namespace SecretProject.Class.EventStuff
             Game1.Julian.IsMoving = false;
             Game1.Julian.ResetAnimations();
 
-            Game1.Player.UserInterface.BeginBlackTransition(.05f);
+            Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f);
 
 
 
@@ -103,7 +103,7 @@ namespace SecretProject.Class.EventStuff
                 // Game1.Julian.EventUpdate(gameTime);
             }
 
-            if (Game1.Player.UserInterface.IsTransitioning)
+            if (Game1.Player.UserInterface.LoadingScreen.IsTransitioning)
             {
                 //Game1.Player.UserInterface.BlackTransition(gameTime);
             }

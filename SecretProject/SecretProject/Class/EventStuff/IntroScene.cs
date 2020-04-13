@@ -69,7 +69,7 @@ namespace SecretProject.Class.EventStuff
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Downpour);
             Game1.EnableMusic = false;
             Game1.SoundManager.CurrentSongInstance.Stop();
-            Game1.Player.UserInterface.BeginBlackTransition(.05f);
+           // Game1.Player.UserInterface.BeginBlackTransition(.05f);
         }
 
 
@@ -82,10 +82,10 @@ namespace SecretProject.Class.EventStuff
                 Game1.Dobbin.EventUpdate(gameTime);
             }
 
-            if (Game1.Player.UserInterface.IsTransitioning)
-            {
-                Game1.Player.UserInterface.BeginBlackTransition(.05f);
-            }
+          //  if (Game1.Player.UserInterface.IsTransitioning)
+          //  {
+           //     Game1.Player.UserInterface.BeginBlackTransition(.05f);
+          //  }
 
             //Game1.Player.UserInterface.TextBuilder.Update(gameTime);
             Game1.Player.UserInterface.Update(gameTime, Game1.Player.Inventory);
@@ -306,7 +306,7 @@ namespace SecretProject.Class.EventStuff
                         {
                             this.CurrentStep++;
 
-                            Game1.Player.UserInterface.BeginBlackTransition(.005f, 6f);
+                         //   Game1.Player.UserInterface.BeginBlackTransition(.005f, 6f);
                         }
 
 
