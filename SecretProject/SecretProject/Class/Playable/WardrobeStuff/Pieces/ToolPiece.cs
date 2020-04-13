@@ -18,6 +18,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         public Item Item { get; set; }
         public Sprite ItemSprite { get; set; }
 
+        public bool IsRotational { get; set; }
 
         public float Rotation { get; set; }
         public float RotationSpeed { get; set; }
@@ -49,14 +50,28 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Rotation = -.25f;
             this.Origin = new Vector2(15, 15);
 
-            if(direction == Dir.Left)
+            switch(direction)
             {
-                this.Rotation =.6f;
+                case Dir.Down:
+                    IsRotational = false;
+                    this.Texture = Game1.AllTextures.ToolAtlas;
+                    break;
+                case Dir.Up:
+                    IsRotational = false;
+                    this.Texture = Game1.AllTextures.ToolAtlas;
+                    break;
+                case Dir.Left:
+                    IsRotational = true;
+                    this.Texture = Game1.AllTextures.ItemSpriteSheet;
+                    this.Rotation = .6f;
+                    break;
+                case Dir.Right:
+                    IsRotational = true;
+                    this.Texture = Game1.AllTextures.ItemSpriteSheet;
+                    this.Rotation = -.5f;
+                    break;
             }
-            else if(direction == Dir.Right)
-            {
-                this.Rotation = -.5f;
-            }
+
         }
 
        
@@ -104,7 +119,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
  
         public void SwingRight(GameTime gameTime)
         {
-            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .004f * this.RotationDirection;
+            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
         }
         private void SwingUp(GameTime gameTime)
         {
@@ -119,7 +134,15 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public override void Draw(SpriteBatch spriteBatch, float yLayerHeight)
         {  
-            this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin,.9f, this.SpriteEffects, 1f);
+            if(this.IsRotational)
+            {
+                this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin, .9f, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+            }
+            else
+            {
+                spriteBatch.Draw(this.Texture, new Vector2(this.Position.X, this.Position.Y + this.BaseYOffSet * this.Scale), this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, this.SpriteEffects, yLayerHeight + this.LayerDepth);
+            }
+            
         }
 
 
