@@ -128,19 +128,19 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
                 {
                     case Dir.Down:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateChopDown(currentFrame);
+                        UpdateSwordSwipeDown(currentFrame);
                         break;
                     case Dir.Up:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateChopUp(currentFrame);
+                        UpdateSwordSwipeUp(currentFrame);
                         break;
                     case Dir.Left:
                         this.SpriteEffects = SpriteEffects.FlipHorizontally;
-                        UpdateChopRight(currentFrame);
+                        UpdateSwordSwipeRight(currentFrame);
                         break;
                     case Dir.Right:
                         this.SpriteEffects = SpriteEffects.None;
-                        UpdateChopRight(currentFrame);
+                        UpdateSwordSwipeRight(currentFrame);
                         break;
 
                 }
@@ -183,7 +183,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         #endregion
 
 
-        #region Sword Swwipe
+        #region Sword Swipe
         protected virtual void UpdateSwordSwipeDown(int currentFrame)
         {
 

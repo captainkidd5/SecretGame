@@ -233,6 +233,47 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         #endregion
 
+        #region SwordSwipeUpdates
+        protected override void UpdateSwordSwipeDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = -3;
+                    break;
+                case 1:
+                    yAdjustment = -3;
+                    break;
+
+                case 2:
+                    yAdjustment = -4;
+                    break;
+                case 3:
+
+                    yAdjustment = -3;
+                    break;
+                case 4:
+
+                    yAdjustment = -3;
+                    break;
+
+
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+
+        protected override void UpdateSwordSwipeUp(int currentFrame)
+        {
+        }
+
+        protected override void UpdateSwordSwipeRight(int currentFrame)
+        {
+        }
+        #endregion
+
 
         public override void Cycle(CycleDirection direction)
         {

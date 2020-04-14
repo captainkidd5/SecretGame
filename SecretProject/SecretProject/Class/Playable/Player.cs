@@ -198,11 +198,13 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
-                  //  CurrentAction = PlayerWardrobe.SwipingAnimations;
-                    this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
-                    this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
-                    AdjustCurrentTool(controls.Direction, this.CurrentTool);
-                    this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
+                    Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
+                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+                    //  CurrentAction = PlayerWardrobe.SwipingAnimations;
+                   // this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
+                   // this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
+                  //  AdjustCurrentTool(controls.Direction, this.CurrentTool);
+                //    this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
 
                     break;
 
@@ -246,49 +248,7 @@ namespace SecretProject.Class.Playable
 
         }
         #endregion
-        //adjusts current equipped items position based on direction player is facing
-        public void AdjustCurrentTool(Dir direction, Sprite sprite)
-        {
-            switch (direction)
-            {
-                case Dir.Up:
-                    sprite.Position = new Vector2(position.X + 12, position.Y + 14);
-                    sprite.Rotation = 0f;
-                    sprite.SpinAmount = 3f;
-                    sprite.LayerDepth = .000000006f;
-                    sprite.SpinSpeed = 5f;
-                    break;
-
-                case Dir.Down:
-                    sprite.Position = new Vector2(position.X + 12, position.Y + 22);
-                    sprite.Rotation = 5f;
-                    sprite.SpinAmount = -4f;
-                    sprite.LayerDepth = .00000012f;
-                    sprite.SpinSpeed = 6f;
-                    break;
-
-                case Dir.Right:
-                    sprite.Position = new Vector2(position.X + 14, position.Y + 18);
-                    sprite.Rotation = 1f;
-                    sprite.SpinAmount = 6f;
-                    sprite.LayerDepth = .00000012f;
-                    sprite.SpinSpeed = 6f;
-                    break;
-
-                case Dir.Left:
-                    sprite.Position = new Vector2(position.X + 4, position.Y + 18);
-                    sprite.Rotation = 6f;
-                    sprite.SpinAmount = -6f;
-                    sprite.LayerDepth = .00000012f;
-                    sprite.SpinSpeed = 6f;
-                    break;
-                default:
-                    sprite.Position = new Vector2(position.X + 16, position.Y + 16);
-                    sprite.Rotation = 0f;
-                    sprite.SpinAmount = 2f;
-                    break;
-            }
-        }
+        
 
 
         public float CalculateStaminaRateOfDrain()
@@ -410,21 +370,21 @@ namespace SecretProject.Class.Playable
                 }
                 else if (IsPerformingAction)
                 {
-                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.ChopSet, this.Position,GetAnimationDirection()))
+                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.CurrentAnimationSet, this.Position,GetAnimationDirection()))
                     {
                         this.IsPerformingAction = false;
                         Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;
                     }
 
                   //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
-                    if (this.CurrentTool != null)
-                    {
-                        this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
-                        this.ToolLine.Point2 = new Vector2(this.CurrentTool.Position.X + 20, this.CurrentTool.Position.Y + 20);
-                        this.ToolLine.Rotation = this.CurrentTool.Rotation + (float)3.5;
+                    //if (this.CurrentTool != null)
+                    //{
+                    //    this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
+                    //    this.ToolLine.Point2 = new Vector2(this.CurrentTool.Position.X + 20, this.CurrentTool.Position.Y + 20);
+                    //    this.ToolLine.Rotation = this.CurrentTool.Rotation + (float)3.5;
 
 
-                    }
+                    //}
 
                     if (IsPerformingAction == false)
                     {
@@ -571,9 +531,9 @@ namespace SecretProject.Class.Playable
                         //}
                     }
                     #region SWORD INTERACTIONS
-                    if (this.CurrentTool != null)
+                    if (this.Wardrobe.ToolPiece.ToolLine != null)
                     {
-                        if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
                             returnObjects[i].SelfDestruct();
                         }
@@ -582,9 +542,9 @@ namespace SecretProject.Class.Playable
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
-                    if (this.CurrentTool != null)
+                    if (this.Wardrobe.ToolPiece.ToolLine != null)
                     {
-                        if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
                             returnObjects[i].Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
                         }
@@ -707,17 +667,6 @@ namespace SecretProject.Class.Playable
 
                        // oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
                     
-
-                }
-
-
-                if (this.CurrentTool != null)
-                {
-                    this.CurrentTool.DrawRotationalSprite(spriteBatch, this.CurrentTool.Position, this.CurrentTool.Rotation, this.CurrentTool.Origin, layerDepth + this.CurrentTool.LayerDepth);
-                    if (Game1.GetCurrentStage().ShowBorders)
-                    {
-                        this.ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, this.CurrentTool.Rotation + 4);
-                    }
 
                 }
             }

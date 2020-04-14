@@ -51,9 +51,6 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
                 Game1.Player.Wardrobe.ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, Direction);
             }
             
-
-
-            
             return false;
         }
 

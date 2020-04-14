@@ -59,6 +59,7 @@ namespace SecretProject.Class.Playable
 
         public AnimationSet RunSet { get; set; }
         public AnimationSet ChopSet { get; set; }
+        public AnimationSet SwipeSet { get; set; }
 
         public AnimationSet CurrentAnimationSet { get; set; }
         public Dir CurrentDirection { get; set; }
@@ -117,6 +118,7 @@ namespace SecretProject.Class.Playable
 
             this.RunSet = new AnimationSet("basic",graphics, this.BasicClothing, 5, .115f);
             this.ChopSet = new ChoppingSet("Chopping", graphics, this.BasicClothing, 5, .1f);
+            this.SwipeSet = new SwordSwipeSet("Swiping", graphics, this.BasicClothing, 5, .1f);
 
             this.CurrentAnimationSet = this.RunSet;
 

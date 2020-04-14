@@ -249,6 +249,57 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         #endregion
 
+        #region SwordSwipeUpdates
+        protected override void UpdateSwordSwipeDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            this.Row = 1;
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 1;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+
+                case 2:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+                case 3:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+                case 4:
+                    xAdjustment = 0;
+                    yAdjustment = 1;
+
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    break;
+                case 5:
+                    yAdjustment = 2;
+                    xAdjustment = 32;
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    break;
+
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
+        }
+
+        protected override void UpdateSwordSwipeUp(int currentFrame)
+        {
+        }
+
+        protected override void UpdateSwordSwipeRight(int currentFrame)
+        {
+        }
+        #endregion
+
 
     }
 }
