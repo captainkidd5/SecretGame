@@ -212,7 +212,7 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     break;
             }
-            this.AnimationDirection = controls.Direction;
+            this.AnimationDirection = direction;
 
         }
         #region AUTOMOVEMENT
