@@ -139,6 +139,7 @@ namespace SecretProject.Class.TileStuff
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
             tileToAssign.TileKey = tileToAssign.GetTileKeyStringNew(layer, container);
             string propertyString = string.Empty;
+            tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
             if (tileSet.ContainsKey(tileToAssign.GID))
             {
                 //replaces tiles with wheat grass
@@ -474,8 +475,8 @@ namespace SecretProject.Class.TileStuff
 
                 }
 
-                tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
 
+                tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
             }
 
         }
