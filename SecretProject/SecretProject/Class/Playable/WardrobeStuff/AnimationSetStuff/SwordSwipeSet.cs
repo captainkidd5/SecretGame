@@ -48,7 +48,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             }
             if (Game1.Player.Wardrobe.ToolPiece != null)
             {
-                Game1.Player.Wardrobe.ToolPiece.UpdateChopping(gameTime, position, this.CurrentFrame, Direction);
+                Game1.Player.Wardrobe.ToolPiece.UpdateSwordSwipe(gameTime, position, this.CurrentFrame, Direction);
             }
 
 

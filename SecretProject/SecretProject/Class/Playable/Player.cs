@@ -531,7 +531,7 @@ namespace SecretProject.Class.Playable
                         //}
                     }
                     #region SWORD INTERACTIONS
-                    if (this.Wardrobe.ToolPiece.ToolLine != null)
+                    if (this.Wardrobe.ToolPiece != null)
                     {
                         if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {

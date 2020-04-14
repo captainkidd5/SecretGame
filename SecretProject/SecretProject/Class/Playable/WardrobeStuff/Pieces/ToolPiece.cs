@@ -54,16 +54,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Rotation = -.25f;
             this.Origin = new Vector2(15, 15);
 
-            this.ToolLine = new Line(this.Position, new Vector2(1, 1));
-
             switch (direction)
             {
                 case Dir.Down:
-                    IsRotational = false;
+                    IsRotational = true;
                     this.Texture = Game1.AllTextures.ToolAtlas;
                     break;
                 case Dir.Up:
-                    IsRotational = false;
+                    IsRotational = true;
                     this.Texture = Game1.AllTextures.ToolAtlas;
                     break;
                 case Dir.Left:
@@ -77,65 +75,31 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     this.Rotation = -.7f;
                     break;
             }
-
-            //AdjustCurrentTool(direction);
-
         }
 
-        //adjusts current equipped items position based on direction player is facing
-        //public void AdjustCurrentTool(Dir direction)
-        //{
-        //    switch (direction)
-        //    {
-        //        case Dir.Up:
-        //            ItemSprite.Position = new Vector2(this.Position.X + 12, Position.Y + 14);
-        //            RotationSpeed = 0f;
-        //           // sprite.SpinAmount = 3f;
-        //            RotationSpeed = 5f;
-        //            break;
 
-        //        case Dir.Down:
-        //            ItemSprite.Position = new Vector2(Position.X + 12, Position.Y + 22);
-        //            RotationSpeed = 5f;
-        //         //   sprite.SpinAmount = -4f;
-        //            RotationSpeed = 6f;
-        //            break;
-
-        //        case Dir.Right:
-        //            ItemSprite.Position = new Vector2(Position.X + 14, Position.Y + 18);
-        //            RotationSpeed = 1f;
-        //           // sprite.SpinAmount = 6f;
-        //            RotationSpeed = 6f;
-        //            break;
-
-        //        case Dir.Left:
-        //            ItemSprite.Position = new Vector2(Position.X + 4, Position.Y + 18);
-        //            RotationSpeed = 6f;
-        //           // sprite.SpinAmount = -6f;
-        //            RotationSpeed = 6f;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
 
         public override void UpdateSwordSwipe(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
+            this.ToolLine = new Line(this.Position, new Vector2(1, 1));
             switch (direction)
             {
                 case Dir.Down:
                     this.SpriteEffects = SpriteEffects.None;
-                    this.Position = new Vector2(position.X + 4, position.Y);
+                    this.Position = new Vector2(position.X + 8, position.Y + 26);
+                    this.RotationDirection = -1;
                     UpdateSwordSwipeDown(gameTime, currentFrame);
                     break;
                 case Dir.Up:
                     this.SpriteEffects = SpriteEffects.None;
                     this.Position = new Vector2(position.X + 4, position.Y - 4);
+                    this.RotationDirection = -1;
                     SwingUp(gameTime, currentFrame);
                     break;
                 case Dir.Left:
                     this.SpriteEffects = SpriteEffects.None;
                     this.Position = new Vector2(position.X + 3, position.Y + 21);
+
                     this.RotationDirection = -1;
                     SwingRight(gameTime);
                     break;
@@ -156,11 +120,12 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public override void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
-                switch (direction)
+            this.ToolLine = new Line(this.Position, new Vector2(1, 1));
+            switch (direction)
                 {
                     case Dir.Down:
                         this.SpriteEffects = SpriteEffects.None;
-                    this.Position = new Vector2(position.X + 4, position.Y);
+                    this.Position = new Vector2(position.X + 4, position.Y + 8);
                         SwingDown(gameTime, currentFrame);
                         break;
                     case Dir.Up:
@@ -195,31 +160,36 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         private void SwingUp(GameTime gameTime, int currentFrame)
         {
-            int xAdjustment = 0;
-            int yAdjustment = 0;
-            int column = 5;
-            this.Row = 0;
 
-            switch (currentFrame)
-            {
-                case 0:
-                    yAdjustment = 0;
-                    break;
-                case 1:
-                    xAdjustment = 16;
-                    break;
+            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
+            this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
+            this.ToolLine.Rotation = Rotation + (float)3.5;
 
-                case 2:
-                    xAdjustment = 32;
-                    break;
-                case 3:
-                    xAdjustment = 32;
-                    break;
-                case 4:
-                    xAdjustment = 32;
-                    break;
-            }
-            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            //int xAdjustment = 0;
+            //int yAdjustment = 0;
+            //int column = 5;
+            //this.Row = 0;
+
+            //switch (currentFrame)
+            //{
+            //    case 0:
+            //        yAdjustment = 0;
+            //        break;
+            //    case 1:
+            //        xAdjustment = 16;
+            //        break;
+
+            //    case 2:
+            //        xAdjustment = 32;
+            //        break;
+            //    case 3:
+            //        xAdjustment = 32;
+            //        break;
+            //    case 4:
+            //        xAdjustment = 32;
+            //        break;
+            //}
+            //UpdateSourceRectangle(column, xAdjustment, yAdjustment);
         }
         private void SwingDown(GameTime gameTime, int currentFrame)
         {
