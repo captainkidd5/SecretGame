@@ -81,6 +81,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public override void UpdateSwordSwipe(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
+            this.LayerDepth = .00000015f;
             this.ToolLine = new Line(this.Position, new Vector2(1, 1));
             switch (direction)
             {
@@ -92,8 +93,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
                 case Dir.Up:
                     this.SpriteEffects = SpriteEffects.None;
-                    this.Position = new Vector2(position.X + 4, position.Y - 4);
-                    this.RotationDirection = -1;
+                    this.Position = new Vector2(position.X + 8, position.Y + 8);
+                    this.RotationDirection = 1;
+                    this.LayerDepth = .00000004f;
                     SwingUp(gameTime, currentFrame);
                     break;
                 case Dir.Left:
@@ -113,6 +115,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
             }
             this.OldFrame = currentFrame;
+
         }
 
 
@@ -120,6 +123,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public override void UpdateChopping(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
         {
+            this.LayerDepth = .00000015f;
             this.ToolLine = new Line(this.Position, new Vector2(1, 1));
             switch (direction)
                 {
@@ -130,6 +134,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                         break;
                     case Dir.Up:
                         this.SpriteEffects = SpriteEffects.None;
+                    this.LayerDepth = .00000004f;
                     this.Position = new Vector2(position.X + 4, position.Y - 4);
                         SwingUp(gameTime, currentFrame);
                         break;

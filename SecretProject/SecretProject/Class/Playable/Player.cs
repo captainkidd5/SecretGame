@@ -542,7 +542,7 @@ namespace SecretProject.Class.Playable
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
-                    if (this.Wardrobe.ToolPiece.ToolLine != null)
+                    if (this.Wardrobe.ToolPiece != null)
                     {
                         if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
