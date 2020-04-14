@@ -188,24 +188,24 @@ namespace SecretProject.Class.UI.MainMenuStuff
             }
             else if (PantsForward.isClicked)
             {
-                Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Forward);
+           //     Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Forward);
 
-                WasClothingChanged = true;
+               // WasClothingChanged = true;
             }
             else if (PantsBackward.isClicked)
             {
-                Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Backward);
-                WasClothingChanged = true;
+               // Game1.Player.Wardrobe.PantsPiece.Cycle(CycleDirection.Backward);
+              //  WasClothingChanged = true;
             }
             else if (ShoesForward.isClicked)
             {
-                Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Forward);
-                WasClothingChanged = true;
+             //   Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Forward);
+              //  WasClothingChanged = true;
             }
             else if (ShoesBackward.isClicked)
             {
-                Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Backward);
-                WasClothingChanged = true;
+               // Game1.Player.Wardrobe.ShoesPiece.Cycle(CycleDirection.Backward);
+              //  WasClothingChanged = true;
             }
             else if(SkinToneForward.isClicked)
             {

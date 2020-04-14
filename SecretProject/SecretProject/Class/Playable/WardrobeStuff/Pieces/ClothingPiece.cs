@@ -118,6 +118,40 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.OldFrame = currentFrame;
 
         }
+
+        public virtual void UpdateSwordSwipe(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
+        {
+
+            if (this.OldFrame != currentFrame)
+            {
+                switch (direction)
+                {
+                    case Dir.Down:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopDown(currentFrame);
+                        break;
+                    case Dir.Up:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopUp(currentFrame);
+                        break;
+                    case Dir.Left:
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                        UpdateChopRight(currentFrame);
+                        break;
+                    case Dir.Right:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdateChopRight(currentFrame);
+                        break;
+
+                }
+
+
+            }
+            this.Position = position;
+
+            this.OldFrame = currentFrame;
+
+        }
         #region WALK
         protected virtual void UpdateWalkDown(int currentFrame)
         {
@@ -144,6 +178,22 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         }
 
         protected virtual void UpdateChopRight(int currentFrame)
+        {
+        }
+        #endregion
+
+
+        #region Sword Swwipe
+        protected virtual void UpdateSwordSwipeDown(int currentFrame)
+        {
+
+        }
+
+        protected virtual void UpdateSwordSwipeUp(int currentFrame)
+        {
+        }
+
+        protected virtual void UpdateSwordSwipeRight(int currentFrame)
         {
         }
         #endregion
