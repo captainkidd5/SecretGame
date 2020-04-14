@@ -103,7 +103,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     this.Position = new Vector2(position.X + 3, position.Y + 21);
 
                     this.RotationDirection = -1;
-                    SwingRight(gameTime);
+                    SwingLeft(gameTime);
                     break;
                 case Dir.Right:
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
@@ -161,14 +161,20 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
             this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
-            this.ToolLine.Rotation = Rotation + (float)3.5;
+            this.ToolLine.Rotation = Rotation +(float)5.5;
+        }
+        public void SwingLeft(GameTime gameTime)
+        {
+            this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
+            this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
+            this.ToolLine.Rotation = Rotation + (float)3.9;
         }
         private void SwingUp(GameTime gameTime, int currentFrame)
         {
 
             this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
             this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
-            this.ToolLine.Rotation = Rotation + (float)3.5;
+            this.ToolLine.Rotation = Rotation + (float)3.9;
 
             //int xAdjustment = 0;
             //int yAdjustment = 0;
@@ -201,7 +207,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
             this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
             this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
-            this.ToolLine.Rotation = Rotation + (float)3.5;
+            this.ToolLine.Rotation = Rotation ;
             //int xAdjustment = 0;
             //int yAdjustment = 0;
             //int column = 0;
@@ -240,7 +246,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Rotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .006f * this.RotationDirection;
             this.ToolLine.Point2 = new Vector2(this.Position.X + 20, this.Position.Y + 20);
-            this.ToolLine.Rotation = Rotation + (float)3.5;
+            this.ToolLine.Rotation = Rotation + (float)3.9;
         }
 
         protected override void UpdateSwordSwipeUp(int currentFrame)
@@ -259,7 +265,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin, yLayerHeight + this.LayerDepth, this.SpriteEffects, 1f);
                 if (Game1.GetCurrentStage().ShowBorders)
                 {
-                    ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, Rotation + 4);
+                    ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, ToolLine.Rotation);
                 }
             }
             else
