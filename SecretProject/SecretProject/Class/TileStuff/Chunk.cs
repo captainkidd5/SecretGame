@@ -149,7 +149,6 @@ namespace SecretProject.Class.TileStuff
             this.Enemies = new List<Enemy>();
             this.NPCGenerator = new NPCGenerator(this, this.GraphicsDevice);
 
-            SetRectangleTexture(this.GraphicsDevice);
             this.AdjacentObstacleGrids = new List<ObstacleGrid>();
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
@@ -1121,33 +1120,6 @@ namespace SecretProject.Class.TileStuff
         }
 
        
-        //DEBUG
-        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
-        {
-            Rectangle chunkRectangle = GetChunkRectangle();
-            var Colors = new List<Color>();
-            for (int y = 0; y < chunkRectangle.Height; y++)
-            {
-                for (int x = 0; x < chunkRectangle.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == chunkRectangle.Width - 1 || //right side
-                        y == chunkRectangle.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
-
-                    }
-
-                }
-            }
-            this.RectangleTexture = new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
-            this.RectangleTexture.SetData<Color>(Colors.ToArray());
-        }
 
         #region STATIC METHODS
         /// <summary>

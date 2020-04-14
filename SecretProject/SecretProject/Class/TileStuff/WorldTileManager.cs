@@ -96,6 +96,10 @@ namespace SecretProject.Class.TileStuff
 
         public GridStatus PreviousTileUnderPlayerGridStatus { get; set; }
 
+        public Object ChunkLocker { get; set; }
+
+        public Texture2D ChunkTexture { get; set; }
+
         public WorldTileManager(World world, Texture2D tileSet,  TmxMap mapName, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber)
         {
             this.Stage = world;
@@ -163,8 +167,9 @@ namespace SecretProject.Class.TileStuff
 
             this.PathGrid = Game1.Town.AllTiles.PathGrid;
             this.AllTiles = Game1.Town.AllTiles.AllTiles;
-            
 
+            this.ChunkLocker = new object();
+            this.ChunkTexture = SetChunkTexture(this.GraphicsDevice);
         }
 
 
@@ -306,124 +311,127 @@ namespace SecretProject.Class.TileStuff
 
 
         }
-
+        
         public void MoveChunks(Dir direction)
         {
-
-            switch (direction)
+            lock (this.ChunkLocker)
             {
 
-                case Dir.Down:
-                    //shifts everything down one
-                    for (int i = 0; i < RenderDistance; i++)
-                    {
-                        for (int j = 0; j < RenderDistance; j++)
-                        {
-                            if (j == RenderDistance - 1) // if J index is at the bottom and will become a new chunk
-                            {
-                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
-                                    ChunkPositions[i, j].Y, i, j);
-                                ChunkCheck(this.ActiveChunks[i, j]);
-                            }
-                            else
-                            {
-                                if (j == 0) //Chunk is in top row (we are moving down) so it will be saved and removed from memory.
-                                {
-                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
-                                }
-                                this.ActiveChunks[i, j] = this.ActiveChunks[i, j + 1]; //the new chunk on the top row will be the one which was originally below it.
-                                ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
-                            }
-                        }
-                    }
-                    break;
-                case Dir.Up:
-                    //shifts everything up one
-                    for (int i = RenderDistance - 1; i > -1; i--)
-                    {
-                        for (int j = RenderDistance - 1; j > -1; j--)
-                        {
-                            if (j == 0) // We are moving up. Top row chunks will get new chunks.
-                            {
-                                this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
-                                     ChunkPositions[i, j].Y, i, j);
-                                ChunkCheck(this.ActiveChunks[i, j]);
-                            }
-                            else
-                            {
-                                if (j == RenderDistance - 1)
-                                {
-                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
-                                }
-                                this.ActiveChunks[i, j] = this.ActiveChunks[i, j - 1];
-                                ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
+                switch (direction)
+                {
 
-                            }
-                        }
-                    }
-                    break;
-                case Dir.Left:
-                    for (int i = RenderDistance - 1; i > -1; i--)
-                    {
-                        for (int j = RenderDistance - 1; j > -1; j--)
+                    case Dir.Down:
+                        //shifts everything down one
+                        for (int i = 0; i < RenderDistance; i++)
                         {
-                            if (i == 0)
+                            for (int j = 0; j < RenderDistance; j++)
                             {
-                                if (j >= 0)
+                                if (j == RenderDistance - 1) // if J index is at the bottom and will become a new chunk
                                 {
                                     this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
-                                    ChunkPositions[i, j].Y, i, j);
+                                        ChunkPositions[i, j].Y, i, j);
+                                    ChunkCheck(this.ActiveChunks[i, j]);
                                 }
-
-                                ChunkCheck(this.ActiveChunks[i, j]);
-                            }
-
-                            else
-                            {
-                                if (i == RenderDistance - 1)
+                                else
                                 {
-                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
-                                }
-                                this.ActiveChunks[i, j] = this.ActiveChunks[i - 1, j];
-                                ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
+                                    if (j == 0) //Chunk is in top row (we are moving down) so it will be saved and removed from memory.
+                                    {
+                                        SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                    }
+                                    this.ActiveChunks[i, j] = this.ActiveChunks[i, j + 1]; //the new chunk on the top row will be the one which was originally below it.
+                                    ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
+                                }
                             }
                         }
-                    }
-                    break;
-                case Dir.Right:
-                    for (int i = 0; i < RenderDistance; i++)
-                    {
-                        for (int j = 0; j < RenderDistance; j++)
+                        break;
+                    case Dir.Up:
+                        //shifts everything up one
+                        for (int i = RenderDistance - 1; i > -1; i--)
                         {
-                            if (i == RenderDistance - 1)
+                            for (int j = RenderDistance - 1; j > -1; j--)
                             {
-                                if (j >= 0)
+                                if (j == 0) // We are moving up. Top row chunks will get new chunks.
                                 {
                                     this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
-                                     ChunkPositions[i, j].Y, i, j);
+                                         ChunkPositions[i, j].Y, i, j);
+                                    ChunkCheck(this.ActiveChunks[i, j]);
                                 }
+                                else
+                                {
+                                    if (j == RenderDistance - 1)
+                                    {
+                                        SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                    }
+                                    this.ActiveChunks[i, j] = this.ActiveChunks[i, j - 1];
+                                    ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
-                                ChunkCheck(this.ActiveChunks[i, j]);
+                                }
                             }
-
-                            else
+                        }
+                        break;
+                    case Dir.Left:
+                        for (int i = RenderDistance - 1; i > -1; i--)
+                        {
+                            for (int j = RenderDistance - 1; j > -1; j--)
                             {
                                 if (i == 0)
                                 {
-                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
-                                }
-                                this.ActiveChunks[i, j] = this.ActiveChunks[i + 1, j];
-                                ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
+                                    if (j >= 0)
+                                    {
+                                        this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                        ChunkPositions[i, j].Y, i, j);
+                                    }
 
+                                    ChunkCheck(this.ActiveChunks[i, j]);
+                                }
+
+                                else
+                                {
+                                    if (i == RenderDistance - 1)
+                                    {
+                                        SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                    }
+                                    this.ActiveChunks[i, j] = this.ActiveChunks[i - 1, j];
+                                    ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
+
+                                }
                             }
                         }
-                    }
-                    break;
+                        break;
+                    case Dir.Right:
+                        for (int i = 0; i < RenderDistance; i++)
+                        {
+                            for (int j = 0; j < RenderDistance; j++)
+                            {
+                                if (i == RenderDistance - 1)
+                                {
+                                    if (j >= 0)
+                                    {
+                                        this.ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i, j].X,
+                                         ChunkPositions[i, j].Y, i, j);
+                                    }
+
+                                    ChunkCheck(this.ActiveChunks[i, j]);
+                                }
+
+                                else
+                                {
+                                    if (i == 0)
+                                    {
+                                        SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                    }
+                                    this.ActiveChunks[i, j] = this.ActiveChunks[i + 1, j];
+                                    ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
+
+                                }
+                            }
+                        }
+                        break;
+                }
+
             }
-
-
         }
         /// <summary>
         /// Simply notifies chunk that its indices in the Active Chunk Array have changed.
@@ -499,6 +507,34 @@ namespace SecretProject.Class.TileStuff
                 posY = rootPosition.Y - RenderDistance / 2;
             }
         }
+
+        public void HandleNewChunkMove()
+        {
+
+            if (this.ChunkPointUnderPlayer.X > this.ChunkPointUnderPlayerLastFrame.X)
+            {
+                MoveChunks(Dir.Right);
+            }
+            else if (this.ChunkPointUnderPlayer.X < this.ChunkPointUnderPlayerLastFrame.X)
+            {
+
+                MoveChunks(Dir.Left);
+
+            }
+            else if (this.ChunkPointUnderPlayer.Y > this.ChunkPointUnderPlayerLastFrame.Y)
+            {
+
+                MoveChunks(Dir.Down);
+
+            }
+            else if (this.ChunkPointUnderPlayer.Y < this.ChunkPointUnderPlayerLastFrame.Y)
+            {
+
+                MoveChunks(Dir.Up);
+
+            }
+            
+        }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             GetProperArrayData();
@@ -507,33 +543,9 @@ namespace SecretProject.Class.TileStuff
 
             if (this.ChunkPointUnderPlayerLastFrame != this.ChunkPointUnderPlayer)
             {
-
-
-                if (this.ChunkPointUnderPlayer.X > this.ChunkPointUnderPlayerLastFrame.X)
-                {
-                    MoveChunks(Dir.Right);
-                }
-                else if (this.ChunkPointUnderPlayer.X < this.ChunkPointUnderPlayerLastFrame.X)
-                {
-
-                    MoveChunks(Dir.Left);
-
-                }
-                else if (this.ChunkPointUnderPlayer.Y > this.ChunkPointUnderPlayerLastFrame.Y)
-                {
-
-                    MoveChunks(Dir.Down);
-
-                }
-                else if (this.ChunkPointUnderPlayer.Y < this.ChunkPointUnderPlayerLastFrame.Y)
-                {
-
-                    MoveChunks(Dir.Up);
-
-                }
-
-
+                HandleNewChunkMove();
             }
+
             this.ChunkUnderPlayerLastFrame = this.ChunkUnderPlayer;
             this.ChunkUnderPlayer = this.ActiveChunks[RenderDistance / 2, RenderDistance / 2];
             this.StoreableItems = this.ChunkUnderPlayer.StoreableItems;
@@ -759,7 +771,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (Game1.GetCurrentStage().ShowBorders)
                         {
-                            spriteBatch.Draw(chunk.RectangleTexture, new Vector2(chunk.GetChunkRectangle().X, chunk.GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
+                            spriteBatch.Draw(this.ChunkTexture, new Vector2(chunk.GetChunkRectangle().X, chunk.GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
                             spriteBatch.DrawString(Game1.AllTextures.MenuText, chunk.ArrayI.ToString() + chunk.ArrayJ.ToString(),
                                 new Vector2(chunk.GetChunkRectangle().X + 100, chunk.GetChunkRectangle().Y), Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, 1f);
                         }
@@ -974,6 +986,36 @@ namespace SecretProject.Class.TileStuff
         public void Unload()
         {
           
+        }
+
+        public Texture2D SetChunkTexture(GraphicsDevice graphicsDevice)
+        {
+
+                Rectangle chunkRectangle = new Rectangle(0,0, 256,256);
+                var Colors = new List<Color>();
+                for (int y = 0; y < chunkRectangle.Height; y++)
+                {
+                    for (int x = 0; x < chunkRectangle.Width; x++)
+                    {
+                        if (x == 0 || //left side
+                            y == 0 || //top side
+                            x == chunkRectangle.Width - 1 || //right side
+                            y == chunkRectangle.Height - 1) //bottom side
+                        {
+                            Colors.Add(new Color(255, 255, 255, 255));
+                        }
+                        else
+                        {
+                            Colors.Add(new Color(0, 0, 0, 0));
+
+                        }
+
+                    }
+                }
+                Texture2D texture =  new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
+                texture.SetData<Color>(Colors.ToArray());
+            return texture;
+            
         }
     }
 }
