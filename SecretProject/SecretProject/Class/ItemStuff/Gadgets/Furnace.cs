@@ -82,11 +82,13 @@ namespace SecretProject.Class.ItemStuff
 
             this.CookTimeRequired = 5f;
         }
-        public void Activate(Tile tile)
+        public void Activate(IInformationContainer container, int x, int y, int layer)
         {
             this.IsUpdating = true;
-            this.Tile = tile;
-            
+            this.Tile = container.AllTiles[layer][x, y];
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+
+            TileUtility.Animate(Dir.Right, layer, x, y, container, false);
 
         }
 

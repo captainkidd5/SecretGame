@@ -178,7 +178,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
 
-                    if (tileSet[tileToAssign.GID].AnimationFrames.Count > 0 && !tileSet[tileToAssign.GID].Properties.ContainsKey("idleStart"))
+                if (tileSet[tileToAssign.GID].AnimationFrames.Count > 0 && !tileSet[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
 
                     if (!container.AnimationFrames.ContainsKey(tileToAssign.TileKey))
@@ -249,9 +249,9 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
-                
 
-                    propertyString = "destructable";
+
+                propertyString = "destructable";
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
                     container.TileHitPoints[tileToAssign.TileKey] = Game1.Utility.GetTileHitpoints(propertyString);
@@ -509,9 +509,9 @@ namespace SecretProject.Class.TileStuff
 
                 container.Crops[tileToAssign.GetTileKeyStringNew(layer, container)] = tempCrop;
             }
-       
-                
-            
+
+
+
         }
 
         /// <summary>
@@ -631,7 +631,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
-                   
+
                     break;
 
                 case "sleep":
@@ -648,9 +648,9 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        
+
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WorldQuestMenu;
-                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID), z,i,j, container);
+                        Game1.Player.UserInterface.WorldQuestMenu.LoadQuest(Game1.WorldQuestHolder.RetrieveQuest(container.AllTiles[z][i, j].GID), z, i, j, container);
 
                     }
                     break;
@@ -684,7 +684,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         //Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z,i,j);
                         container.WasModifiedDuringInterval = true;
                     }
                     break;
@@ -720,7 +720,7 @@ namespace SecretProject.Class.TileStuff
                     if (mouse.IsClicked)
                     {
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[3][i, j].TileKey]);
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z,i,j);
                         container.WasModifiedDuringInterval = true;
 
                     }
@@ -752,7 +752,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.UnderWorld, null);
-                            Game1.UnderWorld.AllTiles.LoadInitialChunks(Game1.Player.position) ;
+                            Game1.UnderWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
                         }
                     }
                     break;
@@ -831,7 +831,7 @@ namespace SecretProject.Class.TileStuff
                 string[] info = destructableString.Split(',');
                 if (container.TileHitPoints[tile.TileKey] > 0)
                 {
-                    if(Game1.Utility.GetTileTierRequired(info))
+                    if (Game1.Utility.GetTileTierRequired(info))
                     {
                         int soundInt = Game1.Utility.GetTileDestructionSound(info);
                         Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
@@ -841,7 +841,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         return false;
                     }
-                   
+
                     return true;
                 }
 
@@ -857,7 +857,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         return false;
                     }
-                       
+
 
                 }
                 if (container.TileSetDictionary[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0 && !container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("crop"))
@@ -916,8 +916,8 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                       
-                        if(ToolInteraction(tile, gameTime, layer, x, y, container.TileSetDictionary[tile.GID].Properties["destructable"],
+
+                        if (ToolInteraction(tile, gameTime, layer, x, y, container.TileSetDictionary[tile.GID].Properties["destructable"],
                             Game1.Utility.GetTileEffectColor(container.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, container))
                         {
                             Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
@@ -930,7 +930,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             Game1.Player.UserInterface.StaminaBar.DecreaseStamina(1);
                         }
-                        
+
 
                     }
                 }
@@ -1021,7 +1021,7 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
 
-         public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
+        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
         {
             if (container.AllTiles[layer][tileX, tileY].GID != -1)
             {
@@ -1133,7 +1133,62 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
 
+        public static void Animate(Dir direction, int layer, int x, int y, IInformationContainer container, bool terminates = true)
+        {
+
+            Tile tile = container.AllTiles[layer][x, y];
+            List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+            if(direction == Dir.Right)
+            {
+                for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames.Count; i++)
+                {
+                    frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[i]));
+                }
+            }
+            else
+            {
+                for (int i = container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames.Count - 1; i >= 0; i--)
+                {
+                    frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[i]));
+                }
+
+                float currentduration = container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[0].Duration;
+                float anchorDuration = currentduration;
+                frames.Add(new EditableAnimationFrame(currentduration, anchorDuration, tile.GID));
+            }
+            
+
+            bool hasNewSource = false;
+            EditableAnimationFrameHolder frameHolder;
+            string propertyString = "newSource";
+            if (GetProperty(container.MapName.Tilesets[container.TileSetNumber].Tiles, container.AllTiles[layer][x, y].GID, ref propertyString))
+            {
+
+
+
+                hasNewSource = true;
+                int[] nums = GetRectangeFromString(propertyString);
+
+                frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID, hasNewSource: hasNewSource)
+                {
+                    OriginalXOffSet = nums[0],
+                    OriginalYOffSet = nums[1],
+                    OriginalWidth = nums[2],
+                    OriginalHeight = nums[3],
+                     Terminates = terminates 
+                };
+
+            }
+            else
+            {
+                frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tile.GID, hasNewSource: hasNewSource) { Terminates = terminates };
+            }
+            container.AnimationFrames.Add(tile.TileKey, frameHolder);
+        }
+
     }
+
+    
 
     public class EditableAnimationFrame
     {
@@ -1167,7 +1222,8 @@ namespace SecretProject.Class.TileStuff
         public int Layer { get; set; }
         public int OriginalTileID { get; set; }
         public bool Repeats { get; set; }
-        public bool SelfDestruct { get; set; }
+
+        public bool Terminates { get; set; }
 
         public bool HasNewSource { get; set; }
         public int OriginalXOffSet { get; set; }
@@ -1175,7 +1231,7 @@ namespace SecretProject.Class.TileStuff
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }
 
-        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID, bool selfDestruct = false, bool hasNewSource = false)
+        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID,  bool hasNewSource = false)
         {
             this.Frames = frames;
             this.Counter = 0;
@@ -1184,8 +1240,9 @@ namespace SecretProject.Class.TileStuff
             this.OldY = oldY;
             this.Layer = layer;
             this.OriginalTileID = originalTileID;
-            this.SelfDestruct = selfDestruct;
+
             this.HasNewSource = hasNewSource;
+            this.Terminates = true;
         }
     }
 }

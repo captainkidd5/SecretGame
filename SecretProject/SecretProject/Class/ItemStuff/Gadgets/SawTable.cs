@@ -59,11 +59,13 @@ namespace SecretProject.Class.ItemStuff
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
                new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
         }
-        public void Activate(Tile tile)
+        public void Activate(IInformationContainer container, int x, int y, int layer)
         {
             this.IsUpdating = true;
-            this.Tile = tile;
-            //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
+            this.Tile = container.AllTiles[layer][x, y];
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+
+            TileUtility.Animate(Dir.Right, layer, x, y, container, false);
 
         }
 

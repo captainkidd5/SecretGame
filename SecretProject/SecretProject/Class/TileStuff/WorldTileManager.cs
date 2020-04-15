@@ -878,8 +878,11 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 AnimationFrameKeysToRemove.Add(animationTile.TileKey);
+                                if (frameholder.Terminates)
+                                {
 
-                                TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
+                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, currentChunk);
+                                }
 
                             }
                         }

@@ -73,7 +73,7 @@ namespace SecretProject.Class.ItemStuff
             this.SmokeParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(this.Location.X + 8, this.Location.Y));
             this.FireParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.Fire }, new Vector2(this.Location.X + 10, this.Location.Y + 10));
         }
-        public void Activate(Tile tile)
+        public void Activate(IInformationContainer container, Tile tile)
         {
             if (!this.IsUpdating)
             {
@@ -84,6 +84,16 @@ namespace SecretProject.Class.ItemStuff
             }
 
 
+        }
+        public void Activate(IInformationContainer container, int x, int y, int layer)
+        {
+            if (!this.IsUpdating)
+            {
+                this.IsUpdating = true;
+                this.Tile = container.AllTiles[layer][x,y];
+                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
+            }
         }
         public void Deactivate()
         {

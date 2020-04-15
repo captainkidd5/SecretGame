@@ -32,7 +32,7 @@ namespace SecretProject.Class.ItemStuff
         Tile Tile { get; set; }
         bool IsItemAllowedToBeStored(Item item);
         void Update(GameTime gameTime);
-        void Activate(Tile tile);
+        void Activate(IInformationContainer container, int layer, int x, int y);
         void Deactivate();
         void Draw(SpriteBatch spriteBatch);
 

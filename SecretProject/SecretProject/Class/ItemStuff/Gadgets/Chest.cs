@@ -22,7 +22,12 @@ namespace SecretProject.Class.ItemStuff
         public Rectangle BackDropSourceRectangle { get; set; }
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
+
+        public IInformationContainer Container { get; set; }
         public Tile Tile { get; set; }
+        public int Layer { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
 
 
@@ -57,17 +62,23 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void Activate(Tile tile)
+        public void Activate(IInformationContainer container, int layer, int x, int y)
         {
+            this.Container = container;
+            this.Layer = layer;
+            this.X = x;
+            this.Y = y;
             this.IsUpdating = true;
-            this.Tile = tile;
+            this.Tile = container.AllTiles[layer][x, y];
             this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+            container.AnimationFrames.Remove(Tile.TileKey);
+            TileUtility.Animate(Dir.Right,layer,x,y, container, false);
 
         }
         public void Deactivate()
         {
             this.IsUpdating = false;
-            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1755, 100);
+            TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.Container, false);
         }
 
         public bool DepositItem(Item item)
