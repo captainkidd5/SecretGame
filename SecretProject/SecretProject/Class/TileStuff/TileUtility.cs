@@ -1192,14 +1192,12 @@ namespace SecretProject.Class.TileStuff
 
     public class EditableAnimationFrame
     {
-        public float CurrentDuration { get; set; }
-        public float AnchorDuration { get; set; }
+        public float AnchorDuration { get; private set; }
         public float TargetDuration { get; set; }
         public int ID { get; set; }
 
         public EditableAnimationFrame(AnimationFrameHolder frame)
         {
-            this.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
             this.AnchorDuration = (float)frame.Duration / 1000;
             this.TargetDuration = this.AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
             this.ID = frame.Id;
@@ -1208,7 +1206,7 @@ namespace SecretProject.Class.TileStuff
 
         public EditableAnimationFrame(float duration, float anchorDuration, int GID)
         {
-            this.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
+
             this.AnchorDuration = (float)duration / 1000;
             this.TargetDuration = this.AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
             this.ID = GID;
@@ -1218,8 +1216,6 @@ namespace SecretProject.Class.TileStuff
     public class EditableAnimationFrameHolder
     {
         public List<EditableAnimationFrame> Frames { get; set; }
-        public float AnchorDuration { get; set; }
-        public float CurrentDuration { get; set; }
         public int Counter { get; set; }
         public int OldX { get; }
         public int OldY { get; }
@@ -1239,8 +1235,6 @@ namespace SecretProject.Class.TileStuff
         {
             this.Frames = frames;
             this.Counter = 0;
-            this.AnchorDuration = frames[this.Counter].AnchorDuration;
-            this.CurrentDuration = frames[this.Counter].CurrentDuration;
             this.OldX = oldX;
             this.OldY = oldY;
             this.Layer = layer;
@@ -1248,6 +1242,11 @@ namespace SecretProject.Class.TileStuff
 
             this.HasNewSource = hasNewSource;
             this.Terminates = true;
+        }
+
+        public void SetNewTarget(int frame)
+        {
+            Frames[frame].TargetDuration = Frames[frame].AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
         }
     }
 }

@@ -859,9 +859,8 @@ namespace SecretProject.Class.TileStuff
             {
 
                // frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (Game1.GlobalClock.SecondsPassedToday + frameholder.CurrentDuration  > frameholder.AnchorDuration)
+                if (Game1.GlobalClock.SecondsPassedToday  > frameholder.Frames[frameholder.Counter].TargetDuration)
                 {
-                    frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
                     Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
                     animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
                     if (frameholder.HasNewSource)
@@ -889,16 +888,15 @@ namespace SecretProject.Class.TileStuff
                         }
 
                         frameholder.Counter = 0;
-                        frameholder.AnchorDuration = frameholder.Frames[frameholder.Counter].AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
-                        frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
+                        frameholder.SetNewTarget(frameholder.Counter);
+
 
                     }
                     else
                     {
 
                         frameholder.Counter++;
-                        frameholder.AnchorDuration = frameholder.Frames[frameholder.Counter].AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
-                        frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
+                        frameholder.SetNewTarget(frameholder.Counter);
 
                     }
 

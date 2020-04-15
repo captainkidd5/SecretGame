@@ -286,53 +286,53 @@ namespace SecretProject.Class.TileStuff
             }
             foreach (EditableAnimationFrameHolder frameholder in this.AnimationFrames.Values)
             {
-                frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
-                {
-                    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
-                    if (frameholder.HasNewSource)
-                    {
-                        Rectangle newSourceRectangle = this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
-                        // Rectangle originalTileRectangle =
-                        this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
-                    }
+                //frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                //if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
+                //{
+                //    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
+                //    this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                //    if (frameholder.HasNewSource)
+                //    {
+                //        Rectangle newSourceRectangle = this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
+                //        // Rectangle originalTileRectangle =
+                //        this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
+                //    }
 
 
-                    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
+                //    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
 
-                    if (frameholder.Counter == frameholder.Frames.Count - 1)
-                    {
-                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
-                        {
+                //    if (frameholder.Counter == frameholder.Frames.Count - 1)
+                //    {
+                //        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
+                //        {
 
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
-                            {
+                //            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
+                //            {
 
-                                //needs to refer to first tile ?
-                                int frameolDX = frameholder.OldX;
-                                this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                AnimationFrameKeysToRemove.Add(this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
-                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
-                                {
-                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this);
-                                }
+                //                //needs to refer to first tile ?
+                //                int frameolDX = frameholder.OldX;
+                //                this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                //                AnimationFrameKeysToRemove.Add(this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
+                //                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                //                {
+                //                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this);
+                //                }
 
-                            }
-                        }
+                //            }
+                //        }
 
-                        frameholder.Counter = 0;
+                //        frameholder.Counter = 0;
 
 
-                    }
-                    else
-                    {
+                //    }
+                //    else
+                //    {
 
-                        frameholder.Counter++;
+                //        frameholder.Counter++;
 
-                    }
+                //    }
 
-                }
+                //}
             }
 
             foreach (string key in AnimationFrameKeysToRemove)
