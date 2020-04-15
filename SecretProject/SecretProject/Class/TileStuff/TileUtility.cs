@@ -1194,20 +1194,23 @@ namespace SecretProject.Class.TileStuff
     {
         public float CurrentDuration { get; set; }
         public float AnchorDuration { get; set; }
+        public float TargetDuration { get; set; }
         public int ID { get; set; }
 
         public EditableAnimationFrame(AnimationFrameHolder frame)
         {
-            this.CurrentDuration = frame.Duration;
-            this.AnchorDuration = frame.Duration;
+            this.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
+            this.AnchorDuration = (float)frame.Duration / 1000;
+            this.TargetDuration = this.AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
             this.ID = frame.Id;
 
         }
 
         public EditableAnimationFrame(float duration, float anchorDuration, int GID)
         {
-            this.CurrentDuration = duration;
-            this.AnchorDuration = anchorDuration;
+            this.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
+            this.AnchorDuration = (float)duration / 1000;
+            this.TargetDuration = this.AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
             this.ID = GID;
         }
     }
@@ -1215,7 +1218,8 @@ namespace SecretProject.Class.TileStuff
     public class EditableAnimationFrameHolder
     {
         public List<EditableAnimationFrame> Frames { get; set; }
-        public float Timer { get; set; }
+        public float AnchorDuration { get; set; }
+        public float CurrentDuration { get; set; }
         public int Counter { get; set; }
         public int OldX { get; }
         public int OldY { get; }
@@ -1235,7 +1239,8 @@ namespace SecretProject.Class.TileStuff
         {
             this.Frames = frames;
             this.Counter = 0;
-            this.Timer = frames[this.Counter].AnchorDuration;
+            this.AnchorDuration = frames[this.Counter].AnchorDuration;
+            this.CurrentDuration = frames[this.Counter].CurrentDuration;
             this.OldX = oldX;
             this.OldY = oldY;
             this.Layer = layer;

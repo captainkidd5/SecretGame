@@ -857,10 +857,11 @@ namespace SecretProject.Class.TileStuff
             List<string> AnimationFrameKeysToRemove = new List<string>();
             foreach (EditableAnimationFrameHolder frameholder in currentChunk.AnimationFrames.Values)
             {
-                frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
+
+               // frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (Game1.GlobalClock.SecondsPassedToday + frameholder.CurrentDuration  > frameholder.AnchorDuration)
                 {
-                    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
+                    frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
                     Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
                     animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
                     if (frameholder.HasNewSource)
@@ -888,13 +889,16 @@ namespace SecretProject.Class.TileStuff
                         }
 
                         frameholder.Counter = 0;
-
+                        frameholder.AnchorDuration = frameholder.Frames[frameholder.Counter].AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
+                        frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
 
                     }
                     else
                     {
 
                         frameholder.Counter++;
+                        frameholder.AnchorDuration = frameholder.Frames[frameholder.Counter].AnchorDuration + Game1.GlobalClock.SecondsPassedToday;
+                        frameholder.CurrentDuration = Game1.GlobalClock.SecondsPassedToday;
 
                     }
 
