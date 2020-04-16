@@ -189,7 +189,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        frames.Add(new EditableAnimationFrame(tileSet[tileToAssign.GID].AnimationFrames[0].Duration, tileSet[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
+                        frames.Add(new EditableAnimationFrame(tileSet[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
                         for (int i = 0; i < tileSet[tileToAssign.GID].AnimationFrames.Count; i++)
                         {
                             frames.Add(new EditableAnimationFrame(tileSet[tileToAssign.GID].AnimationFrames[i]));
@@ -1135,8 +1135,13 @@ namespace SecretProject.Class.TileStuff
 
         public static void Animate(Dir direction, int layer, int x, int y, IInformationContainer container, bool terminates = true)
         {
-
             Tile tile = container.AllTiles[layer][x, y];
+            if (container.AnimationFrames.ContainsKey(tile.TileKey))
+            {
+                container.AnimationFrames.Remove(tile.TileKey);
+            }
+
+            
             List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
             if(direction == Dir.Right)
             {
@@ -1154,7 +1159,7 @@ namespace SecretProject.Class.TileStuff
 
                 float currentduration = container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[0].Duration;
                 float anchorDuration = currentduration;
-                frames.Add(new EditableAnimationFrame(currentduration, anchorDuration, tile.GID));
+                frames.Add(new EditableAnimationFrame(currentduration, tile.GID));
             }
             
 
@@ -1204,7 +1209,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public EditableAnimationFrame(float duration, float anchorDuration, int GID)
+        public EditableAnimationFrame(float duration, int GID)
         {
 
             this.AnchorDuration = (float)duration / 1000;

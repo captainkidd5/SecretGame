@@ -857,8 +857,6 @@ namespace SecretProject.Class.TileStuff
             List<string> AnimationFrameKeysToRemove = new List<string>();
             foreach (EditableAnimationFrameHolder frameholder in currentChunk.AnimationFrames.Values)
             {
-
-               // frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (Game1.GlobalClock.SecondsPassedToday  > frameholder.Frames[frameholder.Counter].TargetDuration)
                 {
                     Tile animationTile = currentChunk.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
@@ -890,16 +888,13 @@ namespace SecretProject.Class.TileStuff
                         frameholder.Counter = 0;
                         frameholder.SetNewTarget(frameholder.Counter);
 
-
                     }
                     else
                     {
-
                         frameholder.Counter++;
                         frameholder.SetNewTarget(frameholder.Counter);
 
                     }
-
                 }
             }
 

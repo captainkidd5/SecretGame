@@ -34,6 +34,8 @@ namespace SecretProject.Class.ItemStuff
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
 
         private Button redEsc;
+
+        public bool IsAnimationOpen { get; set; }
         public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
             this.StorableItemType = StorableItemType.Chest;
@@ -64,21 +66,31 @@ namespace SecretProject.Class.ItemStuff
 
         public void Activate(IInformationContainer container, int layer, int x, int y)
         {
-            this.Container = container;
-            this.Layer = layer;
-            this.X = x;
-            this.Y = y;
-            this.IsUpdating = true;
-            this.Tile = container.AllTiles[layer][x, y];
-            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
-            container.AnimationFrames.Remove(Tile.TileKey);
-            TileUtility.Animate(Dir.Right,layer,x,y, container, false);
+            if (!this.IsAnimationOpen)
+            {
+                this.IsAnimationOpen = true;
+
+                this.Container = container;
+                this.Layer = layer;
+                this.X = x;
+                this.Y = y;
+                this.IsUpdating = true;
+                this.Tile = container.AllTiles[layer][x, y];
+                // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+                container.AnimationFrames.Remove(Tile.TileKey);
+                TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+            }
 
         }
         public void Deactivate()
         {
-            this.IsUpdating = false;
-            TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.Container, false);
+            if (this.IsAnimationOpen)
+            {
+                this.IsAnimationOpen = false;
+
+                this.IsUpdating = false;
+                TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.Container, false);
+            }
         }
 
         public bool DepositItem(Item item)
