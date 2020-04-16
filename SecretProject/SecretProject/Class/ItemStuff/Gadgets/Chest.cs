@@ -68,6 +68,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if (!this.IsAnimationOpen)
             {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
                 this.IsAnimationOpen = true;
 
                 this.Container = container;

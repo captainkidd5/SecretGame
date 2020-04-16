@@ -170,7 +170,13 @@ namespace SecretProject.Class.UI
         {
             if (this.CurrentAccessedStorableItem != null)
             {
-                this.CurrentAccessedStorableItem.Deactivate();
+                if(building != this.CurrentAccessedStorableItem)
+                {
+                    this.CurrentAccessedStorableItem.Deactivate();
+                }
+                   
+                
+                
             }
 
             this.CurrentAccessedStorableItem = building;

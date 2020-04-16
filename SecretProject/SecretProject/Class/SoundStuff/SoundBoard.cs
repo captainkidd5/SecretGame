@@ -105,6 +105,8 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect FurnaceDone;
         public SoundEffect UnlockItem;
 
+        public SoundEffect ChestOpen;
+
         public SoundEffect PumpkinSmash;
 
 
@@ -250,6 +252,7 @@ namespace SecretProject.Class.SoundStuff
             FurnaceDone = content.Load<SoundEffect>("SoundEffects/furnacedone");
 
             UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
+            ChestOpen = content.Load<SoundEffect>("SoundEffects/ChestOpen");
             Thunder1 = content.Load<SoundEffect>("SoundEffects/Thunder1");
 
             CoinGet = content.Load<SoundEffect>("SoundEffects/CoinGet");

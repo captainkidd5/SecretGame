@@ -1282,6 +1282,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/bushCut.wav
 
+#begin SoundEffects/ChestOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/ChestOpen.wav
+
 #begin SoundEffects/ChickenCluck.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
