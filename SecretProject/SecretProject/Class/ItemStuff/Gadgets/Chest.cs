@@ -109,6 +109,11 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
+        /// <summary>
+        /// For chests, any item can be stored. May not be true for other storage items.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool IsItemAllowedToBeStored(Item item)
         {
             return true;

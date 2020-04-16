@@ -204,17 +204,17 @@ namespace SecretProject.Class.UI
         {
             this.Inventory = Game1.Player.Inventory;
             this.Inventory.HasChangedSinceLastFrame = false;
-            if(this.Expanded)
+            if (this.Expanded)
             {
                 this.InventoryAreaRectangle = new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale),
-                    (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale)); 
+                    (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale));
             }
             else
             {
                 this.InventoryAreaRectangle = new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale),
                     (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale));
             }
-           
+
             if (this.IsActive)
             {
                 UpdateScrollWheel(Game1.MouseManager);
@@ -222,7 +222,7 @@ namespace SecretProject.Class.UI
                 this.MouseIntersectsBackDrop = DoesMouseIntersectBackDrop();
                 HandleInventoryExpansion();
 
-                if(Game1.MouseManager.IsRightClicked)
+                if (Game1.MouseManager.IsRightClicked)
                 {
                     if (this.IsDragSlotActive)
                     {
@@ -230,11 +230,11 @@ namespace SecretProject.Class.UI
                     }
                 }
 
-                if(this.DragSprite != null)
+                if (this.DragSprite != null)
                 {
                     this.DragSprite.Position = Game1.MouseManager.UIPosition;
                 }
-                
+
                 this.MouseIntersectsBackDrop = false;
 
                 UpdateItemSwitchSourceRectangle();
@@ -244,7 +244,7 @@ namespace SecretProject.Class.UI
                     CheckGridItem();
                     AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
                 }
-                else if(this.CurrentEquippedItem == null)
+                else if (this.CurrentEquippedItem == null)
                 {
                     Game1.GetCurrentStage().AllTiles.GridItem = null;
                 }
@@ -274,19 +274,19 @@ namespace SecretProject.Class.UI
                         InventorySlot newInventorySlot = Inventory.currentInventory[i];
                         if (itemButton.isClicked)
                         {
-                            
+
                             HandleDragSlot(i);
 
                         }
-                        else if(Game1.MouseManager.IsRightClicked)
+                        else if (Game1.MouseManager.IsRightClicked)
                         {
-                            
-                            if(newInventorySlot.ItemCount > 0  )
+
+                            if (newInventorySlot.ItemCount > 0)
                             {
-                                if(Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
+                                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
                                 {
                                     Item item = newInventorySlot.GetItem();
-                                    
+
                                     if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                     {
                                         int slotCounter = newInventorySlot.ItemCount;
@@ -301,16 +301,16 @@ namespace SecretProject.Class.UI
                                         Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(item, 1);
                                         newInventorySlot.RemoveItemFromSlot();
                                     }
-                                    
-                                    
+
+
                                 }
                                 else
                                 {
                                     HandleFoodItem();
                                 }
-                                
+
                             }
-                            
+
                         }
                     }
 
@@ -333,17 +333,25 @@ namespace SecretProject.Class.UI
                     Item tempItem = DraggedSlot.InventorySlot.GetItem();
                     int currentItemCount = DraggedSlot.InventorySlot.ItemCount;
 
-                    for (int j = 0; j < currentItemCount; j++)
+                    if (InteractWithStorageItem(DraggedSlot.InventorySlot))
                     {
-                        this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
-                        Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
-                        newWorldItem.IsTossable = true;
+
+                    }
+                    else
+                    {
+                        for (int j = 0; j < currentItemCount; j++)
+                        {
+                            this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
+                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+                            newWorldItem.IsTossable = true;
+
+                        }
+
 
                     }
 
                     this.DragSprite = null;
                     this.IsDragSlotActive = false;
-
                 }
             }
         }
@@ -352,7 +360,7 @@ namespace SecretProject.Class.UI
         /// Determines what happens when an item is clicked, and whether or not it is placed down into another inventory slot. Will change the drag sprite texture if needed.
         /// </summary>
         /// <param name="slotIndex"></param>
-        private void HandleDragSlot( int slotIndex)
+        private void HandleDragSlot(int slotIndex)
         {
             if (Inventory.currentInventory[slotIndex].ItemCount > 0) //some item already occupies the slot we are trying to interact with.
             {
@@ -362,14 +370,14 @@ namespace SecretProject.Class.UI
                     {
                         ItemCount = Inventory.currentInventory[slotIndex].ItemCount
                     };
-                    
+
 
                     InventorySlot newNewSlot = new InventorySlot(DraggedSlot.InventorySlot.Item)
                     {
                         ItemCount = DraggedSlot.InventorySlot.ItemCount
                     };
                     this.DraggedSlot.InventorySlot = newSlot;
-                    
+
                     Inventory.currentInventory[this.DraggedSlot.Index] = this.DraggedSlot.InventorySlot;
                     this.DraggedSlot.Index = slotIndex;
                     Inventory.currentInventory[slotIndex] = newNewSlot;
@@ -380,7 +388,7 @@ namespace SecretProject.Class.UI
                 }
                 else
                 {
-                    
+
                     this.DraggedSlot.InventorySlot = Inventory.currentInventory[slotIndex];
                     this.DraggedSlot.Index = slotIndex;
                     this.IsDragSlotActive = true;
@@ -406,9 +414,9 @@ namespace SecretProject.Class.UI
                 }
 
             }
-            if(this.IsDragSlotActive)
+            if (this.IsDragSlotActive)
             {
-                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16) {TextureScaleX = 5f, TextureScaleY = 5f };
+                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16) { TextureScaleX = 5f, TextureScaleY = 5f };
             }
             else
             {
@@ -417,6 +425,47 @@ namespace SecretProject.Class.UI
         }
 
 
+        public bool InteractWithStorageItem(InventorySlot slot)
+        {
+            IStorableItemBuilding storageItem = Game1.Player.UserInterface.CurrentAccessedStorableItem;
+            if (storageItem.IsUpdating)
+            {
+                if (storageItem.IsInventoryHovered)
+                {
+
+                    for (int i = 0; i < storageItem.ItemSlots.Count - 1; i++)
+                    {
+                        if (storageItem.ItemSlots[i].Button.IsHovered)
+                        {
+                            int count = slot.ItemCount;
+                            for (int j = 0; j < count; j++)
+                            {
+                                if (storageItem.IsItemAllowedToBeStored(slot.GetItem()))
+                                {
+                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.currentInventory[i].AddItemToSlot(slot.GetItem()))
+                                    {
+                                        slot.RemoveItemFromSlot();
+                                    }
+                                    else if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(slot.GetItem()))
+                                    {
+                                        slot.RemoveItemFromSlot();
+
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+
+
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         private void HandleStorageItem(int i, Item item)
         {
             if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[i].GetItem()))
@@ -524,7 +573,7 @@ namespace SecretProject.Class.UI
 
         }
 
-        public void EjectItem()
+        private void EjectItem()
         {
 
             Item oldItem = this.Inventory.currentInventory[currentSliderPosition - 1].GetItem();
@@ -562,30 +611,7 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public bool InteractWithStorageItem(GameTime gameTime, int index)
-        {
-            if (Game1.Player.UserInterface.IsAnyStorageItemOpen)
-            {
-                if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsInventoryHovered)
-                {
-                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[index].GetItem()))
-                    {
-                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(this.Inventory.currentInventory[index].GetItem()))
-                        {
-                            Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking);
-                            this.Inventory.currentInventory[index].RemoveItemFromSlot();
-                            this.AllItemButtons[index].ItemCounter--;
-                        }
-                    }
 
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         #region SCROLLWHEEL
         private void UpdateScrollWheel(MouseManager mouse)
