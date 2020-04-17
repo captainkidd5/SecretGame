@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 
@@ -56,8 +57,13 @@ namespace SecretProject.Class.SpriteFolder
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
- 
-            this.SourceRectangle = new Rectangle(grassType * 16, 0, 16, 32);
+
+
+            int Column = 984 % 100;
+            int Row = (int)Math.Floor((double)984 / (double)100);
+            this.SourceRectangle = new Rectangle(16 * Column + 16 * this.GrassType, 16 * Row - 16 , 16, 32);
+
+          
 
             this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
@@ -87,11 +93,11 @@ namespace SecretProject.Class.SpriteFolder
                 this.ShuffDirectionPicked = true;
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
 
 
-            spriteBatch.Draw(Game1.AllTextures.TallGrass, this.DestinationRectangle, this.SourceRectangle,
+            spriteBatch.Draw(texture, this.DestinationRectangle, this.SourceRectangle,
                 Color.White, this.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
 
         }
@@ -199,9 +205,12 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+          //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

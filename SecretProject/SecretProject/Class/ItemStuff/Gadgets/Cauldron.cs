@@ -40,7 +40,11 @@ namespace SecretProject.Class.ItemStuff
 
         public ParticleEngine SmokeParticleEngine { get; set; }
         public ParticleEngine FireParticleEngine { get; set; }
-
+        public IInformationContainer Container { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int Layer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int X { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int Y { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public bool IsAnimationOpen { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {

@@ -52,7 +52,13 @@ namespace SecretProject.Class.ItemStuff
 
         public ItemData GetItem(int itemID)
         {
-            return ItemDictionary[itemID];
+            if(ItemDictionary.ContainsKey(itemID))
+            {
+                return ItemDictionary[itemID];
+            }
+            return null;
+
+            
         }
 
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false, List<Item> allItems = null)

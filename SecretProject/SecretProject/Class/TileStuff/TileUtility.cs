@@ -684,7 +684,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         //Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z,i,j);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z, i, j);
                         container.WasModifiedDuringInterval = true;
                     }
                     break;
@@ -720,7 +720,7 @@ namespace SecretProject.Class.TileStuff
                     if (mouse.IsClicked)
                     {
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[3][i, j].TileKey]);
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z,i,j);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z, i, j);
                         container.WasModifiedDuringInterval = true;
 
                     }
@@ -729,8 +729,8 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[3][i, j].TileKey];
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+                        Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container, z, i, j);
                         container.WasModifiedDuringInterval = true;
 
                     }
@@ -862,12 +862,16 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (container.TileSetDictionary[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0 && !container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("crop"))
                 {
+                    //if (container.AnimationFrames.ContainsKey(tile.TileKey))
+                    //{
+                    //    container.AnimationFrames.Remove(tile.TileKey);
+                    //}
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
                     for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count; i++)
                     {
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames[i]));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID, true);
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID, container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("newSource")) {Terminates = true};
                     container.AnimationFrames.Add(tile.TileKey, frameHolder);
                 }
                 else
@@ -1141,9 +1145,9 @@ namespace SecretProject.Class.TileStuff
                 container.AnimationFrames.Remove(tile.TileKey);
             }
 
-            
+
             List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-            if(direction == Dir.Right)
+            if (direction == Dir.Right)
             {
                 for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames.Count; i++)
                 {
@@ -1161,7 +1165,7 @@ namespace SecretProject.Class.TileStuff
                 float anchorDuration = currentduration;
                 frames.Add(new EditableAnimationFrame(currentduration, tile.GID));
             }
-            
+
 
             bool hasNewSource = false;
             EditableAnimationFrameHolder frameHolder;
@@ -1180,7 +1184,7 @@ namespace SecretProject.Class.TileStuff
                     OriginalYOffSet = nums[1],
                     OriginalWidth = nums[2],
                     OriginalHeight = nums[3],
-                     Terminates = terminates 
+                    Terminates = terminates
                 };
 
             }
@@ -1193,7 +1197,7 @@ namespace SecretProject.Class.TileStuff
 
     }
 
-    
+
 
     public class EditableAnimationFrame
     {
@@ -1236,7 +1240,7 @@ namespace SecretProject.Class.TileStuff
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }
 
-        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID,  bool hasNewSource = false)
+        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID, bool hasNewSource = false)
         {
             this.Frames = frames;
             this.Counter = 0;

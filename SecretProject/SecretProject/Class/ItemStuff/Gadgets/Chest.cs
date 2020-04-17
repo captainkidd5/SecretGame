@@ -4,6 +4,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.TileStuff;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -68,18 +69,40 @@ namespace SecretProject.Class.ItemStuff
         {
             if (!this.IsAnimationOpen)
             {
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
-                this.IsAnimationOpen = true;
+                if(Game1.Player.GetCurrentEquippedToolData() != null)
+                {
+                    if(Game1.Player.GetCurrentEquippedToolData().Type != ItemType.Hammer)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
+                        this.IsAnimationOpen = true;
 
-                this.Container = container;
-                this.Layer = layer;
-                this.X = x;
-                this.Y = y;
-                this.IsUpdating = true;
-                this.Tile = container.AllTiles[layer][x, y];
-                // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
-                container.AnimationFrames.Remove(Tile.TileKey);
-                TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+                        this.Container = container;
+                        this.Layer = layer;
+                        this.X = x;
+                        this.Y = y;
+                        this.IsUpdating = true;
+                        this.Tile = container.AllTiles[layer][x, y];
+                        // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+                        container.AnimationFrames.Remove(Tile.TileKey);
+                        TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+                    }
+                }
+                else
+                {
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
+                    this.IsAnimationOpen = true;
+
+                    this.Container = container;
+                    this.Layer = layer;
+                    this.X = x;
+                    this.Y = y;
+                    this.IsUpdating = true;
+                    this.Tile = container.AllTiles[layer][x, y];
+                    // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+                    container.AnimationFrames.Remove(Tile.TileKey);
+                    TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+                }
+               
             }
 
         }

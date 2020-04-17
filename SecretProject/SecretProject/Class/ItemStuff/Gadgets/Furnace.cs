@@ -48,6 +48,12 @@ namespace SecretProject.Class.ItemStuff
 
 
         public bool IsCooking { get; set; }
+        public IInformationContainer Container {get;set;}
+        public int Layer {get;set;}
+        public int X {get;set;}
+        public int Y {get;set;}
+        public bool IsAnimationOpen { get; set; }
+
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Furnace;
@@ -59,9 +65,6 @@ namespace SecretProject.Class.ItemStuff
             this.BackDropSourceRectangle = new Rectangle(224, 128, 48, 96);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
-
-            //this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
-            //    new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
 
             this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 1; i++)
@@ -82,14 +85,22 @@ namespace SecretProject.Class.ItemStuff
 
             this.CookTimeRequired = 5f;
         }
-        public void Activate(IInformationContainer container, int x, int y, int layer)
+        public void Activate(IInformationContainer container, int layer, int x, int y)
         {
-            this.IsUpdating = true;
-            this.Tile = container.AllTiles[layer][x, y];
-            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
+            if (!this.IsAnimationOpen)
+            {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
+                this.IsAnimationOpen = true;
 
-            TileUtility.Animate(Dir.Right, layer, x, y, container, false);
-
+                this.Container = container;
+                this.Layer = layer;
+                this.X = x;
+                this.Y = y;
+                this.IsUpdating = true;
+                this.Tile = container.AllTiles[layer][x, y];
+                container.AnimationFrames.Remove(Tile.TileKey);
+                TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+            }
         }
 
         public void StartCook()
@@ -101,7 +112,13 @@ namespace SecretProject.Class.ItemStuff
 
         public void Deactivate()
         {
+            if (this.IsAnimationOpen)
+            {
+                this.IsAnimationOpen = false;
 
+                this.IsUpdating = false;
+                TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.Container, false);
+            }
         }
 
         public bool DepositItem(Item item)
@@ -142,9 +159,10 @@ namespace SecretProject.Class.ItemStuff
                 flameYOffSet = 0;
             }
             this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y -  flameYOffSet );
+           
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
-                this.IsUpdating = false;
+                Deactivate();
             }
 
 
@@ -202,6 +220,8 @@ namespace SecretProject.Class.ItemStuff
 
             if (redEsc.isClicked)
             {
+                    Deactivate();
+                
                 this.IsUpdating = false;
             }
 

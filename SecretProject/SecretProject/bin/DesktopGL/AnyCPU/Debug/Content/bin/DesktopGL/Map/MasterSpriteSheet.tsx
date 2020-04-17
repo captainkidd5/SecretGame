@@ -1620,26 +1620,31 @@
  </tile>
  <tile id="984">
   <properties>
+   <property name="newSource" value="0,-16,16,32"/>
    <property name="replace" value="0"/>
   </properties>
  </tile>
  <tile id="985">
   <properties>
+   <property name="newSource" value="0,-16,16,32"/>
    <property name="replace" value="1"/>
   </properties>
  </tile>
  <tile id="986">
   <properties>
+   <property name="newSource" value="0,-16,16,32"/>
    <property name="replace" value="2"/>
   </properties>
  </tile>
  <tile id="987">
   <properties>
+   <property name="newSource" value="0,-16,16,32"/>
    <property name="replace" value="3"/>
   </properties>
  </tile>
  <tile id="988">
   <properties>
+   <property name="newSource" value="0,-16,16,32"/>
    <property name="replace" value="4"/>
   </properties>
  </tile>
@@ -3380,12 +3385,18 @@
    <property name="action" value="smelt"/>
    <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="22,0,0,8,8,0"/>
+   <property name="idleStart" value=""/>
    <property name="loot" value="1202"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="14"/>
   </objectgroup>
+  <animation>
+   <frame tileid="2443" duration="80"/>
+   <frame tileid="2743" duration="80"/>
+   <frame tileid="3043" duration="80"/>
+  </animation>
  </tile>
  <tile id="2144">
   <properties>

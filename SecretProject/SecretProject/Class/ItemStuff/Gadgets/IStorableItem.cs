@@ -30,7 +30,15 @@ namespace SecretProject.Class.ItemStuff
         ItemStorageSlot CurrentHoveredSlot { get; set; }
 
         Tile Tile { get; set; }
+
+        IInformationContainer Container { get; set; }
+
+        int Layer { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
         bool IsItemAllowedToBeStored(Item item);
+
+        bool IsAnimationOpen { get; set; }
         void Update(GameTime gameTime);
         void Activate(IInformationContainer container, int layer, int x, int y);
         void Deactivate();

@@ -839,7 +839,7 @@ namespace SecretProject.Class.TileStuff
                 for (int i = 0; i < entry.Value.Count; i++)
                 {
 
-                    entry.Value[i].Draw(spriteBatch);
+                    entry.Value[i].Draw(spriteBatch, this.TileSet);
 
                 }
             }

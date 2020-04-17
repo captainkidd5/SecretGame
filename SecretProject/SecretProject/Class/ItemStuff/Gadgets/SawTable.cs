@@ -31,6 +31,11 @@ namespace SecretProject.Class.ItemStuff
 
         public Vector2 TimerStringLocation { get; set; }
         public Tile Tile { get; set; }
+        public IInformationContainer Container { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int Layer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int X { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int Y { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public bool IsAnimationOpen { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         private Button redEsc;
         public SawTable(string iD, int size, Vector2 location, GraphicsDevice graphics)

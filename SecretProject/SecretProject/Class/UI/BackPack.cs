@@ -686,7 +686,7 @@ namespace SecretProject.Class.UI
 
             else
             {
-                return -50; //Placeholder
+                return -1; //Placeholder
             }
         }
 
