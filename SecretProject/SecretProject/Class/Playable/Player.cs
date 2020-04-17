@@ -187,7 +187,9 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Mining:
                     IsPerformingAction = true;
- 
+                    Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
+                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+
                     break;
 
                 case AnimationType.Chopping:

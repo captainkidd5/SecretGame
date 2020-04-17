@@ -371,7 +371,7 @@
  <tile id="296">
   <properties>
    <property name="destructable" value="-50,1,0,16,16,0"/>
-   <property name="loot" value="755:100:1,754:20:3"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -1162,7 +1162,7 @@
  <tile id="696">
   <properties>
    <property name="destructable" value="-50,1,0,16,16,0"/>
-   <property name="loot" value="758:100:2,759:20:2"/>
+   <property name="loot" value=""/>
   </properties>
  </tile>
  <tile id="731">
@@ -1890,6 +1890,9 @@
    <property name="loot" value="1002"/>
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="2" width="12" height="12"/>
+  </objectgroup>
   <animation>
    <frame tileid="1079" duration="100"/>
    <frame tileid="1080" duration="100"/>
@@ -2561,6 +2564,28 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
+ <tile id="1443">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="8" width="12" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="1445">
+  <properties>
+   <property name="lightSource" value="1,0,0,NightTime"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1446">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="10" width="4" height="5"/>
+  </objectgroup>
+ </tile>
  <tile id="1457">
   <properties>
    <property name="layer" value="3"/>
@@ -2868,6 +2893,12 @@
  <tile id="1633">
   <properties>
    <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1642">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1644">
@@ -3648,43 +3679,67 @@
   </objectgroup>
  </tile>
  <tile id="2621">
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2622">
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2623">
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2624">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="10" width="16" height="6"/>
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2625">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="10" width="16" height="6"/>
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2626">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="10" width="16" height="6"/>
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2627">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="10" width="16" height="6"/>
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2628">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="10" width="16" height="6"/>
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="12" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2629">
@@ -3753,11 +3808,17 @@
   </objectgroup>
  </tile>
  <tile id="2724">
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="2725">
+  <properties>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>

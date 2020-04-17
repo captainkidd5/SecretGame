@@ -22,6 +22,27 @@
                     </Item>
                 </LootPieces>
             </Item>
+
+              <!--Zod Fern -->
+         <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>296</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>754</ItemToSpawnID>
+                        <MinNumberToSpawn>2</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>755</ItemToSpawnID>
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
             <!-- bloom berry -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>490</GID>
@@ -76,6 +97,27 @@
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
                         <ItemToSpawnID>753</ItemToSpawnID>
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+                 <!-- DesmodusBloom -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>696</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>758</ItemToSpawnID>
+                        <MinNumberToSpawn>2</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>759</ItemToSpawnID>
                         <MinNumberToSpawn>1</MinNumberToSpawn>
                         <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
                         <MaxNumberToSpawn>4</MaxNumberToSpawn>
