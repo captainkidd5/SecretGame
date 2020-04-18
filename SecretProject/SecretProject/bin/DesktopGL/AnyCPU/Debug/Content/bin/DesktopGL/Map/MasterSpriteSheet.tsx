@@ -5024,7 +5024,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="0" width="6" height="16"/>
+   <object id="2" x="0" y="3" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="3736">
@@ -5259,7 +5259,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="0" width="6" height="16"/>
+   <object id="2" x="0" y="3" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="3936">
