@@ -132,20 +132,7 @@ namespace SecretProject.Class.Universal
 
         public AnimationType GetRequiredTileTool(string info)
         {
-            int toolToReturn = int.Parse(info.Split(',')[0]);
-            switch (toolToReturn)
-            {
-                case -50:
-                    return AnimationType.HandsPicking;
-                case 0:
-                    return AnimationType.HandsPicking;
-                case 21:
-                    return AnimationType.Chopping;
-                case 22:
-                    return AnimationType.Mining;
-
-                default: return AnimationType.Mining;
-            }
+            return (AnimationType)Enum.Parse(typeof(AnimationType), info.Split(',')[0]);
         }
 
         public int GetTileHitpoints(string info)
