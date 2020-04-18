@@ -765,6 +765,36 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Vine Pepper Seeds</Name>
+<ID>790</ID>
+<Description>Grows into a spicy pepper vine when planted.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<Plantable>true</Plantable>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Vine Pepper</Name>
+<ID>791</ID>
+<Description>A red hot pepper.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Nettle Seeds</Name>
+<ID>792</ID>
+<Description>Grows into a nettle when planted.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<Plantable>true</Plantable>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Nettle</Name>
+<ID>793</ID>
+<Description>Can be made into tea.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Large)</Name>
 <ID>840</ID>
 <Description>Part of something bigger than itself.</Description>

@@ -51,6 +51,24 @@
                   <Harvestable>false</Harvestable>
                   </Item>
 
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>790</ItemID>
+                  <Name>Vine Pepper</Name>
+                  <GID>1192</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>792</ItemID>
+                  <Name>Nettle</Name>
+                  <GID>1392</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+
                   <!-- Trees -->
 <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>1008</ItemID>

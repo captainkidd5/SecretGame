@@ -2069,6 +2069,19 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1192">
+  <properties>
+   <property name="crop" value="790"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="1193" duration="80"/>
+   <frame tileid="1194" duration="80"/>
+   <frame tileid="1195" duration="80"/>
+   <frame tileid="1196" duration="80"/>
+  </animation>
+ </tile>
  <tile id="1194">
   <properties>
    <property name="layer" value="3"/>
@@ -2076,11 +2089,15 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1195">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1196">
   <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
+   <property name="destructable" value="-50,1,0,16,16,0"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1200">
@@ -2461,6 +2478,24 @@
    <frame tileid="1384" duration="100"/>
    <frame tileid="1385" duration="100"/>
   </animation>
+ </tile>
+ <tile id="1392">
+  <properties>
+   <property name="crop" value="792"/>
+   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="1393" duration="80"/>
+   <frame tileid="1394" duration="80"/>
+   <frame tileid="1395" duration="80"/>
+   <frame tileid="1396" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="1396">
+  <properties>
+   <property name="destructable" value="-50,1,0,16,16,0"/>
+  </properties>
  </tile>
  <tile id="1402">
   <properties>
@@ -3074,13 +3109,6 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
- <tile id="1752">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1755">
   <properties>
    <property name="action" value="chestLoot"/>
@@ -3195,9 +3223,6 @@
   </objectgroup>
  </tile>
  <tile id="1852">
-  <properties>
-   <property name="action" value="chestLoot"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="5" width="14" height="8"/>
   </objectgroup>

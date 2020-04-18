@@ -125,6 +125,48 @@
                 </LootPieces>
             </Item>
 
+             <!-- Vine Pepper -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1196</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>790</ItemToSpawnID>
+                        <MinNumberToSpawn>2</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>791</ItemToSpawnID>
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+             <!-- Nettle -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1396</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>792</ItemToSpawnID>
+                        <MinNumberToSpawn>2</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>793</ItemToSpawnID>
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
             <!-- Coconut Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>663</GID>
