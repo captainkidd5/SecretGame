@@ -98,7 +98,7 @@ namespace SecretProject
         public static bool EnablePlayerInvincibility = false;
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
-        public static bool EnableMusic = false;
+        public static bool EnableMusic = true;
         public static bool InfiniteArrows = false;
         public static bool GenerateChunkLandscape = true;
         public static bool AllowNaturalNPCSpawning = true;
@@ -137,6 +137,9 @@ namespace SecretProject
 
         //SOUND
         public static SoundBoard SoundManager;
+
+        public static bool IsFadingOut;
+        public static bool IsFadingIn;
 
         //INPUT
 
@@ -963,6 +966,7 @@ namespace SecretProject
         {
             Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
+            IsFadingOut = true;
             
             ILocation location = GetStageFromInt(currentStage);
             location.UnloadContent();
@@ -1033,7 +1037,16 @@ namespace SecretProject
             if (EnableMusic)
             {
                 SoundManager.PlaySong();
-                SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
+                if(IsFadingOut)
+                {
+                    IsFadingOut = SoundManager.FadeSongOut(gameTime);
+
+                }
+                else if(IsFadingIn)
+                {
+                    IsFadingIn = SoundManager.FadeSongIn(gameTime);
+                }
+               // SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
             }
 
             //KEYBOARD

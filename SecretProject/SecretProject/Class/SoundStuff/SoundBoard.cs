@@ -138,6 +138,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect MelodyOfTheSea;
         public SoundEffect DeeperAndDeeper;
         public SoundEffect ForestersTheme;
+        public SoundEffect LighthouseTheme;
 
         //Event songs
         //Intro Scene
@@ -156,7 +157,6 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect PageRuffleClose;
 
         public SongChooser TitleSongs { get; set; }
-        public SongChooser TownSongs { get; set; }
         public SongChooser WorldSongs { get; set; }
         public SongChooser UnRaiSongs { get; set; }
         public SongChooser InteriorSongs { get; set; }
@@ -285,7 +285,7 @@ namespace SecretProject.Class.SoundStuff
             DeeperAndDeeper = content.Load<SoundEffect>("Songs/DeeperAndDeeper");
 
             ForestersTheme = content.Load<SoundEffect>("Songs/ForestersTheme");
-
+            LighthouseTheme = content.Load<SoundEffect>("Songs/LighthouseTheme");
             this.CurrentSong = Title;
             this.CurrentSongInstance = this.CurrentSong.CreateInstance();
 
@@ -301,17 +301,10 @@ namespace SecretProject.Class.SoundStuff
             this.TitleSongs = new SongChooser(new List<SoundEffect>()
             {
                 ForestersTheme,
+                Title
 
             });
 
-            this.TownSongs = new SongChooser(new List<SoundEffect>()
-            {
-                MelodyOfTheSea,
-                ForestersTheme,
-                Title,
-                Lakescape
-
-            });
 
             this.WorldSongs = new SongChooser(new List<SoundEffect>()
             {
@@ -358,8 +351,7 @@ namespace SecretProject.Class.SoundStuff
                 case Stages.OverWorld:
 
                     return WorldSongs.FetchSong();
-                case Stages.Town:
-                    return TownSongs.FetchSong();
+     
                 case Stages.UnderWorld:
                     return UnRaiSongs.FetchSong();
                 default:
@@ -369,6 +361,38 @@ namespace SecretProject.Class.SoundStuff
 
         }
 
+        public bool FadeSongOut(GameTime gameTime)
+        {
+            if(this.CurrentSongInstance.Volume > 0)
+            {
+                float currentVolume = this.CurrentSongInstance.Volume - (float)gameTime.ElapsedGameTime.TotalSeconds * .1f;
+                if(currentVolume < 0)
+                {
+                    currentVolume = 0;
+                }
+                this.CurrentSongInstance.Volume = currentVolume;
+                return true;
+            }
+            Game1.IsFadingIn = true;
+            this.CurrentSongInstance.Stop();
+            PlaySong();
+            return false;
+            
+        }
+        public bool FadeSongIn(GameTime gameTime)
+        {
+            if(this.CurrentSongInstance.Volume < this.GameVolume)
+            {
+                float currentVolume = this.CurrentSongInstance.Volume + (float)gameTime.ElapsedGameTime.TotalSeconds * .1f;
+                if(currentVolume > 1)
+                {
+                    currentVolume = 1;
+                }
+                this.CurrentSongInstance.Volume = currentVolume;
+                return true;
+            }
+            return false;
+        }
 
         public void PlayOpenUI()
         {

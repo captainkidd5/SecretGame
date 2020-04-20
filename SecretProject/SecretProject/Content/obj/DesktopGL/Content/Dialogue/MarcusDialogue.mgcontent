@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/MarcusDialogue.xml</SourceFile>
-  <SourceTime>2020-02-14T12:53:12.2878146-08:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Dialogue/MarcusDialogue.xnb</DestFile>
-  <DestTime>2020-02-14T12:53:31.7899946-08:00</DestTime>
+  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/Dialogue/MarcusDialogue.xml</SourceFile>
+  <SourceTime>2020-04-20T10:40:42.0036486-10:00</SourceTime>
+  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Dialogue/MarcusDialogue.xnb</DestFile>
+  <DestTime>2020-04-20T10:46:21.7091776-10:00</DestTime>
   <Importer>XmlImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T11:55:52-10:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />

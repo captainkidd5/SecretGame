@@ -1228,6 +1228,12 @@
 /processorParam:Quality=Best
 /build:Songs/Lakescape.wav
 
+#begin Songs/LighthouseTheme.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/LighthouseTheme.wav
+
 #begin Songs/MelodyOfTheSea.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

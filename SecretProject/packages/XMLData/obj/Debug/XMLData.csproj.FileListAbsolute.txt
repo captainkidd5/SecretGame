@@ -16,3 +16,11 @@ C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.csproj.CopyComplete
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.dll
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.csprojAssemblyReference.cache
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Debug\XMLData.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Debug\XMLData.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Debug\MonoGame.Framework.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Debug\MonoGame.Framework.dll.config
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.csproj.CopyComplete

@@ -11,7 +11,7 @@ with.
     <!--
     Modify this string to change the font that will be imported.
     -->
-    <FontName>VCR_OSD_MONO_1.001</FontName>
+    <FontName>VCR_OSD_MONO_1.001.TTF</FontName>
 
     <!--
     Size is a float value, measured in points. Modify this value to change
