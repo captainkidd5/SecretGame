@@ -33,14 +33,14 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public CharacterCreationMenu CharacterCreationMenu { get; set; }
 
-        public ChooseGameMenu(GraphicsDevice graphics, Vector2 position, float scale)
+        public ChooseGameMenu(GraphicsDevice graphics, float scale)
         {
-            this.Position = position;
+            
             this.Scale = scale;
             this.BackGroundSourceRectangle = new Rectangle(304, 365, 112, 163);
             this.ButtonSourceRectangle = new Rectangle(1024, 64, 112, 48);
+            this.Position = Game1.Utility.CenterRectangleInRectangle( Game1.ScreenRectangle, this.BackGroundSourceRectangle, Game1.Utility.Origin, 1f, this.Scale);
 
-            
 
             string[] directories = System.IO.Directory.GetDirectories(@"Content/SaveFiles/GameSaves");
             int directoryCount = directories.Length;
@@ -58,7 +58,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100 * directoryCount), CursorType.Normal, this.Scale - 1, null),false);
             this.AllSaveSlots.Add(EmptySaveSlot);
             this.MenuChoice = ChooseGameState.SaveSlotSelection;
-            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, this.AllSaveSlots[this.AllSaveSlots.Count - 1], new Vector2(position.X, position.Y - 400));
+            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, this.AllSaveSlots[this.AllSaveSlots.Count - 1]);
         }
 
         public void Update(GameTime gameTime)

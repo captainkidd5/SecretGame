@@ -57,19 +57,20 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Vector2 PlayerPortraitDrawLocation { get; set; }
 
         public bool WasClothingChanged { get; private set; }
-        public CharacterCreationMenu(GraphicsDevice graphics,SaveSlot saveSlot, Vector2 position)
+        public CharacterCreationMenu(GraphicsDevice graphics,SaveSlot saveSlot)
         {
             this.CurrentSaveSlot = saveSlot;
             this.PlayerName = string.Empty;
             this.StartButtonString = "GO!";
             this.Scale = 3f;
             this.Graphics = graphics;
-            this.Position = position;
+            
             this.BackGroundSourceRectangle = new Rectangle(832, 496, 192, 192);
             this.CharacterPortraitWindow = new Rectangle(896, 416, 64, 80);
+            this.Position = Game1.Utility.CenterRectangleInRectangle(Game1.ScreenRectangle, this.BackGroundSourceRectangle, Game1.Utility.Origin, 1f, this.Scale);
 
 
-            
+
             this.TypingWindow = new TypingWindow(graphics, new Vector2(this.Position.X + 16 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.Scale));
             this.StartNewGameButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 720, 64, 22),
                 this.Graphics, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - 64 / 2 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.Scale + TypingWindow.BackGroundSourceRectangle.Height * Scale), Controls.CursorType.Normal, 3f, null);

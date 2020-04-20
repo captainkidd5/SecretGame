@@ -303,7 +303,7 @@ namespace SecretProject.Class.SoundStuff
                 ForestersTheme,
                 Title
 
-            });
+            },1);
 
 
             this.WorldSongs = new SongChooser(new List<SoundEffect>()
@@ -313,20 +313,22 @@ namespace SecretProject.Class.SoundStuff
                 Title,
                 Lakescape,
                 DeeperAndDeeper,
+                LighthouseTheme
 
-            });
+            }, 3);
 
             this.UnRaiSongs = new SongChooser(new List<SoundEffect>()
             {
                 DeeperAndDeeper,
+                
 
-            });
+            },1);
 
             this.InteriorSongs = new SongChooser(new List<SoundEffect>()
             {
-                MelodyOfTheSea,
+                MelodyOfTheSea, LighthouseTheme
 
-            });
+            },1);
         }
         public void PlaySong()
         {
@@ -365,7 +367,7 @@ namespace SecretProject.Class.SoundStuff
         {
             if(this.CurrentSongInstance.Volume > 0)
             {
-                float currentVolume = this.CurrentSongInstance.Volume - (float)gameTime.ElapsedGameTime.TotalSeconds * .1f;
+                float currentVolume = this.CurrentSongInstance.Volume - (float)gameTime.ElapsedGameTime.TotalSeconds * .25f;
                 if(currentVolume < 0)
                 {
                     currentVolume = 0;
@@ -383,7 +385,7 @@ namespace SecretProject.Class.SoundStuff
         {
             if(this.CurrentSongInstance.Volume < this.GameVolume)
             {
-                float currentVolume = this.CurrentSongInstance.Volume + (float)gameTime.ElapsedGameTime.TotalSeconds * .1f;
+                float currentVolume = this.CurrentSongInstance.Volume + (float)gameTime.ElapsedGameTime.TotalSeconds * .25f;
                 if(currentVolume > 1)
                 {
                     currentVolume = 1;

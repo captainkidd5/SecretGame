@@ -98,7 +98,7 @@ namespace SecretProject
         public static bool EnablePlayerInvincibility = false;
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
-        public static bool EnableMusic = true;
+        public static bool EnableMusic = false;
         public static bool InfiniteArrows = false;
         public static bool GenerateChunkLandscape = true;
         public static bool AllowNaturalNPCSpawning = true;

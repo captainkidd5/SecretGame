@@ -83,6 +83,7 @@ namespace SecretProject.Class.MenuStuff
                 this.Item = item;
                 this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
             }
+            this.FontLocation = Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width * this.HitBoxScale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.HitBoxScale),  "test", this.HitBoxScale);
         }
 
         public void ChangeItemTexture(Item item)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.4" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="2">
   <objectgroup draworder="index" id="2">
@@ -2825,19 +2825,19 @@
  </tile>
  <tile id="1579">
   <properties>
-   <property name="destructable" value="-50,1,0,5,5,0"/>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
    <property name="loot" value="1005"/>
   </properties>
  </tile>
  <tile id="1580">
   <properties>
-   <property name="destructable" value="-50,1,0,5,5,0"/>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
    <property name="loot" value="1000"/>
   </properties>
  </tile>
  <tile id="1581">
   <properties>
-   <property name="destructable" value="-50,1,0,16,16,0"/>
+   <property name="destructable" value="HandsPicking,1,0,16,16,0"/>
    <property name="loot" value="710"/>
   </properties>
  </tile>
@@ -3038,7 +3038,7 @@
  </tile>
  <tile id="1682">
   <properties>
-   <property name="destructable" value="-50,1,0,5,5,0"/>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
    <property name="loot" value="1007"/>
   </properties>
  </tile>

@@ -76,7 +76,7 @@ namespace SecretProject.Class.UI.QuestStuff
             this.ItemRequirementButtons = new List<ItemButton>();
 
             this.TileSourceRectangle = container.AllTiles[tileLayer][tileI, tileJ].SourceRectangle;
-            this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, new Vector2(this.Position.X, this.Position.Y - 32), this.Scale);
+            this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, new Vector2(this.Position.X, this.Position.Y - 32), this.Scale, this.Scale);
 
             for(int i =0; i < worldQuest.ItemsRequired.Count; i++)
             {

@@ -9,36 +9,37 @@ namespace SecretProject.Class.SoundStuff
 {
     public class SongChooser
     {
-        public static int NumberOfSongsBeforeRepeatAllowed = 3;
+        public int NumberOfSongsBeforeRepeatAllowed;
         public List<SoundEffect> Songs { get; set; }
         public List<SoundEffect> LastPlayedSongs { get; set; }
 
-        public SongChooser(List<SoundEffect> songs)
+        public SongChooser(List<SoundEffect> songs, int numberOfSongsBeforeRepeat)
         {
+            this.NumberOfSongsBeforeRepeatAllowed = numberOfSongsBeforeRepeat;
             this.Songs = songs;
             this.LastPlayedSongs = new List<SoundEffect>();
         }
 
+        //possible memory leak
         public SoundEffect FetchSong()
         {
-            int songIndex = Game1.Utility.RNumber(0, Songs.Count);
-            if (LastPlayedSongs.Count > NumberOfSongsBeforeRepeatAllowed || LastPlayedSongs.Count >= Songs.Count)
-            {
-                LastPlayedSongs.RemoveAt(LastPlayedSongs.Count - 1);
-            }
-            if (!LastPlayedSongs.Contains(Songs[songIndex]))
-            {
-                
-                LastPlayedSongs.Add(Songs[songIndex]);
-                return Songs[songIndex];
-                
-            }
-            else
+            int songIndex = Game1.Utility.RNumber(0, Songs.Count + 1);
+
+            if (LastPlayedSongs.Contains(Songs[songIndex]))
             {
                 return FetchSong();
             }
+            else
+            {
+                if(LastPlayedSongs.Count > 0)
+                {
+                    LastPlayedSongs.RemoveAt(0);
+                }
+                LastPlayedSongs.Add(Songs[songIndex]);
+                
+                return Songs[songIndex];
+            }
         }
 
-        
     }
 }

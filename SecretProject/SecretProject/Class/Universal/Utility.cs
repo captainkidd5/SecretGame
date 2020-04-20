@@ -40,6 +40,7 @@ namespace SecretProject.Class.Universal
 
         }
 
+
         public Vector2 CenterRectangleOnScreen(Rectangle sourceRectangle, float scale)
         {
             return new Vector2(centerScreen.X - sourceRectangle.Width * scale /2, centerScreen.Y - sourceRectangle.Height * scale /2);
@@ -62,9 +63,9 @@ namespace SecretProject.Class.Universal
             return new Vector2(position.X + sourceRectangle.Width * scale - rectangleToPlace.Width * scale, position.Y);
         }
 
-        public Vector2 CenterRectangleInRectangle(Rectangle sourceRectangle, Rectangle rectangleToPlace, Vector2 sourcePosition, float scale)
+        public Vector2 CenterRectangleInRectangle(Rectangle sourceRectangle, Rectangle rectangleToPlace, Vector2 sourcePosition, float scaleBig, float scaleSmall)
         {
-            return new Vector2(sourcePosition.X + (sourceRectangle.Width * scale / 2 - rectangleToPlace.Width / 2 * scale), sourcePosition.Y + (sourceRectangle.Height * scale / 2 - rectangleToPlace.Height / 2 * scale));
+            return new Vector2(sourcePosition.X + (sourceRectangle.Width * scaleBig / 2 - rectangleToPlace.Width / 2 * scaleSmall), sourcePosition.Y + (sourceRectangle.Height * scaleBig / 2 - rectangleToPlace.Height / 2 * scaleSmall));
         }
 
         public Vector2 CenterRectangleInRectangleLowerThird(Rectangle sourceRectangle, Rectangle rectangleToPlace, Vector2 sourcePosition, float scale)
