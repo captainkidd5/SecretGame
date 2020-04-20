@@ -27,8 +27,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>4PM</Time>
        <EndStage>OverWorld</EndStage>
-      <EndX>87</EndX>
-      <EndY>73</EndY>
+      <EndX>71</EndX>
+      <EndY>71</EndY>
     </Item>
     </Routes>
   </Asset>
