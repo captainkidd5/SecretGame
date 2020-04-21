@@ -60,6 +60,8 @@ namespace SecretProject.Class.UI
 
         public Rectangle InventoryAreaRectangle { get; set; }
 
+        public Button ButtonHoveredLastFrame { get; private set; }
+
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
             this.Graphics = graphics;
@@ -168,13 +170,15 @@ namespace SecretProject.Class.UI
             TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
                       new Vector2(button.Position.X, button.Position.Y - 32), 200f);
 
-            InfoPopUp infoBox = Game1.Player.UserInterface.InfoBox;
-            infoBox.IsActive = true;
+            Vector2 infoBoxPosition = new Vector2(button.Position.X, button.Position.Y - 150);
+            InfoPopUp infoBox = new InfoPopUp(itemData, infoBoxPosition);
+            
+            Game1.Player.UserInterface.InfoBox = infoBox;
             switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.ShopMenu:
                     infoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
-                    infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                    //infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
                     if (button.isRightClicked)
                     {
                         int numberToSell = 1;
@@ -192,10 +196,10 @@ namespace SecretProject.Class.UI
                     break;
 
                 default:
-                    infoBox.DisplayTitle = true;
-                    infoBox.FitTitleText(itemData.Name, 1f);
-                    infoBox.FitText(itemData.Description, 1f);
-                    infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                    //infoBox.DisplayTitle = true;
+                    //infoBox.FitTitleText(itemData.Name, 1f);
+                    //infoBox.FitText(itemData.Description, 1f);
+                    //infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
                     break;
             }
         }
@@ -270,8 +274,19 @@ namespace SecretProject.Class.UI
 
                     if (itemButton.IsHovered)
                     {
-
+                        Game1.Player.UserInterface.InfoBox.IsActive = true;
                         InventorySlot newInventorySlot = Inventory.currentInventory[i];
+                        if (itemButton != this.ButtonHoveredLastFrame)
+                        {
+                            if(newInventorySlot.ItemCount > 0)
+                            {
+                                ItemInfoInteraction(itemButton, newInventorySlot, newInventorySlot.GetItemData());
+                            this.ButtonHoveredLastFrame = itemButton;
+                            }
+                            
+                        }
+
+                        
                         if (itemButton.isClicked)
                         {
 

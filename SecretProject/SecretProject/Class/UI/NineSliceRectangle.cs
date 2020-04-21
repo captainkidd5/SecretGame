@@ -21,6 +21,9 @@ namespace SecretProject.Class.UI
     }
     public class NineSliceRectangle
     {
+        public Rectangle TotalRectangle { get; set; }
+        public Vector2 Position { get; set; }
+
         public List<Rectangle> CombinedRectangle { get; set; }
         public List<Vector2> RectanglePositions { get; set; }
 
@@ -42,22 +45,22 @@ namespace SecretProject.Class.UI
         Rectangle BottomRightCorner = new Rectangle(1088, 164, 16, 16);
 
        
-        public NineSliceRectangle(Vector2 position, string text)
+        public NineSliceRectangle(Vector2 position, string text, float textScale)
         {
             CombinedRectangle = new List<Rectangle>();
             RectanglePositions = new List<Vector2>();
             this.Scale = 2f;
 
 
-            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, this.Scale, 0);
-            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, this.Scale);
+            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, textScale);
+            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, textScale);
 
 
             int currentWidth = (int)(LeftEdge.Width * Scale);
             int currentHeight = 0;
 
 
-            AddRow(totalRequiredWidth, position,TopLeftCorner, TopEdge, TopRightCorner);
+            this.Width = AddRow(totalRequiredWidth, position,TopLeftCorner, TopEdge, TopRightCorner);
             currentHeight += (int)(16 * this.Scale);
             position = new Vector2(position.X, position.Y + currentHeight);
             while (currentHeight < totalRequireHeight)
@@ -68,9 +71,14 @@ namespace SecretProject.Class.UI
             }
           //  position = new Vector2(position.X, position.Y + currentHeight);
             AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
+            currentHeight += (int)(16 * this.Scale);
+            this.Height = currentHeight;
 
-  
+            this.Position = new Vector2((int)RectanglePositions[0].X, (int)RectanglePositions[0].Y);
+
+            this.TotalRectangle = new Rectangle((int)Position.X, (int)Position.Y, this.Width, this.Height);
         }
+
 
         private void AddRectangle(Rectangle rectangle, Vector2 position)
         {
@@ -78,11 +86,22 @@ namespace SecretProject.Class.UI
             this.RectanglePositions.Add(position);
         }
 
-        private void AddRow(int length, Vector2 position, Rectangle left, Rectangle middle, Rectangle right)
+        /// <summary>
+        /// Returns the width of a single row. To be used once in the constructor set our total width!
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="position"></param>
+        /// <param name="left"></param>
+        /// <param name="middle"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        private int AddRow(int length, Vector2 position, Rectangle left, Rectangle middle, Rectangle right)
         {
+            int totalWidth = 0;
             int startingPositionX = (int)position.X;
-            int numberNeeded = (int)(length / this.Scale / 16); ;
+            int numberNeeded = (int)(length / this.Scale / 16);
             AddRectangle(left, position);
+            totalWidth += left.Width;
             startingPositionX += (int)(16 * this.Scale);
 
             numberNeeded--;
@@ -92,10 +111,14 @@ namespace SecretProject.Class.UI
 
                 Vector2 newPosition = new Vector2(startingPositionX, position.Y);
                 AddRectangle(middle, newPosition);
+                totalWidth += middle.Width;
                 numberNeeded--;
                 startingPositionX += (int)(16 * this.Scale);
             }
             AddRectangle(right, new Vector2(startingPositionX, position.Y));
+            totalWidth += right.Width;
+
+            return totalWidth;
         }
 
 

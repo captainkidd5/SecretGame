@@ -150,8 +150,8 @@ namespace SecretProject.Class.UI
             this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
-            this.InfoBox = new InfoPopUp("Text Not Assigned", new Rectangle(1024, 64, 112, 48));
-            this.Notes = new InfoPopUp("Text Not Assigned", new Rectangle(624, 272, 160, 224)) { Color = Color.Black };
+            this.InfoBox = new InfoPopUp("Text Not Assigned", Game1.Utility.Origin);
+            this.Notes = new InfoPopUp("Text Not Assigned", Game1.Utility.Origin) { Color = Color.Black };
 
             CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
