@@ -2818,6 +2818,22 @@
    <object id="1" x="2" y="1" width="5" height="14"/>
   </objectgroup>
  </tile>
+ <tile id="1573">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="7">
+   <object id="6" x="5" y="9" width="6" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1574">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="9" width="6" height="5"/>
+  </objectgroup>
+ </tile>
  <tile id="1575">
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="9" width="14" height="7"/>

@@ -101,6 +101,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             new SpawnElement(1682, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Red Shell
             new SpawnElement(670,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Palm Tree Seed 
             new SpawnElement(1285, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Thorn Bush
+            new SpawnElement(1573, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Big Cactus
+            new SpawnElement(1574, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Small Cactus
             //    new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
             //    new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
             //    new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone

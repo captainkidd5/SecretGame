@@ -327,7 +327,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                             Vector2 oldVelocity = primaryVelocity;
                             if(Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
                             {
-                                if()
+                                //if()
                             }
                         }
                     }
