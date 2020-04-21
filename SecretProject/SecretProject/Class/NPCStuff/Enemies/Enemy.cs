@@ -88,6 +88,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public CurrentBehaviour CurrentBehaviour { get; set; }
         public CurrentBehaviour PrimaryPlayerInterationBehavior { get; set; }
 
+        public bool DoesIntersectScreen { get; set; }
+
 
         //DAMAGE RELATED THINGS
 
@@ -175,8 +177,12 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.ObstacleGrid = container.PathGrid;
         }
 
-        public virtual void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
+
+        
+
+        public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
+            this.DoesIntersectScreen = this.NPCPathFindRectangle.Intersects(cameraRectangle);
             if (this.HitPoints <= 0)
             {
                 RollPeriodicDrop(this.Position);
@@ -185,22 +191,67 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
-            TestImmunity(gameTime);
+            if(DoesIntersectScreen)
+            {
+                TestImmunity(gameTime);
+                QuadTreeInsertion();
+                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+                {
+                    this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+                }
+                UpdateDirection();
+                if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
+                {
+                    mouse.ChangeMouseTexture(CursorType.Normal);
+                    mouse.ToggleGeneralInteraction = true;
+                    Game1.isMyMouseVisible = false;
+
+                }
+
+                if (this.IsMoving)
+                {
+
+                    for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+                    {
+                        this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
+                    }
+
+
+
+                }
+                else
+                {
+                    for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+                    {
+                        this.NPCAnimatedSprite[i].SetFrame(0);
+                    }
+
+
+                }
+
+                if (this.MakesPeriodicSound)
+                {
+
+
+                    if (this.IdleSoundEffect != null)
+                    {
+
+                        if ((Game1.GlobalClock.SecondsPassedToday - this.SoundTimer) > this.SoundUpperBound)
+                        {
+                            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
+                            this.SoundTimer = Game1.GlobalClock.SecondsPassedToday;
+
+
+                        }
+                    }
+                }
+            }
+            
             this.PrimaryVelocity = new Vector2(.5f, .5f);
-            QuadTreeInsertion();
-            for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-            {
-                this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
-            }
-            UpdateDirection();
+           
+            
 
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-            {
-                mouse.ChangeMouseTexture(CursorType.Normal);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
-
-            }
+           
 
             if (this.IsMoving)
             {
@@ -228,50 +279,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         MoveAwayFromPoint(Game1.Player.Position, gameTime);
                         break;
                 }
-
-
             }
-
-
-            if (this.IsMoving)
-            {
-
-                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                {
-                    this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
-                }
-
-
-
-            }
-            else
-            {
-                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                {
-                    this.NPCAnimatedSprite[i].SetFrame(0);
-                }
-
-
-            }
-            if (this.MakesPeriodicSound)
-            {
-
-
-                if (this.IdleSoundEffect != null)
-                {
-
-                        if ((Game1.GlobalClock.SecondsPassedToday - this.SoundTimer) > this.SoundUpperBound)
-                        {
-                            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
-                            this.SoundTimer = Game1.GlobalClock.SecondsPassedToday;
-
-
-                        }
-                }
-            }
-
-
-
         }
 
         public virtual void QuadTreeInsertion()
@@ -730,25 +738,34 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
         {
-            if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
+            if (this.DoesIntersectScreen)
             {
 
-                //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
-                //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
-                //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
+
+                if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
+                {
+
+                    //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
+                    //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
+                    //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
 
 
+
+                }
+
+
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
 
             }
-
-
-            this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
-
-
         }
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
+            if (this.DoesIntersectScreen)
+            {
+
+
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
+            }
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {

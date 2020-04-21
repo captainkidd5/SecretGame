@@ -81,12 +81,12 @@ namespace SecretProject.Class.StageFolder
 
             //PRIMARY 
             Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, buttonStartPosition, CursorType.Normal, 2f);
-            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .05f, Game1.PresentationParameters.BackBufferHeight * .05f), CursorType.Normal, 2f)
+            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .025f, Game1.PresentationParameters.BackBufferHeight * .025f), CursorType.Normal, 2f)
             { ItemSourceRectangleToDraw = new Rectangle(16, 128, 32, 32) };
             Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(buttonStartPosition.X, buttonStartPosition.Y + 48 * 2f), CursorType.Normal, 2f);
             DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 72, 32, 32), graphicsDevice, new Vector2(Game1.ScreenWidth *.1f, Game1.ScreenHeight * .1f), CursorType.Normal, 2f);
 
-            PrimaryButtons = new List<Button>() { Play, Settings, Exit, DevPanel };
+            PrimaryButtons = new List<Button>() { Play, Exit, DevPanel };
             
 
             //PLAY
@@ -150,7 +150,11 @@ namespace SecretProject.Class.StageFolder
             }
             if (!Game1.freeze)
             {
-
+                Settings.Update(mouse);
+                if (Settings.isClicked)
+                {
+                    this.CurrentMenuState = MenuState.Settings;
+                }
 
                 switch (CurrentMenuState)
                 {
@@ -185,7 +189,9 @@ namespace SecretProject.Class.StageFolder
             Back.Update(Game1.MouseManager);
             if (Back.isClicked)
             {
+                ChooseGameMenu.MenuChoice = ChooseGameState.SaveSlotSelection;
                 CurrentMenuState = MenuState.Primary;
+               
             }
 
         }
@@ -203,10 +209,7 @@ namespace SecretProject.Class.StageFolder
                 CurrentMenuState = MenuState.Play;
                 return;
             }
-            else if (Settings.isClicked)
-            {
-                this.CurrentMenuState = MenuState.Settings;
-            }
+            
             else if (Exit.isClicked)
             {
                 game.Exit();
@@ -344,14 +347,14 @@ namespace SecretProject.Class.StageFolder
             if (IsDrawn)
             {
 
-
+                Settings.Draw(spriteBatch, this.Settings.ItemSourceRectangleToDraw, this.Settings.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
+                     "", this.Settings.Position, Settings.Color, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
                 switch (CurrentMenuState)
                 {
                     case MenuState.Primary:
 
                         Play.Draw(spriteBatch, Game1.AllTextures.MenuText, "Play", Play.FontLocation, Play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
-                        Settings.Draw(spriteBatch, this.Settings.ItemSourceRectangleToDraw, this.Settings.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", this.Settings.Position, Settings.Color, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                        
 
 
                         Exit.Draw(spriteBatch, Game1.AllTextures.MenuText, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);

@@ -96,7 +96,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
            
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
+        public override void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
             this.IsImmuneToDamage = true;
             DrawShadow = false;

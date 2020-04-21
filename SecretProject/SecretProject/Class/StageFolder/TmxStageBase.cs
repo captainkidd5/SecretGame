@@ -303,7 +303,7 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
-                this.Enemies[i].Update(gameTime, mouse);
+                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
             }
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
 

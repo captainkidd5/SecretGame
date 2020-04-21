@@ -41,7 +41,7 @@ namespace SecretProject.Class.MenuStuff
 
 
 
-        public Vector2 FontLocation { get { return new Vector2(this.HitBoxRectangle.X + 5, this.HitBoxRectangle.Y + this.BackGroundSourceRectangle.Height / 2); } set { } }
+        public Vector2 FontLocation { get; set; }
 
         public CursorType CursorType { get; set; }
 
@@ -83,7 +83,7 @@ namespace SecretProject.Class.MenuStuff
                 this.Item = item;
                 this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
             }
-            this.FontLocation = Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width * this.HitBoxScale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.HitBoxScale),  "test", this.HitBoxScale);
+            this.FontLocation = Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width , this.Position.Y + this.BackGroundSourceRectangle.Height),  "test", this.HitBoxScale);
         }
 
         public void ChangeItemTexture(Item item)

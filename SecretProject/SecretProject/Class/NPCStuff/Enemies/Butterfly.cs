@@ -91,9 +91,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
+        public override void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
-            base.Update(gameTime, mouse, enemies);
+            base.Update(gameTime, mouse,cameraRectangle, enemies);
             Flutter(gameTime);
 
 
