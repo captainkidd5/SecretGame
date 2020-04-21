@@ -34,6 +34,8 @@ namespace SecretProject.Class.UI
         public Button SpawnAnimalPack { get; set; }
 
         public List<Button> WeatherButtons { get; set; }
+
+        public bool Toggle1 { get; set; }
         public DebugWindow(GraphicsDevice graphics, SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont, textBoxLocation, textToWrite, backDrop)
         {
             this.GraphicsDevice = graphics;
@@ -56,8 +58,18 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActivated)
             {
+                if(Toggle1)
+                {
+                    if(Game1.MouseManager.IsClicked)
+                    {
+                        Game1.OverWorld.Enemies.Add(new Bee("testBee", Game1.OverWorld.Enemies, Game1.MouseManager.WorldMousePosition, this.GraphicsDevice, Game1.OverWorld.AllTiles.ChunkUnderPlayer, CurrentBehaviour.Wander) { IsWorldNPC = true });
+                    }
+                }
 
-
+                if(Game1.KeyboardManager.WasKeyPressed(Keys.T))
+                {
+                    Toggle1 = !Toggle1;
+                }
                 base.Update(gameTime, Keys.F1);
                 this.ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
                 this.DebugButton1.Update(Game1.MouseManager);

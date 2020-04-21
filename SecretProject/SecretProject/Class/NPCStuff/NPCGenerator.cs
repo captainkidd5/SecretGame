@@ -189,27 +189,27 @@ namespace SecretProject.Class.NPCStuff
             {
                 case NPCType.Boar:
 
-                    return new Boar("boar", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true } ;
+                    return new Boar("boar", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true } ;
 
 
                 case NPCType.Crab:
-                    return new Crab("Crab", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true };
+                    return new Crab("Crab", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true };
 
                 case NPCType.Rabbit:
-                    return new Rabbit("Rabbit", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                    return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Flee);
 
                 case NPCType.Butterfly:
-                    return new Butterfly("Butterfly", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                    return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Flee);
                 case NPCType.WarChicken:
-                    return new WarChicken("WarChicken", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee) { HasPackAggression = true };
+                    return new WarChicken("WarChicken", pack, position, graphics, container, CurrentBehaviour.Flee) { HasPackAggression = true };
                 case NPCType.CaveToad:
-                    return new CaveToad("CaveToad", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true };
+                    return new CaveToad("CaveToad", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true };
                 case NPCType.SporeShooter:
-                    return new SporeShooter("SporeShooter", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new SporeShooter("SporeShooter", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 case NPCType.Goat:
-                    return new Goat("Goat", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new Goat("Goat", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 case NPCType.Bee:
-                    return new Bee("Bee", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new Bee("Bee", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
                 default:
                     return null;
             }

@@ -33,7 +33,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
             Vector2 position = new Vector2(container.X * 16 * 16 + 64, container.Y * 16 * 16 + 64);
 
 
-            location.Enemies.Add(new InkWizard("InkWizard", null, position, container.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander));
+            location.Enemies.Add(new InkWizard("InkWizard", null, position, container.GraphicsDevice, container, CurrentBehaviour.Wander));
 
             TilingContainer floortiling = Game1.Procedural.GetTilingContainerFromGID(GenerationType.ArcaneFloor);
 

@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Goat : Enemy
     {
-        public Goat(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
+        public Goat(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
@@ -21,7 +21,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 240, 96, 48, 32, 5, .15f, this.Position);
             this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position) { Flip = true };
             this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position)  ;
-
+            this.Texture = Game1.AllTextures.EnemySpriteSheet;
             this.NPCRectangleXOffSet = 8;
             this.NPCRectangleYOffSet = 8;
             this.NPCRectangleHeightOffSet = 24;

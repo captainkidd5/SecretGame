@@ -118,13 +118,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
-        public Enemy(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
+        public Enemy(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
             this.Name = name;
             this.Pack = pack;
             this.Position = position;
             this.Graphics = graphics;
-            this.Texture = spriteSheet;
+            this.Texture = Game1.AllTextures.EnemySpriteSheet;
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
@@ -154,16 +154,16 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             switch (enemyType)
             {
                 case EnemyType.Boar:
-                    return new Boar("Boar", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Boar("Boar", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Crab:
-                    return new Crab("Crab", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Crab("Crab", pack, position, graphics,  container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Rabbit:
-                    return new Rabbit("Rabbit", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Butterfly:
-                    return new Butterfly("Butterfly", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
                 default:
                     return null;
             }
@@ -183,22 +183,20 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
             this.DoesIntersectScreen = this.NPCPathFindRectangle.Intersects(cameraRectangle);
-            if (this.HitPoints <= 0)
-            {
-                RollPeriodicDrop(this.Position);
-                enemies.Remove(this);
-                return;
-            }
-            //this.CurrentBehaviour = CurrentBehaviour.Wander;
+
             this.IsMoving = true;
             if(DoesIntersectScreen)
             {
-                TestImmunity(gameTime);
-                QuadTreeInsertion();
-                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+                if (this.HitPoints <= 0)
                 {
-                    this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+                    RollPeriodicDrop(this.Position);
+                    enemies.Remove(this);
+                    return;
                 }
+                TestImmunity(gameTime);
+                this.PrimaryVelocity = new Vector2(.5f, .5f);
+                
+                
                 UpdateDirection();
                 if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
                 {
@@ -245,40 +243,47 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         }
                     }
                 }
+                QuadTreeInsertion();
+                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+                {
+                    this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+                }
             }
             
-            this.PrimaryVelocity = new Vector2(.5f, .5f);
            
-            
-
-           
+          
 
             if (this.IsMoving)
             {
-                switch (this.CurrentBehaviour)
-                {
-                    case CurrentBehaviour.Wander:
-                        Wander(gameTime);
-                        break;
-                    case CurrentBehaviour.Chase:
-                        //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
-                        //int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
-                        //int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
-                        //int newTargetX = (int)Game1.Player.WorldSquarePosition.X;
-                        //int newTargetY = (int)Game1.Player.WorldSquarePosition.Y;
+                UpdateBehaviours(gameTime);
+            }
+        }
 
-                        //MoveTowardsTarget(gameTime, newTargetX, newTargetY);
-                        break;
-                    case CurrentBehaviour.Hurt:
-                        this.CurrentBehaviour = CurrentBehaviour.Chase;
+        public virtual void UpdateBehaviours(GameTime gameTime)
+        {
+            switch (this.CurrentBehaviour)
+            {
+                case CurrentBehaviour.Wander:
+                    Wander(gameTime);
+                    break;
+                case CurrentBehaviour.Chase:
+                    //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
+                    //int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
+                    //int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
+                    //int newTargetX = (int)Game1.Player.WorldSquarePosition.X;
+                    //int newTargetY = (int)Game1.Player.WorldSquarePosition.Y;
+
+                    //MoveTowardsTarget(gameTime, newTargetX, newTargetY);
+                    break;
+                case CurrentBehaviour.Hurt:
+                    this.CurrentBehaviour = CurrentBehaviour.Chase;
 
 
-                        break;
+                    break;
 
-                    case CurrentBehaviour.Flee:
-                        MoveAwayFromPoint(Game1.Player.Position, gameTime);
-                        break;
-                }
+                case CurrentBehaviour.Flee:
+                    MoveAwayFromPoint(Game1.Player.Position, gameTime);
+                    break;
             }
         }
 
@@ -317,10 +322,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
 
 
-                        //if (returnObjects[i].ColliderType == ColliderType.inert)
-                        //{
-                        //    Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
-                        //}
+                        if (returnObjects[i].ColliderType == ColliderType.inert)
+                        {
+                            Vector2 oldVelocity = primaryVelocity;
+                            if(Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
+                            {
+                                if()
+                            }
+                        }
                     }
 
                 }

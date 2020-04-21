@@ -9,7 +9,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Dog : Enemy
     {
-        public Dog(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
+        public Dog(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
@@ -17,7 +17,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position); 
             this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
             this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
-
+            this.Texture = Game1.AllTextures.EnemySpriteSheet;
             this.NPCRectangleXOffSet = 0;
             this.NPCRectangleYOffSet = -8;
             this.NPCRectangleHeightOffSet = 4;
