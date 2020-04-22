@@ -103,7 +103,7 @@ namespace SecretProject
         public static bool GenerateChunkLandscape = true;
         public static bool AllowNaturalNPCSpawning = true;
 
-        public static int NPCSpawnCountLimit = 40;
+        public static int NPCSpawnCountLimit = 300;
 
         public static bool IsFirstTimeStartup;
 

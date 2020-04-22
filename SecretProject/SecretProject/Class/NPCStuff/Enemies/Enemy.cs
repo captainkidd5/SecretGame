@@ -243,7 +243,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         }
                     }
                 }
-                QuadTreeInsertion();
+             //   QuadTreeInsertion();
                 for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);

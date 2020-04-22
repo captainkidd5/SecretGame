@@ -52,8 +52,8 @@ namespace SecretProject.Class.UI
             this.Scale = 2f;
 
 
-            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, textScale);
-            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, textScale);
+            int totalRequiredWidth = (int)TextBuilder.GetTextLength(text, textScale) + 48;
+            int totalRequireHeight = (int)TextBuilder.GetTextHeight(text, textScale) + 32;
 
 
             int currentWidth = (int)(LeftEdge.Width * Scale);
@@ -62,18 +62,23 @@ namespace SecretProject.Class.UI
 
             this.Width = AddRow(totalRequiredWidth, position,TopLeftCorner, TopEdge, TopRightCorner);
             currentHeight += (int)(16 * this.Scale);
-            position = new Vector2(position.X, position.Y + currentHeight);
-            while (currentHeight < totalRequireHeight)
+            position = new Vector2(position.X, position.Y + 16);
+
+            while (currentHeight <= totalRequireHeight)
             {
                 AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
                 currentHeight += (int)(16 * this.Scale);
-                position = new Vector2(position.X, position.Y + currentHeight);
+                position = new Vector2(position.X, position.Y + 16);
             }
-          //  position = new Vector2(position.X, position.Y + currentHeight);
+
+            AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
+            currentHeight += (int)(16 * this.Scale);
+            position = new Vector2(position.X, position.Y + 16);
+
+
             AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
             currentHeight += (int)(16 * this.Scale);
-            this.Height = currentHeight;
-
+            //position = new Vector2(position.X, position.Y + currentHeight);
             this.Position = new Vector2((int)RectanglePositions[0].X, (int)RectanglePositions[0].Y);
 
             this.TotalRectangle = new Rectangle((int)Position.X, (int)Position.Y, this.Width, this.Height);
@@ -121,6 +126,8 @@ namespace SecretProject.Class.UI
             return totalWidth;
         }
 
+        
+
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -130,6 +137,14 @@ namespace SecretProject.Class.UI
 
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
+        }
+
+        public Vector2 CenterTextHorizontal(string text, float scale)
+        {
+            float textWidth = TextBuilder.GetTextLength(text, scale);
+            float width = (float)this.Width / 2f;
+            Vector2 returnVector = new Vector2(this.Position.X + width, this.Position.Y);
+            return returnVector;
         }
 
     }
