@@ -62,18 +62,18 @@ namespace SecretProject.Class.UI
 
             this.Width = AddRow(totalRequiredWidth, position,TopLeftCorner, TopEdge, TopRightCorner);
             currentHeight += (int)(16 * this.Scale);
-            position = new Vector2(position.X, position.Y + 16);
+            position = new Vector2(position.X, position.Y + 16 * this.Scale);
 
             while (currentHeight <= totalRequireHeight)
             {
                 AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
                 currentHeight += (int)(16 * this.Scale);
-                position = new Vector2(position.X, position.Y + 16);
+                position = new Vector2(position.X, position.Y + 16 * this.Scale);
             }
 
-            AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
-            currentHeight += (int)(16 * this.Scale);
-            position = new Vector2(position.X, position.Y + 16);
+            //AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
+            //currentHeight += (int)(16 * this.Scale * this.Scale);
+            //position = new Vector2(position.X, position.Y + 16);
 
 
             AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
