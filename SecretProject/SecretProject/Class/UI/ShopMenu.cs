@@ -191,7 +191,7 @@ namespace SecretProject.Class.UI
 
     public class ShopMenuSlot
     {
-
+        public GraphicsDevice Graphics { get; set; }
         public int ItemID { get; set; }
         public Button Button { get; set; }
         public Vector2 drawPosition;
@@ -201,6 +201,7 @@ namespace SecretProject.Class.UI
         public Item Item { get; set; }
         public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition, float buttonScale)
         {
+            this.Graphics = graphics;
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Item = item;
             this.ItemID = itemID;
@@ -216,10 +217,11 @@ namespace SecretProject.Class.UI
             this.Button.Update(mouse);
             if (Stock > 0 && this.Button.IsHovered)
             {
-                Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(Item.ID).Description, 2f);
-                // Game1.Player.UserInterface.InfoBox.StringToWrite = Item.Name + "\n " + Item.Description;
-                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(drawPosition.X - 232, drawPosition.Y);
+                InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetItem(this.ItemID), new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64)) ;
+
+            
+            Game1.Player.UserInterface.InfoBox = infoBox;
+            Game1.Player.UserInterface.InfoBox.IsActive = true;
                 colorMultiplier = .5f;
                 if (this.Button.isClicked)
                 {

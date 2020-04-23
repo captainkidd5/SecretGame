@@ -21,6 +21,7 @@ namespace SecretProject.Class.UI
     }
     public class NineSliceRectangle
     {
+
         public Rectangle TotalRectangle { get; set; }
         public Vector2 Position { get; set; }
 
@@ -29,7 +30,6 @@ namespace SecretProject.Class.UI
 
         public int Width { get;private set; }
         public int Height { get; private set; }
-
         public float Scale { get; set; }
 
         Rectangle TopLeftCorner = new Rectangle(1056, 128, 16, 16);

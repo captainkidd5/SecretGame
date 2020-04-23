@@ -171,14 +171,14 @@ namespace SecretProject.Class.UI
                       new Vector2(button.Position.X, button.Position.Y - 32), 200f);
 
             Vector2 infoBoxPosition = new Vector2(button.Position.X, button.Position.Y - 150);
-            InfoPopUp infoBox = new InfoPopUp(itemData, infoBoxPosition);
-            
-            Game1.Player.UserInterface.InfoBox = infoBox;
+
+            InfoPopUp infoBox;
+           
             switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.ShopMenu:
-                    infoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
-                    //infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                     infoBox = new InfoPopUp(this.Graphics, itemData, infoBoxPosition, true);
+ 
                     if (button.isRightClicked)
                     {
                         int numberToSell = 1;
@@ -196,12 +196,10 @@ namespace SecretProject.Class.UI
                     break;
 
                 default:
-                    //infoBox.DisplayTitle = true;
-                    //infoBox.FitTitleText(itemData.Name, 1f);
-                    //infoBox.FitText(itemData.Description, 1f);
-                    //infoBox.WindowPosition = new Vector2(button.Position.X - infoBox.SourceRectangle.Width + 50, button.Position.Y - 150);
+                     infoBox = new InfoPopUp(this.Graphics, itemData, infoBoxPosition);
                     break;
             }
+            Game1.Player.UserInterface.InfoBox = infoBox;
         }
 
         public void Update(GameTime gameTime)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Mippin/mippinPortrait.png</SourceFile>
-  <SourceTime>2020-03-19T07:54:35.8713207-10:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Mippin/mippinPortrait.xnb</DestFile>
-  <DestTime>2020-04-22T14:21:21.2221697-10:00</DestTime>
+  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/NPC/Mippin/mippinPortrait.png</SourceFile>
+  <SourceTime>2020-04-20T10:40:42.0508792-10:00</SourceTime>
+  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Mippin/mippinPortrait.xnb</DestFile>
+  <DestTime>2020-04-22T19:29:55.3575884-10:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
