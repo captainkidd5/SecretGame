@@ -21,26 +21,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void ExtendCliffs(IInformationContainer container)
         {
-            //List<int> CliffBottomTiles;
-
-            //if (container.ITileManager.Stage == Game1.OverWorld)
-            //{
-            //    CliffBottomTiles = new List<int>()
-            //            {
-            //                4222, 4223, 4224,4021,4025,4026,4027,4028
-            //            };
-            //}
-            //else
-            //{
-            //    CliffBottomTiles = new List<int>()
-            //            {
-            //                4726, 4927, 4928,4929,4730,4731,4732,4733
-            //            };
-            //}
-
-
-
-
 
             for (int z = 0; z < 4; z++)
             {
@@ -76,15 +56,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             }
                         }
 
-                        container.AllTiles[z][i, j].X = container.AllTiles[z][i, j].X + TileUtility.ChunkWidth * container.X;
-                        container.AllTiles[z][i, j].Y = container.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * container.Y;
-
-                        TileUtility.AssignProperties(container.AllTiles[z][i, j], z, i, j, container);
-                        if (z == 3)
-                        {
-                            SpawnHolder.AddGrassTufts(container, container.AllTiles[z][i, j], container.AllTiles[1][i, j]);
-                        }
-
                     }
                 }
             }
@@ -93,17 +64,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
         {
 
- 
-            if (container.ITileManager.Stage == Game1.OverWorld)
-            {
-                gidToTest = 4124;
-                gidBottomToTest = 4724;
-            }
-            else
-            {
-                gidToTest = 4829;
-                gidBottomToTest = 5429;
-            }
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
@@ -149,7 +109,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public static List<int> GetTopCliffEdges(TilingContainer tilingContainer)
         {
-            int centralID = tilingContainer.GeneratableTiles[15];
+            int centralID = tilingContainer.TilingDictionary[15];
             List<int> edgeList = new List<int>()
             {
                 centralID - 102, centralID + 99, centralID + 100, centralID + 101, centralID - 98,

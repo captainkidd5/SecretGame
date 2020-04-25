@@ -220,12 +220,47 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.NoiseConverter = new NoiseConverter(allOverworldNoise, allUnderWorldNoise);
 
+            TilingContainer dirtCliffContainer = GetTilingContainerFromGenerationType(GenerationType.DirtCliff);
+            TilingContainer forestWallContainer = GetTilingContainerFromGenerationType(GenerationType.ForestWall);
             this.TopCliffs = new List<CliffHandler>()
             {
-                new CliffHandler()
-            }
-            this.BottomCliffs = new List<CliffHandler>();
+                new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
+                new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), dirtCliffContainer.TilingDictionary[15], 4613),
 
+            };
+            TilingContainer unraiCliffs = GetTilingContainerFromGenerationType(GenerationType.CaveCliff);
+            this.BottomCliffs = new List<CliffHandler>()
+            {
+                new CliffHandler(CliffHandler.GetTopCliffEdges(unraiCliffs), unraiCliffs.TilingDictionary[15], 5428),
+
+
+            };
+        }
+
+        public void ExtendCliffs(IInformationContainer container)
+        {
+           // if(Game1.GetCurrentStage() == Game1.OverWorld)
+          //  {
+                foreach(CliffHandler handler in this.TopCliffs)
+                {
+                    handler.ExtendCliffs(container);
+                }
+            //}
+            //else if (Game1.GetCurrentStage() == Game1.UnderWorld)
+            //{
+            //    foreach (CliffHandler handler in this.BottomCliffs)
+            //    {
+            //        handler.ExtendCliffs(container);
+            //    }
+            //}
+        }
+
+        public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
+        {
+            foreach (CliffHandler handler in this.TopCliffs)
+            {
+                handler.HandleCliffEdgeCases(container, allAdjacentChunkNoise);
+            }
         }
 
         public TilingContainer GetTilingContainerFromGenerationType(GenerationType generationType)

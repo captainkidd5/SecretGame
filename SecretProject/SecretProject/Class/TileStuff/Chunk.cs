@@ -882,26 +882,7 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            List<int> CliffBottomTiles;
-
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
-                CliffBottomTiles = new List<int>()
-                        {
-                            4222, 4223, 4224,4021,4025,4026,4027,4028
-                        };
-            }
-            else
-            {
-                CliffBottomTiles = new List<int>()
-                        {
-                            4726, 4927, 4928,4929,4730,4731,4732,4733
-                        };
-            }
-
-
-
-
+            Game1.Procedural.ExtendCliffs(this);
 
             for (int z = 0; z < 4; z++)
             {
@@ -909,33 +890,6 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
-                        if (z == 2)
-                        {
-                            if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
-                            {
-
-                                int counter = 1;
-
-                                for (int c = j; c < j + 5; c++)
-                                {
-                                    if (j + counter < 16)
-                                    {
-
-
-                                        this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
-
-                                        this.AllTiles[3][i, j + counter].GID = 0;
-                                        if (c < j + 4)
-                                        {
-                                            this.AllTiles[0][i, j + counter].GID = 0;
-                                        }
-
-                                        counter++;
-                                    }
-                                }
-
-                            }
-                        }
 
                         this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
@@ -943,7 +897,11 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
                         if (z == 3)
                         {
-                           SpawnHolder.AddGrassTufts(this, this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
+                            if(PathGrid.Weight[i,j] == (int)GridStatus.Clear)
+                            {
+                                SpawnHolder.AddGrassTufts(this, this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
+                            }
+                           
                         }
 
                     }

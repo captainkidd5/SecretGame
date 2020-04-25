@@ -212,7 +212,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     int xSpawn = random.Next(0, container.AllTiles[(int)element.MapLayerToPlace].GetLength(0));
                     int ySpawn = random.Next(0, container.AllTiles[(int)element.MapLayerToPlace].GetLength(1));
 
-                    if (container.AllTiles[(int)element.MapLayerToPlace][xSpawn, ySpawn].GID == -1 && container.AllTiles[(int)element.MapLayerToCheckIfEmpty][xSpawn, ySpawn].GenerationType == element.GenerationType)
+                    if (container.PathGrid.Weight[xSpawn, ySpawn] == (int)GridStatus.Clear && container.AllTiles[(int)element.MapLayerToCheckIfEmpty][xSpawn, ySpawn].GenerationType == element.GenerationType)
                     {
                         TileUtility.ReplaceTile((int)element.MapLayerToPlace, xSpawn, ySpawn, element.GID, container);
                         if(element.IsCrop)
