@@ -12,11 +12,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public int CenterGID { get; private set; }
         public int BottomGID { get; private set; }
 
+        public int CliffSize { get; private set; }
+
         public CliffHandler(List<int> topEdges, int centerGID, int bottomGID)
         {
             this.TopEdges = topEdges;
             this.CenterGID = centerGID + 1;
             this.BottomGID = bottomGID + 1;
+            this.CliffSize = ((this.BottomGID - this.CenterGID) / 100) - 1;
         }
 
         public void ExtendCliffs(IInformationContainer container)
@@ -35,7 +38,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                                 int counter = 1;
 
-                                for (int c = j; c < j + 5; c++)
+                                for (int c = j; c < j + CliffSize; c++)
                                 {
                                     if (j + counter < 16)
                                     {
@@ -44,7 +47,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                         container.AllTiles[2][i, j + counter].GID = container.AllTiles[3][i, j].GID + 1 + 100 * counter;
 
                                         container.AllTiles[3][i, j + counter].GID = 0;
-                                        if (c < j + 4)
+                                        if (c < j + CliffSize - 1)
                                         {
                                             container.AllTiles[0][i, j + counter].GID = 0;
                                         }
@@ -66,6 +69,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             int gidToTest = this.CenterGID;
             int gidBottomToTest = this.BottomGID;
+
+            int jDifference = this.BottomGID - this.CenterGID;
             //if (container.ITileManager.Stage == Game1.OverWorld)
             //{
             //    gidToTest = 4124;
@@ -79,7 +84,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
-                for (int j = 15; j > 10; j--)
+                for (int j = 15; j > 15-this.CliffSize; j--)
                 {
                     if (allAdjacentChunkNoise[0][3, i, j] == gidToTest)
                     {

@@ -27,6 +27,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         ArcaneFloor = 3346,
         ArcaneFence = 3946,
         ForestWall = 4113,
+        SandStoneWall = 4813,
 
     };
 
@@ -153,6 +154,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.ArcaneFloor, new TilingContainer(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
                  { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
                  { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, FillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
+                 { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, FillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
 
             };
 
@@ -184,6 +186,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 {
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.3f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.2f),
                 };
 
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
@@ -222,10 +225,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             TilingContainer dirtCliffContainer = GetTilingContainerFromGenerationType(GenerationType.DirtCliff);
             TilingContainer forestWallContainer = GetTilingContainerFromGenerationType(GenerationType.ForestWall);
+            TilingContainer sandStoneWallContainer = GetTilingContainerFromGenerationType(GenerationType.SandStoneWall);
             this.TopCliffs = new List<CliffHandler>()
             {
                 new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
                 new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), forestWallContainer.TilingDictionary[15], 4613),
+                new CliffHandler(CliffHandler.GetTopCliffEdges(sandStoneWallContainer), sandStoneWallContainer.TilingDictionary[15], 5113),
 
             };
             TilingContainer unraiCliffs = GetTilingContainerFromGenerationType(GenerationType.CaveCliff);

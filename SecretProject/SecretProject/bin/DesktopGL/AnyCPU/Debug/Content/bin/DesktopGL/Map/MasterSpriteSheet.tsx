@@ -6481,6 +6481,87 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="4710">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4711">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4712">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4713">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4714">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4715">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="14" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4716">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4717">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4718">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
  <tile id="4722">
   <properties>
    <property name="generate" value="DirtCliff"/>
@@ -6605,6 +6686,70 @@
    <object id="1" x="1" y="2" width="11" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="4811">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4812">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4813">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4814">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4815">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4816">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4817">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4818">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="4826">
   <properties>
    <property name="generate" value="CaveCliff"/>
@@ -6669,6 +6814,70 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="4911">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="4912">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4913">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4914">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4915">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="4916">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="4917">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="4918">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
  <tile id="4926">
   <properties>
    <property name="generate" value="CaveCliff"/>
@@ -6728,6 +6937,30 @@
  <tile id="4933">
   <properties>
    <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5012">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5013">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5014">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -6795,6 +7028,30 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5112">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="5113">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="5114">
+  <properties>
+   <property name="generate" value="SandStoneWall"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="5126">
