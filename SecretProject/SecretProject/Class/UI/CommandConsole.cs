@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +36,8 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("teleport", "teleport (int)[X Position], (int)[Y Position]"),
                 new CommandWindowCommand("clear", "clears console window"),
                 new CommandWindowCommand("settime", "settime (int)[time between 0 and 24]"),
-                new CommandWindowCommand("decreaseEnergy", "decreaseEnergy (int)[amount to decrease]")
+                new CommandWindowCommand("decreaseEnergy", "decreaseEnergy (int)[amount to decrease]"),
+                new CommandWindowCommand("add", "add (string)[mobname], (int)[count]"),
             };
         }
 
@@ -154,6 +158,17 @@ namespace SecretProject.Class.UI
                     break;
                 case "decreasee":
                     Game1.Player.UserInterface.StaminaBar.DecreaseStamina(int.Parse(separatedString[1].ToLower()));
+                    break;
+                case "add":
+
+                    string mobName = separatedString[1].ToLower();
+                    int mobCount = int.Parse(separatedString[2].ToLower());
+
+                    Chunk mouseChunk = Game1.OverWorld.AllTiles.GetChunkFromPosition(Game1.MouseManager.WorldMousePosition);
+                    List<Enemy> enemies = mouseChunk.NPCGenerator.SpawnTargetNPCPack((NPCType)Enum.Parse(typeof(NPCType), mobName, true),
+                        mouseChunk, mobCount, Game1.MouseManager.WorldMousePosition);
+                    Game1.OverWorld.Enemies.AddRange(enemies);
+                    
                     break;
             }
 

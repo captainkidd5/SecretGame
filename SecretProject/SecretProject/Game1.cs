@@ -1235,7 +1235,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("NAME", new Vector2(600, 600), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice, MouseManager) { Activate = true, IsDrawn = true };
+            Player = new Player("NAME", new Vector2(600, 700), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice, MouseManager) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
 

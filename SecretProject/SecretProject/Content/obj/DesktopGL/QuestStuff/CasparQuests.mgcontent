@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/QuestStuff/CasparQuests.xml</SourceFile>
-  <SourceTime>2020-04-20T10:40:42.0790956-10:00</SourceTime>
-  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/QuestStuff/CasparQuests.xnb</DestFile>
-  <DestTime>2020-04-20T10:54:12.6098027-10:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/CasparQuests.xml</SourceFile>
+  <SourceTime>2020-03-26T17:06:34.1485416-10:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/QuestStuff/CasparQuests.xnb</DestFile>
+  <DestTime>2020-04-23T14:50:16.2658166-10:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

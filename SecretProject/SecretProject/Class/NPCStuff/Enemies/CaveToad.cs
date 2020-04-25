@@ -9,7 +9,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class CaveToad : Enemy
     {
-        public CaveToad(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics , IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
+        public CaveToad( List<Enemy> pack, Vector2 position, GraphicsDevice graphics , IInformationContainer container) : base(pack, position, graphics, container)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

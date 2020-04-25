@@ -118,9 +118,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
-        public Enemy(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
+        public Enemy( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
         {
-            this.Name = name;
             this.Pack = pack;
             this.Position = position;
             this.Graphics = graphics;
@@ -134,7 +133,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.DebugColor = Color.Red;
             this.CurrentPath = new List<PathFinderNode>();
             this.CurrentBehaviour = CurrentBehaviour.Wander;
-            this.PrimaryPlayerInterationBehavior = primaryPlayerInteractionBehavior;
+            this.PrimaryPlayerInterationBehavior = CurrentBehaviour.Chase;
 
 
             this.TimeInUnloadedChunk = 0f;
@@ -149,26 +148,26 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.DamageImmunityTimer = new SimpleTimer(.5f);
         }
 
-        public static Enemy GetEnemyFromType(EnemyType enemyType, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
-        {
-            switch (enemyType)
-            {
-                case EnemyType.Boar:
-                    return new Boar("Boar", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+        //public static Enemy GetEnemyFromType(EnemyType enemyType, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
+        //{
+        //    switch (enemyType)
+        //    {
+        //        case EnemyType.Boar:
+        //            return new Boar("Boar", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
-                case EnemyType.Crab:
-                    return new Crab("Crab", pack, position, graphics,  container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+        //        case EnemyType.Crab:
+        //            return new Crab("Crab", pack, position, graphics,  container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
-                case EnemyType.Rabbit:
-                    return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+        //        case EnemyType.Rabbit:
+        //            return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
-                case EnemyType.Butterfly:
-                    return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
-                default:
-                    return null;
-            }
+        //        case EnemyType.Butterfly:
+        //            return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+        //        default:
+        //            return null;
+        //    }
 
-        }
+        //}
 
         public void UpdateCurrentChunk(IInformationContainer container)
         {

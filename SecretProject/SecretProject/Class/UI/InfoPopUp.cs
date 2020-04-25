@@ -131,10 +131,14 @@ namespace SecretProject.Class.UI
                     spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
                 }
 
-                foreach(Sprite sprite in this.Sprites)
+                if(this.Sprites != null)
                 {
-                    sprite.Draw(spriteBatch, Game1.Utility.StandardButtonDepth + .06f);
+                    foreach (Sprite sprite in this.Sprites)
+                    {
+                        sprite.Draw(spriteBatch, Game1.Utility.StandardButtonDepth + .06f);
+                    }
                 }
+                
             }
 
         }

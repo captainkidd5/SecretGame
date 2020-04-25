@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class InkWizard : Enemy
     {
-        public InkWizard(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
+        public InkWizard(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base( pack, position, graphics, container)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

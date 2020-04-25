@@ -18,14 +18,14 @@ namespace SecretProject.Class.NPCStuff.CaptureCrateStuff
 
         public static void Release(EnemyType enemyType, GraphicsDevice graphics, IInformationContainer container = null)
         {
-            if (container != null)
-            {
-                Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null,  Game1.Player.position, graphics, container, true));
-            }
-            else
-            {
-                Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null, Game1.Player.position, graphics, (IInformationContainer)Game1.GetCurrentStage().AllTiles, false));
-            }
+            //if (container != null)
+            //{
+            //    Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null,  Game1.Player.position, graphics, container, true));
+            //}
+            //else
+            //{
+            //    Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null, Game1.Player.position, graphics, (IInformationContainer)Game1.GetCurrentStage().AllTiles, false));
+            //}
         }
 
 

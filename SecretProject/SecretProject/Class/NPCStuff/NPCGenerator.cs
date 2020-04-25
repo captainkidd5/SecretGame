@@ -62,9 +62,21 @@ namespace SecretProject.Class.NPCStuff
             Graphics = graphics;
         }
 
-        public void DecrementPackValue(float packValue)
+        private void DecrementPackValue(float packValue)
         {
             packValue -= .1f;
+        }
+
+        public List<Enemy> SpawnTargetNPCPack(NPCType type, IInformationContainer container, int numberToSpawn, Vector2 position)
+        {
+            List<Enemy> NPCPack = new List<Enemy>();
+
+            for(int i =0; i < numberToSpawn; i++)
+            {
+                NPCPack.Add(NPCSpawnData.GetNewEnemy(type, this.Graphics, NPCPack, position, container));
+            }
+            return NPCPack;
+           
         }
 
         public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position)
@@ -120,7 +132,7 @@ namespace SecretProject.Class.NPCStuff
 
         }
 
-        public bool DetermineWhetherAtLeastOneSpawns(float chance)
+        private bool DetermineWhetherAtLeastOneSpawns(float chance)
         {
             if (Game1.Utility.RFloat(0, 1) < chance)
             {
@@ -132,18 +144,18 @@ namespace SecretProject.Class.NPCStuff
             }
         }
 
-        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn)
+        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn)
         {
             if(numberAlreadyInPack == 0)
             {
-                enemyList.Add(info.GetNewEnemy(Graphics, enemyList, positionToSpawn, this.Container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.Container));
                 numberAlreadyInPack++;
                 return true;
             }
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);
-                enemyList.Add(info.GetNewEnemy(Graphics, enemyList, positionToSpawn, this.Container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.Container));
                 return true;
             }
             else
@@ -183,38 +195,40 @@ namespace SecretProject.Class.NPCStuff
             this.PackFrequency = packFrequency;
         }
 
-        public Enemy GetNewEnemy(GraphicsDevice graphics, List<Enemy> pack, Vector2 position, IInformationContainer container)
+        public static Enemy GetNewEnemy(NPCType type, GraphicsDevice graphics, List<Enemy> pack, Vector2 position, IInformationContainer container)
         {
-            switch (this.Type)
+            switch (type)
             {
                 case NPCType.Boar:
 
-                    return new Boar("boar", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true } ;
+                    return new Boar( pack, position, graphics, container) { HasPackAggression = true } ;
 
 
                 case NPCType.Crab:
-                    return new Crab("Crab", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true };
+                    return new Crab( pack, position, graphics, container) { HasPackAggression = true };
 
                 case NPCType.Rabbit:
-                    return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Flee);
+                    return new Rabbit( pack, position, graphics, container);
 
                 case NPCType.Butterfly:
-                    return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Flee);
+                    return new Butterfly( pack, position, graphics, container);
                 case NPCType.WarChicken:
-                    return new WarChicken("WarChicken", pack, position, graphics, container, CurrentBehaviour.Flee) { HasPackAggression = true };
+                    return new WarChicken( pack, position, graphics, container) { HasPackAggression = true };
                 case NPCType.CaveToad:
-                    return new CaveToad("CaveToad", pack, position, graphics, container, CurrentBehaviour.Chase) { HasPackAggression = true };
+                    return new CaveToad(pack, position, graphics, container) { HasPackAggression = true };
                 case NPCType.SporeShooter:
-                    return new SporeShooter("SporeShooter", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new SporeShooter( pack, position, graphics, container) { HasPackAggression = true };
                 case NPCType.Goat:
-                    return new Goat("Goat", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new Goat( pack, position, graphics, container) { HasPackAggression = true };
                 case NPCType.Bee:
-                    return new Bee("Bee", pack, position, graphics, container, CurrentBehaviour.Wander) { HasPackAggression = true };
+                    return new Bee( pack, position, graphics, container) { HasPackAggression = true };
                 default:
                     return null;
             }
 
         }
+
+
 
     }
 }

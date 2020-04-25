@@ -1480,18 +1480,6 @@
 /processorParam:Quality=Best
 /build:SoundEffects/pumpkinSquash.wav
 
-#begin SoundEffects/rabbitweet.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/rabbitweet.mp3
-
-#begin SoundEffects/rabbitweet.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/rabbitweet.wav
-
 #begin SoundEffects/rainSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

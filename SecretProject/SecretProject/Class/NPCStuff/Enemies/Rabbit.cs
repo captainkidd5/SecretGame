@@ -9,7 +9,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Rabbit : Enemy
     {
-        public Rabbit(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
+        public Rabbit(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base(pack, position, graphics, container)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.IdleSoundEffect = Game1.SoundManager.RabbitWeet;
+          //  this.IdleSoundEffect = Game1.SoundManager.RabbitWeet;
             this.SoundLowerBound = 20f;
             this.SoundUpperBound = 30f;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);

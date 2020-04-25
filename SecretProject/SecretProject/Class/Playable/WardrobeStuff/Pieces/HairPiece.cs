@@ -19,7 +19,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Texture = Game1.AllTextures.HairAtlas;
             this.Color = Color.White;
-            this.LayerDepth = .00000009f;
+            this.LayerDepth = .00000016f;
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 0;
             this.Scale = 1f;

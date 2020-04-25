@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.UI.MainMenuStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 {
     public class ShoesPiece : ClothingPiece
     {
+        public List<Color> Colors { get; private set; }
+        public int ColorIndex { get; private set; }
 
 
         public ShoesPiece(Color defaultColor) : base(defaultColor)
@@ -23,6 +26,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.SpriteEffects = SpriteEffects.None;
             this.BaseYOffSet = 18;
             this.Scale = 1f;
+
+            this.Colors = new List<Color>()
+            {
+                Color.Brown,
+                Color.Black,
+                Color.Red,
+                Color.Blue
+            };
 
 
         }
@@ -299,6 +310,28 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
         }
         #endregion
+
+        public void ChangeShoeColor(CycleDirection direction)
+        {
+            this.ColorIndex += (int)direction;
+            if (this.ColorIndex < this.Colors.Count)
+            {
+                // this.HairIndex++;
+            }
+            else
+            {
+                this.ColorIndex = 0;
+            }
+
+            if (this.ColorIndex < 0)
+            {
+                this.ColorIndex = this.Colors.Count - 1;
+            }
+
+            this.Color = this.Colors[this.ColorIndex];
+
+
+        }
 
 
     }

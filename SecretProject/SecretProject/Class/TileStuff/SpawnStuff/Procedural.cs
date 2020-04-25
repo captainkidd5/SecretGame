@@ -26,6 +26,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         VillageFence = 3937,
         ArcaneFloor = 3346,
         ArcaneFence = 3946,
+        ForestWall = 4113,
 
     };
 
@@ -170,6 +171,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.VillageFence, new TilingContainer(GenerationType.VillageFence, FillFenceTilingDictionary((int)GenerationType.VillageFence), new List<int>()) },
                  { GenerationType.ArcaneFloor, new TilingContainer(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
                  { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
+                 { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, FillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
 
             };
 

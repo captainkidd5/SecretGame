@@ -9,7 +9,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Dog : Enemy
     {
-        public Dog(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
+        public Dog( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base(pack, position, graphics, container)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
