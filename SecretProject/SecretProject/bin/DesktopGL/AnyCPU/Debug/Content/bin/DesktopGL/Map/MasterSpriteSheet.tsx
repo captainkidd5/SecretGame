@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.4" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="2">
   <objectgroup draworder="index" id="2">
@@ -5386,10 +5386,58 @@
    <object id="1" x="3" y="0" width="10" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="4010">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4011">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4012">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4013">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4014">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4015">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4016">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4017">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
  <tile id="4018">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="10" height="9"/>
   </objectgroup>
+ </tile>
+ <tile id="4019">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
  </tile>
  <tile id="4020">
   <properties>
@@ -5538,10 +5586,48 @@
    <property name="newSource" value="-64,-128,144,144"/>
   </properties>
  </tile>
+ <tile id="4111">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4112">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4113">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4114">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4115">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4116">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
  <tile id="4117">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="10" height="9"/>
   </objectgroup>
+ </tile>
+ <tile id="4118">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
  </tile>
  <tile id="4121">
   <properties>
@@ -5693,6 +5779,46 @@
  <tile id="4205">
   <properties>
    <property name="lightSource" value="1"/>
+  </properties>
+ </tile>
+ <tile id="4211">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4212">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4213">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4214">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4215">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4216">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4217">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4218">
+  <properties>
+   <property name="generate" value="ForestWall"/>
   </properties>
  </tile>
  <tile id="4221">
@@ -5874,6 +6000,46 @@
    <property name="action" value="triggerLift"/>
   </properties>
  </tile>
+ <tile id="4311">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4312">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4313">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4314">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4315">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4316">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4317">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4318">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
  <tile id="4321">
   <properties>
    <property name="generate" value="DirtCliff"/>
@@ -5941,9 +6107,44 @@
    <property name="action" value="replaceSmallCog"/>
   </properties>
  </tile>
+ <tile id="4411">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4412">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
  <tile id="4413">
   <properties>
-   <property name="prop" value="prop"/>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4414">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4415">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4416">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4417">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4418">
+  <properties>
+   <property name="generate" value="ForestWall"/>
   </properties>
  </tile>
  <tile id="4421">
@@ -6005,6 +6206,21 @@
  <tile id="4428">
   <properties>
    <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4512">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4513">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4514">
+  <properties>
+   <property name="generate" value="ForestWall"/>
   </properties>
  </tile>
  <tile id="4521">
@@ -6071,9 +6287,19 @@
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
+ <tile id="4612">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
+ <tile id="4613">
+  <properties>
+   <property name="generate" value="ForestWall"/>
+  </properties>
+ </tile>
  <tile id="4614">
   <properties>
-   <property name="prop" value="prop"/>
+   <property name="generate" value="ForestWall"/>
   </properties>
  </tile>
  <tile id="4622">

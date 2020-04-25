@@ -30,26 +30,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
     };
 
-    //public enum GenerationIndex
-    //{
-    //    Grass = 0,
-    //    Dirt = 1,
-    //    Sand = 2,
-    //    SandRuin = 3,
-    //    Water = 4,
-    //    Stone = 5,
-    //    DirtCliff = 6,
-    //    FenceTiling = 7,
-    //    OakFloorTiling = 8,
-    //    StoneWallTiling = 9,
-    //    DirtCliffBottom = 10,
-    //    LandSwamp = 11,
-    //    WaterSwamp = 12,
-    //    CaveCliff = 13,
-    //    CaveDirt = 14,
-    //    CaveWater = 15
-
-    //}
     public class Procedural
     {
         public FastNoise OverworldBackNoise;
@@ -58,7 +38,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
 
-        public Dictionary<int, int> FillTilingDictionary(int centralGID)
+        private Dictionary<int, int> FillTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
             {
@@ -68,7 +48,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
         }
 
-        public Dictionary<int, int> FillFenceTilingDictionary(int centralGID)
+        private Dictionary<int, int> FillFenceTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
             {
@@ -78,7 +58,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
         }
 
-        public Dictionary<int, int> FillCliffTilingDictionary(int centralGID)
+        private Dictionary<int, int> FillCliffTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
             {
@@ -87,6 +67,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
             };
         }
+
+        
 
         public List<NoiseInterval> OverWorldBackgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldMidgroundNoise { get; set; }
@@ -104,6 +86,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
         public Dictionary<GenerationType, TilingContainer> AllTilingContainers;
+
+        public List<CliffHandler> TopCliffs { get; set; }
+        public List<CliffHandler> BottomCliffs { get; set; }
 
         //OverworldFrontNoise = new FastNoise(500);
         //OverworldFrontNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal); // Simplex
@@ -158,10 +143,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.FenceTiling, new TilingContainer(GenerationType.FenceTiling, FillFenceTilingDictionary((int)GenerationType.FenceTiling), new List<int>()) },
                  { GenerationType.OakFloorTiling, new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary((int)GenerationType.OakFloorTiling), new List<int>()) },
                  { GenerationType.StoneWallTiling, new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary((int)GenerationType.StoneWallTiling), new List<int>()) },
-                 { GenerationType.DirtCliffBottom, new TilingContainer(GenerationType.DirtCliffBottom, null, new List<int>()
-                {
-                    3534
-                })},
                  { GenerationType.LandSwamp, new TilingContainer(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()) },
                  { GenerationType.WaterSwamp, new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()) },
                  { GenerationType.CaveCliff, new TilingContainer(GenerationType.CaveCliff, FillCliffTilingDictionary((int)GenerationType.CaveCliff), new List<int>()) },
@@ -201,7 +182,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f)
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.3f),
                 };
 
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
@@ -237,6 +219,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
 
             this.NoiseConverter = new NoiseConverter(allOverworldNoise, allUnderWorldNoise);
+
+            this.TopCliffs = new List<CliffHandler>()
+            {
+                new CliffHandler()
+            }
+            this.BottomCliffs = new List<CliffHandler>();
 
         }
 
