@@ -64,27 +64,39 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
         {
 
+            int gidToTest = this.CenterGID;
+            int gidBottomToTest = this.BottomGID;
+            //if (container.ITileManager.Stage == Game1.OverWorld)
+            //{
+            //    gidToTest = 4124;
+            //    gidBottomToTest = 4724;
+            //}
+            //else
+            //{
+            //    gidToTest = 4829;
+            //    gidBottomToTest = 5429;
+            //}
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
                 for (int j = 15; j > 10; j--)
                 {
-                    if (allAdjacentChunkNoise[0][3, i, j] == this.CenterGID)
+                    if (allAdjacentChunkNoise[0][3, i, j] == gidToTest)
                     {
                         int newJIndex = j;
 
-                        int newCliffGID = this.CenterGID + 100;
+                        int newCliffGID = gidToTest + 100;
                         for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
                         {
                             newCliffGID += 100;
                         }
 
-                        for (int newY = 0; newCliffGID != this.BottomGID; newY++)
+                        for (int newY = 0; newCliffGID != gidBottomToTest; newY++)
                         {
 
                             newCliffGID += 100;
                             container.AllTiles[2][i, newY].GID = newCliffGID;
-                            if (newCliffGID != this.BottomGID)
+                            if (newCliffGID != gidBottomToTest)
                             {
                                 container.AllTiles[0][i, newY].GID = 0;
 

@@ -225,7 +225,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.TopCliffs = new List<CliffHandler>()
             {
                 new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
-                new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), dirtCliffContainer.TilingDictionary[15], 4613),
+                new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), forestWallContainer.TilingDictionary[15], 4613),
 
             };
             TilingContainer unraiCliffs = GetTilingContainerFromGenerationType(GenerationType.CaveCliff);
@@ -257,6 +257,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
         {
+          //  this.TopCliffs[1].HandleCliffEdgeCases(container, allAdjacentChunkNoise);
             foreach (CliffHandler handler in this.TopCliffs)
             {
                 handler.HandleCliffEdgeCases(container, allAdjacentChunkNoise);

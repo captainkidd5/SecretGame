@@ -877,8 +877,8 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                HandleCliffEdgeCases(AllAdjacentChunkNoise);
-               // Game1.Procedural.HandleCliffEdgeCases(AllAdjacentChunkNoise);
+                //HandleCliffEdgeCases(AllAdjacentChunkNoise);
+                Game1.Procedural.HandleCliffEdgeCases(this, AllAdjacentChunkNoise);
 
             }
 
