@@ -2891,6 +2891,8 @@
  </tile>
  <tile id="1573">
   <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="7">
@@ -2899,6 +2901,8 @@
  </tile>
  <tile id="1574">
   <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -2930,7 +2934,7 @@
  </tile>
  <tile id="1582">
   <properties>
-   <property name="destructable" value="-50,1,0,16,16,0"/>
+   <property name="destructable" value="HandsPicking,1,0,16,16,0"/>
    <property name="loot" value="711"/>
   </properties>
  </tile>
@@ -3119,7 +3123,7 @@
  </tile>
  <tile id="1681">
   <properties>
-   <property name="destructable" value="-50,1,0,5,5,0"/>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
    <property name="loot" value="1098"/>
   </properties>
  </tile>

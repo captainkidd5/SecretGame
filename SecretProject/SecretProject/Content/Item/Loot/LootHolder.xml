@@ -188,6 +188,33 @@
                 </LootPieces>
             </Item>
 
+             <!-- Cactus(Large) -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1573</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>712</ItemToSpawnID><!-- Thorn) -->
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>75</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>6</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+             <!-- Cactus(Small) -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1574</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>712</ItemToSpawnID><!-- Thorn) -->
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
             <!-- Coconut Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>663</GID>
