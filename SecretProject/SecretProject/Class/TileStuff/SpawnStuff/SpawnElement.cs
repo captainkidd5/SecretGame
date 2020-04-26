@@ -15,7 +15,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     {
         public int GID { get; private set; }
         public SpawnMethod SpawnMethod { get; set; }
-        public MapLayer MapLayerToPlace { get; private set; }
+        public MapLayer TileLayer { get; private set; }
+        public MapLayer LayerToPlaceOn { get; private set; }
         public MapLayer MapLayerToCheckIfEmpty { get; private set; }
         public GenerationType GenerationType { get; private set; }
         public Rarity Rarity { get; set; }
@@ -43,12 +44,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// <param name="tries"></param>
         /// <param name="limit"></param>
 
-        public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
+        public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer layerToPlaceOn, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
         {
             this.GID = gid + 1;
             this.SpawnMethod = spawnMethod;
-            this.MapLayerToPlace = mapLayerToPlace;
+            this.TileLayer = mapLayerToPlace;
             this.MapLayerToCheckIfEmpty = mapLayerToCheckIfEmpty;
+            this.LayerToPlaceOn = layerToPlaceOn;
             this.GenerationType = generationType;
             this.Rarity = rarity;
             this.OddsOfAdditionalSpawn = oddsOfAdditionalSpawn;

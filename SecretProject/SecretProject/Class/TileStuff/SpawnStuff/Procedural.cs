@@ -28,6 +28,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         ArcaneFence = 3946,
         ForestWall = 4113,
         SandStoneWall = 4813,
+        DesertStone = 1229,
 
     };
 
@@ -155,6 +156,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
                  { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, FillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
                  { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, FillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
+                 { GenerationType.DesertStone, new TilingContainer(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
 
             };
 
@@ -171,6 +173,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DesertStone),-.14f, -.12f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.OakFloorTiling),-.05f, -.047f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .3f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.12f,.123f),
