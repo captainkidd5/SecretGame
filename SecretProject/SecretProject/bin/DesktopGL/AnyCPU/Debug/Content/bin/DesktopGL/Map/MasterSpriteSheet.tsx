@@ -1910,21 +1910,12 @@
  </tile>
  <tile id="1077">
   <properties>
-   <property name="destructable" value="2,0,3,6,6,0"/>
-   <property name="idleStart" value=""/>
-   <property name="loot" value="1002"/>
-   <property name="tileSelectorAllowed" value="3"/>
+   <property name="destructable" value="Mining,3,0,8,20,1"/>
+   <property name="loot" value=""/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="2" y="2" width="12" height="12"/>
+   <object id="1" x="2" y="11" width="12" height="3"/>
   </objectgroup>
-  <animation>
-   <frame tileid="1079" duration="100"/>
-   <frame tileid="1080" duration="100"/>
-   <frame tileid="1081" duration="100"/>
-   <frame tileid="1082" duration="100"/>
-   <frame tileid="1083" duration="100"/>
-  </animation>
  </tile>
  <tile id="1078">
   <properties>
@@ -2032,6 +2023,36 @@
  <tile id="1127">
   <properties>
    <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1128">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1129">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1130">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1131">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1132">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1133">
+  <properties>
+   <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1149">
@@ -2232,6 +2253,31 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
+ <tile id="1228">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1229">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1230">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1231">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1232">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
  <tile id="1249">
   <objectgroup draworder="index">
    <object id="1" x="3.85227" y="0.181809" width="7.72727" height="15.8182"/>
@@ -2319,7 +2365,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0.0909091" width="14" height="5.90909"/>
+   <object id="1" x="1" y="7" width="14" height="5.90909"/>
   </objectgroup>
  </tile>
  <tile id="1285">
@@ -2452,6 +2498,31 @@
  <tile id="1327">
   <properties>
    <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1328">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1329">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1330">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1331">
+  <properties>
+   <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1332">
+  <properties>
+   <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1349">

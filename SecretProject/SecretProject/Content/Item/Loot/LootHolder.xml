@@ -125,6 +125,27 @@
                 </LootPieces>
             </Item>
 
+              <!-- Small Iron Ore-->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1077</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>640</ItemToSpawnID>
+                        <MinNumberToSpawn>1</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>25</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>4</MaxNumberToSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1001</ItemToSpawnID>
+                        <MinNumberToSpawn>0</MinNumberToSpawn>
+                        <ProbabilityAdditionalSpawn>50</ProbabilityAdditionalSpawn>
+                        <MaxNumberToSpawn>10</MaxNumberToSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
              <!-- Vine Pepper -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>1196</GID>

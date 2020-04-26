@@ -178,7 +178,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .3f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.12f,.123f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .06f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.38f,1f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.33f,.4f),
+
                 };
             this.OverWorldBuildingsNoise = new List<NoiseInterval>()
             {
@@ -284,31 +285,31 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         }
 
-        public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
-        {
-            if (chance == 100)
-            {
-                if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-               acceptableGenerationTiles, container, comparisonLayer))
-                {
-                    container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
-                }
-            }
+        //public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
+        //{
+        //    if (chance == 100)
+        //    {
+        //        if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+        //       acceptableGenerationTiles, container, comparisonLayer))
+        //        {
+        //            container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+        //        }
+        //    }
 
-            else
-            {
-                if (Game1.Utility.RGenerator.Next(0, 101) < chance)
-                {
-                    if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-               acceptableGenerationTiles, container, comparisonLayer))
-                    {
-                        container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
-                    }
-                }
+        //    else
+        //    {
+        //        if (Game1.Utility.RGenerator.Next(0, 101) < chance)
+        //        {
+        //            if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+        //       acceptableGenerationTiles, container, comparisonLayer))
+        //            {
+        //                container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+        //            }
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
 
 
 

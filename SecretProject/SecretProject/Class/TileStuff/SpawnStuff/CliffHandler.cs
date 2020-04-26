@@ -24,44 +24,39 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void ExtendCliffs(IInformationContainer container)
         {
-
-            for (int z = 0; z < 4; z++)
+            for (int i = 0; i < TileUtility.ChunkWidth; i++)
             {
-                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                for (int j = 0; j < TileUtility.ChunkHeight; j++)
                 {
-                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    if (TopEdges.Contains(container.AllTiles[3][i, j].GID))
                     {
-                        if (z == 2)
+
+                        int counter = 1;
+
+                        for (int c = j; c < j + CliffSize; c++)
                         {
-                            if (TopEdges.Contains(container.AllTiles[3][i, j].GID))
+                            if (j + counter < 16)
                             {
 
-                                int counter = 1;
 
-                                for (int c = j; c < j + CliffSize; c++)
+                                container.AllTiles[2][i, j + counter].GID = container.AllTiles[3][i, j].GID + 1 + 100 * counter;
+
+                                container.AllTiles[3][i, j + counter].GID = 0;
+                                if (c < j + CliffSize - 1)
                                 {
-                                    if (j + counter < 16)
-                                    {
-
-
-                                        container.AllTiles[2][i, j + counter].GID = container.AllTiles[3][i, j].GID + 1 + 100 * counter;
-
-                                        container.AllTiles[3][i, j + counter].GID = 0;
-                                        if (c < j + CliffSize - 1)
-                                        {
-                                            container.AllTiles[0][i, j + counter].GID = 0;
-                                        }
-
-                                        counter++;
-                                    }
+                                    container.AllTiles[0][i, j + counter].GID = 0;
                                 }
 
+                                counter++;
                             }
                         }
 
                     }
+
+
                 }
             }
+
         }
 
         public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
@@ -84,7 +79,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
-                for (int j = 15; j > 15-this.CliffSize; j--)
+                for (int j = 15; j > 15 - this.CliffSize; j--)
                 {
                     if (allAdjacentChunkNoise[0][3, i, j] == gidToTest)
                     {
