@@ -494,12 +494,15 @@ namespace SecretProject.Class.SoundStuff
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey)
         {
-
-            for (int i = 0; i < numberOfLoops; i++)
+            if(soundKey != 0)
             {
-                PlaySoundEffect(this.SoundEffectDictionary[soundKey], true, .2f);
-                
+                for (int i = 0; i < numberOfLoops; i++)
+                {
+                    PlaySoundEffect(this.SoundEffectDictionary[soundKey], true, .2f);
+
+                }
             }
+            
 
         }
     }
