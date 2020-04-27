@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 namespace SecretProject.Class.SoundStuff
 {
+
+
     public class SoundBoard
     {
         //Change this to enable sound
@@ -160,6 +162,8 @@ namespace SecretProject.Class.SoundStuff
         public SongChooser UnRaiSongs { get; set; }
         public SongChooser InteriorSongs { get; set; }
 
+        public Dictionary<int,SoundEffect>  SoundEffectDictionary { get; set; }
+
         public SoundBoard(Game1 game, ContentManager content)
         {
             this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -296,6 +300,34 @@ namespace SecretProject.Class.SoundStuff
             Alert1 = content.Load<SoundEffect>("SoundEffects/Alert1");
             PageRuffleOpen = content.Load<SoundEffect>("SoundEffects/paperRuffleOpen");
             PageRuffleClose = content.Load<SoundEffect>("SoundEffects/paperRuffleClose");
+
+            this.SoundEffectDictionary = new Dictionary<int, SoundEffect>()
+            {
+                {1, WalkGrass },
+                {2, WalkStone},
+                {3,WalkWood },
+                {4, CrunchStep},
+                {5, PickUpItem},
+                {6, GrassBreak},
+                {7, DigDirt},
+                {8, MiningHit},
+                {9, Chirp1},
+                {10,Chirp2 },
+                {11,Chirp3 },
+                {12, Crickets1},
+                {13, OwlHoot1},
+                {14, PigGrunt},
+                {15, PigGrunt2},
+                {16, CropPluck},
+                {17, PumpkinSmash},
+                {18, WalkSand},
+                {19, TreeFall},
+                {20, StoneSmash},
+                {21, BoneRattle1},
+
+            };
+
+
 
             this.TitleSongs = new SongChooser(new List<SoundEffect>()
             {
@@ -463,95 +495,11 @@ namespace SecretProject.Class.SoundStuff
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey)
         {
 
-
-
             for (int i = 0; i < numberOfLoops; i++)
             {
-                switch (soundKey)
-                {
-
-
-                    case 1:
-
-                        PlaySoundEffect(WalkGrass, true, .2f);
-                        break;
-                    case 2:
-                        PlaySoundEffect(WalkStone, true, .2f);
-                        break;
-                    case 3:
-
-                        PlaySoundEffect(WalkWood, true, .2f);
-                        break;
-                    case 4:
-                        PlaySoundEffect(CrunchStep, true, .2f);
-                        break;
-                    case 5:
-
-                        PlaySoundEffect(this.PickUpItem, true, .2f);
-                        break;
-                    case 6:
-
-                        PlaySoundEffect(GrassBreak, true, .2f);
-                        break;
-                    case 7:
-
-                        PlaySoundEffect(DigDirt);
-                        break;
-                    case 8:
-
-                        PlaySoundEffect(MiningHit, true, .2f);
-                        break;
-                    //day time sound effects
-                    case 9:
-                        PlaySoundEffect(Chirp1, true);
-                        break;
-                    case 10:
-                        PlaySoundEffect(Chirp2, true);
-                        break;
-                    case 11:
-                        PlaySoundEffect(Chirp3, true);
-                        break;
-                    case 12:
-                        PlaySoundEffect(Crickets1);
-                        break;
-                    case 13:
-                        PlaySoundEffect(OwlHoot1);
-                        break;
-
-                    case 14:
-                        PlaySoundEffect(PigGrunt, true, .2f);
-                        break;
-                    case 15:
-                        PlaySoundEffect(PigGrunt2);
-                        break;
-                    case 16:
-                        PlaySoundEffect(CropPluck, true, .2f);
-                        break;
-                    case 17:
-                        PlaySoundEffect(PumpkinSmash);
-                        break;
-
-                    case 18:
-                        PlaySoundEffect(WalkSand);
-                        break;
-
-                    case 19:
-                        PlaySoundEffect(TreeFall, true, .2f);
-                        break;
-
-                    case 20:
-                        PlaySoundEffect(StoneSmash, true, .2f);
-                        break;
-
-                    case 21:
-                        PlaySoundEffect(BoneRattle1, true, .2f);
-                        break;
-
-
-                }
+                PlaySoundEffect(this.SoundEffectDictionary[soundKey], true, .2f);
+                
             }
-
-
 
         }
     }

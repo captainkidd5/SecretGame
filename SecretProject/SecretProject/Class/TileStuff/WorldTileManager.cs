@@ -645,20 +645,20 @@ namespace SecretProject.Class.TileStuff
                                 
 
                                 this.ChunkUnderPlayerLastFrame.PathGrid.UpdateGrid(OldPlayerI, OldPlayerJ, oldGridStatus);
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID))
+                                {
+                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties.ContainsKey("step"))
+                                    {
 
+                                        Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties["step"]);
+                                    }
+                                }
                             }
 
                             this.ChunkUnderPlayer.PathGrid.UpdateGrid(PlayerI, PlayerJ, GridStatus.Obstructed);
 
 
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID))
-                            {
-                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties.ContainsKey("step"))
-                                {
-
-                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties["step"]);
-                                }
-                            }
+                            
                         }
 
                     }

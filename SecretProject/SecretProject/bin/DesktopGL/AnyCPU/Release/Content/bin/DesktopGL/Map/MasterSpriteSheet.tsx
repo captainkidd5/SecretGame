@@ -1849,6 +1849,15 @@
    <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="1069">
+  <properties>
+   <property name="destructable" value="Mining,3,0,8,20,1"/>
+   <property name="loot" value=""/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="10" width="13" height="4"/>
+  </objectgroup>
+ </tile>
  <tile id="1070">
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="10" width="14" height="4"/>
@@ -2298,6 +2307,16 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
+ <tile id="1269">
+  <properties>
+   <property name="destructable" value="Mining,3,0,8,20,1"/>
+   <property name="loot" value=""/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="8" width="14" height="6"/>
+  </objectgroup>
+ </tile>
  <tile id="1271">
   <properties>
    <property name="destructable" value="22,3,0,8,20,5"/>
@@ -2305,7 +2324,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+   <object id="1" x="1" y="0" width="14" height="11"/>
   </objectgroup>
  </tile>
  <tile id="1272">
@@ -2315,7 +2334,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+   <object id="1" x="1" y="0" width="14" height="14"/>
   </objectgroup>
  </tile>
  <tile id="1273">
@@ -2325,7 +2344,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+   <object id="1" x="1" y="0" width="14" height="9"/>
   </objectgroup>
  </tile>
  <tile id="1274">
@@ -2335,7 +2354,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+   <object id="1" x="1" y="0" width="14" height="10"/>
   </objectgroup>
  </tile>
  <tile id="1275">
@@ -2891,6 +2910,8 @@
  </tile>
  <tile id="1573">
   <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="7">
@@ -2899,6 +2920,8 @@
  </tile>
  <tile id="1574">
   <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -2930,7 +2953,7 @@
  </tile>
  <tile id="1582">
   <properties>
-   <property name="destructable" value="-50,1,0,16,16,0"/>
+   <property name="destructable" value="HandsPicking,1,0,16,16,0"/>
    <property name="loot" value="711"/>
   </properties>
  </tile>
@@ -3119,7 +3142,7 @@
  </tile>
  <tile id="1681">
   <properties>
-   <property name="destructable" value="-50,1,0,5,5,0"/>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
    <property name="loot" value="1098"/>
   </properties>
  </tile>

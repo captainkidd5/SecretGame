@@ -57,6 +57,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case 2:
                     xAdjustment = 32;
                     yAdjustment = 2;
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Player.WalkSoundEffect);
                     break;
                 case 3:
                     yAdjustment = 1;
@@ -71,6 +72,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                      yAdjustment = 2;
                     xAdjustment = 32;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Player.WalkSoundEffect);
                     break;
 
             }
@@ -95,6 +97,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case 2:
                     xAdjustment = 32;
                     yAdjustment = 3;
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Player.WalkSoundEffect);
                     break;
                 case 3:
                     yAdjustment = 2;
@@ -108,6 +111,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     xAdjustment = 32;
                     yAdjustment = 3;
                     this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Player.WalkSoundEffect);
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
@@ -132,6 +136,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case 2:
                     xAdjustment = 32;
                     yAdjustment = 1;
+                    //Game1.SoundManager.PlaySoundEffectFromInt(Game1.SoundManager.sound 1, Game1.Player.WalkSoundEffect);
                     break;
                 case 3:
                     xAdjustment = 48;
@@ -144,6 +149,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                 case 5:
                     xAdjustment = 80;
                     yAdjustment = 1;
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Player.WalkSoundEffect);
                     break;
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
