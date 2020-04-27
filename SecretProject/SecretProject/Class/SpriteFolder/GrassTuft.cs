@@ -110,7 +110,11 @@ namespace SecretProject.Class.SpriteFolder
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
             location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
-            location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.GetCurrentStage().AllTiles.GetItems(this.Position)), this.Position);
+            if(Game1.Utility.RGenerator.Next(0,5) < 2)
+            {
+                location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.GetCurrentStage().AllTiles.GetItems(this.Position)), this.Position);
+            }
+            
             this.TuftsIsPartOf.Remove(this);
         }
 

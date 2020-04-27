@@ -106,7 +106,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public Procedural()
         {
             //FASTNOISE
-            OverworldBackNoise = new FastNoise(500);
+            OverworldBackNoise = new FastNoise(3);
             OverworldBackNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
             OverworldBackNoise.SetFractalOctaves(6);
             OverworldBackNoise.SetFractalLacunarity(2.5f);

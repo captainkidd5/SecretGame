@@ -202,11 +202,6 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
                     Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
-                    //  CurrentAction = PlayerWardrobe.SwipingAnimations;
-                   // this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
-                   // this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
-                  //  AdjustCurrentTool(controls.Direction, this.CurrentTool);
-                //    this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
 
                     break;
 
