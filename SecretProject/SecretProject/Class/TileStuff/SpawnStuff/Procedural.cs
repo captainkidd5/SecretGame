@@ -12,7 +12,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         SandRuin = 1621,
         Water = 124,
         Stone = 929,
-        DirtCliff = 4123,
+        DirtCliff = 4214,
         FenceTiling = 456,
         StoneWallTiling = 452,
         OakFloorTiling = 632,
@@ -27,8 +27,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         ArcaneFloor = 3346,
         ArcaneFence = 3946,
         ForestWall = 3214,
-        SandStoneWall = 4813,
+        SandStoneWall = 4324,
         DesertStone = 1229,
+        GrassLake = 340
 
     };
 
@@ -69,12 +70,22 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
             };                                                                                                                              
         }
-        private Dictionary<int, int> NewFillCliffTilingDictionary(int centralGID)
+        private Dictionary<int, int> TallFillCliffTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
             {
                 {0, centralGID + 304},{1, centralGID + 303}, {2,  centralGID +302 },  {3, centralGID + 501}, {4, centralGID +298}, {5, centralGID + 499},{6,centralGID +305},
                 { 7, centralGID + 500}, {8, centralGID + 297}, {9, centralGID + 306}, {10, centralGID - 196}, {11, centralGID + 1},
+                { 12,centralGID - 198}, {13,centralGID - 1}, {14,centralGID - 197}, {15, centralGID}
+            };
+        }
+
+        private Dictionary<int, int> ShortFillCliffTilingDictionary(int centralGID)
+        {
+            return new Dictionary<int, int>()
+            {
+                {0, centralGID + 104},{1, centralGID + 103}, {2,  centralGID +102 },  {3, centralGID + 301}, {4, centralGID +198}, {5, centralGID + 399},{6,centralGID +105},
+                { 7, centralGID + 300}, {8, centralGID + 97}, {9, centralGID + 106}, {10, centralGID - 196}, {11, centralGID + 1},
                 { 12,centralGID - 198}, {13,centralGID - 1}, {14,centralGID - 197}, {15, centralGID}
             };
         }
@@ -120,10 +131,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             OverworldBackNoise.SetFractalLacunarity(2.5f);
 
             //Smaller the smooth the biomes
-            OverworldBackNoise.SetFractalGain(.4f);
+            OverworldBackNoise.SetFractalGain(.45f);
 
             //larger the smaller the biomes
-            OverworldBackNoise.SetFrequency(.002f);
+            OverworldBackNoise.SetFrequency(.001f);
 
 
             //UNDERWORLDNOISE
@@ -149,7 +160,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 { GenerationType.SandRuin, new TilingContainer(GenerationType.SandRuin, FillTilingDictionary((int)GenerationType.SandRuin), new List<int>()) },
                  { GenerationType.Water, new TilingContainer(GenerationType.Water, FillTilingDictionary((int)GenerationType.Water), new List<int>()) },
                  { GenerationType.Stone, new TilingContainer(GenerationType.Stone, FillTilingDictionary((int)GenerationType.Stone), new List<int>()) },
-                 { GenerationType.DirtCliff, new TilingContainer(GenerationType.DirtCliff, FillCliffTilingDictionary((int)GenerationType.DirtCliff), new List<int>()) },
+                 { GenerationType.DirtCliff, new TilingContainer(GenerationType.DirtCliff, TallFillCliffTilingDictionary((int)GenerationType.DirtCliff), new List<int>()) },
                  { GenerationType.FenceTiling, new TilingContainer(GenerationType.FenceTiling, FillFenceTilingDictionary((int)GenerationType.FenceTiling), new List<int>()) },
                  { GenerationType.OakFloorTiling, new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary((int)GenerationType.OakFloorTiling), new List<int>()) },
                  { GenerationType.StoneWallTiling, new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary((int)GenerationType.StoneWallTiling), new List<int>()) },
@@ -162,10 +173,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.VillageFence, new TilingContainer(GenerationType.VillageFence, FillFenceTilingDictionary((int)GenerationType.VillageFence), new List<int>()) },
                  { GenerationType.ArcaneFloor, new TilingContainer(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
                  { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
-                 { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, NewFillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
-                 { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, FillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
+                 { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, TallFillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
+                 { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, ShortFillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
                  { GenerationType.DesertStone, new TilingContainer(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
-
+                 { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
             };
 
 
@@ -174,7 +185,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             {
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Sand), -.4f, 0f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, 1f)
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, .04f),
+                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water), .04f, .07f),
+                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), .07f, .36f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.36f, .37f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.37f, .372f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.372f, .39f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.39f, .43f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.43f, .46f),
+                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.46f, 1f),
 
 
             };
@@ -183,10 +202,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DesertStone),-.14f, -.12f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.OakFloorTiling),-.05f, -.047f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .3f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .04f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake),.04f, .07f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.07f, .12f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.12f,.123f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .06f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.33f,.4f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.24f,.27f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.27f, .32f),
 
                 };
             this.OverWorldBuildingsNoise = new List<NoiseInterval>()
@@ -196,11 +218,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.3f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .1f,.12f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .3f,.33f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.25f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .14f,.145f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .1f,.119f),
 
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.04f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.024f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.2f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.1f,-.08f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.05f,-.04f),
@@ -241,14 +264,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.NoiseConverter = new NoiseConverter(allOverworldNoise, allUnderWorldNoise);
 
-            TilingContainer dirtCliffContainer = GetTilingContainerFromGenerationType(GenerationType.DirtCliff);
-            TilingContainer forestWallContainer = GetTilingContainerFromGenerationType(GenerationType.ForestWall);
             TilingContainer sandStoneWallContainer = GetTilingContainerFromGenerationType(GenerationType.SandStoneWall);
             this.TopCliffs = new List<CliffHandler>()
             {
-                new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
+               // new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
                 //new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), forestWallContainer.TilingDictionary[15], 4613),
-                new CliffHandler(CliffHandler.GetTopCliffEdges(sandStoneWallContainer), sandStoneWallContainer.TilingDictionary[15], 5113),
+              //  new CliffHandler(CliffHandler.GetTopCliffEdges(sandStoneWallContainer), sandStoneWallContainer.TilingDictionary[15], 5113),
 
             };
             TilingContainer unraiCliffs = GetTilingContainerFromGenerationType(GenerationType.CaveCliff);

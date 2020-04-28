@@ -184,15 +184,41 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="239">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="240">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="241">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
  <tile id="242">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="243">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="244">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
  </tile>
  <tile id="249">
   <properties>
@@ -400,6 +426,31 @@
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="339">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="340">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="341">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="342">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="343">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
  <tile id="346">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="2" width="6" height="14"/>
@@ -490,6 +541,31 @@
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="439">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="440">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="441">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="442">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="443">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
  </tile>
  <tile id="446">
   <objectgroup draworder="index" id="2">
@@ -1382,11 +1458,6 @@
    <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
- <tile id="845">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
  <tile id="854">
   <objectgroup draworder="index">
    <object id="1" x="0.500001" y="0.0909" width="7.72727" height="15.8182"/>
@@ -1549,9 +1620,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="938">
+ <tile id="939">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="940">
@@ -1570,11 +1641,6 @@
   </properties>
  </tile>
  <tile id="943">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
- <tile id="944">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -1803,9 +1869,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="1038">
+ <tile id="1039">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="1040">
@@ -1824,11 +1890,6 @@
   </properties>
  </tile>
  <tile id="1043">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
- <tile id="1044">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -5137,11 +5198,6 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3617">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="3" y="0" width="8" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="3621">
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="0" width="13" height="16"/>
@@ -5677,32 +5733,38 @@
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
- <tile id="4013">
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="15" width="16" height="1"/>
-  </objectgroup>
- </tile>
- <tile id="4014">
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="15" width="16" height="1"/>
-  </objectgroup>
- </tile>
- <tile id="4015">
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="15" width="16" height="1"/>
-  </objectgroup>
- </tile>
  <tile id="4016">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4017">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4018">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="3" x="0" y="15" width="16" height="1"/>
   </objectgroup>
@@ -5713,90 +5775,51 @@
   </objectgroup>
  </tile>
  <tile id="4020">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4021">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4022">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4023">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4024">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4025">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4026">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4027">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4028">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4029">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -5868,106 +5891,66 @@
    <property name="newSource" value="-64,-128,144,144"/>
   </properties>
  </tile>
- <tile id="4111">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4112">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4113">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4114">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4115">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4116">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4117">
-  <objectgroup draworder="index" id="3">
-   <object id="3" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4118">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="4121">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4122">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4123">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4124">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4125">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4126">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4127">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4128">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
  </tile>
  <tile id="4132">
   <objectgroup draworder="index" id="2">
@@ -6055,111 +6038,51 @@
    <property name="relationY" value="-2"/>
   </properties>
  </tile>
- <tile id="4205">
-  <properties>
-   <property name="lightSource" value="1"/>
-  </properties>
- </tile>
- <tile id="4211">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4212">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="4213">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4214">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4215">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4216">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4217">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4218">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4221">
   <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
    <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4222">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4223">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4224">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4225">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4226">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4227">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
- </tile>
- <tile id="4228">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
  </tile>
  <tile id="4233">
   <properties>
@@ -6279,106 +6202,41 @@
    <property name="action" value="triggerLift"/>
   </properties>
  </tile>
- <tile id="4311">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4312">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4313">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4314">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4315">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4316">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4317">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4318">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4321">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4322">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="4323">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4324">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4325">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
- </tile>
- <tile id="4326">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4327">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4328">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
  </tile>
  <tile id="4380">
   <properties>
@@ -6386,182 +6244,195 @@
    <property name="action" value="replaceSmallCog"/>
   </properties>
  </tile>
- <tile id="4411">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4412">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4413">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4414">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4415">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4416">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4417">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4418">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="4421">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="0" width="16" height="16"/>
+   <object id="3" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4422">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4423">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4424">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="-1" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4425">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4426">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4427">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4428">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="4429">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="4430">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="4511">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="4512">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="4513">
+ <tile id="4516">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="4514">
+ <tile id="4517">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4518">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4519">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4520">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4521">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
  <tile id="4522">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="4523">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4524">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4525">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="5"/>
-  </objectgroup>
- </tile>
  <tile id="4526">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
  <tile id="4527">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
  <tile id="4528">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
@@ -6571,71 +6442,69 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="4613">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="4614">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="4622">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4623">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4624">
   <properties>
-   <property name="generate" value="DirtCliff"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="2" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="4625">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="SandStoneWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-32, 16, 48"/>
+   <property name="transparent" value="0,-32, 16, 48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4710">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="4711">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="4712">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="4713">
   <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
@@ -6643,8 +6512,11 @@
  </tile>
  <tile id="4714">
   <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
@@ -6652,60 +6524,42 @@
  </tile>
  <tile id="4715">
   <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="DirtCliff"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
  </tile>
  <tile id="4716">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4717">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4718">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4722">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
  <tile id="4723">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
  <tile id="4724">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
@@ -6811,65 +6665,41 @@
   </objectgroup>
  </tile>
  <tile id="4811">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4812">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4813">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4814">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4815">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4816">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4817">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4818">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -6939,65 +6769,41 @@
   </objectgroup>
  </tile>
  <tile id="4911">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="13"/>
   </objectgroup>
  </tile>
  <tile id="4912">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4913">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4914">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4915">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4916">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4917">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4918">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
@@ -7067,25 +6873,16 @@
   </objectgroup>
  </tile>
  <tile id="5012">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="5013">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="5014">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -7155,25 +6952,16 @@
   </objectgroup>
  </tile>
  <tile id="5112">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="5113">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="5114">
-  <properties>
-   <property name="generate" value="SandStoneWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
