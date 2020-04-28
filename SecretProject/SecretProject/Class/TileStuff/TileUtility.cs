@@ -1010,17 +1010,28 @@ namespace SecretProject.Class.TileStuff
             TileUtility.ReplaceTile(layer, x, y, 0, container);
 
             // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
-            if (itemToCheckForReassasignTiling != null)
+            if(container.TileSetDictionary[tile.GID].Properties.ContainsKey("generate"))
             {
-                if (itemToCheckForReassasignTiling.GenerationType != 0)
+                GenerationType generationType = (GenerationType)Enum.Parse(typeof(GenerationType), container.TileSetDictionary[tile.GID].Properties["generate"], true);
+                if ((int)generationType != 0)
                 {
-                    TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
+                    TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(generationType);
                     WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
                         tilingContainer.TilingDictionary,
-                   itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
+                   layer, Game1.GetCurrentStage().AllTiles);
                 }
-
             }
+            //if (itemToCheckForReassasignTiling != null)
+            //{
+            //    if (itemToCheckForReassasignTiling.GenerationType != 0)
+            //    {
+            //        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
+            //        WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
+            //            tilingContainer.TilingDictionary,
+            //       itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
+            //    }
+
+            //}
         }
         #endregion
 

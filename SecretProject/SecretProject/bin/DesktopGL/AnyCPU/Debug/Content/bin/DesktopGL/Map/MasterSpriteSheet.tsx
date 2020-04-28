@@ -4228,6 +4228,42 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3016">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3017">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3018">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3019">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="9" height="16"/>
@@ -4452,6 +4488,42 @@
  <tile id="3211">
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3213">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3214">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3215">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3219">
@@ -4907,13 +4979,87 @@
   </objectgroup>
  </tile>
  <tile id="3511">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="12" y="0" width="4" height="16"/>
+   <object id="3" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3512">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3516">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3517">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3518">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="4" y="0" width="8" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3519">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3520">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3521">
@@ -5091,6 +5237,42 @@
  <tile id="3711">
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3713">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3714">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3715">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="generate" value="ForestWall"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="0,-64, 16, 80"/>
+   <property name="transparent" value="0,-64, 16, 80"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3721">
@@ -5481,89 +5663,51 @@
   </objectgroup>
  </tile>
  <tile id="4010">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4011">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4012">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4013">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4014">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4015">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4016">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4017">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-   <property name="transparent" value="0,0,16,16"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4018">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="3" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4019">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -5725,65 +5869,41 @@
   </properties>
  </tile>
  <tile id="4111">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4112">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4113">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4114">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4115">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4116">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4117">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="3">
    <object id="3" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4118">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -5941,65 +6061,41 @@
   </properties>
  </tile>
  <tile id="4211">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4212">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4213">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4214">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4215">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4216">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4217">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4218">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -6184,65 +6280,41 @@
   </properties>
  </tile>
  <tile id="4311">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4312">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4313">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4314">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4315">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4316">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4317">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4318">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -6315,65 +6387,41 @@
   </properties>
  </tile>
  <tile id="4411">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4412">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4413">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4414">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4415">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4416">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4417">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4418">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -6440,25 +6488,16 @@
   </properties>
  </tile>
  <tile id="4512">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4513">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4514">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -6528,25 +6567,16 @@
   </objectgroup>
  </tile>
  <tile id="4612">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4613">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4614">
-  <properties>
-   <property name="generate" value="ForestWall"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
