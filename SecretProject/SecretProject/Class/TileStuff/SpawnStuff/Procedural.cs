@@ -114,16 +114,16 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public Procedural()
         {
             //FASTNOISE
-            OverworldBackNoise = new FastNoise(3);
+            OverworldBackNoise = new FastNoise(5);
             OverworldBackNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
-            OverworldBackNoise.SetFractalOctaves(6);
+            OverworldBackNoise.SetFractalOctaves(7);
             OverworldBackNoise.SetFractalLacunarity(2.5f);
 
             //Smaller the smooth the biomes
-            OverworldBackNoise.SetFractalGain(.38f);
+            OverworldBackNoise.SetFractalGain(.4f);
 
             //larger the smaller the biomes
-            OverworldBackNoise.SetFrequency(.004f);
+            OverworldBackNoise.SetFrequency(.002f);
 
 
             //UNDERWORLDNOISE
@@ -198,7 +198,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 {
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.3f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .1f,.12f),
+
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.04f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.2f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.1f,-.08f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.05f,-.04f),
+
                 };
 
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()

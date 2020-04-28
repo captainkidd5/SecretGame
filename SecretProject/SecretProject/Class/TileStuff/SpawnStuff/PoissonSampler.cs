@@ -37,12 +37,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public void Generate(int gid, Tile[,] tiles, int layerToPlace, int layerToPlaceOn, int layerToCheckIfEmpty, IInformationContainer container, GenerationType generationType, Random random, bool isCrop)
         {
             //generate first point randomly within grid
-            ActiveSamples.Add(new Point(Game1.Utility.RGenerator.Next(0, Grid.GetLength(0) - 1),
-                Game1.Utility.RGenerator.Next(0, Grid.GetLength(0) - 1)));
+            ActiveSamples.Add(new Point(random.Next(0, Grid.GetLength(0) - 1),
+                random.Next(0, Grid.GetLength(0) - 1)));
 
             while (ActiveSamples.Count > 0)
             {
-                int sampleIndex = Game1.Utility.RGenerator.Next(0, ActiveSamples.Count - 1); //pick random sample within activesample list
+                int sampleIndex = random.Next(0, ActiveSamples.Count - 1); //pick random sample within activesample list
                 Point sample = ActiveSamples[sampleIndex];
 
 
