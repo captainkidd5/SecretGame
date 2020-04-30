@@ -184,15 +184,41 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="239">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="240">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="241">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
  <tile id="242">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="243">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="244">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
  </tile>
  <tile id="249">
   <properties>
@@ -400,6 +426,31 @@
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="339">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="340">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="341">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="342">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="343">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
  <tile id="346">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="2" width="6" height="14"/>
@@ -490,6 +541,31 @@
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="439">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="440">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="441">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="442">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
+ </tile>
+ <tile id="443">
+  <properties>
+   <property name="generate" value="GrassLake"/>
+  </properties>
  </tile>
  <tile id="446">
   <objectgroup draworder="index" id="2">
@@ -1354,7 +1430,7 @@
  </tile>
  <tile id="839">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="840">
@@ -1378,11 +1454,6 @@
   </properties>
  </tile>
  <tile id="844">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
- <tile id="845">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -1549,9 +1620,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="938">
+ <tile id="939">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="940">
@@ -1570,11 +1641,6 @@
   </properties>
  </tile>
  <tile id="943">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
- <tile id="944">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -1803,9 +1869,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="1038">
+ <tile id="1039">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="1040">
@@ -1824,11 +1890,6 @@
   </properties>
  </tile>
  <tile id="1043">
-  <properties>
-   <property name="generate" value="WaterSwamp"/>
-  </properties>
- </tile>
- <tile id="1044">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
