@@ -60,8 +60,8 @@ namespace SecretProject.Class.CollisionDetection
         private int GetIndex(ICollidable collider)
         {
             int index = -1;
-            double verticalMidpoint = bounds.X + (bounds.Width / 2);
-            double horizontalMidpoint = bounds.Y + (bounds.Height / 2);
+            float verticalMidpoint = bounds.X + (bounds.Width / 2);
+            float horizontalMidpoint = bounds.Y + (bounds.Height / 2);
 
             // Object can completely fit within the top quadrants
             bool topQuadrant = (collider.Rectangle.Y + collider.Rectangle.Height < horizontalMidpoint);

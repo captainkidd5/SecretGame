@@ -5,11 +5,6 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
-  <animation>
-   <frame tileid="143" duration="100"/>
-   <frame tileid="144" duration="100"/>
-   <frame tileid="145" duration="100"/>
-  </animation>
  </tile>
  <tile id="144">
   <properties>
@@ -388,6 +383,16 @@
    <object id="1" x="0" y="2" width="8" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="732">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="733">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="744">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -586,6 +591,9 @@
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="5">
+   <object id="4" x="0" y="0" width="16" height="10"/>
+  </objectgroup>
  </tile>
  <tile id="1031">
   <properties>
@@ -652,12 +660,41 @@
    <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="1231">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1401">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="6" width="14" height="9"/>
+  </objectgroup>
+ </tile>
+ <tile id="1402">
+  <properties>
+   <property name="newSource" value="0,-32, 16,48"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="3" y="6" width="10" height="9"/>
+  </objectgroup>
+ </tile>
  <tile id="1404">
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
   <objectgroup draworder="index" id="4">
    <object id="3" x="2" y="5" width="12" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="1406">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="5" width="12" height="9"/>
   </objectgroup>
  </tile>
  <tile id="1433">
@@ -733,7 +770,6 @@
  </tile>
  <tile id="2037">
   <properties>
-   <property name="action" value="swapHouse"/>
    <property name="newSource" value="0,-32, 16,48"/>
   </properties>
  </tile>

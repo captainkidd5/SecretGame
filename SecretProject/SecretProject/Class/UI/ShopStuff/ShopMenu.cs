@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
@@ -43,7 +44,7 @@ namespace SecretProject.Class.UI
                 new Vector2(ShopMenuPosition.X + this.ShopBackDropSourceRectangle.Width * this.BackDropScale + 400, this.ShopBackDropSourceRectangle.Y + 100), CursorType.Normal);
             mainFont = Game1.AllTextures.MenuText;
 
-            this.ShopBackDropSourceRectangle = new Rectangle(864, 80, 144, 240);
+            this.ShopBackDropSourceRectangle = new Rectangle(1232, 80, 272, 224);
             this.BackDropScale = 3f;
             Font = Game1.AllTextures.MenuText;
 
@@ -83,7 +84,12 @@ namespace SecretProject.Class.UI
                 {
                     if (this.Pages[i].Count < this.MaxMenuSlotsPerPage)
                     {
-                        this.Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X, ShopMenuPosition.Y + 128 + (96 * this.Pages[i].Count)), this.BackDropScale + 1f));
+                        int yMultiplier = 0;
+                        if(this.Pages[i].Count > 4)
+                        {
+                            yMultiplier += 96;
+                        }
+                        this.Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X + 64 * this.Pages[i].Count, ShopMenuPosition.Y + 128 + yMultiplier * this.BackDropScale), this.BackDropScale + 1f));
                         return;
                     }
                 }
@@ -189,68 +195,5 @@ namespace SecretProject.Class.UI
 
     }
 
-    public class ShopMenuSlot
-    {
-        public GraphicsDevice Graphics { get; set; }
-        public int ItemID { get; set; }
-        public Button Button { get; set; }
-        public Vector2 drawPosition;
-        public int Stock;
-        public float colorMultiplier;
-        public Rectangle BackgroundSourceRectangle { get; set; }
-        public Item Item { get; set; }
-        public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition, float buttonScale)
-        {
-            this.Graphics = graphics;
-            Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
-            this.Item = item;
-            this.ItemID = itemID;
-            this.Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Currency, buttonScale);
-            Stock = stock;
-            this.drawPosition = drawPosition;
-            colorMultiplier = .25f;
-            this.BackgroundSourceRectangle = new Rectangle(864, 48, 113, 32);
-        }
-
-        public void Update(GameTime gameTime, MouseManager mouse)
-        {
-            this.Button.Update(mouse);
-            if (Stock > 0 && this.Button.IsHovered)
-            {
-                InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetItem(this.ItemID), new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64)) ;
-
-            
-            Game1.Player.UserInterface.InfoBox = infoBox;
-            Game1.Player.UserInterface.InfoBox.IsActive = true;
-                colorMultiplier = .5f;
-                if (this.Button.isClicked)
-                {
-                    Item item = Game1.ItemVault.GenerateNewItem(this.ItemID, null);
-                    if (Game1.Player.Inventory.Money >= Game1.ItemVault.GetItem(item.ID).Price)
-                    {
-                        if (Game1.Player.Inventory.TryAddItem(item))
-                        {
-                            Stock--;
-                            Game1.Player.Inventory.Money -= Game1.ItemVault.GetItem(item.ID).Price;
-                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Sell1);
-                        }
-
-                        //Game1.SoundManager.Sell1.Play();
-                    }
-                }
-            }
-            else
-            {
-                colorMultiplier = 1f;
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch, float backDropScale)
-        {
-            this.Button.Draw(spriteBatch, this.Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString() + "\n \n                   " + Game1.ItemVault.GetItem(Item.ID).Name + "\n \n                   Price: " + Game1.ItemVault.GetItem(Item.ID).Price, drawPosition,
-               Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
-        }
-
-    }
+    
 }

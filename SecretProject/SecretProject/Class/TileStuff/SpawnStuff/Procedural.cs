@@ -17,7 +17,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         StoneWallTiling = 452,
         OakFloorTiling = 632,
         DirtCliffBottom = 4723,
-        LandSwamp = 936,
+        LandSwamp = 935,
         WaterSwamp = 940,
         CaveCliff = 4828,
         CaveDirt = 2001,
@@ -189,11 +189,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water), .04f, .07f),
                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), .07f, .36f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.36f, .37f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.37f, .372f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.37f, .372f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.372f, .39f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.39f, .43f),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.39f, .43f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.43f, .46f),
-                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.46f, 1f),
+                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.46f, 1f),
 
 
             };
@@ -209,6 +209,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .06f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.24f,.27f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.27f, .32f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.37f, .372f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.39f, .43f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.46f, 1f),
 
                 };
             this.OverWorldBuildingsNoise = new List<NoiseInterval>()

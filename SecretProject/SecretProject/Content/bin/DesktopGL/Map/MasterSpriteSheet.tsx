@@ -1430,7 +1430,7 @@
  </tile>
  <tile id="839">
   <properties>
-   <property name="generate" value="LandSwamp"/>
+   <property name="generate" value="WaterSwamp"/>
   </properties>
  </tile>
  <tile id="840">
