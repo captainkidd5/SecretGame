@@ -12,7 +12,7 @@ namespace SecretProject.Class.Physics
     {
         public Vector2 BounceObjectPosition { get; set; }
         public Vector2 BaseVelocity;
-        public Vector2 Velocity { get; set; }
+        public Vector2 Velocity;
         public Dir DirectionToBounce { get; set; }
         public float VerticalFloor { get; set; }
         public float VerticalSpeed { get; set; } = 2f;

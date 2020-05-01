@@ -155,13 +155,12 @@ namespace SecretProject.Class.ItemStuff
 
                 if (this.Bouncer != null)
                 {
-                    if (CheckCollisions())
-                    {
-                        return;
-                    }
+                    
                     this.PrimaryVelocity = Bouncer.Velocity;
 
-                    this.ItemSprite.Position = Bouncer.Update(gameTime, ref this.PrimaryVelocity);
+                    Bouncer.Update(gameTime, ref this.PrimaryVelocity);
+                    CheckCollisions();
+                    this.ItemSprite.Position = Bouncer.BounceObjectPosition;
                     if (!this.Bouncer.IsActive)
                     {
                         this.Bouncer = null;
@@ -197,10 +196,10 @@ namespace SecretProject.Class.ItemStuff
                 {
                     if (returnObjects[i].ColliderType == ColliderType.inert)
                     {
-                        if (this.Collider.HandleMove(this.WorldPosition, ref PrimaryVelocity, returnObjects[i]))
+                        if (this.Collider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
                         {
                             Console.WriteLine("Debug!");
-                            this.Bouncer = null;
+                            
                             this.IsTossable = false;
                             return true;
                         }
