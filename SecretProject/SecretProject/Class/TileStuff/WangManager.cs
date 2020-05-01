@@ -106,7 +106,7 @@ namespace SecretProject.Class.TileStuff
 
         public static bool IsContainerWithinArrayBounds(IInformationContainer container)
         {
-            if(container.ArrayI > 0 && container.ArrayJ > 0)
+            if(container.ArrayI > 0 && container.ArrayJ > 0 && container.ArrayI < 9 && container.ArrayJ < 9)
             {
                 return true;
             }

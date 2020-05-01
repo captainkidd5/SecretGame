@@ -5,6 +5,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.TileStuff.TileModifications;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -38,6 +39,8 @@ namespace SecretProject.Class.TileStuff
 
         Dictionary<string, Sprite> QuestIcons { get; set; }
 
+        TileModificationHandler TileModificationHandler { get; set; }
+        void AddTileModification(Tile tile, ITileModifiable tileModifiable);
         //specific to chunks
         int X { get; set; }
         int Y { get; set; }

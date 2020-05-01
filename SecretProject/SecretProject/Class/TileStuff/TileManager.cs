@@ -11,6 +11,7 @@ using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
+using SecretProject.Class.TileStuff.TileModifications;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,6 +94,7 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
         public Dictionary<string, Sprite> QuestIcons { get; set; }
+        public TileModificationHandler TileModificationHandler { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #region CONSTRUCTORS
 
@@ -708,6 +710,11 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
+        }
+
+        public void AddTileModification(Tile tile, ITileModifiable tileModifiable)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

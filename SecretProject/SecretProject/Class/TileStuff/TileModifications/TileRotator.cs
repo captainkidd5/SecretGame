@@ -17,9 +17,13 @@ namespace SecretProject.Class.TileStuff.TileModifications
         public float DesiredRotation { get; private set; }
         public float RotationSpeed { get; private set; }
 
-        public TileRotator(Tile tile, Dir sideOfTreePlayerOn)
+        public TileRotator(Tile tile, IInformationContainer container, int layer, int tileX, int tileY, Dir sideOfTreePlayerOn)
         {
             this.Tile = tile;
+            this.Container = container;
+            this.TileLayer = layer;
+            this.TileX = tileX;
+            this.TileY = tileY;
             if (sideOfTreePlayerOn == Dir.Right)
             {
                 this.DesiredRotation = TileModificationHandler.TreeFallRightRotationAmt;
@@ -28,17 +32,31 @@ namespace SecretProject.Class.TileStuff.TileModifications
             else if (sideOfTreePlayerOn == Dir.Left)
             {
                 this.DesiredRotation = TileModificationHandler.TreeFallLeftRotationAmt;
-                this.RotationSpeed = TileModificationHandler.TreeFallSpeed;
+                this.RotationSpeed = TileModificationHandler.TreeFallSpeed * -1;
             }
+            this.Tile.Origin = new Vector2(Tile.SourceRectangle.Width / 2, Tile.SourceRectangle.Height);
+            this.Tile.Position = new Vector2(this.Tile.Position.X + Tile.SourceRectangle.Width / 2, this.Tile.Position.Y + this.Tile.SourceRectangle.Height);
         }
 
         public bool Update(GameTime gameTime)
         {
-            Tile.Rotation +=(float)gameTime.ElapsedGameTime.TotalMilliseconds * RotationSpeed;
-            if(Tile.Rotation > this.DesiredRotation)
+            Tile.Rotation +=(float)gameTime.ElapsedGameTime.TotalSeconds * RotationSpeed;
+            this.RotationSpeed = this.RotationSpeed * 1.015f;
+            if (this.DesiredRotation < 0)
             {
-                return true;
+                if (Tile.Rotation < this.DesiredRotation)
+                {
+                    return true;
+                }
             }
+            else
+            {
+                if (Tile.Rotation > this.DesiredRotation)
+                {
+                    return true;
+                }
+            }
+            
             return false;
         }
     }

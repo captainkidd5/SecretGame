@@ -9,9 +9,9 @@ namespace SecretProject.Class.TileStuff.TileModifications
 {
     public class TileModificationHandler
     {
-        public static float TreeFallSpeed = 2f;
-        public static float TreeFallLeftRotationAmt = -2f;
-        public static float TreeFallRightRotationAmt = 2f;
+        public static float TreeFallSpeed = .3f;
+        public static float TreeFallLeftRotationAmt = -1.65f;
+        public static float TreeFallRightRotationAmt = 1.65f;
 
 
         internal List<ITileModifiable> Modifiers { get; set; }
@@ -30,10 +30,23 @@ namespace SecretProject.Class.TileStuff.TileModifications
         {
             for(int i =0; i < this.Modifiers.Count; i++)
             {
-                if(Modifiers[i].Update(gameTime))
+                ITileModifiable modifier = Modifiers[i];
+                if (modifier.Update(gameTime))
                 {
+                    TileUtility.FinalizeTile(modifier.TileLayer, gameTime, modifier.TileX, modifier.TileY, modifier.Container);
                     Modifiers.RemoveAt(i);
                 }
+            }
+        }
+
+        public static ITileModifiable GetTileModificationType(string info, IInformationContainer container, int layer, int x, int y, Tile tile, Dir dir)
+        {
+            switch(info)
+            {
+                case "tree":
+                    return new TileRotator(tile,container, layer, x, y, dir);
+                default:
+                    throw new Exception("tile property type does not contain a definition for " + info);
             }
         }
     }

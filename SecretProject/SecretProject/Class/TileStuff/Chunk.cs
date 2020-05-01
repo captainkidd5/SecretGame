@@ -11,6 +11,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.TileStuff.SpawnStuff.CampStuff;
+using SecretProject.Class.TileStuff.TileModifications;
 using SecretProject.Class.Universal;
 
 using System;
@@ -102,6 +103,8 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
 
         public Dictionary<string, Sprite> QuestIcons { get; set; }
+
+        public TileModificationHandler TileModificationHandler { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -184,7 +187,13 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = tileManager.MapName.Tilesets[this.TileSetNumber].Tiles;
 
             this.QuestIcons = new Dictionary<string, Sprite>();
+            this.TileModificationHandler = tileManager.TileModificationHandler;
 
+        }
+
+        public void AddTileModification(Tile tile, ITileModifiable tileModifiable)
+        {
+            this.TileModificationHandler.AddModification(tile, tileModifiable);
         }
 
         public Rectangle GetChunkRectangle()

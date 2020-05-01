@@ -12,6 +12,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.TileStuff.TileModifications;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -100,6 +101,8 @@ namespace SecretProject.Class.TileStuff
 
         public Texture2D ChunkTexture { get; set; }
 
+        public TileModificationHandler TileModificationHandler { get; set; }
+
         public WorldTileManager(World world, Texture2D tileSet,  TmxMap mapName, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber)
         {
             this.Stage = world;
@@ -170,6 +173,8 @@ namespace SecretProject.Class.TileStuff
 
             this.ChunkLocker = new object();
             this.ChunkTexture = SetChunkTexture(this.GraphicsDevice);
+
+            this.TileModificationHandler = new TileModificationHandler();
         }
 
 
@@ -747,6 +752,8 @@ namespace SecretProject.Class.TileStuff
                 this.GridItem.ChunkUpdate(gameTime, this, this.ChunkUnderMouse);
             }
 
+            this.TileModificationHandler.Update(gameTime);
+
         }
 
 
@@ -790,13 +797,13 @@ namespace SecretProject.Class.TileStuff
                                         {
 
                                             spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, Color.White * tile.ColorMultiplier,
-                                            tile.Rotation, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
+                                            tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                                         }
                                         else
                                         {
                                             spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, Color.White,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
+                                        0f, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                                         }
 
                                     }
@@ -805,7 +812,7 @@ namespace SecretProject.Class.TileStuff
                                         if (ActiveChunks[a, b].PathGrid.Weight[i, j] == (int)GridStatus.Obstructed)
                                         {
                                             spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.Red,
-                                        tile.Rotation, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+                                        tile.Rotation, tile.Origin, 1f, SpriteEffects.None, 1f);
                                         }
                                     }
 

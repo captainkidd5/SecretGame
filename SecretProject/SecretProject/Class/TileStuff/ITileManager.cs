@@ -11,6 +11,7 @@ using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
+using SecretProject.Class.TileStuff.TileModifications;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -55,9 +56,10 @@ namespace SecretProject.Class.TileStuff
         void UpdateCropTile();
         void HandleClockChange(object sender, EventArgs eventArgs);
         Chunk[,] ActiveChunks { get; set; }
+        TileModificationHandler TileModificationHandler { get; set; }
 
         //SanctuarySpecific
-         List<SPlot> AllPlots { get; set; }
+        List<SPlot> AllPlots { get; set; }
 
         void AddItem(Item item, Vector2 position);
         List<Item> GetItems(Vector2 position);

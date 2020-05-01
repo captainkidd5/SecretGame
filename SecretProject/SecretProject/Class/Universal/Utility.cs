@@ -171,11 +171,23 @@ namespace SecretProject.Class.Universal
 
         }
 
+        
+
+        public enum ItemTier
+        {
+            Tier0 = 0,
+            Tier1 = 1,
+            Tier2 = 2,
+            Tier3 = 3,
+            Tier4 = 4,
+        }
+
+
         public bool GetTileTierRequired(string[] info)
         {
             if(info.Length > 4)
             {
-                int tierRequired = int.Parse(info[5]);
+                int tierRequired = (int)Enum.Parse(typeof(ItemTier), info[5]);
                 if(Game1.Player.GetCurrentEquippedToolData().Tier >= tierRequired)
                 {
                     return true;

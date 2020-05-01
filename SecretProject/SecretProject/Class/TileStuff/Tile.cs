@@ -32,6 +32,7 @@ namespace SecretProject.Class.TileStuff
         public GenerationType GenerationType { get; set; }
 
         public float Rotation { get; set; }
+        public Vector2 Origin { get; set; }
 
 
         public Tile(int x, int y, int gID)
@@ -42,7 +43,7 @@ namespace SecretProject.Class.TileStuff
 
             this.GID = gID;
 
-
+            this.Origin = Game1.Utility.Origin;
 
         }
 

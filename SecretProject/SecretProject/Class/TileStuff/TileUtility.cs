@@ -8,6 +8,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.TileStuff.TileModifications;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -860,23 +861,28 @@ namespace SecretProject.Class.TileStuff
 
 
                 }
-                if (container.TileSetDictionary[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0 && !container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("crop"))
+                if (container.TileSetDictionary[tile.GID].AnimationFrames.Count > 0 && !container.TileSetDictionary[tile.GID].Properties.ContainsKey("crop"))
                 {
-                    //if (container.AnimationFrames.ContainsKey(tile.TileKey))
-                    //{
-                    //    container.AnimationFrames.Remove(tile.TileKey);
-                    //}
+
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                    for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count; i++)
+                    for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames.Count; i++)
                     {
-                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames[i]));
+                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[i]));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID, container.TileSetDictionary[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("newSource")) {Terminates = true};
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tile.GID, container.TileSetDictionary[tile.GID].Properties.ContainsKey("newSource")) {Terminates = true};
                     container.AnimationFrames.Add(tile.TileKey, frameHolder);
                 }
                 else
                 {
-                    FinalizeTile(layer, gameTime, x, y, container);
+                    if(container.TileSetDictionary[tile.GID].Properties.ContainsKey("tileType"))
+                    {
+                        container.AddTileModification(tile, TileModificationHandler.GetTileModificationType(container.TileSetDictionary[tile.GID].Properties["tileType"], container, layer, x, y, tile, Game1.Player.controls.Direction));
+                    }
+                    else
+                    {
+                        FinalizeTile(layer, gameTime, x, y, container);
+                    }
+                    
                 }
 
                 Game1.GetCurrentStage().ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
