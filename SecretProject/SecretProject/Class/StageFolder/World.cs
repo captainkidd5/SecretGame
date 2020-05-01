@@ -266,7 +266,7 @@ namespace SecretProject.Class.StageFolder
 
                             for (int item = 0; item < chunk.AllItems.Count; item++)
                             {
-                                this.QuadTree.Insert(chunk.AllItems[item].ItemSprite);
+                                this.QuadTree.Insert(chunk.AllItems[item].Collider);
 
                             }
 

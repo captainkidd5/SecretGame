@@ -59,9 +59,9 @@ namespace SecretProject.Class.Physics
             this.NumBounces = 0;
         }
 
-        public Vector2 Update(GameTime gameTime)
+        public Vector2 Update(GameTime gameTime, ref Vector2 primaryVelocity)
         {
-
+            //this.Velocity = primaryVelocity;
             Velocity += AirResistance * (float)gameTime.ElapsedGameTime.TotalSeconds;
             this.BounceObjectPosition += Velocity;
             if (this.BounceObjectPosition.Y >= this.VerticalFloor)

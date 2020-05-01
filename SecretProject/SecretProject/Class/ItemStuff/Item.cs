@@ -20,7 +20,7 @@ namespace SecretProject.Class.ItemStuff
         public int ID { get; set; }
 
 
-        public int Count { get; set; } = 0;
+        public int Count { get; set; }
 
         public bool Ignored { get; set; }
 
@@ -75,6 +75,9 @@ namespace SecretProject.Class.ItemStuff
 
         public float LayerDepth { get; set; }
 
+        public Collider Collider { get; set; }
+        private Vector2 PrimaryVelocity;
+
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
@@ -124,6 +127,7 @@ namespace SecretProject.Class.ItemStuff
 
 
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier;
+                this.Collider = new Collider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
                 AllItems.Add(this);
             }
             else
@@ -137,7 +141,7 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public float GetDurabilityLineLength()
+        private float GetDurabilityLineLength()
         {
             return (float)this.Durability / (float)Game1.ItemVault.GetItem(this.ID).Durability;
         }
@@ -147,11 +151,17 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Update(gameTime);
-                //CheckCollisions();
+                this.Collider.Rectangle = this.ItemSprite.DestinationRectangle;
+
                 if (this.Bouncer != null)
                 {
+                    if (CheckCollisions())
+                    {
+                        return;
+                    }
+                    this.PrimaryVelocity = Bouncer.Velocity;
 
-                    this.ItemSprite.Position = Bouncer.Update(gameTime);
+                    this.ItemSprite.Position = Bouncer.Update(gameTime, ref this.PrimaryVelocity);
                     if (!this.Bouncer.IsActive)
                     {
                         this.Bouncer = null;
@@ -175,32 +185,37 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void CheckCollisions()
+        private bool CheckCollisions()
         {
             if (this.Bouncer != null)
             {
                 List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
+                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
 
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
-                    if(returnObjects[i].ColliderType == ColliderType.inert)
+                    if (returnObjects[i].ColliderType == ColliderType.inert)
                     {
-                        if (returnObjects[i].Rectangle.Intersects(new Rectangle((int)this.WorldPosition.X, (int)this.WorldPosition.Y, 16, 16)))
+                        if (this.Collider.HandleMove(this.WorldPosition, ref PrimaryVelocity, returnObjects[i]))
                         {
                             Console.WriteLine("Debug!");
                             this.Bouncer = null;
                             this.IsTossable = false;
+                            return true;
                         }
+
                     }
-                    
                 }
+
             }
 
+            return false;
         }
 
-        public bool DidCollide(Vector2 velocity, ICollidable objectBody)
+
+
+        private bool DidCollide(Vector2 velocity, ICollidable objectBody)
         {
             Rectangle rect = this.ItemSprite.Rectangle;
 
@@ -218,72 +233,12 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
-        {
-            bool didEitherCollide = false;
-            Vector2 newMove = Vector2.Zero;
-            //Check collision in X direction
-            if (moveAmount.X != 0f)
-            {
-                newMove.Y = 0;
-                newMove.X = moveAmount.X;
-
-                bool collided = DidCollide(newMove, objectBody);
-                if (collided)
-                {
-                    moveAmount = new Vector2(0, moveAmount.Y);
-                    didEitherCollide = true;
-                }
-            }
-
-            //Check collision in Y direction
-            if (moveAmount.Y != 0f)
-            {
-                newMove.Y = moveAmount.Y;
-                newMove.X = 0;
-
-                bool collided = DidCollide(newMove, objectBody);
-                if (collided)
-                {
-                    moveAmount = new Vector2(moveAmount.X, 0);
-                    didEitherCollide = true;
-                }
-            }
-            return didEitherCollide;
-        }
-
-        //private void CheckAndHandleCollisions()
-        //{
-        //    List<ICollidable> returnObjects = new List<ICollidable>();
-
-        //    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.ItemSprite);
-
-
-
-        //    for (int i = 0; i < returnObjects.Count; i++)
-        //    {
-
-        //        if (returnObjects[i].ColliderType == ColliderType.inert)
-        //        {
-
-        //            if (this.ItemSprite.DestinationRectangle.Intersects(returnObjects[i].Rectangle))
-        //            {
-        //                HandleMove(this.ItemSprite.Position, ref this.Bouncer.BaseVelocity, returnObjects[i]);
-
-
-        //            }
-        //        }
-
-
-
-        //    }
-        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (this.IsWorldItem)
             {
-                this.ItemSprite.Draw(spriteBatch,this.LayerDepth);
+                this.ItemSprite.Draw(spriteBatch, this.LayerDepth);
 
             }
 
@@ -312,7 +267,7 @@ namespace SecretProject.Class.ItemStuff
                     this.AllItems.Remove(this);
                     // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
                     this.IsWorldItem = false;
-                    if(this.Durability > 0)
+                    if (this.Durability > 0)
                     {
                         this.AlterDurability(0);
                     }

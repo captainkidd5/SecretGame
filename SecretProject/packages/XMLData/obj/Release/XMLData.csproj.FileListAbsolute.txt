@@ -16,3 +16,11 @@ C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Relea
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csproj.CopyComplete
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.dll
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Release\XMLData.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Release\XMLData.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Release\MonoGame.Framework.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\bin\Release\MonoGame.Framework.dll.config
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csprojAssemblyReference.cache
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csproj.CopyComplete
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.pdb
