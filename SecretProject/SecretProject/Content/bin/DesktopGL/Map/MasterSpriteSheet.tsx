@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.4" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="2">
   <objectgroup draworder="index" id="2">
@@ -1682,7 +1682,7 @@
  </tile>
  <tile id="975">
   <properties>
-   <property name="destructable" value="22,0,0,20,20,0"/>
+   <property name="destructable" value="Mining,0,0,20,20,0"/>
    <property name="idleStart" value=""/>
    <property name="loot" value="1001"/>
    <property name="tileSelectorAllowed" value="2"/>
@@ -1989,7 +1989,7 @@
  </tile>
  <tile id="1078">
   <properties>
-   <property name="destructable" value="2,0,3,6,6,0"/>
+   <property name="destructable" value="Mining,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
    <property name="loot" value="1002"/>
    <property name="tileSelectorAllowed" value="3"/>
@@ -2639,7 +2639,7 @@
  </tile>
  <tile id="1380">
   <properties>
-   <property name="destructable" value="22,0,6,17,17,0"/>
+   <property name="destructable" value="Mining,0,6,17,17,0"/>
    <property name="idleStart" value=""/>
    <property name="loot" value="1097"/>
    <property name="tileSelectorAllowed" value="2"/>
@@ -5735,38 +5735,38 @@
  </tile>
  <tile id="4016">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="15" width="16" height="1"/>
+   <object id="3" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4017">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="15" width="16" height="1"/>
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4018">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="3" x="0" y="15" width="16" height="1"/>
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4019">
@@ -5918,9 +5918,9 @@
  </tile>
  <tile id="4126">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -5930,9 +5930,9 @@
  </tile>
  <tile id="4127">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -5942,9 +5942,9 @@
  </tile>
  <tile id="4128">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6040,9 +6040,9 @@
  </tile>
  <tile id="4213">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6052,9 +6052,9 @@
  </tile>
  <tile id="4214">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6064,9 +6064,9 @@
  </tile>
  <tile id="4215">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6204,9 +6204,9 @@
  </tile>
  <tile id="4323">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6216,9 +6216,9 @@
  </tile>
  <tile id="4324">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6228,9 +6228,9 @@
  </tile>
  <tile id="4325">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6246,9 +6246,9 @@
  </tile>
  <tile id="4421">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6258,9 +6258,9 @@
  </tile>
  <tile id="4422">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6270,9 +6270,9 @@
  </tile>
  <tile id="4426">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6282,9 +6282,9 @@
  </tile>
  <tile id="4427">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6294,9 +6294,9 @@
  </tile>
  <tile id="4428">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6306,9 +6306,9 @@
  </tile>
  <tile id="4429">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6318,9 +6318,9 @@
  </tile>
  <tile id="4430">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6330,9 +6330,9 @@
  </tile>
  <tile id="4511">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6342,9 +6342,9 @@
  </tile>
  <tile id="4512">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6354,9 +6354,9 @@
  </tile>
  <tile id="4516">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6366,9 +6366,9 @@
  </tile>
  <tile id="4517">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6378,9 +6378,9 @@
  </tile>
  <tile id="4518">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6390,9 +6390,9 @@
  </tile>
  <tile id="4519">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6402,9 +6402,9 @@
  </tile>
  <tile id="4520">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
@@ -6449,9 +6449,9 @@
  </tile>
  <tile id="4623">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6461,9 +6461,9 @@
  </tile>
  <tile id="4624">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6473,9 +6473,9 @@
  </tile>
  <tile id="4625">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="SandStoneWall"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-32, 16, 48"/>
    <property name="transparent" value="0,-32, 16, 48"/>
   </properties>
@@ -6500,38 +6500,38 @@
  </tile>
  <tile id="4713">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="14" width="16" height="2"/>
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4714">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="14" width="16" height="2"/>
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4715">
   <properties>
-   <property name="destructable" value="Chopping,4,5,3,19,0"/>
+   <property name="destructable" value="Mining,0,0,8,20,0"/>
    <property name="generate" value="DirtCliff"/>
-   <property name="loot" value="520"/>
+   <property name="loot" value="1001"/>
    <property name="newSource" value="0,-64, 16, 80"/>
    <property name="transparent" value="0,-64, 16, 80"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="14" width="16" height="2"/>
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4716">

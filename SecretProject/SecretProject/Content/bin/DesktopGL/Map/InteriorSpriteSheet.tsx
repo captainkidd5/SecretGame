@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.0" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.4" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
  <tile id="143">
   <properties>
@@ -383,6 +383,21 @@
    <object id="1" x="0" y="2" width="8" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="708">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="709">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="710">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="732">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -447,6 +462,21 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="4" width="8" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="808">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="809">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="810">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="839">
   <properties>

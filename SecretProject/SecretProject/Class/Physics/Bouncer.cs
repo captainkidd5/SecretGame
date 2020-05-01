@@ -38,13 +38,13 @@ namespace SecretProject.Class.Physics
             switch(DirectionToBounce)
             {
                 case Dir.Down:
-                    Velocity = new Vector2(HorizontalSpeed * horizontalMultiplier, -this.VerticalSpeed);
+                    Velocity = new Vector2(HorizontalSpeed * horizontalMultiplier, this.VerticalSpeed);
                     break;
                 case Dir.Left:
-                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
+                    Velocity = new Vector2(-HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Right:
-                    Velocity = new Vector2(-HorizontalSpeed, -this.VerticalSpeed);
+                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Up:
                     Velocity = new Vector2(HorizontalSpeed * horizontalMultiplier, -this.VerticalSpeed);
