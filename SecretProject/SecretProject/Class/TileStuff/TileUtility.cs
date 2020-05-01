@@ -992,7 +992,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (container.TileSetDictionary[tile.GID].Properties["loot"] == string.Empty)
                 {
-                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(tile.GID, tile.GetPosition(container), container);
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetandSpawnLootFromXML(tile.GID, tile.Position, container);
                 }
                 else
                 {

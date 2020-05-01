@@ -182,6 +182,7 @@ namespace SecretProject.Class.Playable
             switch (action)
             {
                 case AnimationType.HandsPicking:
+                    Wardrobe.CurrentAnimationSet = Wardrobe.PickUpItemSet;
                     IsPerformingAction = true;
                     break;
 

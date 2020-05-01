@@ -152,6 +152,40 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             this.OldFrame = currentFrame;
 
         }
+
+        public virtual void UpdatePickUpItem(GameTime gameTime, Vector2 position, int currentFrame, Dir direction)
+        {
+
+            if (this.OldFrame != currentFrame)
+            {
+                switch (direction)
+                {
+                    case Dir.Down:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdatePickUpItemDown(currentFrame);
+                        break;
+                    case Dir.Up:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdatePickUpItemUp(currentFrame);
+                        break;
+                    case Dir.Left:
+                        this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                        UpdatePickUpItemRight(currentFrame);
+                        break;
+                    case Dir.Right:
+                        this.SpriteEffects = SpriteEffects.None;
+                        UpdatePickUpItemRight(currentFrame);
+                        break;
+
+                }
+
+
+            }
+            this.Position = position;
+
+            this.OldFrame = currentFrame;
+
+        }
         #region WALK
         protected virtual void UpdateWalkDown(int currentFrame)
         {
@@ -194,6 +228,21 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         }
 
         protected virtual void UpdateSwordSwipeRight(int currentFrame)
+        {
+        }
+        #endregion
+
+        #region Pick Up Item
+        protected virtual void UpdatePickUpItemDown(int currentFrame)
+        {
+
+        }
+
+        protected virtual void UpdatePickUpItemUp(int currentFrame)
+        {
+        }
+
+        protected virtual void UpdatePickUpItemRight(int currentFrame)
         {
         }
         #endregion

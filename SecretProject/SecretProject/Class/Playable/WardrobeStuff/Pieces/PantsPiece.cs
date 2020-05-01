@@ -295,6 +295,106 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         }
         #endregion
 
+        #region Pick Up Item
+        protected override void UpdatePickUpItemDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            this.Row = 3;
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 1;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+
+                case 2:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+                case 3:
+                    yAdjustment = 1;
+                    break;
+                case 4:
+                    xAdjustment = 32;
+                    yAdjustment = 1;
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    break;
+                case 5:
+                    xAdjustment = 32;
+                    yAdjustment = 2;
+                    this.SpriteEffects = SpriteEffects.FlipHorizontally;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
+        }
+
+        protected override void UpdatePickUpItemUp(int currentFrame)
+        {
+            this.BaseYOffSet = 6;
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 8;
+            this.Row = 2;
+
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 0;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    //yAdjustment = 1;
+                    break;
+
+                case 2:
+                    xAdjustment = 32;
+                    // yAdjustment = 1;
+                    break;
+
+
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
+        }
+
+        protected override void UpdatePickUpItemRight(int currentFrame)
+        {
+            this.BaseYOffSet = 12;
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 5;
+            this.Row = 1;
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = 0;
+                    break;
+                case 1:
+                    xAdjustment = 16;
+                    yAdjustment = 1;
+                    break;
+
+                case 2:
+                    xAdjustment = 32;
+                    yAdjustment = 1;
+                    break;
+                case 3:
+                    xAdjustment = 48;
+                    yAdjustment = 0;
+                    break;
+
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+            this.Row = 0;
+        }
+        #endregion
+
         public void ChangePantsColor(CycleDirection direction)
         {
             this.ColorIndex += (int)direction;

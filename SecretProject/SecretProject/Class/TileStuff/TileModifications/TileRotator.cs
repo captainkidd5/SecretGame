@@ -34,6 +34,19 @@ namespace SecretProject.Class.TileStuff.TileModifications
                 this.DesiredRotation = TileModificationHandler.TreeFallLeftRotationAmt;
                 this.RotationSpeed = TileModificationHandler.TreeFallSpeed * -1;
             }
+            else
+            {
+                if(Game1.Utility.RGenerator.Next(0, 2) > 1)
+                {
+                    this.DesiredRotation = TileModificationHandler.TreeFallRightRotationAmt;
+                    this.RotationSpeed = TileModificationHandler.TreeFallSpeed;
+                }
+                else
+                {
+                    this.DesiredRotation = TileModificationHandler.TreeFallLeftRotationAmt;
+                    this.RotationSpeed = TileModificationHandler.TreeFallSpeed * -1;
+                }
+            }
             this.Tile.Origin = new Vector2(Tile.SourceRectangle.Width / 2, Tile.SourceRectangle.Height);
             this.Tile.Position = new Vector2(this.Tile.Position.X + Tile.SourceRectangle.Width / 2, this.Tile.Position.Y + this.Tile.SourceRectangle.Height);
         }

@@ -37,7 +37,7 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
-        public Item GetLootFromXML(int gid, Vector2 position, IInformationContainer container)
+        public Item GetandSpawnLootFromXML(int gid, Vector2 position, IInformationContainer container)
         {
             LootData data = LootInfo[gid];
             for (int i = 0; i < data.LootPieces.Count; i++)

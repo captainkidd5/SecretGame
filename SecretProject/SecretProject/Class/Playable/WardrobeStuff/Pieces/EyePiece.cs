@@ -227,6 +227,93 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
         }
         #endregion
+
+        #region Pick Up Item
+        protected override void UpdatePickUpItemDown(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 0;
+            switch (currentFrame)
+            {
+                case 0:
+                    break;
+                case 1:
+                    yAdjustment = 0;
+                    break;
+
+                case 2:
+                    yAdjustment = 0;
+                    break;
+                case 3:
+                    yAdjustment = -1;
+                    break;
+                case 4:
+                    yAdjustment = 0;
+                    break;
+                case 5:
+                    yAdjustment = 0;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+
+        protected override void UpdatePickUpItemUp(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 1;
+
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = -1;
+                    break;
+                case 1:
+                    yAdjustment = 0;
+                    break;
+
+                case 2:
+                    yAdjustment = 0;
+                    break;
+                case 3:
+                    yAdjustment = -1;
+                    break;
+                case 4:
+                    yAdjustment = -2;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+
+        protected override void UpdatePickUpItemRight(int currentFrame)
+        {
+            int xAdjustment = 0;
+            int yAdjustment = 0;
+            int column = 1;
+
+            switch (currentFrame)
+            {
+                case 0:
+                    yAdjustment = -1;
+                    break;
+                case 1:
+                    yAdjustment = 0;
+                    break;
+
+                case 2:
+                    yAdjustment = 0;
+                    break;
+                case 3:
+                    yAdjustment = -1;
+                    break;
+                case 4:
+                    yAdjustment = -2;
+                    break;
+            }
+            UpdateSourceRectangle(column, xAdjustment, yAdjustment);
+        }
+        #endregion
         public virtual void ChangeEyeColor(CycleDirection direction)
         {
             this.EyeColorIndex += (int)direction;
