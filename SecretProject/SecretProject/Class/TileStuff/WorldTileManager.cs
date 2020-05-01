@@ -790,7 +790,7 @@ namespace SecretProject.Class.TileStuff
                                         {
 
                                             spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, Color.White * tile.ColorMultiplier,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
+                                            tile.Rotation, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                                         }
                                         else
@@ -805,7 +805,7 @@ namespace SecretProject.Class.TileStuff
                                         if (ActiveChunks[a, b].PathGrid.Weight[i, j] == (int)GridStatus.Obstructed)
                                         {
                                             spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, Color.Red,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+                                        tile.Rotation, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
                                         }
                                     }
 

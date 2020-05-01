@@ -19,8 +19,8 @@ namespace SecretProject.Class.TileStuff
         public int GID { get { return gid - 1; } set { gid = value; } }
         public int Y { get; set; }
         public int X { get; set; }
-        public float LayerToDrawAt { get; set; } = 0f;
-        public float LayerToDrawAtZOffSet { get; set; } = 0f;
+        public float LayerToDrawAt { get; set; } 
+        public float LayerToDrawAtZOffSet { get; set; } 
         public float ColorMultiplier { get; set; } = 1f;
 
         public Rectangle SourceRectangle { get; set; }
@@ -30,6 +30,8 @@ namespace SecretProject.Class.TileStuff
         public string TileKey { get; set; }
 
         public GenerationType GenerationType { get; set; }
+
+        public float Rotation { get; set; }
 
 
         public Tile(int x, int y, int gID)

@@ -507,7 +507,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
 
-                container.Crops[tileToAssign.GetTileKeyStringNew(layer, container)] = tempCrop;
+                container.Crops[tileToAssign.TileKey] = tempCrop;
             }
 
 
