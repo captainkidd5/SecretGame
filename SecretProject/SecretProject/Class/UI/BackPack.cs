@@ -272,12 +272,17 @@ namespace SecretProject.Class.UI
 
                     if (itemButton.IsHovered)
                     {
-                        Game1.Player.UserInterface.InfoBox.IsActive = true;
                         InventorySlot newInventorySlot = Inventory.currentInventory[i];
+                        if (newInventorySlot.ItemCount > 0)
+                        {
+                            Game1.Player.UserInterface.InfoBox.IsActive = true;
+                        }
+                        
                         if (itemButton != this.ButtonHoveredLastFrame)
                         {
                             if(newInventorySlot.ItemCount > 0)
                             {
+                                
                                 ItemInfoInteraction(itemButton, newInventorySlot, newInventorySlot.GetItemData());
                             this.ButtonHoveredLastFrame = itemButton;
                             }

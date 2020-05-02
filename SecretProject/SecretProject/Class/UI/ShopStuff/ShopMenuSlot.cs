@@ -71,7 +71,7 @@ namespace SecretProject.Class.UI.ShopStuff
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
             this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString() + "\n \n                   " + Game1.ItemVault.GetItem(Item.ID).Name + "\n \n                   Price: " + Game1.ItemVault.GetItem(Item.ID).Price, drawPosition,
+               Stock.ToString(), drawPosition,
                Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 

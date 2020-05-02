@@ -122,20 +122,20 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                this.FittedRectangle.Draw(spriteBatch);
+                this.FittedRectangle.Draw(spriteBatch, Game1.Utility.StandardButtonDepth + .09f);
               //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 48), this.Color, 0f, Game1.Utility.Origin,this.TextScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 48), this.Color, 0f, Game1.Utility.Origin,this.TextScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .1f);
                 if(this.DisplayTitle)
                 {
                   //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.WindowPosition.X + 24, this.WindowPosition.Y - 46), this.TitleSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
-                    spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+                    spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .1f);
                 }
 
                 if(this.Sprites != null)
                 {
                     foreach (Sprite sprite in this.Sprites)
                     {
-                        sprite.Draw(spriteBatch, Game1.Utility.StandardButtonDepth + .06f);
+                        sprite.Draw(spriteBatch, .99f);
                     }
                 }
                 
