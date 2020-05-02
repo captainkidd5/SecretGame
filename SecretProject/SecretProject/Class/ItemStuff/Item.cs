@@ -125,8 +125,8 @@ namespace SecretProject.Class.ItemStuff
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
 
-
-                this.LayerDepth = .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier;
+                float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
+                this.LayerDepth = .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier + randomOffSet;
                 this.Collider = new Collider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
                 AllItems.Add(this);
             }

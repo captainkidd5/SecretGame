@@ -9,7 +9,7 @@ namespace SecretProject.Class.TileStuff.TileModifications
 {
     public class TileModificationHandler
     {
-        public static float TreeFallSpeed = .3f;
+        public static float TreeFallSpeed = .1f;
         public static float TreeFallLeftRotationAmt = -1.65f;
         public static float TreeFallRightRotationAmt = 1.65f;
 

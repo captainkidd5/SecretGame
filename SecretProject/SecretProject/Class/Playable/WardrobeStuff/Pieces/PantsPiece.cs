@@ -301,7 +301,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             int xAdjustment = 0;
             int yAdjustment = 0;
             int column = 0;
-            this.Row = 3;
+            this.Row = 2;
             switch (currentFrame)
             {
                 case 0:
@@ -313,7 +313,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
 
                 case 2:
-                    xAdjustment = 16;
+                    xAdjustment = 32;
                     yAdjustment = 1;
                     break;
                 case 3:

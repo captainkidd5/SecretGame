@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff.TileModifications
             }
             else
             {
-                if(Game1.Utility.RGenerator.Next(0, 2) > 1)
+                if(Game1.Utility.RGenerator.Next(0, 2) > 0)
                 {
                     this.DesiredRotation = TileModificationHandler.TreeFallRightRotationAmt;
                     this.RotationSpeed = TileModificationHandler.TreeFallSpeed;
@@ -54,7 +54,7 @@ namespace SecretProject.Class.TileStuff.TileModifications
         public bool Update(GameTime gameTime)
         {
             Tile.Rotation +=(float)gameTime.ElapsedGameTime.TotalSeconds * RotationSpeed;
-            this.RotationSpeed = this.RotationSpeed * 1.015f;
+            this.RotationSpeed = this.RotationSpeed * 1.017f;
             if (this.DesiredRotation < 0)
             {
                 if (Tile.Rotation < this.DesiredRotation)
