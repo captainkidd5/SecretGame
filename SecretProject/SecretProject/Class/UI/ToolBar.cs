@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
@@ -26,6 +27,7 @@ namespace SecretProject.Class.UI
         public Button InGameMenu { get; set; }
         public Button OpenCraftingMenu { get; set; }
         public Button OpenSanctuaryMenu { get; set; }
+        public SunsetMushroom SunsetMushroom { get; set; }
 
 
         public Texture2D ToolBarButton { get; set; }
@@ -81,7 +83,7 @@ namespace SecretProject.Class.UI
             this.Scale = 2f;
 
 
-
+            this.SunsetMushroom = new SunsetMushroom(graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 196, Game1.PresentationParameters.BackBufferHeight * .9f));
 
             this.AllNonInventoryButtons = new List<Button>()
             {
@@ -105,6 +107,7 @@ namespace SecretProject.Class.UI
 
 
             UpdateNonInventoryButtons(mouse);
+            this.SunsetMushroom.Update(gameTime);
 
         }
 
@@ -196,6 +199,7 @@ namespace SecretProject.Class.UI
 
                 this.OpenSanctuaryMenu.Draw(spriteBatch, this.OpenSanctuaryMenu.ItemSourceRectangleToDraw, this.OpenSanctuaryMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
                     "", this.OpenSanctuaryMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                this.SunsetMushroom.Draw(spriteBatch);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.GoldIconPosition, this.GoldIconBackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.GoldIconPosition.X + 112, this.GoldIconPosition.Y), this.GoldIcon, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), new Vector2(this.GoldIconPosition.X + 16, this.GoldIconPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);

@@ -102,7 +102,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 else
                 {
                     Game1.OverWorldSpawnHolder.UnlockSpawnElement(gidUnlock);
-                    Game1.Player.UserInterface.AddAlert(AlertType.Normal,AlertSize.Large, Vector2.Zero, "hi");
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, Vector2.Zero, "hi");
                 }
                 
                 
@@ -114,7 +114,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 if (lootUnlock != 0)
                 {
                     Game1.LootBank.LootInfo[gidUnlock].LootPieces[lootUnlock].Unlocked = true;
-                Game1.Player.UserInterface.AddAlert(AlertType.Normal,AlertSize.Large, Vector2.Zero, "You are now able to harvest " + Game1.ItemVault.GetItem(lootUnlock).Name);
+                Game1.Player.UserInterface.AddAlert(AlertType.Normal, Vector2.Zero, "You are now able to harvest " + Game1.ItemVault.GetItem(lootUnlock).Name);
             }
                 IndividualRewards[index] = true;
             

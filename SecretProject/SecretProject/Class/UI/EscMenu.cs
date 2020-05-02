@@ -156,7 +156,7 @@ namespace SecretProject.Class.MenuStuff
             if (this.MenuButton.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-                Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, AlertSize.Medium, Game1.Utility.centerScreen, "Exit to main menu?",
+                Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Exit to main menu?",
                     ExitToMainMenu, ReturnToEscMenu);
                 
             }

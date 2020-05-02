@@ -318,15 +318,15 @@ namespace SecretProject.Class.StageFolder
             Game1.freeze = false;
         }
 
-        public void AddAlert(AlertType type, AlertSize size, Vector2 position, string text, Action positiveAction = null, Action negativeAction = null)
+        public void AddAlert(AlertType type, Vector2 position, string text, Action positiveAction = null, Action negativeAction = null)
         {
             switch (type)
             {
                 case AlertType.Confirmation:
-                    this.AllAlerts.Add(new ConfirmationAlert(positiveAction,negativeAction, this.Graphics, size, position, text));
+                    this.AllAlerts.Add(new ConfirmationAlert(positiveAction,negativeAction, this.Graphics, position, text));
                     break;
                 default:
-                    this.AllAlerts.Add(new Alert(this.Graphics, size, position, text));
+                    this.AllAlerts.Add(new Alert(this.Graphics, position, text));
                     break;
             }
 

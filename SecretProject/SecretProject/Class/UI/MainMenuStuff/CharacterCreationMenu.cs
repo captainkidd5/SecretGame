@@ -155,13 +155,13 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
                 if(this.PlayerName == string.Empty)
                 {
-                    Game1.mainMenu.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.CenterRectangleOnScreen(new Rectangle(0, 0, 64, 32), 2f), "Please enter a name");
+                    Game1.mainMenu.AddAlert(AlertType.Normal, Game1.Utility.CenterRectangleOnScreen(new Rectangle(0, 0, 64, 32), 2f), "Please enter a name");
                     return;
                 }
                 Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);
                 Action action = new Action(EnterGame);
 
-                Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Game1.Utility.centerScreen, "Start new game?", action, negativeAction);
+                Game1.mainMenu.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Start new game?", action, negativeAction);
             }
 
             for(int i =0; i < this.CustomizationButtons.Count; i++)

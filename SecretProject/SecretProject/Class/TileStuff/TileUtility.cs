@@ -640,7 +640,7 @@ namespace SecretProject.Class.TileStuff
                     if (mouse.IsClicked)
                     {
                         Action newAction = new Action(Game1.GlobalClock.IncrementDay);
-                        Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, AlertSize.Large, Game1.Utility.centerScreen, "Go to sleep?", newAction);
+                        Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Go to sleep?", newAction);
 
                     }
                     break;
@@ -779,7 +779,7 @@ namespace SecretProject.Class.TileStuff
                             announcementString = "Kai!";
                         }
 
-                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Location set to " + announcementString);
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "Location set to " + announcementString);
                     }
                     break;
                 case "enterPortal":

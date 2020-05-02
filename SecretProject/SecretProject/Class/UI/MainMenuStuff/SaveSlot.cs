@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                     Game1.mainMenu.IsDrawn = false;
                     Action action = new Action(LoadSave);
                     
-                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Game1.Utility.centerScreen, "Load Game?", action, negativeAction);
+                    Game1.mainMenu.AddAlert(AlertType.Confirmation,  Game1.Utility.centerScreen, "Load Game?", action, negativeAction);
 
                 }
                 else

@@ -778,7 +778,7 @@ namespace SecretProject.Class.Playable
                     this.Position = new Vector2(600, 600);
                     Game1.GlobalClock.IncrementDay();
                     UserInterface.BackPack.Inventory.Money -= 200;
-                    UserInterface.AddAlert(AlertType.Normal, AlertSize.Large, Game1.Utility.centerScreen, "You have run out of health (-200G)!");
+                    UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "You have run out of health (-200G)!");
                 }
                 this.IsImmuneToDamage = true;
                 UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));

@@ -42,7 +42,7 @@ namespace SecretProject.Class.UI.ShopStuff
             ShopMenuPosition = Game1.Utility.CenterRectangleOnScreen(this.ShopBackDropSourceRectangle, this.BackDropScale);
             Name = name;
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphicsDevice,
-                new Vector2(ShopMenuPosition.X + this.ShopBackDropSourceRectangle.Width * this.BackDropScale + 400, this.ShopBackDropSourceRectangle.Y + 100), CursorType.Normal);
+                new Vector2(ShopMenuPosition.X + this.ShopBackDropSourceRectangle.Width * this.BackDropScale - 48, this.ShopMenuPosition.Y + 16), CursorType.Normal);
             mainFont = Game1.AllTextures.MenuText;
 
             

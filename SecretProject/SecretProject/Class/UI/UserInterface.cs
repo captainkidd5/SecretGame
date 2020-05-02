@@ -182,15 +182,15 @@ namespace SecretProject.Class.UI
             this.CurrentAccessedStorableItem = building;
         }
 
-        public void AddAlert(AlertType type, AlertSize size, Vector2 position, string text, Action positiveAction = null, Action negativeAction = null)
+        public void AddAlert(AlertType type, Vector2 position, string text, Action positiveAction = null, Action negativeAction = null)
         {
             switch (type)
             {
                 case AlertType.Confirmation:
-                    this.AllAlerts.Add(new ConfirmationAlert(positiveAction, negativeAction, this.GraphicsDevice, size, position, text));
+                    this.AllAlerts.Add(new ConfirmationAlert(positiveAction, negativeAction, this.GraphicsDevice, position, text));
                     break;
                 default:
-                    this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
+                    this.AllAlerts.Add(new Alert(this.GraphicsDevice, position, text));
                     break;
             }
 

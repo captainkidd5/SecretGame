@@ -27,7 +27,7 @@ namespace SecretProject.Class.UI.AlertStuff
         /// <param name="size"></param>
         /// <param name="position"></param>
         /// <param name="text"></param>
-        public ConfirmationAlert(Action positiveAction, Action negativeAction, GraphicsDevice graphics, AlertSize size, Vector2 position, string text) : base (graphics, size, position, text)
+        public ConfirmationAlert(Action positiveAction, Action negativeAction, GraphicsDevice graphics, Vector2 position, string text) : base (graphics, position, text)
         {
             this.positiveAction = positiveAction;
             this.negativeAction = negativeAction;

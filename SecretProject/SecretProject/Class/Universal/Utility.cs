@@ -195,7 +195,7 @@ namespace SecretProject.Class.Universal
                 }
                 else
                 {
-                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, "Higher level tool required!");
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal,  Game1.Utility.centerScreen, "Higher level tool required!");
                     return false;
                 }
             }

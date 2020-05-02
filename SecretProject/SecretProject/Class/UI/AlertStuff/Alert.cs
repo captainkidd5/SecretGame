@@ -18,15 +18,7 @@ namespace SecretProject.Class.UI
         Normal = 0,
         Confirmation = 1,
     }
-    public enum AlertSize
-    {
-        Tiny = 1,
-        Small = 2,
-        Medium = 5,
-        Large = 8,
-        XL = 15,
-        XXL = 20
-    }
+
     public class Alert
     {
         public GraphicsDevice Graphics { get; set; }
@@ -34,15 +26,13 @@ namespace SecretProject.Class.UI
         public Vector2 Position { get; set; }
         public string Text { get; set; }
 
-        public Rectangle LeftRectangle { get; set; }
-        public Rectangle MiddleRectangle { get; set; }
-        public Rectangle RightRectangle { get; set; }
+
 
         protected RedEsc redEsc;
 
      
 
-        public Alert( GraphicsDevice graphics,AlertSize size, Vector2 position, string text)
+        public Alert( GraphicsDevice graphics, Vector2 position, string text)
         {
 
             this.Graphics = graphics;
