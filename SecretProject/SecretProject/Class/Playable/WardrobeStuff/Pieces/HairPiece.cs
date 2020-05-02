@@ -289,14 +289,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
-                    yAdjustment = 0;
+                    yAdjustment = -2;
                     break;
                 case 1:
-                    yAdjustment = 1;
+                    yAdjustment = -3;
                     break;
 
                 case 2:
-                    yAdjustment = 1;
+                    yAdjustment = -4;
                     break;
                 case 3:
                     yAdjustment = 0;
@@ -318,14 +318,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             switch (currentFrame)
             {
                 case 0:
-                    yAdjustment = -1;
+                    yAdjustment = 0;
                     break;
                 case 1:
-                    yAdjustment = 0;
+                    yAdjustment = -1;
                     break;
 
                 case 2:
-                    yAdjustment = 0;
+                    yAdjustment = -2;
                     break;
                 case 3:
                     yAdjustment = -1;

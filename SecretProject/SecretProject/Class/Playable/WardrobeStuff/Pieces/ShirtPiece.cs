@@ -313,7 +313,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             int xAdjustment = 0;
             int yAdjustment = 0;
-            int column =2;
+            int column = 0;
             switch (currentFrame)
             {
                 case 0:
@@ -324,7 +324,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
                     break;
 
                 case 2:
-                    yAdjustment = -5;
+                    yAdjustment = -4;
                     break;
                 case 3:
 
@@ -346,33 +346,37 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         protected override void UpdatePickUpItemRight(int currentFrame)
         {
-            this.BaseYOffSet = 12;
             int xAdjustment = 0;
             int yAdjustment = 0;
-            int column = 5;
-            this.Row = 1;
+            int column = 1;
             switch (currentFrame)
             {
                 case 0:
                     yAdjustment = 0;
                     break;
                 case 1:
-                    xAdjustment = 16;
-                    yAdjustment = 1;
+                    yAdjustment = -1;
                     break;
 
                 case 2:
-                    xAdjustment = 32;
-                    yAdjustment = 1;
+                    yAdjustment = -2;
                     break;
                 case 3:
-                    xAdjustment = 48;
-                    yAdjustment = 0;
+
+                    yAdjustment = -3;
+                    break;
+                case 4:
+
+                    yAdjustment = -4;
+                    break;
+                case 5:
+
+                    yAdjustment = -5;
                     break;
 
             }
             UpdateSourceRectangle(column, xAdjustment, yAdjustment);
-   
+
         }
         #endregion
 

@@ -33,6 +33,7 @@ using static SecretProject.Class.UI.CheckList;
 using XMLData.QuestStuff;
 using SecretProject.Class.QuestFolder;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.UI.ShopStuff;
 
 
 

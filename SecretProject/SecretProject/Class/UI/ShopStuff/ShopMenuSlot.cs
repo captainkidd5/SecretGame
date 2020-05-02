@@ -27,11 +27,12 @@ namespace SecretProject.Class.UI.ShopStuff
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Item = item;
             this.ItemID = itemID;
-            this.Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Currency, buttonScale);
+            this.BackgroundSourceRectangle = new Rectangle(1168, 96, 48, 48);
+            this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, BackgroundSourceRectangle, graphics, drawPosition, CursorType.Currency, buttonScale, this.Item);
             Stock = stock;
             this.drawPosition = drawPosition;
             colorMultiplier = .25f;
-            this.BackgroundSourceRectangle = new Rectangle(1168, 96, 48, 80);
+            
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -69,7 +70,7 @@ namespace SecretProject.Class.UI.ShopStuff
 
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
-            this.Button.Draw(spriteBatch, this.Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
+            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
                Stock.ToString() + "\n \n                   " + Game1.ItemVault.GetItem(Item.ID).Name + "\n \n                   Price: " + Game1.ItemVault.GetItem(Item.ID).Price, drawPosition,
                Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }

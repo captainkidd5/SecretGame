@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.UI;
+using SecretProject.Class.UI.ShopStuff;
 
 namespace SecretProject.Class.ShopStuff
 {

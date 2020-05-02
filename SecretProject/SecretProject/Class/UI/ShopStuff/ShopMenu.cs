@@ -7,7 +7,7 @@ using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
-namespace SecretProject.Class.UI
+namespace SecretProject.Class.UI.ShopStuff
 {
     public class ShopMenu : IExclusiveInterfaceComponent
     {
@@ -37,26 +37,26 @@ namespace SecretProject.Class.UI
         public ShopMenu(string name, GraphicsDevice graphicsDevice, int inventorySlotCount)
         {
             this.Graphics = graphicsDevice;
-            //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
-            ShopMenuPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, 0);
+            this.ShopBackDropSourceRectangle = new Rectangle(1232, 80, 272, 224);
+            this.BackDropScale = 3f;
+            ShopMenuPosition = Game1.Utility.CenterRectangleOnScreen(this.ShopBackDropSourceRectangle, this.BackDropScale);
             Name = name;
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphicsDevice,
                 new Vector2(ShopMenuPosition.X + this.ShopBackDropSourceRectangle.Width * this.BackDropScale + 400, this.ShopBackDropSourceRectangle.Y + 100), CursorType.Normal);
             mainFont = Game1.AllTextures.MenuText;
 
-            this.ShopBackDropSourceRectangle = new Rectangle(1232, 80, 272, 224);
-            this.BackDropScale = 3f;
+            
             Font = Game1.AllTextures.MenuText;
 
             //ShopTextBox = new TextBox(Game1.AllTextures.MenuText, )
 
             allShopMenuItemButtons = new List<Button>();
-            this.MaxMenuSlotsPerPage = 5;
+            this.MaxMenuSlotsPerPage = 8;
             this.Pages = new List<List<ShopMenuSlot>>() { new List<ShopMenuSlot>() };
-            this.FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.Graphics,
-                new Vector2(ShopMenuPosition.X + this.ShopBackDropSourceRectangle.Width * this.BackDropScale, this.ShopBackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
-            this.BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
-                this.Graphics, new Vector2(ShopMenuPosition.X - 48, this.ShopBackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+            this.FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(384, 528, 32, 16), this.Graphics,
+                new Vector2(ShopMenuPosition.X -128 + this.ShopBackDropSourceRectangle.Width * this.BackDropScale, this.ShopMenuPosition.Y + this.ShopBackDropSourceRectangle.Height* this.BackDropScale - 80), CursorType.Normal, this.BackDropScale);
+            this.BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(304, 528, 32, 16),
+                this.Graphics, new Vector2(ShopMenuPosition.X - 224 + this.ShopBackDropSourceRectangle.Width * this.BackDropScale, this.ShopMenuPosition.Y + this.ShopBackDropSourceRectangle.Height * this.BackDropScale - 80), CursorType.Normal, this.BackDropScale);
             this.FreezesGame = true;
             this.IsActive = false;
         }
@@ -79,17 +79,19 @@ namespace SecretProject.Class.UI
             if (!added)
             {
 
-
+                int yMultiplier = 0;
+                int xCount = 0;
                 for (int i = 0; i < this.Pages.Count; i++)
                 {
                     if (this.Pages[i].Count < this.MaxMenuSlotsPerPage)
                     {
-                        int yMultiplier = 0;
-                        if(this.Pages[i].Count > 4)
+                        xCount = this.Pages[i].Count;
+                        if(this.Pages[i].Count > 3)
                         {
-                            yMultiplier += 96;
+                            yMultiplier = 96;
+                            xCount = 7 - this.Pages[i].Count;
                         }
-                        this.Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X + 64 * this.Pages[i].Count, ShopMenuPosition.Y + 128 + yMultiplier * this.BackDropScale), this.BackDropScale + 1f));
+                        this.Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X + 48 + 64 * xCount * this.BackDropScale, ShopMenuPosition.Y + 48 + yMultiplier * this.BackDropScale), this.BackDropScale ));
                         return;
                     }
                 }
