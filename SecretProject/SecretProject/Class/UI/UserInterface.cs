@@ -219,7 +219,7 @@ namespace SecretProject.Class.UI
             }
             if (this.BottomBar.IsActive)
             {
-                this.InfoBox.Update(gameTime);
+
                 this.BottomBar.Update(gameTime, inventory, Game1.MouseManager);
             }
 
@@ -253,10 +253,10 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CommandConsole;
                     }
-                    if (!this.TextBuilder.FreezeStage)
-                    {
-                        Game1.freeze = false;
-                    }
+                    //if (!this.TextBuilder.FreezeStage)
+                    //{
+                    //    Game1.freeze = false;
+                    //}
                     if (Game1.KeyboardManager.WasKeyPressed(Keys.Tab))
                     {
                         if (this.BackPack.Expanded)
@@ -465,6 +465,7 @@ namespace SecretProject.Class.UI
             }
 
             this.StaminaBar.Update(gameTime);
+
 
         }
 

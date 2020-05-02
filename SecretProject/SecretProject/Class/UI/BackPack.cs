@@ -653,29 +653,41 @@ namespace SecretProject.Class.UI
                     currentSliderPosition = 1;
                 }
 
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D2))
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D2))
                 {
                     currentSliderPosition = 2;
                 }
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D3))
+                else if(Game1.Player.controls.pressedKeys.Contains(Keys.D3))
                 {
                     currentSliderPosition = 3;
                 }
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D4))
+                else if(Game1.Player.controls.pressedKeys.Contains(Keys.D4))
                 {
                     currentSliderPosition = 4;
                 }
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D5))
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D5))
                 {
                     currentSliderPosition = 5;
                 }
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D6))
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D6))
                 {
                     currentSliderPosition = 6;
                 }
-                if (Game1.Player.controls.pressedKeys.Contains(Keys.D7))
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D7))
                 {
                     currentSliderPosition = 7;
+                }
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D8))
+                {
+                    currentSliderPosition = 8;
+                }
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D9))
+                {
+                    currentSliderPosition = 9;
+                }
+                else if (Game1.Player.controls.pressedKeys.Contains(Keys.D0))
+                {
+                    currentSliderPosition = 10;
                 }
             }
 

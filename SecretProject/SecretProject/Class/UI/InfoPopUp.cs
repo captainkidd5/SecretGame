@@ -16,6 +16,7 @@ namespace SecretProject.Class.UI
 
     public class InfoPopUp
     {
+       
         public GraphicsDevice Graphics { get; set; }
         public Vector2 WindowPosition { get; set; }
         public string StringToWrite { get; set; }

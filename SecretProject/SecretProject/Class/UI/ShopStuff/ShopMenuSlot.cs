@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,10 @@ namespace SecretProject.Class.UI.ShopStuff
 
 
         public Button GoldButton { get; set; }
+
+        public Sprite Gold { get; private set; }
+
+        public Button ButtonHoveredLastFrame { get; set; }
         public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition, float buttonScale)
         {
             this.Graphics = graphics;
@@ -38,7 +43,8 @@ namespace SecretProject.Class.UI.ShopStuff
             Stock = stock;
             this.drawPosition = drawPosition;
             colorMultiplier = .25f;
-            
+
+            this.Gold = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(16, 320, 32, 32), this.GoldButton.Position, 32, 32);
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -46,28 +52,53 @@ namespace SecretProject.Class.UI.ShopStuff
             this.Button.Update(mouse);
             this.GoldButton.Update(mouse);
             this.Price = Game1.ItemVault.GetItem(this.ItemID).Price;
-            if (Stock > 0 && this.Button.IsHovered)
+            Vector2 infoBoxPosition = new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64);
+            if (Stock > 0)
             {
-                InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetItem(this.ItemID), new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64));
-
-
-                Game1.Player.UserInterface.InfoBox = infoBox;
-                Game1.Player.UserInterface.InfoBox.IsActive = true;
-                colorMultiplier = .5f;
-                if (this.Button.isClicked)
+                if (this.Button.IsHovered)
                 {
-                    Item item = Game1.ItemVault.GenerateNewItem(this.ItemID, null);
-                    if (Game1.Player.Inventory.Money >= Price)
-                    {
-                        if (Game1.Player.Inventory.TryAddItem(item))
-                        {
-                            Stock--;
-                            Game1.Player.Inventory.Money -= Game1.ItemVault.GetItem(item.ID).Price;
-                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Sell1);
-                        }
 
-                        //Game1.SoundManager.Sell1.Play();
+                    if(ButtonHoveredLastFrame != Button)
+                    {
+                        InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetItem(this.ItemID), infoBoxPosition);
+
+
+                        Game1.Player.UserInterface.InfoBox = infoBox;
                     }
+                   
+                    Game1.Player.UserInterface.InfoBox.IsActive = true;
+                    colorMultiplier = .5f;
+                    if (this.Button.isClicked)
+                    {
+                        Item item = Game1.ItemVault.GenerateNewItem(this.ItemID, null);
+                        if (Game1.Player.Inventory.Money >= Price)
+                        {
+                            if (Game1.Player.Inventory.TryAddItem(item))
+                            {
+                                Stock--;
+                                Game1.Player.Inventory.Money -= Game1.ItemVault.GetItem(item.ID).Price;
+                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Sell1);
+                            }
+
+                            //Game1.SoundManager.Sell1.Play();
+                        }
+                    }
+                    ButtonHoveredLastFrame = this.Button;
+                }
+                else if (this.GoldButton.IsHovered)
+                {
+                    if (ButtonHoveredLastFrame != this.GoldButton)
+                    {
+
+
+                        InfoPopUp infoBox = new InfoPopUp("Shop will sell for " + this.Price + " gold", infoBoxPosition);
+
+
+                        Game1.Player.UserInterface.InfoBox = infoBox;
+                        
+                    }
+                    Game1.Player.UserInterface.InfoBox.IsActive = true;
+                    ButtonHoveredLastFrame = this.GoldButton;
                 }
             }
             else
@@ -83,6 +114,15 @@ namespace SecretProject.Class.UI.ShopStuff
                Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
 
             this.GoldButton.Draw(spriteBatch, Game1.AllTextures.MenuText, Price.ToString(), new Vector2(GoldButton.Position.X + 8, GoldButton.Position.Y + 8), Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, GoldButton.HitBoxScale -1f);
+
+            if(Price > 0)
+            {
+                Vector2 stringLength = Game1.AllTextures.MenuText.MeasureString(Price.ToString());
+
+                this.Gold.Position = new Vector2(this.GoldButton.Position.X + stringLength.X + 32, this.GoldButton.Position.Y + 8);
+                this.Gold.Draw(spriteBatch, Game1.Utility.StandardTextDepth);
+            }
+
         }
 
     }
