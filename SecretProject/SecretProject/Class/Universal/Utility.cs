@@ -180,6 +180,7 @@ namespace SecretProject.Class.Universal
             Tier2 = 2,
             Tier3 = 3,
             Tier4 = 4,
+            Tier5 = 5,
         }
 
 

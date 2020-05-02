@@ -188,7 +188,8 @@ namespace SecretProject.Class.UI.ShopStuff
             {
                 Game1.Player.Inventory.Money += Game1.ItemVault.GetItem(item.ID).Price;
             }
-            Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, Graphics, Game1.Player.UserInterface.BottomBar.GoldIconPosition, new Vector2(Game1.Player.UserInterface.BottomBar.GoldIconPosition.X, Game1.Player.UserInterface.BottomBar.GoldIconPosition.Y - 50),
+            Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, Graphics, Game1.Player.UserInterface.BottomBar.GoldIconPosition,
+                new Vector2(Game1.Player.UserInterface.BottomBar.GoldIconPosition.X, Game1.Player.UserInterface.BottomBar.GoldIconPosition.Y - 50),
                 Game1.Player.UserInterface.AllUISprites, 1, 3));
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Sell1);
 

@@ -454,7 +454,7 @@ namespace SecretProject.Class.UI
                     if (storageItem.IsInventoryHovered)
                     {
 
-                        for (int i = 0; i < storageItem.ItemSlots.Count - 1; i++)
+                        for (int i = 0; i < storageItem.ItemSlots.Count ; i++)
                         {
                             if (storageItem.ItemSlots[i].Button.IsHovered)
                             {

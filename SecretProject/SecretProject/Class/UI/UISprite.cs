@@ -39,7 +39,7 @@ namespace SecretProject.Class.UI
             if(MoveTowardsPoint(this.Destination, gameTime))
             {
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.CoinGet, false, 1f);
-                Game1.Player.Inventory.Money++;
+               // Game1.Player.Inventory.Money++;
                 this.AllUISprites.Remove(this);
             }
         }
