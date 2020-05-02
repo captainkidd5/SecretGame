@@ -70,8 +70,9 @@ namespace SecretProject.Class.UI
             this.LargeBackgroundSourceRectangle = new Rectangle(208, 576, 336, 112);
             this.SmallBackgroundSourceRectangle = new Rectangle(208, 688, 336, 32);
             this.Scale = 2f;
-            this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 4, Game1.PresentationParameters.BackBufferHeight * .9f);
-            this.BigPosition = new Vector2(this.SmallPosition.X, this.SmallPosition.Y - this.LargeBackgroundSourceRectangle.Height * this.Scale + 32 * this.Scale);
+            float centeredX = Game1.Utility.CenterRectangleOnScreen(SmallBackgroundSourceRectangle, this.Scale).X;
+            this.SmallPosition = new Vector2(centeredX, Game1.PresentationParameters.BackBufferHeight * .9f);
+            this.BigPosition = new Vector2(centeredX, this.SmallPosition.Y - this.LargeBackgroundSourceRectangle.Height * this.Scale + 32 * this.Scale);
 
 
 
@@ -446,43 +447,51 @@ namespace SecretProject.Class.UI
         public bool InteractWithStorageItem(InventorySlot slot)
         {
             IStorableItemBuilding storageItem = Game1.Player.UserInterface.CurrentAccessedStorableItem;
-            if (storageItem.IsUpdating)
+            if(storageItem != null)
             {
-                if (storageItem.IsInventoryHovered)
+                if (storageItem.IsUpdating)
                 {
-
-                    for (int i = 0; i < storageItem.ItemSlots.Count - 1; i++)
+                    if (storageItem.IsInventoryHovered)
                     {
-                        if (storageItem.ItemSlots[i].Button.IsHovered)
-                        {
-                            int count = slot.ItemCount;
-                            for (int j = 0; j < count; j++)
-                            {
-                                if (storageItem.IsItemAllowedToBeStored(slot.GetItem()))
-                                {
-                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.currentInventory[i].AddItemToSlot(slot.GetItem()))
-                                    {
-                                        slot.RemoveItemFromSlot();
-                                    }
-                                    else if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(slot.GetItem()))
-                                    {
-                                        slot.RemoveItemFromSlot();
 
+                        for (int i = 0; i < storageItem.ItemSlots.Count - 1; i++)
+                        {
+                            if (storageItem.ItemSlots[i].Button.IsHovered)
+                            {
+                                int count = slot.ItemCount;
+                                for (int j = 0; j < count; j++)
+                                {
+                                    if (storageItem.IsItemAllowedToBeStored(slot.GetItem()))
+                                    {
+                                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.currentInventory[i].AddItemToSlot(slot.GetItem()))
+                                        {
+                                            slot.RemoveItemFromSlot();
+                                        }
+                                        else if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(slot.GetItem()))
+                                        {
+                                            slot.RemoveItemFromSlot();
+
+                                        }
                                     }
                                 }
+                                break;
                             }
-                            break;
                         }
+
+
                     }
-
-
+                    return true;
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+           
         }
         private void HandleStorageItem(int i, Item item)
         {
