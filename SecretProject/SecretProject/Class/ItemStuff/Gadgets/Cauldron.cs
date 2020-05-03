@@ -64,11 +64,11 @@ namespace SecretProject.Class.ItemStuff
             this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 3; i++)
             {
-                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory.currentInventory[i], new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
 
-            this.CookedItemSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2 * this.BackDropScale - 32 * this.BackDropScale, this.BackDropPosition.Y - 64), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
+            this.CookedItemSlot = new ItemStorageSlot(graphics, new InventorySlot(0), new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2 * this.BackDropScale - 32 * this.BackDropScale, this.BackDropPosition.Y - 64), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
 
             this.CookButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
                 new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 4 * this.BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale / 2), CursorType.Normal, 3f);
@@ -116,13 +116,8 @@ namespace SecretProject.Class.ItemStuff
         {
             if (Game1.ItemVault.GetItem(item.ID).Food == true)
             {
-               for(int i =0; i < this.ItemSlots.Count;i++)
-                {
-                    if(this.ItemSlots[i].Inventory.TryAddItem(item))
-                    {
-                        return true;
-                    }
-                }
+                this.Inventory.TryAddItem(item);
+                return true;
             }
 
             return false;
@@ -144,7 +139,7 @@ namespace SecretProject.Class.ItemStuff
         {
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                if (this.ItemSlots[i].Inventory.currentInventory[0].ItemCount <= 0)
+                if (this.ItemSlots[i].Slot.ItemCount <= 0)
                 {
                     return false;
                 }
@@ -160,9 +155,9 @@ namespace SecretProject.Class.ItemStuff
             byte fruitValue = 0;
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                meatValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).MeatValue;
-                vegetableValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).VegetableValue;
-                fruitValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).FruitValue;
+                meatValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).MeatValue;
+                vegetableValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).VegetableValue;
+                fruitValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).FruitValue;
             }
             Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin <= meatValue) &&
             (x.VegetableValueMax >= vegetableValue) && (x.VegetableValueMin <= vegetableValue) &&

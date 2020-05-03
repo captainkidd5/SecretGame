@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.UI;
 using System.Collections.Generic;
 using XMLData.ItemStuff;
 
@@ -37,6 +38,9 @@ namespace SecretProject.Class.ItemStuff
         private Button redEsc;
 
         public bool IsAnimationOpen { get; set; }
+
+
+        public DragSlot DragSlot { get; private set; }
         public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
             this.StorableItemType = StorableItemType.Chest;
@@ -63,6 +67,8 @@ namespace SecretProject.Class.ItemStuff
             {
                 FillWithLoot(size);
             }
+
+            this.DragSlot = new DragSlot();
         }
 
         public void Activate(IInformationContainer container, int layer, int x, int y)
@@ -160,7 +166,7 @@ namespace SecretProject.Class.ItemStuff
 
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                this.ItemSlots[i].Update(gameTime);
+                this.ItemSlots[i].Update(gameTime, this.DragSlot);
                 if (this.ItemSlots[i].Button.IsHovered)
                 {
 

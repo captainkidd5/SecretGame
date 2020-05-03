@@ -463,11 +463,11 @@ namespace SecretProject.Class.UI
                                 {
                                     if (storageItem.IsItemAllowedToBeStored(slot.GetItem()))
                                     {
-                                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.currentInventory[i].AddItemToSlot(slot.GetItem()))
+                                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Slot.AddItemToSlot(slot.GetItem()))
                                         {
                                             slot.RemoveItemFromSlot();
                                         }
-                                        else if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(slot.GetItem()))
+                                        else if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(slot.GetItem()))
                                         {
                                             slot.RemoveItemFromSlot();
 
@@ -801,5 +801,12 @@ namespace SecretProject.Class.UI
     {
         public int Index { get; set; }
         public InventorySlot InventorySlot { get; set; }
+
+        public void SelectItem(int index, InventorySlot slot)
+        {
+            this.Index = index;
+            this.InventorySlot = slot; 
+
+        }
     }
 }

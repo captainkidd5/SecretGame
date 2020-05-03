@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -10,7 +11,7 @@ namespace SecretProject.Class.ItemStuff
     {
         public bool Retrievable { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
-        public Inventory Inventory { get; set; }
+        public InventorySlot Slot { get; set; }
         public int Index { get; set; }
         public int Count { get; set; }
         public Vector2 Position { get; set; }
@@ -21,11 +22,10 @@ namespace SecretProject.Class.ItemStuff
         public int ItemCounter { get; set; }
 
 
-        public ItemStorageSlot(GraphicsDevice graphics, Inventory inventory, int index, Vector2 position, Rectangle backGroundSourceRectangle, float scale, bool retrievable)
+        public ItemStorageSlot(GraphicsDevice graphics, InventorySlot slot, Vector2 position, Rectangle backGroundSourceRectangle, float scale, bool retrievable)
         {
             this.GraphicsDevice = graphics;
-            this.Inventory = inventory;
-            this.Index = index;
+            this.Slot = slot;
             this.Count = 0;
             this.Position = position;
             this.Scale = scale;
@@ -35,12 +35,12 @@ namespace SecretProject.Class.ItemStuff
             this.Retrievable = retrievable;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, DragSlot dragSlot)
         {
             this.Button.Update(Game1.MouseManager);
-            if (this.Inventory.currentInventory.Count > 0)
+            if (this.Slot.ItemCount > 0)
             {
-                InventorySlot slot = this.Inventory.currentInventory[this.Index];
+                InventorySlot slot = Slot;
                 this.Count = slot.ItemCount;
                 if (slot.ItemCount > 0)
                 {
@@ -48,7 +48,8 @@ namespace SecretProject.Class.ItemStuff
                     {
                         if (this.Retrievable)
                         {
-
+                            dragSlot.Index = this.Index;
+                            dragSlot.InventorySlot = slot;
                             if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                             {
                                 Item item = slot.GetItem();
