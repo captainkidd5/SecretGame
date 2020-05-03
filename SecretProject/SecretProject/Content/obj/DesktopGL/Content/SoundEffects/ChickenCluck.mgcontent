@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/SoundEffects/ChickenCluck.wav</SourceFile>
-  <SourceTime>2020-04-20T10:40:43.0749997-10:00</SourceTime>
-  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/ChickenCluck.xnb</DestFile>
-  <DestTime>2020-04-30T14:54:19.7514486-10:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/ChickenCluck.wav</SourceFile>
+  <SourceTime>2020-01-30T13:30:08-10:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/ChickenCluck.xnb</DestFile>
+  <DestTime>2020-05-02T15:27:41.8932509-10:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
