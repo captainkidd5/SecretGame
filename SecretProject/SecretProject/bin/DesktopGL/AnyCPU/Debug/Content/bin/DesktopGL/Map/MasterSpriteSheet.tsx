@@ -1125,6 +1125,7 @@
    <property name="destructable" value="Chopping,4,1,3,3,Tier0"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-16,-80,48,96"/>
+   <property name="tileType" value="tree"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="3.125" y="0.25" width="8.25" height="12.625"/>
@@ -3155,6 +3156,7 @@
    <property name="destructable" value="Chopping,4,5,3,19,Tier0"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-16,-64,48,80"/>
+   <property name="tileType" value="tree"/>
    <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
   <objectgroup draworder="index">
@@ -3706,6 +3708,7 @@
    <property name="destructable" value="Chopping,4,1,3,3,Tier1"/>
    <property name="loot" value=""/>
    <property name="newSource" value="-32,-64,80,80"/>
+   <property name="tileType" value="tree"/>
    <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
   <objectgroup draworder="index">

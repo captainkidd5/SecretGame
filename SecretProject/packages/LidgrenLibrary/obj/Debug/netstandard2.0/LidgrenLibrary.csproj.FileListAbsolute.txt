@@ -1,0 +1,8 @@
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\bin\Debug\netstandard2.0\LidgrenLibrary.deps.json
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\bin\Debug\netstandard2.0\LidgrenLibrary.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\obj\Debug\netstandard2.0\LidgrenLibrary.csprojAssemblyReference.cache
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\obj\Debug\netstandard2.0\LidgrenLibrary.AssemblyInfoInputs.cache
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\obj\Debug\netstandard2.0\LidgrenLibrary.AssemblyInfo.cs
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\bin\Debug\netstandard2.0\LidgrenLibrary.pdb
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\obj\Debug\netstandard2.0\LidgrenLibrary.dll
+C:\Users\lonny\OneDrive\Desktop\TuckerFiles\SecretGame\SecretProject\packages\LidgrenLibrary\obj\Debug\netstandard2.0\LidgrenLibrary.pdb

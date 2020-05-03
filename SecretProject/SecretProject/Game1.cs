@@ -34,6 +34,7 @@ using XMLData.QuestStuff;
 using SecretProject.Class.QuestFolder;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.UI.ShopStuff;
+using SecretProject.Class.NetworkStuff;
 
 
 
@@ -107,6 +108,8 @@ namespace SecretProject
         public static int NPCSpawnCountLimit = 50;
 
         public static bool IsFirstTimeStartup;
+
+        public static bool EnableMultiplayer = false;
 
         //ContentManagers
         public ContentManager HomeContentManager;
@@ -299,6 +302,9 @@ namespace SecretProject
         //FILEIO
         public static SaveLoadManager SaveLoadManager;
 
+        //NETWORK
+        private NetworkConnection netWorkConnection;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -318,7 +324,7 @@ namespace SecretProject
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             this.IsFixedTimeStep = false;
-
+            netWorkConnection = new NetworkConnection();
         }
         #endregion
 
@@ -338,7 +344,12 @@ namespace SecretProject
 
 
 
-
+            //NETWORK
+            if(EnableMultiplayer)
+            {
+                netWorkConnection.Start();
+            }
+            
 
 
             //SCREEN
