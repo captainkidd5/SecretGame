@@ -193,16 +193,25 @@
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="240">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="241">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="242">
   <properties>
@@ -224,6 +233,9 @@
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="249">
   <properties>
@@ -435,6 +447,9 @@
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="340">
   <properties>
@@ -445,11 +460,17 @@
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="342">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="343">
   <properties>
@@ -551,26 +572,41 @@
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="440">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="441">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="442">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="443">
   <properties>
    <property name="generate" value="GrassLake"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="446">
   <objectgroup draworder="index" id="2">
