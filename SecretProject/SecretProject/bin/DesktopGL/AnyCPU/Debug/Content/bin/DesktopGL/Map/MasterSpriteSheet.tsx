@@ -101,6 +101,11 @@
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="139">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="4" width="15" height="10"/>
+  </objectgroup>
+ </tile>
  <tile id="149">
   <properties>
    <property name="generate" value="StoneWallTiling"/>

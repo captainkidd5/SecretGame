@@ -189,7 +189,7 @@ namespace SecretProject.Class.ItemStuff
                 Deactivate();
             }
             this.CookButton.Update(Game1.MouseManager);
-            this.CookedItemSlot.Update(gameTime);
+            //this.CookedItemSlot.Update(gameTime);
 
             if (this.CookButton.isClicked)
             {
@@ -200,44 +200,44 @@ namespace SecretProject.Class.ItemStuff
                     Game1.GetCurrentStage().ParticleEngines.Add(this.FireParticleEngine);
                 }
             }
-            if (this.IsCooking)
-            {
+            //if (this.IsCooking)
+            //{
 
-                this.SmokeParticleEngine.UpdateSmoke(gameTime);
-                this.FireParticleEngine.UpdateFire(gameTime);
-                if (this.CookTimer.Run(gameTime))
-                {
-                    this.CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
-                    this.IsCooking = false;
-                    Game1.GetCurrentStage().ParticleEngines.Remove(this.SmokeParticleEngine);
-                    Game1.GetCurrentStage().ParticleEngines.Remove(this.FireParticleEngine);
-                    this.SmokeParticleEngine.ClearParticles();
-                    this.FireParticleEngine.ClearParticles();
-                }
-            }
-            if (this.CookedItemSlot.Button.isClicked)
-            {
-                if (this.CookedItemSlot.Inventory.currentInventory[0].ItemCount > 0)
-                {
+            //    this.SmokeParticleEngine.UpdateSmoke(gameTime);
+            //    this.FireParticleEngine.UpdateFire(gameTime);
+            //    if (this.CookTimer.Run(gameTime))
+            //    {
+            //        this.CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
+            //        this.IsCooking = false;
+            //        Game1.GetCurrentStage().ParticleEngines.Remove(this.SmokeParticleEngine);
+            //        Game1.GetCurrentStage().ParticleEngines.Remove(this.FireParticleEngine);
+            //        this.SmokeParticleEngine.ClearParticles();
+            //        this.FireParticleEngine.ClearParticles();
+            //    }
+            //}
+            //if (this.CookedItemSlot.Button.isClicked)
+            //{
+            //    if (this.CookedItemSlot.Inventory.currentInventory[0].ItemCount > 0)
+            //    {
 
 
-                    //if (Game1.Player.Inventory.TryAddItem(this.CookedItemSlot.Inventory.currentInventory[0].ItemCount))
-                    //{
-                    //    this.CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
-                    //}
-                }
-            }
-            for (int i = 0; i < this.ItemSlots.Count; i++)
-            {
-                this.ItemSlots[i].Update(gameTime);
-                if (this.ItemSlots[i].Button.IsHovered)
-                {
+            //        //if (Game1.Player.Inventory.TryAddItem(this.CookedItemSlot.Inventory.currentInventory[0].ItemCount))
+            //        //{
+            //        //    this.CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
+            //        //}
+            //    }
+            //}
+            //for (int i = 0; i < this.ItemSlots.Count; i++)
+            //{
+            //    this.ItemSlots[i].Update(gameTime);
+            //    if (this.ItemSlots[i].Button.IsHovered)
+            //    {
 
-                    this.IsInventoryHovered = true;
-                    this.CurrentHoveredSlot = this.ItemSlots[i];
+            //        this.IsInventoryHovered = true;
+            //        this.CurrentHoveredSlot = this.ItemSlots[i];
 
-                }
-            }
+            //    }
+            //}
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -59,7 +59,7 @@ namespace SecretProject.Class.ItemStuff
             this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 6; i++)
             {
-                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory.currentInventory[i],  new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
 
@@ -126,13 +126,13 @@ namespace SecretProject.Class.ItemStuff
         public bool DepositItem(Item item)
         {
 
-                for (int i = 0; i < this.ItemSlots.Count; i++)
-                {
-                    if (this.ItemSlots[i].Inventory.TryAddItem(item))
+              //  for (int i = 0; i < this.ItemSlots.Count; i++)
+              //  {
+                    if (this.Inventory.TryAddItem(item))
                     {
                         return true;
                     }
-                }
+               // }
             
 
             return false;

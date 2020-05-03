@@ -77,16 +77,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  new SpawnElement(1380,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //pumpkin
                  new SpawnElement(1581,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Red Mushroom\
                  new SpawnElement(1582,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Blue Mushroom
-            //    new SpawnElement(1586, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
-                      new SpawnElement(3160,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //big stump
-            //    new SpawnElement(3161, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5, false, true){Unlocked = true }, //big stump
-            //    new SpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
-            //    new SpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 15, true){Unlocked = true }, //Pumpkin
-            //    new SpawnElement(1381, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15, true){Unlocked = true }, //Pumpkin
-                
 
-            //    new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
-            //    new SpawnElement(3439, MapLayer.ForeGround, MapLayer.ForeGround, GenerationType.DirtCliff, 50){Unlocked = true }, //mineshaft
+                      new SpawnElement(3160,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //big stump
+
 
             //    ////CROPS - goes by GID, not by item id
             //    ///
@@ -99,18 +92,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  new SpawnElement(2970,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true  }, //Pine Seed
                   new SpawnElement(3670,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Cedar Seed
                   new SpawnElement(4269,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Fir Seed
-            //    new SpawnElement(487, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //bloomberry
 
-            //    new SpawnElement(287, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 15){Unlocked = true }, //bloodcorn
-
-            //     new SpawnElement(687, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Brine Bulb
-
-
-            //      new SpawnElement(493, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 2){Unlocked = true }, //Yallon
-
-            //       new SpawnElement(2272, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //ThunderBirch seed
-
-            //       new SpawnElement(1671, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //Oak seed
 
             //    //DESERT
             new SpawnElement(663,  SpawnMethod.Poisson,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,3, false, 15, 20){Unlocked = true }, //palm tree
@@ -119,25 +101,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             new SpawnElement(1285, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Thorn Bush
             new SpawnElement(1573, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Big Cactus
             new SpawnElement(1574, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Small Cactus
-            //    new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
-            //    new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
-            //    new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
-            //    new SpawnElement(1683, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 25, true){Unlocked = true }, //Red Shell
 
-            //    new SpawnElement(1573, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //Reeds
+           
 
-            //    //Wooden Boards
-            //    new SpawnElement(2052, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.OakFloorTiling, 50, false){Unlocked = true }, //Wood Barrel
-
-            //    //SWAMP
-            //    new SpawnElement(4764, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp tree
-            //    new SpawnElement(1681, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp vine
-
-
-            //    //TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
-            ////TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
-            };
-
+            //LAKE
+            new SpawnElement(139, SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround, MapLayer.MidGround, GenerationType.GrassLake, Rarity.Abundant, Rarity.Abundant, 3, false, 15, 20) { Unlocked = true }, //Lily pad
+             };
             this.AllCamps = new List<Camp>()
             {
                 new CalciteCamp(80),

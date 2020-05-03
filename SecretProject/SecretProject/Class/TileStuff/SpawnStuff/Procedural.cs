@@ -183,10 +183,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //NOISE INTERVALS, must be sorted by interval
             this.OverWorldBackgroundNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake),-1f, -.4f ),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Sand), -.4f, 0f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, .04f),
-                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water), .04f, .07f),
+                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake), .04f, .07f),
                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), .07f, .36f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.LandSwamp),.36f, .37f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.37f, .372f),
@@ -199,14 +199,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.4f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DesertStone),-.14f, -.12f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.OakFloorTiling),-.05f, -.047f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .04f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake),.04f, .07f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.07f, .12f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .03f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.071f, .12f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.12f,.123f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .06f),
+
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.24f,.27f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.27f, .32f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.WaterSwamp),.37f, .372f),

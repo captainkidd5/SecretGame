@@ -51,14 +51,14 @@ namespace SecretProject.Class.ItemStuff
             this.BackDropScale = 3f;
 
 
-            this.ItemSlots = new List<ItemStorageSlot>();
-            for (int i = 0; i < 1; i++)
-            {
-                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 4, this.BackDropPosition.Y  + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
+            //this.ItemSlots = new List<ItemStorageSlot>();
+            //for (int i = 0; i < 1; i++)
+            //{
+            //    this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 4, this.BackDropPosition.Y  + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
-            }
-            this.SimpleTimer = new SimpleTimer(5f);
-            this.SawSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
+            //}
+            //this.SimpleTimer = new SimpleTimer(5f);
+            //this.SawSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
             this.TimerStringLocation = new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height);
 
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
@@ -85,10 +85,10 @@ namespace SecretProject.Class.ItemStuff
             {
                 for (int i = 0; i < this.ItemSlots.Count; i++)
                 {
-                    if (this.ItemSlots[i].Inventory.TryAddItem(item))
-                    {
-                        return true;
-                    }
+                    //if (this.ItemSlots[i].Inventory.TryAddItem(item))
+                    //{
+                    //    return true;
+                    //}
                 }
             }
 
@@ -110,7 +110,7 @@ namespace SecretProject.Class.ItemStuff
 
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                this.ItemSlots[i].Update(gameTime);
+              //  this.ItemSlots[i].Update(gameTime);
                 if (this.ItemSlots[i].Button.IsHovered)
                 {
 
@@ -120,29 +120,29 @@ namespace SecretProject.Class.ItemStuff
                 }
             }
 
-            this.SawSlot.Update(gameTime);
+          //  this.SawSlot.Update(gameTime);
             if (this.SawSlot.Button.IsHovered)
             {
                 this.CurrentHoveredSlot = this.SawSlot;
                 this.IsInventoryHovered = true;
 
             }
-            if (this.SawSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
-            {
-                if (Game1.ItemVault.GetItem(this.SawSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem != 0 && Game1.ItemVault.GetItem(this.SawSlot.Inventory.currentInventory[0].Item.ID).FuelValue > 0)
-                {
-                    if (this.SimpleTimer.Run(gameTime))
-                    {
-                      //  this.SmeltSlot.Inventory.currentInventory[0].ItemCount = Game1.ItemVault.GenerateNewItem(Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem).ID, null, false, null);
-                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
-                    }
-                }
-            }
-            else
+            //if (this.SawSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
+            //{
+            //    if (Game1.ItemVault.GetItem(this.SawSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem != 0 && Game1.ItemVault.GetItem(this.SawSlot.Inventory.currentInventory[0].Item.ID).FuelValue > 0)
+            //    {
+            //        if (this.SimpleTimer.Run(gameTime))
+            //        {
+            //          //  this.SmeltSlot.Inventory.currentInventory[0].ItemCount = Game1.ItemVault.GenerateNewItem(Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem).ID, null, false, null);
+            //            this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
+            //        }
+            //    }
+            //}
+            //else
 
-            {
-                this.SimpleTimer.Time = 0;
-            }
+            //{
+            //    this.SimpleTimer.Time = 0;
+            //}
 
             redEsc.Update(Game1.MouseManager);
 
