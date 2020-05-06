@@ -537,6 +537,7 @@ namespace SecretProject.Class.TileStuff
 
             IsDoneLoading = true;
             this.IsGenerating = true;
+            
             for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkWidth; i++)
@@ -554,8 +555,25 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
+            RefillHomestead();
+
+
+
+
+
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+        }
+
+        public void RefillHomestead()
+        {
+            if(this.X == 4 || this.X == 5 )
+            {
+                if(this.Y == 0 || this.Y == 1)
+                {
+                    GenerateLandscape();
+                }
+            }
         }
 
         public void GenerateBeach()
