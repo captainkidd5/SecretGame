@@ -144,10 +144,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             UnderWorldNoise.SetFractalLacunarity(1.5f);
 
             //Smaller the smooth the biomes
-            UnderWorldNoise.SetFractalGain(.04f);
+            UnderWorldNoise.SetFractalGain(.045f);
 
             //larger the smaller the biomes
-            UnderWorldNoise.SetFrequency(.1f);
+            UnderWorldNoise.SetFrequency(.09f);
 
 
 
