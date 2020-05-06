@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/QuestStuff/JulianQuests.xml</SourceFile>
-  <SourceTime>2020-04-20T10:40:42.0810907-10:00</SourceTime>
-  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/JulianQuests.xnb</DestFile>
-  <DestTime>2020-05-02T17:12:00.3268201-10:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/JulianQuests.xml</SourceFile>
+  <SourceTime>2020-02-16T13:24:46.2533663-10:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/JulianQuests.xnb</DestFile>
+  <DestTime>2020-05-06T08:59:46.5512197-10:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

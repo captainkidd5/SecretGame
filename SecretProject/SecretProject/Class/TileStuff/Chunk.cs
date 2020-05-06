@@ -438,11 +438,11 @@ namespace SecretProject.Class.TileStuff
 
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
-                                if(!this.Crops.ContainsKey(cropKey))
+                                if (!this.Crops.ContainsKey(cropKey))
                                 {
                                     this.Crops.Add(cropKey, crop);
                                 }
-                                
+
                                 TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
                             }
 
@@ -534,28 +534,28 @@ namespace SecretProject.Class.TileStuff
         public void GenerateFromTown()
         {
 
-                
-                    IsDoneLoading = true;
-                    this.IsGenerating = true;
-                    for (int z = 0; z < 4; z++)
+
+            IsDoneLoading = true;
+            this.IsGenerating = true;
+            for (int z = 0; z < 4; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                        {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                            {
 
 
 
-                                this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
-                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+                        this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
 
-                            }
-                        }
                     }
+                }
+            }
 
-                        
-                        this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
         }
 
         public void GenerateBeach()
@@ -572,16 +572,16 @@ namespace SecretProject.Class.TileStuff
 
                         if (z == 0)
                         {
-                            if(j ==0)
+                            if (j == 15)
                             {
-                                this.AllTiles[z][i, j] = new Tile(i, j, 225); // sand wave top
+                                this.AllTiles[z][i, j] = new Tile(i, j, 25); // sand wave top
                             }
                             else
                             {
                                 this.AllTiles[z][i, j] = new Tile(i, j, 1322); // sand tile
                             }
-                            
-                            
+
+
                         }
                         else
                         {
@@ -592,11 +592,11 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
-                   
+
                 }
-                
+
             }
-            for(int i =0; i < 16; i++)
+            for (int i = 0; i < 16; i++)
             {
                 beachNoise[0, i] = 1322;
 
@@ -639,17 +639,17 @@ namespace SecretProject.Class.TileStuff
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
 
-                        if(z == 0)
+                        if (z == 0)
                         {
                             this.AllTiles[z][i, j] = new Tile(i, j, 125); //sea tile
                         }
                         else
                         {
-                            this.AllTiles[z][i, j] = new Tile(i, j, 0); 
+                            this.AllTiles[z][i, j] = new Tile(i, j, 0);
                         }
 
-                        
-                            this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+
+                        this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
@@ -671,7 +671,7 @@ namespace SecretProject.Class.TileStuff
             IsDoneLoading = true;
             this.IsGenerating = true;
             int cliffGID = 4929;
-            if(this.Y == 0)
+            if (this.Y == 0)
             {
                 for (int z = 0; z < 4; z++)
                 {
@@ -682,7 +682,7 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 0)
                             {
-                                if (j >10)
+                                if (j > 10)
                                 {
                                     this.AllTiles[z][i, j] = new Tile(i, j, cliffGID); //Underground cliff Solid
                                     cliffGID += 100;
@@ -720,9 +720,9 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 0)
                             {
-   
-                                    this.AllTiles[z][i, j] = new Tile(i, j, 4829); //Underground cliff Solid
-                                
+
+                                this.AllTiles[z][i, j] = new Tile(i, j, 4829); //Underground cliff Solid
+
 
                             }
                             else
@@ -741,7 +741,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            
+
 
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
@@ -906,11 +906,11 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
                         if (z == 3)
                         {
-                            if(PathGrid.Weight[i,j] == (int)GridStatus.Clear)
+                            if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
                             {
                                 SpawnHolder.AddGrassTufts(this, this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
                             }
-                           
+
                         }
 
                     }
@@ -959,18 +959,19 @@ namespace SecretProject.Class.TileStuff
 
                     IsDoneLoading = true;
                     this.IsGenerating = true;
-                    if(this.ChunkType == ChunkType.Rai)
+                    if (this.ChunkType == ChunkType.Rai)
                     {
-                        if (this.Y < 0)
-                        {
-                            GenerateSea();
-                        }
 
-                        else if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 7)
+
+                        if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 8)
                         {
                             GenerateFromTown();
                         }
-                        else if (this.Y == 0)
+                        else if (this.Y > 6)
+                        {
+                            GenerateSea();
+                        }
+                        else if (this.Y == 6)
                         {
                             GenerateBeach();
                         }
@@ -979,7 +980,7 @@ namespace SecretProject.Class.TileStuff
                             GenerateNormal();
                         }
                     }
-                    
+
                     else
                     {
                         if (this.Y <= 0)
@@ -990,9 +991,9 @@ namespace SecretProject.Class.TileStuff
                         {
                             GenerateNormal();
                         }
-                        
 
-                       
+
+
                     }
                     this.IsLoaded = true;
                     this.IsGenerating = false;
@@ -1015,21 +1016,21 @@ namespace SecretProject.Class.TileStuff
             //   Camp camp =  Game1.OverWorldSpawnHolder.GetCamp();
             //    camp.Spawn(this, this.ITileManager.Stage);
             //}
-         
 
 
-                List<SpawnElement> spawnElements;
-                if (this.ITileManager.Stage == Game1.OverWorld)
-                {
-                    spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
-                }
-                else
-                {
-                    spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
-                }
-            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, this,this.Random);
 
-            
+            List<SpawnElement> spawnElements;
+            if (this.ITileManager.Stage == Game1.OverWorld)
+            {
+                spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
+            }
+            else
+            {
+                spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
+            }
+            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, this, this.Random);
+
+
 
 
         }
@@ -1086,7 +1087,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-       
+
 
         #region STATIC METHODS
         /// <summary>
