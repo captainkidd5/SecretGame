@@ -28,11 +28,11 @@ namespace SecretProject.Class.ItemStuff
             this.StorageSlots = storageSlots;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, DragSlot dragSlot)
         {
             for(int i =0; i < this.StorageSlots.Count; i++)
             {
-                this.StorageSlots[i].Update(gameTime,this, this.DestinationInventory, this.StorageSlotHoveredLastFrame, this.DragSlot);
+                this.StorageSlots[i].Update(gameTime,this, this.DestinationInventory, this.StorageSlotHoveredLastFrame, dragSlot);
             }
             if(this.StorageSlotHovered != this.StorageSlotHoveredLastFrame)
             {

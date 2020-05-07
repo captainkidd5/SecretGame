@@ -71,34 +71,62 @@ namespace SecretProject.Class.ItemStuff
             this.Button.Update(Game1.MouseManager);
             if (this.Button.IsHovered)
             {
-                if(dragSlot != null)
-                {
 
-                }
-                if (this.Slot.ItemCount > 0)
+
+                storageSlotHovered = this;
+
+                if (this.Button.isClicked)
                 {
-                    if (Slot.ItemCount > 0)
+                    if (this.Slot.ItemCount > 0)
                     {
-                        storageSlotHovered = this;
-
-                        if (this.Button.isClicked)
+                        if (dragSlot != null)
                         {
-                            if (this.Retrievable)
+                            if (dragSlot.IsActive)
                             {
 
-                                if (!ShiftClickInteraction(Slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
-                                {
-                                    dragSlot.Index = this.Index;
-                                    dragSlot.InventorySlot = Slot;
-                                }
+                            }
+                        }
+                        if (this.Retrievable)
+                        {
 
+                            if (!ShiftClickInteraction(Slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
+                            {
+                                dragSlot.Index = this.Index;
+                                dragSlot.InventorySlot = Slot;
                             }
 
                         }
 
                     }
+                    else
+                    {
+                        if (dragSlot != null)
+                        {
+
+
+                            if (dragSlot.IsActive) //replace current slot with whatever is in dragslot. 
+                            {
+                                Item tempItem = dragSlot.InventorySlot.GetItem();
+                                int currentItemCount = dragSlot.InventorySlot.ItemCount;
+
+                                for (int j = 0; j < currentItemCount; j++)
+                                {
+                                    dragSlot.InventorySlot.RemoveItemFromSlot();
+                                    Item newItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, null);
+                                    this.Slot.AddItemToSlot(newItem);
+
+                                }
+
+                            }
+                        }
+                    }
+
 
                 }
+
+
+
+
 
             }
 

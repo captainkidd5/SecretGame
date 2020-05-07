@@ -162,7 +162,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
-            this.StorageManager.Update(gameTime);
+            this.StorageManager.Update(gameTime, Game1.Player.UserInterface.BackPack.DraggedSlot);
 
             //for (int i = 0; i < this.ItemSlots.Count; i++)
             //{
