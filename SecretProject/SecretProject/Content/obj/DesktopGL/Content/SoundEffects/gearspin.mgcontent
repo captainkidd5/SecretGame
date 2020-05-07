@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/gearspin.wav</SourceFile>
-  <SourceTime>2020-01-15T14:47:24-10:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/gearspin.xnb</DestFile>
-  <DestTime>2020-05-06T09:00:06.1978413-10:00</DestTime>
+  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/SoundEffects/gearspin.wav</SourceFile>
+  <SourceTime>2020-04-20T10:40:43.2999718-10:00</SourceTime>
+  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/gearspin.xnb</DestFile>
+  <DestTime>2020-05-06T13:42:32.3709297-10:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -11,6 +11,7 @@ namespace SecretProject.Class.ItemStuff
 {
     public class Chest : IStorableItemBuilding
     {
+        public StorageManager StorageManager { get; private set; }
         public string ID { get; set; }
         public StorableItemType StorableItemType { get; set; }
         public Inventory Inventory { get; set; }
@@ -69,6 +70,7 @@ namespace SecretProject.Class.ItemStuff
             }
 
             this.DragSlot = new DragSlot();
+            this.StorageManager = new StorageManager(this.Inventory, Game1.Player.Inventory, this.ItemSlots);
         }
 
         public void Activate(IInformationContainer container, int layer, int x, int y)
@@ -126,13 +128,11 @@ namespace SecretProject.Class.ItemStuff
         public bool DepositItem(Item item)
         {
 
-              //  for (int i = 0; i < this.ItemSlots.Count; i++)
-              //  {
                     if (this.Inventory.TryAddItem(item))
                     {
                         return true;
                     }
-               // }
+
             
 
             return false;
@@ -162,19 +162,19 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
+            this.StorageManager.Update(gameTime);
 
+            //for (int i = 0; i < this.ItemSlots.Count; i++)
+            //{
+            //    this.ItemSlots[i].Update(gameTime, this.DragSlot);
+            //    if (this.ItemSlots[i].Button.IsHovered)
+            //    {
 
-            for (int i = 0; i < this.ItemSlots.Count; i++)
-            {
-                this.ItemSlots[i].Update(gameTime, this.DragSlot);
-                if (this.ItemSlots[i].Button.IsHovered)
-                {
+            //        this.IsInventoryHovered = true;
+            //        this.CurrentHoveredSlot = this.ItemSlots[i];
 
-                    this.IsInventoryHovered = true;
-                    this.CurrentHoveredSlot = this.ItemSlots[i];
-
-                }
-            }
+            //    }
+            //}
 
 
         }
@@ -183,10 +183,11 @@ namespace SecretProject.Class.ItemStuff
         {
 
             redEsc.Draw(spriteBatch);
-            for (int i = 0; i < this.ItemSlots.Count; i++)
-            {
-                this.ItemSlots[i].Draw(spriteBatch);
-            }
+            this.StorageManager.Draw(spriteBatch);
+            //for (int i = 0; i < this.ItemSlots.Count; i++)
+            //{
+            //    this.ItemSlots[i].Draw(spriteBatch);
+            //}
 
 
         }

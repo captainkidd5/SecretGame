@@ -35,7 +35,41 @@ namespace SecretProject.Class.ItemStuff
             this.Retrievable = retrievable;
         }
 
-        public void Update(GameTime gameTime, DragSlot dragSlot)
+        /// <summary>
+        /// Emptys contents of inventory slot to the specified inventory.
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
+        private bool ShiftClickInteraction(InventorySlot slot, Inventory destinationInventory)
+        {
+            if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+            {
+                Item item = slot.GetItem();
+                if (item != null)
+                {
+                    for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
+                    {
+                        if (destinationInventory.TryAddItem(item))
+                        {
+                            slot.RemoveItemFromSlot();
+                            this.Count--;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Update(GameTime gameTime,StorageManager storageManager, Inventory destinationInventory, ItemStorageSlot storageSlotHovered, DragSlot dragSlot)
         {
             this.Button.Update(Game1.MouseManager);
             if (this.Slot.ItemCount > 0)
@@ -44,36 +78,24 @@ namespace SecretProject.Class.ItemStuff
                 this.Count = slot.ItemCount;
                 if (slot.ItemCount > 0)
                 {
-                    if (this.Button.isClicked)
+                    if (this.Button.IsHovered)
                     {
-                        if (this.Retrievable)
+                        storageSlotHovered = this;
+
+                        if (this.Button.isClicked)
                         {
-                            dragSlot.Index = this.Index;
-                            dragSlot.InventorySlot = slot;
-                            if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                            if (this.Retrievable)
                             {
-                                Item item = slot.GetItem();
-                                if (item != null)
+                                
+                                if (!ShiftClickInteraction(slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
                                 {
-
-
-                                    for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
-                                    {
-                                        if (Game1.Player.Inventory.TryAddItem(item))
-                                        {
-                                            slot.RemoveItemFromSlot();
-                                            this.Count--;
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-
-                                    }
+                                    dragSlot.Index = this.Index;
+                                    dragSlot.InventorySlot = slot;
                                 }
-                            }
-                        }
 
+                            }
+
+                        }
                     }
                 }
 

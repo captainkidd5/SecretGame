@@ -203,10 +203,8 @@ namespace SecretProject.Class.UI
             Game1.Player.UserInterface.InfoBox = infoBox;
         }
 
-        public void Update(GameTime gameTime)
+        private void ChangeInventoryAreaRectangle()
         {
-            this.Inventory = Game1.Player.Inventory;
-            this.Inventory.HasChangedSinceLastFrame = false;
             if (this.Expanded)
             {
                 this.InventoryAreaRectangle = new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale),
@@ -217,6 +215,23 @@ namespace SecretProject.Class.UI
                 this.InventoryAreaRectangle = new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale),
                     (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale));
             }
+        }
+        private void CheckForEject()
+        {
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.Q))
+            {
+                if (this.Inventory.currentInventory[currentSliderPosition - 1].ItemCount > 0)
+                {
+                    EjectItem();
+                }
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            this.Inventory = Game1.Player.Inventory;
+            this.Inventory.HasChangedSinceLastFrame = false;
+            ChangeInventoryAreaRectangle();
 
             if (this.IsActive)
             {
@@ -257,13 +272,7 @@ namespace SecretProject.Class.UI
                     AllActions[i].Update(gameTime, AllActions);
                 }
 
-                if (Game1.KeyboardManager.WasKeyPressed(Keys.Q))
-                {
-                    if (this.Inventory.currentInventory[currentSliderPosition - 1].ItemCount > 0)
-                    {
-                        EjectItem();
-                    }
-                }
+                CheckForEject();
                 TextBuilder.Update(gameTime);
 
                 for (int i = 0; i < NumberOfSlotsToUpdate; i++)
