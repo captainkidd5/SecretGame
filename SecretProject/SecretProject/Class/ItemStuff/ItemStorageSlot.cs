@@ -13,7 +13,6 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice GraphicsDevice { get; set; }
         public InventorySlot Slot { get; set; }
         public int Index { get; set; }
-        public int Count { get; set; }
         public Vector2 Position { get; set; }
         public float Scale { get; set; }
         public Button Button { get; set; }
@@ -26,7 +25,6 @@ namespace SecretProject.Class.ItemStuff
         {
             this.GraphicsDevice = graphics;
             this.Slot = slot;
-            this.Count = 0;
             this.Position = position;
             this.Scale = scale;
             this.BackGroundSourceRectangle = backGroundSourceRectangle;
@@ -52,7 +50,6 @@ namespace SecretProject.Class.ItemStuff
                         if (destinationInventory.TryAddItem(item))
                         {
                             slot.RemoveItemFromSlot();
-                            this.Count--;
                         }
                         else
                         {
@@ -69,16 +66,18 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void Update(GameTime gameTime,StorageManager storageManager, Inventory destinationInventory, ItemStorageSlot storageSlotHovered, DragSlot dragSlot)
+        public void Update(GameTime gameTime, StorageManager storageManager, Inventory destinationInventory, ItemStorageSlot storageSlotHovered, DragSlot dragSlot)
         {
             this.Button.Update(Game1.MouseManager);
-            if (this.Slot.ItemCount > 0)
+            if (this.Button.IsHovered)
             {
-                InventorySlot slot = Slot;
-                this.Count = slot.ItemCount;
-                if (slot.ItemCount > 0)
+                if(dragSlot != null)
                 {
-                    if (this.Button.IsHovered)
+
+                }
+                if (this.Slot.ItemCount > 0)
+                {
+                    if (Slot.ItemCount > 0)
                     {
                         storageSlotHovered = this;
 
@@ -86,37 +85,40 @@ namespace SecretProject.Class.ItemStuff
                         {
                             if (this.Retrievable)
                             {
-                                
-                                if (!ShiftClickInteraction(slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
+
+                                if (!ShiftClickInteraction(Slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
                                 {
                                     dragSlot.Index = this.Index;
-                                    dragSlot.InventorySlot = slot;
+                                    dragSlot.InventorySlot = Slot;
                                 }
 
                             }
 
                         }
+
                     }
+
                 }
 
-                if (this.Count != 0)
-                {
-                    this.Button.Texture = slot.Item.ItemSprite.AtlasTexture;
-                    this.Button.ItemSourceRectangleToDraw = slot.Item.SourceTextureRectangle;
-                }
-                else
-                {
-                    this.Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    this.Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
-                }
+            }
 
+
+            if (Slot.ItemCount != 0)
+            {
+                this.Button.Texture = Slot.Item.ItemSprite.AtlasTexture;
+                this.Button.ItemSourceRectangleToDraw = Slot.Item.SourceTextureRectangle;
+            }
+            else
+            {
+                this.Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
+                this.Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
             }
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
+            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, Slot.ItemCount.ToString(),
                 this.Button.Position, Color.White, this.Scale, this.Scale);
 
         }
