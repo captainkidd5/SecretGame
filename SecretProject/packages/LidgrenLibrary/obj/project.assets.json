@@ -203,23 +203,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SecretDingo\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\lonny\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\lonny\\OneDrive\\Desktop\\TuckerFiles\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj",
       "projectName": "LidgrenLibrary",
-      "projectPath": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj",
-      "packagesPath": "C:\\Users\\SecretDingo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\obj\\",
+      "projectPath": "C:\\Users\\lonny\\OneDrive\\Desktop\\TuckerFiles\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj",
+      "packagesPath": "C:\\Users\\lonny\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lonny\\OneDrive\\Desktop\\TuckerFiles\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SecretDingo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lonny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -255,10 +251,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -267,7 +269,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Lidgren.Network 1.0.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Lidgren.Network 1.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "Lidgren.Network",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"

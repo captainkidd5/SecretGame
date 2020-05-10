@@ -13,7 +13,6 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice GraphicsDevice { get; set; }
         public InventorySlot Slot { get; set; }
         public int Index { get; set; }
-        public int Count { get; set; }
         public Vector2 Position { get; set; }
         public float Scale { get; set; }
         public Button Button { get; set; }
@@ -26,7 +25,6 @@ namespace SecretProject.Class.ItemStuff
         {
             this.GraphicsDevice = graphics;
             this.Slot = slot;
-            this.Count = 0;
             this.Position = position;
             this.Scale = scale;
             this.BackGroundSourceRectangle = backGroundSourceRectangle;
@@ -35,66 +33,120 @@ namespace SecretProject.Class.ItemStuff
             this.Retrievable = retrievable;
         }
 
-        public void Update(GameTime gameTime, DragSlot dragSlot)
+        /// <summary>
+        /// Emptys contents of inventory slot to the specified inventory.
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
+        private bool ShiftClickInteraction(InventorySlot slot, Inventory destinationInventory)
         {
-            this.Button.Update(Game1.MouseManager);
-            if (this.Slot.ItemCount > 0)
+            if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
             {
-                InventorySlot slot = Slot;
-                this.Count = slot.ItemCount;
-                if (slot.ItemCount > 0)
+                Item item = slot.GetItem();
+                if (item != null)
                 {
-                    if (this.Button.isClicked)
+                    for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
                     {
-                        if (this.Retrievable)
+                        if (destinationInventory.TryAddItem(item))
                         {
-                            dragSlot.Index = this.Index;
-                            dragSlot.InventorySlot = slot;
-                            if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
-                            {
-                                Item item = slot.GetItem();
-                                if (item != null)
-                                {
-
-
-                                    for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
-                                    {
-                                        if (Game1.Player.Inventory.TryAddItem(item))
-                                        {
-                                            slot.RemoveItemFromSlot();
-                                            this.Count--;
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-
-                                    }
-                                }
-                            }
+                            slot.RemoveItemFromSlot();
+                        }
+                        else
+                        {
+                            break;
                         }
 
                     }
                 }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-                if (this.Count != 0)
+        public void Update(GameTime gameTime, StorageManager storageManager, Inventory destinationInventory, ItemStorageSlot storageSlotHovered, DragSlot dragSlot)
+        {
+            this.Button.Update(Game1.MouseManager);
+            if (this.Button.IsHovered)
+            {
+
+
+                storageSlotHovered = this;
+
+                if (this.Button.isClicked)
                 {
-                    this.Button.Texture = slot.Item.ItemSprite.AtlasTexture;
-                    this.Button.ItemSourceRectangleToDraw = slot.Item.SourceTextureRectangle;
-                }
-                else
-                {
-                    this.Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    this.Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
+                    if (this.Slot.ItemCount > 0)
+                    {
+                        if (dragSlot != null)
+                        {
+                            if (dragSlot.IsActive)
+                            {
+
+                            }
+                        }
+                        if (this.Retrievable)
+                        {
+
+                            if (!ShiftClickInteraction(Slot, destinationInventory)) //if slot was not shift clicked we'll grab the tooltip of the item.
+                            {
+                                dragSlot.Index = this.Index;
+                                dragSlot.InventorySlot = Slot;
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        if (dragSlot != null)
+                        {
+
+
+                            if (dragSlot.IsActive) //replace current slot with whatever is in dragslot. 
+                            {
+                                Item tempItem = dragSlot.InventorySlot.GetItem();
+                                int currentItemCount = dragSlot.InventorySlot.ItemCount;
+
+                                for (int j = 0; j < currentItemCount; j++)
+                                {
+                                    dragSlot.InventorySlot.RemoveItemFromSlot();
+                                    Item newItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, null);
+                                    this.Slot.AddItemToSlot(newItem);
+
+                                }
+
+                            }
+                        }
+                    }
+
+
                 }
 
+
+
+
+
+            }
+
+
+            if (Slot.ItemCount != 0)
+            {
+                this.Button.Texture = Slot.Item.ItemSprite.AtlasTexture;
+                this.Button.ItemSourceRectangleToDraw = Slot.Item.SourceTextureRectangle;
+            }
+            else
+            {
+                this.Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
+                this.Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
             }
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
+            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, Slot.ItemCount.ToString(),
                 this.Button.Position, Color.White, this.Scale, this.Scale);
 
         }

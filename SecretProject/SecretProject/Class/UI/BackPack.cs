@@ -55,7 +55,7 @@ namespace SecretProject.Class.UI
         public Item CurrentEquippedItem { get; set; }
 
         public DragSlot DraggedSlot { get; private set; }
-        public bool IsDragSlotActive { get; private set; }
+
 
 
         public Rectangle InventoryAreaRectangle { get; set; }
@@ -203,10 +203,8 @@ namespace SecretProject.Class.UI
             Game1.Player.UserInterface.InfoBox = infoBox;
         }
 
-        public void Update(GameTime gameTime)
+        private void ChangeInventoryAreaRectangle()
         {
-            this.Inventory = Game1.Player.Inventory;
-            this.Inventory.HasChangedSinceLastFrame = false;
             if (this.Expanded)
             {
                 this.InventoryAreaRectangle = new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale),
@@ -217,6 +215,23 @@ namespace SecretProject.Class.UI
                 this.InventoryAreaRectangle = new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale),
                     (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale));
             }
+        }
+        private void CheckForEject()
+        {
+            if (Game1.KeyboardManager.WasKeyPressed(Keys.Q))
+            {
+                if (this.Inventory.currentInventory[currentSliderPosition - 1].ItemCount > 0)
+                {
+                    EjectItem();
+                }
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            this.Inventory = Game1.Player.Inventory;
+            this.Inventory.HasChangedSinceLastFrame = false;
+            ChangeInventoryAreaRectangle();
 
             if (this.IsActive)
             {
@@ -227,9 +242,9 @@ namespace SecretProject.Class.UI
 
                 if (Game1.MouseManager.IsRightClicked)
                 {
-                    if (this.IsDragSlotActive)
+                    if (this.DraggedSlot.IsActive)
                     {
-                        this.IsDragSlotActive = false;
+                        this.DraggedSlot.IsActive = false;
                     }
                 }
 
@@ -257,13 +272,7 @@ namespace SecretProject.Class.UI
                     AllActions[i].Update(gameTime, AllActions);
                 }
 
-                if (Game1.KeyboardManager.WasKeyPressed(Keys.Q))
-                {
-                    if (this.Inventory.currentInventory[currentSliderPosition - 1].ItemCount > 0)
-                    {
-                        EjectItem();
-                    }
-                }
+                CheckForEject();
                 TextBuilder.Update(gameTime);
 
                 for (int i = 0; i < NumberOfSlotsToUpdate; i++)
@@ -345,7 +354,7 @@ namespace SecretProject.Class.UI
         /// </summary>
         private void HandleDragOutOfInventory()
         {
-            if (Game1.MouseManager.IsClicked && this.IsDragSlotActive)
+            if (Game1.MouseManager.IsClicked && this.DraggedSlot.IsActive)
             {
                 if (!Game1.MouseManager.MouseRectangle.Intersects(this.InventoryAreaRectangle))
                 {
@@ -370,7 +379,7 @@ namespace SecretProject.Class.UI
                     }
 
                     this.DragSprite = null;
-                    this.IsDragSlotActive = false;
+                    this.DraggedSlot.IsActive = false;
                 }
             }
         }
@@ -383,7 +392,7 @@ namespace SecretProject.Class.UI
         {
             if (Inventory.currentInventory[slotIndex].ItemCount > 0) //some item already occupies the slot we are trying to interact with.
             {
-                if (IsDragSlotActive && DraggedSlot.InventorySlot.ItemCount > 0)
+                if (this.DraggedSlot.IsActive && DraggedSlot.InventorySlot.ItemCount > 0)
                 {
                     InventorySlot newSlot = new InventorySlot(Inventory.currentInventory[slotIndex].Item)
                     {
@@ -402,7 +411,7 @@ namespace SecretProject.Class.UI
                     Inventory.currentInventory[slotIndex] = newNewSlot;
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
-                    this.IsDragSlotActive = false;
+                    this.DraggedSlot.IsActive = false;
 
                 }
                 else
@@ -410,7 +419,7 @@ namespace SecretProject.Class.UI
 
                     this.DraggedSlot.InventorySlot = Inventory.currentInventory[slotIndex];
                     this.DraggedSlot.Index = slotIndex;
-                    this.IsDragSlotActive = true;
+                    this.DraggedSlot.IsActive = true;
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
                     Game1.isMyMouseVisible = false;
                 }
@@ -419,7 +428,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                if (IsDragSlotActive) //if clicking on empty slot and we are dragging an item.
+                if (this.DraggedSlot.IsActive) //if clicking on empty slot and we are dragging an item.
                 {
 
                     Inventory.currentInventory[slotIndex] = new InventorySlot(DraggedSlot.InventorySlot.Item)
@@ -429,11 +438,11 @@ namespace SecretProject.Class.UI
 
                     this.DraggedSlot.InventorySlot.Clear();
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.UIClick, true, .25f, 0f);
-                    this.IsDragSlotActive = false;
+                    this.DraggedSlot.IsActive = false;
                 }
 
             }
-            if (this.IsDragSlotActive)
+            if (this.DraggedSlot.IsActive)
             {
                 this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16) { TextureScaleX = 5f, TextureScaleY = 5f };
             }
@@ -587,7 +596,7 @@ namespace SecretProject.Class.UI
 
 
                 }
-                if (this.IsDragSlotActive && this.DragSprite != null)
+                if (this.DraggedSlot.IsActive && this.DragSprite != null)
                 {
 
 
@@ -799,6 +808,7 @@ namespace SecretProject.Class.UI
 
     public class DragSlot
     {
+        public bool IsActive { get; set; }
         public int Index { get; set; }
         public InventorySlot InventorySlot { get; set; }
 
