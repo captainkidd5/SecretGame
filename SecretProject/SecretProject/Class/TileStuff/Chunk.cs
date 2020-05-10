@@ -547,7 +547,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * this.Y];
+                        this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * Math.Abs(this.Y)];
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
 
@@ -981,7 +981,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        if (this.X >= 0 && this.X <= 7 && this.Y >= 0 && this.Y <= 8)
+                        if (this.X >= 0 && this.X <= 7 && this.Y >= -8 && this.Y <= 0)
                         {
                             GenerateFromTown();
                         }

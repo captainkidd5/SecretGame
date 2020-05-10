@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/SoundEffects/boneRattle1.wav</SourceFile>
-  <SourceTime>2020-04-20T10:40:43.2301877-10:00</SourceTime>
-  <DestFile>C:/Users/lonny/OneDrive/Desktop/TuckerFiles/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/boneRattle1.xnb</DestFile>
-  <DestTime>2020-05-06T13:42:29.0911599-10:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/boneRattle1.wav</SourceFile>
+  <SourceTime>2020-03-17T18:38:44.4075087-10:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/boneRattle1.xnb</DestFile>
+  <DestTime>2020-05-10T12:07:05.7103532-10:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
