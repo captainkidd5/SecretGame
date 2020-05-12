@@ -333,10 +333,10 @@ namespace SecretProject.Class.StageFolder
 
             if (!Game1.freeze)
             {
-                foreach (Character character in Game1.AllCharacters)
-                {
-                    character.Update(gameTime, mouse);
-                }
+                //foreach (Character character in Game1.AllCharacters)
+                //{
+                //    character.Update(gameTime, mouse);
+                //}
                 Game1.GlobalClock.Update(gameTime);
 
                 this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);

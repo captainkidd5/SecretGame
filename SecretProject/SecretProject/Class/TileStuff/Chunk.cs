@@ -547,7 +547,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * Math.Abs(this.Y)];
+                        this.AllTiles[z][i, j] = this.TileManager.AllTiles[z][i + 16 * this.X, j + 16 * (this.Y)];
                         TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
 
@@ -592,7 +592,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j == 15)
                             {
-                                this.AllTiles[z][i, j] = new Tile(i, j, 25); // sand wave top
+                                this.AllTiles[z][i, j] = new Tile(i, j, 4715); // sand wave bottom
                             }
                             else
                             {
@@ -600,6 +600,26 @@ namespace SecretProject.Class.TileStuff
                             }
 
 
+                        }
+                        else if (z == 3)
+                        {
+                            if(this.X == 0) //bridgeChunk
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
+                            if(j==14)
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 4715);
+                            }
+                            else
+                            {
+                                this.AllTiles[z][i, j] = new Tile(i, j, 0);
+                            }
+                            
                         }
                         else
                         {
@@ -683,6 +703,67 @@ namespace SecretProject.Class.TileStuff
 
 
         }
+
+        public void GenerateBridge()
+        {
+            IsDoneLoading = true;
+            this.IsGenerating = true;
+            for (int z = 0; z < 4; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    {
+                        int newGID = 0;
+                        if (z == 0)
+                        {
+
+
+                            if (i == 0)
+                            {
+                                newGID = 1709;
+                            }
+                            else if (i == 1)
+                            {
+                                newGID = 1710;
+                            }
+                            else if (i == 2)
+                            {
+                                newGID = 1711;
+                            }
+                            else if (i == 3)
+                            {
+                                newGID = 1712;
+                            }
+                            else
+                            {
+                                newGID = 125;
+                            }
+                        }
+                        else
+                        {
+                            newGID = 0;
+                        }
+                        this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+
+                        this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                        this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
+                    }
+                }
+            }
+
+
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+
+
+
+
+        }
+
+
 
         public void GenerateUnraiNorthCliffs()
         {
@@ -981,15 +1062,23 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        if (this.X >= 0 && this.X <= 7 && this.Y >= -8 && this.Y <= 0)
+                        if (this.X >= 0 && this.X <= 7 && this.Y <=8 && this.Y >= 0)
                         {
                             GenerateFromTown();
                         }
-                        else if (this.Y > 6)
+                        else if (this.Y > -3)
                         {
-                            GenerateSea();
+                            if(this.X != 3)
+                            {
+                                GenerateSea();
+                            }
+                            else
+                            {
+                                GenerateBridge();
+                            }
+                            //if( this.X == 3 &* this.Y)
                         }
-                        else if (this.Y == 6)
+                        else if (this.Y == -3)
                         {
                             GenerateBeach();
                         }
