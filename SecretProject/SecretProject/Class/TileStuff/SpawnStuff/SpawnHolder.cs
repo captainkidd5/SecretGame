@@ -37,75 +37,75 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             this.OverWorldSpawnElements = new List<SpawnElement>()
             {
-                new SpawnElement(2963,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Pine Tree 
-                 new SpawnElement(3663,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Cedar Tree
-                  new SpawnElement(4263,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Fir Tree 
-                new SpawnElement(978,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant,1, false, 30, 15){Unlocked = true }, //Stone
-                new SpawnElement(1078,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Grass Tuft
-                new SpawnElement(978,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant,1, false, 30, 15){Unlocked = true }, //Stone
-                new SpawnElement(1078,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Grass Tuft
-                new SpawnElement(1580,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Stick
-                new SpawnElement(1579,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //rock
+                new SpawnElement(1628,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Pine Tree 
+                 new SpawnElement(1617,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Cedar Tree
+                  new SpawnElement(1535,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant, 2, false, 20, 30){Unlocked = true }, //Fir Tree 
+                new SpawnElement(140,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant,1, false, 30, 15){Unlocked = true }, //Stone
+                new SpawnElement(34,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Grass Tuft
+                new SpawnElement(240,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.Abundant,1, false, 30, 15){Unlocked = true }, //grassy Stone
+                new SpawnElement(34,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Grass Tuft
+                new SpawnElement(439,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Stick
+                new SpawnElement(440,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //rock
 
 
-                new SpawnElement(1077,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Common,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //Steel
-                new SpawnElement(1277,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.Uncommon,7, false, 1, 15){Unlocked = true }, //Large Steel
+                new SpawnElement(33,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Common,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //Steel
+                new SpawnElement(233,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.Uncommon,7, false, 1, 15){Unlocked = true }, //Large Steel
 
-                new SpawnElement(1069,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Common,Rarity.Common,7, false, 1, 15){Unlocked = true }, //Coal
-                new SpawnElement(1269,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.Uncommon,7, false, 1, 15){Unlocked = true }, //Large Coal
+                new SpawnElement(25,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Common,Rarity.Common,7, false, 1, 15){Unlocked = true }, //Coal
+                new SpawnElement(225,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Uncommon,Rarity.Uncommon,7, false, 1, 15){Unlocked = true }, //Large Coal
 
-                 new SpawnElement(1076,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper small
-                  new SpawnElement(1075,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite small
-                   new SpawnElement(1074,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate small
-                    new SpawnElement(1073,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite small
+                 new SpawnElement(32,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper small
+                  new SpawnElement(31,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite small
+                   new SpawnElement(32,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate small
+                    new SpawnElement(33,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Stone, Rarity.Uncommon,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite small
 
-                    new SpawnElement(1076,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper small 
-                  new SpawnElement(1075,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite small
-                   new SpawnElement(1074,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate small
-                    new SpawnElement(1073,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite small
-                    new SpawnElement(1072,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //dark small
-                    new SpawnElement(1071,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //gold small
+                    new SpawnElement(32,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper small 
+                  new SpawnElement(33,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite small
+                   new SpawnElement(34,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate small
+                    new SpawnElement(35,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite small
+                    new SpawnElement(28,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //dark small
+                    new SpawnElement(27,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //gold small
 
-                    new SpawnElement(1276,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper Large 
-                  new SpawnElement(1275,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite Large
-                   new SpawnElement(1274,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate Large
-                    new SpawnElement(1273,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite Large
-                    new SpawnElement(1272,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //dark Large
-                    new SpawnElement(1271,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //gold Large
+                    new SpawnElement(232,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //copper Large 
+                  new SpawnElement(231,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Rare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //monzanite Large
+                   new SpawnElement(230,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //blunate Large
+                    new SpawnElement(228,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //santalite Large
+                    new SpawnElement(229,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //dark Large
+                    new SpawnElement(227,SpawnMethod.RandomScatter, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.ExtremelyRare,Rarity.VeryCommon,7, false, 1, 15){Unlocked = true }, //gold Large
 
-                new SpawnElement(1681,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //carrotte
-                 new SpawnElement(1380,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //pumpkin
-                 new SpawnElement(1581,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Red Mushroom\
-                 new SpawnElement(1582,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Blue Mushroom
+                new SpawnElement(446,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //carrotte
+                 new SpawnElement(40,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //pumpkin
+                 new SpawnElement(441,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Red Mushroom\
+                 new SpawnElement(442,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //Blue Mushroom
 
-                      new SpawnElement(3160,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //big stump
+                      new SpawnElement(731,SpawnMethod.RandomScatter, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.VeryCommon,Rarity.VeryCommon,1, false, 30, 15){Unlocked = true }, //big stump
 
 
             //    ////CROPS - goes by GID, not by item id
             //    ///
 
-                new SpawnElement(486,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 25, 30){Unlocked = true, IsCrop = true  }, //Bloom Berry
-                 new SpawnElement(492,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true  }, //Yallon
-                  new SpawnElement(692,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Desmodus
+                new SpawnElement(769,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 25, 30){Unlocked = true, IsCrop = true  }, //Bloom Berry
+                 new SpawnElement(775,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true  }, //Yallon
+                  new SpawnElement(975,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Desmodus
 
-                  new SpawnElement(1670,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 25, 30){Unlocked = true, IsCrop = true  }, //Oak Seed
-                 new SpawnElement(2970,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true  }, //Pine Seed
-                  new SpawnElement(3670,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Cedar Seed
-                  new SpawnElement(4269,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Fir Seed
+                  new SpawnElement(1035,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 25, 30){Unlocked = true, IsCrop = true  }, //Oak Seed
+                 new SpawnElement(1635,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true  }, //Pine Seed
+                  new SpawnElement(1624,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Cedar Seed
+                  new SpawnElement(1541,SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround,MapLayer.BackGround, GenerationType.Dirt, Rarity.Abundant,Rarity.VeryCommon, 1, false, 20, 30){Unlocked = true, IsCrop = true }, //Fir Seed
 
 
             //    //DESERT
-            new SpawnElement(663,  SpawnMethod.Poisson,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,3, false, 15, 20){Unlocked = true }, //palm tree
-            new SpawnElement(1682, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Red Shell
-            new SpawnElement(670,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Palm Tree Seed 
-            new SpawnElement(1285, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Thorn Bush
-            new SpawnElement(1573, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Big Cactus
-            new SpawnElement(1574, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Small Cactus
+            new SpawnElement(2411,  SpawnMethod.Poisson,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,3, false, 15, 20){Unlocked = true }, //palm tree
+            new SpawnElement(1910, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Red Shell
+            new SpawnElement(2418,SpawnMethod.Poisson, MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant, 2, false, 25, 30){Unlocked = true }, //Palm Tree Seed 
+            new SpawnElement(1813, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Thorn Bush
+            new SpawnElement(1811, SpawnMethod.RandomScatter,MapLayer.ForeGround,MapLayer.BackGround, MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Big Cactus
+            new SpawnElement(1812, SpawnMethod.RandomScatter,MapLayer.ForeGround, MapLayer.BackGround,MapLayer.MidGround, GenerationType.Sand, Rarity.Abundant,Rarity.Abundant,2, false, 10, 2){Unlocked = true }, //Small Cactus
 
            
 
             //LAKE
-            new SpawnElement(139, SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround, MapLayer.MidGround, GenerationType.GrassLake, Rarity.Abundant, Rarity.Abundant, 3, false, 15, 20) { Unlocked = true }, //Lily pad
+            new SpawnElement(317, SpawnMethod.Poisson, MapLayer.ForeGround, MapLayer.BackGround, MapLayer.MidGround, GenerationType.GrassLake, Rarity.Abundant, Rarity.Abundant, 3, false, 15, 20) { Unlocked = true }, //Lily pad
              };
             this.AllCamps = new List<Camp>()
             {

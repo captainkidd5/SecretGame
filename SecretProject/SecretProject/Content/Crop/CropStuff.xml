@@ -5,7 +5,7 @@
         <Item Type="XMLData.ItemStuff.Crop">
           <ItemID>748</ItemID>
             <Name>Bloomberry</Name>
-            <GID>486</GID>        
+            <GID>769</GID>        
             <DaysToGrow>5</DaysToGrow>
             <CurrentGrowth>0</CurrentGrowth>
             <Harvestable>false</Harvestable>
@@ -13,7 +13,7 @@
             <Item Type="XMLData.ItemStuff.Crop">
                 <ItemID>750</ItemID>
                   <Name>BloodCorn</Name>
-                  <GID>286</GID>
+                  <GID>569</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -21,7 +21,7 @@
             <Item Type="XMLData.ItemStuff.Crop">
                 <ItemID>752</ItemID>
                   <Name>BrineVine</Name>
-                  <GID>686</GID>
+                  <GID>969</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -29,7 +29,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                 <ItemID>754</ItemID>
                   <Name>BlueZodFern</Name>
-                  <GID>292</GID>
+                  <GID>575</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -37,7 +37,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>756</ItemID>
                   <Name>YallonFlower</Name>
-                  <GID>492</GID>
+                  <GID>775</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -45,7 +45,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>758</ItemID>
                   <Name>DesmodusBloom</Name>
-                  <GID>692</GID>
+                  <GID>975</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -54,7 +54,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>790</ItemID>
                   <Name>Vine Pepper</Name>
-                  <GID>1192</GID>
+                  <GID>1169</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -73,7 +73,7 @@
 <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>1008</ItemID>
                   <Name>Coconut</Name>
-                  <GID>670</GID>
+                  <GID>2418</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -82,7 +82,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>668</ItemID>
                   <Name>Oak Seed</Name>
-                  <GID>1670</GID>
+                  <GID>1035</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -91,7 +91,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>669</ItemID>
                   <Name>Thunder Birch Seed</Name>
-                  <GID>2271</GID>
+                  <GID>1046</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -100,7 +100,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>670</ItemID>
                   <Name>Pine Seed</Name>
-                  <GID>2970</GID>
+                  <GID>1635</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -109,7 +109,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>671</ItemID>
                   <Name>Cedar Seed</Name>
-                  <GID>3670</GID>
+                  <GID>1624</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -118,7 +118,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>672</ItemID>
                   <Name>Fir Seed</Name>
-                  <GID>4269</GID>
+                  <GID>1541</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>

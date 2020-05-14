@@ -59,8 +59,8 @@ namespace SecretProject.Class.SpriteFolder
             this.IsUpdating = false;
 
 
-            int Column = 984 % 100;
-            int Row = (int)Math.Floor((double)984 / (double)100);
+            int Column = 534 % 100;
+            int Row = (int)Math.Floor((double)534 / (double)100);
             this.SourceRectangle = new Rectangle(16 * Column + 16 * this.GrassType, 16 * Row - 16 , 16, 32);
 
           

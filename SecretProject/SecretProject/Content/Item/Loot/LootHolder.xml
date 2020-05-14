@@ -4,7 +4,7 @@
         <AllLoot>
         <!-- blood corn -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>290</GID>
+                <GID>573</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -25,7 +25,7 @@
 
               <!--Zod Fern -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>296</GID>
+                <GID>579</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -45,7 +45,7 @@
             </Item>
             <!-- bloom berry -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>490</GID>
+                <GID>773</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -65,7 +65,7 @@
             </Item>
              <!-- Yallon Flower -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>496</GID>
+                <GID>779</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -85,7 +85,7 @@
             </Item>
                <!-- Brine Bulb -->
          <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>690</GID>
+                <GID>973</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -106,7 +106,7 @@
 
                  <!-- DesmodusBloom -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>696</GID>
+                <GID>979</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -127,7 +127,7 @@
 
             <!-- Small Coal Deposit-->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1069</GID>
+                <GID>25</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -148,7 +148,7 @@
 
             <!-- Large Coal Deposit-->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1269</GID>
+                <GID>225</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -169,7 +169,7 @@
 
               <!-- Small Iron Ore-->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1077</GID>
+                <GID>32</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -190,7 +190,7 @@
 
              <!-- Vine Pepper -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1196</GID>
+                <GID>1173</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -211,7 +211,7 @@
 
              <!-- Nettle -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1396</GID>
+                <GID>1079</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>false</Unlocked>
@@ -232,7 +232,7 @@
 
              <!-- Cactus(Large) -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1573</GID>
+                <GID>1811</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -245,7 +245,7 @@
             </Item>
              <!-- Cactus(Small) -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1574</GID>
+                <GID>1812</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -259,7 +259,7 @@
 
             <!-- Coconut Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>663</GID>
+                <GID>2411</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -280,7 +280,7 @@
             </Item>
         <!-- Oak -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1663</GID>
+                <GID>1028</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -315,7 +315,7 @@
             </Item>
         <!-- Fur Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>2963</GID>
+                <GID>1535</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -350,7 +350,7 @@
 
             <!-- ThunderBirch -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>2263</GID>
+                <GID>1038</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -385,7 +385,7 @@
 
             <!-- Cedar Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>3663</GID>
+                <GID>1617</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -420,7 +420,7 @@
 
             <!-- Pine Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>4263</GID>
+                <GID>1628</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -455,7 +455,7 @@
 
             <!-- Steel Vein -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1277</GID>
+                <GID>33</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -490,7 +490,7 @@
 
              <!-- Stone -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>878</GID>
+                <GID>140</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -511,7 +511,7 @@
 
             <!-- Grassy Stone -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>978</GID>
+                <GID>240</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
@@ -532,7 +532,7 @@
 
              <!-- Bone idol -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>4138</GID>
+                <GID>1158</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>

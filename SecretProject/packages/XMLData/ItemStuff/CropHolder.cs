@@ -10,10 +10,10 @@ namespace XMLData.ItemStuff
     {
         public List<Crop> AllCrops { get; set; }
 
-        public Crop GetCropFromID(int ID)
+        public Crop GetCropFromID(int gid)
         {
             Crop newCrop = new Crop();
-            Crop oldCrop = AllCrops.Find(x => x.ItemID == ID);
+            Crop oldCrop = AllCrops.Find(x => x.GID == gid);
             newCrop.ItemID = oldCrop.ItemID;
             newCrop.Name = oldCrop.Name;
             newCrop.GID = oldCrop.GID;

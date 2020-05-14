@@ -592,11 +592,11 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j == 15)
                             {
-                                this.AllTiles[z][i, j] = new Tile(i, j, 4715); // sand wave bottom
+                                this.AllTiles[z][i, j] = new Tile(i, j, 1220); // cliff bottom bottom
                             }
                             else
                             {
-                                this.AllTiles[z][i, j] = new Tile(i, j, 1322); // sand tile
+                                this.AllTiles[z][i, j] = new Tile(i, j, 1402); // sand tile
                             }
 
 
@@ -613,7 +613,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             if(j==14)
                             {
-                                this.AllTiles[z][i, j] = new Tile(i, j, 4715);
+                                this.AllTiles[z][i, j] = new Tile(i, j, 721);
                             }
                             else
                             {
@@ -679,7 +679,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (z == 0)
                         {
-                            this.AllTiles[z][i, j] = new Tile(i, j, 125); //sea tile
+                            this.AllTiles[z][i, j] = new Tile(i, j, 2602); //sea tile
                         }
                         else
                         {
@@ -721,23 +721,23 @@ namespace SecretProject.Class.TileStuff
 
                             if (i == 0)
                             {
-                                newGID = 1709;
+                                newGID = 4701;
                             }
                             else if (i == 1)
                             {
-                                newGID = 1710;
+                                newGID = 4702;
                             }
                             else if (i == 2)
                             {
-                                newGID = 1711;
+                                newGID = 4703;
                             }
                             else if (i == 3)
                             {
-                                newGID = 1712;
+                                newGID = 4704;
                             }
                             else
                             {
-                                newGID = 125;
+                                newGID = 2602;
                             }
                         }
                         else

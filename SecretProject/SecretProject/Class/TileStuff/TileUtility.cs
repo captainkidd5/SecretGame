@@ -33,7 +33,7 @@ namespace SecretProject.Class.TileStuff
             float Y = (tile.Y * 16);
 
             return new Rectangle((int)(X), (int)(Y), 16, 16);
-
+            
 
         }
         public static Rectangle GetSourceRectangle(Tile tile, int tilesetTilesWide)
@@ -488,7 +488,7 @@ namespace SecretProject.Class.TileStuff
 
             if (GetProperty(container.TileSetDictionary, tileToAssign.GID, ref cropString))
             {
-                int cropID = int.Parse(cropString);
+                int cropID = tileToAssign.GID;
                 Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
 
                 tempCrop.X = x;
