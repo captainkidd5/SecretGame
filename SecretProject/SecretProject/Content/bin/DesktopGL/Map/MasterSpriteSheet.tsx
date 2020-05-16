@@ -3553,6 +3553,30 @@
    <frame tileid="5123" duration="80"/>
   </animation>
  </tile>
+ <tile id="4804">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="16" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="4805">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="16" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="4806">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="16" height="4"/>
+  </objectgroup>
+ </tile>
  <tile id="4810">
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
@@ -3607,8 +3631,8 @@
  </tile>
  <tile id="6211">
   <properties>
-   <property name="newHitBox" value="-96, -64, 112,80"/>
-   <property name="newSource" value="-96, -96, 128,112"/>
+   <property name="newHitBox" value="-80, -64, 112,80"/>
+   <property name="newSource" value="-80, -96, 112,112"/>
   </properties>
  </tile>
  <tile id="6215">
@@ -3628,6 +3652,8 @@
  <tile id="6231">
   <properties>
    <property name="action" value="portal"/>
+   <property name="newHitBox" value="-64,-144,64,96"/>
+   <property name="newSource" value="-48,-144,96,160"/>
    <property name="portal" value="true,OverWorld,LightHouse"/>
   </properties>
  </tile>
@@ -3774,6 +3800,161 @@
    <frame tileid="8105" duration="80"/>
   </animation>
  </tile>
+ <tile id="8120">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="10" y="9" width="6" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8121">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8122">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8123">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8124">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8125">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8126">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="8" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="8220">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8222">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8225">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8227">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8320">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8327">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8420">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8427">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8520">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8527">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8620">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8627">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8720">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8722">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="15" height="14"/>
+  </objectgroup>
+ </tile>
+ <tile id="8725">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="8727">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8820">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8821">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8822">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8823">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8824">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8825">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8826">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="8827">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="8910">
   <properties>
    <property name="newHitBox" value="-32,-48,96,60"/>
@@ -3784,6 +3965,36 @@
    <frame tileid="7710" duration="80"/>
   </animation>
  </tile>
+ <tile id="8920">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8927">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9020">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9027">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9120">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9127">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="9216">
   <properties>
    <property name="newSource" value="0,-48,32,64"/>
@@ -3792,6 +4003,46 @@
    <frame tileid="8816" duration="80"/>
    <frame tileid="8416" duration="80"/>
   </animation>
+ </tile>
+ <tile id="9220">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9227">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9321">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9322">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9323">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9324">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9325">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9326">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
  </tile>
  <tile id="9510">
   <properties>
