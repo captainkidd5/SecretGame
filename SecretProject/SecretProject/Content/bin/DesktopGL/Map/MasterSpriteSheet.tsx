@@ -3788,6 +3788,11 @@
    <frame tileid="7805" duration="80"/>
   </animation>
  </tile>
+ <tile id="8018">
+  <properties>
+   <property name="newSource" value="-64,-144,192,160"/>
+  </properties>
+ </tile>
  <tile id="8100">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -3841,6 +3846,16 @@
   </objectgroup>
  </tile>
  <tile id="8222">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8223">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="8224">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
