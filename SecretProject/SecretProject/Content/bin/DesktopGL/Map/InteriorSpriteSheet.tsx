@@ -398,6 +398,11 @@
    <property name="step" value="3"/>
   </properties>
  </tile>
+ <tile id="723">
+  <properties>
+   <property name="newSource" value="-16,-16,48,32"/>
+  </properties>
+ </tile>
  <tile id="732">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -700,6 +705,11 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="1308">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1401">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -731,6 +741,16 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="5" width="12" height="9"/>
   </objectgroup>
+ </tile>
+ <tile id="1407">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1409">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="1433">
   <properties>
@@ -788,6 +808,11 @@
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
+ <tile id="1818">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1853">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -802,6 +827,11 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="2017">
+  <properties>
+   <property name="newSource" value="-16,-16,48,32"/>
+  </properties>
  </tile>
  <tile id="2037">
   <properties>
