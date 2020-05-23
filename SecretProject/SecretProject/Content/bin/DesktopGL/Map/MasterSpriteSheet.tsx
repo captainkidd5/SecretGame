@@ -3271,6 +3271,18 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3700">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
+ <tile id="3702">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
  <tile id="3720">
   <properties>
    <property name="generate" value="CaveWater"/>
@@ -3347,6 +3359,12 @@
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="4005">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
  </tile>
  <tile id="4115">
   <properties>
@@ -3598,6 +3616,12 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="5007">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-32,32,64"/>
+  </properties>
+ </tile>
  <tile id="5647">
   <properties>
    <property name="newHitBox" value="-16,0,64,16"/>
@@ -3742,7 +3766,7 @@
   <properties>
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
-   <property name="newSource" value="-48, -112, 112, 128"/>
+   <property name="newSource" value="-32, -112, 96, 128"/>
    <property name="portal" value="true,OverWorld,MarcusHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
