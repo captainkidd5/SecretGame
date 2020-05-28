@@ -404,11 +404,14 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-
-                foreach (Character character in Game1.AllCharacters)
+                if(Game1.UpdateCharacters)
                 {
-                    character.Update(gameTime, mouse);
+                    foreach (Character character in Game1.AllCharacters)
+                    {
+                        character.Update(gameTime, mouse);
+                    }
                 }
+                
 
 
             }

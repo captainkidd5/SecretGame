@@ -104,6 +104,7 @@ namespace SecretProject
         public static bool InfiniteArrows = false;
         public static bool GenerateChunkLandscape = true;
         public static bool AllowNaturalNPCSpawning = true;
+        public static bool UpdateCharacters = false;
 
         public static int NPCSpawnCountLimit = 50;
 
