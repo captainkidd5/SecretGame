@@ -80,6 +80,7 @@ namespace SecretProject
 
         LightHouse = 11,
         UnderWorld = 12,
+        CasparHouse = 13,
         MainMenu = 50,
         Exit = 55,
 
@@ -133,6 +134,7 @@ namespace SecretProject
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase MarcusHouse;
         public static TmxStageBase LightHouse;
+        public static TmxStageBase CasparHouse;
 
 
         public static List<ILocation> AllStages;
@@ -438,7 +440,7 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, MouseManager, Player.UserInterface);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
-            PortalGraph = new Graph(13);
+            PortalGraph = new Graph(14);
 
 
             LoadStages();
@@ -575,13 +577,14 @@ namespace SecretProject
             DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
             MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
+            CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/CasparHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
 
 
 
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse };
 
         }
         private void LoadShops()
@@ -1125,6 +1128,9 @@ namespace SecretProject
                     case Stages.UnderWorld:
                         UnderWorld.Update(gameTime, MouseManager, Player);
                         break;
+                    case Stages.CasparHouse:
+                        CasparHouse.Update(gameTime, MouseManager, Player);
+                        break;
 
                 }
 
@@ -1233,6 +1239,10 @@ namespace SecretProject
                 case Stages.UnderWorld:
                     this.GraphicsDevice.Clear(Color.Black);
                     UnderWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    break;
+                case Stages.CasparHouse:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    CasparHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
 
             }

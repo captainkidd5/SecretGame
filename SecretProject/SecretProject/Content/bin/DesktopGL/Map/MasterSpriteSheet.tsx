@@ -3649,8 +3649,10 @@
  </tile>
  <tile id="6202">
   <properties>
+   <property name="action" value="portal"/>
    <property name="newHitBox" value="-32,-80,96,96"/>
    <property name="newSource" value="-32,-112,96,128"/>
+   <property name="portal" value="true,OverWorld,CasparHouse"/>
   </properties>
  </tile>
  <tile id="6211">
@@ -3661,8 +3663,10 @@
  </tile>
  <tile id="6215">
   <properties>
+   <property name="action" value="portal"/>
    <property name="newHitBox" value="-32,-64, 96,64"/>
    <property name="newSource" value="-32,-128, 112, 144"/>
+   <property name="portal" value="true,OverWorld,GeneralStore"/>
   </properties>
  </tile>
  <tile id="6223">

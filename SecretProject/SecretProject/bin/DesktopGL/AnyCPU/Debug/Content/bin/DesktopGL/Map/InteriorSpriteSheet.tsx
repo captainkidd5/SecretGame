@@ -668,6 +668,11 @@
    <object id="1" x="0" y="0" width="8" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="1108">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1135">
   <properties>
    <property name="action" value="sleep"/>
@@ -694,6 +699,11 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="1210">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
  </tile>
  <tile id="1215">
   <properties>
@@ -754,7 +764,7 @@
  </tile>
  <tile id="1433">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="14" height="15"/>
@@ -841,6 +851,21 @@
  <tile id="2055">
   <properties>
    <property name="newSource" value="-16,-16,64,32"/>
+  </properties>
+ </tile>
+ <tile id="2136">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="2425">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="2430">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="4743">
