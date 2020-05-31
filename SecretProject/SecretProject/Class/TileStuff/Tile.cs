@@ -21,7 +21,7 @@ namespace SecretProject.Class.TileStuff
         public int X { get; set; }
         public float LayerToDrawAt { get; set; } 
         public float LayerToDrawAtZOffSet { get; set; } 
-        public float ColorMultiplier { get; set; } = 1f;
+        public float ColorMultiplier { get; set; } = 1f; //this is reset every frame in the quad tree insertion
 
         public Rectangle SourceRectangle { get; set; }
         public Rectangle DestinationRectangle { get; set; }

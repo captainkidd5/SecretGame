@@ -89,8 +89,16 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public void AddSpriteToDictionary(Dictionary<string, Sprite> dictionary, IInformationContainer container, Tile tile)
         {
-            dictionary.Add(tile.TileKey, new Sprite(this.Graphics, Game1.AllTextures.UserInterfaceTileSet,
-                new Rectangle(16,48, 16, 32),new Vector2(tile.DestinationRectangle.X + tile.SourceRectangle.Width / 4, tile.DestinationRectangle.Y), 16,32));
+            if(!dictionary.ContainsKey(tile.TileKey))
+            {
+                dictionary.Add(tile.TileKey, new Sprite(this.Graphics, Game1.AllTextures.UserInterfaceTileSet,
+                new Rectangle(16, 48, 16, 32), new Vector2(tile.DestinationRectangle.X + tile.SourceRectangle.Width / 4, tile.DestinationRectangle.Y), 16, 32));
+            }
+            else
+            {
+                Console.WriteLine("dictionary already has key " + tile.TileKey);
+            }
+            
         }
 
         public void Update(GameTime gameTime)

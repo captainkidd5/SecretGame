@@ -2785,7 +2785,7 @@
   <properties>
    <property name="destructable" value="Chopping,4,1,3,3,Tier0"/>
    <property name="loot" value=""/>
-   <property name="newSource" value="-16,-80,48,96"/>
+   <property name="newSource" value="-16,-64,48,80"/>
    <property name="tileType" value="tree"/>
   </properties>
   <objectgroup draworder="index" id="2">

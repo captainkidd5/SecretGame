@@ -94,7 +94,7 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
         public Dictionary<string, Sprite> QuestIcons { get; set; }
-        public TileModificationHandler TileModificationHandler { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public TileModificationHandler TileModificationHandler { get; set; }
 
         #region CONSTRUCTORS
 
@@ -148,10 +148,7 @@ namespace SecretProject.Class.TileStuff
             this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
             QuestIcons = new Dictionary<string, Sprite>();
-            if (this.Stage == Game1.DobbinHouse)
-            {
-                Console.WriteLine("hi");
-            }
+
             for (int i = 0; i < 4; i++)
             {
                 this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -164,6 +161,7 @@ namespace SecretProject.Class.TileStuff
             {
                 StartNew(mapName);
             }
+            this.TileModificationHandler = new TileModificationHandler();
 
             #region PORTALS
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
@@ -286,61 +284,7 @@ namespace SecretProject.Class.TileStuff
             {
                 endj = this.MapWidth;
             }
-            foreach (EditableAnimationFrameHolder frameholder in this.AnimationFrames.Values)
-            {
-                //frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                //if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
-                //{
-                //    frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                //    this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
-                //    if (frameholder.HasNewSource)
-                //    {
-                //        Rectangle newSourceRectangle = this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
-                //        // Rectangle originalTileRectangle =
-                //        this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
-                //    }
-
-
-                //    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
-
-                //    if (frameholder.Counter == frameholder.Frames.Count - 1)
-                //    {
-                //        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
-                //        {
-
-                //            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
-                //            {
-
-                //                //needs to refer to first tile ?
-                //                int frameolDX = frameholder.OldX;
-                //                this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                //                AnimationFrameKeysToRemove.Add(this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
-                //                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
-                //                {
-                //                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this);
-                //                }
-
-                //            }
-                //        }
-
-                //        frameholder.Counter = 0;
-
-
-                //    }
-                //    else
-                //    {
-
-                //        frameholder.Counter++;
-
-                //    }
-
-                //}
-            }
-
-            foreach (string key in AnimationFrameKeysToRemove)
-            {
-                this.AnimationFrames.Remove(key);
-            }
+            UpdateAnimationFrames(gameTime);
 
 
             Game1.Player.CollideOccured = false;
@@ -501,12 +445,64 @@ namespace SecretProject.Class.TileStuff
             {
                 this.GridItem.NormalUpdate(gameTime, this, this);
             }
-
+            this.TileModificationHandler.Update(gameTime);
             for (int item = 0; item < this.AllItems.Count; item++)
             {
                 this.AllItems[item].Update(gameTime);
             }
 
+        }
+
+        public void UpdateAnimationFrames(GameTime gameTime)
+        {
+            List<string> AnimationFrameKeysToRemove = new List<string>();
+            foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
+            {
+                if (Game1.GlobalClock.SecondsPassedToday > frameholder.Frames[frameholder.Counter].TargetDuration)
+                {
+                    Tile animationTile = AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY];
+                    animationTile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                    if (frameholder.HasNewSource)
+                    {
+                        Rectangle newSourceRectangle = animationTile.SourceRectangle;
+                        animationTile.SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet,
+                            newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
+                    }
+                    if (frameholder.Counter == frameholder.Frames.Count - 1)
+                    {
+                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
+                        {
+
+                            if (this.TileSetDictionary[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                            {
+
+                                AnimationFrameKeysToRemove.Add(animationTile.TileKey);
+                                if (frameholder.Terminates)
+                                {
+
+                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this);
+                                }
+
+                            }
+                        }
+
+                        frameholder.Counter = 0;
+                        frameholder.SetNewTarget(frameholder.Counter);
+
+                    }
+                    else
+                    {
+                        frameholder.Counter++;
+                        frameholder.SetNewTarget(frameholder.Counter);
+
+                    }
+                }
+            }
+
+            foreach (string key in AnimationFrameKeysToRemove)
+            {
+               AnimationFrames.Remove(key);
+            }
         }
 
         #endregion
@@ -714,7 +710,7 @@ namespace SecretProject.Class.TileStuff
 
         public void AddTileModification(Tile tile, ITileModifiable tileModifiable)
         {
-            throw new NotImplementedException();
+            this.TileModificationHandler.AddModification(tile, tileModifiable);
         }
 
         #endregion
