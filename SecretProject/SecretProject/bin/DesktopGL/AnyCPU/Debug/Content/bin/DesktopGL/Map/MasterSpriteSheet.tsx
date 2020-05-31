@@ -3652,7 +3652,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32,-80,96,96"/>
    <property name="newSource" value="-32,-112,96,128"/>
-   <property name="portal" value="true,OverWorld,CasparHouse"/>
+   <property name="portal" value="true,Town,CasparHouse"/>
   </properties>
  </tile>
  <tile id="6211">
@@ -3666,7 +3666,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32,-64, 96,64"/>
    <property name="newSource" value="-32,-128, 112, 144"/>
-   <property name="portal" value="true,OverWorld,GeneralStore"/>
+   <property name="portal" value="true,Town,GeneralStore"/>
   </properties>
  </tile>
  <tile id="6223">
@@ -3674,7 +3674,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-48, -48, 112,64"/>
    <property name="newSource" value="-48, -96, 128,112"/>
-   <property name="portal" value="true,OverWorld,ElixirHouse"/>
+   <property name="portal" value="true,Town,ElixirHouse"/>
   </properties>
  </tile>
  <tile id="6231">
@@ -3682,7 +3682,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-64,-144,64,96"/>
    <property name="newSource" value="-48,-144,96,160"/>
-   <property name="portal" value="true,OverWorld,LightHouse"/>
+   <property name="portal" value="true,Town,LightHouse"/>
   </properties>
  </tile>
  <tile id="6238">
@@ -3690,7 +3690,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-64,-80,144,96"/>
    <property name="newSource" value="-64,-192,144,208"/>
-   <property name="portal" value="true,OverWorld,GeneralStore"/>
+   <property name="portal" value="true,Town,GeneralStore"/>
    <property name="transparent" value="-64,-80,144,96"/>
   </properties>
  </tile>
@@ -3732,7 +3732,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-48, -64, 96, 80"/>
    <property name="newSource" value="-48, -112, 96,128"/>
-   <property name="portal" value="true,OverWorld,JulianHouse"/>
+   <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
  </tile>
  <tile id="7006">
@@ -3740,7 +3740,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-16, -64, 112, 80"/>
    <property name="newSource" value="-16, -80, 112,96"/>
-   <property name="portal" value="true,OverWorld,Cafe,"/>
+   <property name="portal" value="true,Town,Cafe,"/>
   </properties>
  </tile>
  <tile id="7014">
@@ -3754,7 +3754,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-16, -64, 80, 80"/>
    <property name="newSource" value="-16, -96, 80,112"/>
-   <property name="portal" value="true,OverWorld,KayaHouse"/>
+   <property name="portal" value="true,Town,KayaHouse"/>
   </properties>
  </tile>
  <tile id="7025">
@@ -3762,7 +3762,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
-   <property name="portal" value="true,OverWorld,PlayerHouse"/>
+   <property name="portal" value="true,Town,PlayerHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>
@@ -3771,7 +3771,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -112, 96, 128"/>
-   <property name="portal" value="true,OverWorld,MarcusHouse"/>
+   <property name="portal" value="true,Town,MarcusHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>
@@ -3780,7 +3780,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-80, -64, 112, 80"/>
    <property name="newSource" value="-80, -80, 112, 96"/>
-   <property name="portal" value="true,OverWorld,DobbinHouse,"/>
+   <property name="portal" value="true,Town,DobbinHouse,"/>
   </properties>
  </tile>
  <tile id="7041">
@@ -3802,6 +3802,21 @@
  <tile id="7051">
   <properties>
    <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="7527">
+  <properties>
+   <property name="newSource" value="-16,-48,48,64"/>
+  </properties>
+ </tile>
+ <tile id="7529">
+  <properties>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
+ <tile id="7531">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="7800">

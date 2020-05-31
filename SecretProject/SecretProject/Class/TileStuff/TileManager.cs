@@ -546,7 +546,7 @@ namespace SecretProject.Class.TileStuff
                 for (int grass = 0; grass < entry.Value.Count; grass++)
                 {
 
-                    entry.Value[grass].Draw(spriteBatch);
+                    entry.Value[grass].Draw(spriteBatch, this.TileSet);
 
                 }
             }
@@ -695,8 +695,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (this.Stage != Game1.Town)
-            {
+          //  if (this.Stage != Game1.Town)
+            //{
                 for (int z = 0; z < layerCount; z++)
                 {
 
@@ -708,7 +708,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-            }
+          //  }
 
         }
 

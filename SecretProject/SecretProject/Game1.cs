@@ -768,7 +768,7 @@ namespace SecretProject
 
 
             Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(40, 21));
-            Sarah = new Character("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.OverWorld, false, SarahQuests, AllTextures.SarahPortrait)
+            Sarah = new Character("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.Town, false, SarahQuests, AllTextures.SarahPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -807,7 +807,7 @@ namespace SecretProject
 
 
             Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(40, 21));
-            Mippin = new Character("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.OverWorld, false, MippinQuests, AllTextures.MippinPortrait)
+            Mippin = new Character("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.Town, false, MippinQuests, AllTextures.MippinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -830,7 +830,7 @@ namespace SecretProject
 
 
             Vector2 nedPosition = Character.GetWorldPosition(new Vector2(110, 11));
-            Ned = new Character("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.OverWorld, false, NedQuests, AllTextures.NedPortrait)
+            Ned = new Character("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.Town, false, NedQuests, AllTextures.NedPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -854,7 +854,7 @@ namespace SecretProject
 
 
             Vector2 tealPosition = Character.GetWorldPosition(new Vector2(45, 80));
-            Teal = new Character("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.OverWorld, false, TealQuests, AllTextures.TealPortrait)
+            Teal = new Character("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.Town, false, TealQuests, AllTextures.TealPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]

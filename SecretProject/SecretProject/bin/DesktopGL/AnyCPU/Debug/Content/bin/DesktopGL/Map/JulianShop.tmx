@@ -153,7 +153,7 @@
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="JulianHouse"/>
-    <property name="standardTo" value="OverWorld"/>
+    <property name="standardTo" value="Town"/>
    </properties>
   </object>
  </objectgroup>
