@@ -2250,6 +2250,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1453">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1454">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1455">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1456">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
  <tile id="1500">
   <properties>
    <property name="generate" value="Sand"/>
@@ -2324,7 +2344,7 @@
   <properties>
    <property name="destructable" value="Chopping,4,5,3,19,Tier0"/>
    <property name="loot" value=""/>
-   <property name="newSource" value="-32,-64,64,80"/>
+   <property name="newSource" value="-16,-64,48,80"/>
    <property name="tileType" value="tree"/>
    <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
@@ -2432,6 +2452,11 @@
    <object id="1" x="0" y="5" width="15" height="9"/>
   </objectgroup>
  </tile>
+ <tile id="1633">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1635">
   <properties>
    <property name="crop" value="672"/>
@@ -2468,6 +2493,26 @@
  <tile id="1704">
   <properties>
    <property name="generate" value="DesertStone"/>
+  </properties>
+ </tile>
+ <tile id="1753">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1754">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1755">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
+ <tile id="1756">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
   </properties>
  </tile>
  <tile id="1800">
