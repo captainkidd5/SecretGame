@@ -526,6 +526,9 @@
    <property name="loot" value="1162"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="7" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="300">
   <properties>
@@ -766,6 +769,9 @@
    <property name="loot" value="1162"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="7" width="12" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="454">
   <properties>
@@ -774,6 +780,9 @@
    <property name="loot" value="1162"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="7" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="455">
   <properties>
@@ -782,6 +791,9 @@
    <property name="loot" value="1162"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="7" width="12" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="456">
   <properties>
@@ -791,6 +803,9 @@
    <property name="loot" value="1162"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="7" width="8" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="461">
   <properties>
@@ -2254,21 +2269,33 @@
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="10" width="10" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1454">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="10" width="16" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1455">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="10" width="10" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1456">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="10" width="4" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1500">
   <properties>
@@ -2499,21 +2526,33 @@
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="10" width="10" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1754">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="10" width="16" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1755">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="10" width="10" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1756">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="10" width="4" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1800">
   <properties>
@@ -4154,11 +4193,117 @@
    <property name="newSource" value="-32,-80,96,96"/>
   </properties>
  </tile>
+ <tile id="9540">
+  <animation>
+   <frame tileid="9540" duration="80"/>
+   <frame tileid="9040" duration="80"/>
+   <frame tileid="8540" duration="80"/>
+   <frame tileid="8040" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9542">
+  <animation>
+   <frame tileid="8942" duration="80"/>
+   <frame tileid="8342" duration="80"/>
+   <frame tileid="7742" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9543">
+  <animation>
+   <frame tileid="8943" duration="80"/>
+   <frame tileid="8343" duration="80"/>
+   <frame tileid="7743" duration="80"/>
+  </animation>
+ </tile>
  <tile id="9616">
   <properties>
    <property name="action" value="triggerQuest"/>
    <property name="addQuest" value=""/>
    <property name="newSource" value="-32,-48,96,64"/>
   </properties>
+ </tile>
+ <tile id="9640">
+  <animation>
+   <frame tileid="9140" duration="80"/>
+   <frame tileid="8640" duration="80"/>
+   <frame tileid="8140" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9642">
+  <animation>
+   <frame tileid="9042" duration="80"/>
+   <frame tileid="8442" duration="80"/>
+   <frame tileid="7842" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9643">
+  <animation>
+   <frame tileid="9043" duration="80"/>
+   <frame tileid="8443" duration="80"/>
+   <frame tileid="7843" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9740">
+  <animation>
+   <frame tileid="9240" duration="80"/>
+   <frame tileid="8740" duration="80"/>
+   <frame tileid="8240" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9742">
+  <animation>
+   <frame tileid="9142" duration="80"/>
+   <frame tileid="8542" duration="80"/>
+   <frame tileid="7942" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9743">
+  <animation>
+   <frame tileid="9143" duration="80"/>
+   <frame tileid="8543" duration="80"/>
+   <frame tileid="7943" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9840">
+  <animation>
+   <frame tileid="9340" duration="80"/>
+   <frame tileid="8840" duration="80"/>
+   <frame tileid="8340" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9842">
+  <animation>
+   <frame tileid="9242" duration="80"/>
+   <frame tileid="8642" duration="80"/>
+   <frame tileid="8042" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9843">
+  <animation>
+   <frame tileid="9243" duration="80"/>
+   <frame tileid="8643" duration="80"/>
+   <frame tileid="8043" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9940">
+  <animation>
+   <frame tileid="9440" duration="80"/>
+   <frame tileid="8940" duration="80"/>
+   <frame tileid="8440" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9942">
+  <animation>
+   <frame tileid="9342" duration="80"/>
+   <frame tileid="8742" duration="80"/>
+   <frame tileid="8142" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="9943">
+  <animation>
+   <frame tileid="9343" duration="80"/>
+   <frame tileid="8743" duration="80"/>
+   <frame tileid="8143" duration="80"/>
+  </animation>
  </tile>
 </tileset>
