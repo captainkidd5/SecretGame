@@ -3915,6 +3915,14 @@
    <frame tileid="7805" duration="80"/>
   </animation>
  </tile>
+ <tile id="7934">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newHitBox" value="-48, -112, 140, 124"/>
+   <property name="newSource" value="-48, -124, 140,140"/>
+   <property name="portal" value="true,Town,Cafe,"/>
+  </properties>
+ </tile>
  <tile id="8018">
   <properties>
    <property name="newSource" value="-64,-144,192,160"/>
@@ -4096,6 +4104,13 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="8" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="8836">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newSource" value="-64,-128,112,144"/>
+   <property name="portal" value="true,Town,GeneralStore"/>
+  </properties>
  </tile>
  <tile id="8910">
   <properties>
