@@ -3804,6 +3804,14 @@
    <property name="newSource" value="-16,-48,64,64"/>
   </properties>
  </tile>
+ <tile id="6545">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <animation>
+   <frame tileid="6546" duration="80"/>
+  </animation>
+ </tile>
  <tile id="6751">
   <properties>
    <property name="action" value="triggerQuest"/>
@@ -3938,6 +3946,15 @@
    <frame tileid="8103" duration="80"/>
    <frame tileid="8104" duration="80"/>
    <frame tileid="8105" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="8106">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+  <animation>
+   <frame tileid="7806" duration="80"/>
+   <frame tileid="7506" duration="80"/>
   </animation>
  </tile>
  <tile id="8120">
@@ -4109,7 +4126,7 @@
   <properties>
    <property name="action" value="portal"/>
    <property name="newSource" value="-64,-128,112,144"/>
-   <property name="portal" value="true,Town,GeneralStore"/>
+   <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
  </tile>
  <tile id="8910">
@@ -4235,6 +4252,13 @@
    <property name="action" value="triggerQuest"/>
    <property name="addQuest" value=""/>
    <property name="newSource" value="-32,-48,96,64"/>
+  </properties>
+ </tile>
+ <tile id="9635">
+  <properties>
+   <property name="action" value="portal"/>
+   <property name="newSource" value="-64,-112,144,128"/>
+   <property name="portal" value="true,Town,GeneralStore"/>
   </properties>
  </tile>
  <tile id="9640">
