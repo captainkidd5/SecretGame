@@ -114,6 +114,7 @@ namespace SecretProject.Class.TileStuff
                 .2f,
                 .3f,
                 .5f,
+                .99f
             };
 
             this.TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
@@ -149,7 +150,7 @@ namespace SecretProject.Class.TileStuff
             Game1.GlobalClock.DayChanged += HandleClockChange;
             QuestIcons = new Dictionary<string, Sprite>();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < this.AllDepths.Count; i++)
             {
                 this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
 
@@ -208,12 +209,14 @@ namespace SecretProject.Class.TileStuff
         /// </summary>
         public void StartNew(TmxMap map)
         {
+           
             List<TmxLayer> allLayers = new List<TmxLayer>()
             {
                 map.Layers["background"],
             map.Layers["midGround"],
            map.Layers["buildings"],
-           map.Layers["foreGround"]
+           map.Layers["foreGround"],
+           map.Layers["front"]
         };
 
             for (int i = 0; i < this.AllTiles.Count; i++)
@@ -674,7 +677,7 @@ namespace SecretProject.Class.TileStuff
             int tileCount = reader.ReadInt32();
 
             this.AllTiles = new List<Tile[,]>();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < layerCount; i++)
             {
                 this.AllTiles.Add(new Tile[tileCount, tileCount]);
 

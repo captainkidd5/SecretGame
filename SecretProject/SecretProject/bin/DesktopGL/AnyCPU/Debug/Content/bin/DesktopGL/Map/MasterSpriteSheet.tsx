@@ -3809,7 +3809,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <animation>
-   <frame tileid="6546" duration="80"/>
+   <frame tileid="6546" duration="250"/>
   </animation>
  </tile>
  <tile id="6751">
@@ -3953,8 +3953,8 @@
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <animation>
-   <frame tileid="7806" duration="80"/>
-   <frame tileid="7506" duration="80"/>
+   <frame tileid="7806" duration="250"/>
+   <frame tileid="7506" duration="250"/>
   </animation>
  </tile>
  <tile id="8120">
