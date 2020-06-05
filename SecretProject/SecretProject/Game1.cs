@@ -108,7 +108,7 @@ namespace SecretProject
         public static bool InfiniteArrows = false;
         public static bool GenerateChunkLandscape = true;
         public static bool AllowNaturalNPCSpawning = true;
-        public static bool UpdateCharacters = false;
+        public static bool UpdateCharacters = true;
 
         public static int NPCSpawnCountLimit = 50;
 
@@ -665,8 +665,8 @@ namespace SecretProject
         private void LoadCharacters()
         {
 
-            Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(23, 10));
-            Elixir = new Character("Elixir", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Stages.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
+            Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(25, 12));
+            Elixir = new Character("Elixir", new Vector2(25, 12), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Stages.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -694,7 +694,7 @@ namespace SecretProject
 
 
             Vector2 dobbinPosition = Character.GetWorldPosition(new Vector2(18, 8));
-            Dobbin = new Character("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], Stages.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
+            Dobbin = new Character("Dobbin", new Vector2(5, 7), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], Stages.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -718,7 +718,7 @@ namespace SecretProject
 
 
             Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
-            Kaya = new Character("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Stages.KayaHouse, false, KayaQuests, AllTextures.KayaPortrait)
+            Kaya = new Character("Kaya", new Vector2(51, 32), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Stages.Town, false, KayaQuests, AllTextures.KayaPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -751,8 +751,8 @@ namespace SecretProject
                 IsBasicNPC = true
             };
 
-            Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 9));
-            Julian = new Character("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], Stages.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
+            Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 15));
+            Julian = new Character("Julian", new Vector2(16, 15), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], Stages.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -774,8 +774,8 @@ namespace SecretProject
             Julian.LoadLaterStuff(graphics.GraphicsDevice);
 
 
-            Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(40, 21));
-            Sarah = new Character("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.Town, false, SarahQuests, AllTextures.SarahPortrait)
+            Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(56, 28));
+            Sarah = new Character("Sarah", new Vector2(56, 28), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.Town, false, SarahQuests, AllTextures.SarahPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -813,8 +813,8 @@ namespace SecretProject
 
 
 
-            Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(40, 21));
-            Mippin = new Character("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.Town, false, MippinQuests, AllTextures.MippinPortrait)
+            Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(49, 33));
+            Mippin = new Character("Mippin", new Vector2(49, 33), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.Town, false, MippinQuests, AllTextures.MippinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -836,8 +836,8 @@ namespace SecretProject
             Mippin.LoadLaterStuff(graphics.GraphicsDevice);
 
 
-            Vector2 nedPosition = Character.GetWorldPosition(new Vector2(110, 11));
-            Ned = new Character("Ned", new Vector2(110, 11), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.Town, false, NedQuests, AllTextures.NedPortrait)
+            Vector2 nedPosition = Character.GetWorldPosition(new Vector2(52, 15));
+            Ned = new Character("Ned", new Vector2(52, 15), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.Town, false, NedQuests, AllTextures.NedPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -860,8 +860,8 @@ namespace SecretProject
 
 
 
-            Vector2 tealPosition = Character.GetWorldPosition(new Vector2(45, 80));
-            Teal = new Character("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.Town, false, TealQuests, AllTextures.TealPortrait)
+            Vector2 tealPosition = Character.GetWorldPosition(new Vector2(55, 17));
+            Teal = new Character("Teal", new Vector2(55, 17), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.Town, false, TealQuests, AllTextures.TealPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -883,8 +883,8 @@ namespace SecretProject
             Teal.LoadLaterStuff(graphics.GraphicsDevice);
 
 
-            Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(11, 30));
-            Marcus = new Character("Marcus", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], Stages.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
+            Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(16, 26));
+            Marcus = new Character("Marcus", new Vector2(16, 26), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], Stages.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -907,8 +907,8 @@ namespace SecretProject
             Marcus.LoadLaterStuff(graphics.GraphicsDevice);
 
 
-            Vector2 casparPosition = Character.GetWorldPosition(new Vector2(11, 30));
-            Caspar = new Character("Caspar", new Vector2(11, 30), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Stages.MarcusHouse,false, CasparQuests, AllTextures.CasparPortrait)
+            Vector2 casparPosition = Character.GetWorldPosition(new Vector2(16, 14));
+            Caspar = new Character("Caspar", new Vector2(16, 14), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Stages.CasparHouse,false, CasparQuests, AllTextures.CasparPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]

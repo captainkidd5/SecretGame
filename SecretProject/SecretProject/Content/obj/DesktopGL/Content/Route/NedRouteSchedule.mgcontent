@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/NedRouteSchedule.xml</SourceFile>
-  <SourceTime>2020-03-07T14:49:55.6798065-10:00</SourceTime>
+  <SourceTime>2020-06-05T10:26:35.5833031-10:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Route/NedRouteSchedule.xnb</DestFile>
-  <DestTime>2020-05-10T12:07:01.3027099-10:00</DestTime>
+  <DestTime>2020-06-05T10:32:59.3968043-10:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

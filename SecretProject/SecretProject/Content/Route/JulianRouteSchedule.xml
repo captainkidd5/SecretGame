@@ -10,7 +10,7 @@
       <Time>6AM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>15</EndX>
-      <EndY>15</EndY>
+      <EndY>24</EndY>
 
     </Item>
 
@@ -20,8 +20,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>11AM</Time>
        <EndStage>JulianHouse</EndStage>
-      <EndX>11</EndX>
-      <EndY>22</EndY>
+      <EndX>14</EndX>
+      <EndY>26</EndY>
 
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
@@ -30,8 +30,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>8PM</Time>
        <EndStage>JulianHouse</EndStage>
-      <EndX>18</EndX>
-      <EndY>8</EndY>
+      <EndX>14</EndX>
+      <EndY>25</EndY>
     </Item>
     </Routes>
   </Asset>

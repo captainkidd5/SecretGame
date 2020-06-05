@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/JulianRouteSchedule.xml</SourceFile>
-  <SourceTime>2020-03-08T13:06:53.6963752-10:00</SourceTime>
+  <SourceTime>2020-06-05T10:23:18.8283282-10:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Route/JulianRouteSchedule.xnb</DestFile>
-  <DestTime>2020-05-10T12:07:00.949836-10:00</DestTime>
+  <DestTime>2020-06-05T10:32:58.7123532-10:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

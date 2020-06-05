@@ -40,9 +40,12 @@ namespace XMLData.RouteStuff
 
         DobbinHouseUpper = 9,
         MarcusHouse = 10,
-        Forest = 11,
-        ResearchStation = 12,
-        CaveWorld = 13,
+
+        LightHouse = 11,
+        UnderWorld = 12,
+        CasparHouse = 13,
+        MountainTop = 14,
+        GisaardRanch = 15,
         MainMenu = 50,
         Exit = 55,
 

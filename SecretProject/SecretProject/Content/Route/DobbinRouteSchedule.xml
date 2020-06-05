@@ -8,9 +8,9 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>5AM</Time>
-       <EndStage>OverWorld</EndStage>
-      <EndX>74</EndX>
-      <EndY>65</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>60</EndX>
+      <EndY>56</EndY>
     </Item>
 
     <Item Type="XMLData.RouteStuff.Route">
@@ -19,8 +19,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>7AM</Time>
        <EndStage>Cafe</EndStage>
-      <EndX>7</EndX>
-      <EndY>20</EndY>
+      <EndX>15</EndX>
+      <EndY>21</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>
@@ -28,8 +28,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>9AM</Time>
        <EndStage>DobbinHouse</EndStage>
-      <EndX>17</EndX>
-      <EndY>18</EndY>
+      <EndX>4</EndX>
+      <EndY>24</EndY>
     </Item>
 
      <Item Type="XMLData.RouteStuff.Route">
@@ -37,9 +37,9 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>5PM</Time>
-       <EndStage>OverWorld</EndStage>
-      <EndX>27</EndX>
-      <EndY>48</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>60</EndX>
+      <EndY>56</EndY>
     </Item>
     
       <Item Type="XMLData.RouteStuff.Route">
@@ -48,8 +48,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>9PM</Time>
        <EndStage>DobbinHouse</EndStage>
-      <EndX>15</EndX>
-      <EndY>12</EndY>
+      <EndX>21</EndX>
+      <EndY>24</EndY>
     </Item>
 
     <!-- TUESDAY !--> 
@@ -58,9 +58,9 @@
       <Month>Spring</Month>
       <WeekDay>Tuesday</WeekDay>
       <Time>5AM</Time>
-       <EndStage>OverWorld</EndStage>
-      <EndX>35</EndX>
-      <EndY>66</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>60</EndX>
+      <EndY>56</EndY>
     </Item>
 
     <Item Type="XMLData.RouteStuff.Route">
@@ -69,17 +69,17 @@
       <WeekDay>Tuesday</WeekDay>
       <Time>7AM</Time>
        <EndStage>Cafe</EndStage>
-      <EndX>7</EndX>
-      <EndY>20</EndY>
+      <EndX>15</EndX>
+      <EndY>21</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>8</ID>
       <Month>Spring</Month>
       <WeekDay>Tuesday</WeekDay>
       <Time>9AM</Time>
-       <EndStage>OverWorld</EndStage>
-      <EndX>108</EndX>
-      <EndY>100</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>60</EndX>
+      <EndY>56</EndY>
     </Item>
 
      <Item Type="XMLData.RouteStuff.Route">
@@ -87,7 +87,7 @@
       <Month>Spring</Month>
       <WeekDay>Tuesday</WeekDay>
       <Time>5PM</Time>
-       <EndStage>OverWorld</EndStage>
+       <EndStage>Town</EndStage>
       <EndX>27</EndX>
       <EndY>48</EndY>
     </Item>
@@ -98,7 +98,7 @@
       <WeekDay>Tuesday</WeekDay>
       <Time>9PM</Time>
        <EndStage>DobbinHouse</EndStage>
-      <EndX>15</EndX>
+      <EndX>7</EndX>
       <EndY>8</EndY>
     </Item>
 
