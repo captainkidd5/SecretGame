@@ -346,7 +346,7 @@
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="32"/>
+    <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="MountainTop"/>
     <property name="standardTo" value="Town"/>
    </properties>

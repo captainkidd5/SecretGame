@@ -83,6 +83,7 @@ namespace SecretProject
         UnderWorld = 12,
         CasparHouse = 13,
         MountainTop = 14,
+        GisaardRanch = 15,
         MainMenu = 50,
         Exit = 55,
 
@@ -138,6 +139,7 @@ namespace SecretProject
         public static TmxStageBase LightHouse;
         public static TmxStageBase CasparHouse;
         public static TmxStageBase MountainTop;
+        public static TmxStageBase GisaardRanch;
 
 
         public static List<ILocation> AllStages;
@@ -559,6 +561,9 @@ namespace SecretProject
             BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
             CasparQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/CasparQuests"));
         }
+        /// <summary>
+        /// Map must be physically placed in bin/content/bin/map
+        /// </summary>
         private void LoadStages()
         {
             Town = new TmxStageBase("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
@@ -582,11 +587,11 @@ namespace SecretProject
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
             CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/CasparHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
             MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/MountainTop.tmx", 1, 0) { StageIdentifier = (int)Stages.MountainTop };
+            GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/GisaardRanch.tmx", 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
 
 
 
-
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse,MountainTop };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch };
 
         }
         private void LoadShops()
@@ -1136,7 +1141,9 @@ namespace SecretProject
                     case Stages.MountainTop:
                         MountainTop.Update(gameTime, MouseManager, Player);
                         break;
-
+                    case Stages.GisaardRanch:
+                        GisaardRanch.Update(gameTime, MouseManager, Player);
+                        break;
                 }
 
 
@@ -1252,6 +1259,10 @@ namespace SecretProject
                 case Stages.MountainTop:
                     this.GraphicsDevice.Clear(Color.Black);
                     MountainTop.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    break;
+                case Stages.GisaardRanch:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    GisaardRanch.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
 
             }
