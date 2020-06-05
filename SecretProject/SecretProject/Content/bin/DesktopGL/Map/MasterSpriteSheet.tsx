@@ -3821,10 +3821,8 @@
  </tile>
  <tile id="7003">
   <properties>
-   <property name="action" value="portal"/>
    <property name="newHitBox" value="-48, -64, 96, 80"/>
    <property name="newSource" value="-48, -112, 96,128"/>
-   <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
  </tile>
  <tile id="7006">

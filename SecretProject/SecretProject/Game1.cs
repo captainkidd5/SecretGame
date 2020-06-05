@@ -35,6 +35,7 @@ using SecretProject.Class.QuestFolder;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.NetworkStuff;
+using System;
 
 
 
@@ -81,6 +82,7 @@ namespace SecretProject
         LightHouse = 11,
         UnderWorld = 12,
         CasparHouse = 13,
+        MountainTop = 14,
         MainMenu = 50,
         Exit = 55,
 
@@ -135,6 +137,7 @@ namespace SecretProject
         public static TmxStageBase MarcusHouse;
         public static TmxStageBase LightHouse;
         public static TmxStageBase CasparHouse;
+        public static TmxStageBase MountainTop;
 
 
         public static List<ILocation> AllStages;
@@ -440,7 +443,7 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, MouseManager, Player.UserInterface);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
-            PortalGraph = new Graph(14);
+            PortalGraph = new Graph(Enum.GetNames(typeof(Stages)).Length);
 
 
             LoadStages();
@@ -578,13 +581,12 @@ namespace SecretProject
             MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
             CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/CasparHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
+            MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/MountainTop.tmx", 1, 0) { StageIdentifier = (int)Stages.MountainTop };
 
 
 
 
-
-
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse,MountainTop };
 
         }
         private void LoadShops()
@@ -1131,6 +1133,9 @@ namespace SecretProject
                     case Stages.CasparHouse:
                         CasparHouse.Update(gameTime, MouseManager, Player);
                         break;
+                    case Stages.MountainTop:
+                        MountainTop.Update(gameTime, MouseManager, Player);
+                        break;
 
                 }
 
@@ -1243,6 +1248,10 @@ namespace SecretProject
                 case Stages.CasparHouse:
                     this.GraphicsDevice.Clear(Color.Black);
                     CasparHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    break;
+                case Stages.MountainTop:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    MountainTop.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
 
             }
