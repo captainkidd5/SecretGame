@@ -3739,18 +3739,9 @@
    <property name="portal" value="true,Town,CasparHouse"/>
   </properties>
  </tile>
- <tile id="6211">
+ <tile id="6213">
   <properties>
-   <property name="newHitBox" value="-80, -64, 112,80"/>
-   <property name="newSource" value="-80, -96, 112,112"/>
-  </properties>
- </tile>
- <tile id="6215">
-  <properties>
-   <property name="action" value="portal"/>
-   <property name="newHitBox" value="-32,-64, 96,64"/>
-   <property name="newSource" value="-32,-128, 112, 144"/>
-   <property name="portal" value="true,Town,GeneralStore"/>
+   <property name="newSource" value="-96,-128,192,144"/>
   </properties>
  </tile>
  <tile id="6223">
