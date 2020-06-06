@@ -189,7 +189,7 @@
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="JulianHouse"/>
-    <property name="standardTo" value="Town"/>
+    <property name="standardTo" value="HomeStead"/>
    </properties>
   </object>
  </objectgroup>
