@@ -84,6 +84,7 @@ namespace SecretProject
         CasparHouse = 13,
         MountainTop = 14,
         GisaardRanch = 15,
+        HomeStead = 16,
         MainMenu = 50,
         Exit = 55,
 
@@ -140,6 +141,7 @@ namespace SecretProject
         public static TmxStageBase CasparHouse;
         public static TmxStageBase MountainTop;
         public static TmxStageBase GisaardRanch;
+        public static TmxStageBase HomeStead;
 
 
         public static List<ILocation> AllStages;
@@ -588,10 +590,11 @@ namespace SecretProject
             CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/CasparHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
             MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/MountainTop.tmx", 1, 0) { StageIdentifier = (int)Stages.MountainTop };
             GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/GisaardRanch.tmx", 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
+            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/HomeStead.tmx", 1, 0) { StageIdentifier = (int)Stages.HomeStead };
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch, HomeStead };
 
         }
         private void LoadShops()
@@ -1144,6 +1147,10 @@ namespace SecretProject
                     case Stages.GisaardRanch:
                         GisaardRanch.Update(gameTime, MouseManager, Player);
                         break;
+
+                    case Stages.HomeStead:
+                        HomeStead.Update(gameTime, MouseManager, Player);
+                        break;
                 }
 
 
@@ -1263,6 +1270,10 @@ namespace SecretProject
                 case Stages.GisaardRanch:
                     this.GraphicsDevice.Clear(Color.Black);
                     GisaardRanch.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    break;
+                case Stages.HomeStead:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    HomeStead.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
 
             }
