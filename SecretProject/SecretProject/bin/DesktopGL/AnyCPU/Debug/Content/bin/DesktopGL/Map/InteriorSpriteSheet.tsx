@@ -631,9 +631,6 @@
   </objectgroup>
  </tile>
  <tile id="1031">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>

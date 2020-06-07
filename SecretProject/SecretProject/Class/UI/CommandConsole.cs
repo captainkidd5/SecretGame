@@ -144,10 +144,10 @@ namespace SecretProject.Class.UI
                     int teleportY = int.Parse(separatedString[2].ToLower());
 
                     Game1.Player.position = new Vector2(teleportX, teleportY);
-                    if(Game1.GetCurrentStage() == Game1.OverWorld)
-                    {
-                        Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
-                    }
+                    //if(Game1.GetCurrentStage() == Game1.OverWorld)
+                    //{
+                    //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
+                    //}
                     break;
 
                 case "settime":
@@ -164,10 +164,10 @@ namespace SecretProject.Class.UI
                     string mobName = separatedString[1].ToLower();
                     int mobCount = int.Parse(separatedString[2].ToLower());
 
-                    Chunk mouseChunk = Game1.OverWorld.AllTiles.GetChunkFromPosition(Game1.MouseManager.WorldMousePosition);
-                    List<Enemy> enemies = mouseChunk.NPCGenerator.SpawnTargetNPCPack((NPCType)Enum.Parse(typeof(NPCType), mobName, true),
-                        mouseChunk, mobCount, Game1.MouseManager.WorldMousePosition);
-                    Game1.OverWorld.Enemies.AddRange(enemies);
+                    //Chunk mouseChunk = Game1.OverWorld.AllTiles.GetChunkFromPosition(Game1.MouseManager.WorldMousePosition);
+                    //List<Enemy> enemies = mouseChunk.NPCGenerator.SpawnTargetNPCPack((NPCType)Enum.Parse(typeof(NPCType), mobName, true),
+                    //    mouseChunk, mobCount, Game1.MouseManager.WorldMousePosition);
+                    //Game1.OverWorld.Enemies.AddRange(enemies);
                     
                     break;
             }

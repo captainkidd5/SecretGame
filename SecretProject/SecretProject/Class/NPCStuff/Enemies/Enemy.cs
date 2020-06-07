@@ -503,7 +503,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 //basically makes sure tile found is in adjacent and NOT diagonal chunk
                 if (!((newPoint.X > 15) && (newPoint.Y > 15)) && !((newPoint.X < 0) && (newPoint.Y < 0)))
                 {
-                    Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(this.CurrentChunkX * 16 + (newPoint.X)), ChunkUtility.GetChunkY(this.CurrentChunkY * 16 + (newPoint.Y)), Game1.OverWorld.AllTiles.ActiveChunks);
+                    Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(this.CurrentChunkX * 16 + (newPoint.X)), ChunkUtility.GetChunkY(this.CurrentChunkY * 16 + (newPoint.Y)), null);
                     if (chunk != null)
                     {
 

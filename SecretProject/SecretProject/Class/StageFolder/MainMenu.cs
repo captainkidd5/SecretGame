@@ -263,24 +263,24 @@ namespace SecretProject.Class.StageFolder
 
                 }
                 Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
+                Game1.ItemVault.LoadInteriorContent(Game1.Town.AllTiles);
                 CurrentMenuState = MenuState.Primary;
                 Game1.SwitchStage(0, Stages.Town);
             }
             else if (StartGameInWilderness.isClicked)
             {
-                UnloadContent();
-                foreach (ILocation stage in Game1.AllStages)
-                {
+                //UnloadContent();
+                //foreach (ILocation stage in Game1.AllStages)
+                //{
 
-                    stage.LoadPreliminaryContent();
+                //    stage.LoadPreliminaryContent();
 
 
-                }
-                Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                CurrentMenuState = MenuState.Primary;
-                Game1.SwitchStage(0, Stages.OverWorld);
+                //}
+                //Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
+                //Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
+                //CurrentMenuState = MenuState.Primary;
+                //Game1.SwitchStage(0, Stages.OverWorld);
             }
             else if (StartGameInUnderWorld.isClicked)
             {
@@ -293,9 +293,9 @@ namespace SecretProject.Class.StageFolder
 
                 }
                 Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
+                //Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                 CurrentMenuState = MenuState.Primary;
-                Game1.SwitchStage(0, Stages.UnderWorld);
+               // Game1.SwitchStage(0, Stages.UnderWorld);
             }
 
         }

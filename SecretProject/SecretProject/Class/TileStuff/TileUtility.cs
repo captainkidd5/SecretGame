@@ -63,20 +63,29 @@ namespace SecretProject.Class.TileStuff
             return numsToReturn;
         }
 
-        public static Rectangle GetTileRectangleFromProperty(Tile tile, bool adjustDestinationRectangle, IInformationContainer container = null, int gid = 0)
+        public static Rectangle GetTileRectangleFromProperty(Tile tile, Dictionary<int, TmxTilesetTile> tileSet, bool adjustDestinationRectangle, IInformationContainer container = null, int gid = 0)
         {
             int newGID = gid;
-            TmxTileset tileSet = null;
-            if (container == null)
-            {
-                tileSet = Game1.Town.AllTiles.MapName.Tilesets[Game1.Town.AllTiles.TileSetNumber];
-            }
-            else
-            {
 
-                tileSet = container.MapName.Tilesets[container.TileSetNumber];
+            //if (container == null)
+            //{
+            //    tileSet = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[1];
+            //    //tileSet = Game1.Town.AllTiles.MapName.Tilesets[Game1.Town.AllTiles.TileSetNumber];
+            //}
+            //else
+            //{
+            //    //if(container.TileSetNumber == 1)
+            //    //{
+            //    //    Console.WriteLine("hi");
+            //    //}
+
+            //    tileSet = container.MapName.Tilesets[0];
+            //}
+            if(Game1.GetCurrentStage() == Game1.PlayerHouse)
+            {
+                Console.WriteLine("hi");
             }
-            int[] rectangleCoords = GetRectangeFromString(tileSet.Tiles[newGID].Properties["newSource"]);
+            int[] rectangleCoords = GetRectangeFromString(tileSet[newGID].Properties["newSource"]);
 
             Rectangle originalRectangle = GetSourceRectangleWithoutTile(gid, 100);
 
@@ -87,6 +96,7 @@ namespace SecretProject.Class.TileStuff
                 tile.DestinationRectangle = new Rectangle(tile.DestinationRectangle.X + rectangleCoords[0], tile.DestinationRectangle.Y + rectangleCoords[1],
                rectangleCoords[2], rectangleCoords[3]);
             }
+
 
             return new Rectangle(originalRectangle.X + rectangleCoords[0], originalRectangle.Y + rectangleCoords[1],
                 rectangleCoords[2], rectangleCoords[3]);
@@ -325,7 +335,7 @@ namespace SecretProject.Class.TileStuff
                 propertyString = "newSource";
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
-                    tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
+                    tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign,tileSet, true, container, tileToAssign.GID);
                 }
 
                 if (layer == 3)
@@ -693,23 +703,23 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
-                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                        {
-                            foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
-                            {
-                                if (!chunk.AreReadersAndWritersDone)
-                                {
-                                    return;
-                                }
-                            }
-                            Game1.Player.UserInterface.WarpGate.To = Stages.Town;
-                        }
-                        else if (Game1.GetCurrentStageInt() == Stages.Town)
-                        {
-                            Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
-                        }
+                        //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        //{
+                        //    foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
+                        //    {
+                        //        if (!chunk.AreReadersAndWritersDone)
+                        //        {
+                        //            return;
+                        //        }
+                        //    }
+                        //    Game1.Player.UserInterface.WarpGate.To = Stages.Town;
+                        //}
+                        //else if (Game1.GetCurrentStageInt() == Stages.Town)
+                        //{
+                        //    Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
+                        //}
 
-                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
+                        //Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
 
                     }
                     break;
@@ -752,8 +762,8 @@ namespace SecretProject.Class.TileStuff
                         if (mouse.IsClicked)
                         {
 
-                            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.UnderWorld, null);
-                            Game1.UnderWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
+                           // Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.UnderWorld, null);
+                            //Game1.UnderWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
                         }
                     }
                     break;
@@ -761,44 +771,45 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Door);
                     if (mouse.IsClicked)
                     {
-                        Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
-                        string announcementString = string.Empty;
-                        if (portal.To == (int)(Stages.Town))
-                        {
-                            portal.To = (int)Stages.OverWorld;
-                            announcementString = "Rai!";
-                        }
-                        else if (portal.To == (int)(Stages.OverWorld))
-                        {
-                            portal.To = (int)Stages.UnderWorld;
-                            announcementString = "Underworld!";
-                        }
-                        else if (portal.To == (int)(Stages.UnderWorld))
-                        {
-                            portal.To = (int)Stages.Town;
-                            announcementString = "Kai!";
-                        }
+                        //Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
+                        //string announcementString = string.Empty;
+                        //if (portal.To == (int)(Stages.Town))
+                        //{
+                        //    portal.To = (int)Stages.OverWorld;
+                        //    announcementString = "Rai!";
+                        //}
+                        //else if (portal.To == (int)(Stages.OverWorld))
+                        //{
+                        //    portal.To = (int)Stages.UnderWorld;
+                        //    announcementString = "Underworld!";
+                        //}
+                        //else if (portal.To == (int)(Stages.UnderWorld))
+                        //{
+                        //    portal.To = (int)Stages.Town;
+                        //    announcementString = "Kai!";
+                        //}
 
-                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "Location set to " + announcementString);
+                       // Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "Location set to " + announcementString);
                     }
                     break;
                 case "enterPortal":
                     if (mouse.IsClicked)
                     {
-                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        //{
+                        //    foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
+                        //    {
+                        //        if (!chunk.AreReadersAndWritersDone)
+                        //        {
+                        //            return;
+                        //        }
+                        //    }
+                        //    Game1.Player.UserInterface.WarpGate.To = Stages.Town;
+                        //}
+                        //else 
+                        if (Game1.GetCurrentStageInt() == Stages.Town)
                         {
-                            foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
-                            {
-                                if (!chunk.AreReadersAndWritersDone)
-                                {
-                                    return;
-                                }
-                            }
-                            Game1.Player.UserInterface.WarpGate.To = Stages.Town;
-                        }
-                        else if (Game1.GetCurrentStageInt() == Stages.Town)
-                        {
-                            Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
+                            //Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
                         }
 
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;

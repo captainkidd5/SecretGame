@@ -69,14 +69,14 @@ namespace SecretProject.Class.SavingStuff
             //{
             //    location.Save(writer);
             //}
-            if(Game1.OverWorld.IsLoaded)
-            {
-                Game1.OverWorld.SaveLocation();
-            }
-            if(Game1.UnderWorld.IsLoaded)
-            {
-                Game1.UnderWorld.SaveLocation();
-            }
+            //if(Game1.OverWorld.IsLoaded)
+            //{
+            //    Game1.OverWorld.SaveLocation();
+            //}
+            //if(Game1.UnderWorld.IsLoaded)
+            //{
+            //    Game1.UnderWorld.SaveLocation();
+            //}
             
             Game1.GlobalClock.Save(writer);
 

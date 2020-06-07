@@ -71,23 +71,23 @@ namespace SecretProject
         Town = 0,
         ElixirHouse = 1,
         JulianHouse = 2,
-        OverWorld = 3,
-        DobbinHouse = 4,
-        PlayerHouse = 5,
-        GeneralStore = 6,
-        KayaHouse = 7,
-        Cafe = 8,
+       // OverWorld = 3,
+        DobbinHouse = 3,
+        PlayerHouse = 4,
+        GeneralStore = 5,
+        KayaHouse = 6,
+        Cafe = 7,
 
-        DobbinHouseUpper = 9,
-        MarcusHouse = 10,
+        DobbinHouseUpper = 8,
+        MarcusHouse = 9,
 
-        LightHouse = 11,
-        UnderWorld = 12,
-        CasparHouse = 13,
-        MountainTop = 14,
-        GisaardRanch = 15,
-        HomeStead = 16,
-        ForestDungeon = 17,
+        LightHouse = 10,
+      //  UnderWorld = 12,
+        CasparHouse = 11,
+        MountainTop = 12,
+        GisaardRanch = 13,
+        HomeStead = 14,
+        ForestDungeon = 15,
         MainMenu = 50,
         Exit = 55,
 
@@ -132,12 +132,12 @@ namespace SecretProject
 
         public static TmxStageBase JulianHouse;
         public static TmxStageBase DobbinHouse;
-        public static World OverWorld;
+       // public static World OverWorld;
         public static TmxStageBase PlayerHouse;
         public static TmxStageBase GeneralStore;
         public static TmxStageBase KayaHouse;
         public static TmxStageBase Cafe;
-        public static World UnderWorld;
+       // public static World UnderWorld;
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase MarcusHouse;
         public static TmxStageBase LightHouse;
@@ -582,13 +582,13 @@ namespace SecretProject
 
             ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/elixirShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
             JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/JulianShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
-            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.OverWorld };
+           // OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.OverWorld };
             DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx"), 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
             GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/GeneralStore.tmx"), 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
             KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/KayaHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/Cafe.tmx"), 1, 0) { StageIdentifier = (int)Stages.Cafe };
-            UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
+          //  UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
             MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/MarcusHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
             LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/LightHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.LightHouse };
@@ -599,7 +599,7 @@ namespace SecretProject
             ForestDungeon = new Dungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/Forest.tmx"), 1, 0) { StageIdentifier = (int)Stages.ForestDungeon };
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon };
 
         }
         private void LoadShops()
@@ -1003,15 +1003,15 @@ namespace SecretProject
             location.UnloadContent();
             ILocation newLocation = GetStageFromInt(stageToSwitchTo);
             gameStages = (Stages)stageToSwitchTo;
-            if (newLocation.LocationType == LocationType.Interior || gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
-            {
-                Game1.Player.LockBounds = false;
+            //if (newLocation.LocationType == LocationType.Interior || gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
+            //{
+            //    Game1.Player.LockBounds = false;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 Game1.Player.LockBounds = true;
-            }
+         //   }
             if (!newLocation.IsLoaded)
             {
 
@@ -1036,10 +1036,10 @@ namespace SecretProject
             }
 
             Player.Wardrobe.UpdateForCreationMenu();
-            if (GetStageFromInt(stageToSwitchTo) == OverWorld)
-            {
-                Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
-            }
+            //if (GetStageFromInt(stageToSwitchTo) == OverWorld)
+            //{
+            //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
+            //}
 
             CurrentStage = newLocation;
         }
@@ -1098,10 +1098,10 @@ namespace SecretProject
                         mainMenu.Update(gameTime, MouseManager, this);
                         break;
 
-                    case Stages.OverWorld:
+                    //case Stages.OverWorld:
 
-                        OverWorld.Update(gameTime, MouseManager, Player);
-                        break;
+                    //    OverWorld.Update(gameTime, MouseManager, Player);
+                    //    break;
 
 
                     case Stages.Town:
@@ -1140,9 +1140,9 @@ namespace SecretProject
                     case Stages.LightHouse:
                         LightHouse.Update(gameTime, MouseManager, Player);
                         break;
-                    case Stages.UnderWorld:
-                        UnderWorld.Update(gameTime, MouseManager, Player);
-                        break;
+                    //case Stages.UnderWorld:
+                    //    UnderWorld.Update(gameTime, MouseManager, Player);
+                    //    break;
                     case Stages.CasparHouse:
                         CasparHouse.Update(gameTime, MouseManager, Player);
                         break;
@@ -1212,10 +1212,10 @@ namespace SecretProject
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, MouseManager);
                     break;
 
-                case Stages.OverWorld:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
+                //case Stages.OverWorld:
+                //    this.GraphicsDevice.Clear(Color.Black);
+                //    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                //    break;
 
                 case Stages.Town:
                     this.GraphicsDevice.Clear(Color.Black);
@@ -1263,10 +1263,10 @@ namespace SecretProject
                     this.GraphicsDevice.Clear(Color.Black);
                     LightHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
-                case Stages.UnderWorld:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    UnderWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
+                //case Stages.UnderWorld:
+                //    this.GraphicsDevice.Clear(Color.Black);
+                //    UnderWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                //    break;
                 case Stages.CasparHouse:
                     this.GraphicsDevice.Clear(Color.Black);
                     CasparHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);

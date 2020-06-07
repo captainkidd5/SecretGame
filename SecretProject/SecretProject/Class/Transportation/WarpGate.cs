@@ -59,23 +59,23 @@ namespace SecretProject.Class.Transportation
 
         public void Transport(Stages to)
         {
-            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-            {
-                for (int i = 0; i < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(0); i++)
-                {
-                    for (int j = 0; j < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(1); j++)
-                    {
-                        Game1.GetCurrentStage().AllTiles.ActiveChunks[i, j].Save();
-                    }
-                }
-                Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.Player.position = new Vector2(1170, 690);
-                Game1.Player.controls.Direction = Dir.Down;
-              //  Game1.Player.PlayAnimation(AnimationType.PortalJump);
-                Game1.Player.MoveToPoint(new Vector2(1170, 730));
+            //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+            //{
+            //    for (int i = 0; i < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(1); j++)
+            //        {
+            //            Game1.GetCurrentStage().AllTiles.ActiveChunks[i, j].Save();
+            //        }
+            //    }
+            //    Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
+            //    Game1.Player.position = new Vector2(1170, 690);
+            //    Game1.Player.controls.Direction = Dir.Down;
+            //  //  Game1.Player.PlayAnimation(AnimationType.PortalJump);
+            //    Game1.Player.MoveToPoint(new Vector2(1170, 730));
 
-            }
-            else
+            //}
+            //else
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
                 Game1.Player.position = new Vector2(85, 100);

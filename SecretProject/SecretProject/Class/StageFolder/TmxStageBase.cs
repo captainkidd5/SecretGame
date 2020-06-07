@@ -150,7 +150,7 @@ namespace SecretProject.Class.StageFolder
             this.Map = tmxMap;
             if(locationType == LocationType.Interior)
             {
-                this.TileSetNumber = TileSetType.Interior;
+                this.TileSetNumber = TileSetType.Exterior;
             }
             else if(locationType == LocationType.Exterior)
             {
@@ -554,13 +554,20 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void Save(BinaryWriter writer)
         {
-
+            if(this == Game1.PlayerHouse)
+            {
+                Console.WriteLine("hi");
+            }
             this.AllTiles.Save(writer);
             writer.Write(this.SavePath);
         }
 
         public virtual void Load(BinaryReader reader)
         {
+             if(this == Game1.PlayerHouse)
+            {
+                Console.WriteLine("hi");
+            }
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();
         }

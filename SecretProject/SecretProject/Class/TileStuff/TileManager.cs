@@ -652,62 +652,239 @@ namespace SecretProject.Class.TileStuff
             this.AllTiles = null;
         }
 
-        public void Save(BinaryWriter writer)
+        public void Save(BinaryWriter binaryWriter)
         {
 
-            writer.Write(this.AllTiles.Count);
+            binaryWriter.Write(this.AllTiles.Count);
 
-            writer.Write(this.MapWidth);
+            binaryWriter.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.MapWidth; i++)
                 {
                     for (int j = 0; j < this.MapHeight; j++)
                     {
-                        writer.Write(this.AllTiles[z][i, j].GID + 1);
+                        binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
                     }
                 }
             }
+
+            //binaryWriter.Write(this.StoreableItems.Count);
+            //foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
+            //{
+
+            //    binaryWriter.Write(storeableItem.Key);
+            //    binaryWriter.Write((int)storeableItem.Value.StorableItemType);
+            //    binaryWriter.Write(storeableItem.Value.Size);
+            //    binaryWriter.Write(storeableItem.Value.Location.X);
+            //    binaryWriter.Write(storeableItem.Value.Location.Y);
+            //    for (int s = 0; s < storeableItem.Value.Size; s++)
+            //    {
+            //        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].ItemCount);
+            //        if (storeableItem.Value.Inventory.currentInventory[s].ItemCount > 0)
+            //        {
+            //            binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].Item.ID);
+            //        }
+            //        else
+            //        {
+            //            binaryWriter.Write(-1);
+            //        }
+
+            //    }
+
+            //}
+
+            //binaryWriter.Write(this.AllItems.Count);
+            //for (int item = 0; item < AllItems.Count; item++)
+            //{
+            //    binaryWriter.Write(AllItems[item].ID);
+            //    binaryWriter.Write(AllItems[item].WorldPosition.X);
+            //    binaryWriter.Write(AllItems[item].WorldPosition.Y);
+            //}
+
+            //binaryWriter.Write(this.Crops.Count);
+            //foreach (KeyValuePair<string, Crop> crop in this.Crops)
+            //{
+            //    binaryWriter.Write(crop.Key);
+            //    binaryWriter.Write(crop.Value.X);
+            //    binaryWriter.Write(crop.Value.Y);
+            //    binaryWriter.Write(crop.Value.ItemID);
+            //    binaryWriter.Write(crop.Value.Name);
+            //    binaryWriter.Write(crop.Value.GID);
+            //    binaryWriter.Write(crop.Value.BaseGID);
+            //    binaryWriter.Write(crop.Value.DaysToGrow);
+            //    binaryWriter.Write(crop.Value.CurrentGrowth);
+            //    binaryWriter.Write(crop.Value.Harvestable);
+            //    binaryWriter.Write(crop.Value.DayPlanted);
+
+            //}
+
+            //binaryWriter.Write(this.Tufts.Count);
+            //foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
+            //{
+            //    binaryWriter.Write(tuft.Key);
+            //    binaryWriter.Write(tuft.Value.Count);
+
+            //    for (int i = 0; i < tuft.Value.Count; i++)
+            //    {
+            //        binaryWriter.Write(tuft.Value[i].GrassType);
+            //        binaryWriter.Write(tuft.Value[i].Position.X);
+            //        binaryWriter.Write(tuft.Value[i].Position.Y);
+            //    }
+            //}
         }
 
-        public void Load(BinaryReader reader)
+        public void Load(BinaryReader binaryReader)
         {
 
-            int layerCount = reader.ReadInt32();
-            int tileCount = reader.ReadInt32();
+            int layerCount = binaryReader.ReadInt32();
+            int mapWidth = binaryReader.ReadInt32();
 
             this.AllTiles = new List<Tile[,]>();
             for (int i = 0; i < layerCount; i++)
             {
-                this.AllTiles.Add(new Tile[tileCount, tileCount]);
+                this.AllTiles.Add(new Tile[mapWidth, mapWidth]);
 
             }
             for (int z = 0; z < layerCount; z++)
             {
 
-                for (int i = 0; i < tileCount; i++)
+                for (int i = 0; i < mapWidth; i++)
                 {
-                    for (int j = 0; j < tileCount; j++)
+                    for (int j = 0; j < mapWidth; j++)
                     {
-                        this.AllTiles[z][i, j] = new Tile(i, j, reader.ReadInt32());
+                        this.AllTiles[z][i, j] = new Tile(i, j, binaryReader.ReadInt32());
                     }
                 }
             }
 
-          //  if (this.Stage != Game1.Town)
+            //  if (this.Stage != Game1.Town)
             //{
-                for (int z = 0; z < layerCount; z++)
-                {
+            for (int z = 0; z < layerCount; z++)
+            {
 
-                    for (int i = 0; i < tileCount; i++)
+                for (int i = 0; i < mapWidth; i++)
+                {
+                    for (int j = 0; j < mapWidth; j++)
                     {
-                        for (int j = 0; j < tileCount; j++)
-                        {
-                            TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
-                        }
+                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                     }
                 }
-          //  }
+            }
+            //  this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+            //  int storableItemCount = binaryReader.ReadInt32();
+            //  for (int c = 0; c < storableItemCount; c++)
+            //  {
+            //      string storageKey = binaryReader.ReadString();
+            //      int storableItemType = binaryReader.ReadInt32();
+            //      StorableItemType itemType = (StorableItemType)storableItemType;
+            //      int inventorySize = binaryReader.ReadInt32();
+            //      float locationX = binaryReader.ReadSingle();
+            //      float locationY = binaryReader.ReadSingle();
+
+            //      switch (itemType)
+            //      {
+            //          case StorableItemType.Chest:
+            //              Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+            //              for (int i = 0; i < inventorySize; i++)
+            //              {
+            //                  int numberOfItemsInSlot = binaryReader.ReadInt32();
+            //                  int itemID = binaryReader.ReadInt32();
+
+            //                  for (int j = 0; j < numberOfItemsInSlot; j++)
+            //                  {
+            //                      storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+            //                  }
+            //              }
+
+            //              this.StoreableItems.Add(storageKey, storeageItemToAdd);
+            //              break;
+
+            //          case StorableItemType.Cauldron:
+            //              Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+            //              for (int i = 0; i < inventorySize; i++)
+            //              {
+            //                  int numberOfItemsInSlot = binaryReader.ReadInt32();
+            //                  int itemID = binaryReader.ReadInt32();
+
+            //                  for (int j = 0; j < numberOfItemsInSlot; j++)
+            //                  {
+            //                      cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+            //                  }
+            //              }
+
+            //              this.StoreableItems.Add(storageKey, cauldronToAdd);
+            //              break;
+            //      }
+            //  }
+            //  int itemCount = binaryReader.ReadInt32();
+            //  for (int item = 0; item < itemCount; item++)
+            //  {
+            //      Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
+            //  }
+            //  int cropCount = binaryReader.ReadInt32();
+            //  for (int c = 0; c < cropCount; c++)
+            //  {
+            //      string cropKey = binaryReader.ReadString();
+            //      int cropX = binaryReader.ReadInt32();
+            //      int cropY = binaryReader.ReadInt32();
+            //      int itemID = binaryReader.ReadInt32();
+            //      string name = binaryReader.ReadString();
+            //      int gid = binaryReader.ReadInt32();
+            //      int baseGID = binaryReader.ReadInt32();
+            //      int daysToGrow = binaryReader.ReadInt32();
+            //      int currentGrow = binaryReader.ReadInt32();
+            //      bool harvestable = binaryReader.ReadBoolean();
+            //      int dayPlanted = binaryReader.ReadInt32();
+            //      //int newCurrentGrowth = Game1.GlobalClock.TotalDays - dayPlanted;
+            //      //if (newCurrentGrowth > daysToGrow)
+            //      //{
+            //      //    newCurrentGrowth = daysToGrow;
+            //      //}
+            //      if (currentGrow >= this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count)
+            //      {
+            //          currentGrow = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count - 1;
+            //      }
+            //      Crop crop = new Crop()
+            //      {
+            //          ItemID = itemID,
+            //          Name = name,
+            //          X = cropX,
+            //          Y = cropY,
+            //          BaseGID = baseGID,
+            //          DaysToGrow = daysToGrow,
+
+            //          Harvestable = harvestable,
+            //          DayPlanted = dayPlanted,
+            //          CurrentGrowth = currentGrow,
+
+            //          GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
+            //      };
+            //      if (!this.Crops.ContainsKey(cropKey))
+            //      {
+            //          this.Crops.Add(cropKey, crop);
+            //      }
+
+            //      TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
+            //  }
+
+            //int tuftListCount = binaryReader.ReadInt32();
+
+            //for (int i = 0; i < tuftListCount; i++)
+            //{
+            //    string key = binaryReader.ReadString();
+            //    int smallListCount = binaryReader.ReadInt32();
+            //    List<GrassTuft> tufts = new List<GrassTuft>();
+            //    for (int j = 0; j < smallListCount; j++)
+            //    {
+            //        GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
+            //            new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
+            //        tuft.TuftsIsPartOf = tufts;
+            //        tufts.Add(tuft);
+            //    }
+            //    this.Tufts.Add(key, tufts);
+            //}
+            //  }
 
         }
 

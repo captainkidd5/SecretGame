@@ -128,6 +128,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             foreach (ILocation stage in Game1.AllStages)
             {
 
+
                 stage.AssignPath(this.GameLocationPath);
             }
         }

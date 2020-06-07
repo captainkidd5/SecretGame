@@ -252,10 +252,10 @@ namespace SecretProject.Class.Playable
         public float CalculateStaminaRateOfDrain()
         {
             float staminaRateOfDrain = 0f;
-            if(Game1.GetCurrentStage() == Game1.OverWorld)
-            {
-                staminaRateOfDrain = Math.Abs(this.Position.X) + Math.Abs(this.Position.Y);
-            }
+            //if(Game1.GetCurrentStage() == Game1.OverWorld)
+            //{
+            //    staminaRateOfDrain = Math.Abs(this.Position.X) + Math.Abs(this.Position.Y);
+            //}
 
             return staminaRateOfDrain;
         }
@@ -584,39 +584,39 @@ namespace SecretProject.Class.Playable
 
         public void UpdateStaminaDrainFlag()
         {
-            if (Game1.GetCurrentStage() == Game1.OverWorld)
-            {
-                if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
-                {
-                    UserInterface.StaminaBar.IsDraining = true;
-                }
-                else
-                {
-                    UserInterface.StaminaBar.IsDraining = false;
-                }
-            }
+            //if (Game1.GetCurrentStage() == Game1.OverWorld)
+            //{
+            //    if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
+            //    {
+            //        UserInterface.StaminaBar.IsDraining = true;
+            //    }
+            //    else
+            //    {
+            //        UserInterface.StaminaBar.IsDraining = false;
+            //    }
+            //}
         }
 
         public void HandleStamina()
         {
-            if (Game1.GetCurrentStage() == Game1.OverWorld)
-            {
-                if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
-                {
-                    UserInterface.StaminaBar.IsDraining = true;
-                    UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(true);
-                }
-                else
-                {
-                    UserInterface.StaminaBar.IsDraining = false;
-                    UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
-                }
-            }
-            else if (UserInterface.StaminaBar.IsDraining)
-            {
-                UserInterface.StaminaBar.IsDraining = false;
-                UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
-            }
+            //if (Game1.GetCurrentStage() == Game1.OverWorld)
+            //{
+            //    if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
+            //    {
+            //        UserInterface.StaminaBar.IsDraining = true;
+            //        UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(true);
+            //    }
+            //    else
+            //    {
+            //        UserInterface.StaminaBar.IsDraining = false;
+            //        UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
+            //    }
+            //}
+            //else if (UserInterface.StaminaBar.IsDraining)
+            //{
+            //    UserInterface.StaminaBar.IsDraining = false;
+            //    UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
+            //}
         }
 
         private void CheckOutOfBounds(Vector2 position)

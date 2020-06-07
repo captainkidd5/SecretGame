@@ -79,37 +79,37 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Activate(IInformationContainer container, Tile tile)
         {
-            if (!this.IsUpdating)
-            {
-                this.IsUpdating = true;
-                this.Tile = tile;
-                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
-            }
+            //if (!this.IsUpdating)
+            //{
+            //    this.IsUpdating = true;
+            //    this.Tile = tile;
+            //    TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
+            //    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
+            //}
 
 
         }
         public void Activate(IInformationContainer container, int x, int y, int layer)
         {
-            if (!this.IsUpdating)
-            {
-                this.IsUpdating = true;
-                this.Tile = container.AllTiles[layer][x,y];
-                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
-            }
+            //if (!this.IsUpdating)
+            //{
+            //    this.IsUpdating = true;
+            //    this.Tile = container.AllTiles[layer][x,y];
+            //    TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
+            //    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
+            //}
         }
         public void Deactivate()
         {
-            if (!this.IsCooking)
-            {
-                this.IsUpdating = false;
-                // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
-                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 2139);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidClose, true);
-                this.SmokeParticleEngine.ClearParticles();
-                this.FireParticleEngine.ClearParticles();
-            }
+            //if (!this.IsCooking)
+            //{
+            //    this.IsUpdating = false;
+            //    // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
+            //    TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 2139);
+            //    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidClose, true);
+            //    this.SmokeParticleEngine.ClearParticles();
+            //    this.FireParticleEngine.ClearParticles();
+            //}
         }
 
         public bool DepositItem(Item item)

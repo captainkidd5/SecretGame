@@ -34,7 +34,7 @@ namespace SecretProject.Class.EventStuff
             };
             this.FreezePlayerControls = false;
             this.DayToTrigger = 0;
-            this.StageToTrigger = (int)Stages.OverWorld;
+         //   this.StageToTrigger = (int)Stages.OverWorld;
             this.IsCompleted = false;
             this.CurrentStep = 0;
             this.TotalSteps = 11;
@@ -56,7 +56,7 @@ namespace SecretProject.Class.EventStuff
                 Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
             }
 
-            Game1.Dobbin.CurrentStageLocation = Stages.OverWorld;
+          //  Game1.Dobbin.CurrentStageLocation = Stages.OverWorld;
             Game1.Dobbin.IsInEvent = true;
 
             //  Game1.Dobbin.ResetPathFinding();
@@ -89,7 +89,7 @@ namespace SecretProject.Class.EventStuff
 
             //Game1.Player.UserInterface.TextBuilder.Update(gameTime);
             Game1.Player.UserInterface.Update(gameTime, Game1.Player.Inventory);
-            Game1.OverWorld.AllTiles.Update(gameTime, Game1.MouseManager);
+           // Game1.OverWorld.AllTiles.Update(gameTime, Game1.MouseManager);
             Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, StageFolder.LocationType.Exterior);
             Game1.Player.UserInterface.CinematicMode = true;
 
@@ -241,9 +241,9 @@ namespace SecretProject.Class.EventStuff
                 case 7:
                     if (Game1.GetCurrentStageInt() != Stages.DobbinHouseUpper)
                     {
-                        Game1.OverWorld.CharactersPresent.Clear();
+                      //  Game1.OverWorld.CharactersPresent.Clear();
 
-                        Game1.SwitchStage(Stages.OverWorld, Stages.DobbinHouseUpper);
+                      //  Game1.SwitchStage(Stages.OverWorld, Stages.DobbinHouseUpper);
                         Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
                         //Game1.cam.pos = new Vector2(800, 480);
                         Game1.Player.position = Game1.Dobbin.Position;

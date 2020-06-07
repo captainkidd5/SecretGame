@@ -921,35 +921,35 @@ namespace SecretProject.Class.TileStuff
 
         public void UpdateCropTile()
         {
-            if (this.Stage == Game1.OverWorld)
-            {
+            //if (this.Stage == Game1.OverWorld)
+            //{
 
 
-                for (int i = 0; i < this.ActiveChunks.GetLength(0); i++)
-                {
-                    for (int j = 0; j < this.ActiveChunks.GetLength(1); j++)
-                    {
-                        for (int x = 0; x < this.ActiveChunks[i, j].Crops.Count; x++)
-                        {
-                            Crop crop = this.ActiveChunks[i, j].Crops.ElementAt(x).Value;
-                            crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
-                            if (crop.CurrentGrowth >= crop.DaysToGrow)
-                            {
-                                crop.CurrentGrowth = crop.DaysToGrow - 1;
-                            }
-                            if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
-                            {
-                                int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
-                                crop.UpdateGrowthCycle(newGid);
+            //    for (int i = 0; i < this.ActiveChunks.GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < this.ActiveChunks.GetLength(1); j++)
+            //        {
+            //            for (int x = 0; x < this.ActiveChunks[i, j].Crops.Count; x++)
+            //            {
+            //                Crop crop = this.ActiveChunks[i, j].Crops.ElementAt(x).Value;
+            //                crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
+            //                if (crop.CurrentGrowth >= crop.DaysToGrow)
+            //                {
+            //                    crop.CurrentGrowth = crop.DaysToGrow - 1;
+            //                }
+            //                if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
+            //                {
+            //                    int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
+            //                    crop.UpdateGrowthCycle(newGid);
 
-                                TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this.ActiveChunks[i, j]);
-                            }
+            //                    TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this.ActiveChunks[i, j]);
+            //                }
 
-                        }
-                    }
+            //            }
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {

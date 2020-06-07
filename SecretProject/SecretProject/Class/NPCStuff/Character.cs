@@ -597,16 +597,16 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                                 Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
                                 this.CurrentStageLocation = (Stages)nodeToEndAt;
                                 Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
-                                if (CurrentStageLocation == Stages.OverWorld)
-                                {
-                                    this.Position = new Vector2(portalTo.PortalStart.X + 16,
-                           portalTo.PortalStart.Y + 32);
-                                }
-                                else
-                                {
+                           //     if (CurrentStageLocation == Stages.OverWorld)
+                           //     {
+                           //         this.Position = new Vector2(portalTo.PortalStart.X + 16,
+                           //portalTo.PortalStart.Y + 32);
+                           //     }
+                           //     else
+                           //     {
                                     this.Position = new Vector2(portalTo.PortalStart.X,
                            portalTo.PortalStart.Y);
-                                }
+                              //  }
                             }
 
                         }
@@ -693,14 +693,14 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
             {
                 PathFinderFast finder = null;
-                if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                {
-                    finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
-                }
-                else
-                {
+                //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                //{
+                //    finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
+                //}
+                //else
+                //{
                     finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
-                }
+                //}
 
 
                 Point start = new Point((int)(this.Position.X / 16),

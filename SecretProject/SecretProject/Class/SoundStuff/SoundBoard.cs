@@ -381,12 +381,12 @@ namespace SecretProject.Class.SoundStuff
             {
                 case Stages.MainMenu:
                     return TitleSongs.FetchSong();
-                case Stages.OverWorld:
+                //case Stages.OverWorld:
 
-                    return WorldSongs.FetchSong();
+                //    return WorldSongs.FetchSong();
      
-                case Stages.UnderWorld:
-                    return UnRaiSongs.FetchSong();
+                //case Stages.UnderWorld:
+                //    return UnRaiSongs.FetchSong();
                 default:
                     return InteriorSongs.FetchSong();
 

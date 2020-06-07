@@ -109,14 +109,14 @@ namespace SecretProject.Class.TileStuff
 
         {
             this.ITileManager = tileManager;
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
-                this.ChunkType = ChunkType.Rai;
-            }
-            else
-            {
-                this.ChunkType = ChunkType.Unrai;
-            }
+            //if (this.ITileManager.Stage == Game1.OverWorld)
+            //{
+            //    this.ChunkType = ChunkType.Rai;
+            //}
+            //else
+            //{
+            //    this.ChunkType = ChunkType.Unrai;
+            //}
             this.TileManager = tileManager;
 
             this.Type = 1;
@@ -156,33 +156,33 @@ namespace SecretProject.Class.TileStuff
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
 
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
-                //just for debugging to save time not having to create a save every time we want to go directly to the wilderness
-                if (Game1.SaveLoadManager.CurrentSave != null)
-                {
-                    this.ChunkPath = Game1.SaveLoadManager.CurrentSave.ChunkPath + "/Chunk";
-                }
-                else
-                {
-                    this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
-                }
+            //if (this.ITileManager.Stage == Game1.OverWorld)
+            //{
+            //    //just for debugging to save time not having to create a save every time we want to go directly to the wilderness
+            //    if (Game1.SaveLoadManager.CurrentSave != null)
+            //    {
+            //        this.ChunkPath = Game1.SaveLoadManager.CurrentSave.ChunkPath + "/Chunk";
+            //    }
+            //    else
+            //    {
+            //        this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                if (Game1.SaveLoadManager.CurrentSave != null)
-                {
-                    this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
-                }
-                else
-                {
-                    this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
-                }
+            //    if (Game1.SaveLoadManager.CurrentSave != null)
+            //    {
+            //        this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
+            //    }
+            //    else
+            //    {
+            //        this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
+            //    }
 
 
-            }
+            //}
 
             this.TileSetDictionary = tileManager.MapName.Tilesets[this.TileSetNumber].Tiles;
 
@@ -464,36 +464,36 @@ namespace SecretProject.Class.TileStuff
                             }
 
                             World world;
-                            if (this.ITileManager.Stage == Game1.OverWorld)
-                            {
-                                world = Game1.OverWorld;
-                            }
-                            else
-                            {
-                                world = Game1.UnderWorld;
-                            }
+                            //if (this.ITileManager.Stage == Game1.OverWorld)
+                            //{
+                            //    world = Game1.OverWorld;
+                            //}
+                            //else
+                            //{
+                            //    world = Game1.UnderWorld;
+                            //}
                             if (this.X != 0 && this.Y != 0)
                             {
                                 if (Game1.AllowNaturalNPCSpawning)
                                 {
 
 
-                                    if (world.Enemies.Count < Game1.NPCSpawnCountLimit)
-                                    {
+                                    //if (world.Enemies.Count < Game1.NPCSpawnCountLimit)
+                                    //{
 
 
-                                        Tile tile = SearchForEmptyTile(3);
-                                        if (tile != null)
-                                        {
-                                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                                            if (tilingContainer != null)
-                                            {
+                                    //    Tile tile = SearchForEmptyTile(3);
+                                    //    if (tile != null)
+                                    //    {
+                                    //        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                                    //        if (tilingContainer != null)
+                                    //        {
 
-                                                world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
-                                            }
+                                    //            world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                    //        }
 
-                                        }
-                                    }
+                                    //    }
+                                    //}
                                 }
 
 
@@ -854,16 +854,16 @@ namespace SecretProject.Class.TileStuff
             FastNoise bottomNoiseGenerator;
 
 
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
+           // if (this.ITileManager.Stage == Game1.OverWorld)
+          //  {
                 bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
+//
+            //}
+           // else
+           // {
+             //   bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
 
-            }
-            else
-            {
-                bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
-
-            }
+           // }
 
             for (int i = 0; i < 16; i++)
             {
@@ -884,16 +884,16 @@ namespace SecretProject.Class.TileStuff
 
 
             FastNoise noise;
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
+           // if (this.ITileManager.Stage == Game1.OverWorld)
+          //  {
                 noise = Game1.Procedural.OverworldBackNoise;
 
-            }
-            else
-            {
-                noise = Game1.Procedural.UnderWorldNoise;
+          //  }
+//else
+          // // {
+            //    noise = Game1.Procedural.UnderWorldNoise;
 
-            }
+           // }
 
             for (int z = 0; z < 4; z++)
             {
@@ -1027,8 +1027,8 @@ namespace SecretProject.Class.TileStuff
                 {
 
 
-                    if (Game1.OverWorld.Enemies.Count < Game1.NPCSpawnCountLimit)
-                    {
+                   // if (Game1.OverWorld.Enemies.Count < Game1.NPCSpawnCountLimit)
+                   // {
                         Tile tile = SearchForEmptyTile(3);
                         if (tile != null)
                         {
@@ -1040,7 +1040,7 @@ namespace SecretProject.Class.TileStuff
 
 
                         }
-                    }
+                    //}
                 }
 
 
@@ -1127,14 +1127,14 @@ namespace SecretProject.Class.TileStuff
 
 
             List<SpawnElement> spawnElements;
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
+            //if (this.ITileManager.Stage == Game1.OverWorld)
+           // {
                 spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
-            }
-            else
-            {
-                spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
-            }
+          //  }
+           // else
+           // {
+            //    spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
+            //}
             SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, this, this.Random);
 
 
@@ -1146,16 +1146,16 @@ namespace SecretProject.Class.TileStuff
         {
             int gidToTest = 0;
             int gidBottomToTest = 0;
-            if (this.ITileManager.Stage == Game1.OverWorld)
-            {
+           // if (this.ITileManager.Stage == Game1.OverWorld)
+           // {
                 gidToTest = 4124;
                 gidBottomToTest = 4724;
-            }
-            else
-            {
-                gidToTest = 4829;
-                gidBottomToTest = 5429;
-            }
+            //}
+           // else
+           // {
+          //      gidToTest = 4829;
+           //     gidBottomToTest = 5429;
+           // }
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
