@@ -18,18 +18,31 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public DungeonRoom CurrentRoom { get; private set; }
         public DungeonRoom[,] Rooms { get; private set; }
 
+
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base( name,  locationType,  stageType,  graphics,  content,  tileSet,  tmxMap,  dialogueToRetrieve,  backDropNumber)
         {
 
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
 
-            this.CurrentRoom = this.Rooms[0];
+           // this.CurrentRoom = this.Rooms[0];
         }
 
-        public virtual void SwitchRooms(DungeonRoom newRoom)
+        private void AddNewRoom(int x, int y)
         {
+
+        }
+
+        public virtual void SwitchRooms(int x, int y)
+        {
+            if (File.Exists(this.SavePath + x + y + ".dat"))
+            {
+            }
+            else
+            {
+
+            }
             this.CurrentRoom = newRoom;
-            this.AllTiles.
+            //this.AllTiles.
         }
 
         public override void Save(BinaryWriter writer)
