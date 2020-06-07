@@ -36,6 +36,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.NetworkStuff;
 using System;
+using TiledSharp;
 
 
 
@@ -568,29 +569,30 @@ namespace SecretProject
         /// </summary>
         private void LoadStages()
         {
-            Town = new TmxStageBase("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
+            TmxMap townMap = new TmxMap("Content/bin/DesktopGL/Map/Town.tmx");
+            Town = new TmxStageBase("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, townMap, 1, 1)
             { StageIdentifier = (int)Stages.Town };
 
 
 
 
 
-            ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
-            JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
-            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
-            DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
-            PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
-            GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
-            KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
-            Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
-            UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
-            DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
-            MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
-            LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
-            CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/CasparHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
-            MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/MountainTop.tmx", 1, 0) { StageIdentifier = (int)Stages.MountainTop };
-            GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/GisaardRanch.tmx", 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
-            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/HomeStead.tmx", 1, 0) { StageIdentifier = (int)Stages.HomeStead };
+            ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/elixirShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
+            JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/JulianShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
+            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/Town.tmx"), 1, 0) { StageIdentifier = (int)Stages.OverWorld };
+            DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
+            PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx"), 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
+            GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/GeneralStore.tmx"), 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
+            KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/KayaHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
+            Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/Cafe.tmx"), 1, 0) { StageIdentifier = (int)Stages.Cafe };
+            UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/Town.tmx"), 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
+            DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
+            MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/MarcusHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
+            LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/LightHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.LightHouse };
+            CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/CasparHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
+            MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/MountainTop.tmx"), 1, 0) { StageIdentifier = (int)Stages.MountainTop };
+            GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/GisaardRanch.tmx"), 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
+            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.HomeStead };
 
 
 

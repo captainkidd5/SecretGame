@@ -60,7 +60,7 @@ namespace SecretProject.Class.StageFolder
 
         public Camera2D Cam { get; set; }
 
-        public int TileSetNumber { get; set; }
+
 
         public Dictionary<string, ICollidable> AllObjects { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
@@ -91,7 +91,6 @@ namespace SecretProject.Class.StageFolder
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get; set; }
 
-        public string TmxMapPath { get; set; }
         public int DialogueToRetrieve { get; set; }
         public bool IsDark { get; set; }
         public List<LightSource> AllNightLights { get; set; }
@@ -117,7 +116,7 @@ namespace SecretProject.Class.StageFolder
         public List<Projectile> AllProjectiles { get; set; }
         public List<ParticleEngine> ParticleEngines { get; set; }
 
-
+        public TileSetType TileSetNumber { get; set; }
         //SAVE STUFF
         public string SavePath { get; set; }
         #endregion
@@ -126,7 +125,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -136,8 +135,6 @@ namespace SecretProject.Class.StageFolder
             this.StageContentManager = new ContentManager(content.ServiceProvider);
             this.StageContentManager.RootDirectory = "Content";
 
-            this.TileSetNumber = tileSetNumber;
-            this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
 
@@ -150,7 +147,15 @@ namespace SecretProject.Class.StageFolder
 
             this.Enemies = new List<Enemy>();
             this.AllProjectiles = new List<Projectile>();
-
+            this.Map = tmxMap;
+            if(locationType == LocationType.Interior)
+            {
+                this.TileSetNumber = TileSetType.Interior;
+            }
+            else if(locationType == LocationType.Exterior)
+            {
+                this.TileSetNumber = TileSetType.Exterior;
+            }
             LoadPreliminaryContent();
 
 
@@ -192,17 +197,14 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-
-            this.Map = new TmxMap(this.TmxMapPath);
-
             this.AllPortals = new List<Portal>();
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, this.TileSetNumber,this);
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber,this);
             if(this == Game1.Town)
             {
                 //Game1.OverWorld.AllTiles.AllTiles = this.AllTiles.AllTiles;
             }
-            this.TileWidth = this.Map.Tilesets[this.TileSetNumber].TileWidth;
-            this.TileHeight = this.Map.Tilesets[this.TileSetNumber].TileHeight;
+            this.TileWidth = this.Map.Tilesets[(int)this.TileSetNumber].TileWidth;
+            this.TileHeight = this.Map.Tilesets[(int)this.TileSetNumber].TileHeight;
 
             this.TilesetTilesWide = this.TileSet.Width / this.TileWidth;
             this.TilesetTilesHigh = this.TileSet.Height / this.TileHeight;
@@ -210,10 +212,6 @@ namespace SecretProject.Class.StageFolder
 
             this.AllActions = new List<ActionTimer>();
 
-            if(this == Game1.JulianHouse)
-            {
-                Console.WriteLine("hi");
-            }
             this.MapRectangle = new Rectangle(0, 0, this.TileWidth * this.Map.Width, this.TileHeight * this.Map.Height);
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();

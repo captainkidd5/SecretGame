@@ -36,6 +36,11 @@ namespace SecretProject.Class.StageFolder
         Procedural = 2,
         Sanctuary = 3
     }
+    public enum TileSetType
+    {
+        Exterior = 0,
+        Interior = 1
+    }
     public interface ILocation : ISaveable
     {
         LocationType LocationType { get; set; }
@@ -51,7 +56,7 @@ namespace SecretProject.Class.StageFolder
 
         Camera2D Cam { get; set; }
 
-        int TileSetNumber { get; set; }
+        TileSetType TileSetNumber { get; set; }
 
 
 
@@ -83,7 +88,6 @@ namespace SecretProject.Class.StageFolder
         List<Projectile> AllProjectiles { get; set; }
         TmxMap Map { get; set; }
         event EventHandler SceneChanged;
-        string TmxMapPath { get; set; }
 
         QuadTree QuadTree { get; set; }
 
