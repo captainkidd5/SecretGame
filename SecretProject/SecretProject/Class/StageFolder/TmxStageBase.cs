@@ -224,10 +224,6 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-            if (this == Game1.JulianHouse)
-            {
-                Console.WriteLine("hi");
-            }
             this.Cam = camera;
             this.Cam.pos.X = Game1.Player.position.X;
             this.Cam.pos.Y = Game1.Player.position.Y;
@@ -296,13 +292,9 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region UPDATE
-        public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
+
+        public virtual void PerformQuadTreeInsertions()
         {
-            player.CollideOccured = false;
-            for (int i = 0; i < this.Enemies.Count; i++)
-            {
-                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
-            }
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
 
             foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
@@ -329,6 +321,15 @@ namespace SecretProject.Class.StageFolder
             {
                 this.QuadTree.Insert(character.Collider);
             }
+        }
+        public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
+        {
+            player.CollideOccured = false;
+            for (int i = 0; i < this.Enemies.Count; i++)
+            {
+                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
+            }
+            PerformQuadTreeInsertions();
             this.IsDark = Game1.GlobalClock.IsNight;
             float playerOldYPosition = player.position.Y;
             for (int p = 0; p < this.AllPortals.Count; p++)
