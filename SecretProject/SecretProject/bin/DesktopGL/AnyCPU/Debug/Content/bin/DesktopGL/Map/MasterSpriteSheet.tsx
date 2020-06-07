@@ -4115,7 +4115,7 @@
   <properties>
    <property name="action" value="portal"/>
    <property name="newSource" value="-64,-128,112,144"/>
-   <property name="portal" value="true,HomeStead,JulianHouse"/>
+   <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
  </tile>
  <tile id="8910">
