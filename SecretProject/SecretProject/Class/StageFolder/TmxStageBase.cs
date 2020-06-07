@@ -552,14 +552,14 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void Save(BinaryWriter writer)
+        public virtual void Save(BinaryWriter writer)
         {
 
             this.AllTiles.Save(writer);
             writer.Write(this.SavePath);
         }
 
-        public void Load(BinaryReader reader)
+        public virtual void Load(BinaryReader reader)
         {
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();

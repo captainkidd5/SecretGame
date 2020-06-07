@@ -12,11 +12,15 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class DungeonRoom
     {
+        public int X { get; set; }
+        public int Y { get; set; }
         public TileManager TileManager { get; private set; }
 
-        public DungeonRoom(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public DungeonRoom(int x, int y, ILocation currentStage,string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, int tilesetNumber,TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber)
         {
-            //this.TileManager = new TileManager(tileSet, new TmxMap(this.TmxMapPath), )
+            this.X = x;
+            this.Y = y;
+            this.TileManager = new TileManager(tileSet, tmxMap, graphics, content, tilesetNumber, currentStage);
         }
     }
 }
