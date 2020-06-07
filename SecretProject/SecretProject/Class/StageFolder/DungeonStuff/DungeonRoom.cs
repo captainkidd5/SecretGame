@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
@@ -8,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.StageFolder.DungeonStuff
 {
@@ -18,12 +22,32 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public int Y { get; set; }
         public TileManager TileManager { get; private set; }
 
+
+
         public DungeonRoom(Dungeon dungeon, int x, int y, ContentManager content)
         {
             this.Dungeon = dungeon;
             this.X = x;
             this.Y = y;
             this.TileManager = new TileManager(Dungeon.TileSet, Dungeon.Map, Dungeon.Graphics, content, (int)Dungeon.TileSetNumber, Dungeon);
+        }
+
+        public void Generate(string path)
+        {
+            
+        }
+
+        public void Save(string path)
+        {
+            //string path = this.ChunkPath + this.X + this.Y + ".dat";
+            using (FileStream fileStream = File.OpenWrite(path))
+            {
+
+
+                using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+                {
+                }
+            }
         }
 
         public void Load(string path)
@@ -34,11 +58,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
-                    this.TileManager.Load(binaryReader)
+                    this.TileManager.Load(binaryReader);
                    
 
 
-                    this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+                    Dungeon.AllTiles.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
                     int storableItemCount = binaryReader.ReadInt32();
                     for (int c = 0; c < storableItemCount; c++)
                     {
@@ -52,7 +76,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         switch (itemType)
                         {
                             case StorableItemType.Chest:
-                                Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+                                Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), Dungeon.Graphics, false);
                                 for (int i = 0; i < inventorySize; i++)
                                 {
                                     int numberOfItemsInSlot = binaryReader.ReadInt32();
@@ -64,11 +88,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                     }
                                 }
 
-                                this.StoreableItems.Add(storageKey, storeageItemToAdd);
+                                Dungeon.AllTiles.StoreableItems.Add(storageKey, storeageItemToAdd);
                                 break;
 
                             case StorableItemType.Cauldron:
-                                Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+                                Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), Dungeon.Graphics);
                                 for (int i = 0; i < inventorySize; i++)
                                 {
                                     int numberOfItemsInSlot = binaryReader.ReadInt32();
@@ -80,14 +104,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                     }
                                 }
 
-                                this.StoreableItems.Add(storageKey, cauldronToAdd);
+                                Dungeon.AllTiles.StoreableItems.Add(storageKey, cauldronToAdd);
                                 break;
                         }
                     }
                     int itemCount = binaryReader.ReadInt32();
                     for (int item = 0; item < itemCount; item++)
                     {
-                        Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
+                        Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, Dungeon.AllTiles.AllItems);
                     }
                     int cropCount = binaryReader.ReadInt32();
                     for (int c = 0; c < cropCount; c++)
@@ -108,9 +132,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         //{
                         //    newCurrentGrowth = daysToGrow;
                         //}
-                        if (currentGrow >= this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count)
+                        if (currentGrow >= TileManager.TileSetDictionary[baseGID].AnimationFrames.Count)
                         {
-                            currentGrow = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count - 1;
+                            currentGrow = TileManager.TileSetDictionary[baseGID].AnimationFrames.Count - 1;
                         }
                         Crop crop = new Crop()
                         {
@@ -125,14 +149,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                             DayPlanted = dayPlanted,
                             CurrentGrowth = currentGrow,
 
-                            GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
+                            GID = this.TileManager.TileSetDictionary[baseGID].AnimationFrames[currentGrow].Id + 1,
                         };
-                        if (!this.Crops.ContainsKey(cropKey))
+                        if (!Dungeon.AllTiles.Crops.ContainsKey(cropKey))
                         {
-                            this.Crops.Add(cropKey, crop);
+                            Dungeon.AllTiles.Crops.Add(cropKey, crop);
                         }
 
-                        TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
+                        TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, (IInformationContainer)Dungeon.AllTiles);
                     }
 
                     int tuftListCount = binaryReader.ReadInt32();
@@ -144,51 +168,41 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         List<GrassTuft> tufts = new List<GrassTuft>();
                         for (int j = 0; j < smallListCount; j++)
                         {
-                            GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
+                            GrassTuft tuft = new GrassTuft(Dungeon.Graphics, binaryReader.ReadInt32(),
                                 new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
                             tuft.TuftsIsPartOf = tufts;
                             tufts.Add(tuft);
                         }
-                        this.Tufts.Add(key, tufts);
+                        Dungeon.AllTiles.Tufts.Add(key, tufts);
                     }
 
-                    World world;
-                    if (this.ITileManager.Stage == Game1.OverWorld)
-                    {
-                        world = Game1.OverWorld;
-                    }
-                    else
-                    {
-                        world = Game1.UnderWorld;
-                    }
-                    if (this.X != 0 && this.Y != 0)
-                    {
-                        if (Game1.AllowNaturalNPCSpawning)
-                        {
+                    //if (this.X != 0 && this.Y != 0)
+                    //{
+                    //    if (Game1.AllowNaturalNPCSpawning)
+                    //    {
 
 
-                            if (world.Enemies.Count < Game1.NPCSpawnCountLimit)
-                            {
+                    //        if (world.Enemies.Count < Game1.NPCSpawnCountLimit)
+                    //        {
 
 
-                                Tile tile = SearchForEmptyTile(3);
-                                if (tile != null)
-                                {
-                                    TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                                    if (tilingContainer != null)
-                                    {
+                    //            Tile tile = SearchForEmptyTile(3);
+                    //            if (tile != null)
+                    //            {
+                    //                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                    //                if (tilingContainer != null)
+                    //                {
 
-                                        world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
-                                    }
+                    //                    world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                    //                }
 
-                                }
-                            }
-                        }
+                    //            }
+                    //        }
+                    //    }
 
 
-                    }
+                    //}
 
-                    this.IsLoaded = true;
                     binaryReader.Close();
 
                 }

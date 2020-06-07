@@ -37,6 +37,7 @@ using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.NetworkStuff;
 using System;
 using TiledSharp;
+using SecretProject.Class.StageFolder.DungeonStuff;
 
 
 
@@ -86,6 +87,7 @@ namespace SecretProject
         MountainTop = 14,
         GisaardRanch = 15,
         HomeStead = 16,
+        ForestDungeon = 17,
         MainMenu = 50,
         Exit = 55,
 
@@ -143,6 +145,7 @@ namespace SecretProject
         public static TmxStageBase MountainTop;
         public static TmxStageBase GisaardRanch;
         public static TmxStageBase HomeStead;
+        public static TmxStageBase ForestDungeon;
 
 
         public static List<ILocation> AllStages;
@@ -593,10 +596,10 @@ namespace SecretProject
             MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/MountainTop.tmx"), 1, 0) { StageIdentifier = (int)Stages.MountainTop };
             GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/GisaardRanch.tmx"), 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
             HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.HomeStead };
+            ForestDungeon = new Dungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/Forest.tmx"), 1, 0) { StageIdentifier = (int)Stages.ForestDungeon };
 
 
-
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch, HomeStead };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, OverWorld, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, UnderWorld,CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon };
 
         }
         private void LoadShops()
@@ -1153,6 +1156,9 @@ namespace SecretProject
                     case Stages.HomeStead:
                         HomeStead.Update(gameTime, MouseManager, Player);
                         break;
+                    case Stages.ForestDungeon:
+                        ForestDungeon.Update(gameTime, MouseManager, Player);
+                        break;
                 }
 
 
@@ -1276,6 +1282,10 @@ namespace SecretProject
                 case Stages.HomeStead:
                     this.GraphicsDevice.Clear(Color.Black);
                     HomeStead.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
+                    break;
+                case Stages.ForestDungeon:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    ForestDungeon.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
                     break;
 
             }

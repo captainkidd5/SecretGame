@@ -3843,7 +3843,7 @@
    <property name="action" value="portal"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
-   <property name="portal" value="true,HomeStead,PlayerHouse"/>
+   <property name="portal" value="true,Town,PlayerHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>

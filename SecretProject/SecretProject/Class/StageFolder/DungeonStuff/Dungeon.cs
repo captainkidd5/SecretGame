@@ -17,42 +17,49 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public DungeonRoom CurrentRoom { get; private set; }
         public DungeonRoom[,] Rooms { get; private set; }
-
+        public ContentManager Content { get; private set; }
 
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base( name,  locationType,  stageType,  graphics,  content,  tileSet,  tmxMap,  dialogueToRetrieve,  backDropNumber)
         {
 
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
-
+            this.Content = content;
            // this.CurrentRoom = this.Rooms[0];
         }
 
-        private void AddNewRoom(int x, int y)
-        {
-
-        }
 
         public virtual void SwitchRooms(int x, int y)
         {
-            if (File.Exists(this.SavePath + x + y + ".dat"))
+            DungeonRoom room;
+            string path = this.SavePath + x + y + ".dat";
+            room = new DungeonRoom(this, x, y, this.Content);
+
+            if (File.Exists(path))
             {
+                
+                room.Load(path);
             }
             else
             {
-
+                room.Generate(path);
             }
-            this.CurrentRoom = newRoom;
-            //this.AllTiles.
+            this.Rooms[x, y] = room;
+
         }
 
         public override void Save(BinaryWriter writer)
         {
-            this.AllTiles.Save(writer); 
+
+            this.AllTiles.Save(writer);
+            writer.Write(this.SavePath);
         }
 
         public override void Load(BinaryReader reader)
         {
-            base.Load(reader);
+            this.AllTiles.Load(reader);
+            this.SavePath = reader.ReadString();
         }
+
+
     }
 }
