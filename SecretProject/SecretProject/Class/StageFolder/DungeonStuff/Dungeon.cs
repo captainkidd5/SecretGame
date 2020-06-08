@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
+using SecretProject.Class.Playable;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
@@ -26,13 +29,18 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             this.Content = content;
-           // this.CurrentRoom = this.Rooms[0];
+
+
+
+           
         }
+
+
 
         public override void AssignPath(string startPath)
         {
 
-            this.SavePath = startPath + "/" + Game1.Player.Name + "Dungeons/" + this.StageName;
+            this.SavePath = startPath + "/Dungeons/" + this.StageName;
             Directory.CreateDirectory(this.SavePath);
             this.SavePath = this.SavePath + "/" + this.StageName + "data";
             if (File.Exists(this.SavePath))
@@ -43,7 +51,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 File.WriteAllText(this.SavePath, string.Empty);
             }
-            this.RoomDirectory = startPath + "/" + Game1.Player.Name + "Dungeons/" + this.StageName + "/Rooms";
+            this.RoomDirectory = startPath + "/Dungeons/" + this.StageName + "/Rooms";
             if (Directory.Exists(this.RoomDirectory))
             {
 
@@ -52,27 +60,91 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 Directory.CreateDirectory(this.RoomDirectory);
             }
-            
-          
 
+            CreateFirstRoom();
+
+        }
+
+        private void CreateFirstRoom()
+        {
+            DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 50, this.Content);
+            Rooms[99, 50] = startingRoom;
+
+            string startingRoomSavePath = this.RoomDirectory + "/" + startingRoom.X + "," + startingRoom.Y + ".dat";
+            if (File.Exists(startingRoomSavePath))
+            {
+
+                startingRoom.Load(startingRoomSavePath);
+            }
+            else
+            {
+                startingRoom.Save(startingRoomSavePath);
+            }
+            this.CurrentRoom = startingRoom;
         }
 
         public virtual void SwitchRooms(int x, int y)
         {
             DungeonRoom room;
-            string path = this.SavePath + x + y + ".dat";
+            
             room = new DungeonRoom(this, x, y, this.Content);
 
+            GenerateRoomSavePath(room);
+            this.Rooms[x, y] = room;
+            this.CurrentRoom = room;
+
+
+        }
+
+        public void GenerateRoomSavePath(DungeonRoom room)
+        {
+            string path = this.RoomDirectory + "/"+ room.X + "," + room.Y + ".dat";
             if (File.Exists(path))
             {
-                
+
                 room.Load(path);
             }
             else
             {
                 room.Generate(path);
             }
-            this.Rooms[x, y] = room;
+        }
+
+        public override void UpdatePortals(Player player, MouseManager mouse)
+        {
+            for (int p = 0; p < this.AllPortals.Count; p++)
+            {
+                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart))
+                {
+                    if (this.AllPortals[p].MustBeClicked)
+                    {
+                        if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
+                        {
+                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
+                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            OnSceneChanged();
+                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
+                        {
+                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            OnSceneChanged();
+                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
+        {
 
         }
 

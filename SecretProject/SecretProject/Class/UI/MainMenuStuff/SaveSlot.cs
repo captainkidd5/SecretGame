@@ -102,14 +102,14 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             Game1.SaveLoadManager.CurrentSave = this;
             DirectoryPath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
-            this.ChunkPath = DirectoryPath + "/" + Game1.Player.Name + "Chunks";
-            this.UnChunkPath = DirectoryPath + "/" + Game1.Player.Name + "UnChunks";
+            this.ChunkPath = DirectoryPath + "/Chunks";
+            this.UnChunkPath = DirectoryPath + "/UnChunks";
             this.GameLocationPath = DirectoryPath + "/GameLocations/";
             System.IO.Directory.CreateDirectory(ChunkPath);
             System.IO.Directory.CreateDirectory(UnChunkPath);
             System.IO.Directory.CreateDirectory(GameLocationPath);
 
-            this.SavePath = DirectoryPath + "/" + Game1.Player.Name + "_PrimaryData";
+            this.SavePath = DirectoryPath + "/_PrimaryData";
             this.String = Game1.Player.Name + "\n Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString();
             AssignPaths();
             Game1.SaveLoadManager.Save(this);

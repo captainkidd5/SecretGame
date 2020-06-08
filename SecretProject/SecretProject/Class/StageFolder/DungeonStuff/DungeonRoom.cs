@@ -17,19 +17,30 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class DungeonRoom
     {
+        public bool IsStartingRoom { get; set; }
         public Dungeon Dungeon { get; private set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public TileManager TileManager { get; private set; }
+        public ITileManager TileManager { get; private set; }
 
 
-
+        
         public DungeonRoom(Dungeon dungeon, int x, int y, ContentManager content)
         {
             this.Dungeon = dungeon;
             this.X = x;
             this.Y = y;
             this.TileManager = new TileManager(Dungeon.TileSet, Dungeon.Map, Dungeon.Graphics, content, (int)Dungeon.TileSetNumber, Dungeon);
+
+        }
+        //for starting room
+        public DungeonRoom(ITileManager tileManager, Dungeon dungeon, int x, int y, ContentManager content)
+        {
+            this.Dungeon = dungeon;
+            this.X = x;
+            this.Y = y;
+            this.TileManager = tileManager;
+
         }
 
         public void Generate(string path)
@@ -39,6 +50,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                // for(int i =0; i < )
             }
+            Save(path);
         }
 
         public void Save(string path)
