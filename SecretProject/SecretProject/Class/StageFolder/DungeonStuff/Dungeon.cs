@@ -19,6 +19,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public DungeonRoom[,] Rooms { get; private set; }
         public ContentManager Content { get; private set; }
 
+        public string RoomDirectory { get; set; }
+
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base( name,  locationType,  stageType,  graphics,  content,  tileSet,  tmxMap,  dialogueToRetrieve,  backDropNumber)
         {
 
@@ -31,6 +33,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         {
 
             this.SavePath = startPath + "/" + Game1.Player.Name + "Dungeons/" + this.StageName;
+            Directory.CreateDirectory(this.SavePath);
+            this.SavePath = this.SavePath + "/" + this.StageName + "data";
             if (File.Exists(this.SavePath))
             {
 
@@ -39,7 +43,17 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 File.WriteAllText(this.SavePath, string.Empty);
             }
+            this.RoomDirectory = startPath + "/" + Game1.Player.Name + "Dungeons/" + this.StageName + "/Rooms";
+            if (Directory.Exists(this.RoomDirectory))
+            {
 
+            }
+            else
+            {
+                Directory.CreateDirectory(this.RoomDirectory);
+            }
+            
+          
 
         }
 
@@ -67,12 +81,15 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             this.AllTiles.Save(writer);
             writer.Write(this.SavePath);
+            writer.Write(this.RoomDirectory);
         }
 
         public override void Load(BinaryReader reader)
         {
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();
+            this.RoomDirectory = reader.ReadString();
+            
         }
 
 

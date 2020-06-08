@@ -34,6 +34,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void Generate(string path)
         {
+
             for(int z = 0; z < this.TileManager.AllDepths.Count; z++)
             {
                // for(int i =0; i < )
@@ -42,7 +43,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void Save(string path)
         {
-            //string path = this.ChunkPath + this.X + this.Y + ".dat";
+            string newPath = path + this.X + this.Y;
             using (FileStream fileStream = File.OpenWrite(path))
             {
 
