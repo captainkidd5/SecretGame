@@ -567,20 +567,14 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void Save(BinaryWriter writer)
         {
-            if(this == Game1.PlayerHouse)
-            {
-                Console.WriteLine("hi");
-            }
+
             this.AllTiles.Save(writer);
             writer.Write(this.SavePath);
         }
 
         public virtual void Load(BinaryReader reader)
         {
-             if(this == Game1.PlayerHouse)
-            {
-                Console.WriteLine("hi");
-            }
+
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();
         }

@@ -67,8 +67,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         private void CreateFirstRoom()
         {
-            DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 50, this.Content);
-            Rooms[99, 50] = startingRoom;
+            DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 0, this.Content); //starting room is top right
+            Rooms[99, 0] = startingRoom;
 
             string startingRoomSavePath = this.RoomDirectory + "/" + startingRoom.X + "," + startingRoom.Y + ".dat";
             if (File.Exists(startingRoomSavePath))
@@ -145,7 +145,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-
+            base.Update(gameTime, mouse, player);
         }
 
         public override void Save(BinaryWriter writer)
