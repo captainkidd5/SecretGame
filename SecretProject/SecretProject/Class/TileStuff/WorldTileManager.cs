@@ -1025,5 +1025,10 @@ namespace SecretProject.Class.TileStuff
             return texture;
             
         }
+
+        public void StartNew()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

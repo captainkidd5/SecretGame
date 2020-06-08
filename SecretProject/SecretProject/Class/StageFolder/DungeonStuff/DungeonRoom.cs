@@ -34,7 +34,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void Generate(string path)
         {
-            
+            for(int z = 0; z < this.TileManager.AllDepths.Count; z++)
+            {
+               // for(int i =0; i < )
+            }
         }
 
         public void Save(string path)

@@ -293,7 +293,7 @@ namespace SecretProject.Class.StageFolder
 
         #region UPDATE
 
-        public virtual void PerformQuadTreeInsertions()
+        public virtual void PerformQuadTreeInsertions(Player player)
         {
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
 
@@ -322,6 +322,39 @@ namespace SecretProject.Class.StageFolder
                 this.QuadTree.Insert(character.Collider);
             }
         }
+
+        public virtual void UpdatePortals(Player player, MouseManager mouse)
+        {
+            for (int p = 0; p < this.AllPortals.Count; p++)
+            {
+                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart))
+                {
+                    if (this.AllPortals[p].MustBeClicked)
+                    {
+                        if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
+                        {
+                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
+                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            OnSceneChanged();
+                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
+                        {
+                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            OnSceneChanged();
+                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+        }
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
@@ -329,31 +362,10 @@ namespace SecretProject.Class.StageFolder
             {
                 this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
             }
-            PerformQuadTreeInsertions();
+            PerformQuadTreeInsertions(player);
             this.IsDark = Game1.GlobalClock.IsNight;
             float playerOldYPosition = player.position.Y;
-            for (int p = 0; p < this.AllPortals.Count; p++)
-            {
-                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart) && this.AllPortals[p].MustBeClicked)
-                {
-                    if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
-                    {
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                        Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
-                        OnSceneChanged();
-                        SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                        return;
-                    }
-
-                }
-                else if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart) && !this.AllPortals[p].MustBeClicked)
-                {
-                    Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
-                    OnSceneChanged();
-                    SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                    return;
-                }
-            }
+            UpdatePortals(player,mouse);
 
             Game1.MouseManager.ToggleGeneralInteraction = false;
 

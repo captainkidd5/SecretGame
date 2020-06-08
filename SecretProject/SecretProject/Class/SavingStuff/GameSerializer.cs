@@ -86,7 +86,7 @@ namespace SecretProject.Class.SavingStuff
 
         public static void LoadGameFile(BinaryReader reader, float version, SaveSlot saveSlot)
         {
-            Game1.IsFirstTimeStartup = true;
+            Game1.IsFirstTimeStartup = false;
             saveSlot.String = reader.ReadString();
             saveSlot.SavePath = reader.ReadString();
             saveSlot.ChunkPath = reader.ReadString();

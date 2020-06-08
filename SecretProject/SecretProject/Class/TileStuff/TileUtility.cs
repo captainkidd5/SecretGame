@@ -168,8 +168,12 @@ namespace SecretProject.Class.TileStuff
                     {
                         grassTuft,
                     };
-                    container.Tufts.Add(tileToAssign.TileKey, tufts);
-                    ReplaceTile(layer, x, y, 0, container);
+                    if(!container.Tufts.ContainsKey(tileToAssign.TileKey))
+                    {
+                        container.Tufts.Add(tileToAssign.TileKey, tufts);
+                        ReplaceTile(layer, x, y, 0, container);
+                    }
+                   
                     return;
                 }
                 propertyString = "portal";

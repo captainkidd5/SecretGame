@@ -160,7 +160,7 @@ namespace SecretProject.Class.TileStuff
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             if (Game1.IsFirstTimeStartup)
             {
-                StartNew(mapName);
+                StartNew();
             }
             this.TileModificationHandler = new TileModificationHandler();
 
@@ -207,9 +207,9 @@ namespace SecretProject.Class.TileStuff
         /// <summary>
         /// Runs only when new save is started. Will not run on load game. See LoadNewSave for that.
         /// </summary>
-        public void StartNew(TmxMap map)
+        public void StartNew()
         {
-           
+            TmxMap map = this.MapName;
             List<TmxLayer> allLayers = new List<TmxLayer>()
             {
                 map.Layers["background"],
@@ -694,13 +694,13 @@ namespace SecretProject.Class.TileStuff
 
             //}
 
-            //binaryWriter.Write(this.AllItems.Count);
-            //for (int item = 0; item < AllItems.Count; item++)
-            //{
-            //    binaryWriter.Write(AllItems[item].ID);
-            //    binaryWriter.Write(AllItems[item].WorldPosition.X);
-            //    binaryWriter.Write(AllItems[item].WorldPosition.Y);
-            //}
+            binaryWriter.Write(this.AllItems.Count);
+            for (int item = 0; item < AllItems.Count; item++)
+            {
+                binaryWriter.Write(AllItems[item].ID);
+                binaryWriter.Write(AllItems[item].WorldPosition.X);
+                binaryWriter.Write(AllItems[item].WorldPosition.Y);
+            }
 
             //binaryWriter.Write(this.Crops.Count);
             //foreach (KeyValuePair<string, Crop> crop in this.Crops)
@@ -758,70 +758,70 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //  if (this.Stage != Game1.Town)
+          //  if (this.Stage != Game1.Town)
             //{
-            for (int z = 0; z < layerCount; z++)
-            {
-
-                for (int i = 0; i < mapWidth; i++)
+                for (int z = 0; z < layerCount; z++)
                 {
-                    for (int j = 0; j < mapWidth; j++)
+
+                    for (int i = 0; i < mapWidth; i++)
                     {
-                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        for (int j = 0; j < mapWidth; j++)
+                        {
+                            TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        }
                     }
                 }
+            //this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+            //int storableItemCount = binaryReader.ReadInt32();
+            //for (int c = 0; c < storableItemCount; c++)
+            //{
+            //    string storageKey = binaryReader.ReadString();
+            //    int storableItemType = binaryReader.ReadInt32();
+            //    StorableItemType itemType = (StorableItemType)storableItemType;
+            //    int inventorySize = binaryReader.ReadInt32();
+            //    float locationX = binaryReader.ReadSingle();
+            //    float locationY = binaryReader.ReadSingle();
+
+            //    switch (itemType)
+            //    {
+            //        case StorableItemType.Chest:
+            //            Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+            //            for (int i = 0; i < inventorySize; i++)
+            //            {
+            //                int numberOfItemsInSlot = binaryReader.ReadInt32();
+            //                int itemID = binaryReader.ReadInt32();
+
+            //                for (int j = 0; j < numberOfItemsInSlot; j++)
+            //                {
+            //                    storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+            //                }
+            //            }
+
+            //            this.StoreableItems.Add(storageKey, storeageItemToAdd);
+            //            break;
+
+            //        case StorableItemType.Cauldron:
+            //            Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+            //            for (int i = 0; i < inventorySize; i++)
+            //            {
+            //                int numberOfItemsInSlot = binaryReader.ReadInt32();
+            //                int itemID = binaryReader.ReadInt32();
+
+            //                for (int j = 0; j < numberOfItemsInSlot; j++)
+            //                {
+            //                    cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+            //                }
+            //            }
+
+            //            this.StoreableItems.Add(storageKey, cauldronToAdd);
+            //            break;
+            //    }
+            //}
+            int itemCount = binaryReader.ReadInt32();
+            for (int item = 0; item < itemCount; item++)
+            {
+                Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
             }
-            //  this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
-            //  int storableItemCount = binaryReader.ReadInt32();
-            //  for (int c = 0; c < storableItemCount; c++)
-            //  {
-            //      string storageKey = binaryReader.ReadString();
-            //      int storableItemType = binaryReader.ReadInt32();
-            //      StorableItemType itemType = (StorableItemType)storableItemType;
-            //      int inventorySize = binaryReader.ReadInt32();
-            //      float locationX = binaryReader.ReadSingle();
-            //      float locationY = binaryReader.ReadSingle();
-
-            //      switch (itemType)
-            //      {
-            //          case StorableItemType.Chest:
-            //              Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
-            //              for (int i = 0; i < inventorySize; i++)
-            //              {
-            //                  int numberOfItemsInSlot = binaryReader.ReadInt32();
-            //                  int itemID = binaryReader.ReadInt32();
-
-            //                  for (int j = 0; j < numberOfItemsInSlot; j++)
-            //                  {
-            //                      storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-            //                  }
-            //              }
-
-            //              this.StoreableItems.Add(storageKey, storeageItemToAdd);
-            //              break;
-
-            //          case StorableItemType.Cauldron:
-            //              Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
-            //              for (int i = 0; i < inventorySize; i++)
-            //              {
-            //                  int numberOfItemsInSlot = binaryReader.ReadInt32();
-            //                  int itemID = binaryReader.ReadInt32();
-
-            //                  for (int j = 0; j < numberOfItemsInSlot; j++)
-            //                  {
-            //                      cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-            //                  }
-            //              }
-
-            //              this.StoreableItems.Add(storageKey, cauldronToAdd);
-            //              break;
-            //      }
-            //  }
-            //  int itemCount = binaryReader.ReadInt32();
-            //  for (int item = 0; item < itemCount; item++)
-            //  {
-            //      Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
-            //  }
             //  int cropCount = binaryReader.ReadInt32();
             //  for (int c = 0; c < cropCount; c++)
             //  {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
@@ -136,6 +137,13 @@ namespace SecretProject.Class.MenuStuff
 
         public void ExitToMainMenu()
         {
+            foreach (ILocation stage in Game1.AllStages)
+            {
+
+                stage.UnloadContent();
+
+
+            }
             Game1.mainMenu.LoadBackGround();
             Game1.gameStages = Stages.MainMenu;
             Game1.mainMenu.CurrentMenuState = StageFolder.MainMenu.MenuState.Primary;

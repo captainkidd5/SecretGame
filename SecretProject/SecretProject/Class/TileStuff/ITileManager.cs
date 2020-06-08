@@ -66,7 +66,8 @@ namespace SecretProject.Class.TileStuff
 
         void SaveTiles();
         void Unload();
+        void StartNew();
 
-        
+
     }
 }

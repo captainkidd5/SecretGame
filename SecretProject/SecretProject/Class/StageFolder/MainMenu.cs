@@ -228,12 +228,9 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            foreach (ILocation stage in Game1.AllStages)
+            foreach(ILocation location in Game1.AllStages)
             {
-
-                stage.UnloadContent();
-
-
+                location.AllTiles.StartNew();
             }
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
