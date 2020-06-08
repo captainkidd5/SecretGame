@@ -161,9 +161,9 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void AssignPath(string startPath)
+        public virtual void AssignPath(string startPath)
         {
-            this.SavePath = startPath + this.StageName;
+            this.SavePath = startPath + "/GameLocations/"+ this.StageName;
 
                 if (File.Exists(this.SavePath))
                 {

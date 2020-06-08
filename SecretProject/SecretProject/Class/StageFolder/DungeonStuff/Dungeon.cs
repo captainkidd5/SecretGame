@@ -27,6 +27,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
            // this.CurrentRoom = this.Rooms[0];
         }
 
+        public override void AssignPath(string startPath)
+        {
+
+            this.SavePath = startPath + "/" + Game1.Player.Name + "Dungeons/" + this.StageName;
+            if (File.Exists(this.SavePath))
+            {
+
+            }
+            else
+            {
+                File.WriteAllText(this.SavePath, string.Empty);
+            }
+
+
+        }
 
         public virtual void SwitchRooms(int x, int y)
         {

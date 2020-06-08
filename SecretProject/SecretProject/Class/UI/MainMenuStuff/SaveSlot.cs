@@ -22,6 +22,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public string String { get; set; }
         public Button Button { get; set; }
 
+        public string DirectoryPath { get; set; }
         public string SavePath { get; set; }
         public string ChunkPath { get; set; }
         public string UnChunkPath { get; set; }
@@ -101,17 +102,17 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void StartNewSave()
         {
             Game1.SaveLoadManager.CurrentSave = this;
-            string directoryPath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
-            this.ChunkPath = directoryPath + "/" + Game1.Player.Name + "Chunks";
-            this.UnChunkPath = directoryPath + "/" + Game1.Player.Name + "UnChunks";
-            this.ForestDungeonPath = directoryPath + "/" + Game1.Player.Name + "Dungeons/ForestDungeon"; 
-            this.GameLocationPath = directoryPath + "/GameLocations/";
+            DirectoryPath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
+            this.ChunkPath = DirectoryPath + "/" + Game1.Player.Name + "Chunks";
+            this.UnChunkPath = DirectoryPath + "/" + Game1.Player.Name + "UnChunks";
+            this.ForestDungeonPath = DirectoryPath + "/" + Game1.Player.Name + "Dungeons/ForestDungeon"; 
+            this.GameLocationPath = DirectoryPath + "/GameLocations/";
             System.IO.Directory.CreateDirectory(ChunkPath);
             System.IO.Directory.CreateDirectory(UnChunkPath);
             System.IO.Directory.CreateDirectory(ForestDungeonPath);
             System.IO.Directory.CreateDirectory(GameLocationPath);
 
-            this.SavePath = directoryPath + "/" + Game1.Player.Name + "_PrimaryData";
+            this.SavePath = DirectoryPath + "/" + Game1.Player.Name + "_PrimaryData";
             this.String = Game1.Player.Name + "\n Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString();
             AssignPaths();
             Game1.SaveLoadManager.Save(this);
@@ -129,7 +130,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
 
 
-                stage.AssignPath(this.GameLocationPath);
+                stage.AssignPath(this.DirectoryPath);
             }
         }
 

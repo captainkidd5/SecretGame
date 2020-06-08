@@ -63,6 +63,7 @@ namespace SecretProject.Class.SavingStuff
             writer.Write(saveSlot.ChunkPath);
             writer.Write(saveSlot.UnChunkPath);
             writer.Write(saveSlot.GameLocationPath);
+            writer.Write(saveSlot.DirectoryPath);
 
             Game1.Player.Save(writer);
             //foreach(ILocation location in Game1.AllStages)
@@ -92,6 +93,7 @@ namespace SecretProject.Class.SavingStuff
             saveSlot.ChunkPath = reader.ReadString();
             saveSlot.UnChunkPath = reader.ReadString();
             saveSlot.GameLocationPath = reader.ReadString();
+            saveSlot.DirectoryPath = reader.ReadString();
             Game1.Player.Load(reader);
             saveSlot.AssignPaths();
             //foreach (ILocation location in Game1.AllStages)
