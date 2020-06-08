@@ -61,8 +61,26 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 Directory.CreateDirectory(this.RoomDirectory);
             }
 
-            CreateFirstRoom();
+            //CreateFirstRoom();
 
+        }
+
+        public override void TryLoadExistingStage()
+        {
+            if (new FileInfo(this.SavePath).Length > 0)
+            {
+                FileStream fileStream = File.OpenRead(this.SavePath);
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+
+                Load(binaryReader);
+
+                binaryReader.Close();
+            }
+            else
+            {
+                AllTiles.StartNew();
+                CreateFirstRoom();
+            }
         }
 
         private void CreateFirstRoom()

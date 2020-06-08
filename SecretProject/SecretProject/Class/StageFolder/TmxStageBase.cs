@@ -274,7 +274,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void ReloadContent()
+        public virtual void TryLoadExistingStage()
         {
             if (new FileInfo(this.SavePath).Length > 0)
             {
@@ -285,7 +285,10 @@ namespace SecretProject.Class.StageFolder
 
                 binaryReader.Close();
             }
-            
+            else
+            {
+                AllTiles.StartNew();
+            }
         }
 
 

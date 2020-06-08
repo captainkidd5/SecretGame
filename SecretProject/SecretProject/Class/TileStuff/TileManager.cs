@@ -158,10 +158,10 @@ namespace SecretProject.Class.TileStuff
             this.Objects = new Dictionary<string, List<ICollidable>>();
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-            if (Game1.IsFirstTimeStartup)
-            {
-                StartNew();
-            }
+            //if (Game1.IsFirstTimeStartup)
+            //{
+            //    StartNew();
+            //}
             this.TileModificationHandler = new TileModificationHandler();
 
             #region PORTALS

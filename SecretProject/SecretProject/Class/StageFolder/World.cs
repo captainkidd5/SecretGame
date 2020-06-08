@@ -575,7 +575,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void ReloadContent()
+        public void TryLoadExistingStage()
         {
 
         }

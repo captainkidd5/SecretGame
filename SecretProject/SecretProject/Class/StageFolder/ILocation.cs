@@ -106,7 +106,7 @@ namespace SecretProject.Class.StageFolder
         void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale);
 
         void SaveLocation();
-        void ReloadContent();
+        void TryLoadExistingStage();
         
 
 

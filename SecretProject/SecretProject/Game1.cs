@@ -1018,7 +1018,7 @@ namespace SecretProject
                 newLocation.LoadContent(cam, AllSchedules);
 
             }
-            newLocation.ReloadContent();
+            newLocation.TryLoadExistingStage();
 
             if (portal != null)
             {
