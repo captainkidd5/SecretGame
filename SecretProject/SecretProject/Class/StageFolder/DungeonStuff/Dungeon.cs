@@ -26,20 +26,12 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base( name,  locationType,  stageType,  graphics,  content,  tileSet,  tmxMap,  dialogueToRetrieve,  backDropNumber)
         {
-
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             this.Content = content;
-
-
-
-           
         }
-
-
 
         public override void AssignPath(string startPath)
         {
-
             this.SavePath = startPath + "/Dungeons/" + this.StageName;
             Directory.CreateDirectory(this.SavePath);
             this.SavePath = this.SavePath + "/" + this.StageName + "data";
@@ -60,9 +52,6 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 Directory.CreateDirectory(this.RoomDirectory);
             }
-
-            //CreateFirstRoom();
-
         }
 
         public override void TryLoadExistingStage()
@@ -110,8 +99,6 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             GenerateRoomSavePath(room);
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
-
-
         }
 
         public void GenerateRoomSavePath(DungeonRoom room)
@@ -130,16 +117,19 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public override void UpdatePortals(Player player, MouseManager mouse)
         {
-            for (int p = 0; p < this.AllPortals.Count; p++)
+
+            List<DungeonPortal> portals = this.CurrentRoom.DungeonPortals;
+
+            for (int p = 0; p < portals.Count; p++)
             {
-                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart))
+                if (player.ClickRangeRectangle.Intersects(portals[p].PortalStart))
                 {
-                    if (this.AllPortals[p].MustBeClicked)
+                    if (portals[p].MustBeClicked)
                     {
-                        if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
+                        if (mouse.WorldMouseRectangle.Intersects(portals[p].PortalStart) && mouse.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            Game1.SwitchStage((Stages)portals[p].From, (Stages)portals[p].To, portals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -147,9 +137,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     }
                     else
                     {
-                        if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
+                        if (player.Rectangle.Intersects(portals[p].PortalStart))
                         {
-                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            Game1.SwitchStage((Stages)portals[p].From, (Stages)portals[p].To, portals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
