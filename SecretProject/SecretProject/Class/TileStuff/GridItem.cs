@@ -230,7 +230,7 @@ namespace SecretProject.Class.TileStuff
 
 
                                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(item.GenerationType);
-                                    WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
+                                    WangManager.ChunkGroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
                                 tilingContainer.TilingDictionary, item.TilingLayer, tileManager);
                                 }
 

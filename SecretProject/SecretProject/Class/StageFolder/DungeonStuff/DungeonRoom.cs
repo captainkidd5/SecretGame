@@ -29,12 +29,12 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
 
 
-        public DungeonRoom(Dungeon dungeon, int x, int y, ContentManager content)
+        public DungeonRoom(Dungeon dungeon, int x, int y)
         {
             this.Dungeon = dungeon;
             this.X = x;
             this.Y = y;
-            this.TileManager = new TileManager(Dungeon.TileSet, Dungeon.Map, Dungeon.Graphics, content, (int)Dungeon.TileSetNumber, Dungeon);
+            
 
             this.DungeonPortals = new List<DungeonPortal>();
 
@@ -50,9 +50,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.DungeonPortals = new List<DungeonPortal>();
         }
 
-        public void Generate(string path)
+        public void Generate( string path)
         {
-
+            int roomDimensions = 32;
+            this.TileManager = new TileManager(Dungeon.TileSet, Dungeon.Map, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)

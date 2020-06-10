@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using TiledSharp;
 using XMLData.ItemStuff;
 
@@ -97,10 +98,10 @@ namespace SecretProject.Class.TileStuff
         public TileModificationHandler TileModificationHandler { get; set; }
 
         #region CONSTRUCTORS
+        
 
-
-
-        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage)
+        //Instantiate with a premade map
+        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage, int presetDimension = 0)
         {
             this.Stage = currentStage;
             this.ITileManager = this;
@@ -125,6 +126,13 @@ namespace SecretProject.Class.TileStuff
             this.MapWidth = mapName.Width;
 
             this.MapHeight = mapName.Height;
+            if (presetDimension != 0)
+            {
+                this.MapWidth = presetDimension;
+                this.MapHeight = presetDimension;
+            }
+
+            
 
             this.tileCounter = 0;
 
@@ -152,7 +160,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < this.AllDepths.Count; i++)
             {
-                this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
+                this.AllTiles.Add(new Tile[this.MapWidth, this.MapHeight]);
 
             }
             this.Objects = new Dictionary<string, List<ICollidable>>();

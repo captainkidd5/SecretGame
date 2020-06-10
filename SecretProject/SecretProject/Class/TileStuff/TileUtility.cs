@@ -580,7 +580,7 @@ namespace SecretProject.Class.TileStuff
                                             int cy = (int)Game1.MouseManager.WorldMousePosition.Y;
 
                                             //might be wonky
-                                            WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[GenerationType.Dirt].GeneratableTiles,
+                                            WangManager.ChunkGroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[GenerationType.Dirt].GeneratableTiles,
                                         Game1.Procedural.AllTilingContainers[GenerationType.Dirt].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
 
                                             break;
@@ -1037,7 +1037,7 @@ namespace SecretProject.Class.TileStuff
                 if ((int)generationType != 0)
                 {
                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(generationType);
-                    WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
+                    WangManager.ChunkGroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
                         tilingContainer.TilingDictionary,
                    layer, Game1.GetCurrentStage().AllTiles);
                 }

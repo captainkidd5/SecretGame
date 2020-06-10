@@ -5,7 +5,7 @@ namespace SecretProject.Class.TileStuff
     public static class WangManager
     {
 
-        public static void GroupReassignForTiling(int mouseWorldX, int mouseWorldY, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer, ITileManager tileManager)
+        public static void ChunkGroupReassignForTiling(int mouseWorldX, int mouseWorldY, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer, ITileManager tileManager)
         {
             for (int t = -1; t < 2; t++)
             {
@@ -19,7 +19,7 @@ namespace SecretProject.Class.TileStuff
                         Tile tile = chunk.AllTiles[layer][indexX, indexY];
                         if (tile != null)
                         {
-                            ReassignTileForTiling(mainGid, generatableTiles,
+                            ChunkReassignForTiling(mainGid, generatableTiles,
                                             tilingDictionary, layer,
                                            indexX, indexY,
                                             TileUtility.ChunkWidth, TileUtility.ChunkHeight, chunk);
@@ -31,7 +31,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+        public static void ChunkReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
     int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
             bool chunkWithinBounds = IsContainerWithinArrayBounds(container);
@@ -95,6 +95,57 @@ namespace SecretProject.Class.TileStuff
             else if (chunkWithinBounds && generatableTiles.Contains(container.ITileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
             {
                 keyToCheck += 2;
+            }
+
+
+            TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+
+
+
+        }
+
+        public static void ReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+   int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
+        {
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
+            {
+                return;
+            }
+            int keyToCheck = 0;
+            if (y > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                {
+                    keyToCheck += 1;
+                }
+            }
+            
+
+            if (y < worldHeight - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
+                {
+                    keyToCheck += 8;
+                }
+            }
+
+
+            //looking at rightmost tile
+            if (x < worldWidth - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
+                {
+                    keyToCheck += 4;
+                }
+            }
+
+
+            if (x > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
+                {
+                    keyToCheck += 2;
+                }
             }
 
 

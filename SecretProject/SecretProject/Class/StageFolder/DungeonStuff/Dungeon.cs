@@ -24,10 +24,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public string RoomDirectory { get; set; }
 
-        public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base( name,  locationType,  stageType,  graphics,  content,  tileSet,  tmxMap,  dialogueToRetrieve,  backDropNumber)
+        public DungeonGraph DungeonGraph { get; private set; }
+
+        public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             this.Content = content;
+            this.DungeonGraph = new DungeonGraph(100);
         }
 
         public override void AssignPath(string startPath)
@@ -68,6 +71,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             else
             {
                 AllTiles.StartNew();
+                this.DungeonGraph.GenerateLayout();
                 CreateFirstRoom();
             }
         }
@@ -88,13 +92,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 startingRoom.Save(startingRoomSavePath);
             }
             this.CurrentRoom = startingRoom;
+            this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(new Vector2(530, 1015), DungeonGraph.GetNode(99, 0), DungeonGraph.GetNode(99, 1), 0, -15));
         }
 
         public virtual void SwitchRooms(int x, int y)
         {
             DungeonRoom room;
-            
-            room = new DungeonRoom(this, x, y, this.Content);
+
+            room = new DungeonRoom(this, x, y);
 
             GenerateRoomSavePath(room);
             this.Rooms[x, y] = room;
@@ -103,7 +108,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void GenerateRoomSavePath(DungeonRoom room)
         {
-            string path = this.RoomDirectory + "/"+ room.X + "," + room.Y + ".dat";
+            string path = this.RoomDirectory + "/" + room.X + "," + room.Y + ".dat";
             if (File.Exists(path))
             {
 
@@ -122,30 +127,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             for (int p = 0; p < portals.Count; p++)
             {
-                if (player.ClickRangeRectangle.Intersects(portals[p].PortalStart))
-                {
-                    if (portals[p].MustBeClicked)
-                    {
-                        if (mouse.WorldMouseRectangle.Intersects(portals[p].PortalStart) && mouse.IsClicked)
-                        {
-                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage((Stages)portals[p].From, (Stages)portals[p].To, portals[p]);
-                            OnSceneChanged();
-                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (player.Rectangle.Intersects(portals[p].PortalStart))
-                        {
-                            Game1.SwitchStage((Stages)portals[p].From, (Stages)portals[p].To, portals[p]);
-                            OnSceneChanged();
-                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                            return;
-                        }
 
-                    }
+                if (player.Rectangle.Intersects(portals[p].InteractionRectangle))
+                {
+                    //portalgraph logic here
+                    return;
                 }
 
             }
@@ -169,7 +155,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();
             this.RoomDirectory = reader.ReadString();
-            
+
         }
 
 

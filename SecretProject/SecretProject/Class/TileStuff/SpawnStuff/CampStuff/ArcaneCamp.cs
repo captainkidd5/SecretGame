@@ -45,7 +45,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
                     {
                         TileUtility.ReplaceTile(1, i, j, this.FloorTileID, container);
                         Vector2 tilePosition = container.AllTiles[1][i, j].GetPosition(container);
-                        WangManager.GroupReassignForTiling((int)tilePosition.X, (int)tilePosition.Y, this.FloorTileID, floortiling.GeneratableTiles, floortiling.TilingDictionary, 1,  container.ITileManager);
+                        WangManager.ChunkGroupReassignForTiling((int)tilePosition.X, (int)tilePosition.Y, this.FloorTileID, floortiling.GeneratableTiles, floortiling.TilingDictionary, 1,  container.ITileManager);
                     }
                     
                    
