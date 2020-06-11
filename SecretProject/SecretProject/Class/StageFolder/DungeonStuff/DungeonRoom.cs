@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,14 +79,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                 }
                                
                             }
- 
-                            else
-                            {
-                                if(Game1.Utility.RNumber(0, 20 ) <3)
-                                {
-                                    gid = 34;
-                                }
-                            }
+
                         }
                         else if (z == 4)
                         {
@@ -102,7 +96,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                             }
                            
                         }
-
+                        
                         tempTile = new Tile(i, j, gid) { LayerToDrawAt = i };
                         this.TileManager.AllTiles[z][i, j] = tempTile;
 
@@ -113,6 +107,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     }
                 }
             }
+            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (IInformationContainer)this.TileManager, Game1.Utility.RGenerator);
             Save(path);
         }
 
