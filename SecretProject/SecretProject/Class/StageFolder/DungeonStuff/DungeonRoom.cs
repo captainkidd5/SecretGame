@@ -52,7 +52,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void Generate( string path)
         {
-            int roomDimensions = 32;
+            int roomDimensions = 64;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
@@ -61,14 +61,43 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
                     {
                         Tile tempTile;
+                        int gid = 0;
                         if (z == 0)
                         {
-                             tempTile = new Tile(i, j, 402) { LayerToDrawAt = i };
+                            gid = 402;
+                             
                         }
-                        else
+                        else if(z == 3)
                         {
-                             tempTile = new Tile(i, j, 0) { LayerToDrawAt = i };
+                            if (j == 5)
+                            {
+                                gid = 1221;
+                            }
+                            else if (j == 63)
+                            {
+                                gid = 523;
+                            }
+                            else
+                            {
+                                if(Game1.Utility.RNumber(0, 10 ) < 3)
+                                {
+                                    gid = 34;
+                                }
+                            }
                         }
+                        else if (z == 4)
+                        {
+                            if (i == 63)
+                            {
+                                gid = 719;
+                            }
+                            else if (i == 0)
+                            {
+                                gid = 722;
+                            }
+                        }
+
+                        tempTile = new Tile(i, j, gid) { LayerToDrawAt = i };
                         this.TileManager.AllTiles[z][i, j] = tempTile;
 
                         TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
