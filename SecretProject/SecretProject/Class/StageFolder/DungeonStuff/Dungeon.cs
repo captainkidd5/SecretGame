@@ -109,7 +109,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
            // this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(new Vector2(530, 1015), DungeonGraph.GetNode(99, 0), DungeonGraph.GetNode(99, 1), 0, -15));
         }
 
-        public virtual void SwitchRooms(int x, int y)
+        public virtual void SwitchRooms(int x, int y, Dir directionToGoTo)
         {
             DungeonRoom room;
 
@@ -119,6 +119,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
             this.AllTiles = this.CurrentRoom.TileManager;
+            switch(directionToGoTo)
+            {
+                case Dir.Down:
+                    Game1.Player.Position = new Vector2(512, 32);
+                    break;
+                case Dir.Up:
+                    Game1.Player.Position = new Vector2(512, 1000);
+                    break;
+                case Dir.Left:
+                    Game1.Player.Position = new Vector2(32, 512);
+                    break;
+                case Dir.Right:
+                    Game1.Player.Position = new Vector2(1000, 512);
+                    break;
+            }
         }
 
         public void GenerateRoomSavePath(DungeonRoom room)
@@ -146,7 +161,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 if (player.Rectangle.Intersects(portals[p].InteractionRectangle))
                 {
                     //portalgraph logic here
-                    SwitchRooms(portals[p].DestinationRoom.X, portals[p].DestinationRoom.Y);
+                    SwitchRooms(portals[p].DestinationRoom.X, portals[p].DestinationRoom.Y, portals[p].DirectionToSpawn);
                     return;
                 }
 
