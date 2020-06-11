@@ -11,20 +11,23 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class DungeonGraph
     {
-        
+        public Dungeon Dungeon { get; private set; }
         public int Dimensions { get; private set; }
         public DungeonNode[,] Nodes { get; set; }
-        public DungeonGraph(int dimensions)
+        public DungeonGraph(Dungeon dungeon, int dimensions)
         {
-            if (Math.Log(dimensions, 2) != (int)Math.Log(dimensions, 2))
-            {
-                throw new Exception("Invalid dungeon size, size in X and Y must be power of 2");
-            }
-            else
-            {
-                this.Dimensions = dimensions;
-            }
+            //if (Math.Log(dimensions, 2) != (int)Math.Log(dimensions, 2))
+            //{
+            //    throw new Exception("Invalid dungeon size, size in X and Y must be power of 2");
+            //}
+            //else
+            //{
+            //    this.Dimensions = dimensions;
+            //}
+            this.Dimensions = dimensions;
             this.Nodes = new DungeonNode[this.Dimensions,this.Dimensions];
+            this.Dungeon = dungeon;
+
         }
 
         public DungeonNode GetNode(int x, int y)
@@ -45,7 +48,15 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void GeneratePortalConnections()
         {
-            //use wang manager for this!
+            for (int i = 0; i < Nodes.GetLength(0); i++)
+            {
+                for (int j = 0; j < Nodes.GetLength(1); j++)
+                {
+                    
+                    int key = WangRooms(Nodes[i, j].GridStatus, i, j, this.Dimensions, this.Dimensions);
+                    Dungeon.Rooms[i, j].DungeonPortals = GetPortalsFromWang(Nodes[i, j], key);
+                }
+            }
         }
 
         public int WangRooms(GridStatus gridStatus, 
@@ -130,31 +141,101 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 case 4: //one right
                     rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
                     portals.Add(rightPortal);
+
                     break;
                 case 5: //one up, one right
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(upPortal);
+                    portals.Add(rightPortal);
+
                     break;
                 case 6: //one left, one right
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+
                     break;
                 case 7: //one up, one left, one right
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    portals.Add(upPortal);
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+
                     break;
                 case 8://one down
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
                     break;
                 case 9: //one down, one up
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    portals.Add(upPortal);
+
                     break;
                 case 10: //one left, one down
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+
                     break;
                 case 11: //one down, one left, one up
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    portals.Add(upPortal);
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+
+
                     break;
                 case 12://one down, one right
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+
                     break;
                 case 13://one down, one right, one up
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    portals.Add(upPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+
+
                     break;
                 case 14: //one left, one down, one right
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+
+
                     break;
                 case 15: // all
+                    downPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y + 1], GetRectangleFromDirection(Dir.Down), GetSafteyXFromDirection(Dir.Down), GetSafteyYFromDirection(Dir.Down));
+                    portals.Add(downPortal);
+                    leftPortal = new DungeonPortal(this.Nodes[currentNode.X - 1, currentNode.Y], GetRectangleFromDirection(Dir.Left), GetSafteyXFromDirection(Dir.Left), GetSafteyYFromDirection(Dir.Left));
+                    portals.Add(leftPortal);
+                    rightPortal = new DungeonPortal(this.Nodes[currentNode.X + 1, currentNode.Y], GetRectangleFromDirection(Dir.Right), GetSafteyXFromDirection(Dir.Right), GetSafteyYFromDirection(Dir.Right));
+                    portals.Add(rightPortal);
+                    upPortal = new DungeonPortal(this.Nodes[currentNode.X, currentNode.Y - 1], GetRectangleFromDirection(Dir.Up), GetSafteyXFromDirection(Dir.Up), GetSafteyYFromDirection(Dir.Up));
+                    portals.Add(upPortal);
                     break;
-            }
 
+                default:
+                    throw new Exception("Portal key was not between 0 and 15!");
+            }
+            return portals;
         }
 
         public static int GetSafteyXFromDirection(Dir directionOfNewRoom)

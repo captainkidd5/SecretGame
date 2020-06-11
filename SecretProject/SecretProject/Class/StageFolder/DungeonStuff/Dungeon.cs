@@ -19,7 +19,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public static int MaxDungeonRooms = 100;
 
         public DungeonRoom CurrentRoom { get; private set; }
-        public DungeonRoom[,] Rooms { get; private set; }
+        public DungeonRoom[,] Rooms { get;  set; }
         public ContentManager Content { get; private set; }
 
         public string RoomDirectory { get; set; }
@@ -29,8 +29,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
+            InitializeRooms();
             this.Content = content;
-            this.DungeonGraph = new DungeonGraph(100);
+            this.DungeonGraph = new DungeonGraph(this, 100);
+        }
+
+        private void InitializeRooms()
+        {
+
+            for(int i =0; i < MaxDungeonRooms; i++)
+            {
+                for(int j =0; j < MaxDungeonRooms; j++)
+                {
+                    Rooms[i, j] = new DungeonRoom(this, i, j);
+                }
+            }
         }
 
         public override void AssignPath(string startPath)
@@ -73,6 +86,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 AllTiles.StartNew();
                 this.DungeonGraph.GenerateLayout();
                 CreateFirstRoom();
+                this.DungeonGraph.GeneratePortalConnections();
             }
         }
 
@@ -92,18 +106,19 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 startingRoom.Save(startingRoomSavePath);
             }
             this.CurrentRoom = startingRoom;
-            this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(new Vector2(530, 1015), DungeonGraph.GetNode(99, 0), DungeonGraph.GetNode(99, 1), 0, -15));
+           // this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(new Vector2(530, 1015), DungeonGraph.GetNode(99, 0), DungeonGraph.GetNode(99, 1), 0, -15));
         }
 
         public virtual void SwitchRooms(int x, int y)
         {
             DungeonRoom room;
 
-            room = new DungeonRoom(this, x, y);
+            room = this.Rooms[x, y];
 
             GenerateRoomSavePath(room);
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
+            this.AllTiles = this.CurrentRoom.TileManager;
         }
 
         public void GenerateRoomSavePath(DungeonRoom room)
@@ -131,6 +146,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 if (player.Rectangle.Intersects(portals[p].InteractionRectangle))
                 {
                     //portalgraph logic here
+                    SwitchRooms(portals[p].DestinationRoom.X, portals[p].DestinationRoom.Y);
                     return;
                 }
 

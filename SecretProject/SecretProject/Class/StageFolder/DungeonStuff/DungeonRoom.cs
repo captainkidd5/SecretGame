@@ -25,7 +25,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public bool HasGenerated { get; set; }
 
-        public List<DungeonPortal> DungeonPortals { get; private set; }
+        public List<DungeonPortal> DungeonPortals { get; set; }
 
 
 
@@ -53,17 +53,23 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public void Generate( string path)
         {
             int roomDimensions = 32;
-            this.TileManager = new TileManager(Dungeon.TileSet, Dungeon.Map, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
+            this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
                 {
                     for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
                     {
-                        if(z == 0)
+                        Tile tempTile;
+                        if (z == 0)
                         {
-                            Tile tempTile = new Tile(i, j, 402) { LayerToDrawAt = i };
+                             tempTile = new Tile(i, j, 402) { LayerToDrawAt = i };
                         }
+                        else
+                        {
+                             tempTile = new Tile(i, j, 0) { LayerToDrawAt = i };
+                        }
+                        this.TileManager.AllTiles[z][i, j] = tempTile;
 
                         TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
 

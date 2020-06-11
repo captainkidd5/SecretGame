@@ -118,18 +118,22 @@ namespace SecretProject.Class.TileStuff
                 .99f
             };
 
-            this.TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
-            this.TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
+            this.TileWidth = 16;
+            this.TileHeight = 16;
 
             this.TileSetDimension = tileSet.Width / this.TileWidth;
 
-            this.MapWidth = mapName.Width;
-
-            this.MapHeight = mapName.Height;
+            
             if (presetDimension != 0)
             {
                 this.MapWidth = presetDimension;
                 this.MapHeight = presetDimension;
+            }
+            else
+            {
+                this.MapWidth = mapName.Width;
+
+                this.MapHeight = mapName.Height;
             }
 
             
