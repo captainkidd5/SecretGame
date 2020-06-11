@@ -138,6 +138,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
+                    this.TileManager = this.Dungeon.AllTiles;
                     this.TileManager.Load(binaryReader);
                    
 

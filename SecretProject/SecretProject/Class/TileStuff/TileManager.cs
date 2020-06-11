@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
         public TileModificationHandler TileModificationHandler { get; set; }
 
         #region CONSTRUCTORS
-        
+
 
         //Instantiate with a premade map
         public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage, int presetDimension = 0)
@@ -123,7 +123,7 @@ namespace SecretProject.Class.TileStuff
 
             this.TileSetDimension = tileSet.Width / this.TileWidth;
 
-            
+
             if (presetDimension != 0)
             {
                 this.MapWidth = presetDimension;
@@ -136,7 +136,7 @@ namespace SecretProject.Class.TileStuff
                 this.MapHeight = mapName.Height;
             }
 
-            
+
 
             this.tileCounter = 0;
 
@@ -516,7 +516,7 @@ namespace SecretProject.Class.TileStuff
 
             foreach (string key in AnimationFrameKeysToRemove)
             {
-               AnimationFrames.Remove(key);
+                AnimationFrames.Remove(key);
             }
         }
 
@@ -570,19 +570,26 @@ namespace SecretProject.Class.TileStuff
                         if (this.AllTiles[z][i, j].GID != -1)
                         {
 
-
-
+                            Color tileColor = Color.White;
+                            if(Game1.GetCurrentStage().ShowBorders)
+                            {
+                                if (this.Objects.ContainsKey(AllTiles[z][i, j].TileKey))
+                                {
+                                    tileColor = Color.Red;
+                                }
+                            }
+                            
 
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White * this.AllTiles[z][i, j].ColorMultiplier,
+                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, tileColor * this.AllTiles[z][i, j].ColorMultiplier,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                             }
                             else
                             {
-                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White,
+                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, tileColor,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
@@ -754,6 +761,9 @@ namespace SecretProject.Class.TileStuff
             int mapWidth = binaryReader.ReadInt32();
 
             this.AllTiles = new List<Tile[,]>();
+            this.AllItems = new List<Item>();
+            this.Objects = new Dictionary<string, List<ICollidable>>();
+            
             for (int i = 0; i < layerCount; i++)
             {
                 this.AllTiles.Add(new Tile[mapWidth, mapWidth]);
@@ -771,19 +781,19 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-          //  if (this.Stage != Game1.Town)
+            //  if (this.Stage != Game1.Town)
             //{
-                for (int z = 0; z < layerCount; z++)
-                {
+            for (int z = 0; z < layerCount; z++)
+            {
 
-                    for (int i = 0; i < mapWidth; i++)
+                for (int i = 0; i < mapWidth; i++)
+                {
+                    for (int j = 0; j < mapWidth; j++)
                     {
-                        for (int j = 0; j < mapWidth; j++)
-                        {
-                            TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
-                        }
+                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                     }
                 }
+            }
             //this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             //int storableItemCount = binaryReader.ReadInt32();
             //for (int c = 0; c < storableItemCount; c++)

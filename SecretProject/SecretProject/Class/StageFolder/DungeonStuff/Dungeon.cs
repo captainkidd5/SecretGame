@@ -111,8 +111,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public virtual void SwitchRooms(int x, int y, Dir directionToGoTo)
         {
+            this.CurrentRoom.Save(this.RoomDirectory + "/" + this.CurrentRoom.X + "," + CurrentRoom.Y + ".dat");
             DungeonRoom room;
-
+            ResetDebugString();
             room = this.Rooms[x, y];
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition();
             GenerateRoomSavePath(room);
@@ -189,11 +190,51 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.RoomDirectory = reader.ReadString();
 
         }
-
+        public bool CurrentRoomDebugDataGotten { get; private set; }
+        public int NorthPortal { get; private set; }
+        public int EastPortal { get; private set; }
+        public int SouthPortal { get; private set; }
+        public int WestPortal { get; private set; }
+        public string RoomString { get; private set; }
         public override string GetDebugString()
         {
-            
-            return this.CurrentRoom.X.ToString() + "," + this.CurrentRoom.Y.ToString();
+
+            if (!CurrentRoomDebugDataGotten)
+            {
+
+
+                
+                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Up) != null)
+                {
+                    NorthPortal = 1;
+                }
+                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Right) != null)
+                {
+                    EastPortal = 1;
+
+                }
+                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
+                {
+                    SouthPortal = 1;
+                }
+                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Left) != null)
+                {
+                    WestPortal = 1;
+                }
+                CurrentRoomDebugDataGotten = true;
+                this.RoomString = this.CurrentRoom.X.ToString() + "," + this.CurrentRoom.Y.ToString() + "\n\n " + NorthPortal.ToString()
+                    + "\n" + WestPortal.ToString() + "  " + EastPortal.ToString() + "\n  " + SouthPortal.ToString();
+            }
+            return this.RoomString;
+        }
+
+        private void ResetDebugString()
+        {
+            NorthPortal = 0;
+            EastPortal = 0;
+            SouthPortal = 0;
+            WestPortal = 0;
+            CurrentRoomDebugDataGotten = false;
         }
 
     }
