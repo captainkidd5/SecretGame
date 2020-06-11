@@ -114,7 +114,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             DungeonRoom room;
 
             room = this.Rooms[x, y];
-
+            Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition();
             GenerateRoomSavePath(room);
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
@@ -125,13 +125,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     Game1.Player.Position = new Vector2(512, 32);
                     break;
                 case Dir.Up:
-                    Game1.Player.Position = new Vector2(512, 1000);
+                    Game1.Player.Position = new Vector2(512, 900);
                     break;
                 case Dir.Left:
                     Game1.Player.Position = new Vector2(1000, 512);
                     break;
                 case Dir.Right:
-                    Game1.Player.Position = new Vector2(1000, 512);
+                    Game1.Player.Position = new Vector2(64, 512);
                     break;
             }
         }

@@ -69,17 +69,19 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         }
                         else if(z == 3)
                         {
-                            if (j == 5)
+                            
+                            if (j == 4 || j == 63)
                             {
-                                gid = 1221;
+                                if(i < 30 || i > 34)
+                                {
+                                    gid = 720;
+                                }
+                               
                             }
-                            else if (j == 63)
-                            {
-                                gid = 523;
-                            }
+ 
                             else
                             {
-                                if(Game1.Utility.RNumber(0, 10 ) < 3)
+                                if(Game1.Utility.RNumber(0, 20 ) <3)
                                 {
                                     gid = 34;
                                 }
@@ -87,14 +89,18 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         }
                         else if (z == 4)
                         {
-                            if (i == 63)
+                            if(j < 28 || j > 34)
                             {
-                                gid = 719;
+                                if (i == 63)
+                                {
+                                    gid = 720;
+                                }
+                                else if (i == 0)
+                                {
+                                    gid = 720;
+                                }
                             }
-                            else if (i == 0)
-                            {
-                                gid = 722;
-                            }
+                           
                         }
 
                         tempTile = new Tile(i, j, gid) { LayerToDrawAt = i };

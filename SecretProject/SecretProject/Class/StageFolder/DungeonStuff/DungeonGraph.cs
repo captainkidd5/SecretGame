@@ -248,10 +248,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     return 0;
 
                 case Dir.Left:
-                    return 16;
+                    return 64;
 
                 case Dir.Right:
-                    return -16;
+                    return -64;
 
                 default:
                     throw new Exception("direction " + directionOfNewRoom.ToString() + " is invalid!");
@@ -262,9 +262,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             switch (directionOfNewRoom)
             {
                 case Dir.Down:
-                    return -32;
+                    return -64;
                 case Dir.Up:
-                    return 32;
+                    return 64;
 
                 case Dir.Left:
                     return 0;
@@ -293,7 +293,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     return new Rectangle(496, 0, 32, 16);
 
                 case Dir.Right:
-                    return new Rectangle(1008, 496, 16, 32);
+                    return new Rectangle(1020, 496, 16, 32);
 
                 case Dir.Left:
                     return new Rectangle(0, 496, 16, 32);
