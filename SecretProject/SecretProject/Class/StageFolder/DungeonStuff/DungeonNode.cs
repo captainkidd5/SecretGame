@@ -19,7 +19,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <param name="clear">Whether or not the room will be passable or impassbile</param>
+        /// <param name="clear">Whether or not the room will be passable from at least one direction, or impassbile</param>
         public DungeonNode(int x, int y, GridStatus gridStatus)
         {
             this.X = x;
