@@ -579,5 +579,10 @@ namespace SecretProject.Class.StageFolder
         {
 
         }
+
+        public string GetDebugString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

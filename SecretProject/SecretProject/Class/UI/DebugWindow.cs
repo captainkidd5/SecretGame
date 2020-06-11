@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.NPCStuff.Enemies.Bosses;
+using SecretProject.Class.StageFolder.DungeonStuff;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.Universal;
@@ -163,6 +164,11 @@ namespace SecretProject.Class.UI
         {
             return "["+chunk.ArrayI + "," + chunk.ArrayJ + "] ";
         }
+
+        private string WriteDungeonGrid()
+        {
+            return Game1.ForestDungeon.GetDebugString();
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -172,11 +178,9 @@ namespace SecretProject.Class.UI
                 spriteBatch.Begin();
                 //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
                 //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                //spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + this.ElapsedMS + " \n \n Mouse I  " +
-                //   (int)(Game1.MouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.OverWorld.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
-                //    + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.MouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
-                //    Game1.MouseManager.WorldMousePosition.Y + "\n\n Mouse Angle" + Game1.MouseManager.MouseAngleInRelationToPlayer.ToString(), position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + this.ElapsedMS + " \n \n " + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
+                    + Game1.cam.Pos.Y + " \n \n Current Room: " + WriteDungeonGrid(), position, Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
 
                 this.DebugButton1.Draw(spriteBatch);

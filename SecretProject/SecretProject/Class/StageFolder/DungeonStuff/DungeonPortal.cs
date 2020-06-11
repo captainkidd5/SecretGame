@@ -27,23 +27,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.InteractionRectangle = destinationRectangle;
             this.SafteyX = safteyX;
             this.SafteyY = safteyY;
-            switch(directionToSpawn)
-            {
-                case Dir.Down:
-                    this.DirectionToSpawn = Dir.Up;
-                    break;
-                case Dir.Up:
-                    this.DirectionToSpawn = Dir.Down;
-                    break;
-                case Dir.Left:
-                    this.DirectionToSpawn = Dir.Right;
-                    break;
-                case Dir.Right:
-                    this.DirectionToSpawn = Dir.Left;
-                    break;
-                    
-            }
-
+            this.DirectionToSpawn = directionToSpawn;
         }
 
       

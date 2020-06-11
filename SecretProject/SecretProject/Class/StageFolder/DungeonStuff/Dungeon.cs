@@ -128,7 +128,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     Game1.Player.Position = new Vector2(512, 1000);
                     break;
                 case Dir.Left:
-                    Game1.Player.Position = new Vector2(32, 512);
+                    Game1.Player.Position = new Vector2(1000, 512);
                     break;
                 case Dir.Right:
                     Game1.Player.Position = new Vector2(1000, 512);
@@ -161,6 +161,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 if (player.Rectangle.Intersects(portals[p].InteractionRectangle))
                 {
                     //portalgraph logic here
+
                     SwitchRooms(portals[p].DestinationRoom.X, portals[p].DestinationRoom.Y, portals[p].DirectionToSpawn);
                     return;
                 }
@@ -189,6 +190,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         }
 
+        public override string GetDebugString()
+        {
+            
+            return this.CurrentRoom.X.ToString() + "," + this.CurrentRoom.Y.ToString();
+        }
 
     }
 }

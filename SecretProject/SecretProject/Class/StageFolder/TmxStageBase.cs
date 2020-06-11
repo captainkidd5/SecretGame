@@ -581,6 +581,11 @@ namespace SecretProject.Class.StageFolder
             this.AllTiles.Load(reader);
             this.SavePath = reader.ReadString();
         }
+
+        public virtual string GetDebugString()
+        {
+            throw new NotImplementedException();
+        }
     }
     
 }

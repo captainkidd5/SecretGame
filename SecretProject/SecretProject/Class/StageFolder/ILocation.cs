@@ -112,5 +112,6 @@ namespace SecretProject.Class.StageFolder
 
         void AssignPath(string startPath);
 
+        string GetDebugString();
     }
 }
