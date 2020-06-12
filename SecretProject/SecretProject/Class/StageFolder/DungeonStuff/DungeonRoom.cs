@@ -35,7 +35,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.Dungeon = dungeon;
             this.X = x;
             this.Y = y;
-            
+
 
             this.DungeonPortals = new List<DungeonPortal>();
 
@@ -51,10 +51,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.DungeonPortals = new List<DungeonPortal>();
         }
 
-        public void Generate( string path)
+        public void Generate(string path)
         {
             int roomDimensions = 64;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
+
+            float[,] bottomNoise = new float[64, 64];
+            for (int i = 0; i < this.TileManager.AllTiles[0].GetLength(0); i++)
+            {
+                for (int j = 0; j < this.TileManager.AllTiles[0].GetLength(1); j++)
+                {
+                    bottomNoise[i, j] = Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+
+                }
+            }
+
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
@@ -63,27 +74,28 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     {
                         Tile tempTile;
                         int gid = 0;
-                        if (z == 0)
+                        if (z != 4)
                         {
-                            gid = 402;
-                             
+                            gid = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(ChunkType.Rai, bottomNoise[i, j], z);
                         }
-                        else if(z == 3)
+
+
+                        if (z == 3)
                         {
-                            
+
                             if (j == 4 || j == 63)
                             {
-                                if(i < 30 || i > 34)
+                                if (i < 30 || i > 34)
                                 {
                                     gid = 720;
                                 }
-                               
+
                             }
 
                         }
                         else if (z == 4)
                         {
-                            if(j < 28 || j > 34)
+                            if (j < 28 || j > 34)
                             {
                                 if (i == 63)
                                 {
@@ -94,13 +106,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                     gid = 720;
                                 }
                             }
-                           
+
                         }
-                        
+
                         tempTile = new Tile(i, j, gid) { LayerToDrawAt = i };
                         this.TileManager.AllTiles[z][i, j] = tempTile;
 
-                        TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
+                        
 
 
 
@@ -108,7 +120,46 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 }
             }
             SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (IInformationContainer)this.TileManager, Game1.Utility.RGenerator);
-            Save(path);
+            Dictionary<int, TmxTilesetTile> tileDictionary = this.TileManager.MapName.Tilesets[0].Tiles;
+            for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
+            {
+                for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
+                {
+                    for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
+                    {
+                        if (tileDictionary.ContainsKey(TileManager.AllTiles[z][i, j].GID))
+                        {
+                            if (tileDictionary[TileManager.AllTiles[z][i, j].GID].Properties.ContainsKey("generate"))
+                            {
+                                this.TileManager.AllTiles[z][i, j].GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), tileDictionary[TileManager.AllTiles[z][i, j].GID].Properties["generate"]);
+                                //grass = 1, stone = 2, wood = 3, sand = 4
+                            }
+
+                            TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.TileManager.AllTiles[z][i, j].GenerationType);
+                            if (container != null)
+                            {
+
+                                int newGID = this.TileManager.AllTiles[z][i, j].GID ;
+                                Game1.Procedural.GenerationReassignForTiling(newGID, container.GeneratableTiles, container.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight,(IInformationContainer)this.TileManager, null);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+            for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
+            {
+                for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
+                {
+                    for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
+                    {
+                        TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
+                    }
+                }
+            }
+
+                        Save(path);
         }
 
         public void Save(string path)
@@ -135,10 +186,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 {
                     this.TileManager = this.Dungeon.AllTiles;
                     this.TileManager.Load(binaryReader);
-                   
 
 
-                    
+
+
 
                     binaryReader.Close();
 

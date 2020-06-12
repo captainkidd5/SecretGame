@@ -11,6 +11,7 @@ using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.TileStuff.TileModifications;
 using System;
 using System.Collections.Generic;
@@ -258,7 +259,34 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+        /// <summary>
+        /// Loads tiling dictionaries in from tileset and assigns them into Game1.procedural so that the wangmanager knows what to do.
+        /// </summary>
+        public void LoadGeneratableTileLists()
+        {
+            string generationProperty = string.Empty;
+            for (int i = 0; i < 10000; i++)
+            {
+                if (TileSetDictionary.ContainsKey(i))
+                {
 
+
+                    bool didSucceed = this.TileSetDictionary[i].Properties.TryGetValue("generate", out generationProperty);
+                    if (didSucceed)
+                    {
+                        GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), generationProperty);
+                        if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
+                        {
+                            Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
+                        }
+                    }
+                    // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
+
+
+
+                }
+            }
+        }
         public void AddItem(Item item, Vector2 position)
         {
             this.AllItems.Add(item);
@@ -615,11 +643,6 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        }
-
-        public void LoadGeneratableTileLists()
-        {
-            throw new NotImplementedException();
         }
 
         public void LoadInitialChunks(Vector2 position)

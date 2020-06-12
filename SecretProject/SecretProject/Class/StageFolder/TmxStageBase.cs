@@ -199,9 +199,10 @@ namespace SecretProject.Class.StageFolder
 
             this.AllPortals = new List<Portal>();
             this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber,this);
-            if(this == Game1.Town)
+            if(!Game1.AreGeneratableTilesLoaded)
             {
-                //Game1.OverWorld.AllTiles.AllTiles = this.AllTiles.AllTiles;
+                this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
+                Game1.AreGeneratableTilesLoaded = true;
             }
             this.TileWidth = this.Map.Tilesets[(int)this.TileSetNumber].TileWidth;
             this.TileHeight = this.Map.Tilesets[(int)this.TileSetNumber].TileHeight;

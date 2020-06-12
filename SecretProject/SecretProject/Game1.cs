@@ -117,6 +117,7 @@ namespace SecretProject
         public static int NPCSpawnCountLimit = 50;
 
         public static bool IsFirstTimeStartup;
+        public static bool AreGeneratableTilesLoaded;
 
         public static bool EnableMultiplayer = false;
 
