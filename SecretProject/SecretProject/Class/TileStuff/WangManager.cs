@@ -12,7 +12,7 @@ namespace SecretProject.Class.TileStuff
                 for (int q = -1; q < 2; q++)
                 {
                     Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(TileUtility.GetSquareTileCoord(mouseWorldX + t * 16)), ChunkUtility.GetChunkY(TileUtility.GetSquareTileCoord(mouseWorldY + q * 16)), tileManager.ActiveChunks);
-                    if(chunk != null)
+                    if (chunk != null)
                     {
                         int indexX = ChunkUtility.GetLocalChunkCoord(mouseWorldX + t * 16);
                         int indexY = ChunkUtility.GetLocalChunkCoord(mouseWorldY + q * 16);
@@ -25,8 +25,8 @@ namespace SecretProject.Class.TileStuff
                                             TileUtility.ChunkWidth, TileUtility.ChunkHeight, chunk);
                         }
                     }
-                    
-                    
+
+
                 }
             }
         }
@@ -104,65 +104,101 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static void ReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+        public static void GroupReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
    int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
+            for (int t = -1; t < 2; t++)
             {
-                return;
-            }
-            int keyToCheck = 0;
-            if (y > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                for (int q = -1; q < 2; q++)
                 {
-                    keyToCheck += 1;
+                    int newX = x + t;
+                    int newY = y + q;
+                    if (CheckBounds(newX, worldWidth) && CheckBounds(newY, worldWidth))
+                    {
+
+
+                        Tile tile = container.AllTiles[layer][newX, newY];
+                        if (tile != null)
+                        {
+                            ReassignForTiling(mainGid, generatableTiles, tilingDictionary, layer, newX, newY, worldWidth, worldHeight, container);
+                        }
+
+                    }
+
                 }
             }
-            
-
-            if (y < worldHeight - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
-                {
-                    keyToCheck += 8;
-                }
-            }
-
-
-            //looking at rightmost tile
-            if (x < worldWidth - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
-                {
-                    keyToCheck += 4;
-                }
-            }
-
-
-            if (x > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
-                {
-                    keyToCheck += 2;
-                }
-            }
-
-
-            TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-
-
-
         }
 
-        public static bool IsContainerWithinArrayBounds(IInformationContainer container)
+        private static bool CheckBounds(int index, int maxBounds)
         {
-            if(container.ArrayI > 0 && container.ArrayJ > 0 && container.ArrayI < 8 && container.ArrayJ < 8)
+            if (index >= 0 && index < maxBounds)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
+            public static void ReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+       int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
+            {
+                if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
+                {
+                    return;
+                }
+                int keyToCheck = 0;
+                if (y > 0)
+                {
+                    if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                    {
+                        keyToCheck += 1;
+                    }
+                }
 
+
+                if (y < worldHeight - 1)
+                {
+                    if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
+                    {
+                        keyToCheck += 8;
+                    }
+                }
+
+
+                //looking at rightmost tile
+                if (x < worldWidth - 1)
+                {
+                    if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
+                    {
+                        keyToCheck += 4;
+                    }
+                }
+
+
+                if (x > 0)
+                {
+                    if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
+                    {
+                        keyToCheck += 2;
+                    }
+                }
+
+
+                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+
+
+
+            }
+
+            public static bool IsContainerWithinArrayBounds(IInformationContainer container)
+            {
+                if (container.ArrayI > 0 && container.ArrayJ > 0 && container.ArrayI < 8 && container.ArrayJ < 8)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+        }
     }
-}
