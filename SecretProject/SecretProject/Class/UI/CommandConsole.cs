@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.StageFolder.DungeonStuff;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("settime", "settime (int)[time between 0 and 24]"),
                 new CommandWindowCommand("decreaseEnergy", "decreaseEnergy (int)[amount to decrease]"),
                 new CommandWindowCommand("add", "add (string)[mobname], (int)[count]"),
+                new CommandWindowCommand("swaproom", "swaproom (string)[roomX], (string)[roomY]"),
             };
         }
 
@@ -169,6 +171,11 @@ namespace SecretProject.Class.UI
                     //    mouseChunk, mobCount, Game1.MouseManager.WorldMousePosition);
                     //Game1.OverWorld.Enemies.AddRange(enemies);
                     
+                    break;
+                case "swaproom":
+                    int roomX = int.Parse(separatedString[1].ToLower());
+                    int roomY = int.Parse(separatedString[2].ToLower());
+                    (Game1.ForestDungeon as Dungeon).SwitchRooms(roomX, roomY, Dir.Down);
                     break;
             }
 

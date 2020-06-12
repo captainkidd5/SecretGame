@@ -129,7 +129,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        private static bool CheckBounds(int index, int maxBounds)
+        public static bool CheckBounds(int index, int maxBounds)
         {
             if (index >= 0 && index < maxBounds)
             {
