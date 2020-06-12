@@ -255,7 +255,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                 if (zeroTile.GenerationType == GenerationType.Grass)
                 {
-                    if (container.Random.Next(0, 10) < 2)
+                    if (Game1.Utility.RGenerator.Next(0, 10) < 2)
                     {
                         if ((container.Tufts.ContainsKey(tile.TileKey)))
                         {
@@ -263,13 +263,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                         else
                         {
 
-                            int numberOfGrassTuftsToSpawn = container.Random.Next(1, 4);
+                            int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
                             List<GrassTuft> tuftList = new List<GrassTuft>();
                             for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
-                                int grassType = container.Random.Next(1, 5);
+                                int grassType = Game1.Utility.RGenerator.Next(1, 5);
                                 GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
-                                    + container.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + container.Random.Next(-8, 8)));
+                                    + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                 grassTuft.TuftsIsPartOf = tuftList;
                                 tuftList.Add(grassTuft);
 

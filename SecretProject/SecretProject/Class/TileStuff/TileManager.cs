@@ -636,6 +636,7 @@ namespace SecretProject.Class.TileStuff
             {
                 this.GridItem.NormalDraw(spriteBatch, this, this);
             }
+            DrawGrassTufts(spriteBatch);
             for (int item = 0; item < this.AllItems.Count; item++)
             {
                 this.AllItems[item].Draw(spriteBatch);
@@ -643,6 +644,18 @@ namespace SecretProject.Class.TileStuff
 
 
 
+        }
+        private void DrawGrassTufts(SpriteBatch spriteBatch)
+        {
+            foreach (KeyValuePair<string, List<GrassTuft>> entry in this.Tufts)
+            {
+                for (int i = 0; i < entry.Value.Count; i++)
+                {
+
+                    entry.Value[i].Draw(spriteBatch, this.TileSet);
+
+                }
+            }
         }
 
         public void LoadInitialChunks(Vector2 position)

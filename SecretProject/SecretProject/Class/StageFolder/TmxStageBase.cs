@@ -297,7 +297,7 @@ namespace SecretProject.Class.StageFolder
 
         #region UPDATE
 
-        public virtual void PerformQuadTreeInsertions(Player player)
+        public virtual void PerformQuadTreeInsertions(GameTime gameTime, Player player)
         {
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
 
@@ -310,6 +310,20 @@ namespace SecretProject.Class.StageFolder
                         obj.Value[z].Entity.Reset();
                     }
                     this.QuadTree.Insert(obj.Value[z]);
+                }
+            }
+
+            foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
+            {
+                for (int g = 0; g < grass.Value.Count; g++)
+                {
+                    if (grass.Value[g].IsUpdating)
+                    {
+                        grass.Value[g].Update(gameTime);
+                    }
+
+                    this.QuadTree.Insert(grass.Value[g]);
+
                 }
             }
 
@@ -366,7 +380,7 @@ namespace SecretProject.Class.StageFolder
             {
                 this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
             }
-            PerformQuadTreeInsertions(player);
+            PerformQuadTreeInsertions(gameTime, player);
             this.IsDark = Game1.GlobalClock.IsNight;
             float playerOldYPosition = player.position.Y;
             UpdatePortals(player,mouse);
