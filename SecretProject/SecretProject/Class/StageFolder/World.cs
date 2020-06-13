@@ -369,18 +369,18 @@ namespace SecretProject.Class.StageFolder
                     {
 
 
-                        if (this.Cam.CameraScreenRectangle.Intersects(this.Enemies[i].NPCHitBoxRectangle))
-                        {
-                            this.Enemies[i].TimeInUnloadedChunk = Game1.GlobalClock.SecondsPassedToday;
-                        }
-                        if (Game1.GlobalClock.SecondsPassedToday - this.Enemies[i].TimeInUnloadedChunk > 100)
-                        {
-                            Enemies.RemoveAt(i);
-                        }
-                        else
-                        {
+                        //if (this.Cam.CameraScreenRectangle.Intersects(this.Enemies[i].NPCHitBoxRectangle))
+                        //{
+                        //    this.Enemies[i].TimeInUnloadedChunk = Game1.GlobalClock.SecondsPassedToday;
+                        //}
+                        //if (Game1.GlobalClock.SecondsPassedToday - this.Enemies[i].TimeInUnloadedChunk > 100)
+                        //{
+                        //    Enemies.RemoveAt(i);
+                        //}
+                        //else
+                        //{
                             this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle, this.Enemies);
-                        }
+                        //}
 
 
                     }

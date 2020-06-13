@@ -241,7 +241,49 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 }
             }
             SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (IInformationContainer)this.TileManager, Game1.Utility.RGenerator);
+            Dungeon.Enemies = new List<NPCStuff.Enemies.Enemy>();
+            if (Game1.AllowNaturalNPCSpawning)
+            {
+
+
+                if (Dungeon.Enemies.Count < Game1.NPCSpawnCountLimit)
+                {
+
+
+                    Tile tile = SearchForEmptyTile(3);
+                    if (tile != null)
+                    {
+                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                        if (tilingContainer != null)
+                        {
+
+                            Dungeon.Enemies.AddRange(Dungeon.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                        }
+
+                    }
+                }
+            }
             Save(path);
+        }
+
+        /// <summary>
+        /// Tries X times at random to find a tile which doesn't contain an obstacle
+        /// </summary>
+        /// <param name="timesToSearch">number of attempts</param>
+        /// <returns></returns>
+        private Tile SearchForEmptyTile(int timesToSearch)
+        {
+            for (int i = 0; i < timesToSearch; i++)
+            {
+                int randomSpawnX = Game1.Utility.RNumber(2, TileManager.MapWidth - 1);
+                int randomSpawnY = Game1.Utility.RNumber(2, TileManager.MapWidth - 1);
+                if (Dungeon.AllTiles.PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
+                {
+                    return Dungeon.AllTiles.AllTiles[0][randomSpawnX, randomSpawnY];
+                }
+            }
+
+            return null;
         }
 
         public void Save(string path)

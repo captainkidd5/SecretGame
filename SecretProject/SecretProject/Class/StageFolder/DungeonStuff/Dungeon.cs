@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.TileStuff;
 using System;
@@ -25,6 +26,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public string RoomDirectory { get; set; }
 
         public DungeonGraph DungeonGraph { get; private set; }
+        public NPCGenerator NPCGenerator{ get; private set; }
 
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
@@ -32,6 +34,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             InitializeRooms();
             this.Content = content;
             this.DungeonGraph = new DungeonGraph(this, 100);
+            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, graphics);
         }
 
         private void InitializeRooms()

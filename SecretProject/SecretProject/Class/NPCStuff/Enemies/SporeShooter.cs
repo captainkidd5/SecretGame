@@ -88,11 +88,11 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
 
             this.IsMoving = true;
-            if (this.TimeInUnloadedChunk > 100)
-            {
-                enemies.Remove(this);
-                return;
-            }
+            //if (this.TimeInUnloadedChunk > 100)
+            //{
+            //    enemies.Remove(this);
+            //    return;
+            //}
             if (this.HitPoints <= 0)
             {
                 RollPeriodicDrop(this.Position);
