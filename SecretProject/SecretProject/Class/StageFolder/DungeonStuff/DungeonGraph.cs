@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using SecretProject.Class.PathFinding;
 using System;
 using System.Collections.Generic;

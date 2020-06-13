@@ -1038,7 +1038,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(generationType);
                     WangManager.GroupReassignForTiling(tile.GID, tilingContainer.GeneratableTiles, tilingContainer.TilingDictionary, layer,
-                        x, y,64,64,
+                        x, y, Game1.GetCurrentStage().AllTiles.MapWidth, Game1.GetCurrentStage().AllTiles.MapWidth,
                         (IInformationContainer)Game1.GetCurrentStage().AllTiles);
                 }
             }

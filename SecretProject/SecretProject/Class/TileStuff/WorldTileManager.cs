@@ -102,6 +102,8 @@ namespace SecretProject.Class.TileStuff
         public Texture2D ChunkTexture { get; set; }
 
         public TileModificationHandler TileModificationHandler { get; set; }
+        public int MapWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int MapHeight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet,  TmxMap mapName, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber)
         {

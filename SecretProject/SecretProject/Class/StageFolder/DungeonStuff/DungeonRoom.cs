@@ -51,9 +51,93 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             this.DungeonPortals = new List<DungeonPortal>();
         }
+        public bool ContainsDoorDown { get; private set; }
+        public bool ContainsDoorUp { get; private set; }
+        public bool ContainsDoorLeft { get; private set; }
+        public bool ContainsDoorRight { get; private set; }
+        private void GetDoorwaysBasedOnPortals()
+        {
+            if(this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
+            {
+                this.ContainsDoorDown = true;
+            }
+            if (this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Up) != null)
+            {
+                this.ContainsDoorUp = true;
+            }
+            if (this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Left) != null)
+            {
+                this.ContainsDoorLeft = true;
+            }
+            if (this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Right) != null)
+            {
+                this.ContainsDoorRight = true;
+            }
+        }
+
+        /// <summary>
+        /// Creates four walls around the room, and will create holes if there exists a portal at that spot.
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        private void GenerateSorroundingWalls(ref int gid, int i, int j)
+        {
+            if (j == 3 || j == 63)
+            {
+                gid = 720;
+
+            }
+            if (i == 0 || i == 63)
+            {
+                gid = 720;
+            }
+
+            if (ContainsDoorDown)
+            {
+                if (j == 63)
+                {
+                    if (i > 30 && i < 33)
+                    {
+                        gid = 0;
+                    }
+                }
+            }
+            if (ContainsDoorUp)
+            {
+                if (j == 3)
+                {
+                    if (i > 30 && i < 33)
+                    {
+                        gid = 0;
+                    }
+                }
+            }
+            if (ContainsDoorLeft)
+            {
+                if (i == 0)
+                {
+                    if (j > 30 && j < 33)
+                    {
+                        gid = 0;
+                    }
+                }
+            }
+            if (ContainsDoorRight)
+            {
+                if (i == 63)
+                {
+                    if (j > 30 && j < 33)
+                    {
+                        gid = 0;
+                    }
+                }
+            }
+        }
 
         public void Generate(string path)
         {
+            GetDoorwaysBasedOnPortals();
             int roomDimensions = 64;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
 
@@ -84,26 +168,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         if (z == 3)
                         {
 
-                            if (j == 3 || j == 63)
-                            {
-                                if (i < 30 || i > 34)
-                                {
-                                    gid = 720;
-                                }
 
-                            }
-                            if (j < 28 || j > 34)
-                            {
-                                if (i == 63)
-                                {
-                                    gid = 720;
-                                }
-                                else if (i == 0)
-                                {
-                                    gid = 720;
-                                }
-                            }
 
+                            GenerateSorroundingWalls(ref gid, i, j);
+                            
                         }
 
   
