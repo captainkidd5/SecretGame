@@ -3103,6 +3103,11 @@
    <property name="step" value="4"/>
   </properties>
  </tile>
+ <tile id="2934">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3100">
   <properties>
    <property name="generate" value="LandSwamp"/>

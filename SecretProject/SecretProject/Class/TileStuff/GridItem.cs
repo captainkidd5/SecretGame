@@ -372,10 +372,6 @@ namespace SecretProject.Class.TileStuff
                             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                             {
 
-
-
-
-
                                 if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
                                 {
                                     SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
