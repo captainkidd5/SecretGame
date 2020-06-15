@@ -56,7 +56,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.SavePath = this.SavePath + "/" + this.StageName + "data";
             if (File.Exists(this.SavePath))
             {
-
+                
             }
             else
             {
@@ -201,34 +201,42 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public string RoomString { get; private set; }
         public override string GetDebugString()
         {
-
-            if (!CurrentRoomDebugDataGotten)
+            if (Game1.GetCurrentStage() == Game1.ForestDungeon)
             {
 
 
-                
-                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Up) != null)
+                if (!CurrentRoomDebugDataGotten)
                 {
-                    NorthPortal = 1;
-                }
-                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Right) != null)
-                {
-                    EastPortal = 1;
 
+
+
+                    if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Up) != null)
+                    {
+                        NorthPortal = 1;
+                    }
+                    if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Right) != null)
+                    {
+                        EastPortal = 1;
+
+                    }
+                    if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
+                    {
+                        SouthPortal = 1;
+                    }
+                    if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Left) != null)
+                    {
+                        WestPortal = 1;
+                    }
+                    CurrentRoomDebugDataGotten = true;
+                    this.RoomString = this.CurrentRoom.X.ToString() + "," + this.CurrentRoom.Y.ToString() + "\n\n " + NorthPortal.ToString()
+                        + "\n" + WestPortal.ToString() + "  " + EastPortal.ToString() + "\n  " + SouthPortal.ToString();
                 }
-                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
-                {
-                    SouthPortal = 1;
-                }
-                if (CurrentRoom.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Left) != null)
-                {
-                    WestPortal = 1;
-                }
-                CurrentRoomDebugDataGotten = true;
-                this.RoomString = this.CurrentRoom.X.ToString() + "," + this.CurrentRoom.Y.ToString() + "\n\n " + NorthPortal.ToString()
-                    + "\n" + WestPortal.ToString() + "  " + EastPortal.ToString() + "\n  " + SouthPortal.ToString();
+                return this.RoomString;
             }
-            return this.RoomString;
+            else
+            {
+                return "Not in forest dungeon";
+            }
         }
 
         private void ResetDebugString()

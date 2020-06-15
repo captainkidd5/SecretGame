@@ -19,6 +19,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class DungeonRoom
     {
+        public int Width { get; set; }
         public bool IsStartingRoom { get; set; }
         public Dungeon Dungeon { get; private set; }
         public int X { get; set; }
@@ -29,6 +30,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public List<DungeonPortal> DungeonPortals { get; set; }
 
+        private int leftWallTop;
+        private int rightWallTop;
+        private int topWallLeft;
+        private int bottomWallLeft;
 
 
         public DungeonRoom(Dungeon dungeon, int x, int y)
@@ -83,21 +88,23 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// <param name="j"></param>
         private void GenerateSorroundingWalls(ref int gid, int i, int j)
         {
-            if (j == 3 || j == 63)
+            if (j == 3 || j == this.Width - 1)
             {
                 gid = 720;
 
             }
-            if (i == 0 || i == 63)
+            if (i == 0 || i == this.Width - 1)
             {
                 gid = 720;
             }
 
             if (ContainsDoorDown)
             {
-                if (j == 63)
+                if (j == this.Width - 1)
                 {
-                    if (i > 30 && i < 33)
+                    
+                    int rightSide = bottomWallLeft + 5;
+                    if (i > bottomWallLeft && i < rightSide)
                     {
                         gid = 0;
                     }
@@ -107,7 +114,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 if (j == 3)
                 {
-                    if (i > 30 && i < 33)
+                    int rightSide = topWallLeft + 5;
+                    if (i > topWallLeft && i < rightSide)
                     {
                         gid = 0;
                     }
@@ -117,7 +125,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 if (i == 0)
                 {
-                    if (j > 30 && j < 33)
+
+                    int bottomSide = leftWallTop - 5;
+                    if (j < leftWallTop && j > bottomSide)
                     {
                         gid = 0;
                     }
@@ -125,9 +135,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
             if (ContainsDoorRight)
             {
-                if (i == 63)
+                if (i == Width -1)
                 {
-                    if (j > 30 && j < 33)
+
+                    int bottomSide = rightWallTop - 5;
+                    if (j < rightWallTop && j > bottomSide)
                     {
                         gid = 0;
                     }
@@ -138,10 +150,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public void Generate(string path)
         {
             GetDoorwaysBasedOnPortals();
-            int roomDimensions = 64;
+            int roomDimensions = 128;
+            this.Width = roomDimensions;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
-
-            float[,] bottomNoise = new float[64, 64];
+            topWallLeft = Game1.Utility.RGenerator.Next(0, this.Width +5);
+            bottomWallLeft = Game1.Utility.RGenerator.Next(0, this.Width + 5);
+            leftWallTop = Game1.Utility.RGenerator.Next(0, this.Width + 5);
+            rightWallTop = Game1.Utility.RGenerator.Next(0, this.Width + 5);
+            float[,] bottomNoise = new float[Width, Width];
             for (int i = 0; i < this.TileManager.AllTiles[0].GetLength(0); i++)
             {
                 for (int j = 0; j < this.TileManager.AllTiles[0].GetLength(1); j++)
@@ -263,6 +279,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     }
                 }
             }
+            Dungeon.MapRectangle = new Rectangle(0, 0, 16 * this.Width, 16 * this.Width);
             Save(path);
         }
 
@@ -277,9 +294,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 int randomSpawnX = Game1.Utility.RNumber(2, TileManager.MapWidth - 1);
                 int randomSpawnY = Game1.Utility.RNumber(2, TileManager.MapWidth - 1);
-                if (Dungeon.AllTiles.PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
+                if (this.TileManager.PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
                 {
-                    return Dungeon.AllTiles.AllTiles[0][randomSpawnX, randomSpawnY];
+                    return this.TileManager.AllTiles[0][randomSpawnX, randomSpawnY];
                 }
             }
 
@@ -313,7 +330,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
 
 
-
+                    Dungeon.MapRectangle = new Rectangle(0, 0, 16 * this.Width, 16 * this.Width);
 
                     binaryReader.Close();
 

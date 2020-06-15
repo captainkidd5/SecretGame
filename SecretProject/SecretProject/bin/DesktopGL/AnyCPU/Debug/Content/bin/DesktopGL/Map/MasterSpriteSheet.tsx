@@ -3409,6 +3409,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3802">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="12" width="6" height="3"/>
+  </objectgroup>
+ </tile>
  <tile id="3820">
   <properties>
    <property name="generate" value="CaveWater"/>
