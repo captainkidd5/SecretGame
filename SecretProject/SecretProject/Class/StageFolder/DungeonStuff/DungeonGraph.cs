@@ -55,7 +55,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 {
                     
                     int key = WangRooms(Nodes[i, j].GridStatus, i, j, this.Dimensions, this.Dimensions);
-                    Dungeon.Rooms[i, j].DungeonPortals = GetPortalsFromWang(Nodes[i, j], key);
+                    if(!(i == 99 && j == 0))
+                    {
+                        Dungeon.Rooms[i, j].DungeonPortals = GetPortalsFromWang(Nodes[i, j], key);
+                    }
+                    
                 }
             }
         }
@@ -235,7 +239,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     break;
             }
 
-            DungeonPortal newPortal = new DungeonPortal(this.Nodes[currentNode.X + plusX, currentNode.Y + plusY], GetRectangleFromDirection(direction), GetSafteyXFromDirection(direction), GetSafteyYFromDirection(direction), direction);
+            DungeonPortal newPortal = new DungeonPortal(this.Nodes[currentNode.X + plusX, currentNode.Y + plusY], GetSafteyXFromDirection(direction), GetSafteyYFromDirection(direction), direction);
             portals.Add(newPortal);
         }
 
@@ -283,24 +287,24 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// <param name="currentRoom"></param>
         /// <param name="destinationRoom"></param>
         /// <returns></returns>
-        public static Rectangle GetRectangleFromDirection(Dir directionOfNewRoom)
+        public static Rectangle GetRectangleFromDirection(Vector2 tilePosition, int extendedTileAmt, Dir wallDirection)
         {
           
-            switch (directionOfNewRoom)
+            switch (wallDirection)
             {
                 case Dir.Down:
-                    return new Rectangle(496, 1008, 32, 16);
+                    return new Rectangle((int)tilePosition.X, (int)tilePosition.Y, extendedTileAmt * 16, 16);
                 case Dir.Up:
-                    return new Rectangle(496, 0, 32, 16);
+                    return new Rectangle((int)tilePosition.X, (int)tilePosition.Y, extendedTileAmt * 16, 16);
 
                 case Dir.Right:
-                    return new Rectangle(1020, 496, 16, 32);
+                    return new Rectangle((int)tilePosition.X, (int)tilePosition.Y, 16, extendedTileAmt * 16);
 
                 case Dir.Left:
-                    return new Rectangle(0, 496, 16, 32);
+                    return new Rectangle((int)tilePosition.X, (int)tilePosition.Y, 16, extendedTileAmt * 16);
 
                 default:
-                    throw new Exception("direction " + directionOfNewRoom.ToString() + " is invalid!");
+                    throw new Exception("direction " + wallDirection.ToString() + " is invalid!");
             }
         }
     }

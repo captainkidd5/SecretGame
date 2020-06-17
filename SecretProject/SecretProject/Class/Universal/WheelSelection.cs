@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Universal
 {
-    public class WheelSelection
+    public static class WheelSelection
     {
-        public IWeightable GetSelection(List<IWeightable> myList)
+        public static IWeightable GetSelection(List<IWeightable> myList)
         {
             int poolSize = 0;
             for (int i = 0; i < myList.Count; i++)

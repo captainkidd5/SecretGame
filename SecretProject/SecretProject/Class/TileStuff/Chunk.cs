@@ -1035,7 +1035,7 @@ namespace SecretProject.Class.TileStuff
                             TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                             if (container != null)
                             {
-                                this.ITileManager.Stage.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                               // this.ITileManager.Stage.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                             }
 
 

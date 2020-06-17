@@ -109,35 +109,48 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 startingRoom.Save(startingRoomSavePath);
             }
             this.CurrentRoom = startingRoom;
-           // this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(new Vector2(530, 1015), DungeonGraph.GetNode(99, 0), DungeonGraph.GetNode(99, 1), 0, -15));
+            
+            this.CurrentRoom.DungeonPortals.Add(new DungeonPortal( DungeonGraph.GetNode(99, 1),0, -64,Dir.Down));
+            this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80,16);
         }
 
-        public virtual void SwitchRooms(int x, int y, Dir directionToGoTo)
+        public void SwitchRooms(int x, int y, Dir directionToGoTo)
         {
             this.CurrentRoom.Save(this.RoomDirectory + "/" + this.CurrentRoom.X + "," + CurrentRoom.Y + ".dat");
             DungeonRoom room;
             ResetDebugString();
             room = this.Rooms[x, y];
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition();
+            this.Enemies = new List<NPCStuff.Enemies.Enemy>();
             GenerateRoomSavePath(room);
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
             this.AllTiles = this.CurrentRoom.TileManager;
-            switch(directionToGoTo)
+
+            int newPlayerX = 0;
+            int newPlayerY = 0;
+            switch(directionToGoTo) //player should spawn on the opposite side of the room where the next room's opening is
             {
                 case Dir.Down:
-                    Game1.Player.Position = new Vector2(512, 32);
+                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.X;
+                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.Y + 32;
+
                     break;
                 case Dir.Up:
-                    Game1.Player.Position = new Vector2(512, 900);
+                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.X;
+                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.Y -32;
+
                     break;
                 case Dir.Left:
-                    Game1.Player.Position = new Vector2(1000, 512);
+                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.X - 32;
+                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.Y;
                     break;
                 case Dir.Right:
-                    Game1.Player.Position = new Vector2(64, 512);
+                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.X + 32;
+                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.Y;
                     break;
             }
+            Game1.Player.position = new Vector2(newPlayerX, newPlayerY);
         }
 
         public void GenerateRoomSavePath(DungeonRoom room)

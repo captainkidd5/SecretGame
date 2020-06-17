@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 
@@ -23,28 +24,29 @@ namespace SecretProject.Class.NPCStuff
 
     public class NPCGenerator
     {
-        public static List<NPCSpawnData> DirtCreatures = new List<NPCSpawnData>()
-        {
-            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 0f, .2f, .4f),
-            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .2f),
 
-             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .4f),
-             //new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, .7f, .9f, .3f),
-             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt, .7f, .9f, .3f),
+        public static List<IWeightable> DirtCreatures = new List<IWeightable>()
+        {
+            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 20, .4f),
+            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, 40, .2f),
+
+             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, 40, .4f),
+             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, 40, .3f),
+             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt,  40, .3f),
 
 
         };
 
-        public static List<NPCSpawnData> SandCreatures = new List<NPCSpawnData>()
+        public static List<IWeightable> SandCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.Crab, GenerationType.Sand, .2f, .5f, .25f)
+            new NPCSpawnData(NPCType.Crab, GenerationType.Sand, 30, .25f)
         };
-        public static List<NPCSpawnData> CaveCreatures = new List<NPCSpawnData>()
+        public static List<IWeightable> CaveCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  .5f, .9f, .25f),
-            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, .0f, .5f, 0f),
+            new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  30,  .25f),
+            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, 30,  0f),
         };
-        public static List<List<NPCSpawnData>> NPCInfo = new List<List<NPCSpawnData>>()
+        public static List<List<IWeightable>> NPCInfo = new List<List<IWeightable>>()
         {
             DirtCreatures,
             SandCreatures,
@@ -53,13 +55,15 @@ namespace SecretProject.Class.NPCStuff
 
 
 
-        public IInformationContainer Container { get; set; }
+        private IInformationContainer container;
+        
         GraphicsDevice Graphics;
 
         public NPCGenerator(IInformationContainer container, GraphicsDevice graphics)
         {
-            this.Container = container;
+            this.container = container;
             Graphics = graphics;
+            
         }
 
         private void DecrementPackValue(float packValue)
@@ -79,14 +83,15 @@ namespace SecretProject.Class.NPCStuff
            
         }
 
-        public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position)
+        public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position, IInformationContainer container)
         {
+            this.container = container;
             List<Enemy> NPCPack = new List<Enemy>();
             NPCSpawnData spawnData = new NPCSpawnData();
             for (int i = 0; i < NPCInfo.Count; i++)
             {
-
-                if (NPCInfo[i][0].BiomeGenerationType == tileType)
+                
+                if ((NPCInfo[i][0].BiomeGenerationType == tileType))
                 {
                     float testFrequency = Game1.Utility.RFloat(0, 1f);
                     for (int j = 0; j < NPCInfo[i].Count; j++)
@@ -114,48 +119,31 @@ namespace SecretProject.Class.NPCStuff
             else
             {
                 float spawnFrequency = spawnData.UpperSpawnFrequency;
-                if (DetermineWhetherAtLeastOneSpawns(spawnData.UpperSpawnFrequency))
-                {
-
 
                     int numberInPack = 0;
 
                     bool flag = true;
                     while (flag)
                     {
-                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, ref numberInPack, position);
+                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, ref numberInPack, position,container);
                     }
-                }
+                
                 return NPCPack;
             }
-
-
         }
 
-        private bool DetermineWhetherAtLeastOneSpawns(float chance)
-        {
-            if (Game1.Utility.RFloat(0, 1) < chance)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn)
+        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn, IInformationContainer container)
         {
             if(numberAlreadyInPack == 0)
             {
-                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.Container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, container));
                 numberAlreadyInPack++;
                 return true;
             }
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);
-                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.Container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.container));
                 return true;
             }
             else
@@ -167,13 +155,12 @@ namespace SecretProject.Class.NPCStuff
 
     }
 
-    public class NPCSpawnData
+    public class NPCSpawnData : IWeightable
     {
         public NPCType Type { get; set; }
         public GenerationType BiomeGenerationType { get; set; }
-        public float UpperSpawnFrequency { get; set; }
-        public float LowerSpawnFrequency { get; set; }
         public float PackFrequency { get; set; }
+        public int Chance { get; set; }
 
         public NPCSpawnData()
         {
@@ -186,12 +173,11 @@ namespace SecretProject.Class.NPCStuff
         /// <param name="biomeGenerationType">NPC will be allowed to spawn on this tile type</param>
         /// <param name="spawnFrequency">chance of spawning </param>
         /// <param name="packFrequency">chance that at least one more mob will spawn</param>
-        public NPCSpawnData(NPCType type, GenerationType biomeGenerationType, float lowerSpawnFrequency, float upperSpawnFrequency, float packFrequency)
+        public NPCSpawnData(NPCType type, GenerationType biomeGenerationType, int chance, float packFrequency) 
         {
             this.Type = type;
             this.BiomeGenerationType = biomeGenerationType;
-            this.UpperSpawnFrequency = upperSpawnFrequency;
-            this.LowerSpawnFrequency = lowerSpawnFrequency;
+            this.Chance = chance;
             this.PackFrequency = packFrequency;
         }
 

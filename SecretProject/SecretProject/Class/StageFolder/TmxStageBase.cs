@@ -484,7 +484,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if (Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType); //1471
                 }
 
                 this.ParticleEngine.Draw(spriteBatch);

@@ -9,7 +9,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class DungeonPortal
     {
-        public Rectangle InteractionRectangle { get; private set; }
+        public Rectangle InteractionRectangle { get;  set; }
 
         public DungeonNode DestinationRoom { get; set; }
 
@@ -19,12 +19,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public Dir DirectionToSpawn { get; set; }
 
 
-        public DungeonPortal(DungeonNode destinationNode, Rectangle destinationRectangle, int safteyX, int safteyY, Dir directionToSpawn) 
+        public DungeonPortal(DungeonNode destinationNode,  int safteyX, int safteyY, Dir directionToSpawn) 
         {
             
             this.DestinationRoom = destinationNode;
 
-            this.InteractionRectangle = destinationRectangle;
             this.SafteyX = safteyX;
             this.SafteyY = safteyY;
             this.DirectionToSpawn = directionToSpawn;

@@ -116,7 +116,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
-        public Enemy( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
+        public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
         {
             this.Pack = pack;
             this.Position = position;
@@ -170,14 +170,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         }
 
 
-        
+
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
             this.DoesIntersectScreen = this.NPCPathFindRectangle.Intersects(cameraRectangle);
 
             this.IsMoving = true;
-            if(DoesIntersectScreen)
+            if (DoesIntersectScreen)
             {
                 if (this.HitPoints <= 0)
                 {
@@ -187,8 +187,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 }
                 TestImmunity(gameTime);
                 this.PrimaryVelocity = new Vector2(.5f, .5f);
-                
-                
+
+
                 UpdateDirection();
                 if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
                 {
@@ -235,15 +235,15 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         }
                     }
                 }
-             //   QuadTreeInsertion();
+                //   QuadTreeInsertion();
                 for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
                 }
             }
-            
-           
-          
+
+
+
 
             if (this.IsMoving)
             {
@@ -317,7 +317,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         if (returnObjects[i].ColliderType == ColliderType.inert)
                         {
                             Vector2 oldVelocity = primaryVelocity;
-                            if(Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
+                            if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
                             {
                                 //if()
                             }
@@ -396,7 +396,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
             }
         }
-        
+
 
         public void MoveTowardsTarget(GameTime gameTime, int targetX, int targetY)
         {
@@ -439,7 +439,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 int currentTileY = (int)(this.Position.Y / 16);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
                 int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
+                Point newPoint = GetNewWanderPoint(currentTileX, currentTileY);
 
+                //if new point isn't inside the current grid, try again.
+                while(newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
+                    newPoint.X <0 || newPoint.Y < 0)
+                {
+                    newPoint = GetNewWanderPoint(currentTileX, currentTileY);
+                }
 
                 FindPathToNewTile(new Point(newX, newY));
 
@@ -448,7 +455,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         }
         public Point NewStartPoint { get; set; } = new Point(-1, -1);
 
+        private Point GetNewWanderPoint(int currentTileX, int currentTileY)
+        {
+            int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
+            int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
 
+            return new Point(newX, newY);
+        }
 
 
 
