@@ -448,7 +448,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     newPoint = GetNewWanderPoint(currentTileX, currentTileY);
                 }
 
-                FindPathToNewTile(new Point(newX, newY));
+                FindPathToNewTile(newPoint);
 
 
             }
@@ -488,13 +488,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
                 Point start = new Point(Math.Abs((int)this.Position.X / 16 ),
                  (Math.Abs((int)this.Position.Y / 16 )));
-                if (start.X > 15)
+                if (start.X > ObstacleGrid.Weight.GetLength(0))
                 {
-                    start.X = 15;
+                    start.X = ObstacleGrid.Weight.GetLength(0);
                 }
-                if (start.Y > 15)
+                if (start.Y > ObstacleGrid.Weight.GetLength(0))
                 {
-                    start.Y = 15;
+                    start.Y = ObstacleGrid.Weight.GetLength(0);
                 }
                 this.CurrentPath = finder.FindPath(start, end, this.Name);
                 if (this.CurrentPath == null)

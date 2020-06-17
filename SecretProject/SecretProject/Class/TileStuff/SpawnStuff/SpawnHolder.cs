@@ -147,7 +147,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public Camp GetCamp()
         {
             List<IWeightable> list = AllCamps.ToList<IWeightable>();
-            return (Camp)Game1.Utility.WheelSelection.GetSelection(list);
+            return (Camp)WheelSelection.GetSelection(list);
         }
 
         public void UnlockSpawnElement(int gid)

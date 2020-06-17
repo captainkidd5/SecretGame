@@ -25,7 +25,7 @@ namespace SecretProject.Class.NPCStuff
     public class NPCGenerator
     {
 
-        public static List<IWeightable> DirtCreatures = new List<IWeightable>()
+        private static List<IWeightable> DirtCreatures = new List<IWeightable>()
         {
             new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 20, .4f),
             new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, 40, .2f),
@@ -37,16 +37,16 @@ namespace SecretProject.Class.NPCStuff
 
         };
 
-        public static List<IWeightable> SandCreatures = new List<IWeightable>()
+        private static List<IWeightable> SandCreatures = new List<IWeightable>()
         {
             new NPCSpawnData(NPCType.Crab, GenerationType.Sand, 30, .25f)
         };
-        public static List<IWeightable> CaveCreatures = new List<IWeightable>()
+        private static List<IWeightable> CaveCreatures = new List<IWeightable>()
         {
             new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  30,  .25f),
             new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, 30,  0f),
         };
-        public static List<List<IWeightable>> NPCInfo = new List<List<IWeightable>>()
+        private static List<List<IWeightable>> NPCInfo = new List<List<IWeightable>>()
         {
             DirtCreatures,
             SandCreatures,
@@ -56,8 +56,8 @@ namespace SecretProject.Class.NPCStuff
 
 
         private IInformationContainer container;
-        
-        GraphicsDevice Graphics;
+
+        private GraphicsDevice Graphics;
 
         public NPCGenerator(IInformationContainer container, GraphicsDevice graphics)
         {
@@ -90,24 +90,11 @@ namespace SecretProject.Class.NPCStuff
             NPCSpawnData spawnData = new NPCSpawnData();
             for (int i = 0; i < NPCInfo.Count; i++)
             {
-                
-                if ((NPCInfo[i][0].BiomeGenerationType == tileType))
+                NPCSpawnData data = (NPCInfo[i][0] as NPCSpawnData);
+                if ((data.BiomeGenerationType == tileType))
                 {
-                    float testFrequency = Game1.Utility.RFloat(0, 1f);
-                    for (int j = 0; j < NPCInfo[i].Count; j++)
-                    {
-                        if (testFrequency >= NPCInfo[i][j].LowerSpawnFrequency && testFrequency <= NPCInfo[i][j].UpperSpawnFrequency)
-                        {
-                            //if (testFrequency > .5f)
-                            //{
-                            //    Console.WriteLine();
-                            //}
-                            spawnData = NPCInfo[i][j];
-                            break;
-                        }
-
-
-                    }
+                    spawnData = (NPCSpawnData)WheelSelection.GetSelection(NPCInfo[i]); //get spawnData based on weights.
+                    break;
 
                 }
             }
@@ -118,21 +105,20 @@ namespace SecretProject.Class.NPCStuff
             }
             else
             {
-                float spawnFrequency = spawnData.UpperSpawnFrequency;
 
                     int numberInPack = 0;
 
                     bool flag = true;
                     while (flag)
                     {
-                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, ref numberInPack, position,container);
+                        flag = DetermineNewNPCS(NPCPack, spawnData, ref numberInPack, position,container);
                     }
                 
                 return NPCPack;
             }
         }
 
-        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn, IInformationContainer container)
+        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, ref int numberAlreadyInPack, Vector2 positionToSpawn, IInformationContainer container)
         {
             if(numberAlreadyInPack == 0)
             {
@@ -142,7 +128,7 @@ namespace SecretProject.Class.NPCStuff
             }
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
-                DecrementPackValue(packFrequency);
+                DecrementPackValue(info.PackFrequency);
                 enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.container));
                 return true;
             }

@@ -29,14 +29,12 @@ namespace SecretProject.Class.Universal
         public float StandardTextDepth { get; set; } = .72f;
         public Vector2 ClockPosition { get; set; }
 
-        public WheelSelection WheelSelection { get; set; }
 
         public Utility(int seed)
         {
             RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(this.CenterScreenX, this.CenterScreenY);
             ClockPosition = new Vector2(Game1.ScreenWidth * .9f, Game1.ScreenHeight * .1f);
-            this.WheelSelection = new WheelSelection();
 
         }
 
