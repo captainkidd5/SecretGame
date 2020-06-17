@@ -27,12 +27,12 @@ namespace SecretProject.Class.NPCStuff
 
         private static List<IWeightable> DirtCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 20, .4f),
-            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, 40, .2f),
+            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 20, .8f),
+            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, 40, .8f),
 
-             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, 40, .4f),
-             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, 40, .3f),
-             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt,  40, .3f),
+             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, 40, .8f),
+             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, 40, .8f),
+             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt,  40, .8f),
 
 
         };
@@ -87,7 +87,7 @@ namespace SecretProject.Class.NPCStuff
         {
             this.container = container;
             List<Enemy> NPCPack = new List<Enemy>();
-            NPCSpawnData spawnData = new NPCSpawnData();
+            NPCSpawnData spawnData = null;
             for (int i = 0; i < NPCInfo.Count; i++)
             {
                 NPCSpawnData data = (NPCInfo[i][0] as NPCSpawnData);

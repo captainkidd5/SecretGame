@@ -327,6 +327,16 @@ namespace SecretProject.Class.StageFolder
                 }
             }
 
+            for (int e = 0; e < this.Enemies.Count; e++)
+            {
+                if (this.Enemies[e] != null)
+                {
+                    this.QuadTree.Insert(this.Enemies[e].Collider);
+
+                }
+
+            }
+
             for (int i = 0; i < this.AllTiles.AllItems.Count; i++)
             {
                 this.QuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
@@ -378,7 +388,7 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
-                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle);
+                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle,this.Enemies);
             }
             PerformQuadTreeInsertions(gameTime, player);
             this.IsDark = Game1.GlobalClock.IsNight;

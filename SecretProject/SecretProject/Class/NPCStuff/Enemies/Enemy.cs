@@ -235,7 +235,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         }
                     }
                 }
-                //   QuadTreeInsertion();
+                   QuadTreeInsertion();
                 for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
@@ -391,7 +391,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public void MoveTowardsPointAndDecrementPath(GameTime gameTime)
         {
-            if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + 8), gameTime))
+            if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
             {
                 this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
             }
@@ -448,7 +448,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     newPoint = GetNewWanderPoint(currentTileX, currentTileY);
                 }
 
-                FindPathToNewTile(newPoint);
+                TryFindNewPath(newPoint);
 
 
             }
@@ -662,8 +662,11 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 }
             }
             this.CurrentPath.Clear();
-
-            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
+            if(this.IdleSoundEffect != null)
+            {
+                Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
+            }
+           
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.GetCurrentStage().AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }

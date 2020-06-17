@@ -61,10 +61,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             this.DungeonPortals = new List<DungeonPortal>();
         }
-        
+
         private void GetDoorwaysBasedOnPortals()
         {
-            if(this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
+            if (this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down) != null)
             {
                 this.ContainsDoorDown = true;
             }
@@ -104,7 +104,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 if (j == this.Width - 1)
                 {
-                    
+
                     int rightSide = bottomWallLeft + 5;
                     if (i > bottomWallLeft && i < rightSide)
                     {
@@ -137,7 +137,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
             if (ContainsDoorRight)
             {
-                if (i == Width -1)
+                if (i == Width - 1)
                 {
 
                     int bottomSide = rightWallTop - 5;
@@ -159,7 +159,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             bottomWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             leftWallTop = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             rightWallTop = Game1.Utility.RGenerator.Next(0, this.Width - 5);
-            if(this.ContainsDoorDown)
+            if (this.ContainsDoorDown)
             {
                 this.DungeonPortals.Find(x => x.DirectionToSpawn == Dir.Down).InteractionRectangle = DungeonGraph.GetRectangleFromDirection(new Vector2(bottomWallLeft * 16, Width * 16), 5, Dir.Down);
             }
@@ -205,21 +205,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
 
                             GenerateSorroundingWalls(ref gid, i, j);
-                            
+
                         }
 
-  
+
                         tempTile = new Tile(i, j, gid) { LayerToDrawAt = z };
                         this.TileManager.AllTiles[z][i, j] = tempTile;
 
-                        
+
 
 
 
                     }
                 }
             }
-            
+
             Dictionary<int, TmxTilesetTile> tileDictionary = this.TileManager.MapName.Tilesets[0].Tiles;
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
@@ -246,18 +246,18 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
-           
+
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
                 {
                     for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
                     {
-                        
+
                         TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
                         if (z == 3)
                         {
@@ -284,17 +284,20 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 if (Dungeon.Enemies.Count < Game1.NPCSpawnCountLimit)
                 {
 
-
-                    Tile tile = SearchForEmptyTile(3);
-                    if (tile != null)
+                    for (int e = 0; e < 5; e++)
                     {
-                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                        if (tilingContainer != null)
+
+                        Tile tile = SearchForEmptyTile(3);
+                        if (tile != null)
                         {
+                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
+                            if (tilingContainer != null)
+                            {
 
-                            Dungeon.Enemies.AddRange(Dungeon.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), (IInformationContainer)this.TileManager));
+                                Dungeon.Enemies.AddRange(Dungeon.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), (IInformationContainer)this.TileManager));
+                            }
+
                         }
-
                     }
                 }
             }
