@@ -12,10 +12,23 @@ using SecretProject.Class.UI.MainMenuStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using SecretProject.Class.TileStuff;
+using SecretProject.Class.CameraStuff;
+using SecretProject.Class.LightStuff;
+using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
+using TiledSharp;
+using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.Playable;
+using XMLData.RouteStuff;
+using System.IO;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class MainMenu
+    public class MainMenu : ILocation
     {
 
         public enum MenuState
@@ -67,10 +80,48 @@ namespace SecretProject.Class.StageFolder
         GraphicsDevice Graphics;
         ContentManager MainMenuContentManager;
 
+        public event EventHandler SceneChanged;
+
         public List<Alert> AllAlerts { get; set; }
         public bool IsDrawn { get; set; }
+        public LocationType LocationType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public StageType StageType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TileWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TileHeight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TilesetTilesWide { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TilesetTilesHigh { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Texture2D TileSet { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ITileManager AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Camera2D Cam { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public TileSetType TileSetNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Sprite> AllSprites { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<LightSource> AllNightLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<LightSource> AllDayTimeLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<ActionTimer> AllActions { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Portal> AllPortals { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UserInterface MainUserInterface { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ContentManager StageContentManager { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        GraphicsDevice ILocation.Graphics { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle MapRectangle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsDark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool ShowBorders { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ParticleEngine ParticleEngine { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public TextBuilder TextBuilder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsLoaded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Character> CharactersPresent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<StringWrapper> AllTextToWrite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<INPC> OnScreenNPCS { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Enemy> Enemies { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Projectile> AllProjectiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public TmxMap Map { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public QuadTree QuadTree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<RisingText> AllRisingText { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<ParticleEngine> ParticleEngines { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string SavePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
+        private Game1 game;
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
  
@@ -121,6 +172,8 @@ namespace SecretProject.Class.StageFolder
             this.AllAlerts = new List<Alert>();
             this.IsDrawn = true;
 
+            this.game = game;
+
         }
 
         public void LoadBackGround()
@@ -140,7 +193,7 @@ namespace SecretProject.Class.StageFolder
        
 
 
-        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
+        public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
 
             Game1.isMyMouseVisible = true;
@@ -161,7 +214,7 @@ namespace SecretProject.Class.StageFolder
                     //Choose between Play, Dev Panel, and Settings.
                     case MenuState.Primary:
 
-                        UpdateMainState(gameTime, game);
+                        UpdateMainState(gameTime);
 
                         break;
 
@@ -196,7 +249,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void UpdateMainState(GameTime gameTime, Game1 game)
+        public void UpdateMainState(GameTime gameTime)
         {
             foreach (Button button in PrimaryButtons)
             {
@@ -330,7 +383,7 @@ namespace SecretProject.Class.StageFolder
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
-        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
+        public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
 
         {
 
@@ -383,5 +436,57 @@ namespace SecretProject.Class.StageFolder
             spriteBatch.End();
         }
 
+
+
+        public void LoadPreliminaryContent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveLocation()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TryLoadExistingStage()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignPath(string startPath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetDebugString()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -352,7 +352,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
 
 
-                    Dungeon.MapRectangle = new Rectangle(0, 0, 16 * this.Width, 16 * this.Width);
+                    Dungeon.MapRectangle = new Rectangle(0, 0, 16 * TileManager.MapWidth, 16 * TileManager.MapWidth);
 
                     binaryReader.Close();
 

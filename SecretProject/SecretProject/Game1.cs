@@ -966,6 +966,9 @@ namespace SecretProject
                 }
 
             }
+
+
+            CurrentStage = mainMenu;
         }
         #endregion
 
@@ -1091,77 +1094,7 @@ namespace SecretProject
 
             if (!IsEventActive)
             {
-
-                switch (gameStages)
-                {
-                    case Stages.MainMenu:
-
-                        mainMenu.Update(gameTime, MouseManager, this);
-                        break;
-
-                    //case Stages.OverWorld:
-
-                    //    OverWorld.Update(gameTime, MouseManager, Player);
-                    //    break;
-
-
-                    case Stages.Town:
-
-                        Town.Update(gameTime, MouseManager, Player);
-                        break;
-
-
-                    case Stages.ElixirHouse:
-                        ElixirHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.JulianHouse:
-                        JulianHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.DobbinHouse:
-                        DobbinHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.PlayerHouse:
-                        PlayerHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.GeneralStore:
-                        GeneralStore.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.KayaHouse:
-                        KayaHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.Cafe:
-                        Cafe.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.DobbinHouseUpper:
-                        DobbinHouseUpper.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.MarcusHouse:
-                        MarcusHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.LightHouse:
-                        LightHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    //case Stages.UnderWorld:
-                    //    UnderWorld.Update(gameTime, MouseManager, Player);
-                    //    break;
-                    case Stages.CasparHouse:
-                        CasparHouse.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.MountainTop:
-                        MountainTop.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.GisaardRanch:
-                        GisaardRanch.Update(gameTime, MouseManager, Player);
-                        break;
-
-                    case Stages.HomeStead:
-                        HomeStead.Update(gameTime, MouseManager, Player);
-                        break;
-                    case Stages.ForestDungeon:
-                        ForestDungeon.Update(gameTime, MouseManager, Player);
-                        break;
-                }
-
+                CurrentStage.Update(gameTime, MouseManager, Player);
 
             }
             if (EnableCutScenes && !IsEventActive)
@@ -1204,92 +1137,9 @@ namespace SecretProject
         {
 
 
+            this.GraphicsDevice.Clear(Color.Black);
+            CurrentStage.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
 
-            switch (gameStages)
-            {
-                case Stages.MainMenu:
-                    //GraphicsDevice.Clear(Color.Black);
-                    this.GraphicsDevice.Clear(Color.DeepSkyBlue);
-                    mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, MouseManager);
-                    break;
-
-                //case Stages.OverWorld:
-                //    this.GraphicsDevice.Clear(Color.Black);
-                //    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                //    break;
-
-                case Stages.Town:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    Town.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-
-                case Stages.ElixirHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.JulianHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.DobbinHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-
-                case Stages.PlayerHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.GeneralStore:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    GeneralStore.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.KayaHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    KayaHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.Cafe:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    Cafe.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.DobbinHouseUpper:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.MarcusHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    MarcusHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.LightHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    LightHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                //case Stages.UnderWorld:
-                //    this.GraphicsDevice.Clear(Color.Black);
-                //    UnderWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                //    break;
-                case Stages.CasparHouse:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    CasparHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.MountainTop:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    MountainTop.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.GisaardRanch:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    GisaardRanch.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.HomeStead:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    HomeStead.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-                case Stages.ForestDungeon:
-                    this.GraphicsDevice.Clear(Color.Black);
-                    ForestDungeon.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-                    break;
-
-            }
             if (CurrentEvent != null)
             {
                 CurrentEvent.Draw(spriteBatch);

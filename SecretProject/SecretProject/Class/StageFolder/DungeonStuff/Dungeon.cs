@@ -19,6 +19,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
     {
         public static int MaxDungeonRooms = 100;
 
+        private readonly int startingRoomX = 99;
+        private readonly int startingRoomY = 0;
+
         public DungeonRoom CurrentRoom { get; private set; }
         public DungeonRoom[,] Rooms { get;  set; }
         public ContentManager Content { get; private set; }
@@ -129,27 +132,37 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
             int newPlayerX = 0;
             int newPlayerY = 0;
-            switch(directionToGoTo) //player should spawn on the opposite side of the room where the next room's opening is
+            if (CurrentRoom.X == startingRoomX && CurrentRoom.Y == startingRoomY)
             {
-                case Dir.Down:
-                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.X;
-                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.Y + 32;
-
-                    break;
-                case Dir.Up:
-                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.X;
-                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.Y -32;
-
-                    break;
-                case Dir.Left:
-                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.X - 32;
-                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.Y;
-                    break;
-                case Dir.Right:
-                    newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.X + 32;
-                    newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.Y;
-                    break;
+                newPlayerX = 545;
+                newPlayerY = 990;
+                
             }
+            else
+            {
+                switch (directionToGoTo) //player should spawn on the opposite side of the room where the next room's opening is
+                {
+                    case Dir.Down:
+                        newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.X;
+                        newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Up).InteractionRectangle.Y + 32;
+
+                        break;
+                    case Dir.Up:
+                        newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.X;
+                        newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Down).InteractionRectangle.Y - 32;
+
+                        break;
+                    case Dir.Left:
+                        newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.X - 32;
+                        newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Right).InteractionRectangle.Y;
+                        break;
+                    case Dir.Right:
+                        newPlayerX = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.X + 32;
+                        newPlayerY = this.CurrentRoom.DungeonPortals.Find(param => param.DirectionToSpawn == Dir.Left).InteractionRectangle.Y;
+                        break;
+                }
+            }
+            
             Game1.Player.position = new Vector2(newPlayerX, newPlayerY);
         }
 

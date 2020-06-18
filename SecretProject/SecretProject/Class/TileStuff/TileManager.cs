@@ -796,7 +796,8 @@ namespace SecretProject.Class.TileStuff
 
             int layerCount = binaryReader.ReadInt32();
             int mapWidth = binaryReader.ReadInt32();
-
+            this.MapWidth = mapWidth;
+            this.MapHeight = mapWidth;
             this.AllTiles = new List<Tile[,]>();
             this.AllItems = new List<Item>();
             this.Objects = new Dictionary<string, List<ICollidable>>();
