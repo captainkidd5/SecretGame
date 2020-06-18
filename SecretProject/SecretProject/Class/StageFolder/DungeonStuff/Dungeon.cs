@@ -135,7 +135,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             if (CurrentRoom.X == startingRoomX && CurrentRoom.Y == startingRoomY)
             {
                 newPlayerX = 545;
-                newPlayerY = 990;
+                newPlayerY = 900;
                 
             }
             else

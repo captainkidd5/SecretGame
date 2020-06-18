@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.SavingStuff;
+using System.IO;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class Portal
+    public class Portal : ISaveable
     {
         public int From { get; set; }
         public int To { get; set; }
@@ -20,6 +22,27 @@ namespace SecretProject.Class.StageFolder
             this.SafteyOffSetY = safteyY;
             this.MustBeClicked = mustBeClicked;
 
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            writer.Write(From);
+            writer.Write(To);
+            GameSerializer.WriteRectangle(PortalStart, writer);
+            writer.Write(SafteyOffSetX);
+            writer.Write(SafteyOffSetY);
+            writer.Write(MustBeClicked);
+
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            this.From = reader.ReadInt32();
+            this.To = reader.ReadInt32();
+            this.PortalStart = GameSerializer.ReadRectangle(reader);
+            this.SafteyOffSetX = reader.ReadInt32();
+            this.SafteyOffSetY = reader.ReadInt32();
+            this.MustBeClicked = reader.ReadBoolean();
         }
     }
 }

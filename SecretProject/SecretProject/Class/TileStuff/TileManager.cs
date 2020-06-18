@@ -179,6 +179,18 @@ namespace SecretProject.Class.TileStuff
 
             #region PORTALS
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
+                FetchPortals(mapName);
+            #endregion
+
+            currentStage.AllNightLights = this.NightTimeLights;
+            currentStage.AllDayTimeLights = this.DayTimeLights;
+
+        }
+
+        private void FetchPortals(TmxMap mapName)
+        {
+            #region PORTALS
+            for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
             {
                 string keyFrom;
                 string keyTo;
@@ -201,8 +213,11 @@ namespace SecretProject.Class.TileStuff
                 int portalHeight = (int)mapName.ObjectGroups["Portal"].Objects[i].Height;
 
                 portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
-
-                currentStage.AllPortals.Add(portal);
+                if(!this.Stage.AllPortals.Contains(portal))
+                {
+                    this.Stage.AllPortals.Add(portal);
+                }
+                
 
                 if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
                 {
@@ -211,10 +226,6 @@ namespace SecretProject.Class.TileStuff
 
             }
             #endregion
-
-            currentStage.AllNightLights = this.NightTimeLights;
-            currentStage.AllDayTimeLights = this.DayTimeLights;
-
         }
 
         /// <summary>
@@ -946,7 +957,7 @@ namespace SecretProject.Class.TileStuff
             //    this.Tufts.Add(key, tufts);
             //}
             //  }
-
+            FetchPortals(Game1.CurrentStage.Map);
         }
 
         public void AddTileModification(Tile tile, ITileModifiable tileModifiable)

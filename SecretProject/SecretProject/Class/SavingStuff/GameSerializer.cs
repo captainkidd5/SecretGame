@@ -21,7 +21,7 @@ namespace SecretProject.Class.SavingStuff
         //Can use this to check what values we are passing in.
 
         public static float Version = 1f;
-       
+
 
         public static void AppendOutputMessage(string outPutMessage, string thingToAppend)
         {
@@ -37,7 +37,7 @@ namespace SecretProject.Class.SavingStuff
         public static void SaveMainMenu(BinaryWriter writer, string OutputMessage, float version)
         {
 
-            
+
 
         }
 
@@ -48,7 +48,7 @@ namespace SecretProject.Class.SavingStuff
         /// <param name="version"></param>
         public static void LoadMainMenu(BinaryReader reader, float version)
         {
-          
+
 
         }
 
@@ -78,7 +78,7 @@ namespace SecretProject.Class.SavingStuff
             //{
             //    Game1.UnderWorld.SaveLocation();
             //}
-            
+
             Game1.GlobalClock.Save(writer);
 
             Game1.cam.Save(writer);
@@ -107,7 +107,18 @@ namespace SecretProject.Class.SavingStuff
         }
 
 
+        public static void WriteRectangle(Rectangle rectangle, BinaryWriter writer)
+        {
+            writer.Write(rectangle.X);
+            writer.Write(rectangle.Y);
+            writer.Write(rectangle.Width);
+            writer.Write(rectangle.Height);
+        }
 
+        public static Rectangle ReadRectangle(BinaryReader reader)
+        {
+            return new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+        }
 
 
 
