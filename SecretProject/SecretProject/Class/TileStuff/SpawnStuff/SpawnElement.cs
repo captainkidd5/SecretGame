@@ -23,10 +23,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public Rarity OddsOfAdditionalSpawn { get; set; }
         public int DistanceBetweenNeighbors { get; set; }
         public bool AssertLeftAndRight { get; set; }
-        public int Limit { get; set; }
-
-        public int Tries { get; set; }
-
 
         public bool Unlocked { get; set; }
 
@@ -41,10 +37,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// <param name="generationType"></param>
         /// <param name="distanceBetweenNeighbors">how far must be away from any other given object.</param>
         /// <param name="assertLeftAndRight"></param>
-        /// <param name="tries"></param>
-        /// <param name="limit"></param>
 
-        public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer layerToPlaceOn, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight, int tries, int limit)
+        public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer layerToPlaceOn, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight)
         {
             this.GID = gid + 1;
             this.SpawnMethod = spawnMethod;
@@ -56,8 +50,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.OddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
             this.DistanceBetweenNeighbors = distanceBetweenNeighbors;
             this.AssertLeftAndRight = assertLeftAndRight;
-            this.Tries = tries;
-            this.Limit = limit;
+
         }
     }
 }

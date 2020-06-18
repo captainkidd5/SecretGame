@@ -101,7 +101,7 @@ namespace SecretProject.Class.NPCStuff
 
             if (spawnData == null)
             {
-                return null;
+                return new List<Enemy>();
             }
             else
             {

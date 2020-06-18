@@ -11,52 +11,49 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public class PoissonSampler
     {
         private const int CellSize = 16; //standard tile size
-        private int MaxK; //Maximum number of tries for a new point.
+        private int Tries; //Maximum number of tries for a new point.
 
 
-        public int MinDistance { get; private set; } //Minimum distance points must be separated from one another
-        public int MaxDistance { get; private set; } //Maximum distance a point can be from at least one other point
+        private int minDistance; //Minimum distance points must be separated from one another
+        private int maxDistance;//Maximum distance a point can be from at least one other point
 
 
-        public List<Point> ActiveSamples { get; set; }
+        private List<Point> activeSamples;
         public byte[,] Grid { get; set; }
         public Rectangle GridRectangle { get; set; }
 
-        public Rarity OddsOfAdditionalSpawn { get; set; }
+        private Rarity oddsOfAdditionalSpawn;
 
         public PoissonSampler(int minDistance, int maxDistance, ObstacleGrid grid, int tries, Rarity oddsOfAdditionalSpawn)
         {
-            this.MinDistance = minDistance;
-            this.MaxDistance = maxDistance;
-            this.ActiveSamples = new List<Point>();
+            this.minDistance = minDistance;
+            this.maxDistance = maxDistance;
+            this.activeSamples = new List<Point>();
             this.Grid = (byte[,])grid.Weight.Clone(); //dont forget to clear grid
-            this.MaxK = tries;
-            this.OddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
+            this.Tries = tries;
+            this.oddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
         }
 
         public void Generate(int gid, Tile[,] tiles, int layerToPlace, int layerToPlaceOn, int layerToCheckIfEmpty, IInformationContainer container, GenerationType generationType, Random random, bool isCrop)
         {
             //generate first point randomly within grid
-            ActiveSamples.Add(new Point(random.Next(0, Grid.GetLength(0) - 1),
+            activeSamples.Add(new Point(random.Next(0, Grid.GetLength(0) - 1),
                 random.Next(0, Grid.GetLength(0) - 1)));
 
-            while (ActiveSamples.Count > 0)
+            while (activeSamples.Count > 0)
             {
-                int sampleIndex = random.Next(0, ActiveSamples.Count - 1); //pick random sample within activesample list
-                Point sample = ActiveSamples[sampleIndex];
+                int sampleIndex = random.Next(0, activeSamples.Count - 1); //pick random sample within activesample list
+                Point sample = activeSamples[sampleIndex];
 
 
                 bool found = false;
-                if (random.Next(0, 101) > (int)OddsOfAdditionalSpawn)
-                {
-                    return;
-                }
 
-                for (int k = 0; k < MaxK; k++) //try MaxK times to find a valid point
+
+                for (int k = 0; k < Tries; k++) //try MaxK times to find a valid point
                 {
 
-                    int newX = sample.X + MinDistance * Game1.Utility.GetMultiplier();
-                    int newY = sample.Y + MinDistance * Game1.Utility.GetMultiplier();
+                    int newX = sample.X + minDistance * Game1.Utility.GetMultiplier();
+                    int newY = sample.Y + minDistance * Game1.Utility.GetMultiplier();
                     Point newPoint = new Point(newX, newY);
 
                     if (GridContains(newPoint))
@@ -72,7 +69,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                         if (container.AllTiles[layerToCheckIfEmpty][newPoint.X, newPoint.Y].GID == -1)
                                         {
                                             found = true;
-                                            ActiveSamples.Add(newPoint);
+                                            activeSamples.Add(newPoint);
                                             Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
                                             TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
                                             if (isCrop)
@@ -86,7 +83,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                     else
                                     {
                                         found = true;
-                                        ActiveSamples.Add(newPoint);
+                                        activeSamples.Add(newPoint);
                                         Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
                                         TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
                                         if (isCrop)
@@ -109,8 +106,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                 if (!found)
                 {
-                    this.ActiveSamples[sampleIndex] = ActiveSamples[ActiveSamples.Count - 1];
-                    ActiveSamples.RemoveAt(ActiveSamples.Count - 1);
+                    this.activeSamples[sampleIndex] = activeSamples[activeSamples.Count - 1];
+                    activeSamples.RemoveAt(activeSamples.Count - 1);
                 }
 
 
@@ -131,35 +128,24 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         private bool IsFarEnough(Point sample)
         {
-            int startingX = sample.X - this.MinDistance;
-            int startingY = sample.Y - this.MinDistance;
-            if (startingX < 0)
-            {
-                startingX = 0; //dont forget to check for carry over
-            }
-            if (startingY < 0)
-            {
-                startingY = 0;
-            }
+            int startingX = sample.X - this.minDistance;
+            int startingY = sample.Y - this.minDistance;
+            Game1.Utility.EnsurePositive(ref startingX);
+            Game1.Utility.EnsurePositive(ref startingY);
 
-            int endingIndexX = sample.X + this.MinDistance;
-            int endingIndexY = sample.Y + this.MinDistance;
+            int endingIndexX = sample.X + this.minDistance;
+            int endingIndexY = sample.Y + this.minDistance;
+            int max = Grid.GetLength(0) - 1;
 
-            if (endingIndexX >= Grid.GetLength(0))
-            {
-                endingIndexX = Grid.GetLength(0) - 1;
-            }
+            Game1.Utility.EnsureNoMoreThanMax(ref endingIndexX, max);
+            Game1.Utility.EnsureNoMoreThanMax(ref endingIndexY, max);
 
-            if (endingIndexY >= Grid.GetLength(1))
-            {
-                endingIndexY = Grid.GetLength(1) - 1;
-            }
 
             for (int i = startingX; i < endingIndexX; i++)
             {
                 for (int j = startingY; j < endingIndexY; j++)
                 {
-                    if (Grid[i, j] == (int)GridStatus.Obstructed)
+                    if (Grid[i, j] == (int)GridStatus.Obstructed) //remember, this is a COPY of the original grid. Only counts objects created in this poisson sample
                     {
                         return false;
                     }

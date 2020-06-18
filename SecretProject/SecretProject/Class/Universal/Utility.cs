@@ -377,6 +377,39 @@ namespace SecretProject.Class.Universal
         }
         #endregion
 
+        /// <summary>
+        /// If number is less than zero, make it zero and return false, meaning the number provided was not originally positive
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public bool EnsurePositive(ref int number)
+        {
+            if(number >= 0)
+            {
+                return true;
+            }
+            number = 0;
+            return false;
+        }
+
+        /// <summary>
+        /// If number is less than or equal to max return false, else return true and set the number equal to max,
+        /// meaning that the number was indeed greater than the max.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public bool EnsureNoMoreThanMax(ref int number, int max)
+
+        {
+            if(number <= max)
+            {
+                return false;
+
+            }
+            number = max;          
+            return true;
+        }
         
     }
 }
