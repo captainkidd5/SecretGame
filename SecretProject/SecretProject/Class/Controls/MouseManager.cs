@@ -43,11 +43,6 @@ namespace SecretProject.Class.Controls
         public Rectangle MouseRectangle { get; set; }
         public Rectangle MouseSquareCoordinateRectangle { get; set; }
 
-        public float RelativeMouseX { get; set; }
-        public float RelativeMouseY { get; set; }
-
-
-
         public int XTileOffSet { get; set; } = Game1.Utility.CenterScreenX;
         public int YTileOffSet { get; set; } = Game1.Utility.CenterScreenY;
         public Camera2D Camera1 { get; set; }

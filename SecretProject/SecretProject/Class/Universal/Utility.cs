@@ -293,6 +293,11 @@ namespace SecretProject.Class.Universal
             return texture;
         }
 
+        public Rectangle GetRectangleFromTexture(Texture2D texture)
+        {
+            return new Rectangle(texture.Width, texture.Height, texture.Width, texture.Height);
+        }
+
         public Texture2D GetBorderOnlyRectangleTexture(GraphicsDevice graphicsDevice, int width, int height, Color desiredColor)
         {
             var Colors = new List<Color>();

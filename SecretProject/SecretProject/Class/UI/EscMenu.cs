@@ -18,10 +18,10 @@ namespace SecretProject.Class.MenuStuff
         //  SaveLoadManager saveManager;
         SaveLoadManager mySave;
         private Rectangle BackGroundSourceRectangle;
-        private List<CategoryTab> Tabs { get; set; }
+        private List<CategoryTab> tabs;
         public bool IsActive { get; set; }
         public bool FreezesGame { get; set; }
-        private float Scale { get; set; }
+        private float scale;
         public Vector2 Position { get; set; }
 
         public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
@@ -30,7 +30,7 @@ namespace SecretProject.Class.MenuStuff
 
 
 
-            this.Scale = 2f;
+            this.scale = 2f;
 
             BackGroundSourceRectangle = new Rectangle(64, 416, 128, 224);
             this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height);
@@ -38,17 +38,17 @@ namespace SecretProject.Class.MenuStuff
 
             this.IsActive = false;
             this.FreezesGame = true;
-            this.Tabs = new List<CategoryTab>()
+            this.tabs = new List<CategoryTab>()
             {
-                new CategoryTab("Esc", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.Scale),
+                new CategoryTab("Esc", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.scale),
                 new Rectangle(64,392, 32,25),2f),
-                new CategoryTab("Settings", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width + 64, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.Scale),
+                new CategoryTab("Settings", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width + 64, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.scale),
                 new Rectangle(64,392, 32,25),2f),
 
             };
 
-            this.Tabs[0].Pages.Add(new MainEscPage(graphicsDevice, BackGroundSourceRectangle, this.Position));
-            this.Tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle, this.Scale));
+            this.tabs[0].Pages.Add(new MainEscPage(graphicsDevice, BackGroundSourceRectangle, this.Position));
+            this.tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle, this.scale));
 
         }
 
@@ -56,26 +56,26 @@ namespace SecretProject.Class.MenuStuff
         {
             Game1.isMyMouseVisible = true;
 
-            for (int i = 0; i < this.Tabs.Count; i++)
+            for (int i = 0; i < this.tabs.Count; i++)
             {
-                this.Tabs[i].Button.Update(Game1.MouseManager);
-                if (this.Tabs[i].Button.isClicked)
+                this.tabs[i].Button.Update(Game1.MouseManager);
+                if (this.tabs[i].Button.isClicked)
                 {
                     this.ActiveTab = i;
 
                 }
                 if (this.ActiveTab == i)
                 {
-                    this.Tabs[i].IsActive = true;
-                    this.Tabs[i].ButtonColorMultiplier = 1f;
+                    this.tabs[i].IsActive = true;
+                    this.tabs[i].ButtonColorMultiplier = 1f;
                 }
                 else
                 {
-                    this.Tabs[i].IsActive = false;
-                    this.Tabs[i].ButtonColorMultiplier = .5f;
+                    this.tabs[i].IsActive = false;
+                    this.tabs[i].ButtonColorMultiplier = .5f;
                 }
             }
-            this.Tabs[this.ActiveTab].Update(gameTime);
+            this.tabs[this.ActiveTab].Update(gameTime);
 
         }
 
@@ -84,15 +84,15 @@ namespace SecretProject.Class.MenuStuff
             //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Utility.CenterScreenX -200, Game1.Utility.CenterScreenY -200 , 224,304),
             //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position,
-                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
-            for (int i = 0; i < this.Tabs.Count; i++)
+            for (int i = 0; i < this.tabs.Count; i++)
             {
 
-                this.Tabs[i].Button.DrawNormal(spriteBatch, this.Tabs[i].Button.Position, this.Tabs[i].Button.BackGroundSourceRectangle, Color.White * this.Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                this.tabs[i].Button.DrawNormal(spriteBatch, this.tabs[i].Button.Position, this.tabs[i].Button.BackGroundSourceRectangle, Color.White * this.tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
 
-            this.Tabs[this.ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, this.Scale, false);
+            this.tabs[this.ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, this.scale, false);
 
 
         }

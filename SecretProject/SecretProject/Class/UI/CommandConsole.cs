@@ -15,7 +15,7 @@ namespace SecretProject.Class.UI
 {
     public class CommandConsole : IExclusiveInterfaceComponent
     {
-        public Vector2 Position { get; set; }
+
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -25,9 +25,13 @@ namespace SecretProject.Class.UI
 
 
         public List<CommandWindowCommand> AllCommands { get; set; }
-        public CommandConsole(Vector2 position)
+
+        private Rectangle backGroundRectangle;
+        private Texture2D coloredRectangleTexture;
+        private Vector2 backGroundPosition;
+        public CommandConsole(GraphicsDevice graphics)
         {
-            this.Position = position;
+
             this.AllCommands = new List<CommandWindowCommand>()
             {
                 new CommandWindowCommand("spawn", "spawn (int)[itemID], (int)[count]"),
@@ -41,7 +45,11 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("add", "add (string)[mobname], (int)[count]"),
                 new CommandWindowCommand("swaproom", "swaproom (string)[roomX], (string)[roomY]"),
             };
+            this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(211, 211, 211, 2));
+            this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
+            this.backGroundPosition = new Vector2(0, Game1.ScreenHeight - backGroundRectangle.Height);
         }
+        
 
         public void Update(GameTime gameTime)
         {
@@ -183,7 +191,8 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.backGroundPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, Game1.Utility.Origin, Color.White, 0f, this.DisplayLogPosition, 2f, SpriteEffects.None, 1f);
         }
     }

@@ -155,7 +155,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
-            this.CommandConsole = new CommandConsole(new Vector2(Game1.Utility.CenterScreenX - 50, 50));
+            this.CommandConsole = new CommandConsole(this.GraphicsDevice);
             this.AllRisingText = new List<RisingText>();
 
 

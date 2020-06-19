@@ -339,21 +339,22 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                            subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
-                            subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
+                            //subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
+                            //subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
 
-                            int subResultX = (int)Math.Floor((float)((float)subX / 16f / 16f));
-                            int subResultY = (int)Math.Floor((float)((float)subY / 16f / 16f));
+                            //int subResultX = (int)Math.Floor((float)((float)subX / 16f / 16f));
+                            //int subResultY = (int)Math.Floor((float)((float)subY / 16f / 16f));
 
-  
 
-                                if (Game1.Player.ColliderRectangle.Intersects(this.DestinationRectangle))
+                            subX = (int)Game1.MouseManager.SquarePosition.X + i;
+                            subY = (int)Game1.MouseManager.SquarePosition.Y+ j;
+                            if (Game1.Player.ColliderRectangle.Intersects(this.DestinationRectangle))
                                 {
                                     CanPlaceTotal = false;
                                 }
                                 if (item.TilingLayer == 1)
                                 {
-                                    if (allTiles.AllTiles[1][subResultX, subResultY].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
+                                    if (allTiles.AllTiles[1][subX, subY].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
                                     {
 
                                     }
@@ -362,7 +363,7 @@ namespace SecretProject.Class.TileStuff
                                         CanPlaceTotal = false;
                                     }
                                 }
-                                else if (allTiles.PathGrid.Weight[subResultX, subResultY] == (int)GridStatus.Clear)
+                                else if (allTiles.PathGrid.Weight[subX, subY] == (int)GridStatus.Clear)
                                 {
 
                                 }
@@ -406,12 +407,10 @@ namespace SecretProject.Class.TileStuff
 
 
                                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(item.GenerationType);
-                                    WangManager.ChunkGroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
-                                tilingContainer.TilingDictionary, item.TilingLayer, tileManager);
 
                                     int worldWidth = Game1.CurrentStage.AllTiles.MapWidth;
                                     WangManager.ReassignForTiling(PlaceID, tilingContainer.GeneratableTiles, tilingContainer.TilingDictionary,
-                                        item.TilingLayer, (int)Game1.MouseManager.RelativeMouseX, (int)Game1.MouseManager.RelativeMouseY, worldWidth, worldWidth, (IInformationContainer)allTiles);
+                                        item.TilingLayer, (int)Game1.MouseManager.SquarePosition.X, (int)Game1.MouseManager.SquarePosition.Y, worldWidth, worldWidth, (IInformationContainer)allTiles);
                                 }
 
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -457,8 +456,8 @@ namespace SecretProject.Class.TileStuff
                     for (int j = this.NegativeYDraw; j < 1; j++)
                     {
 
-                        subX = (int)Game1.MouseManager.WorldMousePosition.X + i;
-                        subY = (int)Game1.MouseManager.WorldMousePosition.Y + j ;
+                        subX = (int)Game1.MouseManager.SquarePosition.X + i;
+                        subY = (int)Game1.MouseManager.SquarePosition.Y + j ;
 
 
 
@@ -468,13 +467,13 @@ namespace SecretProject.Class.TileStuff
 
                         if (CanPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet,Game1.CurrentStage.AllTiles.AllTiles[3][subX / 16, subY/ 16].GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
+                            spriteBatch.Draw(tileManager.TileSet,Game1.CurrentStage.AllTiles.AllTiles[3][subX , subY].GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
                                 newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX / 16, subY / 16].GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
+                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX, subY] .GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
                               newSourceRectangle, Color.Red ,
                                       0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
