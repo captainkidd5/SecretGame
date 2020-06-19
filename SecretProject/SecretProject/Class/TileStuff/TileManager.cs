@@ -644,7 +644,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && this.GridItem != null)
+            if (this.GridItem != null)
             {
                 this.GridItem.NormalDraw(spriteBatch, this, this);
             }
@@ -769,6 +769,11 @@ namespace SecretProject.Class.TileStuff
                 binaryWriter.Write(AllItems[item].WorldPosition.X);
                 binaryWriter.Write(AllItems[item].WorldPosition.Y);
             }
+            //binaryWriter.Write(this.Stage.AllPortals.Count);
+            //foreach(Portal portal in this.Stage.AllPortals)
+            //{
+            //    portal.Save(binaryWriter);
+            //}
 
             //binaryWriter.Write(this.Crops.Count);
             //foreach (KeyValuePair<string, Crop> crop in this.Crops)
@@ -894,6 +899,23 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
             }
+            //int portalCount = binaryReader.ReadInt32();
+            //for(int p = 0; p < portalCount; p++)
+            //{
+            //    Portal portal = new Portal();
+            //    portal.Load(binaryReader);
+            //    if (!this.Stage.AllPortals.Contains(portal))
+            //    {
+            //        this.Stage.AllPortals.Add(portal);
+            //    }
+
+
+            //    if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+            //    {
+            //        Game1.PortalGraph.AddEdge(portal.From, portal.To);
+            //    }
+            //}
+
             //  int cropCount = binaryReader.ReadInt32();
             //  for (int c = 0; c < cropCount; c++)
             //  {
@@ -957,7 +979,7 @@ namespace SecretProject.Class.TileStuff
             //    this.Tufts.Add(key, tufts);
             //}
             //  }
-            FetchPortals(Game1.CurrentStage.Map);
+            
         }
 
         public void AddTileModification(Tile tile, ITileModifiable tileModifiable)

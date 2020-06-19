@@ -754,11 +754,23 @@ namespace SecretProject.Class.UI
         {
             if (Game1.ItemVault.ExteriorGridItems != null && Game1.ItemVault.InteriorGridItems != null)
             {
-                //if (Game1.GetCurrentStageInt() == Stages.OverWorld || Game1.GetCurrentStageInt() == Stages.UnderWorld)
+                
+                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+
+
+                    }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
+                
+                //else if (Game1.GetCurrentStageInt() == Stages.PlayerHouse)
                 //{
-                //    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                //    if (Game1.ItemVault.InteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                 //    {
-                //        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+                //        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
 
 
                 //    }
@@ -767,19 +779,6 @@ namespace SecretProject.Class.UI
                 //        Game1.GetCurrentStage().AllTiles.GridItem = null;
                 //    }
                 //}
-                //else if (Game1.GetCurrentStageInt() == Stages.PlayerHouse)
-                {
-                    if (Game1.ItemVault.InteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
-
-
-                    }
-                    else
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = null;
-                    }
-                }
             }
             else
             {

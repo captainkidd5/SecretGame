@@ -57,6 +57,10 @@ namespace SecretProject.Class.TileStuff
         {
             if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(this.PlaceID))
             {
+                if(this.PlaceID == 4118)
+                {
+                    Console.WriteLine("hi");
+                }
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties.ContainsKey("newSource"))
                 {
                     this.RectangleCoordinates = TileUtility.GetRectangeFromString(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["newSource"]);
@@ -308,112 +312,124 @@ namespace SecretProject.Class.TileStuff
 
         public void NormalUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
+            this.CanPlace = false;
+            this.DestinationRectangle = new Rectangle((int)(Game1.MouseManager.WorldMousePosition.X + NegativeXDraw * 16),
+                (int)(Game1.MouseManager.WorldMousePosition.Y + NegativeYDraw * 16),
+                PositiveXDraw * 16, PositiveYDraw * 16);
+
+
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
-                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
+                Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                if (item != null)
                 {
+                    ITileManager allTiles = Game1.CurrentStage.AllTiles;
                     this.IsDrawn = true;
-
 
 
                     int subX = 0;
                     int subY = 0;
 
-                    bool canPlaceTotal = true;
+                    CanPlaceTotal = true;
 
                     for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                     {
-
-
-
-                        for (int j = this.NegativeYTest; j < 1; j++)
+                        for (int j = this.NegativeYTest; j < this.PositiveYTest; j++)
                         {
-                            this.CanPlace = true;
 
 
-                            subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
-                            subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
 
+                            subX = (int)Game1.MouseManager.WorldMousePosition.X + i * 16;
+                            subY = (int)Game1.MouseManager.WorldMousePosition.Y + j * 16;
 
-                            //check if index is out of bounds of current chunk
+                            int subResultX = (int)Math.Floor((float)((float)subX / 16f / 16f));
+                            int subResultY = (int)Math.Floor((float)((float)subY / 16f / 16f));
 
-                            for (int z = 1; z < container.AllTiles.Count; z++)
-                            {
-                                int gid = 0;
-                                if (tileManager.AllTiles[z][subX, subY] != null)
+  
+
+                                if (Game1.Player.ColliderRectangle.Intersects(this.DestinationRectangle))
                                 {
-                                    gid = tileManager.AllTiles[z][subX, subY].GID;
+                                    CanPlaceTotal = false;
+                                }
+                                if (item.TilingLayer == 1)
+                                {
+                                    if (allTiles.AllTiles[1][subResultX, subResultY].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        CanPlaceTotal = false;
+                                    }
+                                }
+                                else if (allTiles.PathGrid.Weight[subResultX, subResultY] == (int)GridStatus.Clear)
+                                {
+
                                 }
                                 else
                                 {
-                                    return;
+                                    CanPlaceTotal = false;
                                 }
-
-                                if (gid == -1)
-                                {
-                                }
-                                else
-                                {
-                                    this.CanPlace = false;
-                                    canPlaceTotal = false;
-
-                                }
-                            }
-
-
                         }
 
                     }
 
-                    if (canPlaceTotal)
+                    if (CanPlaceTotal)
                     {
+                        CanPlace = true;
                         if (Game1.MouseManager.IsClicked)
                         {
                             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                             {
 
-                                if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
+
+
+                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PlaceItem1, true, .075f);
+
+
+
+                                if (this.PlaceID == 2157)
                                 {
-                                    SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
-                                    if (tracker.UpdateCompletionGuide(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()))
-                                    {
-                                        TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, container);
+                                    //Portal tempPortal = new Portal(3, 5, -56, 5, true);
+                                    //tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
+                                    //Game1.GetCurrentStage().AllPortals.Add(tempPortal);
 
-                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
-                                        PlayPlacementSound();
-                                    }
-                                    else
-                                    {
-                                        return;
-                                    }
+                                    //if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
+                                    //{
+                                    //    Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
+                                    //}
                                 }
-                                else
+                                TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    this.PlaceID + 1, container);
+                                if (item.GenerationType != 0)
                                 {
-                                    TileUtility.ReplaceTile(Game1.ItemVault.GetItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()).TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, container);
 
-                                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
-                                    PlayPlacementSound();
-                                    return;
+
+                                    TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(item.GenerationType);
+                                    WangManager.ChunkGroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
+                                tilingContainer.TilingDictionary, item.TilingLayer, tileManager);
+
+                                    int worldWidth = Game1.CurrentStage.AllTiles.MapWidth;
+                                    WangManager.ReassignForTiling(PlaceID, tilingContainer.GeneratableTiles, tilingContainer.TilingDictionary,
+                                        item.TilingLayer, (int)Game1.MouseManager.RelativeMouseX, (int)Game1.MouseManager.RelativeMouseY, worldWidth, worldWidth, (IInformationContainer)allTiles);
                                 }
 
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
+                                Game1.Player.UserInterface.BackPack.CheckGridItem();
 
+
+                                return;
                             }
 
                         }
 
                     }
+
+
                 }
-                else
-                {
-                    this.CanPlace = false;
-                }
+
             }
-            else
-            {
-                this.CanPlace = false;
-            }
+
 
         }
 
@@ -430,75 +446,45 @@ namespace SecretProject.Class.TileStuff
         {
 
 
+            if (this.IsDrawn)
+            {
 
                 int subX = 0;
                 int subY = 0;
 
-
-
-                for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
+                for (int i = this.NegativeXDraw; i < this.PositiveXDraw; i++)
                 {
-
-                    //assumes newsource is always at bottom tiles, left or right doesn't matter though
-
-                    for (int j = this.NegativeYTest; j < 1; j++)
+                    for (int j = this.NegativeYDraw; j < 1; j++)
                     {
 
+                        subX = (int)Game1.MouseManager.WorldMousePosition.X + i;
+                        subY = (int)Game1.MouseManager.WorldMousePosition.Y + j ;
 
-                        subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
-                        subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
-
-
-
-                        //check if index is out of bounds of current chunk
 
 
                         int newGID = this.PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
-                        for (int z = 1; z < container.AllTiles.Count; z++)
-                        {
-                            int gid = 0;
-                            if (tileManager.AllTiles[z][subX, subY] != null)
-                            {
-                                gid = tileManager.AllTiles[z][subX, subY].GID;
-                            }
-                            else
-                            {
-                                return;
-                            }
-
-                            if (gid == -1)
-                            {
-                            }
-                            else
-                            {
-                               // canPlace = false;
-
-                            }
-                        }
 
                         if (CanPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).X,
-                                TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).Y),
+                            spriteBatch.Draw(tileManager.TileSet,Game1.CurrentStage.AllTiles.AllTiles[3][subX / 16, subY/ 16].GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
                                 newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).X,
-                                TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).Y),
-                                newSourceRectangle, Color.Red * .25f,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX / 16, subY / 16].GetPosition((IInformationContainer)Game1.CurrentStage.AllTiles),
+                              newSourceRectangle, Color.Red ,
+                                      0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }
 
                 }
 
 
+            }
 
-            
         }
         public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {

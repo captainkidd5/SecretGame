@@ -24,6 +24,11 @@ namespace SecretProject.Class.StageFolder
 
         }
 
+        public Portal()
+        {
+
+        }
+
         public void Save(BinaryWriter writer)
         {
             writer.Write(From);
