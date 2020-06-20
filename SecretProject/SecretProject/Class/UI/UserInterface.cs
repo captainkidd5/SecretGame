@@ -72,11 +72,10 @@ namespace SecretProject.Class.UI
 
         internal ToolBar BottomBar { get; set; }
 
-        public Camera2D cam;
+        private Camera2D cam;
         public GraphicsDevice graphics { get; set; }
         public TileSelector TileSelector;
 
-        public Vector2 Origin { get; set; } = new Vector2(0, 0);
 
         public TextBuilder TextBuilder { get; set; }
 

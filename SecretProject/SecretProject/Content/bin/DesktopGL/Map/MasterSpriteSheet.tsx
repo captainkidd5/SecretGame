@@ -3409,6 +3409,17 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3726">
+  <properties>
+   <property name="newHitBox" value="8,0,16,16"/>
+   <property name="newSource" value="0,-32,32,48"/>
+  </properties>
+ </tile>
+ <tile id="3728">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="9" width="16" height="5"/>
+  </objectgroup>
+ </tile>
  <tile id="3802">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="12" width="6" height="3"/>

@@ -1048,6 +1048,7 @@ namespace SecretProject
             //}
 
             CurrentStage = newLocation;
+            CurrentStage.AllTiles.UpdateCropTile();
         }
 
 

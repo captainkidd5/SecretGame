@@ -623,19 +623,19 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, tileColor * tile.ColorMultiplier,
+                                spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor * tile.ColorMultiplier,
                                 tile.Rotation,tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                             }
                             else
                             {
-                                spriteBatch.Draw(this.TileSet, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), tile.SourceRectangle, tileColor,
+                                spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor,
                                 tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
                             }
 
@@ -701,7 +701,11 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {
-            UpdateCropTile();
+            if(Game1.CurrentStage == this.Stage)
+            {
+                UpdateCropTile();
+            }
+            
         }
 
         public Rectangle GetChunkRectangle()
