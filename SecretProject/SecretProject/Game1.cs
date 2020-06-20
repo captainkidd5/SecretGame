@@ -524,7 +524,7 @@ namespace SecretProject
         {
             ItemVault = new ItemBank();
             AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
-            AllItems.AllItems = AllItems.AllItems.OrderBy(x => x.Name).ToList(); 
+            AllItems.AllItems.Sort((x, y) => x.Name.CompareTo(y.Name));// = AllItems.AllItems.OrderBy(x => x.Name).ToList(); 
             ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
             for (int i = 0; i < AllItems.AllItems.Count; i++)
             {

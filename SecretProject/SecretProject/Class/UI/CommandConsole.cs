@@ -33,6 +33,8 @@ namespace SecretProject.Class.UI
         private Rectangle testTypeRectangle;
         private Texture2D typeBoxTexture;
         private Vector2 typeBoxPosition;
+
+        private RasterizerState rasterizerState;
         public CommandConsole(GraphicsDevice graphics)
         {
 
@@ -56,6 +58,9 @@ namespace SecretProject.Class.UI
             this.typeBoxTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 50, new Color(0, 0, 0, 30));
             this.testTypeRectangle = Game1.Utility.GetRectangleFromTexture(typeBoxTexture);
             this.typeBoxPosition = new Vector2(0, backGroundPosition.Y + this.backGroundRectangle.Height);
+
+            this.rasterizerState = new RasterizerState() { ScissorTestEnable = true };
+
         }
         
 
@@ -199,10 +204,21 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, this.rasterizerState);
+
+            spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
+            
             spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition,this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.typeBoxPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, Game1.Utility.Origin, Color.White, 0f, this.DisplayLogPosition, 2f, SpriteEffects.None, 1f);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, new RasterizerState() { ScissorTestEnable = true });
+            spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.backGroundPosition.X, (int)this.backGroundPosition.Y, this.backGroundRectangle.Width, this.backGroundRectangle.Height);
+
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, this.DisplayLogPosition, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+            
+            spriteBatch.End();
         }
     }
 

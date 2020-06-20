@@ -538,7 +538,9 @@ namespace SecretProject.Class.UI
                     //    break;
 
                     case ExclusiveInterfaceItem.CommandConsole:
+                        spriteBatch.End();
                         CommandConsole.Draw(spriteBatch);
+                        spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
                         break;
                     case ExclusiveInterfaceItem.QuestLog:
                         QuestLog.Draw(spriteBatch);
