@@ -38,6 +38,7 @@ using SecretProject.Class.NetworkStuff;
 using System;
 using TiledSharp;
 using SecretProject.Class.StageFolder.DungeonStuff;
+using System.Linq;
 
 
 
@@ -523,6 +524,7 @@ namespace SecretProject
         {
             ItemVault = new ItemBank();
             AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
+            AllItems.AllItems = AllItems.AllItems.OrderBy(x => x.Name).ToList(); 
             ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
             for (int i = 0; i < AllItems.AllItems.Count; i++)
             {
