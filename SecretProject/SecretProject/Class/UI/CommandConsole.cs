@@ -7,6 +7,7 @@ using SecretProject.Class.StageFolder.DungeonStuff;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,11 +71,19 @@ namespace SecretProject.Class.UI
             Keys[] pressedKeys = Game1.KeyboardManager.OldKeyBoardState.GetPressedKeys();
             if(Game1.MouseManager.HasScrollWheelValueIncreased)
             {
-                this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y - 20);
+                this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y + 20);
             }
             else if (Game1.MouseManager.HasScrollWheelValueDecreased)
             {
-                this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y + 20);
+                this.DisplayLogPosition = new Vector2(DisplayLogPosition.X, DisplayLogPosition.Y - 20);
+            }
+            if (this.DisplayLogPosition.Y > 480 && displayLogHeight * 2 > 480)
+            {
+                this.DisplayLogPosition = new Vector2(this.DisplayLogPosition.X, 480);
+            }
+            else if (this.DisplayLogPosition.Y < displayLogHeight * 2 * -1 + Game1.ScreenWidth / 2  - 64)
+            {
+                this.DisplayLogPosition = new Vector2(this.DisplayLogPosition.X, displayLogHeight * 2 * -1 + Game1.ScreenWidth /2 - 64);
             }
             foreach (Keys key in pressedKeys)
             {
@@ -122,9 +131,10 @@ namespace SecretProject.Class.UI
             }
 
         }
-
+        private float displayLogHeight;
         public void ProcessString()
         {
+            float oldDisplayLogHeight = displayLogHeight;
             string[] separatedString = this.EnteredString.Split(' ');
 
             switch (separatedString[0].ToLower())
@@ -143,7 +153,11 @@ namespace SecretProject.Class.UI
                     break;
                 case "showitems":
                     for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
+                    {
                         this.DisplayLog += Game1.AllItems.AllItems[i].Name + " : " + Game1.AllItems.AllItems[i].ID.ToString() + "\n";
+                    }
+                        
+
                     break;
                 case "help":
                     foreach(CommandWindowCommand command in AllCommands)
@@ -198,8 +212,23 @@ namespace SecretProject.Class.UI
                     int roomY = int.Parse(separatedString[2].ToLower());
                     (Game1.ForestDungeon as Dungeon).SwitchRooms(roomX, roomY, Dir.Down);
                     break;
+                case "":
+                    break;
+                default:
+                    this.DisplayLog += EnteredString + ": Command not recognized! \n";
+                    break;
             }
+            displayLogHeight = GetDisplayLogHeight();
+            float difference = displayLogHeight - oldDisplayLogHeight;
 
+            
+            this.DisplayLogPosition = new Vector2(this.DisplayLogPosition.X, this.DisplayLogPosition.Y - difference);
+            this.DisplayLogPosition = new Vector2(this.DisplayLogPosition.X, displayLogHeight * 2 * -1 + Game1.ScreenWidth / 2 - 64);
+        }
+
+        private float GetDisplayLogHeight()
+        {
+            return Game1.AllTextures.MenuText.MeasureString(this.DisplayLog).Y * 1f;
         }
 
         public void Draw(SpriteBatch spriteBatch)

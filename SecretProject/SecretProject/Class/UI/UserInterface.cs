@@ -249,7 +249,7 @@ namespace SecretProject.Class.UI
                     {
                         Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
                     }
-                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Enter))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.F10))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CommandConsole;
                     }
@@ -386,7 +386,7 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.CommandConsole:
                     CommandConsole.Update(gameTime);
-                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Enter))
+                    if (Game1.KeyboardManager.WasKeyPressed(Keys.F10))
                     {
                         Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
