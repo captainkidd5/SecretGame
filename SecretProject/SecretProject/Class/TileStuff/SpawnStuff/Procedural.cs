@@ -29,7 +29,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         ForestWall = 710,
         SandStoneWall = 2103,
         DesertStone = 1701,
-        GrassLake = 118
+        GrassLake = 118,
+        DeepForest = 3031,
+
 
     };
 
@@ -87,6 +89,16 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 {0, centralGID + 104},{1, centralGID + 103}, {2,  centralGID +102 },  {3, centralGID + 301}, {4, centralGID +198}, {5, centralGID + 299},{6,centralGID +105},
                 { 7, centralGID + 300}, {8, centralGID + 97}, {9, centralGID + 106}, {10, centralGID - 196}, {11, centralGID + 1},
                 { 12,centralGID - 198}, {13,centralGID - 1}, {14,centralGID - 197}, {15, centralGID}
+            };
+        }
+
+        private Dictionary<int,int> BigTileFillDictionary(int centralGID)
+        {
+            return new Dictionary<int, int>()
+            {
+                {0, centralGID -96},{1, centralGID + 6}, {2,  centralGID + 204 },  {3, centralGID + 202}, {4, centralGID + 5}, {5, centralGID + 199},{6,centralGID - 192}, //?
+                { 7, centralGID + 200}, {8, centralGID + 306}, {9, centralGID - 94}, {10, centralGID - 98}, {11, centralGID + 2},
+                { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
             };
         }
 
@@ -177,6 +189,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, ShortFillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
                  { GenerationType.DesertStone, new TilingContainer(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
                  { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
+                 { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
             };
 
 
@@ -220,9 +233,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .3f,.33f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .2f,.25f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .14f,.145f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .1f,.119f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
 
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.024f),
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.29f),

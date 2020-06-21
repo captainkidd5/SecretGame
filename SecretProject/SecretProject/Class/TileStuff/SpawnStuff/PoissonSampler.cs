@@ -34,7 +34,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.oddsOfAdditionalSpawn = oddsOfAdditionalSpawn;
         }
 
-        public void Generate(int gid, Tile[,] tiles, int layerToPlace, int layerToPlaceOn, int layerToCheckIfEmpty, IInformationContainer container, GenerationType generationType, Random random, bool isCrop)
+        public void Generate(int gid, Tile[,] tiles, int layerToPlace, int layerToPlaceOn, int layerToCheckIfEmpty,
+            IInformationContainer container, GenerationType generationType, Random random, bool isCrop)
         {
             //generate first point randomly within grid
             activeSamples.Add(new Point(random.Next(0, Grid.GetLength(0) - 1),
