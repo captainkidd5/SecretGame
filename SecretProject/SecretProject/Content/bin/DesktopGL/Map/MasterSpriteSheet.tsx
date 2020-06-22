@@ -3226,6 +3226,7 @@
  <tile id="2937">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="-16,0,32,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -3708,6 +3709,7 @@
  <tile id="3337">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="-16,0,32,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>

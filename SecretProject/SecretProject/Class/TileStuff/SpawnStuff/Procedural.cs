@@ -107,6 +107,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public List<NoiseInterval> OverWorldMidgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldBuildingsNoise { get; set; }
         public List<NoiseInterval> OverworldForegroundNoise { get; set; }
+        public List<NoiseInterval> OverWorldFrontNoise { get; set; }
 
         public List<NoiseInterval> UnderWorldBackgroundNoise { get; set; }
         public List<NoiseInterval> UnderWorldMidgroundNoise { get; set; }
@@ -246,12 +247,20 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                 };
 
+            this.OverWorldFrontNoise = new List<NoiseInterval>()
+            {
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
+            };
+
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
             {
                 OverWorldBackgroundNoise,
                 OverWorldMidgroundNoise,
                 OverWorldBuildingsNoise,
-                OverworldForegroundNoise
+                OverworldForegroundNoise,
+                OverWorldFrontNoise,
 
             };
 

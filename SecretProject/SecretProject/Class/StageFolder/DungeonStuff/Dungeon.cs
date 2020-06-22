@@ -40,6 +40,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, graphics);
         }
 
+        private bool IsStartingRoom()
+        {
+            return (this.CurrentRoom.X == startingRoomX && this.CurrentRoom.Y == startingRoomY);
+        }
+
         private void InitializeRooms()
         {
 
@@ -182,7 +187,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public override void UpdatePortals(Player player, MouseManager mouse)
         {
-            base.UpdatePortals(player, mouse);
+            if(IsStartingRoom())
+            {
+                base.UpdatePortals(player, mouse);
+            }
+            
             List<DungeonPortal> portals = this.CurrentRoom.DungeonPortals;
 
             for (int p = 0; p < portals.Count; p++)

@@ -116,7 +116,7 @@ namespace SecretProject.Class.TileStuff
                 .2f,
                 .3f,
                 .5f,
-                .99f
+                .9f
             };
 
             this.TileWidth = 16;
@@ -621,7 +621,7 @@ namespace SecretProject.Class.TileStuff
                             
 
 
-                            if (z == 3)
+                            if (z >= 3)
                             {
                                 spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor * tile.ColorMultiplier,
                                 tile.Rotation,tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);

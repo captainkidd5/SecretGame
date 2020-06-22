@@ -342,7 +342,7 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign,tileSet, true, container, tileToAssign.GID);
                 }
 
-                if (layer == 3)
+                if (layer >= 3 )
                 {
                     float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * Game1.Utility.ForeGroundMultiplier; //+ randomOffSet;

@@ -90,14 +90,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// <param name="j"></param>
         private void GenerateSorroundingWalls(ref int gid, int i, int j)
         {
-            if (j == 3 || j == this.Width - 1)
+            if (j <= 3 || j >= this.Width - 3) //top and bottom walls
             {
-                gid = 720;
+                gid = 3031;
 
             }
-            if (i == 0 || i == this.Width - 1)
+            if (i <= 3 || i >= this.Width - 3) // left and right
             {
-                gid = 720;
+                gid = 3031;
             }
 
             if (ContainsDoorDown)
@@ -149,6 +149,35 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
         }
 
+        /// <summary>
+        /// places front tiles with cellular automata. Good for forest!
+        /// </summary>
+        /// <param name="positiveGID"></param>
+        /// <param name="negativeGID"></param>
+        private void PlaceFront(int positiveGID, int negativeGID)
+        {
+            CellularAutomata cellularAutomata = new CellularAutomata();
+            bool[,] boolMap = cellularAutomata.generateMap(this.Width);
+
+            for(int i =0; i < this.Width; i++)
+            {
+                for(int j = 0; j < this.Width; j++)
+                {
+                    int gid;
+                    if(boolMap[i,j])
+                    {
+                        gid = positiveGID;
+                        
+                    }
+                    else
+                    {
+                        gid = negativeGID;
+                    }
+                    TileManager.AllTiles[4][i, j] = new Tile(i, j, gid) { LayerToDrawAt = 4 };
+                }
+            }
+        }
+
         public void Generate(string path)
         {
             GetDoorwaysBasedOnPortals();
@@ -184,8 +213,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                 }
             }
+            PlaceFront(3031, 0);
 
-            for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
+            for (int z = 0; z < this.TileManager.AllTiles.Count - 1; z++)
             {
                 for (int i = 0; i < this.TileManager.AllTiles[z].GetLength(0); i++)
                 {
@@ -193,20 +223,20 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     {
                         Tile tempTile;
                         int gid = 0;
-                        if (z != 4)
-                        {
+                       // if (z != 4)
+                       // {
                             gid = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(ChunkType.Rai, bottomNoise[i, j], z);
-                        }
+                       // }
 
 
-                        if (z == 3)
-                        {
+                        //if (z == 4)
+                        //{
 
 
 
-                            GenerateSorroundingWalls(ref gid, i, j);
+                        //    GenerateSorroundingWalls(ref gid, i, j);
 
-                        }
+                        //}
 
 
                         tempTile = new Tile(i, j, gid) { LayerToDrawAt = z };
