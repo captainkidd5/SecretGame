@@ -150,6 +150,31 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         }
 
         /// <summary>
+        /// Checks to ensure a specified indexes below do not equal a gid
+        /// </summary>
+        /// <param name="gid">gid you wish to test for</param>
+        /// <param name="layer">layer we are testing for</param>
+        /// <param name="i">current index X</param>
+        /// <param name="j">current index Y</param>
+        /// <param name="yTilesBelow">how many down to test for</param>
+        /// <returns></returns>
+        private bool YTilesBelowDoNotMatchGID(int gid, int layer, int i, int j, int yTilesBelow)
+        {
+            if(j + yTilesBelow >= this.Width)
+            {
+                return false;
+            }
+            for(int z  = j; z < j+ yTilesBelow; z++)
+            {
+                if(this.TileManager.AllTiles[layer][i,z].GID == gid)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// places front tiles with cellular automata. Good for forest!
         /// </summary>
         /// <param name="positiveGID"></param>
@@ -164,7 +189,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 for(int j = 0; j < this.Width; j++)
                 {
                     int gid;
-                    if(boolMap[i,j])
+                    if(boolMap[i,j] && YTilesBelowDoNotMatchGID(118, 0, i, j, 3))//not above water!
                     {
                         gid = positiveGID;
                         
@@ -213,7 +238,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                 }
             }
-            PlaceFront(3032, 0);
+            
 
             for (int z = 0; z < this.TileManager.AllTiles.Count - 1; z++)
             {
@@ -249,6 +274,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     }
                 }
             }
+
+            PlaceFront(3032, 0);
 
             Dictionary<int, TmxTilesetTile> tileDictionary = this.TileManager.MapName.Tilesets[0].Tiles;
             for (int z = 0; z < this.TileManager.AllTiles.Count; z++)
