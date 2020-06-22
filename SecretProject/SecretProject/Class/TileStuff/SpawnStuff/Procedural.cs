@@ -97,7 +97,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             return new Dictionary<int, int>()
             {
                 {0, centralGID -96},{1, centralGID + 6}, {2,  centralGID + 204 },  {3, centralGID + 202}, {4, centralGID + 5}, {5, centralGID + 199},{6,centralGID - 192}, //?
-                { 7, centralGID + 200}, {8, centralGID + 306}, {9, centralGID - 94}, {10, centralGID - 98}, {11, centralGID + 2},
+                { 7, centralGID + 400}, {8, centralGID + 306}, {9, centralGID - 94}, {10, centralGID - 98}, {11, centralGID + 2},
                 { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
             };
         }
@@ -234,9 +234,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .3f,.33f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
+                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
+                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
+                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
 
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.024f),
                     //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.29f),

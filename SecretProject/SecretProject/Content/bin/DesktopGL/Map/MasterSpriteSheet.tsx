@@ -3162,9 +3162,6 @@
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2929">
   <properties>
@@ -3175,18 +3172,12 @@
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2931">
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2932">
   <properties>
@@ -3197,9 +3188,6 @@
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2934">
   <properties>
@@ -3214,9 +3202,6 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="3">
-   <object id="2" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2936">
   <properties>
@@ -3228,9 +3213,6 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="-16,0,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="2938">
   <properties>
@@ -3257,31 +3239,20 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="-16,0,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3031">
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
- </tile>
- <tile id="3032">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-  </properties>
  </tile>
  <tile id="3033">
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,0,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3034">
   <properties>
@@ -3303,9 +3274,6 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3038">
   <properties>
@@ -3413,16 +3381,6 @@
    <property name="generate" value="DeepForest"/>
   </properties>
  </tile>
- <tile id="3131">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-  </properties>
- </tile>
- <tile id="3132">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-  </properties>
- </tile>
  <tile id="3133">
   <properties>
    <property name="generate" value="DeepForest"/>
@@ -3445,9 +3403,6 @@
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3137">
   <properties>
@@ -3541,31 +3496,11 @@
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="3231">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-   <property name="newSource" value="0,0,32,32"/>
-  </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="3232">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-  </properties>
  </tile>
  <tile id="3233">
   <properties>
    <property name="generate" value="DeepForest"/>
   </properties>
-  <objectgroup draworder="index" id="3">
-   <object id="2" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3234">
   <properties>
@@ -3674,13 +3609,11 @@
  </tile>
  <tile id="3331">
   <properties>
-   <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,-32,16,48"/>
   </properties>
- </tile>
- <tile id="3332">
-  <properties>
-   <property name="generate" value="DeepForest"/>
-  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="12"/>
+  </objectgroup>
  </tile>
  <tile id="3333">
   <properties>
@@ -3697,9 +3630,6 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3336">
   <properties>
@@ -3711,9 +3641,6 @@
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="-16,0,32,32"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="3338">
   <properties>
@@ -3728,6 +3655,12 @@
  <tile id="3340">
   <properties>
    <property name="generate" value="DeepForest"/>
+  </properties>
+ </tile>
+ <tile id="3431">
+  <properties>
+   <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="3620">

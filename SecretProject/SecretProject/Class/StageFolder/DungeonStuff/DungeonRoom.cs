@@ -213,7 +213,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                 }
             }
-            PlaceFront(3031, 0);
+            PlaceFront(3032, 0);
 
             for (int z = 0; z < this.TileManager.AllTiles.Count - 1; z++)
             {
@@ -226,9 +226,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                        // if (z != 4)
                        // {
                             gid = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(ChunkType.Rai, bottomNoise[i, j], z);
-                       // }
+                        // }
 
-
+                       
                         //if (z == 4)
                         //{
 
@@ -287,6 +287,19 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 {
                     for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
                     {
+                        if (z == 3)
+                        {
+                            if (j >= 3)
+                            {
+
+
+                                if (this.TileManager.AllTiles[4][i, j - 3].GID == 3031)
+                                {
+                                   Tile tempTile = new Tile(i, j, 3332) { LayerToDrawAt = z };
+                                    this.TileManager.AllTiles[z][i, j] = tempTile;
+                                }
+                            }
+                        }
 
                         TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
                         if (z == 3)
