@@ -3663,6 +3663,61 @@
    <property name="newSource" value="0,0,32,32"/>
   </properties>
  </tile>
+ <tile id="3507">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3508">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3509">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3510">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3511">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3512">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3607">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3608">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3609">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3610">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3611">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
  <tile id="3620">
   <properties>
    <property name="generate" value="CaveWater"/>
@@ -3730,6 +3785,31 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="9" width="11" height="5"/>
   </objectgroup>
+ </tile>
+ <tile id="3707">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3708">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3709">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3710">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
+ </tile>
+ <tile id="3711">
+  <properties>
+   <property name="generate" value="DarkGrass"/>
+  </properties>
  </tile>
  <tile id="3720">
   <properties>

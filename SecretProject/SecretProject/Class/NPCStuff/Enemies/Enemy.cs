@@ -314,14 +314,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
 
 
-                        if (returnObjects[i].ColliderType == ColliderType.inert)
-                        {
-                            Vector2 oldVelocity = primaryVelocity;
-                            if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
-                            {
-                                //if()
-                            }
-                        }
+                        //if (returnObjects[i].ColliderType == ColliderType.inert)
+                        //{
+                        //    Vector2 oldVelocity = primaryVelocity;
+                        //    if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
+                        //    {
+                        //        //if()
+                        //    }
+                        //}
                     }
 
                 }

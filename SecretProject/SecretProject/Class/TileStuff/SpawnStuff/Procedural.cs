@@ -31,6 +31,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         DesertStone = 1701,
         GrassLake = 118,
         DeepForest = 3031,
+        DarkGrass = 3608
 
 
     };
@@ -191,6 +192,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.DesertStone, new TilingContainer(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
                  { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
                  { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
+                   { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
             };
 
 
@@ -213,17 +215,17 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),-.14f, -.12f ),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),-.05f, -.047f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),-.07f, .03f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.071f, .12f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.12f,.123f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.13f, .18f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.24f,.27f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.27f, .32f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.37f, .372f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.39f, .43f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),.46f, 1f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.14f, -.12f ),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.05f, -.047f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.07f, .03f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.071f, .12f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.12f,.123f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.13f, .18f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.24f,.27f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.27f, .32f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.37f, .372f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.39f, .43f),
+                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.46f, 1f),
 
                 };
             this.OverWorldBuildingsNoise = new List<NoiseInterval>()

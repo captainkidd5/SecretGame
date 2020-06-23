@@ -206,7 +206,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public void Generate(string path)
         {
             GetDoorwaysBasedOnPortals();
-            int roomDimensions = 128;
+            int roomDimensions = 64;
             this.Width = roomDimensions;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
             topWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
