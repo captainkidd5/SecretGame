@@ -17,11 +17,11 @@ namespace SecretProject.Class.UI.Transitions
 
         public bool IsTransitioning { get; set; }
         public string Text { get; set; }
-        public SimpleTimer TransitionTimer { get; set; }
+        private SimpleTimer TransitionTimer;
 
         public Texture2D Texture { get; set; }
 
-        public float ColorMultiplier { get; set; }
+        private float ColorMultiplier;
         public float Speed { get; set; }
 
         public readonly Object Locker;

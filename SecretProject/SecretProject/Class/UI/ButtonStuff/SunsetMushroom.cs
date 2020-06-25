@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI.ButtonStuff
 {
+    /// <summary>
+    /// UI Button which, when pressed, will teleport the player back to a set position in town.
+    /// </summary>
     public class SunsetMushroom
     {
+        private readonly Vector2 teleportPosition = new Vector2(875, 880);
         private GraphicsDevice Graphics;
         private Vector2 Position;
         private Button Button;
@@ -29,7 +33,7 @@ namespace SecretProject.Class.UI.ButtonStuff
         private void Teleport()
         {
             Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.Town);
-            Game1.Player.position = new Vector2(875, 880);
+            Game1.Player.position = teleportPosition;
 
         }
 

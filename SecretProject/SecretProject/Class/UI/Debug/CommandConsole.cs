@@ -52,6 +52,7 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("add", "add (string)[mobname], (int)[count]"),
                 new CommandWindowCommand("swaproom", "swaproom (string)[roomX], (string)[roomY]"),
                 new CommandWindowCommand("camlock", "camlock"),
+                new CommandWindowCommand("togglemusic", "togglemusic"),
             };
             this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
@@ -215,6 +216,9 @@ namespace SecretProject.Class.UI
                     break;
                 case "camlock":
                     Game1.Player.LockBounds = !Game1.Player.LockBounds;
+                    break;
+                case "togglemusic":
+                    Game1.EnableMusic = !Game1.EnableMusic;
                     break;
                 case "":
                     break;

@@ -9,23 +9,20 @@ namespace SecretProject.Class.UI
 {
     public class SliderBar
     {
-        public Button SliderButton { get; set; }
-        public Rectangle SliderBackground { get; set; }
-        public Vector2 SliderBackgroundPosition { get; set; }
-        public int MaxSliderX { get; set; }
-        public int MinSliderX { get; set; }
-        public float Scale { get; set; }
-        public int DisplayValue { get; set; }
+        private Button SliderButton;
+        private Rectangle SliderBackground = new Rectangle(48, 160, 112, 16);
+        public Vector2 SliderBackgroundPosition { get; private set; }
+        private int MaxSliderX;
+        private int MinSliderX;
+        public float Scale { get; private set; }
+        public int DisplayValue { get; private set; } = 100;
         public SliderBar(GraphicsDevice graphics, Vector2 position, float scale)
         {
             this.Scale = scale;
-            this.SliderBackground = new Rectangle(48, 160, 112, 16);
             this.SliderBackgroundPosition = position;
             this.MinSliderX = (int)position.X;
             this.MaxSliderX = (int)position.X + 100 * (int)this.Scale;
             this.SliderButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(64, 144, 16, 16), graphics, new Vector2(this.MaxSliderX, position.Y), Controls.CursorType.Normal, scale);
-
-            this.DisplayValue = 100;
         }
 
         public float Update(float valueToAffect)

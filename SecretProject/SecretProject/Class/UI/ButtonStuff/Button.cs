@@ -161,10 +161,6 @@ namespace SecretProject.Class.UI.ButtonStuff
                     mouse.ButtonOccupied = false;
                 }
             }
-
-
-
-
         }
         //for selectableText
         public void UpdateSelectableText(MouseManager mouse)

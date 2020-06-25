@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI.Transitions
 {
+    /// <summary>
+    /// Used to create text on the screen directly after a new day has passed.
+    /// </summary>
     public class DayTransitioner
     {
         public bool IsActive { get; set; }
-        public Vector2 Position { get; set; }
+        private Vector2 Position;
         public string Text { get; set; }
-        public float Scale { get; set; }
+        private float Scale;
 
         public DayTransitioner()
         {
