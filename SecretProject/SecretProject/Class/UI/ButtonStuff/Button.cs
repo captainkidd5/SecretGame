@@ -6,7 +6,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
 using XMLData.ItemStuff;
 
-namespace SecretProject.Class.MenuStuff
+namespace SecretProject.Class.UI.ButtonStuff
 {
     public class Button
     {
@@ -18,10 +18,10 @@ namespace SecretProject.Class.MenuStuff
 
         public Vector2 size;
 
-        public bool isClicked;
-        public bool isRightClicked;
-        public bool isClickedAndHeld;
-        public bool wasJustReleased { get; set; }
+        public bool isClicked { get; private set; }
+        public bool isRightClicked { get; private set; }
+        public bool isClickedAndHeld { get; private set; }
+        public bool wasJustReleased { get; private set; }
 
 
         public bool Added { get; set; } = false;

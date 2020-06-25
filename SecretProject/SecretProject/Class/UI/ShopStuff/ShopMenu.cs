@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;

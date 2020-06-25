@@ -25,6 +25,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Playable;
 using XMLData.RouteStuff;
 using System.IO;
+using SecretProject.Class.UI.ButtonStuff;
 
 namespace SecretProject.Class.StageFolder
 {

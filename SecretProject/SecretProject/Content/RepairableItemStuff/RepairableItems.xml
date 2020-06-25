@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.RepairStuff.RepairableItemHolder">
+  <RepairableItems>
+    <Item Type="XMLData.QuestStuff.Quest">
+    <GID></GID>
+    <RequirementDescription></RequirementDescription>
+    <RewardDescription></RewardDescription>
+    <ItemsRequired>
+    <Item Type="XMLData.ItemStuff.CraftingStuff">
+    <ItemID></ItemID>
+    <Count></Count>
+    </Item>
+    </ItemsRequired>
+    </Item>
+</RepairableItems>
+
+  </Asset>
+</XnaContent>
+

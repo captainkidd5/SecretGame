@@ -816,8 +816,6 @@ namespace SecretProject.Class.TileStuff
                             //Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
                         }
 
-                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
-                        Game1.Player.UserInterface.WarpGate.CenterOfPortal = container.AllTiles[z][i, j].GetPosition(container);
                     }
                     break;
 

@@ -7,6 +7,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;

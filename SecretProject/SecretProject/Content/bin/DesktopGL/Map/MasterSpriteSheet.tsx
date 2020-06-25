@@ -3156,6 +3156,8 @@
  <tile id="2839">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,0,32,32"/>
+   <property name="transparent" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="2840">
@@ -3171,12 +3173,15 @@
  <tile id="2930">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="-16,-16,32,32"/>
+   <property name="transparent" value="-16,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2931">
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
+   <property name="transparent" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2932">
@@ -3187,6 +3192,8 @@
  <tile id="2933">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,-16,32,32"/>
+   <property name="transparent" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2934">
@@ -3201,6 +3208,7 @@
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,-16,32,32"/>
+   <property name="transparent" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2936">
@@ -3211,7 +3219,8 @@
  <tile id="2937">
   <properties>
    <property name="generate" value="DeepForest"/>
-   <property name="newSource" value="-16,0,32,32"/>
+   <property name="newSource" value="0,-16,32,32"/>
+   <property name="transparent" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2938">
@@ -3238,11 +3247,13 @@
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="-16,0,32,32"/>
+   <property name="transparent" value="-16,0,32,32"/>
   </properties>
  </tile>
  <tile id="3031">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="16" height="16"/>
@@ -3252,6 +3263,7 @@
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,0,32,32"/>
+   <property name="transparent" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="3034">
@@ -3262,6 +3274,8 @@
  <tile id="3035">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,0,32,32"/>
+   <property name="transparent" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="3036">
@@ -3272,7 +3286,8 @@
  <tile id="3037">
   <properties>
    <property name="generate" value="DeepForest"/>
-   <property name="newSource" value="0,-16,32,32"/>
+   <property name="newSource" value="0,0,32,16"/>
+   <property name="transparent" value="0,0,32,16"/>
   </properties>
  </tile>
  <tile id="3038">
@@ -3495,11 +3510,15 @@
  <tile id="3230">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="-16,0,32,32"/>
+   <property name="transparent" value="-16,0,32,32"/>
   </properties>
  </tile>
  <tile id="3233">
   <properties>
    <property name="generate" value="DeepForest"/>
+   <property name="newSource" value="0,0,32,32"/>
+   <property name="transparent" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="3234">
@@ -3628,7 +3647,8 @@
  <tile id="3335">
   <properties>
    <property name="generate" value="DeepForest"/>
-   <property name="newSource" value="0,-16,32,32"/>
+   <property name="newSource" value="0,-16,16,32"/>
+   <property name="transparent" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="3336">
@@ -3639,7 +3659,8 @@
  <tile id="3337">
   <properties>
    <property name="generate" value="DeepForest"/>
-   <property name="newSource" value="-16,0,32,32"/>
+   <property name="newSource" value="0,0,32,16"/>
+   <property name="transparent" value="0,0,32,16"/>
   </properties>
  </tile>
  <tile id="3338">
@@ -3661,6 +3682,7 @@
   <properties>
    <property name="generate" value="DeepForest"/>
    <property name="newSource" value="0,0,32,32"/>
+   <property name="transparent" value="0,0,32,32"/>
   </properties>
  </tile>
  <tile id="3507">

@@ -142,34 +142,11 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.DamageImmunityTimer = new SimpleTimer(.5f);
         }
 
-        //public static Enemy GetEnemyFromType(EnemyType enemyType, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
-        //{
-        //    switch (enemyType)
-        //    {
-        //        case EnemyType.Boar:
-        //            return new Boar("Boar", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
-
-        //        case EnemyType.Crab:
-        //            return new Crab("Crab", pack, position, graphics,  container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
-
-        //        case EnemyType.Rabbit:
-        //            return new Rabbit("Rabbit", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
-
-        //        case EnemyType.Butterfly:
-        //            return new Butterfly("Butterfly", pack, position, graphics, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
-        //        default:
-        //            return null;
-        //    }
-
-        //}
-
         public void UpdateCurrentChunk(IInformationContainer container)
         {
 
             this.ObstacleGrid = container.PathGrid;
         }
-
-
 
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)

@@ -283,20 +283,7 @@ namespace SecretProject.Class.Playable
                 this.EnableControls = true;
 
                 TestImmunity(gameTime);
-                if(IsMovingTowardsPoint)
-                {
-                   // this.PlayerWardrobe.UpdateMovementAnimations(this.Position,true);   
-                    if(MoveTowardsPoint(this.MoveToPosition, 1f, gameTime))
-                    {
-                        this.IsMovingTowardsPoint = false;
-                        if(TransportAfterMove)
-                        {
-                            Game1.Player.UserInterface.WarpGate.Transport(Game1.Player.UserInterface.WarpGate.To);
-                            TransportAfterMove = false;
-                        }
-                        
-                    }
-                }
+                
                
 
 

@@ -499,6 +499,10 @@ namespace SecretProject.Class.TileStuff
             {
                 this.GridItem.NormalUpdate(gameTime, this, this);
             }
+            else
+            {
+                Game1.Player.UserInterface.DrawTileSelector = false;
+            }
             this.TileModificationHandler.Update(gameTime);
             for (int item = 0; item < this.AllItems.Count; item++)
             {

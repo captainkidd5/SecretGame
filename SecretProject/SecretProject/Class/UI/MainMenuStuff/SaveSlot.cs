@@ -7,6 +7,7 @@ using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;

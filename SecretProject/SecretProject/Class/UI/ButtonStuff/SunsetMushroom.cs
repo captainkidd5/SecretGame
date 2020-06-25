@@ -11,11 +11,11 @@ namespace SecretProject.Class.UI.ButtonStuff
 {
     public class SunsetMushroom
     {
-        public GraphicsDevice Graphics { get; private set; }
-        public Vector2 Position { get; private set; }
-        public Button Button { get; private set; }
-        public Rectangle SourceRectangle { get; private set; }
-        public Vector2 InfoBoxPosition { get; private set; }
+        private GraphicsDevice Graphics;
+        private Vector2 Position;
+        private Button Button;
+        private Rectangle SourceRectangle;
+        private Vector2 InfoBoxPosition;
 
         public SunsetMushroom(GraphicsDevice graphics, Vector2 position)
         {
@@ -28,7 +28,8 @@ namespace SecretProject.Class.UI.ButtonStuff
         }
         private void Teleport()
         {
-            Game1.Player.position = new Vector2(1076, 1120);
+            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.Town);
+            Game1.Player.position = new Vector2(875, 880);
 
         }
 
@@ -48,11 +49,11 @@ namespace SecretProject.Class.UI.ButtonStuff
            
             if(this.Button.isClicked)
             {
-                
+
                 //if(Game1.GetCurrentStage() == Game1.OverWorld)
                 //{
-                //    Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Telport to Town?", Teleport);
-                //    //Teleport();
+                Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Telport to Town?", Teleport);
+                //Teleport();
                 //}
             }
         }

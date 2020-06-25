@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.UI;
+using SecretProject.Class.UI.ButtonStuff;
 using System;
 using System.Collections.Generic;
 using XMLData.DialogueStuff;

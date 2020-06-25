@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.QuestFolder;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI.QuestStuff

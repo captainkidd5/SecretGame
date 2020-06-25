@@ -9,7 +9,6 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
-using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.AlertStuff;
 using SecretProject.Class.UI.CraftingStuff;
 using SecretProject.Class.UI.QuestStuff;
@@ -33,11 +32,7 @@ namespace SecretProject.Class.UI
         KayaShop = 5,
         BusinessSnailShop = 6,
         SarahShop = 7
-        //LodgeInteior = 1,
-        //Iliad = 2,
-        //Exit = 3,
-        //Sea = 4,
-        //RoyalDock = 5
+
     }
     public enum CurrentOpenProgressBook
     {
@@ -52,7 +47,6 @@ namespace SecretProject.Class.UI
         ShopMenu = 2,
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
-        WarpGate = 5,
         CompletionHub = 7,
         CommandConsole = 8,
         QuestLog = 9,
@@ -100,7 +94,6 @@ namespace SecretProject.Class.UI
 
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar StaminaBar { get; set; }
-        public WarpGate WarpGate { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
         public CompletionHub CompletionHub;
@@ -110,7 +103,6 @@ namespace SecretProject.Class.UI
         public WorldQuestMenu WorldQuestMenu { get; set; }
 
 
-        //keyboard
 
         public InfoPopUp InfoBox { get; set; }
         public InfoPopUp Notes { get; set; }
@@ -146,7 +138,6 @@ namespace SecretProject.Class.UI
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             this.PlayerHealthBar = new HealthBar();
             this.StaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .2f), 7);
-            this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
             this.InfoBox = new InfoPopUp("Text Not Assigned", Game1.Utility.Origin);
@@ -393,20 +384,6 @@ namespace SecretProject.Class.UI
                     }
                     break;
 
-
-
-
-                case ExclusiveInterfaceItem.WarpGate:
-                    Game1.freeze = true;
-                    this.WarpGate.Update(gameTime);
-                    if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
-                    {
-                        Game1.SoundManager.PlayCloseUI();
-                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-
-                    }
-                    break;
-
                 case ExclusiveInterfaceItem.CompletionHub:
                     if (Game1.KeyboardManager.WasKeyPressed(Keys.Z))
                     {
@@ -523,11 +500,6 @@ namespace SecretProject.Class.UI
                         Game1.SanctuaryCheckList.Draw(spriteBatch);
                         break;
 
-
-
-                    case ExclusiveInterfaceItem.WarpGate:
-                        this.WarpGate.Draw(spriteBatch);
-                        break;
                     case ExclusiveInterfaceItem.CompletionHub:
                         CompletionHub.Draw(spriteBatch);
                         break;
@@ -598,11 +570,5 @@ namespace SecretProject.Class.UI
             this.TextBuilder.IsActive = true;
 
         }
-
-
-
-
     }
-
-
 }

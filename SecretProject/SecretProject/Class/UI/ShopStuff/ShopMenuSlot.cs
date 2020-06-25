@@ -4,6 +4,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.UI.ButtonStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
