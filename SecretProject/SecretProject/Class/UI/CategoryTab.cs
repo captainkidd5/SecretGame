@@ -8,10 +8,13 @@ using System.Collections.Generic;
 
 namespace SecretProject.Class.UI
 {
+    /// <summary>
+    /// For use with ESC menu
+    /// </summary>
     public class CategoryTab
     {
-        public string Name { get; set; }
-        public int Index { get; set; }
+        public string Name { get; private set; }
+        public int Index { get; private set; }
         public bool IsActive { get; set; }
         public int ActivePage { get; set; }
         public List<IPage> Pages { get; set; }

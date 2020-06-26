@@ -171,6 +171,9 @@
    <property name="loot" value="1002"/>
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="14" height="12"/>
+  </objectgroup>
   <animation>
    <frame tileid="35" duration="80"/>
    <frame tileid="36" duration="80"/>
@@ -263,6 +266,11 @@
  <tile id="121">
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="14" height="14"/>
+  </objectgroup>
+ </tile>
+ <tile id="134">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="14" height="14"/>
   </objectgroup>
  </tile>
  <tile id="140">
@@ -470,6 +478,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="6" width="12" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="250">
   <properties>
@@ -478,6 +489,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="6" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="251">
   <properties>
@@ -486,6 +500,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="5" width="12" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="252">
   <properties>
@@ -494,6 +511,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="5" width="8" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="253">
   <properties>
@@ -736,6 +756,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="7" width="14" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="450">
   <properties>
@@ -744,6 +767,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="7" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="451">
   <properties>
@@ -752,6 +778,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="7" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="452">
   <properties>
@@ -761,6 +790,9 @@
    <property name="loot" value="1164"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="6" width="8" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="453">
   <properties>

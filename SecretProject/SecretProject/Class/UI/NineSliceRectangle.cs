@@ -32,17 +32,17 @@ namespace SecretProject.Class.UI
         public int Height { get; private set; }
         public float Scale { get; set; }
 
-        Rectangle TopLeftCorner = new Rectangle(1056, 128, 16, 16);
-        Rectangle TopEdge = new Rectangle(1072, 128, 16, 16);
-        Rectangle TopRightCorner = new Rectangle(1088, 128, 16, 16);
+        private readonly Rectangle TopLeftCorner = new Rectangle(1056, 128, 16, 16);
+        private readonly Rectangle TopEdge = new Rectangle(1072, 128, 16, 16);
+        private readonly Rectangle TopRightCorner = new Rectangle(1088, 128, 16, 16);
 
-        Rectangle LeftEdge = new Rectangle(1056, 144, 16, 16);
-        Rectangle Center = new Rectangle(1072, 144, 16, 16);
-        Rectangle RightEdge = new Rectangle(1088, 144, 16, 16);
+        private readonly Rectangle LeftEdge = new Rectangle(1056, 144, 16, 16);
+        private readonly Rectangle Center = new Rectangle(1072, 144, 16, 16);
+        private readonly Rectangle RightEdge = new Rectangle(1088, 144, 16, 16);
 
-        Rectangle BottomLeftCorner = new Rectangle(1056, 164, 16, 16);
-        Rectangle BottomEdge = new Rectangle(1072, 164, 16, 16);
-        Rectangle BottomRightCorner = new Rectangle(1088, 164, 16, 16);
+        private readonly Rectangle BottomLeftCorner = new Rectangle(1056, 164, 16, 16);
+        private readonly Rectangle BottomEdge = new Rectangle(1072, 164, 16, 16);
+        private readonly Rectangle BottomRightCorner = new Rectangle(1088, 164, 16, 16);
 
        
         public NineSliceRectangle(Vector2 position, string text, float textScale)
