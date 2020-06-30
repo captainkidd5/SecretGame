@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,11 +78,11 @@ namespace SecretProject.Class.UI.StaminaStuff
         {
             if (this.IsDepleted)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, Color.White * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, Color.White * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardTextDepth);
             }
             else
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, color * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, color * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardTextDepth);
             }
             
         }

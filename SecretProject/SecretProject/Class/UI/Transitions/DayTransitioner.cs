@@ -40,7 +40,7 @@ namespace SecretProject.Class.UI.Transitions
             {
 
 
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, this.Position, color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, this.Position, color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardTextDepth);
             }
         }
     }

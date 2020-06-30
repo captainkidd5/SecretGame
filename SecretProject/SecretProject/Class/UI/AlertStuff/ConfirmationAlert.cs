@@ -76,8 +76,8 @@ namespace SecretProject.Class.UI.AlertStuff
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", this.YesTextPosition, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
-            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", this.NoTextPosition, Color.White, Game1.Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
+            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", this.YesTextPosition, Color.White,Utility.StandardButtonDepth + .03f, Utility.StandardTextDepth + .05f, 2f);
+            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", this.NoTextPosition, Color.White,Utility.StandardButtonDepth + .03f, Utility.StandardTextDepth + .05f, 2f);
         }
     
     }

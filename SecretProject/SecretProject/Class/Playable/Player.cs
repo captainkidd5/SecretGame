@@ -136,7 +136,7 @@ namespace SecretProject.Class.Playable
 
         public Wardrobe Wardrobe { get; set; }
 
-        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics, MouseManager mouse)
+        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics)
         {
             this.content = content;
             this.Name = name;
@@ -285,9 +285,6 @@ namespace SecretProject.Class.Playable
                 TestImmunity(gameTime);
                 
                
-
-
-                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
 
                 if(IsBeingKnockedBack)

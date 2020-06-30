@@ -199,14 +199,14 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
 
-            this.NPCAnimatedSprite[(int)this.ShooterState].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.ShooterState].DestinationRectangle.Y)));
+            this.NPCAnimatedSprite[(int)this.ShooterState].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.ShooterState].DestinationRectangle.Y)));
 
 
         }
 
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
         }
 
         public override void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)

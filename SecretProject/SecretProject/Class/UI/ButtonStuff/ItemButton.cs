@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,9 +59,9 @@ namespace SecretProject.Class.UI.ButtonStuff
         public void DrawItemButton(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.Position, this.ItemSourceRectangleToDraw,
-                this.Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+                this.Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None,Utility.StandardButtonDepth + .02f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, this.TextPosition, Color.Black, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None,
-                Game1.Utility.StandardTextDepth + .02f);
+                Utility.StandardTextDepth + .02f);
         }
     }
 }

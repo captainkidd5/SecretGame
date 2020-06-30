@@ -95,7 +95,7 @@ namespace SecretProject.Class.UI.QuestStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackgroundSourceRectangle,
-               Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
+               Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth - .01f);
             RedEsc.Draw(spriteBatch);
 
 
@@ -103,7 +103,7 @@ namespace SecretProject.Class.UI.QuestStuff
             {
                 for (int i = 0; i < QuestButtons.Count; i++)
                 {
-                    QuestButtons[i].Draw(spriteBatch, Game1.AllTextures.MenuText, Quests[i].Title, QuestButtons[i].Position, QuestButtons[i].Color, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardTextDepth + .01f, this.Scale - 1);
+                    QuestButtons[i].Draw(spriteBatch, Game1.AllTextures.MenuText, Quests[i].Title, QuestButtons[i].Position, QuestButtons[i].Color,Utility.StandardButtonDepth + .01f, Utility.StandardTextDepth + .01f, this.Scale - 1);
                 }
             }
             else

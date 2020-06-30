@@ -259,22 +259,22 @@ namespace SecretProject.Class.UI.MainMenuStuff
             for (int i = 0; i < this.CustomizationButtons.Count; i++)
             {
                 this.CustomizationButtons[i].DrawNormal(spriteBatch, CustomizationButtons[i].Position, CustomizationButtons[i].BackGroundSourceRectangle, CustomizationButtons[i].Color,
-                0f, Game1.Utility.Origin, CustomizationButtons[i].HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, CustomizationButtons[i].HitBoxScale, SpriteEffects.None,Utility.StandardButtonDepth);
             }
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,this.PlayerPortraitDrawLocation,this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardTextDepth - .04f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,this.PlayerPortraitDrawLocation,this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardTextDepth);
             this.TypingWindow.Draw(spriteBatch);
-            this.StartNewGameButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.StartButtonString, StartNewGameButton.Position, StartNewGameButton.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, this.Scale);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.PlayerPortraitDrawLocation.X + 16, this.PlayerPortraitDrawLocation.Y + CharacterPortraitWindow.Height * Scale - 48), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth + .04f);
+            this.StartNewGameButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.StartButtonString, StartNewGameButton.Position, StartNewGameButton.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, this.Scale);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.PlayerPortraitDrawLocation.X + 16, this.PlayerPortraitDrawLocation.Y + CharacterPortraitWindow.Height * Scale - 48), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth + .04f);
 
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair", new Vector2(HairFoward.Position.X - 96, HairFoward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shirt", new Vector2(ShirtForward.Position.X - 96, ShirtForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Pants", new Vector2(PantsForward.Position.X - 96, PantsForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shoes", new Vector2(ShoeColorForward.Position.X - 96, ShoeColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(SkinToneForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair Color", new Vector2(HairColorForward.Position.X - 96, HairColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Eye Color", new Vector2(EyeColorForward.Position.X - 96, EyeColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair", new Vector2(HairFoward.Position.X - 96, HairFoward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shirt", new Vector2(ShirtForward.Position.X - 96, ShirtForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Pants", new Vector2(PantsForward.Position.X - 96, PantsForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shoes", new Vector2(ShoeColorForward.Position.X - 96, ShoeColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Skin", new Vector2(SkinToneForward.Position.X - 96, SkinToneForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair Color", new Vector2(HairColorForward.Position.X - 96, HairColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Eye Color", new Vector2(EyeColorForward.Position.X - 96, EyeColorForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
         }
     }
 }

@@ -463,7 +463,7 @@ namespace SecretProject.Class.TileStuff
                                 this.Tufts.Add(key, tufts);
                             }
 
-                            World world;
+                           // World world;
                             //if (this.ITileManager.Stage == Game1.OverWorld)
                             //{
                             //    world = Game1.OverWorld;

@@ -10,6 +10,7 @@ using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.TileStuff.TileModifications;
 using SecretProject.Class.UI;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -344,11 +345,11 @@ namespace SecretProject.Class.TileStuff
 
                 if (layer >= 3 )
                 {
-                    float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
-                    float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * Game1.Utility.ForeGroundMultiplier; //+ randomOffSet;
+                    float randomOffSet = Game1.Utility.RFloat(Utility.LayerOffSetMultiplier, Utility.LayerOffSetMultiplier * 10);
+                    float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * Utility.ForeGroundMultiplier; //+ randomOffSet;
                     if (x > 0 && container.AllTiles[layer][x - 1, y].LayerToDrawAtZOffSet == offSetDrawValue)
                     {
-                        offSetDrawValue += Game1.Utility.ForeGroundMultiplier;
+                        offSetDrawValue += randomOffSet;
                     }
                     tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
 
@@ -1000,7 +1001,7 @@ namespace SecretProject.Class.TileStuff
                 container.TileHitPoints.Remove(tile.TileKey);
             }
             //if tileset has loot value, then use that. otherwise check the loot xml data.
-            Item itemToCheckForReassasignTiling = null;
+            Item itemToCheckForReassasignTiling;
             if (container.TileSetDictionary[tile.GID].Properties.ContainsKey("loot"))
             {
                 if (container.TileSetDictionary[tile.GID].Properties["loot"] == string.Empty)

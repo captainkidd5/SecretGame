@@ -5,6 +5,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI.ButtonStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,16 +113,16 @@ namespace SecretProject.Class.UI.ShopStuff
         {
             this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
                Stock.ToString(), drawPosition,
-               Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
+               Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom:Utility.StandardButtonDepth);
 
-            this.GoldButton.Draw(spriteBatch, Game1.AllTextures.MenuText, Price.ToString(), new Vector2(GoldButton.Position.X + 8, GoldButton.Position.Y + 8), Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, GoldButton.HitBoxScale -1f);
+            this.GoldButton.Draw(spriteBatch, Game1.AllTextures.MenuText, Price.ToString(), new Vector2(GoldButton.Position.X + 8, GoldButton.Position.Y + 8), Color.White,Utility.StandardButtonDepth, Utility.StandardTextDepth, GoldButton.HitBoxScale -1f);
 
             if(Price > 0)
             {
                 Vector2 stringLength = Game1.AllTextures.MenuText.MeasureString(Price.ToString());
 
                 this.Gold.Position = new Vector2(this.GoldButton.Position.X + stringLength.X + 32, this.GoldButton.Position.Y + 8);
-                this.Gold.Draw(spriteBatch, Game1.Utility.StandardTextDepth);
+                this.Gold.Draw(spriteBatch, Utility.StandardTextDepth);
             }
 
         }

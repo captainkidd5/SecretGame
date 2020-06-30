@@ -149,7 +149,7 @@ namespace SecretProject.Class.UI.ShopStuff
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, ShopMenuPosition, this.ShopBackDropSourceRectangle, Color.White,
                 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,
-                Game1.Utility.StandardButtonDepth - .04f);
+               Utility.StandardButtonDepth - .04f);
             for (int i = 0; i < this.Pages[this.CurrentPage].Count; i++)
             {
                 this.Pages[this.CurrentPage][i].Draw(spriteBatch, this.BackDropScale);
@@ -157,23 +157,23 @@ namespace SecretProject.Class.UI.ShopStuff
             if (this.CurrentPage >= this.Pages.Count - 1)
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White * .5f,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,Utility.StandardButtonDepth);
             }
             else
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,Utility.StandardButtonDepth);
             }
             if (this.CurrentPage <= 0)
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White * .5f,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,Utility.StandardButtonDepth);
 
             }
             else
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,Utility.StandardButtonDepth);
 
             }
             redEsc.Draw(spriteBatch);

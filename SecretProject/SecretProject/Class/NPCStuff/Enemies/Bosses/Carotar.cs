@@ -267,7 +267,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
         //        spriteBatch.Draw(Game1.AllTextures.CarotarShadow, this.LandingSpot, null, Color.Black, 0f, new Vector2(16,16), this.ShadowScale, SpriteEffects.None, .3f );
         //    }
 
-        //    this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+        //    this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
 
 
         //}

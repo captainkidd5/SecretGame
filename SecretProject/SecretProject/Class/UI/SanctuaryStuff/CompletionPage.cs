@@ -164,11 +164,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width / 2 - 64, position.Y - 16),
-                    Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                    Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Rewards", new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 64 * Scale, position.Y + 64),
-                   Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                   Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(position.X, position.Y + 24),
-                    Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                    Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
             int drawIndex = 0;
             for (int i = CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
             {
@@ -179,7 +179,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 }
 
             }
-            this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 3, Game1.Utility.StandardButtonDepth + .03f);
+            this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 3,Utility.StandardButtonDepth + .03f);
 
             ScrollUpButton.Draw(spriteBatch);
             ScrollDownButton.Draw(spriteBatch);

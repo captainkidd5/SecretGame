@@ -105,7 +105,6 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public ObstacleGrid ObstacleGrid { get; set; }
 
-        public bool IsWorldNPC { get; set; }
         public EmoticonType CurrentEmoticon { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public bool MakesPeriodicSound { get; set; }
@@ -136,9 +135,6 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.ObstacleGrid = container.PathGrid;
             this.CurrentBehaviour = CurrentBehaviour.Wander;
 
-
-
-            this.IsWorldNPC = true;
             this.DamageImmunityTimer = new SimpleTimer(.5f);
         }
 
@@ -410,41 +406,41 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void WanderToTile(GameTime gameTime)
-        {
+        //public void WanderToTile(GameTime gameTime)
+        //{
 
-            if (this.CurrentPath.Count > 0)
-            {
-                MoveTowardsPointAndDecrementPath(gameTime);
-
-
-
-            }
-            else if (WanderTimer >= 0)
-            {
-                this.IsMoving = false;
-            }
-            else if (WanderTimer <= 0)
-            {
-
-                int currentTileX = (int)(this.Position.X / 16);
-                int currentTileY = (int)(this.Position.Y / 16);
-                int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
-                int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
-                Point newPoint = GetNewWanderPoint(currentTileX, currentTileY);
-
-                //if new point isn't inside the current grid, try again.
-                while (newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
-                    newPoint.X < 0 || newPoint.Y < 0)
-                {
-                    newPoint = GetNewWanderPoint(currentTileX, currentTileY);
-                }
-
-                TryFindNewPath(newPoint);
+        //    if (this.CurrentPath.Count > 0)
+        //    {
+        //        MoveTowardsPointAndDecrementPath(gameTime);
 
 
-            }
-        }
+
+        //    }
+        //    else if (WanderTimer >= 0)
+        //    {
+        //        this.IsMoving = false;
+        //    }
+        //    else if (WanderTimer <= 0)
+        //    {
+
+        //        int currentTileX = (int)(this.Position.X / 16);
+        //        int currentTileY = (int)(this.Position.Y / 16);
+        //        int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
+        //        int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
+        //        Point newPoint = GetNewWanderPoint(currentTileX, currentTileY);
+
+        //        //if new point isn't inside the current grid, try again.
+        //        while (newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
+        //            newPoint.X < 0 || newPoint.Y < 0)
+        //        {
+        //            newPoint = GetNewWanderPoint(currentTileX, currentTileY);
+        //        }
+
+        //        TryFindNewPath(newPoint);
+
+
+        //    }
+        //}
         public Point NewStartPoint { get; set; } = new Point(-1, -1);
 
         private Point GetNewWanderPoint(int currentTileX, int currentTileY)
@@ -561,14 +557,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         {
 
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (this.IsWorldNPC)
-            {
-                WanderToTile(gameTime);
-            }
-            else
-            {
+
                 MoveToTile(gameTime);
-            }
+            
 
         }
         public void UpdateDirection()
@@ -681,7 +672,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 }
 
 
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
 
             }
         }
@@ -691,7 +682,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
 
 
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
             }
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)

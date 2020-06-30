@@ -44,8 +44,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             if (drawString)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActivePage.ToString(), this.PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(this.PositionToDraw.X + backDropSourceRectangle.Width / 8 * backDropScale, this.PositionToDraw.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActivePage.ToString(), this.PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(this.PositionToDraw.X + backDropSourceRectangle.Width / 8 * backDropScale, this.PositionToDraw.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
             }
 
             this.Pages[this.ActivePage].Draw(spriteBatch);

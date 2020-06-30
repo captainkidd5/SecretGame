@@ -4,6 +4,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 
@@ -49,7 +50,7 @@ namespace SecretProject.Class.SpriteFolder
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
             this.StartShuff = false;
-            this.YOffSet = Game1.Utility.RFloat(.00000001f, Game1.Utility.ForeGroundMultiplier);
+            this.YOffSet = Game1.Utility.RFloat(.00000001f, Utility.ForeGroundMultiplier);
             this.ShuffDirection = Dir.Left;
             this.ShuffDirectionPicked = false;
 
@@ -65,7 +66,7 @@ namespace SecretProject.Class.SpriteFolder
 
           
 
-            this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
+            this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
         }
         public void Update(GameTime gameTime)
@@ -109,7 +110,7 @@ namespace SecretProject.Class.SpriteFolder
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
-            location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
+            location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             if(Game1.Utility.RGenerator.Next(0,5) < 2)
             {
                 location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.GetCurrentStage().AllTiles.GetItems(this.Position)), this.Position);

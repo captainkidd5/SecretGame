@@ -460,7 +460,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
+                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Utility.ForeGroundMultiplier);
 
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {

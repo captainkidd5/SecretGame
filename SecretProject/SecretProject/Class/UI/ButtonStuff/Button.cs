@@ -206,7 +206,7 @@ namespace SecretProject.Class.UI.ButtonStuff
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, Position, this.BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+            spriteBatch.Draw(this.Texture, Position, this.BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None,Utility.StandardButtonDepth + .02f);
         }
 
 
@@ -221,19 +221,19 @@ namespace SecretProject.Class.UI.ButtonStuff
         public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f, bool centerImage = false, float textScale = 1f)
         {
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.HitBoxRectangle.X, this.HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.HitBoxRectangle.X, this.HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
             if (centerImage)
             {
-                spriteBatch.Draw(this.Texture, new Vector2(this.HitBoxRectangle.X, this.HitBoxRectangle.Y), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+                spriteBatch.Draw(this.Texture, new Vector2(this.HitBoxRectangle.X, this.HitBoxRectangle.Y), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None,Utility.StandardButtonDepth + .02f);
             }
             else
             {
-                spriteBatch.Draw(this.Texture, new Vector2(this.HitBoxRectangle.X + this.HitBoxRectangle.Width / 4, this.HitBoxRectangle.Y + this.HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+                spriteBatch.Draw(this.Texture, new Vector2(this.HitBoxRectangle.X + this.HitBoxRectangle.Width / 4, this.HitBoxRectangle.Y + this.HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None,Utility.StandardButtonDepth + .02f);
             }
 
 
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, textScale, SpriteEffects.None, layerDepth: Game1.Utility.StandardButtonDepth + .02f);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, textScale, SpriteEffects.None, layerDepth:Utility.StandardButtonDepth + .02f);
         }
 
         //for crafting menu
@@ -245,10 +245,10 @@ namespace SecretProject.Class.UI.ButtonStuff
 
             // spriteBatch.Draw(Texture,sourceRectangle: sourceRectangle, destinationRectangle: Rectangle, color: Color, layerDepth: .68f);
 
-            spriteBatch.Draw(this.Texture, this.HitBoxRectangle, sourceRectangle, Color, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(this.Texture, this.HitBoxRectangle, sourceRectangle, Color, 0f, Game1.Utility.Origin, SpriteEffects.None,Utility.StandardButtonDepth);
 
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardTextDepth);
         }
 
 

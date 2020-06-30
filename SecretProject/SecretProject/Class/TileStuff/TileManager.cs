@@ -192,11 +192,8 @@ namespace SecretProject.Class.TileStuff
             #region PORTALS
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
             {
-                string keyFrom;
-                string keyTo;
-                string safteyX;
-                string safteyY;
-                string click;
+                string keyFrom, keyTo, safteyX, safteyY, click;
+
 
 
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);

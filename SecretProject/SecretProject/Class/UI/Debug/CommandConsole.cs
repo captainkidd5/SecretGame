@@ -5,6 +5,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.StageFolder.DungeonStuff;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -245,8 +246,8 @@ namespace SecretProject.Class.UI
 
             spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
             
-            spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition,this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None,Utility.StandardButtonDepth);
+            spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition,this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None,Utility.StandardButtonDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.typeBoxPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
             spriteBatch.End();
 

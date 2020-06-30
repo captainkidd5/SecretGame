@@ -15,18 +15,19 @@ namespace SecretProject.Class.Universal
     {
         public int CenterScreenX { get { return Game1.ScreenWidth / 2; } }
         public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
-        public float GlobalButtonScale { get; set; } = 2f;
-        public float ForeGroundMultiplier { get; set; } = .00001f;
+        public const float GlobalButtonScale = 2f;
+        public const float ForeGroundMultiplier = .00001f;
+        public const float LayerOffSetMultiplier = .000001f;
         public Vector2 centerScreen;
         public Random RGenerator;
 
-        public Vector2 Origin { get; set; } = new Vector2(0, 0);
+        public readonly Vector2 Origin  = new Vector2(0, 0);
         public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
 
 
-         public float StandardButtonDepth = .7f;
-        public float StandardTextDepth { get; set; } = .72f;
+         public const float StandardButtonDepth = .7f;
+        public const float StandardTextDepth = .72f;
         public Vector2 ClockPosition { get; set; }
 
 

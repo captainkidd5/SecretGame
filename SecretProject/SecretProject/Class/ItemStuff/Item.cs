@@ -8,6 +8,7 @@ using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using XMLData.ItemStuff;
@@ -125,8 +126,8 @@ namespace SecretProject.Class.ItemStuff
                 this.Ignored = true;
                 this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
 
-                float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
-                this.LayerDepth = .5f + (this.WorldPosition.Y) * Game1.Utility.ForeGroundMultiplier + randomOffSet;
+                float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
+                this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
                 this.Collider = new Collider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
                 AllItems.Add(this);
             }

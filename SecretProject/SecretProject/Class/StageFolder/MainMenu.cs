@@ -44,10 +44,10 @@ namespace SecretProject.Class.StageFolder
         //--------------------------------------
         //buttons
         public MenuState CurrentMenuState = MenuState.Primary;
-        Button Play;
-        Button Settings;
-        Button DevPanel;
-        Button Exit;
+        readonly Button Play;
+        readonly Button Settings;
+        readonly Button DevPanel;
+        readonly Button Exit;
 
         //PLAY BUTTONs
         public ChooseGameMenu ChooseGameMenu;
@@ -123,7 +123,7 @@ namespace SecretProject.Class.StageFolder
         public string SavePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private Game1 game;
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
+        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
  
             Graphics = graphicsDevice;
@@ -400,17 +400,17 @@ namespace SecretProject.Class.StageFolder
             {
 
                 Settings.Draw(spriteBatch, this.Settings.ItemSourceRectangleToDraw, this.Settings.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                     "", this.Settings.Position, Settings.Color, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                     "", this.Settings.Position, Settings.Color, 2f, 2f,Utility.StandardButtonDepth + .01f, true);
                 switch (CurrentMenuState)
                 {
                     case MenuState.Primary:
 
-                        Play.Draw(spriteBatch, Game1.AllTextures.MenuText, "Play", Play.FontLocation, Play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
+                        Play.Draw(spriteBatch, Game1.AllTextures.MenuText, "Play", Play.FontLocation, Play.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 3f);
                         
 
 
-                        Exit.Draw(spriteBatch, Game1.AllTextures.MenuText, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
-                        DevPanel.Draw(spriteBatch, Game1.AllTextures.MenuText, "", DevPanel.FontLocation, DevPanel.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        Exit.Draw(spriteBatch, Game1.AllTextures.MenuText, "Exit", Exit.FontLocation, Exit.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 3f);
+                        DevPanel.Draw(spriteBatch, Game1.AllTextures.MenuText, "", DevPanel.FontLocation, DevPanel.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 2f);
 
                         break;
 
@@ -420,18 +420,18 @@ namespace SecretProject.Class.StageFolder
                         ChooseGameMenu.Draw(spriteBatch);
                         break;
                     case MenuState.Settings:
-                        FullScreen.Draw(spriteBatch, Game1.AllTextures.MenuText, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        FullScreen.Draw(spriteBatch, Game1.AllTextures.MenuText, "FullScreen", FullScreen.FontLocation, FullScreen.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 2f);
                         break;
                     case MenuState.DevPanel:
-                        StartGameInTown.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
-                        StartGameInWilderness.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
-                        StartGameInUnderWorld.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to underworld", StartGameInUnderWorld.FontLocation, StartGameInUnderWorld.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+                        StartGameInTown.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 2f);
+                        StartGameInWilderness.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 2f);
+                        StartGameInUnderWorld.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to underworld", StartGameInUnderWorld.FontLocation, StartGameInUnderWorld.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth, 2f);
                         break;
 
                 }
             }
 
-            Back.Draw(spriteBatch, Game1.AllTextures.MenuText, "Back", Back.FontLocation, Back.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            Back.Draw(spriteBatch, Game1.AllTextures.MenuText, "Back", Back.FontLocation, Back.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth);
 
 
             spriteBatch.End();

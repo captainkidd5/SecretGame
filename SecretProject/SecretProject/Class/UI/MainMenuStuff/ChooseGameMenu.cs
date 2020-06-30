@@ -84,7 +84,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             switch (this.MenuChoice)
             {
                 case ChooseGameState.SaveSlotSelection:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Utility.StandardTextDepth - .04f);
                     for (int i = 0; i < this.AllSaveSlots.Count; i++)
                     {
                         AllSaveSlots[i].Draw(spriteBatch);

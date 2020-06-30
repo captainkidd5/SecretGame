@@ -123,13 +123,13 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                this.FittedRectangle.Draw(spriteBatch, Game1.Utility.StandardButtonDepth + .09f);
-              //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 48), this.Color, 0f, Game1.Utility.Origin,this.TextScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .1f);
+                this.FittedRectangle.Draw(spriteBatch,Utility.StandardButtonDepth + .09f);
+              //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .05f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 48), this.Color, 0f, Game1.Utility.Origin,this.TextScale, SpriteEffects.None,Utility.StandardButtonDepth + .1f);
                 if(this.DisplayTitle)
                 {
-                  //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.WindowPosition.X + 24, this.WindowPosition.Y - 46), this.TitleSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
-                    spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .1f);
+                  //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.WindowPosition.X + 24, this.WindowPosition.Y - 46), this.TitleSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .05f);
+                    spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None,Utility.StandardButtonDepth + .1f);
                 }
 
                 if(this.Sprites != null)

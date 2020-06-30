@@ -191,18 +191,18 @@ namespace SecretProject.Class.UI
 
 
                 this.InGameMenu.Draw(spriteBatch, this.InGameMenu.ItemSourceRectangleToDraw, this.InGameMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", this.InGameMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                    "", this.InGameMenu.Position, Color.White, 2f, 2f,Utility.StandardButtonDepth + .01f, true);
 
                 this.OpenCraftingMenu.Draw(spriteBatch, this.OpenCraftingMenu.ItemSourceRectangleToDraw, this.OpenCraftingMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", this.OpenCraftingMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                    "", this.OpenCraftingMenu.Position, Color.White, 2f, 2f,Utility.StandardButtonDepth + .01f, true);
 
 
                 this.OpenSanctuaryMenu.Draw(spriteBatch, this.OpenSanctuaryMenu.ItemSourceRectangleToDraw, this.OpenSanctuaryMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", this.OpenSanctuaryMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
+                    "", this.OpenSanctuaryMenu.Position, Color.White, 2f, 2f,Utility.StandardButtonDepth + .01f, true);
                 this.SunsetMushroom.Draw(spriteBatch);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.GoldIconPosition, this.GoldIconBackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.GoldIconPosition.X + 112, this.GoldIconPosition.Y), this.GoldIcon, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), new Vector2(this.GoldIconPosition.X + 16, this.GoldIconPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.GoldIconPosition, this.GoldIconBackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.GoldIconPosition.X + 112, this.GoldIconPosition.Y), this.GoldIcon, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), new Vector2(this.GoldIconPosition.X + 16, this.GoldIconPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
 
             }
         }

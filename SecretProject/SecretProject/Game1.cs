@@ -451,7 +451,7 @@ namespace SecretProject
 
             GlobalClock = new Clock();
             //STAGES
-            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, MouseManager, Player.UserInterface);
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
             PortalGraph = new Graph(Enum.GetNames(typeof(Stages)).Length);
 
@@ -1155,7 +1155,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("NAME", new Vector2(600, 700), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice, MouseManager) { Activate = true, IsDrawn = true };
+            Player = new Player("NAME", new Vector2(600, 700), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
 

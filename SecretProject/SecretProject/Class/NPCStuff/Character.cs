@@ -758,7 +758,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                     DrawBasicNPC(spriteBatch);
                     return;
                 }
-                float num = .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y + this.NPCAnimatedSprite[0].DestinationRectangle.Height - this.NPCRectangleYOffSet));
+                float num = .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y + this.NPCAnimatedSprite[0].DestinationRectangle.Height - this.NPCRectangleYOffSet));
                 switch (this.CurrentDirection)
                 {
 

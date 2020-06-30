@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.Rectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.Rectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardTextDepth);
         }
     }
 

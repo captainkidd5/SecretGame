@@ -7,6 +7,7 @@ using SecretProject.Class.QuestFolder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.ButtonStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,13 +146,13 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description,this.DescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RewardDescription, this.RewardDescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, this.TileDrawPosition, this.TileSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description,this.DescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RewardDescription, this.RewardDescriptionPosition, Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, this.TileDrawPosition, this.TileSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None,Utility.StandardButtonDepth + .01f);
             this.RedEsc.Draw(spriteBatch);
 
-            this.RepairButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Repair!", this.RepairButton.Position, Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardTextDepth + .03f, 2f);
+            this.RepairButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Repair!", this.RepairButton.Position, Color.White,Utility.StandardButtonDepth + .02f, Utility.StandardTextDepth + .03f, 2f);
 
             for (int i = 0; i < this.ItemRequirementButtons.Count; i++)
             {

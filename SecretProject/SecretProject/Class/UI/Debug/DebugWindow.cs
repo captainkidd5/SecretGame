@@ -178,10 +178,10 @@ namespace SecretProject.Class.UI
             {
                 spriteBatch.Begin();
                 //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
-                //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None,Utility.StandardButtonDepth);
+                //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + this.ElapsedMS + " \n \n " + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
-                    + Game1.cam.Pos.Y + " \n \n Current Room: " + WriteDungeonGrid(), position, Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                    + Game1.cam.Pos.Y + " \n \n Current Room: " + WriteDungeonGrid(), position, Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Utility.StandardTextDepth);
 
 
                 this.DebugButton1.Draw(spriteBatch);
@@ -193,7 +193,7 @@ namespace SecretProject.Class.UI
                 {
                     this.WeatherButtons[i].Draw(spriteBatch);
                 }
-                this.SpawnAnimalPack.Draw(spriteBatch, Game1.AllTextures.MenuText, "SpawnAnimalPack", this.SpawnAnimalPack.Position, Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardButtonDepth + .01f, 2f);
+                this.SpawnAnimalPack.Draw(spriteBatch, Game1.AllTextures.MenuText, "SpawnAnimalPack", this.SpawnAnimalPack.Position, Color.White,Utility.StandardButtonDepth,Utility.StandardButtonDepth + .01f, 2f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, Clock.ClockMultiplier.ToString(), new Vector2(this.SpeedClockUp.Position.X, this.SpeedClockUp.Position.Y - 32), Color.White);
                 spriteBatch.End();
             }
