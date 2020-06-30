@@ -18,10 +18,6 @@ namespace SecretProject.Class.NPCStuff
         string Name { get; set; }
         Vector2 Position { get; set; }
         Sprite[] NPCAnimatedSprite { get; set; }
-        int NPCRectangleXOffSet { get; set; }
-        int NPCRectangleYOffSet { get; set; }
-        int NPCRectangleWidthOffSet { get; set; }
-        int NPCRectangleHeightOffSet { get; set; }
         Rectangle NPCHitBoxRectangle { get; }
         Texture2D Texture { get; set; }
         Texture2D HitBoxTexture { get; set; }

@@ -36,15 +36,15 @@ namespace SecretProject.Class.NPCStuff.Enemies
     public class Enemy : INPC, IEntity
     {
 
-        public GraphicsDevice Graphics { get; set; }
+        protected GraphicsDevice Graphics { get; set; }
         public string Name { get; set; }
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
 
-        public int NPCRectangleXOffSet { get; set; }
-        public int NPCRectangleYOffSet { get; set; }
-        public int NPCRectangleWidthOffSet { get; set; } = 1;
-        public int NPCRectangleHeightOffSet { get; set; } = 1;
+        protected int NPCRectangleXOffSet { get; set; }
+        protected int NPCRectangleYOffSet { get; set; }
+        protected int NPCRectangleWidthOffSet { get; set; } = 1;
+        protected int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)this.Position.X - this.NPCRectangleXOffSet, (int)this.Position.Y - this.NPCRectangleYOffSet, this.NPCRectangleWidthOffSet, this.NPCRectangleHeightOffSet); } }
         public Rectangle NPCPathFindRectangle
         {
@@ -62,7 +62,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         //0 = down, 1 = left, 2 =  right, 3 = up
         public Dir CurrentDirection { get; set; }
         public bool IsMoving { get; set; }
-        private Vector2 primaryVelocity;
+        protected Vector2 primaryVelocity;
         public Vector2 PrimaryVelocity { get { return primaryVelocity; } set { primaryVelocity = value; } }
         public Vector2 TotalVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
@@ -71,19 +71,19 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public Collider Collider { get; set; }
         public bool CollideOccured { get; set; }
 
-        public Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
+        protected Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
 
-        public Texture2D NextPointTexture { get; set; }
-        public Rectangle NextPointRectangle { get; set; }
-        public Texture2D NextPointRectangleTexture { get; set; }
+        protected Texture2D NextPointTexture { get; set; }
+        protected Rectangle NextPointRectangle { get; set; }
+        protected Texture2D NextPointRectangleTexture { get; set; }
         //public int CurrentTileX { get { return (int)(this.Position.X / 16); } }
         // public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
-        public float SoundTimer { get; set; }
-        public float SoundMin { get; set; }
-        public float SoundMax { get; set; }
+        protected float SoundTimer { get; set; }
+        protected float SoundMin { get; set; }
+        protected float SoundMax { get; set; }
 
-        public Color DebugColor { get; set; }
-        public List<PathFinderNode> CurrentPath { get; set; }
+        private Color DebugColor { get; set; }
+        private List<PathFinderNode> CurrentPath { get; set; }
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
         public CurrentBehaviour PrimaryPlayerInterationBehavior { get; set; }
@@ -148,6 +148,22 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.ObstacleGrid = container.PathGrid;
         }
 
+        /// <summary>
+        /// If enemy hitpoints are 0 or less, drop items and remove from game.
+        /// </summary>
+        /// <param name="enemies"></param>
+        /// <returns></returns>
+        protected virtual bool TestDeath(List<Enemy> enemies)
+        {
+            if (this.HitPoints <= 0)
+            {
+                RollPeriodicDrop(this.Position);
+                enemies.Remove(this);
+                return true;
+            }
+            return false;
+        }
+
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
@@ -156,71 +172,34 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.IsMoving = true;
             if (DoesIntersectScreen)
             {
-                if (this.HitPoints <= 0)
-                {
-                    RollPeriodicDrop(this.Position);
-                    enemies.Remove(this);
+                if (TestDeath(enemies))
                     return;
-                }
+
                 TestImmunity(gameTime);
                 this.PrimaryVelocity = new Vector2(.5f, .5f);
 
 
                 UpdateDirection();
-                if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-                {
-                    mouse.ChangeMouseTexture(CursorType.Normal);
-                    mouse.ToggleGeneralInteraction = true;
-                    Game1.isMyMouseVisible = false;
 
-                }
+                if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
+                    mouse.ChangeMouseTexture(CursorType.Normal);
+
+
 
                 if (this.IsMoving)
-                {
-
-                    for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                    {
-                        this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
-                    }
-
-
-
-                }
+                    UpdateAnimations(gameTime);
                 else
-                {
-                    for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                    {
-                        this.NPCAnimatedSprite[i].SetFrame(0);
-                    }
+                    SetToIdleAnimations();
 
 
-                }
 
-                if (this.MakesPeriodicSound)
-                {
-
-
-                    if (this.IdleSoundEffect != null)
-                    {
-
-                        if ((Game1.GlobalClock.SecondsPassedToday - this.SoundTimer) > this.SoundUpperBound)
-                        {
-                            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
-                            this.SoundTimer = Game1.GlobalClock.SecondsPassedToday;
-
-
-                        }
-                    }
-                }
-                   QuadTreeInsertion();
+                CheckIfSoundIsMade();
+                QuadTreeInsertion();
                 for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
                 }
             }
-
-
-
 
             if (this.IsMoving)
             {
@@ -228,6 +207,42 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
+
+        protected virtual void CheckIfSoundIsMade()
+        {
+            if (this.MakesPeriodicSound)
+            {
+                if (this.IdleSoundEffect != null)
+                {
+                    if ((Game1.GlobalClock.SecondsPassedToday - this.SoundTimer) > this.SoundUpperBound)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
+                        this.SoundTimer = Game1.GlobalClock.SecondsPassedToday;
+                    }
+                }
+            }
+        }
+
+        private void SetToIdleAnimations()
+        {
+            for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+            {
+                this.NPCAnimatedSprite[i].SetFrame(0);
+            }
+        }
+
+        private void UpdateAnimations(GameTime gameTime)
+        {
+            for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
+            {
+                this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
+            }
+        }
+
+        /// <summary>
+        /// Changes based on the four states of the enemy: Wander, chase, hurt, or flee.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public virtual void UpdateBehaviours(GameTime gameTime)
         {
             switch (this.CurrentBehaviour)
@@ -419,8 +434,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 Point newPoint = GetNewWanderPoint(currentTileX, currentTileY);
 
                 //if new point isn't inside the current grid, try again.
-                while(newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
-                    newPoint.X <0 || newPoint.Y < 0)
+                while (newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
+                    newPoint.X < 0 || newPoint.Y < 0)
                 {
                     newPoint = GetNewWanderPoint(currentTileX, currentTileY);
                 }
@@ -448,7 +463,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public void FindPathToNewTile(Point newPoint)
         {
 
-                TryFindNewPath(newPoint);
+            TryFindNewPath(newPoint);
 
         }
 
@@ -463,8 +478,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 PathFinderFast finder = new PathFinderFast(this.ObstacleGrid.Weight);
 
 
-                Point start = new Point(Math.Abs((int)this.Position.X / 16 ),
-                 (Math.Abs((int)this.Position.Y / 16 )));
+                Point start = new Point(Math.Abs((int)this.Position.X / 16),
+                 (Math.Abs((int)this.Position.Y / 16)));
                 if (start.X > ObstacleGrid.Weight.GetLength(0))
                 {
                     start.X = ObstacleGrid.Weight.GetLength(0);
@@ -491,7 +506,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
             if (this.CurrentPath.Count > 0)
             {
-                if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16  + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16  + 8), gameTime))
+                if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + 8), gameTime))
                 {
                     this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
                 }
@@ -506,7 +521,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             else if (WanderTimer <= 0)
             {
 
-                int currentTileX = (int)(this.Position.X / 16 );
+                int currentTileX = (int)(this.Position.X / 16);
                 int currentTileY = (int)(this.Position.Y / 16);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
@@ -522,7 +537,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
                         Point start = new Point(Math.Abs((int)this.Position.X / 16),
-                         (Math.Abs((int)this.Position.Y / 16 )));
+                         (Math.Abs((int)this.Position.Y / 16)));
 
                         this.CurrentPath = finder.FindPath(start, end, this.Name);
                         if (this.CurrentPath == null)
@@ -639,11 +654,11 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 }
             }
             this.CurrentPath.Clear();
-            if(this.IdleSoundEffect != null)
+            if (this.IdleSoundEffect != null)
             {
                 Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
             }
-           
+
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.GetCurrentStage().AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }
@@ -715,7 +730,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
                 for (int i = 0; i < this.CurrentPath.Count - 1; i++)
                 {
-                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(this.CurrentPath[i].X * 16  + 8, this.CurrentPath[i].Y * 16
+                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(this.CurrentPath[i].X * 16 + 8, this.CurrentPath[i].Y * 16
                          + 8), new Vector2(this.CurrentPath[i + 1].X * 16 + 8, this.CurrentPath[i + 1].Y * 16 + 8), this.DebugColor);
                 }
             }
