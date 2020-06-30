@@ -191,7 +191,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
+                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
 
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
@@ -265,7 +265,7 @@ namespace SecretProject.Class.ItemStuff
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
                     this.AllItems.Remove(this);
-                    // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
+                    // Game1.CurrentStage.AllTiles.GetItems(this.WorldPosition).Remove(this);
                     this.IsWorldItem = false;
                     if (this.Durability > 0)
                     {

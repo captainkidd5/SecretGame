@@ -51,13 +51,13 @@ namespace SecretProject.Class.EventStuff
         }
         public void Start()
         {
-            if (!Game1.GetCurrentStage().CharactersPresent.Contains(Game1.Dobbin))
+            if (!Game1.CurrentStage.CharactersPresent.Contains(Game1.Dobbin))
             {
-                Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
+                Game1.CurrentStage.CharactersPresent.Add(Game1.Dobbin);
             }
-            if (!Game1.GetCurrentStage().CharactersPresent.Contains(Game1.Julian))
+            if (!Game1.CurrentStage.CharactersPresent.Contains(Game1.Julian))
             {
-                Game1.GetCurrentStage().CharactersPresent.Add(Game1.Julian);
+                Game1.CurrentStage.CharactersPresent.Add(Game1.Julian);
             }
 
             Game1.Dobbin.CurrentStageLocation = Stages.DobbinHouse;

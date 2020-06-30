@@ -252,7 +252,7 @@ namespace SecretProject.Class.Playable
         public float CalculateStaminaRateOfDrain()
         {
             float staminaRateOfDrain = 0f;
-            //if(Game1.GetCurrentStage() == Game1.OverWorld)
+            //if(Game1.CurrentStage == Game1.OverWorld)
             //{
             //    staminaRateOfDrain = Math.Abs(this.Position.X) + Math.Abs(this.Position.Y);
             //}
@@ -310,7 +310,7 @@ namespace SecretProject.Class.Playable
                             ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false, arrowData.Damage));
+                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                             item.AlterDurability(1);
                             UserInterface.StaminaBar.DecreaseStamina(1);
@@ -320,15 +320,15 @@ namespace SecretProject.Class.Playable
                     if (item.CrateType != 0)
                     {
 
-                        if (Game1.GetCurrentStage().StageType == StageType.Procedural)
+                        if (Game1.CurrentStage.StageType == StageType.Procedural)
                         {
 
 
-                            CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
+                            CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics, Game1.CurrentStage.AllTiles.ChunkUnderPlayer);
                             this.UserInterface.BackPack.Inventory.RemoveItem(item);
                             DoPlayerAnimation(AnimationType.HandsPicking);
                         }
-                        else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
+                        else if (Game1.CurrentStage.StageType == StageType.Sanctuary)
                         {
                             SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
                             if (tracker.UpdateCompletionGuide(item.ID))
@@ -486,7 +486,7 @@ namespace SecretProject.Class.Playable
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.BigCollider);
+                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.BigCollider);
             
                 
             
@@ -568,7 +568,7 @@ namespace SecretProject.Class.Playable
 
         public void UpdateStaminaDrainFlag()
         {
-            //if (Game1.GetCurrentStage() == Game1.OverWorld)
+            //if (Game1.CurrentStage == Game1.OverWorld)
             //{
             //    if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
             //    {
@@ -583,7 +583,7 @@ namespace SecretProject.Class.Playable
 
         public void HandleStamina()
         {
-            //if (Game1.GetCurrentStage() == Game1.OverWorld)
+            //if (Game1.CurrentStage == Game1.OverWorld)
             //{
             //    if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
             //    {
@@ -605,23 +605,23 @@ namespace SecretProject.Class.Playable
 
         private void CheckOutOfBounds(Vector2 position)
         {
-            if (position.X < Game1.GetCurrentStage().MapRectangle.Left)
+            if (position.X < Game1.CurrentStage.MapRectangle.Left)
             {
-                this.Position = new Vector2(Game1.GetCurrentStage().MapRectangle.Left, this.position.Y);
+                this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Left, this.position.Y);
             }
 
 
-            if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
+            if (position.X > Game1.CurrentStage.MapRectangle.Right)
             {
-                this.Position = new Vector2(Game1.GetCurrentStage().MapRectangle.Right, this.position.Y);
+                this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Right, this.position.Y);
             }
-            if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+            if (position.Y < Game1.CurrentStage.MapRectangle.Top)
             {
-                this.Position = new Vector2(this.position.X, Game1.GetCurrentStage().MapRectangle.Top);
+                this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Top);
             }
-            if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom - 16)
+            if (position.Y > Game1.CurrentStage.MapRectangle.Bottom - 16)
             {
-                this.Position = new Vector2(this.position.X, Game1.GetCurrentStage().MapRectangle.Bottom - 16);
+                this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Bottom - 16);
             }
         }
         int oldSoundFrame1 = 0;

@@ -265,7 +265,7 @@ namespace SecretProject.Class.UI
                 }
                 else if (this.CurrentEquippedItem == null)
                 {
-                    Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    Game1.CurrentStage.AllTiles.GridItem = null;
                 }
 
                 for (int i = 0; i < AllActions.Count; i++)
@@ -371,7 +371,7 @@ namespace SecretProject.Class.UI
                         for (int j = 0; j < currentItemCount; j++)
                         {
                             this.Inventory.currentInventory[DraggedSlot.Index].RemoveItemFromSlot();
-                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true, Game1.CurrentStage.AllTiles.GetItems(Game1.Player.position));
                             newWorldItem.IsTossable = true;
 
                         }
@@ -615,7 +615,7 @@ namespace SecretProject.Class.UI
 
             Item oldItem = this.Inventory.currentInventory[currentSliderPosition - 1].GetItem();
 
-            Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].GetItem().ID, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), true, Game1.GetCurrentStage().AllTiles.GetItems(Game1.Player.position));
+            Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].GetItem().ID, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), true, Game1.CurrentStage.AllTiles.GetItems(Game1.Player.position));
             newWorldItem.IsTossable = true;
             newWorldItem.Durability = oldItem.Durability;
 
@@ -758,32 +758,32 @@ namespace SecretProject.Class.UI
                 
                     if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                     {
-                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+                        Game1.CurrentStage.AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
 
 
                     }
                     else
                     {
-                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                        Game1.CurrentStage.AllTiles.GridItem = null;
                     }
                 
                 //else if (Game1.GetCurrentStageInt() == Stages.PlayerHouse)
                 //{
                 //    if (Game1.ItemVault.InteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                 //    {
-                //        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
+                //        Game1.CurrentStage.AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
 
 
                 //    }
                 //    else
                 //    {
-                //        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                //        Game1.CurrentStage.AllTiles.GridItem = null;
                 //    }
                 //}
             }
             else
             {
-                Game1.GetCurrentStage().AllTiles.GridItem = null;
+                Game1.CurrentStage.AllTiles.GridItem = null;
             }
         }
 

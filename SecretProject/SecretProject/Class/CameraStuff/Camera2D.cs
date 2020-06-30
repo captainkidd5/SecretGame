@@ -71,10 +71,10 @@ namespace SecretProject.Class.CameraStuff
 
                 //pos.X = MathHelper.Lerp(pos.X, amount.X, .08f);
                 // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);
-                this.ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
-                  (int)(Game1.GetCurrentStage().MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
-                    (int)(Game1.GetCurrentStage().MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),
-                    (int)(Game1.GetCurrentStage().MapRectangle.Height - Game1.ScreenHeight / 2 / zoom));
+                this.ViewPortRectangle = new Rectangle((int)(Game1.CurrentStage.MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
+                  (int)(Game1.CurrentStage.MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
+                    (int)(Game1.CurrentStage.MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),
+                    (int)(Game1.CurrentStage.MapRectangle.Height - Game1.ScreenHeight / 2 / zoom));
 
 
                 if (Game1.Player.LockBounds)

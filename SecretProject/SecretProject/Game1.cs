@@ -378,12 +378,6 @@ namespace SecretProject
         #endregion
 
 
-
-        public static ILocation GetCurrentStage()
-        {
-            return CurrentStage;
-        }
-
         public static ILocation GetStageFromInt(Stages stage)
         {
             return (AllStages[(int)stage]);

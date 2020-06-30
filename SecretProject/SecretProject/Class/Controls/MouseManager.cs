@@ -205,7 +205,7 @@ namespace SecretProject.Class.Controls
                 }
             }
 
-            if (Game1.GetCurrentStage() != null)
+            if (Game1.CurrentStage != null)
             {
 
 
@@ -213,7 +213,7 @@ namespace SecretProject.Class.Controls
                 {
                     this.MouseCollider.Rectangle = this.WorldMouseRectangle;
                     List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.MouseCollider);
+                    Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.MouseCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         if (returnObjects[i].ColliderType == ColliderType.inert)

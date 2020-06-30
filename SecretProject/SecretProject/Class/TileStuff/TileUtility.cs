@@ -70,7 +70,7 @@ namespace SecretProject.Class.TileStuff
 
             //if (container == null)
             //{
-            //    tileSet = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[1];
+            //    tileSet = Game1.CurrentStage.AllTiles.MapName.Tilesets[1];
             //    //tileSet = Game1.Town.AllTiles.MapName.Tilesets[Game1.Town.AllTiles.TileSetNumber];
             //}
             //else
@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
 
             //    tileSet = container.MapName.Tilesets[0];
             //}
-            if(Game1.GetCurrentStage() == Game1.PlayerHouse)
+            if(Game1.CurrentStage == Game1.PlayerHouse)
             {
                 Console.WriteLine("hi");
             }
@@ -582,7 +582,7 @@ namespace SecretProject.Class.TileStuff
 
                                             //might be wonky
                                             WangManager.ChunkGroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[GenerationType.Dirt].GeneratableTiles,
-                                        Game1.Procedural.AllTilingContainers[GenerationType.Dirt].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
+                                        Game1.Procedural.AllTilingContainers[GenerationType.Dirt].TilingDictionary, 0, Game1.CurrentStage.AllTiles);
 
                                             break;
                                     }
@@ -613,7 +613,7 @@ namespace SecretProject.Class.TileStuff
                     break;
 
                 case "plantable":
-                    if (Game1.GetCurrentStage().StageType == StageType.Procedural)
+                    if (Game1.CurrentStage.StageType == StageType.Procedural)
                     {
 
 
@@ -776,7 +776,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Door);
                     if (mouse.IsClicked)
                     {
-                        //Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
+                        //Portal portal = Game1.CurrentStage.AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
                         //string announcementString = string.Empty;
                         //if (portal.To == (int)(Stages.Town))
                         //{
@@ -850,7 +850,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         int soundInt = Game1.Utility.GetTileDestructionSound(info);
                         Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
-                        Game1.GetCurrentStage().ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                        Game1.CurrentStage.ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                     }
                     else
                     {
@@ -899,7 +899,7 @@ namespace SecretProject.Class.TileStuff
                     
                 }
 
-                Game1.GetCurrentStage().ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                Game1.CurrentStage.ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                 return true;
             }
             return false;
@@ -1037,8 +1037,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(generationType);
                     WangManager.GroupReassignForTiling(tile.GID, tilingContainer.GeneratableTiles, tilingContainer.TilingDictionary, layer,
-                        x, y, Game1.GetCurrentStage().AllTiles.MapWidth, Game1.GetCurrentStage().AllTiles.MapWidth,
-                        (IInformationContainer)Game1.GetCurrentStage().AllTiles);
+                        x, y, Game1.CurrentStage.AllTiles.MapWidth, Game1.CurrentStage.AllTiles.MapWidth,
+                        (IInformationContainer)Game1.CurrentStage.AllTiles);
                 }
             }
             //if (itemToCheckForReassasignTiling != null)
@@ -1048,7 +1048,7 @@ namespace SecretProject.Class.TileStuff
             //        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
             //        WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
             //            tilingContainer.TilingDictionary,
-            //       itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
+            //       itemToCheckForReassasignTiling.TilingLayer, Game1.CurrentStage.AllTiles);
             //    }
 
             //}

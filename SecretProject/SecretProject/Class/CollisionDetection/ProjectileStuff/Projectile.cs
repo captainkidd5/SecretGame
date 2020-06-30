@@ -67,14 +67,14 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             if (this.Speed <= 0)
             {
                 this.Speed = 0;
-                // Game1.GetCurrentStage().AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.GetCurrentStage().AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
-                Game1.GetCurrentStage().AllProjectiles.Remove(this);
+                // Game1.CurrentStage.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.CurrentStage.AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
+                Game1.CurrentStage.AllProjectiles.Remove(this);
                 return;
             }
             this.PrimaryVelocity = new Vector2(Speed, Speed);
             this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4, 4);
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
+            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
 
@@ -143,9 +143,9 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public virtual void Miss()
         {
             Game1.SoundManager.PlaySoundEffect(this.MissSound, true, .15f);
-            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
-            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
-            Game1.GetCurrentStage().ParticleEngine.Color = Color.White;
+            Game1.CurrentStage.ParticleEngine.ActivationTime = .05f;
+            Game1.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
+            Game1.CurrentStage.ParticleEngine.Color = Color.White;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

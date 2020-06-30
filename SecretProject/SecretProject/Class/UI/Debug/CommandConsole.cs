@@ -184,7 +184,7 @@ namespace SecretProject.Class.UI
                     int teleportY = int.Parse(separatedString[2].ToLower());
 
                     Game1.Player.position = new Vector2(teleportX, teleportY);
-                    //if(Game1.GetCurrentStage() == Game1.OverWorld)
+                    //if(Game1.CurrentStage == Game1.OverWorld)
                     //{
                     //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
                     //}

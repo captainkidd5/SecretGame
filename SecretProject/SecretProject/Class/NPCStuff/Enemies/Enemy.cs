@@ -101,7 +101,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public List<Loot> PossibleLoot { get; set; }
 
-        //TODO
+
 
         public ObstacleGrid ObstacleGrid { get; set; }
 
@@ -115,6 +115,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
+
+        private float WanderTimer = 2f;
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
         {
             this.Pack = pack;
@@ -271,7 +273,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         {
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
+            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
@@ -328,7 +330,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
                 if (this.PossibleLoot[i].DidReceive())
                 {
-                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.GetCurrentStage().AllTiles.GetItems(positionToDrop));
+                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.CurrentStage.AllTiles.GetItems(positionToDrop));
                 }
             }
 
@@ -344,7 +346,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
+        public bool MoveTowardsVector(Vector2 goal, GameTime gameTime)
         {
             // If we're already at the goal return immediatly
             this.IsMoving = true;
@@ -363,7 +365,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             // Return whether we've reached the goal or not
             return this.Position == goal;
         }
-        public void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
+        protected void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
         {
 
             this.IsMoving = true;
@@ -377,70 +379,25 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         }
 
 
-        public void MoveTowardsPointAndDecrementPath(GameTime gameTime)
+        protected void MoveTowardsPointAndDecrementPath(GameTime gameTime)
         {
-            if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
+            if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
             {
                 this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
             }
         }
 
 
-        public void MoveTowardsTarget(GameTime gameTime, int targetX, int targetY)
+        protected void MoveTowardsTarget(GameTime gameTime, int targetX, int targetY)
         {
             if (this.CurrentPath.Count > 0)
-            {
                 MoveTowardsPointAndDecrementPath(gameTime);
-
-
-
-            }
-
             else
-            {
+                TryFindNewPath(new Point(targetX, targetY));
 
-
-                FindPathToNewTile(new Point(targetX, targetY));
-
-
-            }
         }
 
-        //public void WanderToTile(GameTime gameTime)
-        //{
 
-        //    if (this.CurrentPath.Count > 0)
-        //    {
-        //        MoveTowardsPointAndDecrementPath(gameTime);
-
-
-
-        //    }
-        //    else if (WanderTimer >= 0)
-        //    {
-        //        this.IsMoving = false;
-        //    }
-        //    else if (WanderTimer <= 0)
-        //    {
-
-        //        int currentTileX = (int)(this.Position.X / 16);
-        //        int currentTileY = (int)(this.Position.Y / 16);
-        //        int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
-        //        int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
-        //        Point newPoint = GetNewWanderPoint(currentTileX, currentTileY);
-
-        //        //if new point isn't inside the current grid, try again.
-        //        while (newPoint.X >= this.ObstacleGrid.Weight.GetLength(0) || newPoint.Y >= this.ObstacleGrid.Weight.GetLength(0) ||
-        //            newPoint.X < 0 || newPoint.Y < 0)
-        //        {
-        //            newPoint = GetNewWanderPoint(currentTileX, currentTileY);
-        //        }
-
-        //        TryFindNewPath(newPoint);
-
-
-        //    }
-        //}
         public Point NewStartPoint { get; set; } = new Point(-1, -1);
 
         private Point GetNewWanderPoint(int currentTileX, int currentTileY)
@@ -456,112 +413,68 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         #region PATHFINDING
 
 
-        public void FindPathToNewTile(Point newPoint)
+        
+
+        /// <summary>
+        /// If on current path, moves towards next point. Else if allowed to wander, finds a new path.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        protected void Wander(GameTime gameTime)
         {
-
-            TryFindNewPath(newPoint);
-
-        }
-
-        public bool TryFindNewPath(Point point)
-        {
-            if (this.ObstacleGrid.Weight[point.X, point.Y] != 0)
-            {
-                Point end = new Point(point.X, point.Y);
-
-
-
-                PathFinderFast finder = new PathFinderFast(this.ObstacleGrid.Weight);
-
-
-                Point start = new Point(Math.Abs((int)this.Position.X / 16),
-                 (Math.Abs((int)this.Position.Y / 16)));
-                if (start.X > ObstacleGrid.Weight.GetLength(0))
-                {
-                    start.X = ObstacleGrid.Weight.GetLength(0);
-                }
-                if (start.Y > ObstacleGrid.Weight.GetLength(0))
-                {
-                    start.Y = ObstacleGrid.Weight.GetLength(0);
-                }
-                this.CurrentPath = finder.FindPath(start, end, this.Name);
-                if (this.CurrentPath == null)
-                {
-                    this.CurrentPath = new List<PathFinderNode>();
-                    return false;
-                    throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                }
-                WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
-                return true;
-            }
-            return false;
-        }
-
-        public void MoveToTile(GameTime gameTime)
-        {
+            WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (this.CurrentPath.Count > 0)
             {
-                if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + 8), gameTime))
-                {
+                if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + 8), gameTime))
                     this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
-                }
-
-
 
             }
-            else if (WanderTimer >= 0)
+            else if (WanderTimer > 0)
             {
                 this.IsMoving = false;
             }
             else if (WanderTimer <= 0)
             {
 
-                int currentTileX = (int)(this.Position.X / 16);
-                int currentTileY = (int)(this.Position.Y / 16);
-                int newX = Game1.Utility.RGenerator.Next(-10, 10);
-                int newY = Game1.Utility.RGenerator.Next(-10, 10);
-                if (currentTileX + newX < Game1.GetCurrentStage().MapRectangle.Width / 16 - 2 && currentTileX + newX > 0 && currentTileY + newY < Game1.GetCurrentStage().MapRectangle.Width / 16 - 2 && currentTileY + newY > 0)
+                int currentTileX = Utility.GetSquareTile(this.Position.X);
+                int currentTileY = Utility.GetSquareTile(this.Position.Y);
+                Point newWanderPoint = GetNewWanderPoint(currentTileX, currentTileY);
+
+                if (newWanderPoint.X < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 &&
+                    newWanderPoint.Y < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.Y > 0)
                 {
-                    if (this.ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
-                    {
-                        Point end = new Point(currentTileX + newX, currentTileY + newY);
+                    if (this.ObstacleGrid.Weight[newWanderPoint.X, newWanderPoint.Y] != 0)
+                        TryFindNewPath(newWanderPoint);
 
-
-
-                        PathFinderFast finder = new PathFinderFast(this.ObstacleGrid.Weight);
-
-
-                        Point start = new Point(Math.Abs((int)this.Position.X / 16),
-                         (Math.Abs((int)this.Position.Y / 16)));
-
-                        this.CurrentPath = finder.FindPath(start, end, this.Name);
-                        if (this.CurrentPath == null)
-                        {
-                            this.CurrentPath = new List<PathFinderNode>();
-                            return;
-                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                        }
-                        WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
-                    }
                 }
-
 
             }
         }
-        #endregion
 
-        private float WanderTimer = 2f;
-
-        public void Wander(GameTime gameTime)
+        protected bool TryFindNewPath(Point endPoint)
         {
+            PathFinderFast finder = new PathFinderFast(this.ObstacleGrid.Weight);
 
-            WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                MoveToTile(gameTime);
-            
+            Point start = new Point(Math.Abs((int)this.Position.X / 16),
+             (Math.Abs((int)this.Position.Y / 16)));
+
+            this.CurrentPath = finder.FindPath(start, endPoint, this.Name);
+            if (this.CurrentPath == null)
+            {
+                this.CurrentPath = new List<PathFinderNode>();
+                return false;
+                throw new Exception(this.Name + " was unable to find a path between " + start + " and " + endPoint);
+            }
+            WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
+            return true;
+
 
         }
+        #endregion
+
+
+
         public void UpdateDirection()
         {
             if (this.DirectionVector.X > .5f)
@@ -594,9 +507,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
 
-                Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
-                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
-                Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
+                Game1.CurrentStage.ParticleEngine.ActivationTime = .25f;
+                Game1.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
+                Game1.CurrentStage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Hurt;
@@ -651,7 +564,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
 
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
-            Game1.GetCurrentStage().AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
+            Game1.CurrentStage.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)

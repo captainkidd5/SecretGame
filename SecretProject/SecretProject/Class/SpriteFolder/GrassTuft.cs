@@ -106,14 +106,14 @@ namespace SecretProject.Class.SpriteFolder
         public void SelfDestruct()
         {
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
-            ILocation location = Game1.GetCurrentStage();
+            ILocation location = Game1.CurrentStage;
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
             location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             if(Game1.Utility.RGenerator.Next(0,5) < 2)
             {
-                location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.GetCurrentStage().AllTiles.GetItems(this.Position)), this.Position);
+                location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
             }
             
             this.TuftsIsPartOf.Remove(this);

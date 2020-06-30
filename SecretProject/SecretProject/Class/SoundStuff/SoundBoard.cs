@@ -459,11 +459,11 @@ namespace SecretProject.Class.SoundStuff
 
         public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
         {
-            if (Game1.GetCurrentStage() != null)
+            if (Game1.CurrentStage != null)
             {
 
 
-                if (Game1.GetCurrentStage().LocationType == locationType)
+                if (Game1.CurrentStage.LocationType == locationType)
                 {
                     if (soundEffect.State == SoundState.Stopped)
                     {

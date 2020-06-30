@@ -263,7 +263,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             if(this.IsRotational)
             {
                 this.ItemSprite.DrawRotationalSprite(spriteBatch, this.Position, this.Rotation, this.Origin, yLayerHeight + this.LayerDepth, this.SpriteEffects, 1f);
-                if (Game1.GetCurrentStage().ShowBorders)
+                if (Game1.CurrentStage.ShowBorders)
                 {
                     ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, ToolLine.Rotation);
                 }

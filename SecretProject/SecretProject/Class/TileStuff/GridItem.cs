@@ -157,7 +157,7 @@ namespace SecretProject.Class.TileStuff
                             int subResultX = (int)Math.Floor((float)((float)subX / 16f / 16f));
                             int subResultY = (int)Math.Floor((float)((float)subY / 16f / 16f));
 
-                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subResultX), ChunkUtility.GetChunkY(container.Y * 16 + subResultY), Game1.GetCurrentStage().AllTiles.ActiveChunks);
+                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subResultX), ChunkUtility.GetChunkY(container.Y * 16 + subResultY), Game1.CurrentStage.AllTiles.ActiveChunks);
 
 
                             int testX = ChunkUtility.GetLocalChunkCoord(subX);
@@ -220,7 +220,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     Portal tempPortal = new Portal(3, 5, -56, 5, true);
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
-                                    Game1.GetCurrentStage().AllPortals.Add(tempPortal);
+                                    Game1.CurrentStage.AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
                                     {
@@ -393,7 +393,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     //Portal tempPortal = new Portal(3, 5, -56, 5, true);
                                     //tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
-                                    //Game1.GetCurrentStage().AllPortals.Add(tempPortal);
+                                    //Game1.CurrentStage.AllPortals.Add(tempPortal);
 
                                     //if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
                                     //{

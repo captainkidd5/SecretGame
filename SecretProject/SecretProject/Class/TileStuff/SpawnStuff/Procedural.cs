@@ -310,14 +310,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void ExtendCliffs(IInformationContainer container)
         {
-           // if(Game1.GetCurrentStage() == Game1.OverWorld)
+           // if(Game1.CurrentStage == Game1.OverWorld)
           //  {
                 foreach(CliffHandler handler in this.TopCliffs)
                 {
                     handler.ExtendCliffs(container);
                 }
             //}
-            //else if (Game1.GetCurrentStage() == Game1.UnderWorld)
+            //else if (Game1.CurrentStage == Game1.UnderWorld)
             //{
             //    foreach (CliffHandler handler in this.BottomCliffs)
             //    {

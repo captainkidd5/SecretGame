@@ -779,7 +779,7 @@ namespace SecretProject.Class.TileStuff
                         int startY = ChunkUtility.CheckArrayLimits((Game1.cam.CameraScreenRectangle.Y - 48) / 16 - chunk.Y * 16);
                         int endY = ChunkUtility.CheckArrayLimits(Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128) / 16 - chunk.Y * 16);
 
-                        if (Game1.GetCurrentStage().ShowBorders)
+                        if (Game1.CurrentStage.ShowBorders)
                         {
                             spriteBatch.Draw(this.ChunkTexture, new Vector2(chunk.GetChunkRectangle().X, chunk.GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
                             spriteBatch.DrawString(Game1.AllTextures.MenuText, chunk.ArrayI.ToString() + chunk.ArrayJ.ToString(),
@@ -809,7 +809,7 @@ namespace SecretProject.Class.TileStuff
                                         }
 
                                     }
-                                    if (Game1.GetCurrentStage().ShowBorders)
+                                    if (Game1.CurrentStage.ShowBorders)
                                     {
                                         if (ActiveChunks[a, b].PathGrid.Weight[i, j] == (int)GridStatus.Obstructed)
                                         {

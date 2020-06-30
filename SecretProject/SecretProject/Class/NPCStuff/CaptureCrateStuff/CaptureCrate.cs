@@ -20,11 +20,11 @@ namespace SecretProject.Class.NPCStuff.CaptureCrateStuff
         {
             //if (container != null)
             //{
-            //    Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null,  Game1.Player.position, graphics, container, true));
+            //    Game1.CurrentStage.Enemies.Add(Enemy.GetEnemyFromType(enemyType, null,  Game1.Player.position, graphics, container, true));
             //}
             //else
             //{
-            //    Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, null, Game1.Player.position, graphics, (IInformationContainer)Game1.GetCurrentStage().AllTiles, false));
+            //    Game1.CurrentStage.Enemies.Add(Enemy.GetEnemyFromType(enemyType, null, Game1.Player.position, graphics, (IInformationContainer)Game1.CurrentStage.AllTiles, false));
             //}
         }
 

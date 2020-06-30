@@ -68,9 +68,9 @@ namespace SecretProject.Class.TileStuff
             //Chunk chunk = ChunkUtility.GetChunk(X / 16, Y / 16, Game1.OverWorld.AllTiles.ActiveChunks);
             //if(chunk != null)
             //{
-            //    if (Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties.ContainsKey("action"))
+            //    if (Game1.CurrentStage.AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties.ContainsKey("action"))
             //    {
-            //        string action = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties["action"];
+            //        string action = Game1.CurrentStage.AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties["action"];
 
             //        TileUtility.ActionHelper((int)this.LayerToDrawAt, this.X, this.Y, action, Game1.MouseManager, chunk);
             //        //z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[LayerToDrawAt][X, Y].GID].Properties["action"], mouse, this.ChunkUnderMouse

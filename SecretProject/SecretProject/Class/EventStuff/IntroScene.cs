@@ -51,9 +51,9 @@ namespace SecretProject.Class.EventStuff
         }
         public void Start()
         {
-            if (!Game1.GetCurrentStage().CharactersPresent.Contains(Game1.Dobbin))
+            if (!Game1.CurrentStage.CharactersPresent.Contains(Game1.Dobbin))
             {
-                Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
+                Game1.CurrentStage.CharactersPresent.Add(Game1.Dobbin);
             }
 
           //  Game1.Dobbin.CurrentStageLocation = Stages.OverWorld;
@@ -244,11 +244,11 @@ namespace SecretProject.Class.EventStuff
                       //  Game1.OverWorld.CharactersPresent.Clear();
 
                       //  Game1.SwitchStage(Stages.OverWorld, Stages.DobbinHouseUpper);
-                        Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
+                        Game1.CurrentStage.CharactersPresent.Add(Game1.Dobbin);
                         //Game1.cam.pos = new Vector2(800, 480);
                         Game1.Player.position = Game1.Dobbin.Position;
                         Game1.Dobbin.Position = new Vector2(550, 500);
-                        //Game1.cam.Follow(Game1.Dobbin.Position, Game1.GetCurrentStage().MapRectangle);
+                        //Game1.cam.Follow(Game1.Dobbin.Position, Game1.CurrentStage.MapRectangle);
                         this.PlayerBodyPosition = Game1.Dobbin.Position;
                         Game1.Dobbin.CurrentStageLocation = Stages.DobbinHouseUpper;
                     }
@@ -321,7 +321,7 @@ namespace SecretProject.Class.EventStuff
                     Game1.Dobbin.IsInEvent = false;
                     Game1.CurrentEvent = null;
                     Game1.Player.UserInterface.CinematicMode = false;
-                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 500, Game1.GlobalClock.WeekDay.ToString(), .015f, Color.White, true, 3f);
+                    Game1.CurrentStage.ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 500, Game1.GlobalClock.WeekDay.ToString(), .015f, Color.White, true, 3f);
 
                     Game1.Player.IsDrawn = true;
                     //Game1.Player.UpdateMovementAnimationsOnce();

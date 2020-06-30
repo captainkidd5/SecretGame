@@ -315,22 +315,22 @@ namespace SecretProject.Class.TileStuff
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
             List<string> AnimationFrameKeysToRemove = new List<string>();
-            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
+            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.CurrentStage.Cam.Zoom / 2 / 16) - 1;
             if (starti < 0)
             {
                 starti = 0;
             }
-            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
+            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.CurrentStage.Cam.Zoom / 2 / 16) - 1;
             if (startj < 0)
             {
                 startj = 0;
             }
-            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
+            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.CurrentStage.Cam.Zoom / 2 / 16) + 2;
             if (endi > this.MapWidth)
             {
                 endi = this.MapWidth;
             }
-            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
+            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.CurrentStage.Cam.Zoom / 2 / 16) + 2;
             if (endj > this.MapWidth)
             {
                 endj = this.MapWidth;
@@ -490,7 +490,7 @@ namespace SecretProject.Class.TileStuff
             }
             if (this.NightTimeLights.Count != oldLightCount)
             {
-                Game1.GetCurrentStage().AllNightLights = this.NightTimeLights;
+                Game1.CurrentStage.AllNightLights = this.NightTimeLights;
             }
             if (this.GridItem != null)
             {
@@ -612,7 +612,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Color tileColor = Color.White;
-                            if(Game1.GetCurrentStage().ShowBorders)
+                            if(Game1.CurrentStage.ShowBorders)
                             {
                                 if (this.Objects.ContainsKey(AllTiles[z][i, j].TileKey))
                                 {
@@ -634,7 +634,7 @@ namespace SecretProject.Class.TileStuff
                                 tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
-                            if (Game1.GetCurrentStage().ShowBorders)
+                            if (Game1.CurrentStage.ShowBorders)
                             {
                                 spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);

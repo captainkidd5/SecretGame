@@ -39,6 +39,11 @@ namespace SecretProject.Class.Universal
 
         }
 
+        public static int GetSquareTile(float num)
+        {
+            return (int)(num / 16);
+        }
+
 
         public Vector2 CenterRectangleOnScreen(Rectangle sourceRectangle, float scale)
         {

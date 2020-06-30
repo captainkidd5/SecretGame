@@ -54,7 +54,7 @@ namespace SecretProject.Class.UI.ButtonStuff
             if(this.Button.isClicked)
             {
 
-                //if(Game1.GetCurrentStage() == Game1.OverWorld)
+                //if(Game1.CurrentStage == Game1.OverWorld)
                 //{
                 Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, Game1.Utility.centerScreen, "Telport to Town?", Teleport);
                 //Teleport();

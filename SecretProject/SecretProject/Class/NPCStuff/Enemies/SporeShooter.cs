@@ -72,7 +72,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                     float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SporeShoot, true, .15f);
-                    Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,true, 2));
+                    Game1.CurrentStage.AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,true, 2));
                     this.ShotsFiredDuringInterval++;
                     
                 }
@@ -103,7 +103,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
+            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
 
@@ -216,9 +216,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-                Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
-                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
-                Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
+                Game1.CurrentStage.ParticleEngine.ActivationTime = .25f;
+                Game1.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
+                Game1.CurrentStage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Flee;
