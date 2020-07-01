@@ -75,8 +75,6 @@ namespace SecretProject.Class.ItemStuff
         public Bouncer Bouncer { get; set; }
 
         public float LayerDepth { get; set; }
-
-        public RectangleCollider Collider { get; set; }
         private Vector2 PrimaryVelocity;
 
         public Item(ItemData itemData, List<Item> allItems)
@@ -128,12 +126,13 @@ namespace SecretProject.Class.ItemStuff
 
                 float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
-                this.Collider = new RectangleCollider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
+
                 AllItems.Add(this);
             }
             else
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
+                this.ItemSprite.RectangleCollider.Entity = this;
                 if (this.Durability > 0)
                 {
 
@@ -152,7 +151,7 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Update(gameTime);
-                this.Collider.Rectangle = this.ItemSprite.DestinationRectangle;
+                this.ItemSprite.RectangleCollider.Rectangle = this.ItemSprite.DestinationRectangle;
 
                 if (this.Bouncer != null)
                 {
@@ -191,13 +190,13 @@ namespace SecretProject.Class.ItemStuff
             {
                 List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
+                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.ItemSprite.RectangleCollider);
 
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
                     if (returnObjects[i].ColliderType == ColliderType.inert)
                     {
-                        if (this.Collider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
+                        if (this.ItemSprite.RectangleCollider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
                         {
                             Console.WriteLine("Debug!");
                             
@@ -213,25 +212,6 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
-
-
-        private bool DidCollide(Vector2 velocity, ICollidable objectBody)
-        {
-            Rectangle rect = this.ItemSprite.Rectangle;
-
-            rect.X += (int)velocity.X;
-            rect.Y += (int)velocity.Y;
-
-            if (rect.Intersects(objectBody.Rectangle))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -260,7 +240,7 @@ namespace SecretProject.Class.ItemStuff
 
 
 
-                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
+                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite.RectangleCollider))
                 {
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);

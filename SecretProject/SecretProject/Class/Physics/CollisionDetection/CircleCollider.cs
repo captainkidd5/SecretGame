@@ -164,19 +164,5 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public void Update(GameTime gameTime, Dir direction)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SelfDestruct()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

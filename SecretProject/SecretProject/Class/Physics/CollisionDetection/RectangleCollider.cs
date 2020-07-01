@@ -143,34 +143,7 @@ namespace SecretProject.Class.CollisionDetection
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-           // spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), Color.White);
 
 
-
-
-        }
-        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
-        {
-
-          //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
-
-        }
-
-        public void Update(GameTime gameTime, Dir direction)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SelfDestruct()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

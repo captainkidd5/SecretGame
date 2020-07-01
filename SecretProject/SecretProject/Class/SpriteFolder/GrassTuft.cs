@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class GrassTuft : ICollidable
+    public class GrassTuft : IEntity
     {
         public int GrassType { get; set; }
         public Vector2 Position { get; set; }
@@ -41,6 +41,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public Vector2 GrassOffset { get; set; }
 
+        public RectangleCollider RectangleCollider;
+
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
         {
             this.GrassType = grassType;
@@ -68,6 +70,8 @@ namespace SecretProject.Class.SpriteFolder
 
             this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
+
+            this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
         }
         public void Update(GameTime gameTime)
         {
@@ -214,6 +218,21 @@ namespace SecretProject.Class.SpriteFolder
         }
 
         public void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
         {
             throw new NotImplementedException();
         }

@@ -247,7 +247,7 @@ namespace SecretProject.Class.StageFolder
                                         grass.Value[g].Update(gameTime);
                                     }
 
-                                    this.QuadTree.Insert(grass.Value[g]);
+                                    this.QuadTree.Insert(grass.Value[g].RectangleCollider);
 
                                 }
                             }
@@ -270,7 +270,7 @@ namespace SecretProject.Class.StageFolder
 
                             for (int item = 0; item < chunk.AllItems.Count; item++)
                             {
-                                this.QuadTree.Insert(chunk.AllItems[item].Collider);
+                                this.QuadTree.Insert(chunk.AllItems[item].ItemSprite.RectangleCollider);
 
                             }
 
@@ -510,15 +510,15 @@ namespace SecretProject.Class.StageFolder
 
                 if (this.ShowBorders)
                 {
-                    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.ChunkUnderPlayer.Objects)
-                    {
+                    //foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.ChunkUnderPlayer.Objects)
+                    //{
 
-                        for (int j = 0; j < obj.Value.Count; j++)
-                        {
-                            obj.Value[j].Draw(spriteBatch, .4f);
-                        }
+                    //    for (int j = 0; j < obj.Value.Count; j++)
+                    //    {
+                    //        obj.Value[j].Draw(spriteBatch, .4f);
+                    //    }
 
-                    }
+                    //}
                 }
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);

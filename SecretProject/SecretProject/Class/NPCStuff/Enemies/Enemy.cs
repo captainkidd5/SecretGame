@@ -294,8 +294,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].IsUpdating = true;
-                        returnObjects[i].InitialShuffDirection = this.CurrentDirection;
+                       (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
+                        (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
                     }
                 }
                 else

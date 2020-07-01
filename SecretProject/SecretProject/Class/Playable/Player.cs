@@ -498,15 +498,16 @@ namespace SecretProject.Class.Playable
 
                     if (this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.DamageCollisionInteraction(0, 5, this.controls.Direction);
+                        (returnObjects[i].Entity as Item).DamageCollisionInteraction(0, 5, this.controls.Direction);
                     }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
                 {
                     if (this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].IsUpdating = true;
-                        returnObjects[i].InitialShuffDirection = controls.Direction;
+                        (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
+                        (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = controls.Direction;
+                        
                         //if (Game1.EnablePlayerCollisions)
                         //{
                         //    CurrentSpeed = Speed1 / 2;
@@ -517,7 +518,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
-                            returnObjects[i].SelfDestruct();
+                            (returnObjects[i] as GrassTuft).SelfDestruct();
                         }
                     }
                     #endregion

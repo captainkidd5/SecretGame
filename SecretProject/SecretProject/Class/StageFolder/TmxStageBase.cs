@@ -131,7 +131,7 @@ namespace SecretProject.Class.StageFolder
             this.LocationType = locationType;
             this.StageType = stageType;
             this.Graphics = graphics;
-            
+
             this.StageContentManager = new ContentManager(content.ServiceProvider);
             this.StageContentManager.RootDirectory = "Content";
 
@@ -148,11 +148,11 @@ namespace SecretProject.Class.StageFolder
             this.Enemies = new List<Enemy>();
             this.AllProjectiles = new List<Projectile>();
             this.Map = tmxMap;
-            if(locationType == LocationType.Interior)
+            if (locationType == LocationType.Interior)
             {
                 this.TileSetNumber = TileSetType.Exterior;
             }
-            else if(locationType == LocationType.Exterior)
+            else if (locationType == LocationType.Exterior)
             {
                 this.TileSetNumber = TileSetType.Exterior;
             }
@@ -163,18 +163,18 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void AssignPath(string startPath)
         {
-            this.SavePath = startPath + "/GameLocations/"+ this.StageName;
+            this.SavePath = startPath + "/GameLocations/" + this.StageName;
 
-                if (File.Exists(this.SavePath))
-                {
+            if (File.Exists(this.SavePath))
+            {
 
-                }
-                else
-                {
-                    File.WriteAllText(this.SavePath, string.Empty);
-                }
-            
-            
+            }
+            else
+            {
+                File.WriteAllText(this.SavePath, string.Empty);
+            }
+
+
         }
 
         public virtual void LoadPreliminaryContent()
@@ -198,8 +198,8 @@ namespace SecretProject.Class.StageFolder
             };
 
             this.AllPortals = new List<Portal>();
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber,this);
-            if(!Game1.AreGeneratableTilesLoaded)
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this);
+            if (!Game1.AreGeneratableTilesLoaded)
             {
                 this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
                 Game1.AreGeneratableTilesLoaded = true;
@@ -255,7 +255,7 @@ namespace SecretProject.Class.StageFolder
             FileStream fileStream = File.OpenWrite(this.SavePath);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
-          
+
 
 
 
@@ -265,11 +265,11 @@ namespace SecretProject.Class.StageFolder
             Save(binaryWriter);
             binaryWriter.Flush();
             binaryWriter.Close();
-            if(this != Game1.Town)
+            if (this != Game1.Town)
             {
-               AllTiles.Unload();
+                AllTiles.Unload();
             }
-            
+
 
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
@@ -322,7 +322,7 @@ namespace SecretProject.Class.StageFolder
                         grass.Value[g].Update(gameTime);
                     }
 
-                    this.QuadTree.Insert(grass.Value[g]);
+                    this.QuadTree.Insert(grass.Value[g].RectangleCollider);
 
                 }
             }
@@ -336,10 +336,14 @@ namespace SecretProject.Class.StageFolder
                 }
 
             }
-
-            for (int i = 0; i < this.AllTiles.AllItems.Count; i++)
+            List<Item> items = this.AllTiles.AllItems;
+            for (int i = 0; i < items.Count; i++)
             {
-                this.QuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
+                this.QuadTree.Insert(items[i].ItemSprite.RectangleCollider);
+                if (items[i].ItemSprite.RectangleCollider.Rectangle.Intersects(Cam.CameraScreenRectangle))
+                {
+                    items[i].Update(gameTime);
+                }
             }
 
             // QuadTree.Insert(player.MainCollider);
@@ -388,12 +392,12 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
-                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle,this.Enemies);
+                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle, this.Enemies);
             }
             PerformQuadTreeInsertions(gameTime, player);
             this.IsDark = Game1.GlobalClock.IsNight;
             float playerOldYPosition = player.position.Y;
-            UpdatePortals(player,mouse);
+            UpdatePortals(player, mouse);
 
             Game1.MouseManager.ToggleGeneralInteraction = false;
 
@@ -403,7 +407,7 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            Game1.Player.UserInterface.Update(gameTime,  player.Inventory);
+            Game1.Player.UserInterface.Update(gameTime, player.Inventory);
             if (Game1.CurrentStage != this)
             {
                 return;
@@ -447,14 +451,14 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                if(Game1.UpdateCharacters)
+                if (Game1.UpdateCharacters)
                 {
                     foreach (Character character in Game1.AllCharacters)
                     {
                         character.Update(gameTime, mouse);
                     }
                 }
-                
+
 
 
             }
@@ -540,18 +544,18 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                if (this.ShowBorders)
-                {
-                    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
-                    {
+                //if (this.ShowBorders)
+                //{
+                //    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
+                //    {
 
-                        for (int j = 0; j < obj.Value.Count; j++)
-                        {
-                            obj.Value[j].Draw(spriteBatch, .4f);
-                        }
+                //        for (int j = 0; j < obj.Value.Count; j++)
+                //        {
+                //            obj.Value[j].Draw(spriteBatch, .4f);
+                //        }
 
-                    }
-                }
+                //    }
+                //}
 
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
@@ -612,5 +616,5 @@ namespace SecretProject.Class.StageFolder
             throw new NotImplementedException();
         }
     }
-    
+
 }

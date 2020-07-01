@@ -7,7 +7,7 @@ using System;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class Sprite : ICollidable
+    public class Sprite : IEntity
     {
         public GraphicsDevice Graphics { get; set; }
         public Texture2D AtlasTexture { get; set; }
@@ -80,6 +80,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool ChangesFrames { get; set; } // set to false if you don't want the animations to continue but still need a certain number of frames to maintain animation functionality
 
+        public RectangleCollider RectangleCollider { get; set; }
 
         //For Bobber
         private int bobberMultiplier;
@@ -100,7 +101,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Origin = Game1.Utility.Origin;
             this.bobberMultiplier = 1;
             this.AnchorPosition = position;
-
+            this.RectangleCollider = new RectangleCollider(graphics, DestinationRectangle, this, ColliderType.Item);
         }
 
         //for animated sprites
@@ -418,17 +419,17 @@ namespace SecretProject.Class.SpriteFolder
             Spin(gameTime, amount, speed);
         }
 
-        public void Shuff(GameTime gameTime, int direction)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new NotImplementedException();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void MouseCollisionInteraction()
         {
             throw new NotImplementedException();
         }
 
-        public void SelfDestruct()
+        public void Reset()
         {
             throw new NotImplementedException();
         }
