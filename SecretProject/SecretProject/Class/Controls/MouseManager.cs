@@ -86,7 +86,7 @@ namespace SecretProject.Class.Controls
 
         GraphicsDevice graphicsDevice;
 
-        public Collider MouseCollider { get; set; }
+        public RectangleCollider MouseCollider { get; set; }
 
         public float MouseAngleInRelationToPlayer { get; set; }
 
@@ -118,7 +118,7 @@ namespace SecretProject.Class.Controls
             this.RequiredHoldTime = .15f;
 
             this.OldMouseInterfacePosition = Vector2.Zero;
-            this.MouseCollider = new Collider(graphicsDevice, new Rectangle(0,0,1,1), this, ColliderType.MouseCollider);
+            this.MouseCollider = new RectangleCollider(graphicsDevice, new Rectangle(0,0,1,1), this, ColliderType.MouseCollider);
         }
 
         public void Update(GameTime gameTime)

@@ -75,8 +75,8 @@ namespace SecretProject.Class.Playable
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
 
-        public Collider MainCollider { get; set; }
-        public Collider BigCollider { get; set; }
+        public RectangleCollider MainCollider { get; set; }
+        public RectangleCollider BigCollider { get; set; }
 
         public bool IsPerformingAction = false;
 
@@ -148,8 +148,8 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = numberOfFrames;
 
 
-            this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.PlayerMainCollider);
-            this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
+            this.MainCollider = new RectangleCollider(graphics, this.ColliderRectangle, this, ColliderType.PlayerMainCollider);
+            this.BigCollider = new RectangleCollider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             this.Inventory = new Inventory(30) { Money = 10000 };
 
             this.EnableControls = true;

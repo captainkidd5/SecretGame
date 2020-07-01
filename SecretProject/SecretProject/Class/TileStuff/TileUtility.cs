@@ -364,7 +364,7 @@ namespace SecretProject.Class.TileStuff
 
                     int[] rectangleCoords = GetRectangeFromString(propertyString);
 
-                    Collider tempObjectBody = new Collider(container.GraphicsDevice,
+                    RectangleCollider tempObjectBody = new RectangleCollider(container.GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
                             rectangleCoords[3]), tileToAssign, ColliderType.inert)
@@ -456,7 +456,7 @@ namespace SecretProject.Class.TileStuff
                         TmxObject tempObj = tileSet[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
-                        Collider tempObjectBody = new Collider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                        RectangleCollider tempObjectBody = new RectangleCollider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert)
                         { LocationKey = tileToAssign.TileKey };
@@ -474,7 +474,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     int[] nums = GetRectangeFromString(propertyString);
-                    Collider tempBody = new Collider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
+                    RectangleCollider tempBody = new RectangleCollider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
                         nums[2], nums[3]), tileToAssign, ColliderType.TransperencyDetector);
                     if (container.Objects.ContainsKey(tileToAssign.TileKey))
                     {

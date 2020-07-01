@@ -68,7 +68,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
         public int FrameNumber { get; set; }
-        public Collider Collider { get; set; }
+        public RectangleCollider Collider { get; set; }
         public bool CollideOccured { get; set; }
 
         protected Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
@@ -123,7 +123,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.Position = position;
             this.Graphics = graphics;
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
+            this.Collider = new RectangleCollider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
@@ -198,7 +198,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
                 }
             }
-
+             
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);

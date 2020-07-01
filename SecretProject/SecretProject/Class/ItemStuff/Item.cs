@@ -76,7 +76,7 @@ namespace SecretProject.Class.ItemStuff
 
         public float LayerDepth { get; set; }
 
-        public Collider Collider { get; set; }
+        public RectangleCollider Collider { get; set; }
         private Vector2 PrimaryVelocity;
 
         public Item(ItemData itemData, List<Item> allItems)
@@ -128,7 +128,7 @@ namespace SecretProject.Class.ItemStuff
 
                 float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
-                this.Collider = new Collider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
+                this.Collider = new RectangleCollider(this.Graphics, this.SourceTextureRectangle, this, ColliderType.Item);
                 AllItems.Add(this);
             }
             else
