@@ -634,7 +634,7 @@ namespace SecretProject.Class.TileStuff
                                 tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
-                            if (Game1.CurrentStage.ShowBorders)
+                            if (Game1.Player.UserInterface.CommandConsole.DisplayTileIndex)
                             {
                                 spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);

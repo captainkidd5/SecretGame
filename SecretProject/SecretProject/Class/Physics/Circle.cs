@@ -64,7 +64,21 @@ namespace SecretProject.Class.Physics
         public bool IntersectsCircle(Circle other)
         {
             float length = (other.Center - this.Center).Length();
-            return ((other.Center - this.Center).Length() < (other.Radius - this.Radius));
+            return ((other.Center - this.Center).Length() < (other.Radius + this.Radius) /2);
+        }
+
+        public Vector2 GetTangent(Circle other)
+        {
+            Vector2 tangent = other.Center - this.Center;
+            tangent = new Vector2(tangent.Y, tangent.X * -1);
+            tangent.Normalize();
+            return tangent;
+        }
+
+        public Vector2 GetTangentAlternative(Circle other)
+        {
+            return new Vector2(-(other.Center.X - this.Center.X),
+                other.Center.Y - this.Center.Y);
         }
 
         public float Diameter()

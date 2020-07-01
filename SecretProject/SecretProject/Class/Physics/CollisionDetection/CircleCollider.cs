@@ -70,7 +70,7 @@ namespace SecretProject.Class.CollisionDetection
                 return false;
             }
         }
-        public bool DidCollide(Vector2 velocity, ICollidable objectBody)
+        private bool DidCollideRectangle(Vector2 velocity, ICollidable objectBody)
         {
             Rectangle rect = this.Rectangle;
 
@@ -89,29 +89,12 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        private float GetBounceAngle(Circle other)
+        private bool DidCollideCircle(Vector2 velocity, Circle otherCircle)
         {
-            return (float)Math.Atan2(other.Center.Y - this.Circle.Center.Y, other.Center.X - this.Circle.Center.X);
+            return (Math.Abs((Circle.Center.Length() + velocity.Length()) - otherCircle.Center.Length()) -Circle.Radius - otherCircle.Radius) < 0; //less than zero means collision
         }
 
-        private float GetBounceDistance(Circle other)
-        {
 
-            return this.Circle.Radius + other.Radius - this.Circle.GetDistanceBetweenCircleEdges(other);
-        }
-
-        /// <summary>
-        /// Recalculates this collider's circle position after a collision has occurred with another circle. Repositions the outer rectangle as well.
-        /// </summary>
-        /// <param name="otherCircle"></param>
-        private void CalculateNewCircleCenter(Circle otherCircle)
-        {
-            float bounceDistance = GetBounceDistance(otherCircle);
-            float bounceAngle = GetBounceAngle(otherCircle);
-            float newDistance = (float)Math.Cos(bounceAngle) * bounceDistance;
-            Circle.Center = new Vector2(Circle.Center.X + newDistance, Circle.Center.Y + newDistance);
-            UpdateRectangleFromNewCircle();
-        }
 
         public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
@@ -123,11 +106,28 @@ namespace SecretProject.Class.CollisionDetection
                 if (IsIntersecting(objectBody))
                 {
                     UpdateCirclePosition();
+                    if(DidCollideCircle(moveAmount, otherCircle))
+                    {
+                        Console.WriteLine("test");
+                    }
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
-                        Console.WriteLine("circle intersects!");
-                        CalculateNewCircleCenter(otherCircle);
-                        Game1.Player.Position = this.Circle.Center;
+                        Vector2 tangent = Circle.GetTangent(otherCircle);
+                        tangent = Circle.GetTangentAlternative(otherCircle);
+                        tangent.Normalize();
+                        if (moveAmount.X != 0f)
+                        {
+                            newMove.Y = 0;
+                            newMove.X = moveAmount.X;
+
+                            bool collided = DidCollideRectangle(newMove, objectBody);
+                            if (collided)
+                            {
+                                moveAmount = new Vector2(0, moveAmount.Y);
+                                didEitherCollide = true;
+                            }
+                        }
+
                         return true; //is intersecting outer renctangle AND inner circle forces a move of 
                         //this collider and repositions the circle center as well as the outer rectangle
                     }
@@ -146,7 +146,7 @@ namespace SecretProject.Class.CollisionDetection
                     newMove.Y = 0;
                     newMove.X = moveAmount.X;
 
-                    bool collided = DidCollide(newMove, objectBody);
+                    bool collided = DidCollideRectangle(newMove, objectBody);
                     if (collided)
                     {
                         moveAmount = new Vector2(0, moveAmount.Y);
@@ -160,7 +160,7 @@ namespace SecretProject.Class.CollisionDetection
                     newMove.Y = moveAmount.Y;
                     newMove.X = 0;
 
-                    bool collided = DidCollide(newMove, objectBody);
+                    bool collided = DidCollideRectangle(newMove, objectBody);
                     if (collided)
                     {
                         moveAmount = new Vector2(moveAmount.X, 0);
@@ -173,17 +173,14 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        private void SetCircleTexture(GraphicsDevice graphicsDevice)
+        public void Update(Rectangle rectangle)
         {
-
+            this.Rectangle = rectangle;
         }
 
-
-        public void Update(Vector2 entityPosition)
-        {
-            this.Rectangle = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, this.Rectangle.Width, this.Rectangle.Height);
-        }
-
+        /// <summary>
+        /// Updates circle to be centered in rectangle.
+        /// </summary>
         private void UpdateCirclePosition()
         {
             this.Circle.Center = new Vector2(this.Rectangle.X + this.Rectangle.Width / 2, this.Rectangle.Y + this.Rectangle.Height / 2);
@@ -194,11 +191,15 @@ namespace SecretProject.Class.CollisionDetection
         public void DrawDebug(SpriteBatch spriteBatch)
         {
             Vector2 drawPosition = new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y + this.Circle.Radius / 2);
-            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius/2, Circle.Center.Y + this.Circle.Radius/2), color: Color.White * .5f, layerDepth: 1f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" + "Radius = " + Circle.Radius, new Vector2(drawPosition.X, drawPosition.Y - 64),
-                Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Utility.StandardTextDepth);
+            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius/2, Circle.Center.Y - this.Circle.Radius/2), color: Color.White * .5f, layerDepth: 1f);
 
+            float length = (Game1.Player.MainCollider.Circle.Center - this.Circle.Center).Length();
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" + 
+                "Radius = " + Circle.Radius +
+                "\n DistanceToPlayer = " + length, new Vector2(drawPosition.X, drawPosition.Y - 8),
+                Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Utility.StandardTextDepth);
             
+
         }
 
     }

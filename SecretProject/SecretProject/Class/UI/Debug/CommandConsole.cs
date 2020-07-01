@@ -25,6 +25,7 @@ namespace SecretProject.Class.UI
         public string DisplayLog { get; set; } = string.Empty;
         public Vector2 DisplayLogPosition { get; set; } = Game1.Utility.Origin;
 
+        public bool DisplayTileIndex;
 
         public List<CommandWindowCommand> AllCommands { get; set; }
 
@@ -52,8 +53,9 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("decreaseEnergy", "decreaseEnergy (int)[amount to decrease]"),
                 new CommandWindowCommand("add", "add (string)[mobname], (int)[count]"),
                 new CommandWindowCommand("swaproom", "swaproom (string)[roomX], (string)[roomY]"),
-                new CommandWindowCommand("camlock", "camlock"),
-                new CommandWindowCommand("togglemusic", "togglemusic"),
+                new CommandWindowCommand("camlock", "toggles camera locking onto player"),
+                new CommandWindowCommand("togglemusic", "toggles music between off and on"),
+                new CommandWindowCommand("showtileindex", "shows x and y coords of tiles")
             };
             this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
@@ -220,6 +222,9 @@ namespace SecretProject.Class.UI
                     break;
                 case "togglemusic":
                     Game1.EnableMusic = !Game1.EnableMusic;
+                    break;
+                case "showtileindex":
+                    DisplayTileIndex = !DisplayTileIndex;
                     break;
                 case "":
                     break;

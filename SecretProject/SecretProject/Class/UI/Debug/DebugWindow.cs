@@ -87,14 +87,14 @@ namespace SecretProject.Class.UI
                     //Game1.CurrentStage.ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     //Game1.GlobalClock.IncrementDay();
                     Game1.Player.Wardrobe.ChangeSkin(MainMenuStuff.CycleDirection.Forward);
-                    OutPutChunks(WriteChunkArrayValue);
+
                    // Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, Game1.Player.position);
 
 
                 }
                 else if(this.DebugButton2.isClicked)
                 {
-                    OutPutChunks(WriteChunkCoordinateValue);
+ 
                 }
                 this.SpawnAnimalPack.Update(Game1.MouseManager);
                 if (this.SpawnAnimalPack.isClicked)
@@ -140,21 +140,6 @@ namespace SecretProject.Class.UI
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.CurrentStage.AllTiles).ToString()
 
-        public void OutPutChunks(Func<Chunk, string> result)
-        {
-          //  string outputString = string.Empty;
-          ////  Chunk[,] worldChunks = Game1.OverWorld.AllTiles.ActiveChunks;
-          //  for (int i = 0; i <= worldChunks.GetUpperBound(0); i++)
-          //  {
-          //      for(int j =0; j <= worldChunks.GetUpperBound(1); j++)
-          //      {
-                    
-          //         outputString+= result(worldChunks[i, j]);
-          //      }
-          //      outputString += "\n";
-          //  }
-          //  Console.WriteLine(outputString);
-        }
 
         public string WriteChunkCoordinateValue(Chunk chunk)
         {

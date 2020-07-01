@@ -389,12 +389,12 @@ namespace SecretProject.Class.Playable
                 {
                     MoveFromKeys(gameTime);
                 }
-                
-
-                this.MainCollider.Rectangle = this.ColliderRectangle;
 
 
-                this.BigCollider.Rectangle = this.ClickRangeRectangle;
+                this.MainCollider.Update(this.ColliderRectangle);
+
+
+                this.BigCollider.Update(this.ClickRangeRectangle);
 
 
                 CheckAndHandleCollisions();

@@ -114,9 +114,9 @@ namespace SecretProject.Class.CollisionDetection
         }
 
 
-        public void Update(Vector2 entityPosition)
+        public void Update(Rectangle rectangle)
         {
-            this.Rectangle = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, this.Rectangle.Width, this.Rectangle.Height);
+            this.Rectangle = rectangle;
         }
 
         public void DrawDebug(SpriteBatch spriteBatch)
