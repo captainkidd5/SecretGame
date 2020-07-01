@@ -31,7 +31,8 @@ namespace SecretProject.Class.Physics
 
         public bool IntersectsCircle(Circle other)
         {
-            return ((other.Center - this.Center).Length() < (other.Radius - this.Radius));
+            float distance = (other.Center - this.Center).Length();
+            return ((other.Center - this.Center).Length() < Math.Abs((other.Radius - this.Radius)));
         }
 
         public float Diameter()

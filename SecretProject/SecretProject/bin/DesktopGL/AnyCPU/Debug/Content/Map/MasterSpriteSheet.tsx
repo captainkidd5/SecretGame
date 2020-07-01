@@ -462,7 +462,9 @@
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="9" width="16" height="7"/>
+   <object id="6" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
   <animation>
    <frame tileid="241" duration="80"/>

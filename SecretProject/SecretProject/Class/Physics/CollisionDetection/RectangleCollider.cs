@@ -142,7 +142,9 @@ namespace SecretProject.Class.CollisionDetection
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
-
-
+        public void Update(Vector2 entityPosition)
+        {
+            this.Rectangle = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, this.Rectangle.Width, this.Rectangle.Height);
+        }
     }
 }

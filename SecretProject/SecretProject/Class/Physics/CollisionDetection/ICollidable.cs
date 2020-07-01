@@ -31,5 +31,6 @@ namespace SecretProject.Class.CollisionDetection
         Rectangle Rectangle { get; set; }
         IEntity Entity { get; set; }
 
+        void Update(Vector2 entityPosition);
     }
 }

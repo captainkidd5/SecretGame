@@ -108,7 +108,7 @@ namespace SecretProject.Class.CollisionDetection
             float bounceDistance = GetBounceDistance(otherCircle);
             float bounceAngle = GetBounceAngle(otherCircle);
             float newDistance = (float)Math.Cos(bounceAngle) * bounceDistance;
-            Circle.Center = new Vector2(newDistance, newDistance);
+            Circle.Center = new Vector2(Circle.Center.X + newDistance, Circle.Center.Y + newDistance);
             UpdateRectangleFromNewCircle();
         }
 
@@ -121,10 +121,11 @@ namespace SecretProject.Class.CollisionDetection
                 Circle otherCircle = (objectBody as CircleCollider).Circle;
                 if (IsIntersecting(objectBody))
                 {
-
+                    UpdateCirclePosition();
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
                         CalculateNewCircleCenter(otherCircle);
+                        Game1.Player.Position = this.Circle.Center;
                         return true; //is intersecting outer renctangle AND inner circle forces a move of 
                         //this collider and repositions the circle center as well as the outer rectangle
                     }
@@ -195,6 +196,16 @@ namespace SecretProject.Class.CollisionDetection
             }
             rectangleTexture = new Texture2D(graphicsDevice, this.Rectangle.Width, this.Rectangle.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
+        }
+
+        public void Update(Vector2 entityPosition)
+        {
+            this.Rectangle = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, this.Rectangle.Width, this.Rectangle.Height);
+        }
+
+        private void UpdateCirclePosition()
+        {
+            this.Circle.Center = new Vector2(this.Rectangle.X + this.Rectangle.Width / 2, this.Rectangle.Y + this.Rectangle.Height / 2);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

@@ -9,6 +9,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.Physics;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -75,7 +76,7 @@ namespace SecretProject.Class.Playable
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
 
-        public RectangleCollider MainCollider { get; set; }
+        public CircleCollider MainCollider { get; set; }
         public RectangleCollider BigCollider { get; set; }
 
         public bool IsPerformingAction = false;
@@ -148,7 +149,7 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = numberOfFrames;
 
 
-            this.MainCollider = new RectangleCollider(graphics, this.ColliderRectangle, this, ColliderType.PlayerMainCollider);
+            this.MainCollider = new CircleCollider(graphics, this.ColliderRectangle, new Circle(this.Position, 12), this, ColliderType.PlayerMainCollider);
             this.BigCollider = new RectangleCollider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             this.Inventory = new Inventory(30) { Money = 10000 };
 
@@ -310,7 +311,7 @@ namespace SecretProject.Class.Playable
                             ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,false, arrowData.Damage));
+                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics,this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                             item.AlterDurability(1);
                             UserInterface.StaminaBar.DecreaseStamina(1);

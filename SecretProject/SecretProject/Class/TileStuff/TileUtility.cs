@@ -4,6 +4,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Physics;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -454,10 +455,22 @@ namespace SecretProject.Class.TileStuff
                     {
                         TmxObject tempObj = tileSet[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
-
-                        RectangleCollider tempObjectBody = new RectangleCollider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                        ICollidable tempObjectBody;
+                        Rectangle colliderRectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                            (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert);
+                            (int)Math.Ceiling(tempObj.Height) + 5);
+
+                        if(tempObj.ObjectType == TmxObjectType.Ellipse)
+                        {
+                            Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
+                            tempObjectBody = new CircleCollider(container.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
+                        }
+                        else
+                        {
+                            tempObjectBody = new RectangleCollider(container.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
+                        }
+
+                        
 
 
 

@@ -16,7 +16,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     public class Projectile : IEntity
     {
         public GraphicsDevice Graphics { get; private set; }
-        public RectangleCollider ColliderFiredFrom { get; set; }
+        public ICollidable ColliderFiredFrom { get; set; }
  
         public Vector2 CurrentPosition { get; set; }
         public Vector2 PositionToMoveTowards { get; set; }
@@ -39,7 +39,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         SimpleTimer TimeToLive;
 
         public int DamageValue { get; set; }
-        public Projectile(GraphicsDevice graphics, RectangleCollider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
+        public Projectile(GraphicsDevice graphics, ICollidable colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
         {
             this.Graphics = graphics;
             this.ColliderFiredFrom = colliderFiredFrom;
