@@ -27,19 +27,15 @@ namespace SecretProject.Class.CollisionDetection
         public IEntity Entity { get; set; }
 
 
-        public Circle Circle { get; set; }
+        public Circle Circle;
 
-        private CircleCollider()
-        {
 
-        }
-
-        public CircleCollider(GraphicsDevice graphicsDevice, Rectangle rectangle,Circle circle, IEntity entity, ColliderType colliderType = ColliderType.inert)
+        public CircleCollider(GraphicsDevice graphicsDevice, Rectangle rectangle, Circle circle, IEntity entity, ColliderType colliderType = ColliderType.inert)
         {
             this.HitBoxType = HitBoxType.Circle;
-            this.Rectangle = new Rectangle((int)(circle.Center.X - circle.Radius), (int)(circle.Center.Y - circle.Radius),
-                (int)circle.Diameter(), (int)circle.Diameter()); //Create rectangle around circle
             this.Circle = circle;
+            UpdateRectangleFromNewCircle();
+
             this.ColliderType = colliderType;
 
             //  SetRectangleTexture(graphicsDevice);
@@ -47,6 +43,15 @@ namespace SecretProject.Class.CollisionDetection
             this.ShowRectangle = true;
             this.Entity = entity;
 
+        }
+
+        /// <summary>
+        /// Create rectangle around circle
+        /// </summary>
+        private void UpdateRectangleFromNewCircle()
+        {
+            this.Rectangle = new Rectangle((int)(this.Circle.Center.X - this.Circle.Radius), (int)(this.Circle.Center.Y - this.Circle.Radius),
+                (int)this.Circle.Diameter(), (int)this.Circle.Diameter());
         }
 
 
@@ -83,38 +88,84 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
+        private float GetBounceAngle(Circle other)
+        {
+            return (float)Math.Atan2(other.Center.Y - this.Circle.Center.Y, other.Center.X - this.Circle.Center.X);
+        }
+
+        private float GetBounceDistance(Circle other)
+        {
+
+            return this.Circle.Radius + other.Radius - this.Circle.GetDistanceBetweenCircleEdges(other);
+        }
+
+        /// <summary>
+        /// Recalculates this collider's circle position after a collision has occurred with another circle. Repositions the outer rectangle as well.
+        /// </summary>
+        /// <param name="otherCircle"></param>
+        private void CalculateNewCircleCenter(Circle otherCircle)
+        {
+            float bounceDistance = GetBounceDistance(otherCircle);
+            float bounceAngle = GetBounceAngle(otherCircle);
+            float newDistance = (float)Math.Cos(bounceAngle) * bounceDistance;
+            Circle.Center = new Vector2(newDistance, newDistance);
+            UpdateRectangleFromNewCircle();
+        }
+
         public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
             bool didEitherCollide = false;
             Vector2 newMove = Vector2.Zero;
-            //Check collision in X direction
-            if (moveAmount.X != 0f)
+            if (objectBody.HitBoxType == HitBoxType.Circle)
             {
-                newMove.Y = 0;
-                newMove.X = moveAmount.X;
-
-                bool collided = DidCollide(newMove, objectBody);
-                if (collided)
+                Circle otherCircle = (objectBody as CircleCollider).Circle;
+                if (IsIntersecting(objectBody))
                 {
-                    moveAmount = new Vector2(0, moveAmount.Y);
-                    didEitherCollide = true;
-                }
-            }
 
-            //Check collision in Y direction
-            if (moveAmount.Y != 0f)
+                    if (this.Circle.IntersectsCircle(otherCircle))
+                    {
+                        CalculateNewCircleCenter(otherCircle);
+                        return true; //is intersecting outer renctangle AND inner circle forces a move of 
+                        //this collider and repositions the circle center as well as the outer rectangle
+                    }
+                    return false; //is intersecting outer rectangle but not circle does not count.
+                }
+                return false; //neither intersecting outer rectangle nor inner circle.
+            }
+            else //handle collision normally
             {
-                newMove.Y = moveAmount.Y;
-                newMove.X = 0;
 
-                bool collided = DidCollide(newMove, objectBody);
-                if (collided)
+
+
+                //Check collision in X direction
+                if (moveAmount.X != 0f)
                 {
-                    moveAmount = new Vector2(moveAmount.X, 0);
-                    didEitherCollide = true;
+                    newMove.Y = 0;
+                    newMove.X = moveAmount.X;
+
+                    bool collided = DidCollide(newMove, objectBody);
+                    if (collided)
+                    {
+                        moveAmount = new Vector2(0, moveAmount.Y);
+                        didEitherCollide = true;
+                    }
                 }
+
+                //Check collision in Y direction
+                if (moveAmount.Y != 0f)
+                {
+                    newMove.Y = moveAmount.Y;
+                    newMove.X = 0;
+
+                    bool collided = DidCollide(newMove, objectBody);
+                    if (collided)
+                    {
+                        moveAmount = new Vector2(moveAmount.X, 0);
+                        didEitherCollide = true;
+                    }
+                }
+                return didEitherCollide;
             }
-            return didEitherCollide;
         }
 
 

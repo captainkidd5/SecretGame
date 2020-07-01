@@ -23,6 +23,12 @@ namespace SecretProject.Class.Physics
             return ((point - this.Center).Length() <= this.Radius);
         }
 
+        public float GetDistanceBetweenCircleEdges(Circle other)
+        {
+            return ((float)Math.Sqrt((other.Center.X - this.Center.X) * (other.Center.X - this.Center.X) +
+                (other.Center.Y - this.Center.Y) * (other.Center.Y - this.Center.Y)));
+        }
+
         public bool IntersectsCircle(Circle other)
         {
             return ((other.Center - this.Center).Length() < (other.Radius - this.Radius));
