@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Physics;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 
@@ -124,6 +125,7 @@ namespace SecretProject.Class.CollisionDetection
                     UpdateCirclePosition();
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
+                        Console.WriteLine("circle intersects!");
                         CalculateNewCircleCenter(otherCircle);
                         Game1.Player.Position = this.Circle.Center;
                         return true; //is intersecting outer renctangle AND inner circle forces a move of 
@@ -171,32 +173,11 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-
-        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
+        private void SetCircleTexture(GraphicsDevice graphicsDevice)
         {
-            var Colors = new List<Color>();
-            for (int y = 0; y < this.Rectangle.Height; y++)
-            {
-                for (int x = 0; x < this.Rectangle.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == this.Rectangle.Width - 1 || //right side
-                        y == this.Rectangle.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
 
-                    }
-
-                }
-            }
-            rectangleTexture = new Texture2D(graphicsDevice, this.Rectangle.Width, this.Rectangle.Height);
-            rectangleTexture.SetData<Color>(Colors.ToArray());
         }
+
 
         public void Update(Vector2 entityPosition)
         {
@@ -208,19 +189,16 @@ namespace SecretProject.Class.CollisionDetection
             this.Circle.Center = new Vector2(this.Rectangle.X + this.Rectangle.Width / 2, this.Rectangle.Y + this.Rectangle.Height / 2);
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+
+
+        public void DrawDebug(SpriteBatch spriteBatch)
         {
-            // spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), Color.White);
+            Vector2 drawPosition = new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y + this.Circle.Radius / 2);
+            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius/2, Circle.Center.Y + this.Circle.Radius/2), color: Color.White * .5f, layerDepth: 1f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" + "Radius = " + Circle.Radius, new Vector2(drawPosition.X, drawPosition.Y - 64),
+                Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Utility.StandardTextDepth);
 
-
-
-
-        }
-        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
-        {
-
-            //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
-
+            
         }
 
     }

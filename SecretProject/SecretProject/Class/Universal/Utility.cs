@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Physics;
 using SecretProject.Class.Playable;
 using SecretProject.Class.UI;
 using System;
@@ -13,6 +14,7 @@ namespace SecretProject.Class.Universal
 {
     public class Utility
     {
+        public GraphicsDevice Graphics { get; set; }
         public int CenterScreenX { get { return Game1.ScreenWidth / 2; } }
         public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
         public const float GlobalButtonScale = 2f;
@@ -31,8 +33,11 @@ namespace SecretProject.Class.Universal
         public Vector2 ClockPosition { get; set; }
 
 
-        public Utility(int seed)
+
+
+        public Utility(GraphicsDevice graphics, int seed)
         {
+            this.Graphics = graphics;
             RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(this.CenterScreenX, this.CenterScreenY);
             ClockPosition = new Vector2(Game1.ScreenWidth * .9f, Game1.ScreenHeight * .1f);
@@ -295,6 +300,43 @@ namespace SecretProject.Class.Universal
                 dataColors[i] = desiredColor;
             }
             Texture2D texture = new Texture2D(graphics, width, height);
+            texture.SetData(0, new Rectangle(0, 0, width, height), dataColors, 0, width * height);
+            return texture;
+        }
+
+        public Texture2D GetColoredCircle(float radius, Color desiredColor)
+        {
+            radius = radius / 2;
+            int width = (int)radius * 2;
+            int height = width;
+
+            Vector2 center = new Vector2(radius, radius);
+
+            Circle circle = new Circle(center, radius,false);
+
+            Color[] dataColors = new Color[width * height];
+            int row = -1;
+            int column = 0;
+            for (int i = 0; i < dataColors.Length; i++)
+            {
+                column++;
+                if(i % width == 0)
+                {
+                    row++;
+                    column = 0;
+                }
+                Vector2 point = new Vector2(row, column);
+                if(circle.ContainsPoint(point))
+                {
+                    dataColors[i] = desiredColor;
+                }
+                else
+                {
+                    dataColors[i] = Color.Transparent;
+                }
+                
+            }
+            Texture2D texture = new Texture2D(this.Graphics, width, height);
             texture.SetData(0, new Rectangle(0, 0, width, height), dataColors, 0, width * height);
             return texture;
         }

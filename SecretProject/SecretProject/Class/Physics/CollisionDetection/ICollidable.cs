@@ -32,5 +32,6 @@ namespace SecretProject.Class.CollisionDetection
         IEntity Entity { get; set; }
 
         void Update(Vector2 entityPosition);
+        void DrawDebug(SpriteBatch spriteBatch);
     }
 }

@@ -350,7 +350,7 @@ namespace SecretProject
             ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
             ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
             //seed parameter
-            Utility = new Utility(1);
+            Utility = new Utility(this.GraphicsDevice,1);
             //CAMERA
             cam = new Camera2D(this.GraphicsDevice.Viewport);
             //MOUSE

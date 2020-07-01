@@ -114,37 +114,14 @@ namespace SecretProject.Class.CollisionDetection
         }
 
 
-
-
-        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
-        {
-            var Colors = new List<Color>();
-            for (int y = 0; y < this.Rectangle.Height; y++)
-            {
-                for (int x = 0; x < this.Rectangle.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == this.Rectangle.Width - 1 || //right side
-                        y == this.Rectangle.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
-
-                    }
-
-                }
-            }
-            rectangleTexture = new Texture2D(graphicsDevice, this.Rectangle.Width, this.Rectangle.Height);
-            rectangleTexture.SetData<Color>(Colors.ToArray());
-        }
-
         public void Update(Vector2 entityPosition)
         {
             this.Rectangle = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, this.Rectangle.Width, this.Rectangle.Height);
+        }
+
+        public void DrawDebug(SpriteBatch spriteBatch)
+        {
+            
         }
     }
 }

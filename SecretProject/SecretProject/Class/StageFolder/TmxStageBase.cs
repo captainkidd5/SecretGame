@@ -519,6 +519,16 @@ namespace SecretProject.Class.StageFolder
                     {
                         character.DrawDebug(spriteBatch, .4f);
                     }
+                    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
+                    {
+
+                        for (int j = 0; j < obj.Value.Count; j++)
+                        {
+                            obj.Value[j].DrawDebug(spriteBatch);
+                        }
+
+                    }
+                    Game1.Player.MainCollider.DrawDebug(spriteBatch);
                 }
 
                 this.AllTiles.DrawTiles(spriteBatch);
@@ -544,18 +554,6 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                //if (this.ShowBorders)
-                //{
-                //    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
-                //    {
-
-                //        for (int j = 0; j < obj.Value.Count; j++)
-                //        {
-                //            obj.Value[j].Draw(spriteBatch, .4f);
-                //        }
-
-                //    }
-                //}
 
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
