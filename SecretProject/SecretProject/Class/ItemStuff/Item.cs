@@ -30,15 +30,15 @@ namespace SecretProject.Class.ItemStuff
         public Vector2 WorldPosition;
 
 
-        public bool IsTossable { get; set; } = false;
+        public bool IsTossable { get; set; }
 
         public bool IsDropped { get; set; }
 
         public Sprite ItemSprite { get; set; }
 
-        public GraphicsDevice Graphics { get; set; }
+        private GraphicsDevice Graphics { get; set; }
 
-        public ContentManager Content { get; set; }
+        private ContentManager Content { get; set; }
 
 
 
@@ -77,6 +77,8 @@ namespace SecretProject.Class.ItemStuff
         public float LayerDepth { get; set; }
         private Vector2 PrimaryVelocity;
 
+
+        public RectangleCollider RectangleCollider { get; set; }
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
@@ -126,13 +128,14 @@ namespace SecretProject.Class.ItemStuff
 
                 float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
-
+                this.RectangleCollider = new RectangleCollider(this.Graphics, ItemSprite.DestinationRectangle, this, ColliderType.Item);
                 AllItems.Add(this);
             }
             else
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
-                this.ItemSprite.RectangleCollider.Entity = this;
+
+               
                 if (this.Durability > 0)
                 {
 
@@ -151,7 +154,7 @@ namespace SecretProject.Class.ItemStuff
             if (this.IsWorldItem)
             {
                 this.ItemSprite.Update(gameTime);
-                this.ItemSprite.RectangleCollider.Rectangle = this.ItemSprite.DestinationRectangle;
+                this.RectangleCollider.Rectangle = this.ItemSprite.DestinationRectangle;
 
                 if (this.Bouncer != null)
                 {
@@ -190,13 +193,13 @@ namespace SecretProject.Class.ItemStuff
             {
                 List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.ItemSprite.RectangleCollider);
+                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.RectangleCollider);
 
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
                     if (returnObjects[i].ColliderType == ColliderType.inert)
                     {
-                        if (this.ItemSprite.RectangleCollider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
+                        if (this.RectangleCollider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
                         {
                             Console.WriteLine("Debug!");
                             
@@ -224,7 +227,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void TryMagnetize()
         {
             if (!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
             {
@@ -240,7 +243,7 @@ namespace SecretProject.Class.ItemStuff
 
 
 
-                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite.RectangleCollider))
+                if (Game1.Player.MainCollider.IsIntersecting(this.RectangleCollider))
                 {
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
@@ -292,6 +295,11 @@ namespace SecretProject.Class.ItemStuff
         }
 
         public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new NotImplementedException();
         }

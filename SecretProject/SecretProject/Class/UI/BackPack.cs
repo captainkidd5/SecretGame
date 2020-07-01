@@ -25,18 +25,18 @@ namespace SecretProject.Class.UI
         public GraphicsDevice Graphics { get; set; }
         public Inventory Inventory { get; set; }
         public int Capacity { get; set; }
-        public Vector2 BigPosition { get; set; }
+        private Vector2 BigPosition { get; set; }
         public Vector2 SmallPosition { get; set; }
-        public Rectangle LargeBackgroundSourceRectangle { get; set; }
+        private Rectangle LargeBackgroundSourceRectangle { get; set; }
         public Rectangle SmallBackgroundSourceRectangle { get; set; }
         public float Scale { get; set; }
-        public bool WasSlotJustReleased { get; set; }
-        public Item ItemJustReleased { get; set; }
-        public Sprite DragSprite { get; set; }
+        private bool WasSlotJustReleased { get; set; }
+        private Item ItemJustReleased { get; set; }
+        private Sprite DragSprite { get; set; }
         public List<Button> AllItemButtons { get; set; }
-        Button ExpandButton;
-        public Rectangle ExpandedButtonRectangle { get; set; }
-        public Rectangle RetractedButtonRectangle { get; set; }
+        private Button ExpandButton;
+        private Rectangle ExpandedButtonRectangle { get; set; }
+        private Rectangle RetractedButtonRectangle { get; set; }
 
         TextBuilder TextBuilder;
 
@@ -46,22 +46,22 @@ namespace SecretProject.Class.UI
         public int NumberOfSlotsToUpdate { get; set; }
 
         //MAIN TOOLBAR STUFF
-        public Rectangle ItemSwitchSourceRectangle { get; set; }
-        public Item TempItem { get; set; }
-        public int currentSliderPosition = 1;
+        private Rectangle ItemSwitchSourceRectangle { get; set; }
+        private Item TempItem { get; set; }
+        private int currentSliderPosition = 1;
         public bool WasSliderUpdated = false;
 
-        public List<ActionTimer> AllActions;
+        private List<ActionTimer> AllActions;
 
         public Item CurrentEquippedItem { get; set; }
 
-        public DragSlot DraggedSlot { get; private set; }
+        public DragSlot DraggedSlot { get; set; }
 
 
 
-        public Rectangle InventoryAreaRectangle { get; set; }
+        private Rectangle InventoryAreaRectangle { get; set; }
 
-        public Button ButtonHoveredLastFrame { get; private set; }
+        private Button ButtonHoveredLastFrame { get; set; }
 
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {

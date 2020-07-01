@@ -346,7 +346,7 @@ namespace SecretProject.Class.TileStuff
                 if (layer >= 3 )
                 {
                     float randomOffSet = Game1.Utility.RFloat(Utility.LayerOffSetMultiplier, Utility.LayerOffSetMultiplier * 10);
-                    float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * Utility.ForeGroundMultiplier; //+ randomOffSet;
+                    float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * Utility.ForeGroundMultiplier + randomOffSet;
                     if (x > 0 && container.AllTiles[layer][x - 1, y].LayerToDrawAtZOffSet == offSetDrawValue)
                     {
                         offSetDrawValue += randomOffSet;
@@ -367,8 +367,7 @@ namespace SecretProject.Class.TileStuff
                     RectangleCollider tempObjectBody = new RectangleCollider(container.GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
-                            rectangleCoords[3]), tileToAssign, ColliderType.inert)
-                    { LocationKey = tileToAssign.TileKey };
+                            rectangleCoords[3]), tileToAssign, ColliderType.inert);
 
                     if (container.Objects.ContainsKey(tileToAssign.TileKey))
                     {
@@ -458,8 +457,7 @@ namespace SecretProject.Class.TileStuff
 
                         RectangleCollider tempObjectBody = new RectangleCollider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                            (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert)
-                        { LocationKey = tileToAssign.TileKey };
+                            (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert);
 
 
 

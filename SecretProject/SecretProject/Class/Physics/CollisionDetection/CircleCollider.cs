@@ -16,17 +16,14 @@ namespace SecretProject.Class.CollisionDetection
 
         public bool ShowRectangle { get; set; }
         //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
-        private Rectangle rectangle;
 
 
 
-        public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
+
+        public Rectangle Rectangle { get; set; }
 
 
         public ColliderType ColliderType { get; set; }
-        public string LocationKey { get; set; }
-        public bool IsUpdating { get; set; }
-        public Dir InitialShuffDirection { get; set; }
         public IEntity Entity { get; set; }
 
 
@@ -40,7 +37,7 @@ namespace SecretProject.Class.CollisionDetection
         public CircleCollider(GraphicsDevice graphicsDevice, Rectangle rectangle,Circle circle, IEntity entity, ColliderType colliderType = ColliderType.inert)
         {
             this.HitBoxType = HitBoxType.Circle;
-            this.rectangle = new Rectangle((int)(circle.Center.X - circle.Radius), (int)(circle.Center.Y - circle.Radius),
+            this.Rectangle = new Rectangle((int)(circle.Center.X - circle.Radius), (int)(circle.Center.Y - circle.Radius),
                 (int)circle.Diameter(), (int)circle.Diameter()); //Create rectangle around circle
             this.Circle = circle;
             this.ColliderType = colliderType;
@@ -49,7 +46,7 @@ namespace SecretProject.Class.CollisionDetection
 
             this.ShowRectangle = true;
             this.Entity = entity;
-            this.IsUpdating = false;
+
         }
 
 

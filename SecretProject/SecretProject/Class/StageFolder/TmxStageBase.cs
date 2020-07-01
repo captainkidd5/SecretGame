@@ -339,8 +339,8 @@ namespace SecretProject.Class.StageFolder
             List<Item> items = this.AllTiles.AllItems;
             for (int i = 0; i < items.Count; i++)
             {
-                this.QuadTree.Insert(items[i].ItemSprite.RectangleCollider);
-                if (items[i].ItemSprite.RectangleCollider.Rectangle.Intersects(Cam.CameraScreenRectangle))
+                this.QuadTree.Insert(items[i].RectangleCollider);
+                if (items[i].RectangleCollider.Rectangle.Intersects(Cam.CameraScreenRectangle))
                 {
                     items[i].Update(gameTime);
                 }

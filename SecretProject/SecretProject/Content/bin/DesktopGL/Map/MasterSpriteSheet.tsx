@@ -3663,7 +3663,7 @@
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="12"/>
+   <object id="1" x="1" y="0" width="14" height="13"/>
   </objectgroup>
  </tile>
  <tile id="3333">

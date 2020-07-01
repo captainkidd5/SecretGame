@@ -498,7 +498,7 @@ namespace SecretProject.Class.Playable
 
                     if (this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
-                        (returnObjects[i].Entity as Item).DamageCollisionInteraction(0, 5, this.controls.Direction);
+                        (returnObjects[i].Entity as Item).TryMagnetize();
                     }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)

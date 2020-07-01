@@ -28,7 +28,6 @@ namespace SecretProject.Class.CollisionDetection
     {
         HitBoxType HitBoxType { get; set; }
         ColliderType ColliderType { get; set; }
-        string LocationKey { get; set; }
         Rectangle Rectangle { get; set; }
         IEntity Entity { get; set; }
 

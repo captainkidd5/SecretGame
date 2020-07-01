@@ -268,11 +268,11 @@ namespace SecretProject.Class.StageFolder
 
                             }
 
-                            for (int item = 0; item < chunk.AllItems.Count; item++)
-                            {
-                                this.QuadTree.Insert(chunk.AllItems[item].ItemSprite.RectangleCollider);
+                            //for (int item = 0; item < chunk.AllItems.Count; item++)
+                            //{
+                            //    this.QuadTree.Insert(chunk.AllItems[item].ItemSprite.RectangleCollider);
 
-                            }
+                            //}
 
                             foreach (KeyValuePair<string, Sprite> sprite in this.AllTiles.ActiveChunks[i, j].QuestIcons)
                             {
