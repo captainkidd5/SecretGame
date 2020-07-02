@@ -1105,7 +1105,6 @@
  </tile>
  <tile id="569">
   <properties>
-   <property name="crop" value="750"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1135,7 +1134,6 @@
  </tile>
  <tile id="575">
   <properties>
-   <property name="crop" value="754"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1402,7 +1400,6 @@
  </tile>
  <tile id="769">
   <properties>
-   <property name="crop" value="748"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1432,7 +1429,6 @@
  </tile>
  <tile id="775">
   <properties>
-   <property name="crop" value="756"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1690,7 +1686,6 @@
  </tile>
  <tile id="969">
   <properties>
-   <property name="crop" value="752"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1709,7 +1704,6 @@
  </tile>
  <tile id="975">
   <properties>
-   <property name="crop" value="758"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1920,7 +1914,6 @@
  </tile>
  <tile id="1035">
   <properties>
-   <property name="crop" value="668"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -1957,7 +1950,6 @@
  </tile>
  <tile id="1046">
   <properties>
-   <property name="crop" value="669"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -2494,7 +2486,6 @@
  </tile>
  <tile id="1541">
   <properties>
-   <property name="crop" value="672"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -2561,7 +2552,6 @@
  </tile>
  <tile id="1624">
   <properties>
-   <property name="crop" value="671"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -2593,7 +2583,6 @@
  </tile>
  <tile id="1635">
   <properties>
-   <property name="crop" value="672"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -2950,7 +2939,6 @@
  </tile>
  <tile id="2418">
   <properties>
-   <property name="crop" value="669"/>
    <property name="destructable" value="2,0,3,6,6,0"/>
    <property name="idleStart" value=""/>
   </properties>
@@ -3738,7 +3726,9 @@
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="0" width="14" height="13"/>
+   <object id="2" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="3333">
@@ -4434,7 +4424,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4805">
@@ -4442,7 +4432,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4806">
@@ -4450,7 +4440,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4810">

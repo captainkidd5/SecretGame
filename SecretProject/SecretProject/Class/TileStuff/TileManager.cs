@@ -210,11 +210,11 @@ namespace SecretProject.Class.TileStuff
                 int portalHeight = (int)mapName.ObjectGroups["Portal"].Objects[i].Height;
 
                 portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
-                if(!this.Stage.AllPortals.Contains(portal))
+                if (!this.Stage.AllPortals.Contains(portal))
                 {
                     this.Stage.AllPortals.Add(portal);
                 }
-                
+
 
                 if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
                 {
@@ -264,6 +264,25 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
+            }
+            if (this.Stage == Game1.Town || this.Stage == Game1.ForestDungeon)
+            {
+
+                for (int i = 0; i < this.MapWidth; i++)
+                {
+                    for (int j = 0; j < this.MapHeight; j++)
+                    {
+                        if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
+                        {
+                            if (AllTiles[3][i, j].TileKey != null)
+                            {
+                                SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[3][i, j], AllTiles[1][i, j]);
+                            }
+
+                        }
+                    }
+                }
+
             }
 
         }
@@ -607,25 +626,25 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (var j = startj; j < endj; j++)
                     {
-                        Tile tile = this.AllTiles[z][i,j];
+                        Tile tile = this.AllTiles[z][i, j];
                         if (tile.GID != -1)
                         {
 
                             Color tileColor = Color.White;
-                            if(Game1.CurrentStage.ShowBorders)
+                            if (Game1.CurrentStage.ShowBorders)
                             {
                                 if (this.Objects.ContainsKey(AllTiles[z][i, j].TileKey))
                                 {
                                     tileColor = Color.Red;
                                 }
                             }
-                            
+
 
 
                             if (z >= 3)
                             {
                                 spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor * tile.ColorMultiplier,
-                                tile.Rotation,tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
+                                tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                             }
                             else
@@ -702,11 +721,11 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {
-            if(Game1.CurrentStage == this.Stage)
+            if (Game1.CurrentStage == this.Stage)
             {
                 UpdateCropTile();
             }
-            
+
         }
 
         public Rectangle GetChunkRectangle()
@@ -728,7 +747,7 @@ namespace SecretProject.Class.TileStuff
         public void Save(BinaryWriter binaryWriter)
         {
 
-             binaryWriter.Write(this.AllTiles.Count);
+            binaryWriter.Write(this.AllTiles.Count);
 
             binaryWriter.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)
@@ -822,7 +841,7 @@ namespace SecretProject.Class.TileStuff
             this.AllTiles = new List<Tile[,]>();
             this.AllItems = new List<Item>();
             this.Objects = new Dictionary<string, List<ICollidable>>();
-            
+
             for (int i = 0; i < layerCount; i++)
             {
                 this.AllTiles.Add(new Tile[mapWidth, mapWidth]);
@@ -984,7 +1003,7 @@ namespace SecretProject.Class.TileStuff
             //    this.Tufts.Add(key, tufts);
             //}
             //  }
-            
+
         }
 
         public void AddTileModification(Tile tile, ITileModifiable tileModifiable)

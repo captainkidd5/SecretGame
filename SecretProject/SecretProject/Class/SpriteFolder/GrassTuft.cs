@@ -119,8 +119,10 @@ namespace SecretProject.Class.SpriteFolder
             {
                 location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
             }
-            
+            if(this.TuftsIsPartOf != null)
             this.TuftsIsPartOf.Remove(this);
+
+                
         }
 
         public void Shuff(GameTime gameTime, int direction)

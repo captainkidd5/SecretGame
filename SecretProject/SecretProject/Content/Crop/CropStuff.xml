@@ -27,15 +27,15 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>754</ItemID>
+                <ItemID>755</ItemID>
                   <Name>BlueZodFern</Name>
-                  <GID>575</GID>
+                  <GID>576</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>756</ItemID>
+                  <ItemID>755</ItemID>
                   <Name>YallonFlower</Name>
                   <GID>775</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -63,7 +63,7 @@
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>792</ItemID>
                   <Name>Nettle</Name>
-                  <GID>1392</GID>
+                  <GID>1075</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
@@ -89,9 +89,9 @@
                   </Item>
 
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>669</ItemID>
+                  <ItemID>670</ItemID>
                   <Name>Thunder Birch Seed</Name>
-                  <GID>1046</GID>
+                  <GID>1047</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>

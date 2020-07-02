@@ -40,7 +40,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public SpawnElement(int gid, SpawnMethod spawnMethod,MapLayer mapLayerToPlace, MapLayer layerToPlaceOn, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,Rarity rarity, Rarity oddsOfAdditionalSpawn, int distanceBetweenNeighbors, bool assertLeftAndRight)
         {
-            this.GID = gid + 1;
+            this.GID = gid;
             this.SpawnMethod = spawnMethod;
             this.TileLayer = mapLayerToPlace;
             this.MapLayerToCheckIfEmpty = mapLayerToCheckIfEmpty;

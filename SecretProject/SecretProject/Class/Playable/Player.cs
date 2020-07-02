@@ -35,7 +35,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player : IEntity 
+    public class Player : IEntity
     {
 
         public Vector2 position;
@@ -137,7 +137,7 @@ namespace SecretProject.Class.Playable
 
         public Wardrobe Wardrobe { get; set; }
 
-        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics)
+        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
             this.content = content;
             this.Name = name;
@@ -233,9 +233,9 @@ namespace SecretProject.Class.Playable
 
         }
         #region AUTOMOVEMENT
-        private bool MoveTowardsPoint(Vector2 goal,float speed, GameTime gameTime)
+        private bool MoveTowardsPoint(Vector2 goal, float speed, GameTime gameTime)
         {
-            this.controls.IsMoving  = true;
+            this.controls.IsMoving = true;
             this.EnableControls = true;
             if (this.Position == goal) return true;
 
@@ -265,7 +265,7 @@ namespace SecretProject.Class.Playable
 
         }
         #endregion
-        
+
 
 
         public float CalculateStaminaRateOfDrain()
@@ -302,11 +302,11 @@ namespace SecretProject.Class.Playable
                 this.EnableControls = true;
 
                 TestImmunity(gameTime);
-                
-               
+
+
                 Vector2 oldPosition = this.Position;
 
-                if(IsBeingKnockedBack)
+                if (IsBeingKnockedBack)
                 {
                     KnockBack(gameTime);
                 }
@@ -322,19 +322,19 @@ namespace SecretProject.Class.Playable
                         item.AlterDurability(1);
                         UserInterface.StaminaBar.DecreaseStamina(1);
                     }
-                    else if(item.ItemType == XMLData.ItemStuff.ItemType.Bow)
+                    else if (item.ItemType == XMLData.ItemStuff.ItemType.Bow)
                     {
-                        if(UserInterface.BackPack.Inventory.ContainsAtLeastOne(280))
+                        if (UserInterface.BackPack.Inventory.ContainsAtLeastOne(280))
                         {
                             ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics,this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,false, arrowData.Damage));
+                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles, false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                             item.AlterDurability(1);
                             UserInterface.StaminaBar.DecreaseStamina(1);
                         }
-                        
+
                     }
                     if (item.CrateType != 0)
                     {
@@ -366,18 +366,18 @@ namespace SecretProject.Class.Playable
                 if (this.IsMoving && !IsMovingTowardsPoint && !IsPerformingAction)
                 {
                     HandleStamina();
-                  
+
 
                 }
                 else if (IsPerformingAction)
                 {
-                  if(Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.CurrentAnimationSet, this.Position,GetAnimationDirection()))
+                    if (Wardrobe.PlayAnimationOnce(gameTime, Wardrobe.CurrentAnimationSet, this.Position, GetAnimationDirection()))
                     {
                         this.IsPerformingAction = false;
                         Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;
                     }
 
-                  //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
+                    //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
                     //if (this.CurrentTool != null)
                     //{
                     //    this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
@@ -403,7 +403,7 @@ namespace SecretProject.Class.Playable
 
 
 
-                if(EnableControls)
+                if (EnableControls)
                 {
                     MoveFromKeys(gameTime);
                 }
@@ -444,7 +444,7 @@ namespace SecretProject.Class.Playable
 
         private void MoveFromKeys(GameTime gameTime)
         {
-            if ( !IsPerformingAction)
+            if (!IsPerformingAction)
             {
                 switch (controls.Direction)
                 {
@@ -477,11 +477,11 @@ namespace SecretProject.Class.Playable
                 {
                     case Dir.Right:
                         PrimaryVelocity.X = Speed1;
-                       // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right,this.IsMoving);
+                        // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right,this.IsMoving);
                         break;
                     case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
-                       // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
+                        // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
 
                         break;
                     case Dir.Down:
@@ -491,7 +491,7 @@ namespace SecretProject.Class.Playable
                         break;
                     case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                      //  Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
+                        //  Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
                         break;
 
                     default:
@@ -505,28 +505,29 @@ namespace SecretProject.Class.Playable
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.BigCollider);
-            
-                
-            
+            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.BigCollider);
+
+
+
             for (int i = 0; i < returnObjects.Count; i++)
             {
+                ICollidable collider = returnObjects[i];
 
-                if (returnObjects[i].ColliderType == ColliderType.Item)
+                if (collider.ColliderType == ColliderType.Item)
                 {
 
-                    if (this.MainCollider.IsIntersecting(returnObjects[i]))
+                    if (this.MainCollider.IsIntersecting(collider))
                     {
-                        (returnObjects[i].Entity as Item).TryMagnetize();
+                        (collider.Entity as Item).TryMagnetize();
                     }
                 }
-                else if (returnObjects[i].ColliderType == ColliderType.grass)
+                else if (collider.ColliderType == ColliderType.grass)
                 {
-                    if (this.MainCollider.IsIntersecting(returnObjects[i]))
+                    if (this.MainCollider.IsIntersecting(collider))
                     {
-                        (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
-                        (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = controls.Direction;
-                        
+                        (collider.Entity as GrassTuft).IsUpdating = true;
+                        (collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
+
                         //if (Game1.EnablePlayerCollisions)
                         //{
                         //    CurrentSpeed = Speed1 / 2;
@@ -535,28 +536,29 @@ namespace SecretProject.Class.Playable
                     #region SWORD INTERACTIONS
                     if (this.Wardrobe.ToolPiece != null)
                     {
-                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
                         {
-                            (returnObjects[i] as GrassTuft).SelfDestruct();
+                            if (collider.ColliderType == ColliderType.grass)
+                                (collider.Entity as GrassTuft).SelfDestruct();
                         }
                     }
                     #endregion
                 }
-                else if (returnObjects[i].ColliderType == ColliderType.Enemy)
+                else if (collider.ColliderType == ColliderType.Enemy)
                 {
                     if (this.Wardrobe.ToolPiece != null)
                     {
-                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
                         {
-                            returnObjects[i].Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
+                            collider.Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
                         }
                     }
                 }
-                else if (returnObjects[i].ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
+                else if (collider.ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
                 {
-                    if(this.MainCollider.IsIntersecting(returnObjects[i]))
+                    if (this.MainCollider.IsIntersecting(collider))
                     {
-                        returnObjects[i].Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
+                        collider.Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
                     }
                 }
 
@@ -564,11 +566,11 @@ namespace SecretProject.Class.Playable
                 {
                     if (this.IsMoving)
                     {
-                        if (returnObjects[i].Entity != this && returnObjects[i].ColliderType != ColliderType.MouseCollider)
+                        if (collider.Entity != this && collider.ColliderType != ColliderType.MouseCollider)
                         {
                             if (Game1.EnablePlayerCollisions)
                             {
-                                if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, returnObjects[i]))
+                                if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, collider))
                                 { this.IsBeingKnockedBack = false; }
 
 
@@ -659,16 +661,16 @@ namespace SecretProject.Class.Playable
                 {
 
 
-                        if (this.IsMoving)
-                        {
-                            //if ((this.PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (this.PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
-                            //{
-                            //    Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
-                            //}
-                        }
+                    if (this.IsMoving)
+                    {
+                        //if ((this.PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (this.PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                        //{
+                        //    Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
+                        //}
+                    }
 
-                       // oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
-                    
+                    // oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
+
 
                 }
             }
@@ -684,7 +686,7 @@ namespace SecretProject.Class.Playable
             float angle = MathHelper.ToDegrees((float)(Math.Atan2(direction.X, direction.Y)) * -1);
             if (angle < 0)
             {
-                angle = 360 - Math.Abs(angle) ;
+                angle = 360 - Math.Abs(angle);
             }
 
 
@@ -718,17 +720,17 @@ namespace SecretProject.Class.Playable
 
         public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
-          //  CheckMouseRotationFromEntity(this.Position);
+            //  CheckMouseRotationFromEntity(this.Position);
 
             if (item != null)
             {
-                PlayAnimation(animationType, GetAnimationDirection(),this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn );
+                PlayAnimation(animationType, GetAnimationDirection(), this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
             }
             else
             {
                 PlayAnimation(animationType, GetAnimationDirection());
             }
-            
+
         }
 
 
@@ -772,7 +774,7 @@ namespace SecretProject.Class.Playable
 
         public void TakeDamage(int dmgAmount)
         {
-            if(!Game1.EnablePlayerInvincibility)
+            if (!Game1.EnablePlayerInvincibility)
             {
                 this.Health -= (int)dmgAmount;
                 if (this.Health == 0)
@@ -789,9 +791,9 @@ namespace SecretProject.Class.Playable
             }
             else
             {
-                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100,"Invincible!", 50f, Color.Red, true, 3f, true));
+                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "Invincible!", 50f, Color.Red, true, 3f, true));
             }
-            
+
         }
 
         public void Reset()
@@ -830,7 +832,7 @@ namespace SecretProject.Class.Playable
 
         public void MouseCollisionInteraction()
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public void Save(BinaryWriter writer)
