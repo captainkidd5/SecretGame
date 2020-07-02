@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
+ <tile id="1">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="3">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="4">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="5">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="6">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
  <tile id="7">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
@@ -222,6 +258,36 @@
    <frame tileid="45" duration="80"/>
   </animation>
  </tile>
+ <tile id="101">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="102">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="103">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="104">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="105">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
  <tile id="107">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
@@ -325,6 +391,36 @@
     <ellipse/>
    </object>
   </objectgroup>
+ </tile>
+ <tile id="201">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="202">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="203">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="204">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="205">
+  <properties>
+   <property name="generate" value="FertileSoil"/>
+   <property name="step" value="4"/>
+  </properties>
  </tile>
  <tile id="207">
   <properties>

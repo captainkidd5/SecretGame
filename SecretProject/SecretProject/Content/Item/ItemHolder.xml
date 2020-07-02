@@ -270,9 +270,9 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Wooden Bucket (Dirt)</Name>
+<Name>Wooden Bucket (Fertile Soil)</Name>
 <ID>321</ID>
-<Description>A bucket filled to the brim with dirt.</Description>
+<Description>A bucket filled to the brim with excellent dirt.</Description>
 <InvMaximum>1</InvMaximum><Price>1</Price>
 </Item>
 

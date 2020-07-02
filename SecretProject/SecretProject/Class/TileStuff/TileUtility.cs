@@ -863,10 +863,10 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.MouseManager.IsClicked)
                         {
-                            int newBackGroundGID = 401;
+                            int newBackGroundGID = 102;
                             if (Game1.Player.GetCurrentToolID() == 321)
                             {
-                                newBackGroundGID = 401; //dirt 
+                                newBackGroundGID = 102; //fertile soil 
 
                             }
                             else if (Game1.Player.GetCurrentToolID() == 322)

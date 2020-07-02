@@ -32,7 +32,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         GrassLake = 118,
         DeepForest = 3031,
         DarkGrass = 3608,
-        BedRock = 1348
+        BedRock = 1348,
+        FertileSoil = 102,
 
 
     };
@@ -195,6 +196,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
                    { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
                    { GenerationType.BedRock, new TilingContainer(GenerationType.BedRock, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
+                    { GenerationType.FertileSoil, new TilingContainer(GenerationType.FertileSoil, FillTilingDictionary((int)GenerationType.FertileSoil), new List<int>()) },
             };
 
             this.OverWorldBedRockNoise = new List<NoiseInterval>();
