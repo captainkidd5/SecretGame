@@ -3968,6 +3968,27 @@
    <object id="1" x="3" y="10" width="11" height="5"/>
   </objectgroup>
  </tile>
+ <tile id="3907">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="4" width="14" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="3908">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="5" width="14" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="3909">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="5" width="14" height="10"/>
+  </objectgroup>
+ </tile>
  <tile id="4005">
   <properties>
    <property name="newHitBox" value="0,8, 32, 16"/>
