@@ -100,24 +100,41 @@ namespace SecretProject.Class.CollisionDetection
                 if (IsIntersecting(objectBody))
                 {
                     UpdateCirclePosition();
-
+                    bool hasIntersected = false;
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
 
                         Vector2 tangent = Circle.GetTangent(otherCircle);
-                        if(tangent == Vector2.Zero)
+                        if (tangent == Vector2.Zero)
                         {
                             tangent = new Vector2(.000001f, .000001f);
                         }
-                        else if(tangent == Vector2.One)
+                        else if (tangent == Vector2.One)
                         {
                             Console.WriteLine("oops");
                         }
                         tangent.Normalize();
-                        
-                        
+
+                        //for the scenario that collision is exactly perpendicular. 
+                        if (tangent.X == -1)
+                        {
+                            tangent.X = -.5f;
+                        }
+                        else if (tangent.X == 1)
+                        {
+                            tangent.X = .5f;
+                        }
+                        if (tangent.Y == -1)
+                        {
+                            tangent.Y = -.5f;
+                        }
+                        else if (tangent.Y == 1)
+                        {
+                            tangent.Y = .5f;
+                        }
+
                         float slideDirection = moveAmount.X * tangent.X + moveAmount.Y * tangent.Y;
-                        if(slideDirection >= 0)
+                        if (slideDirection >= 0)
                         {
                             moveAmount += tangent;
                         }
@@ -125,10 +142,14 @@ namespace SecretProject.Class.CollisionDetection
                         {
                             moveAmount -= tangent;
                         }
+                        hasIntersected = true;
 
-
-                        return true; //is intersecting outer renctangle AND inner circle forces a move of 
+                       //is intersecting outer renctangle AND inner circle forces a move of 
                         //this collider and repositions the circle center as well as the outer rectangle
+                    }
+                    if(hasIntersected)
+                    {
+                        return true;
                     }
                     return false; //is intersecting outer rectangle but not circle does not count.
                 }
@@ -190,14 +211,14 @@ namespace SecretProject.Class.CollisionDetection
         public void DrawDebug(SpriteBatch spriteBatch)
         {
             Vector2 drawPosition = new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y + this.Circle.Radius / 2);
-            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius/2, Circle.Center.Y - this.Circle.Radius/2), color: Color.White * .5f, layerDepth: 1f);
+            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y - this.Circle.Radius / 2), color: Color.White * .5f, layerDepth: 1f);
 
             float length = (Game1.Player.MainCollider.Circle.Center - this.Circle.Center).Length();
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" + 
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" +
                 "Radius = " + Circle.Radius +
                 "\n DistanceToPlayer = " + length, new Vector2(drawPosition.X, drawPosition.Y - 8),
                 Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Utility.StandardTextDepth);
-            
+
 
         }
 

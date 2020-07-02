@@ -125,6 +125,15 @@ namespace SecretProject.Class.UI
             }
         }
 
+        /// <summary>
+        /// Clears inventory at current slider position and replaces it with a new item.
+        /// </summary>
+        /// <param name="newID">Id of item to replace the old item.</param>
+        public void ReplaceCurrentItem(int newID)
+        {
+            this.Inventory.ReplaceHeldItem(this.currentSliderPosition -1, newID);
+        }
+
         private void HandleInventoryExpansion()
         {
             if (this.Expanded)

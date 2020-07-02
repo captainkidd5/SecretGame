@@ -176,6 +176,24 @@ namespace SecretProject.Class.Playable
             return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
         }
 
+        public int GetCurrentToolID()
+        {
+            ItemData data = Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
+            if (data != null)
+            {
+                return data.ID;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public void ReplaceCurrentItem(int newID)
+        {
+            UserInterface.BackPack.ReplaceCurrentItem(newID);
+        }
+
 
         public void PlayAnimation(AnimationType action, Dir direction, int textureColumn = 0)
         {

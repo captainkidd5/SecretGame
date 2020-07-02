@@ -553,8 +553,9 @@ namespace SecretProject.Class.TileStuff
         public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse, IInformationContainer container)
         {
             //new Gid should be one larger, per usual
-            string[] information = Game1.Utility.GetActionHelperInfo(action);
-            switch (information[0])
+            string[] propertyValue = Game1.Utility.GetActionHelperInfo(action);
+
+            switch (propertyValue[0])
             {
                 //including animation frame id to replace!
                 case "diggable":
@@ -828,6 +829,42 @@ namespace SecretProject.Class.TileStuff
                             //Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
                         }
 
+                    }
+                    break;
+                case "fillSand": //if current item is an empty bucket, replace it with a bucket of sand.
+                    if(Game1.MouseManager.IsClicked)
+                    {
+                        if (Game1.Player.GetCurrentToolID() == 320)
+                        {
+                            Game1.Player.ReplaceCurrentItem(322);
+                            ReplaceTile(z, i, j, 5520, container);
+                        }
+                        else
+                        {
+                            Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "I need to be holding a bucket in my hand to fill this!");
+                        }
+                    }
+                   
+                    break;
+
+                case "fillDirt":
+                    if (Game1.MouseManager.IsClicked)
+                    {
+                        if (Game1.Player.GetCurrentToolID() == 320)
+                        {
+                            Game1.Player.ReplaceCurrentItem(321);
+                            ReplaceTile(z, i, j, 5520, container);
+                        }
+                        else
+                        {
+                            Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "I need to be holding a bucket in my hand to fill this!");
+                        }
+                    }
+                    break;
+                case "examine":
+                    if (Game1.MouseManager.IsClicked)
+                    {
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, propertyValue[1]);
                     }
                     break;
 

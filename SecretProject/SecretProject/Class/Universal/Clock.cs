@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Weather;
 using System;
@@ -112,6 +113,7 @@ namespace SecretProject.Class.Universal
             {
                 character.ResetEndOfDay();
             }
+            TileUtility.ReplaceTile(3, 67, 114, 5520, (IInformationContainer)Game1.Town.AllTiles);
 
             
             AdjustClockText();

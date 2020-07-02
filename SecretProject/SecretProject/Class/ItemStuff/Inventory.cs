@@ -64,6 +64,12 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
+        public void ReplaceHeldItem(int slotIndex, int newItemID)
+        {
+            this.currentInventory[slotIndex].Clear();
+            this.currentInventory[slotIndex].AddItemToSlot(Game1.ItemVault.GenerateNewItem(newItemID, null));
+        }
+
         public bool AddToFirstEmptySlotOnly(Item item)
         {
             foreach (InventorySlot s in currentInventory)

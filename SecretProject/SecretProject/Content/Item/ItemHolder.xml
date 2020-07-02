@@ -263,6 +263,27 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Wooden Bucket</Name>
+<ID>320</ID>
+<Description>Can be used to grab substrate from the docks.</Description>
+<InvMaximum>1</InvMaximum><Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Wooden Bucket (Dirt)</Name>
+<ID>321</ID>
+<Description>A bucket filled to the brim with dirt.</Description>
+<InvMaximum>1</InvMaximum><Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Wooden Bucket (Sand)</Name>
+<ID>322</ID>
+<Description>Better not spill this in the house.</Description>
+<InvMaximum>1</InvMaximum><Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Tanned Hide</Name>
 <ID>253</ID>
 <Description>Cleaned from sitting out in the sun all day.</Description>
