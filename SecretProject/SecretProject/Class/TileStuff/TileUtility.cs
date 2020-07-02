@@ -636,7 +636,7 @@ namespace SecretProject.Class.TileStuff
                         if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                         {
                             Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                            if (Game1.ItemVault.ItemDictionary[testItem.ID].Plantable)
+                            if (Game1.ItemVault.GetItem(testItem.ID).Plantable)
                             {
                                 mouse.ChangeMouseTexture(CursorType.Planting);
                                 if (mouse.IsClicked)

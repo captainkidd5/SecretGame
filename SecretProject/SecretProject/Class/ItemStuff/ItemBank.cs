@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
 using XMLData.ItemStuff;
@@ -10,12 +11,22 @@ namespace SecretProject.Class.ItemStuff
     {
         public Dictionary<int, GridItem> ExteriorGridItems { get; set; }
         public Dictionary<int, GridItem> InteriorGridItems { get; set; }
-        public Dictionary<int,ItemData> ItemDictionary { get; set; }
+        private Dictionary<int,ItemData> ItemDictionary { get; set; }
 
         public ItemBank()
         {
 
 
+        }
+        
+        public void Load()
+        {
+            ItemDictionary = new Dictionary<int, ItemData>();
+
+            for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
+            {
+                ItemDictionary.Add(Game1.AllItems.AllItems[i].ID, Game1.AllItems.AllItems[i]);
+            }
         }
 
         public void LoadExteriorContent(ITileManager exteriorTileManager)
@@ -59,6 +70,12 @@ namespace SecretProject.Class.ItemStuff
             return null;
 
             
+        }
+
+        public GenerationType GetPlantableTileType(int id)
+        {
+            string generationType = GetItem(id).GrowsOn;
+            return (GenerationType)Enum.Parse(typeof (GenerationType), generationType);
         }
 
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false, List<Item> allItems = null)
