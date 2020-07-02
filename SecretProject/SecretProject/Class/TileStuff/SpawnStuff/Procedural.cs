@@ -7,7 +7,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     {
         None = 0,
         Grass = 108,
-        Dirt = 402,
+        Dirt = 401,
         Sand = 1401,
         SandRuin = 1407,
         Water = 2601,
@@ -194,7 +194,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
                  { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
                    { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
-                   { GenerationType.BedRock, new TilingContainer(GenerationType.Dirt, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
+                   { GenerationType.BedRock, new TilingContainer(GenerationType.BedRock, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
             };
 
             this.OverWorldBedRockNoise = new List<NoiseInterval>();

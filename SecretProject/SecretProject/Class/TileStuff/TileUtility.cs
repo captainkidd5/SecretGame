@@ -863,15 +863,19 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.MouseManager.IsClicked)
                         {
-                            int newBackGroundGID = 402;
+                            int newBackGroundGID = 401;
                             if (Game1.Player.GetCurrentToolID() == 321)
                             {
-                                newBackGroundGID = 402; //dirt 
+                                newBackGroundGID = 401; //dirt 
 
                             }
                             else if (Game1.Player.GetCurrentToolID() == 322)
                             {
                                 newBackGroundGID = 1401; //sand
+                            }
+                            else
+                            {
+                                break;
                             }
                             Game1.Player.ReplaceCurrentItem(320);
                             ReplaceTile((int)MapLayer.BackGround, i, j, newBackGroundGID, container); //dirt
