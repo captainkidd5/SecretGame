@@ -6,10 +6,12 @@ namespace SecretProject.Class.TileStuff
 {
     public enum MapLayer
     {
-        BackGround = 0,
-        MidGround = 1,
-        Buildings = 2,
-        ForeGround = 3
+        BedRock = 0,
+        BackGround = 1,
+        MidGround = 2,
+        Buildings = 3,
+        ForeGround = 4,
+        Front = 5
     }
 
     public class Tile : IEntity

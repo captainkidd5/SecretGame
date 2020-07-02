@@ -189,7 +189,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 for(int j = 0; j < this.Width; j++)
                 {
                     int gid;
-                    if(boolMap[i,j] && YTilesBelowDoNotMatchGID(118, 0, i, j, 3))//not above water!
+                    if(boolMap[i,j] && YTilesBelowDoNotMatchGID(118, (int)MapLayer.BackGround, i, j, (int)MapLayer.ForeGround))//not above water!
                     {
                         gid = positiveGID;
                         
@@ -198,7 +198,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     {
                         gid = negativeGID;
                     }
-                    TileManager.AllTiles[4][i, j] = new Tile(i, j, gid) { LayerToDrawAt = 4 };
+                    TileManager.AllTiles[(int)MapLayer.Front][i, j] = new Tile(i, j, gid) { LayerToDrawAt = (int)MapLayer.Front };
                 }
             }
         }
@@ -314,13 +314,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 {
                     for (int j = 0; j < this.TileManager.AllTiles[z].GetLength(1); j++)
                     {
-                        if (z == 3)
+                        if (z == (int)MapLayer.ForeGround)
                         {
-                            if (j >= 3)
+                            if (j >= (int)MapLayer.ForeGround)
                             {
 
 
-                                if (this.TileManager.AllTiles[4][i, j - 3].GID == 3031)
+                                if (this.TileManager.AllTiles[(int)MapLayer.ForeGround][i, j - 3].GID == 3031)
                                 {
                                    Tile tempTile = new Tile(i, j, 3332) { LayerToDrawAt = z };
                                     this.TileManager.AllTiles[z][i, j] = tempTile;
@@ -329,13 +329,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         }
 
                         TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
-                        if (z == 3)
+                        if (z == (int)MapLayer.ForeGround)
                         {
                             if (this.TileManager.PathGrid.Weight[i, j] == (int)GridStatus.Clear)
                             {
                                 if (this.TileManager.AllTiles[z][i, j].TileKey != null)
                                 {
-                                    SpawnHolder.AddGrassTufts((IInformationContainer)TileManager, this.TileManager.AllTiles[z][i, j], this.TileManager.AllTiles[1][i, j]);
+                                    SpawnHolder.AddGrassTufts((IInformationContainer)TileManager, this.TileManager.AllTiles[z][i, j], this.TileManager.AllTiles[(int)MapLayer.MidGround][i, j]);
                                 }
 
                             }

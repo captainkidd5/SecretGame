@@ -31,7 +31,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         DesertStone = 1701,
         GrassLake = 118,
         DeepForest = 3031,
-        DarkGrass = 3608
+        DarkGrass = 3608,
+        BedRock = 1348
 
 
     };
@@ -103,7 +104,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
         }
 
-
+        public List<NoiseInterval> OverWorldBedRockNoise { get; set; }
         public List<NoiseInterval> OverWorldBackgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldMidgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldBuildingsNoise { get; set; }
@@ -193,9 +194,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                  { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
                  { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
                    { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
+                   { GenerationType.BedRock, new TilingContainer(GenerationType.Dirt, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
             };
 
-
+            this.OverWorldBedRockNoise = new List<NoiseInterval>();
             //NOISE INTERVALS, must be sorted by interval
             this.OverWorldBackgroundNoise = new List<NoiseInterval>()
             {
@@ -258,6 +260,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
             {
+                OverWorldBedRockNoise,
                 OverWorldBackgroundNoise,
                 OverWorldMidgroundNoise,
                 OverWorldBuildingsNoise,

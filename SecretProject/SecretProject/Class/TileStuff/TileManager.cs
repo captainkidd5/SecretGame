@@ -23,9 +23,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-    /// <summary>
-    /// background = 0, buildings = 1, midground =2, foreground =3, 
-    /// </summary>
+
     public class TileManager : ITileManager, IInformationContainer, ISaveable
     {
         public ILocation Stage { get; set; }
@@ -112,6 +110,7 @@ namespace SecretProject.Class.TileStuff
 
             this.AllDepths = new List<float>()
             {
+                .01f,
                 .1f,
                 .2f,
                 .3f,
@@ -233,6 +232,7 @@ namespace SecretProject.Class.TileStuff
             TmxMap map = this.MapName;
             List<TmxLayer> allLayers = new List<TmxLayer>()
             {
+                map.Layers["bedRock"],
                 map.Layers["background"],
             map.Layers["midGround"],
            map.Layers["buildings"],
@@ -386,28 +386,28 @@ namespace SecretProject.Class.TileStuff
                         this.AllTiles[z][playerI, playerJ] != null)
                     {
                         //Prioritize midground layer for step sound effects
-                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[1][playerI, playerJ].GID))
+                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[(int)MapLayer.MidGround][playerI, playerJ].GID))
                         {
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[1][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.MidGround][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
 
-                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[1][playerI, playerJ].GID].Properties["step"]);
+                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.MidGround][playerI, playerJ].GID].Properties["step"]);
                             }
-                            else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[0][playerI, playerJ].GID))
+                            else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID))
                             {
-                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID].Properties.ContainsKey("step"))
                                 {
 
-                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties["step"]);
+                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID].Properties["step"]);
                                 }
                             }
                         }
-                        else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[0][playerI, playerJ].GID))
+                        else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID))
                         {
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
 
-                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties["step"]);
+                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[(int)MapLayer.BackGround][playerI, playerJ].GID].Properties["step"]);
                             }
                         }
 

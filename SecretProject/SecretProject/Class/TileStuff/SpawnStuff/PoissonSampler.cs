@@ -65,7 +65,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             {
                                 if (container.AllTiles[layerToPlaceOn][newPoint.X, newPoint.Y].GenerationType == generationType)
                                 {
-                                    if(layerToCheckIfEmpty != 0)
+                                    if(layerToCheckIfEmpty != (int)MapLayer.BackGround)
                                     {
                                         if (container.AllTiles[layerToCheckIfEmpty][newPoint.X, newPoint.Y].GID == -1)
                                         {
@@ -75,7 +75,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                             TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
                                             if (isCrop)
                                             {
-                                                TileUtility.AddCropToTile(container.AllTiles[3][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, 3, container, true);
+                                                TileUtility.AddCropToTile(container.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, container, true);
                                             }
                                             break;
                                         }
@@ -89,7 +89,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                         TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
                                         if (isCrop)
                                         {
-                                            TileUtility.AddCropToTile(container.AllTiles[3][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, 3, container, true);
+                                            TileUtility.AddCropToTile(container.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, container, true);
                                         }
                                         break;
                                     }

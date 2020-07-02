@@ -203,14 +203,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                         container.AllTiles[(int)element.LayerToPlaceOn][xSpawn, ySpawn].GenerationType == element.GenerationType)
                     {
 
-                        if ((int)element.MapLayerToCheckIfEmpty != 0)
+                        if ((int)element.MapLayerToCheckIfEmpty != (int)MapLayer.BackGround)
                         {
                             if (container.AllTiles[(int)element.MapLayerToCheckIfEmpty][xSpawn, ySpawn].GID == -1)
                             {
                                 TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
                                 if (element.IsCrop)
                                 {
-                                    TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, 3, container, true);
+                                    TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
                                 }
                             }
                         }
@@ -219,7 +219,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
                             if (element.IsCrop)
                             {
-                                TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, 3, container, true);
+                                TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
                             }
                         }
 

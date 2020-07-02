@@ -1158,36 +1158,42 @@
  </tile>
  <tile id="600">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="601">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="602">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="603">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="604">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="605">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
@@ -1290,32 +1296,42 @@
  </tile>
  <tile id="700">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="701">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="702">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="703">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="704">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="705">
+  <properties>
+   <property name="action" value="fillable"/>
   </properties>
  </tile>
  <tile id="709">
@@ -1458,32 +1474,42 @@
  </tile>
  <tile id="800">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="801">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="802">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="803">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="804">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="Stone"/>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="805">
+  <properties>
+   <property name="action" value="fillable"/>
   </properties>
  </tile>
  <tile id="848">
@@ -2204,6 +2230,36 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="1247">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1248">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1249">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1250">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1251">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1252">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
  <tile id="1300">
   <properties>
    <property name="generate" value="Sand"/>
@@ -2288,6 +2344,31 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1347">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1348">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1349">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1350">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1351">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
  <tile id="1400">
   <properties>
    <property name="generate" value="Sand"/>
@@ -2356,6 +2437,31 @@
    <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1447">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1448">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1449">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1450">
+  <properties>
+   <property name="generate" value="BedRock"/>
+  </properties>
+ </tile>
+ <tile id="1451">
+  <properties>
+   <property name="generate" value="BedRock"/>
   </properties>
  </tile>
  <tile id="1453">
