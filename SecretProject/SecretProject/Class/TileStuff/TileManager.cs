@@ -274,7 +274,18 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
                         {
-                            if (AllTiles[3][i, j].TileKey != null)
+                            bool canAddGrass = true;
+                            for (int layer = 2; layer < 5; layer++)
+                            {
+                                if(AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
+                                {
+                                    canAddGrass = false;
+                                    break;
+                                }
+                            }
+                               
+                                
+                            if (canAddGrass && AllTiles[3][i, j].TileKey != null)
                             {
                                 SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[3][i, j], AllTiles[1][i, j]);
                             }

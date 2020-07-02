@@ -4424,7 +4424,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4805">
@@ -4432,7 +4432,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4806">
@@ -4440,7 +4440,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="12" width="16" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="4810">
