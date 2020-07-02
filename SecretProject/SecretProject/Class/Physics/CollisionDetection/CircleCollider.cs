@@ -112,21 +112,31 @@ namespace SecretProject.Class.CollisionDetection
                     }
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
-                        Vector2 tangent = Circle.GetTangent(otherCircle);
-                        tangent = Circle.GetTangentAlternative(otherCircle);
+                        // Vector2 tangent = Circle.GetTangent(otherCircle);
+                        Vector2 tangent = Circle.GetTangentAlternative(otherCircle);
                         tangent.Normalize();
-                        if (moveAmount.X != 0f)
+                        
+                        float slideDirection = moveAmount.X * tangent.X + moveAmount.Y * tangent.Y;
+                        if(slideDirection >= 0)
                         {
-                            newMove.Y = 0;
-                            newMove.X = moveAmount.X;
-
-                            bool collided = DidCollideRectangle(newMove, objectBody);
-                            if (collided)
-                            {
-                                moveAmount = new Vector2(0, moveAmount.Y);
-                                didEitherCollide = true;
-                            }
+                            moveAmount += tangent;
                         }
+                        else
+                        {
+                            moveAmount -= tangent;
+                        }
+                        //if (moveAmount.X != 0f)
+                        //{
+                        //    newMove.Y = 0;
+                        //    newMove.X = moveAmount.X;
+
+                        //    bool collided = DidCollideRectangle(newMove, objectBody);
+                        //    if (collided)
+                        //    {
+                        //        moveAmount = new Vector2(0, moveAmount.Y);
+                        //        didEitherCollide = true;
+                        //    }
+                        //}
 
                         return true; //is intersecting outer renctangle AND inner circle forces a move of 
                         //this collider and repositions the circle center as well as the outer rectangle

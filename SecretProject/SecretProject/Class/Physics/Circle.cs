@@ -67,13 +67,12 @@ namespace SecretProject.Class.Physics
             return ((other.Center - this.Center).Length() < (other.Radius + this.Radius) /2);
         }
 
-        public Vector2 GetTangent(Circle other)
-        {
-            Vector2 tangent = other.Center - this.Center;
-            tangent = new Vector2(tangent.Y, tangent.X * -1);
-            tangent.Normalize();
-            return tangent;
-        }
+        //public Vector2 GetTangent(Circle other)
+        //{
+        //    Vector2 tangent = other.Center - this.Center;
+        //    tangent = new Vector2(tangent.Y, tangent.X * -1);
+        //    return tangent;
+        //}
 
         public Vector2 GetTangentAlternative(Circle other)
         {

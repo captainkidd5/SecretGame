@@ -2510,7 +2510,9 @@
    <property name="transparent" value="-16,-64, 48, 75"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="5" width="15" height="9"/>
+   <object id="2" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="1633">
