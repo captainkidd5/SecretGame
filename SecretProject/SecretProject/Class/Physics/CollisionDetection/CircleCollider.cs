@@ -89,12 +89,6 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        private bool DidCollideCircle(Vector2 velocity, Circle otherCircle)
-        {
-            return (Math.Abs((Circle.Center.Length() + velocity.Length()) - otherCircle.Center.Length()) -Circle.Radius - otherCircle.Radius) < 0; //less than zero means collision
-        }
-
-
 
         public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
@@ -106,15 +100,21 @@ namespace SecretProject.Class.CollisionDetection
                 if (IsIntersecting(objectBody))
                 {
                     UpdateCirclePosition();
-                    if(DidCollideCircle(moveAmount, otherCircle))
-                    {
-                        Console.WriteLine("test");
-                    }
+
                     if (this.Circle.IntersectsCircle(otherCircle))
                     {
-                        // Vector2 tangent = Circle.GetTangent(otherCircle);
-                        Vector2 tangent = Circle.GetTangentAlternative(otherCircle);
+
+                        Vector2 tangent = Circle.GetTangent(otherCircle);
+                        if(tangent == Vector2.Zero)
+                        {
+                            tangent = new Vector2(.000001f, .000001f);
+                        }
+                        else if(tangent == Vector2.One)
+                        {
+                            Console.WriteLine("oops");
+                        }
                         tangent.Normalize();
+                        
                         
                         float slideDirection = moveAmount.X * tangent.X + moveAmount.Y * tangent.Y;
                         if(slideDirection >= 0)
@@ -125,18 +125,7 @@ namespace SecretProject.Class.CollisionDetection
                         {
                             moveAmount -= tangent;
                         }
-                        //if (moveAmount.X != 0f)
-                        //{
-                        //    newMove.Y = 0;
-                        //    newMove.X = moveAmount.X;
 
-                        //    bool collided = DidCollideRectangle(newMove, objectBody);
-                        //    if (collided)
-                        //    {
-                        //        moveAmount = new Vector2(0, moveAmount.Y);
-                        //        didEitherCollide = true;
-                        //    }
-                        //}
 
                         return true; //is intersecting outer renctangle AND inner circle forces a move of 
                         //this collider and repositions the circle center as well as the outer rectangle

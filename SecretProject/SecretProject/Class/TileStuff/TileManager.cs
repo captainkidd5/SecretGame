@@ -728,7 +728,7 @@ namespace SecretProject.Class.TileStuff
         public void Save(BinaryWriter binaryWriter)
         {
 
-            binaryWriter.Write(this.AllTiles.Count);
+             binaryWriter.Write(this.AllTiles.Count);
 
             binaryWriter.Write(this.MapWidth);
             for (int z = 0; z < this.AllTiles.Count; z++)

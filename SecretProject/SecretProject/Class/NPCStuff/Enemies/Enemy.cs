@@ -6,6 +6,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
@@ -68,7 +69,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
         public int FrameNumber { get; set; }
-        public RectangleCollider Collider { get; set; }
+        public CircleCollider Collider { get; set; }
         public bool CollideOccured { get; set; }
 
         protected Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
@@ -123,7 +124,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.Position = position;
             this.Graphics = graphics;
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.Collider = new RectangleCollider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
+            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8),this, ColliderType.Enemy);
 
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
@@ -304,14 +305,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
 
 
-                        //if (returnObjects[i].ColliderType == ColliderType.inert)
-                        //{
-                        //    Vector2 oldVelocity = primaryVelocity;
-                        //    if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
-                        //    {
-                        //        //if()
-                        //    }
-                        //}
+                        if (returnObjects[i].ColliderType == ColliderType.inert)
+                        {
+                            Vector2 oldVelocity = primaryVelocity;
+                            if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
+                            {
+                                //if()
+                            }
+                        }
                     }
 
                 }
