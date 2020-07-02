@@ -228,7 +228,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                                 TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, container);
+                                    this.PlaceID, container);
                                 if (item.GenerationType != 0)
                                 {
 
@@ -401,7 +401,7 @@ namespace SecretProject.Class.TileStuff
                                     //}
                                 }
                                 TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, container);
+                                    this.PlaceID, container);
                                 if (item.GenerationType != 0)
                                 {
 

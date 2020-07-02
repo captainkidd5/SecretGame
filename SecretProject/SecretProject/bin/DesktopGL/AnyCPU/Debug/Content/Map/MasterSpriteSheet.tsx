@@ -4482,7 +4482,7 @@
  </tile>
  <tile id="5519">
   <properties>
-   <property name="action" value="examine,I'll have to come back tomorrow!"/>
+   <property name="action" value="examine, I'll have to come back tomorrow!"/>
    <property name="newHitBox" value="0,0, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>

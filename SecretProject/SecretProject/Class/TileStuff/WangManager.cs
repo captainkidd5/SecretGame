@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+            TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck], container);
 
 
 
@@ -185,7 +185,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
 
-                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] , container);
 
 
 

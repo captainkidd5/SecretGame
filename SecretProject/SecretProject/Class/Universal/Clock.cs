@@ -113,7 +113,7 @@ namespace SecretProject.Class.Universal
             {
                 character.ResetEndOfDay();
             }
-            TileUtility.ReplaceTile(3, 67, 114, 5522, (IInformationContainer)Game1.Town.AllTiles);
+            TileUtility.ReplaceTile(3, 67, 114, 5523, (IInformationContainer)Game1.Town.AllTiles);
 
             
             AdjustClockText();

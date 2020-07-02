@@ -30,7 +30,7 @@ namespace XMLData.ItemStuff
         public bool Plantable { get; set; }
 
         [ContentSerializer(Optional = true)]
-        public string GrowsOn{ get; set; }
+        public string GrowsOn { get; set; }
 
         [ContentSerializer(Optional = true)]
         public int Tier { get; set; }
