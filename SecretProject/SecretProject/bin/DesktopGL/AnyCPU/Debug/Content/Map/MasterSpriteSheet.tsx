@@ -4295,12 +4295,16 @@
   </objectgroup>
  </tile>
  <tile id="3907">
+  <properties>
+   <property name="action" value="message"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="4" width="14" height="11"/>
   </objectgroup>
  </tile>
  <tile id="3908">
   <properties>
+   <property name="action" value="message"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -4309,6 +4313,7 @@
  </tile>
  <tile id="3909">
   <properties>
+   <property name="action" value="message"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="3">
@@ -4348,6 +4353,7 @@
  </tile>
  <tile id="4115">
   <properties>
+   <property name="action" value="message"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>

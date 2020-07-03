@@ -1695,3 +1695,8 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin Item/Messages/Messages.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/Messages/Messages.xml
+

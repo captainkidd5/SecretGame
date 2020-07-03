@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.ItemStuff.MessageStuff.MessageHolder">
+<Messages>
+<Item Type="XMLData.ItemStuff.MessageStuff.Message">
+<TileX>111</TileX>
+<TileY>54</TileY>
+<Description>Here lies my hopes and dreams.</Description>
+</Item>
+<Item Type="XMLData.ItemStuff.MessageStuff.Message">
+<TileX>120</TileX>
+<TileY>58</TileY>
+<Description>This way to the eastern bay.</Description>
+</Item>
+</Messages>
+  <!-- comment -->
+  </Asset>
+</XnaContent>

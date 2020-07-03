@@ -883,6 +883,13 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
+                case "message":
+                    if (Game1.MouseManager.IsClicked)
+                    {
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, Game1.MessageHolder.GetMessage(i,j));
+                    }
+                        break;
+
             }
         }
 

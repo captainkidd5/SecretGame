@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Messages/Messages.xml</SourceFile>
+  <SourceTime>2020-07-02T21:39:18.2247933-07:00</SourceTime>
+  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/Messages/Messages.xnb</DestFile>
+  <DestTime>2020-07-02T21:39:23.101163-07:00</DestTime>
+  <Importer>XmlImporter</Importer>
+  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <Processor>PassThroughProcessor</Processor>
+  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

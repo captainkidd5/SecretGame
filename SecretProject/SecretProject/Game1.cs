@@ -39,6 +39,7 @@ using System;
 using TiledSharp;
 using SecretProject.Class.StageFolder.DungeonStuff;
 using System.Linq;
+using XMLData.ItemStuff.MessageStuff;
 
 
 
@@ -269,6 +270,8 @@ namespace SecretProject
         public static CookingGuide AllCookingRecipes;
 
         public static SpawnHolder OverWorldSpawnHolder { get; set; }
+
+        public static MessageHolder MessageHolder { get; set; }
 
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
@@ -521,7 +524,7 @@ namespace SecretProject
             AllItems.AllItems.Sort((x, y) => x.Name.CompareTo(y.Name));// = AllItems.AllItems.OrderBy(x => x.Name).ToList(); 
             ItemVault.Load();
             LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
-
+            MessageHolder = Content.Load<MessageHolder>("Item/Messages/Messages");
         }
         private void LoadSchedules()
         {
