@@ -3,36 +3,42 @@
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="1">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="2">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="3">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="4">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="5">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="6">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
@@ -260,30 +266,35 @@
  </tile>
  <tile id="101">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="102">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="103">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="104">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="105">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
@@ -394,30 +405,35 @@
  </tile>
  <tile id="201">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="202">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="203">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="204">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="205">
   <properties>
+   <property name="action" value="plantable"/>
    <property name="generate" value="FertileSoil"/>
    <property name="step" value="4"/>
   </properties>
@@ -3199,6 +3215,18 @@
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="2507">
+  <properties>
+   <property name="newHitBox" value="-16,-32,48,48"/>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="2509">
+  <properties>
+   <property name="newHitBox" value="0,0, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
  <tile id="2515">
   <properties>
    <property name="action" value="diggable"/>
@@ -3364,6 +3392,12 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="2708">
+  <properties>
+   <property name="newHitBox" value="-16,0,64,32,16"/>
+   <property name="newSource" value="-16,-16,64,32"/>
+  </properties>
  </tile>
  <tile id="2715">
   <properties>

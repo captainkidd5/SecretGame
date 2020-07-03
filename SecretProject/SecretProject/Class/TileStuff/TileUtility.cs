@@ -508,30 +508,27 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static void AddCropToTile(Tile tileToAssign, int x, int y, int layer, IInformationContainer container, bool randomize = false)
+        public static void AddCropToTile(Crop crop, Tile tileToAssign, int x, int y, int layer, IInformationContainer container, bool randomize = false)
         {
 
-            int cropID = tileToAssign.GID;
-            Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
-
-            tempCrop.X = x;
-            tempCrop.Y = y;
+            crop.X = x;
+            crop.Y = y;
             if (randomize)
             {
                 int randomGrowth = Game1.Utility.RNumber(0, 3);
-                tempCrop.DayPlanted = Game1.GlobalClock.TotalDays - randomGrowth;
-                tempCrop.CurrentGrowth += randomGrowth;
-                tempCrop.GID += randomGrowth;
+                crop.DayPlanted = Game1.GlobalClock.TotalDays - randomGrowth;
+                crop.CurrentGrowth += randomGrowth;
+                crop.GID += randomGrowth;
                 tileToAssign.GID += randomGrowth + 1;
             }
             else
             {
-                tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                tempCrop.GID++;
+                crop.DayPlanted = Game1.GlobalClock.TotalDays;
+                crop.GID++;
             }
 
 
-            container.Crops[tileToAssign.TileKey] = tempCrop;
+            container.Crops[tileToAssign.TileKey] = crop;
 
 
 
@@ -610,7 +607,7 @@ namespace SecretProject.Class.TileStuff
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID, container);
-                                        AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
+                                        AddCropToTile(tempCrop, container.AllTiles[3][i, j], i, j, 3, container);
 
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                         container.WasModifiedDuringInterval = true;
@@ -622,39 +619,30 @@ namespace SecretProject.Class.TileStuff
                     break;
 
                 case "plantable":
-                    if (Game1.CurrentStage.StageType == StageType.Procedural)
+
+                    Game1.Player.UserInterface.DrawTileSelector = true;
+                    ItemData itemData = Game1.Player.GetCurrentEquippedToolData();
+                    if (itemData != null)
                     {
-
-
-                        Game1.Player.UserInterface.DrawTileSelector = true;
-
-
-
-                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                        if (itemData.Plantable)
                         {
-                            ItemData itemData = Game1.ItemVault.GetItem(Game1.Player.GetCurrentToolID());
-                            if (itemData.Plantable)
+                            mouse.ChangeMouseTexture(CursorType.Planting);
+                            if (mouse.IsClicked)
                             {
-                                mouse.ChangeMouseTexture(CursorType.Planting);
-                                if (mouse.IsClicked)
+                                if (!container.Crops.ContainsKey(container.AllTiles[(int)MapLayer.ForeGround][i, j].GetTileKeyStringNew((int)MapLayer.ForeGround, container)))
                                 {
-                                    if (!container.Crops.ContainsKey(container.AllTiles[(int)MapLayer.ForeGround][i, j].GetTileKeyStringNew((int)MapLayer.ForeGround, container)))
-                                    {
 
-                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
-                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(itemData.ID);
+                                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
+                                    Crop tempCrop = Game1.AllCrops.GetCropFromID(itemData.ID);
 
-                                        TileUtility.ReplaceTile((int)MapLayer.ForeGround, i, j, tempCrop.GID, container);
-                                        AddCropToTile(container.AllTiles[(int)MapLayer.ForeGround][i, j], i, j, (int)MapLayer.ForeGround, container);
+                                    TileUtility.ReplaceTile((int)MapLayer.ForeGround, i, j, tempCrop.GID, container);
+                                    AddCropToTile(tempCrop, container.AllTiles[(int)MapLayer.ForeGround][i, j], i, j, (int)MapLayer.ForeGround, container);
 
-                                        Game1.Player.Inventory.RemoveItem(itemData.ID);
-                                        container.WasModifiedDuringInterval = true;
-                                    }
+                                    Game1.Player.Inventory.RemoveItem(itemData.ID);
+                                    container.WasModifiedDuringInterval = true;
                                 }
                             }
                         }
-
-
                     }
 
                     break;
@@ -1229,7 +1217,8 @@ namespace SecretProject.Class.TileStuff
                     Console.WriteLine("hi");
                 }
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
-                AddCropToTile(container.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, container, true);
+                Crop crop = Game1.AllCrops.GetCropFromGID(id);
+                AddCropToTile(crop,container.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, container, true);
                 return true;
 
             }

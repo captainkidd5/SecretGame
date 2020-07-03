@@ -13,7 +13,7 @@ namespace XMLData.ItemStuff
         public Crop GetCropFromID(int gid)
         {
             Crop newCrop = new Crop();
-            Crop oldCrop = AllCrops.Find(x => x.GID == gid);
+            Crop oldCrop = AllCrops.Find(x => x.ItemID == gid);
             newCrop.ItemID = oldCrop.ItemID;
             newCrop.Name = oldCrop.Name;
             newCrop.GID = oldCrop.GID;
@@ -23,6 +23,21 @@ namespace XMLData.ItemStuff
             newCrop.BaseGID = oldCrop.GID;
 
             return newCrop; 
+        }
+
+        public Crop GetCropFromGID(int gid)
+        {
+            Crop newCrop = new Crop();
+            Crop oldCrop = AllCrops.Find(x => x.GID == gid);
+            newCrop.ItemID = oldCrop.ItemID;
+            newCrop.Name = oldCrop.Name;
+            newCrop.GID = oldCrop.GID;
+            newCrop.DaysToGrow = oldCrop.DaysToGrow;
+            newCrop.CurrentGrowth = oldCrop.CurrentGrowth;
+            newCrop.Harvestable = oldCrop.Harvestable;
+            newCrop.BaseGID = oldCrop.GID;
+
+            return newCrop;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff.SpawnStuff
 {
@@ -210,7 +211,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                 TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
                                 if (element.IsCrop)
                                 {
-                                    TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
+                                    Crop crop = Game1.AllCrops.GetCropFromGID(element.GID);
+                                    TileUtility.AddCropToTile(crop,container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
                                 }
                             }
                         }
@@ -219,7 +221,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
                             if (element.IsCrop)
                             {
-                                TileUtility.AddCropToTile(container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
+                                Crop crop = Game1.AllCrops.GetCropFromGID(element.GID);
+                                TileUtility.AddCropToTile(crop,container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
                             }
                         }
 
