@@ -812,11 +812,11 @@
     <property name="standardTo" value="GisaardRanch"/>
    </properties>
   </object>
-  <object id="50" x="2040" y="937" width="6" height="43">
+  <object id="50" x="1242" y="2" width="50" height="15">
    <properties>
     <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="-32"/>
-    <property name="SafteyOffSetY" value="0"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="32"/>
     <property name="standardFrom" value="Town"/>
     <property name="standardTo" value="HomeStead"/>
    </properties>

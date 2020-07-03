@@ -12,12 +12,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
 
 namespace SecretProject.Class.UI
 {
     public class CommandConsole : IExclusiveInterfaceComponent
     {
-
+        private GraphicsDevice Graphics { get; set; }
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -40,7 +42,7 @@ namespace SecretProject.Class.UI
         private RasterizerState rasterizerState;
         public CommandConsole(GraphicsDevice graphics)
         {
-
+            this.Graphics = graphics;
             this.AllCommands = new List<CommandWindowCommand>()
             {
                 new CommandWindowCommand("spawn", "spawn (int)[itemID], (int)[count]"),
@@ -55,7 +57,8 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("swaproom", "swaproom (string)[roomX], (string)[roomY]"),
                 new CommandWindowCommand("camlock", "toggles camera locking onto player"),
                 new CommandWindowCommand("togglemusic", "toggles music between off and on"),
-                new CommandWindowCommand("showtileindex", "shows x and y coords of tiles")
+                new CommandWindowCommand("showtileindex", "shows x and y coords of tiles"),
+                new CommandWindowCommand("setzoom", "setzoom (float) zoomamt"),
             };
             this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
@@ -73,6 +76,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
             Game1.freeze = true;
+            
             Keys[] pressedKeys = Game1.KeyboardManager.OldKeyBoardState.GetPressedKeys();
             if(Game1.MouseManager.HasScrollWheelValueIncreased)
             {
@@ -128,6 +132,11 @@ namespace SecretProject.Class.UI
                     else if (key == Keys.Subtract)
                     {
                         keyValue = "-";
+                        this.EnteredString += keyValue;
+                    }
+                    else if(key == Keys.OemPeriod)
+                    {
+                        keyValue = ".";
                         this.EnteredString += keyValue;
                     }
 
@@ -226,6 +235,9 @@ namespace SecretProject.Class.UI
                 case "showtileindex":
                     DisplayTileIndex = !DisplayTileIndex;
                     break;
+                case "setzoom":
+                    Game1.cam.Zoom = Single.Parse(separatedString[1].ToLower());
+                    break;
                 case "":
                     break;
                 default:
@@ -249,20 +261,39 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, this.rasterizerState);
 
-            spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
-            
-            spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None,Utility.StandardButtonDepth);
-            spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition,this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None,Utility.StandardButtonDepth);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.typeBoxPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
-            spriteBatch.End();
+                spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, new RasterizerState() { ScissorTestEnable = true });
-            spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.backGroundPosition.X, (int)this.backGroundPosition.Y, this.backGroundRectangle.Width, this.backGroundRectangle.Height);
+                spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition, this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.typeBoxPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
+                spriteBatch.End();
 
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, this.DisplayLogPosition, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, new RasterizerState() { ScissorTestEnable = true });
+                spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.backGroundPosition.X, (int)this.backGroundPosition.Y, this.backGroundRectangle.Width, this.backGroundRectangle.Height);
+
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, this.DisplayLogPosition, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
             
             spriteBatch.End();
         }
+
+        public void TakeScreenShot(RenderTarget2D screenShot)
+        {
+            //RenderTarget2D screenShot = new RenderTarget2D(this.Graphics, Game1.ScreenWidth, Game1.ScreenHeight);
+
+            string date = DateTime.Now.Year.ToString() + "." + DateTime.Now.Month.ToString() + "." + DateTime.Now.Day.ToString() + "." + DateTime.Now.Hour.ToString() + "." + DateTime.Now.Minute.ToString();
+            string path = @"Content/SaveFiles/ScreenShots/ScreenCapture" + date + ".png";
+
+
+            using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                screenShot.SaveAsPng(stream, screenShot.Width, screenShot.Height);
+            }
+
+        }
+
+
+
+
     }
 
     public class CommandWindowCommand

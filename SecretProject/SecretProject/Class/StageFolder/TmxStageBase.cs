@@ -494,7 +494,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
-
+                
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if (Game1.CurrentWeather != WeatherType.None)
                 {
@@ -554,6 +554,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
+                
 
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
@@ -572,7 +573,10 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
-
+                if (Game1.KeyboardManager.WasKeyPressed(Keys.PageDown))
+                {
+                    Game1.Player.UserInterface.CommandConsole.TakeScreenShot(mainTarget);
+                }
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);

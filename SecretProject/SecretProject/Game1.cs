@@ -1061,6 +1061,7 @@ namespace SecretProject
             this.IsMouseVisible = isMyMouseVisible;
             MouseManager.Update(gameTime);
             DebugWindow.Update(gameTime);
+            
 
             //SOUND
             MediaPlayer.IsRepeating = true;
