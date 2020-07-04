@@ -496,7 +496,7 @@ namespace SecretProject.Class.StageFolder
                     if (this.Enemies[i] != null)
                     {
 
-                            this.Enemies[i].Draw(spriteBatch, this.Graphics, ref CurrentEffect);
+                          //  this.Enemies[i].Draw(spriteBatch, this.Graphics, ref CurrentEffect);
                             if (this.ShowBorders)
                             {
                                 this.Enemies[i].DrawDebug(spriteBatch, 1f);

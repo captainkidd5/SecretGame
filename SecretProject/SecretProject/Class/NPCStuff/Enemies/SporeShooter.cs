@@ -181,24 +181,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
-        {
-            if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
-            {
 
-                //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
-                //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
-                //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
-
-
-
-            }
-
-
-            this.NPCAnimatedSprite[(int)this.ShooterState].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.ShooterState].DestinationRectangle.Y)));
-
-
-        }
 
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {

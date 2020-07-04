@@ -50,7 +50,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Dir CurrentDirection { get; set; }
         public bool IsMoving { get; set; }
         protected Vector2 primaryVelocity;
-        public Vector2 PrimaryVelocity { get { return primaryVelocity; } set { primaryVelocity = value; } }
         public Vector2 TotalVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
@@ -100,14 +99,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
-
-        private Vector2 CentralPosition
-        {
-            get
-            {
-                return new Vector2(this.Position.X + this.NPCAnimatedSprite[(int)this.CurrentDirection].Width, this.Position.X + this.NPCAnimatedSprite[(int)this.CurrentDirection].Height / 2);
-            }
-        }
 
 
         private float WanderTimer = 2f;
@@ -168,13 +159,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(cameraRectangle);
 
             this.IsMoving = true;
-            //if (DoesIntersectScreen)
-            //{
+            if (DoesIntersectScreen)
+            {
                 if (TestDeath(enemies))
                     return;
 
                 TestImmunity(gameTime);
-                this.PrimaryVelocity = new Vector2(.5f, .5f);
+                primaryVelocity = new Vector2(.5f, .5f);
 
 
                 UpdateDirection();
@@ -192,16 +183,21 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
                 CheckIfSoundIsMade();
-                QuadTreeInsertion();
+                
                 for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
                 }
-           // }
+            }
              
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);
+                QuadTreeInsertion();
+            }
+            else
+            {
+                SetToIdleAnimations();
             }
         }
 
@@ -277,9 +273,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
             Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
-                //if obj collided with item in list stop it from moving boom badda bing
-
-                //this.CollideOccured = true;
                 if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                 {
                     if (this.Collider.IsIntersecting(Game1.Player.MainCollider))
@@ -351,20 +344,20 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             // If we're already at the goal return immediatly
             this.IsMoving = true;
-            if (this.CentralPosition == goal) return true;
+            if (this.Position == goal) return true;
 
             // Find direction from current position to goal
-            Vector2 direction = Vector2.Normalize(goal - this.CentralPosition);
+            Vector2 direction = Vector2.Normalize(goal - this.Position);
             this.DirectionVector = direction;
             // Move in that direction
             this.Position += direction * primaryVelocity;// * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // If we moved PAST the goal, move it back to the goal
-            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.CentralPosition)) + 1) < 0.1f)
+            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
                 this.Position = goal;
 
             // Return whether we've reached the goal or not
-            return this.CentralPosition == goal;
+            return this.Position == goal;
         }
         protected void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
         {
@@ -426,8 +419,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             if (this.CurrentPath.Count > 0)
             {
-                if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + 8), gameTime))
-                    this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
+                MoveTowardsPointAndDecrementPath(gameTime);
 
             }
             else if (WanderTimer > 0)
@@ -441,7 +433,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 int currentTileY = Utility.GetSquareTile(this.Position.Y);
                 Point newWanderPoint = GetNewWanderPoint(currentTileX, currentTileY);
 
-                if (newWanderPoint.X < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 &&
+                if (newWanderPoint.X < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 && //if within map bounds.
                     newWanderPoint.Y < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.Y > 0)
                 {
                     if (this.ObstacleGrid.Weight[newWanderPoint.X, newWanderPoint.Y] != 0)
@@ -499,6 +491,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 this.CurrentDirection = Dir.Down;
             }
+
+            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X - this.NPCAnimatedSprite[(int)CurrentDirection].Width / 2, (int)this.Position.Y - this.NPCAnimatedSprite[(int)CurrentDirection].Height / 2, this.NPCAnimatedSprite[(int)CurrentDirection].Width, this.NPCAnimatedSprite[(int)CurrentDirection].Height);
         }
 
         public virtual void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
@@ -572,9 +566,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             if (this.DoesIntersectScreen)
             {
+                Rectangle sourceRectangle = this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle;
 
-
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, this.Position, .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - sourceRectangle.Width/3.5f, this.Position.Y - sourceRectangle.Height/1.5f),
+                    .5f + (Position.Y + sourceRectangle.Height) * Utility.ForeGroundMultiplier);
             }
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
@@ -607,7 +602,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw(this.HitBoxTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.Green, layerDepth: 1f);
-            spriteBatch.Draw(this.NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
+            //spriteBatch.Draw(this.NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
             if (this.CurrentPath != null)
             {

@@ -23,7 +23,6 @@ namespace SecretProject.Class.NPCStuff
         Texture2D HitBoxTexture { get; set; }
         float Speed { get; set; }
         bool IsMoving { get; set; }
-        Vector2 PrimaryVelocity { get; set; }
         Vector2 TotalVelocity { get; set; }
         Vector2 DirectionVector { get; set; }
         Dir CurrentDirection { get; set; }

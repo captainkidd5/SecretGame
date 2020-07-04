@@ -15,12 +15,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
     {
         public WarChicken(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base(pack, position, graphics, container)
         {
-            this.NPCAnimatedSprite = new Sprite[4];
-
-            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 64, 16, 32, 6, .15f, this.Position);
-            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 96, 64, 16, 32, 6, .15f, this.Position);
-            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 192, 64, 16, 32, 6, .15f, this.Position) { Flip = true };
-            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 192, 64, 16, 32, 6, .15f, this.Position);
+            
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
@@ -32,6 +27,18 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
+        }
+
+        protected override void LoadTextures(GraphicsDevice graphics)
+        {
+            this.NPCAnimatedSprite = new Sprite[4];
+
+            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 64, 16, 32, 6, .15f, this.Position);
+            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 96, 64, 16, 32, 6, .15f, this.Position);
+            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 192, 64, 16, 32, 6, .15f, this.Position) { Flip = true };
+            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 192, 64, 16, 32, 6, .15f, this.Position);
+            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.NPCAnimatedSprite[0].FrameWidth, this.NPCAnimatedSprite[0].FrameHeight);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
     }
 }

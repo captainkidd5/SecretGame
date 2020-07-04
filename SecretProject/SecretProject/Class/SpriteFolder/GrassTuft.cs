@@ -68,7 +68,7 @@ namespace SecretProject.Class.SpriteFolder
 
           
 
-            this.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
+            this.LayerDepth = .5f + (this.DestinationRectangle.Y+ 8) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);

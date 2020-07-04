@@ -507,6 +507,10 @@ namespace SecretProject.Class.StageFolder
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {
                     this.Enemies[i].Draw(spriteBatch, this.Graphics);
+                    if(ShowBorders)
+                    {
+                        this.Enemies[i].DrawDebug(spriteBatch, .95f);
+                    }
                 }
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
