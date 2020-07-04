@@ -42,20 +42,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
 
-        protected int NPCRectangleXOffSet { get; set; }
-        protected int NPCRectangleYOffSet { get; set; }
-        protected int NPCRectangleWidthOffSet { get; set; } = 1;
-        protected int NPCRectangleHeightOffSet { get; set; } = 1;
-        public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)this.Position.X - this.NPCRectangleXOffSet, (int)this.Position.Y - this.NPCRectangleYOffSet, this.NPCRectangleWidthOffSet, this.NPCRectangleHeightOffSet); } }
-        public Rectangle NPCPathFindRectangle
-        {
-            get
-            {
-                return new Rectangle(this.NPCAnimatedSprite[0].DestinationRectangle.X + 16,
-this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
-            }
-            set { }
-        }
         public Texture2D Texture { get; set; }
         public Texture2D HitBoxTexture { get; set; }
 
@@ -68,7 +54,6 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public Vector2 TotalVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
-        public int FrameNumber { get; set; }
         public CircleCollider Collider { get; set; }
         public bool CollideOccured { get; set; }
 
@@ -91,7 +76,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public bool DoesIntersectScreen { get; set; }
 
-
+        public Rectangle NPCHitBoxRectangle { get; set; }
         //DAMAGE RELATED THINGS
 
 
@@ -116,6 +101,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
+        private Vector2 CentralPosition
+        {
+            get
+            {
+                return new Vector2(this.Position.X + this.NPCAnimatedSprite[(int)this.CurrentDirection].Width, this.Position.X + this.NPCAnimatedSprite[(int)this.CurrentDirection].Height / 2);
+            }
+        }
+
 
         private float WanderTimer = 2f;
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
@@ -125,8 +118,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.Graphics = graphics;
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
             this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8),this, ColliderType.Enemy);
-
-            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            
 
             this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NextPointRectangle);
@@ -139,6 +131,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
 
             this.DamageImmunityTimer = new SimpleTimer(.5f);
+            LoadTextures(graphics);
+        }
+
+        protected virtual void LoadTextures(GraphicsDevice graphics)
+        {
+            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.NPCAnimatedSprite[0].Width, this.NPCAnimatedSprite[0].Height);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
 
         public void UpdateCurrentChunk(IInformationContainer container)
@@ -166,7 +165,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
-            this.DoesIntersectScreen = this.NPCPathFindRectangle.Intersects(cameraRectangle);
+            this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(cameraRectangle);
 
             this.IsMoving = true;
             //if (DoesIntersectScreen)
@@ -352,20 +351,20 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         {
             // If we're already at the goal return immediatly
             this.IsMoving = true;
-            if (this.Position == goal) return true;
+            if (this.CentralPosition == goal) return true;
 
             // Find direction from current position to goal
-            Vector2 direction = Vector2.Normalize(goal - this.Position);
+            Vector2 direction = Vector2.Normalize(goal - this.CentralPosition);
             this.DirectionVector = direction;
             // Move in that direction
             this.Position += direction * primaryVelocity;// * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // If we moved PAST the goal, move it back to the goal
-            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
+            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.CentralPosition)) + 1) < 0.1f)
                 this.Position = goal;
 
             // Return whether we've reached the goal or not
-            return this.Position == goal;
+            return this.CentralPosition == goal;
         }
         protected void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
         {
@@ -477,7 +476,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
 
-        public void UpdateDirection()
+        private void UpdateDirection()
         {
             if (this.DirectionVector.X > .5f)
             {
@@ -569,36 +568,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             Game1.CurrentStage.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
             if (this.DoesIntersectScreen)
             {
 
 
-                if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
-                {
-
-                    //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
-                    //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
-                    //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
-
-
-
-                }
-
-
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
-
+                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, this.Position, .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
             }
-        }
-        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
-        {
-            //if (this.DoesIntersectScreen)
-           // {
-
-
-                this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
-            //}
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {

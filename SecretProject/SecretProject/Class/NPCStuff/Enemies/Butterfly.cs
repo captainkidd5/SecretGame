@@ -44,10 +44,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.IdleSoundEffect = Game1.SoundManager.SlimeHit;
 
 
-            this.NPCRectangleXOffSet = 8;
-            this.NPCRectangleYOffSet = 8;
-            this.NPCRectangleHeightOffSet = 4;
-            this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
@@ -103,13 +99,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
         {
             this.FlutterOffset = new Vector2((float)(10 * Math.Sin(this.Angle)), (float)(10 * Math.Cos(this.Angle)));
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8 + this.FlutterOffset.X, this.Position.Y - this.NPCRectangleYOffSet - 8 + this.FlutterOffset.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)), this.Rotation);
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X + this.FlutterOffset.X, this.Position.Y + this.FlutterOffset.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)), this.Rotation);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
             this.FlutterOffset = new Vector2((float)(10 * Math.Sin(this.Angle)), (float)(10 * Math.Cos(this.Angle)));
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8 + this.FlutterOffset.X, this.Position.Y - this.NPCRectangleYOffSet - 8 + this.FlutterOffset.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)), this.Rotation);
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X + this.FlutterOffset.X, this.Position.Y  + this.FlutterOffset.Y), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)), this.Rotation);
         }
     }
 }

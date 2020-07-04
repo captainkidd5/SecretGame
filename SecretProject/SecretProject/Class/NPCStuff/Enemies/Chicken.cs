@@ -22,10 +22,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 512, 48, 16, 16, 3, .15f, this.Position) { Flip = true };
             this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 512, 48, 16, 16, 3, .15f, this.Position);
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.NPCRectangleXOffSet = 8;
-            this.NPCRectangleYOffSet = 8;
-            this.NPCRectangleHeightOffSet = 16;
-            this.NPCRectangleWidthOffSet = 16;
+
             this.Speed = 1f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.ChickenCluck1;

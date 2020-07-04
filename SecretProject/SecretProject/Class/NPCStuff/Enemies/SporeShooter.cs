@@ -39,10 +39,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.CurrentDirection = Dir.Down;
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = 0;
-            this.NPCRectangleHeightOffSet = 16;
-            this.NPCRectangleWidthOffSet = 16;
             this.Speed = .02f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.BushCut;
@@ -101,7 +97,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
 
-            this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
+            this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
@@ -206,7 +202,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
         }
 
         public override void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)

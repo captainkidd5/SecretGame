@@ -15,17 +15,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
     {
         public Goat( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base( pack, position, graphics, container)
         {
-            this.NPCAnimatedSprite = new Sprite[4];
-
-            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 96, 48, 32, 5, .15f, this.Position);
-            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 240, 96, 48, 32, 5, .15f, this.Position);
-            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position) { Flip = true };
-            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position)  ;
+            
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.NPCRectangleXOffSet = 8;
-            this.NPCRectangleYOffSet = 8;
-            this.NPCRectangleHeightOffSet = 24;
-            this.NPCRectangleWidthOffSet = 24;
+
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.GoatBleat;
@@ -37,6 +29,18 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.DamageColor = Color.White;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100), new Loot(254, 50), new Loot(214, 25) };
             this.MakesPeriodicSound = true;
+        }
+
+        protected override void LoadTextures(GraphicsDevice graphics)
+        {
+            this.NPCAnimatedSprite = new Sprite[4];
+
+            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 96, 48, 32, 5, .15f, this.Position);
+            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 240, 96, 48, 32, 5, .15f, this.Position);
+            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position) { Flip = true };
+            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 480, 96, 48, 32, 5, .15f, this.Position);
+            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, 48, 32);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
     }
 }

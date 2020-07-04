@@ -18,10 +18,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
             this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = -8;
-            this.NPCRectangleHeightOffSet = 4;
-            this.NPCRectangleWidthOffSet = 4;
+
             this.Speed = .05f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.DogBark;

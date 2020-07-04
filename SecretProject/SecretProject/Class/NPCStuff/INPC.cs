@@ -27,7 +27,6 @@ namespace SecretProject.Class.NPCStuff
         Vector2 TotalVelocity { get; set; }
         Vector2 DirectionVector { get; set; }
         Dir CurrentDirection { get; set; }
-        int FrameNumber { get; set; }
         CircleCollider Collider { get; set; }
         bool CollideOccured { get; set; }
         EmoticonType CurrentEmoticon { get; set; }
