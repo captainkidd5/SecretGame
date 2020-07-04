@@ -119,6 +119,8 @@ namespace SecretProject.Class.StageFolder
         public TileSetType TileSetNumber { get; set; }
         //SAVE STUFF
         public string SavePath { get; set; }
+
+        public NPCGenerator NPCGenerator { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -236,7 +238,7 @@ namespace SecretProject.Class.StageFolder
             SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             this.AllTextToWrite = new List<StringWrapper>();
-
+            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, this.Graphics);
             this.IsLoaded = true;
 
         }

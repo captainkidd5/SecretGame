@@ -78,6 +78,8 @@ namespace SecretProject.Class.StageFolder
         public string SavePath { get; set; }
 
         public TileSetType TileSetNumber { get; set; }
+        public NPCGenerator NPCGenerator { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public World(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;

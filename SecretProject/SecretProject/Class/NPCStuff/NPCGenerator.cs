@@ -11,15 +11,15 @@ namespace SecretProject.Class.NPCStuff
 {
     public enum NPCType
     {
-        Boar = 1,
-        Crab = 2,
-        Rabbit = 3,
-        Butterfly = 4,
-        WarChicken =5,
-        CaveToad = 6,
-        SporeShooter = 7,
-        Goat = 8,
-        Bee = 9
+        boar = 1,
+        crab = 2,
+        rabbit = 3,
+        butterfly = 4,
+        warchicken =5,
+        cavetoad = 6,
+        sporeshooter = 7,
+        goat = 8,
+        bee = 9
     }
 
     public class NPCGenerator
@@ -27,24 +27,24 @@ namespace SecretProject.Class.NPCStuff
 
         private static List<IWeightable> DirtCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 20, .8f),
-            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, 40, .8f),
+            new NPCSpawnData(NPCType.warchicken, GenerationType.Dirt, 20, .8f),
+            new NPCSpawnData(NPCType.butterfly, GenerationType.Dirt, 40, .8f),
 
-             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, 40, .8f),
-             new NPCSpawnData(NPCType.Goat, GenerationType.Dirt, 40, .8f),
-             new NPCSpawnData(NPCType.Bee, GenerationType.Dirt,  40, .8f),
+             new NPCSpawnData(NPCType.rabbit, GenerationType.Dirt, 40, .8f),
+             new NPCSpawnData(NPCType.goat, GenerationType.Dirt, 40, .8f),
+             new NPCSpawnData(NPCType.bee, GenerationType.Dirt,  40, .8f),
 
 
         };
 
         private static List<IWeightable> SandCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.Crab, GenerationType.Sand, 30, .25f)
+            new NPCSpawnData(NPCType.crab, GenerationType.Sand, 30, .25f)
         };
         private static List<IWeightable> CaveCreatures = new List<IWeightable>()
         {
-            new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  30,  .25f),
-            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, 30,  0f),
+            new NPCSpawnData(NPCType.cavetoad, GenerationType.CaveDirt,  30,  .25f),
+            new NPCSpawnData(NPCType.sporeshooter, GenerationType.CaveDirt, 30,  0f),
         };
         private static List<List<IWeightable>> NPCInfo = new List<List<IWeightable>>()
         {
@@ -171,28 +171,28 @@ namespace SecretProject.Class.NPCStuff
         {
             switch (type)
             {
-                case NPCType.Boar:
+                case NPCType.boar:
 
                     return new Boar( pack, position, graphics, container) { HasPackAggression = true } ;
 
 
-                case NPCType.Crab:
+                case NPCType.crab:
                     return new Crab( pack, position, graphics, container) { HasPackAggression = true };
 
-                case NPCType.Rabbit:
+                case NPCType.rabbit:
                     return new Rabbit( pack, position, graphics, container);
 
-                case NPCType.Butterfly:
+                case NPCType.butterfly:
                     return new Butterfly( pack, position, graphics, container);
-                case NPCType.WarChicken:
+                case NPCType.warchicken:
                     return new WarChicken( pack, position, graphics, container) { HasPackAggression = true };
-                case NPCType.CaveToad:
+                case NPCType.cavetoad:
                     return new CaveToad(pack, position, graphics, container) { HasPackAggression = true };
-                case NPCType.SporeShooter:
+                case NPCType.sporeshooter:
                     return new SporeShooter( pack, position, graphics, container) { HasPackAggression = true };
-                case NPCType.Goat:
+                case NPCType.goat:
                     return new Goat( pack, position, graphics, container) { HasPackAggression = true };
-                case NPCType.Bee:
+                case NPCType.bee:
                     return new Bee( pack, position, graphics, container) { HasPackAggression = true };
                 default:
                     return null;

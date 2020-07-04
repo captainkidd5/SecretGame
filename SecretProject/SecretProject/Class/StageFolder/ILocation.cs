@@ -95,6 +95,8 @@ namespace SecretProject.Class.StageFolder
 
         List<ParticleEngine> ParticleEngines { get; set; }
 
+        NPCGenerator NPCGenerator { get; set; }
+
         string SavePath { get; set; }
 
         void Update(GameTime gameTime, MouseManager mouse, Player player);

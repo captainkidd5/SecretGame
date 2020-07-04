@@ -121,6 +121,7 @@ namespace SecretProject.Class.StageFolder
         public List<RisingText> AllRisingText { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<ParticleEngine> ParticleEngines { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string SavePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public NPCGenerator NPCGenerator { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private Game1 game;
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)

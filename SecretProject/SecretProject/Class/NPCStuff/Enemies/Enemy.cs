@@ -169,8 +169,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.DoesIntersectScreen = this.NPCPathFindRectangle.Intersects(cameraRectangle);
 
             this.IsMoving = true;
-            if (DoesIntersectScreen)
-            {
+            //if (DoesIntersectScreen)
+            //{
                 if (TestDeath(enemies))
                     return;
 
@@ -198,7 +198,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 {
                     this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
                 }
-            }
+           // }
              
             if (this.IsMoving)
             {
@@ -248,6 +248,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
                 case CurrentBehaviour.Wander:
                     Wander(gameTime);
+
                     break;
                 case CurrentBehaviour.Chase:
                     //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
@@ -592,12 +593,12 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         }
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            if (this.DoesIntersectScreen)
-            {
+            //if (this.DoesIntersectScreen)
+           // {
 
 
                 this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
-            }
+            //}
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {

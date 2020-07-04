@@ -59,6 +59,8 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("togglemusic", "toggles music between off and on"),
                 new CommandWindowCommand("showtileindex", "shows x and y coords of tiles"),
                 new CommandWindowCommand("setzoom", "setzoom (float) zoomamt"),
+                new CommandWindowCommand("addmob", "mobID"),
+                new CommandWindowCommand("getmobs", "gets a list of all the mob ids")
             };
             this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
@@ -237,6 +239,17 @@ namespace SecretProject.Class.UI
                     break;
                 case "setzoom":
                     Game1.cam.Zoom = Single.Parse(separatedString[1].ToLower());
+                    break;
+                case "addmob":
+                    NPCType type = (NPCType)Enum.Parse(typeof(NPCType), separatedString[1].ToLower());
+                    Game1.CurrentStage.Enemies.AddRange(Game1.CurrentStage.NPCGenerator.SpawnTargetNPCPack(type, (IInformationContainer)Game1.CurrentStage.AllTiles, 1, Game1.Player.position));
+                    break;
+                case "getmobs":
+                    var mobValues = (NPCType[])Enum.GetValues(typeof(NPCType));
+                    foreach(var mobType in mobValues)
+                    {
+                        this.DisplayLog += mobType.ToString() + "\n";
+                    }
                     break;
                 case "":
                     break;
