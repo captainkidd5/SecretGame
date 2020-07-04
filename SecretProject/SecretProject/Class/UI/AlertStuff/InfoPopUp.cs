@@ -67,7 +67,11 @@ namespace SecretProject.Class.UI
 
             this.TextScale = 1f;
 
-            this.FittedRectangle = new NineSliceRectangle(this.WindowPosition, this.StringToWrite,this.TextScale);
+            if(Game1.AllTextures.MenuText.MeasureString(TitleString).X * (this.TextScale + 1f) > Game1.AllTextures.MenuText.MeasureString(StringToWrite).X)
+                this.FittedRectangle = new NineSliceRectangle(this.WindowPosition, this.TitleString, this.TextScale + 1f);
+            else
+                        this.FittedRectangle = new NineSliceRectangle(this.WindowPosition, this.StringToWrite, this.TextScale);
+
 
             this.TitleTextPosition = FittedRectangle.CenterTextHorizontal(itemData.Name, this.TextScale + 1f);
             this.TitleTextPosition = new Vector2(this.TitleTextPosition.X, this.TitleTextPosition.Y + 16 * (this.TextScale));

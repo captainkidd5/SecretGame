@@ -115,7 +115,7 @@ namespace SecretProject.Class.TileStuff
                 .2f,
                 .3f,
                 .5f,
-                .9f
+                .7f
             };
 
             this.TileWidth = 16;
@@ -658,6 +658,7 @@ namespace SecretProject.Class.TileStuff
                                 tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
 
                             }
+
                             else
                             {
                                 spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor,
