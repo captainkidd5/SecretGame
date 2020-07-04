@@ -280,7 +280,7 @@ namespace SecretProject.Class.UI
         {
             //RenderTarget2D screenShot = new RenderTarget2D(this.Graphics, Game1.ScreenWidth, Game1.ScreenHeight);
 
-            string date = DateTime.Now.Year.ToString() + "." + DateTime.Now.Month.ToString() + "." + DateTime.Now.Day.ToString() + "." + DateTime.Now.Hour.ToString() + "." + DateTime.Now.Minute.ToString();
+            string date = DateTime.Now.Year.ToString() + "." + DateTime.Now.Month.ToString() + "." + DateTime.Now.Day.ToString() + "." + DateTime.Now.Hour.ToString() + "." + DateTime.Now.Minute.ToString() + "." + DateTime.Now.Second.ToString();
             string path = @"Content/SaveFiles/ScreenShots/ScreenCapture" + date + ".png";
 
 

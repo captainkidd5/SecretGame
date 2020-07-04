@@ -46,7 +46,7 @@ namespace SecretProject.Class.UI
             this.Position = position;
             this.Text = TextBuilder.ParseText(text, 600, 1f);
 
-            redEsc = new RedEsc(new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32),this.Graphics);
+            redEsc = new RedEsc(new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y),this.Graphics);
         }
 
         public virtual void Update(GameTime gameTime, List<Alert> alerts)

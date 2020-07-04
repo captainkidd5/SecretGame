@@ -645,6 +645,8 @@ namespace SecretProject
             //specimin jar
             KayaShop.ShopMenu.TryAddStock(373, 5);
 
+            KayaShop.ShopMenu.TryAddStock(320, 5);
+
 
             Shop BuisnessSnailShop = new Shop(graphics.GraphicsDevice, 6, "BusinessSnailShop", new ShopMenu("BusinessSnailShopInventory", graphics.GraphicsDevice, 10));
 

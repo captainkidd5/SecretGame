@@ -205,7 +205,7 @@ namespace SecretProject.Class.Controls
                 }
             }
 
-            if (Game1.CurrentStage != null)
+            if (Game1.CurrentStage != null && Game1.CurrentStage != Game1.mainMenu)
             {
 
 

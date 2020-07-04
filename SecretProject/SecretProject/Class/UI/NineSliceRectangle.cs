@@ -66,17 +66,12 @@ namespace SecretProject.Class.UI
 
             while (currentHeight <= totalRequireHeight)
             {
-                AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
+                 AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
                 currentHeight += (int)(16 * this.Scale);
                 position = new Vector2(position.X, position.Y + 16 * this.Scale);
             }
 
-            //AddRow(totalRequiredWidth, position, LeftEdge, Center, RightEdge);
-            //currentHeight += (int)(16 * this.Scale * this.Scale);
-            //position = new Vector2(position.X, position.Y + 16);
-
-
-            AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
+            this.Width += AddRow(totalRequiredWidth, position, BottomLeftCorner, BottomEdge, BottomRightCorner);
             currentHeight += (int)(16 * this.Scale);
             //position = new Vector2(position.X, position.Y + currentHeight);
             this.Position = new Vector2((int)RectanglePositions[0].X, (int)RectanglePositions[0].Y);
@@ -142,7 +137,7 @@ namespace SecretProject.Class.UI
         public Vector2 CenterTextHorizontal(string text, float scale)
         {
             float textWidth = TextBuilder.GetTextLength(text, scale);
-            float width = (float)this.Width / 2f;
+            float width = (float)this.Width / 2f - textWidth / 2;
             Vector2 returnVector = new Vector2(this.Position.X + width, this.Position.Y);
             return returnVector;
         }

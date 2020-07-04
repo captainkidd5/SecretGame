@@ -11,7 +11,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         Sand = 1401,
         SandRuin = 1407,
         Water = 2601,
-        Stone = 701,
+        Stone = 1648,
         DirtCliff = 720,
         FenceTiling = 456,
         StoneWallTiling = 452,
@@ -34,6 +34,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         DarkGrass = 3608,
         BedRock = 1348,
         FertileSoil = 102,
+        PollutedSoil = 701,
+        PollutedSand = 1001
 
 
     };
@@ -197,6 +199,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                    { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
                    { GenerationType.BedRock, new TilingContainer(GenerationType.BedRock, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
                     { GenerationType.FertileSoil, new TilingContainer(GenerationType.FertileSoil, FillTilingDictionary((int)GenerationType.FertileSoil), new List<int>()) },
+                    { GenerationType.PollutedSoil, new TilingContainer(GenerationType.PollutedSoil, FillTilingDictionary((int)GenerationType.PollutedSoil), new List<int>()) },
+                    { GenerationType.PollutedSand, new TilingContainer(GenerationType.PollutedSand, FillTilingDictionary((int)GenerationType.PollutedSand), new List<int>()) },
             };
 
             this.OverWorldBedRockNoise = new List<NoiseInterval>();

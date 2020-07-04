@@ -275,7 +275,7 @@ namespace SecretProject.Class.TileStuff
                         if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
                         {
                             bool canAddGrass = true;
-                            for (int layer = 2; layer < 5; layer++)
+                            for (int layer = (int)MapLayer.Buildings; layer < (int)MapLayer.Front; layer++)
                             {
                                 if(AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
                                 {
@@ -285,9 +285,9 @@ namespace SecretProject.Class.TileStuff
                             }
                                
                                 
-                            if (canAddGrass && AllTiles[3][i, j].TileKey != null)
+                            if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
                             {
-                                SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[3][i, j], AllTiles[1][i, j]);
+                                SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
                             }
 
                         }
@@ -652,7 +652,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                            if (z >= 3)
+                            if (z >= (int)MapLayer.ForeGround)
                             {
                                 spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor * tile.ColorMultiplier,
                                 tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
@@ -719,10 +719,10 @@ namespace SecretProject.Class.TileStuff
                 crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
                 if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
                 {
-                    int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
+                    int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id;
                     crop.UpdateGrowthCycle(newGid);
 
-                    TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
+                    TileUtility.ReplaceTile((int)MapLayer.ForeGround, crop.X, crop.Y, crop.GID, this);
                 }
 
             }

@@ -1270,43 +1270,37 @@
  </tile>
  <tile id="600">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="601">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="602">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="603">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="604">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="605">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
@@ -1408,43 +1402,47 @@
  </tile>
  <tile id="700">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="701">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="702">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="703">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="704">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="705">
-  <properties>
-   <property name="action" value="fillable"/>
-  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="706">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="9" width="8" height="7">
+    <ellipse/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="709">
   <properties>
@@ -1586,43 +1584,47 @@
  </tile>
  <tile id="800">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="801">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="802">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="803">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="804">
   <properties>
-   <property name="action" value="fillable"/>
-   <property name="generate" value="Stone"/>
+   <property name="generate" value="PollutedSoil"/>
    <property name="step" value="2"/>
   </properties>
  </tile>
  <tile id="805">
-  <properties>
-   <property name="action" value="fillable"/>
-  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="3" width="11" height="12">
+    <ellipse/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="806">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="3" width="10" height="10">
+    <ellipse/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="848">
   <properties>
@@ -1714,6 +1716,42 @@
  <tile id="858">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="900">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="901">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="902">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="903">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="904">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="905">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="946">
@@ -1856,6 +1894,36 @@
   <properties>
    <property name="destructable" value="-50,1,0,16,16,0"/>
    <property name="loot" value=""/>
+  </properties>
+ </tile>
+ <tile id="1000">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1001">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1002">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1003">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1004">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1007">
@@ -2176,6 +2244,42 @@
    <property name="generate" value="VillageFloor"/>
    <property name="loot" value="483"/>
    <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1100">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1101">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1102">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1103">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1104">
+  <properties>
+   <property name="generate" value="PollutedSand"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1105">
+  <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1147">
@@ -2716,31 +2820,37 @@
  </tile>
  <tile id="1600">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1601">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1602">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1603">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1604">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1605">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
@@ -2813,26 +2923,31 @@
  </tile>
  <tile id="1700">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1701">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1702">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1703">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1704">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
@@ -2870,26 +2985,31 @@
  </tile>
  <tile id="1800">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1801">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1802">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1803">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
  <tile id="1804">
   <properties>
+   <property name="action" value="fillable"/>
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>

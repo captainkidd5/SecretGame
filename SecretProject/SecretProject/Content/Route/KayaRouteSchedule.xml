@@ -16,10 +16,10 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <Time>5PM</Time>
-       <EndStage>Cafe</EndStage>
-      <EndX>14</EndX>
-      <EndY>24</EndY>
+      <Time>8AM</Time>
+       <EndStage>GeneralStore</EndStage>
+      <EndX>20</EndX>
+      <EndY>16</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>

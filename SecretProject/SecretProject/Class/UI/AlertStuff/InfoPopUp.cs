@@ -109,13 +109,12 @@ namespace SecretProject.Class.UI
 
         public string FitText(string text, float scale)
         {
-            this.StringToWrite = TextBuilder.ParseText(text, this.FittedRectangle.Width * 2.5f, 1.5f);
+            this.StringToWrite = TextBuilder.ParseText(text, this.FittedRectangle.Width * 2.2f, 1.5f);
             return StringToWrite;
         }
 
         public string FitTitleText(string text, float scale)
         {
-         //   this.TitleString = TextBuilder.ParseText(text, this.TitleSourceRectangle.Width * 2.5f, 1.5f);
             return StringToWrite;
         }
 
@@ -124,11 +123,11 @@ namespace SecretProject.Class.UI
             if (this.IsActive)
             {
                 this.FittedRectangle.Draw(spriteBatch,Utility.StandardButtonDepth + .09f);
-              //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .05f);
+
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 48), this.Color, 0f, Game1.Utility.Origin,this.TextScale, SpriteEffects.None,Utility.StandardButtonDepth + .1f);
                 if(this.DisplayTitle)
                 {
-                  //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.WindowPosition.X + 24, this.WindowPosition.Y - 46), this.TitleSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None,Utility.StandardButtonDepth + .05f);
+                
                     spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TitleString, this.TitleTextPosition, this.Color, 0f, Game1.Utility.Origin, this.TextScale + .5f, SpriteEffects.None,Utility.StandardButtonDepth + .1f);
                 }
 
