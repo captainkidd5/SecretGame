@@ -19,7 +19,7 @@ namespace SecretProject.Class.DialogueStuff
         none = 2
     }
 
-    
+
 
     public class TextBuilder
     {
@@ -31,45 +31,45 @@ namespace SecretProject.Class.DialogueStuff
 
         }
         public string StringToWrite { get; set; }
-        public bool IsActive { get; set; } = false;
-        public float WriteSpeed { get; set; }
-        public float SpeedAnchor { get; set; }
-        public Vector2 PositionToWriteTo { get; set; }
-        public Vector2 TextBoxLocation { get; set; }
-        public bool UseTextBox { get; set; } = false;
-        public bool FreezeStage { get; set; } = false;
+        public bool IsActive { get; set; } 
+        private float WriteSpeed { get; set; }
+        private float SpeedAnchor { get; set; }
+        private Vector2 PositionToWriteTo { get; set; }
+        private Vector2 TextBoxLocation { get; set; }
+        public bool UseTextBox { get; set; } 
+        private bool FreezeStage { get; set; }
         public float Scale { get; set; }
         public Color Color { get; set; }
-        public int NumberOfClicks { get; set; }
-        public TextBoxType TextBoxType { get; set; }
+        private int NumberOfClicks { get; set; }
+        private TextBoxType TextBoxType { get; set; }
         String parsedText;
         String typedText;
         double typedTextLength;
         bool isDoneDrawing;
 
         List<SelectableOption> SelectableOptions;
-        public float LineLimit { get; set; }
+        private float LineLimit { get; set; }
 
-        public TextBox SpeechBox { get; set; }
-        public float startDisplay { get; set; }
+        private TextBox SpeechBox { get; set; }
+        private float startDisplay { get; set; }
 
 
-        public bool IsPaused { get; set; }
-        public bool HaveOptionsBeenChecked { get; set; }
+        private bool IsPaused { get; set; }
+        private bool HaveOptionsBeenChecked { get; set; }
 
-        public bool MoveToSelectableOptions { get; set; }
+        private bool MoveToSelectableOptions { get; set; }
 
         public DialogueSkeleton Skeleton { get; set; }
 
-        public Character CharacterTalking { get; set; }
-        public string SpeakerName { get; set; }
-        public int SpeakerID { get; set; }
+        private Character CharacterTalking { get; set; }
+        private string SpeakerName { get; set; }
+        private int SpeakerID { get; set; }
 
 
         public Texture2D SpeakerTexture { get; set; }
         public Rectangle SpeakerPortraitSourceRectangle { get; set; }
 
-        private TextBoxState textBoxState{ get; set; }
+        private TextBoxState textBoxState { get; set; }
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
@@ -131,7 +131,7 @@ namespace SecretProject.Class.DialogueStuff
 
         }
 
-        public void ActivateCharacter(Character character,TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale)
+        public void ActivateCharacter(Character character, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale)
         {
             this.CharacterTalking = character;
             this.SpeakerTexture = character.CharacterPortraitTexture;
@@ -162,7 +162,7 @@ namespace SecretProject.Class.DialogueStuff
         {
             if (this.IsActive)
             {
-                if(UseTextBox)
+                if (UseTextBox)
                 {
                     Game1.Player.UserInterface.BottomBar.IsActive = false;
                     switch (textBoxState)
@@ -265,7 +265,7 @@ namespace SecretProject.Class.DialogueStuff
                             break;
                     }
                 }
-                
+
 
                 if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
                 {
@@ -346,10 +346,10 @@ namespace SecretProject.Class.DialogueStuff
             String returnString = String.Empty;
             String[] lineArray = text.Split('\n');
             float lengthToReturn = 0f;
-            for(int i =0; i < lineArray.Length; i++)
+            for (int i = 0; i < lineArray.Length; i++)
             {
                 float length = Game1.AllTextures.MenuText.MeasureString(lineArray[i]).X * textScale;
-                if(length > lengthToReturn)
+                if (length > lengthToReturn)
                 {
                     lengthToReturn = length;
                 }
@@ -363,13 +363,13 @@ namespace SecretProject.Class.DialogueStuff
 
         public static float GetTextHeight(string text, float textScale)
         {
- 
+
             String returnString = String.Empty;
             String[] lineArray = text.Split('\n');
 
             float totalHeight = 0;
 
-            foreach(string line in lineArray)
+            foreach (string line in lineArray)
             {
                 totalHeight += Game1.AllTextures.MenuText.MeasureString(line).Y * textScale;
             }
@@ -405,11 +405,11 @@ namespace SecretProject.Class.DialogueStuff
             this.HaveOptionsBeenChecked = false;
 
             this.MoveToSelectableOptions = false;
-            if(this.CharacterTalking != null)
+            if (this.CharacterTalking != null)
             {
                 this.CharacterTalking.IsBeingSpokenTo = false;
             }
-            
+
             this.SpeakerName = null;
             this.SpeakerID = -1;
 
@@ -454,7 +454,7 @@ namespace SecretProject.Class.DialogueStuff
             if (options.Length > 0)
             {
                 this.textBoxState = TextBoxState.waitingforresponse;
-               
+
             }
 
             //Reset();
@@ -490,14 +490,14 @@ namespace SecretProject.Class.DialogueStuff
                 }
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, 1f);
 
-                if(textBoxState == TextBoxState.waitingforresponse)
+                if (textBoxState == TextBoxState.waitingforresponse)
                 {
                     foreach (SelectableOption option in SelectableOptions)
                     {
                         option.Draw(spriteBatch);
                     }
                 }
- 
+
 
             }
         }
@@ -524,7 +524,7 @@ namespace SecretProject.Class.DialogueStuff
             this.Action = action;
             this.Button = new Button(new Rectangle((int)position.X, (int)position.Y, (int)Game1.AllTextures.MenuText.MeasureString(response).X,
                 (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal, 2f);
- 
+
         }
 
         public void Update(GameTime gameTime, Character characterTalking)
