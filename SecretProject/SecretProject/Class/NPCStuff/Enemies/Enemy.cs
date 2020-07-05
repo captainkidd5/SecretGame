@@ -39,7 +39,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         protected GraphicsDevice Graphics { get; set; }
         public string Name { get; set; }
-        public Vector2 Position { get; set; }
+        public Vector2 Position;
         public Sprite[] NPCAnimatedSprite { get; set; }
 
         public Texture2D Texture { get; set; }
@@ -69,7 +69,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
         protected float SoundMax { get; set; }
 
         private Color DebugColor { get; set; }
-        private List<PathFinderNode> CurrentPath { get; set; }
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
         public CurrentBehaviour PrimaryPlayerInterationBehavior { get; set; }
@@ -101,8 +100,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public List<Enemy> Pack { get; set; }
         public bool HasPackAggression { get; set; }
 
-
-        private float WanderTimer = 2f;
+        private Navigator Navigator { get; set; }
 
         private bool HasReachedNextPoint { get; set; }
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
@@ -117,11 +115,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NextPointRectangle);
             this.DebugColor = Color.Red;
-            this.CurrentPath = new List<PathFinderNode>();
+           
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.PrimaryPlayerInterationBehavior = CurrentBehaviour.Chase;
 
             this.ObstacleGrid = container.PathGrid;
+            this.Navigator = new Navigator("blank", ObstacleGrid.Weight);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
 
             this.DamageImmunityTimer = new SimpleTimer(.5f);
@@ -160,7 +159,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
             this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(cameraRectangle);
-            this.HasReachedNextPoint = false;
+            Navigator.HasReachedNextPoint = false;
             this.IsMoving = true;
             oldPrimaryVelocity = primaryVelocity;
             if (DoesIntersectScreen)
@@ -206,8 +205,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     //}
                 }
                 this.Position += this.primaryVelocity * DirectionVector;
-                if(HasReachedNextPoint)
-                    this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
+                if(Navigator.HasReachedNextPoint)
+                    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
 
 
             }
@@ -258,8 +257,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             switch (this.CurrentBehaviour)
             {
                 case CurrentBehaviour.Wander:
-                    Wander(gameTime);
-
+                    Navigator.Wander(gameTime,ref this.Position);
+                    this.DirectionVector = Navigator.DirectionVector;
                     break;
                 case CurrentBehaviour.Chase:
                     //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
@@ -394,115 +393,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         }
 
-        /// <summary>
-        /// returns true if the next point is clear. False if not. Only reason this would happen would be if their path is changed
-        /// after it is already found. Example: player placing a barrel in front of them.
-        /// </summary>
-        /// <param name="gameTime"></param>
-        /// <returns></returns>
-        protected bool MoveTowardsPointAndDecrementPath(GameTime gameTime)
-        {
-            PathFinderNode node = this.CurrentPath[this.CurrentPath.Count - 1];
-            if (Game1.CurrentStage.AllTiles.PathGrid.Weight[node.X, node.Y] == (int)GridStatus.Clear)
-            {
-                if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
-                {
-                    HasReachedNextPoint = true;
-                }
-                return true;
-            }
-            else
-               return false;
-        }
-
-
-        protected void MoveTowardsTarget(GameTime gameTime, int targetX, int targetY)
-        {
-            if (this.CurrentPath.Count > 0)
-                MoveTowardsPointAndDecrementPath(gameTime);
-            else
-                TryFindNewPath(new Point(targetX, targetY));
-
-        }
-
-
-        public Point NewStartPoint { get; set; } = new Point(-1, -1);
-
-        private Point GetNewWanderPoint(int currentTileX, int currentTileY)
-        {
-            int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
-            int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
-
-            return new Point(newX, newY);
-        }
-
-
-
-        #region PATHFINDING
-
-
-        
-
-        /// <summary>
-        /// If on current path, moves towards next point. Else if allowed to wander, finds a new path.
-        /// </summary>
-        /// <param name="gameTime"></param>
-        protected void Wander(GameTime gameTime)
-        {
-            WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (this.CurrentPath.Count > 0)
-            {
-                if(!MoveTowardsPointAndDecrementPath(gameTime))
-                {
-                    this.CurrentPath = new List<PathFinderNode>();
-                    this.WanderTimer = 0;
-                }
-
-            }
-            else if (WanderTimer > 0)
-            {
-                this.IsMoving = false;
-            }
-            else if (WanderTimer <= 0)
-            {
-
-                int currentTileX = Utility.GetSquareTile(this.Position.X);
-                int currentTileY = Utility.GetSquareTile(this.Position.Y);
-                Point newWanderPoint = GetNewWanderPoint(currentTileX, currentTileY);
-
-                if (newWanderPoint.X < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 && //if within map bounds.
-                    newWanderPoint.Y < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.Y > 0)
-                {
-                    if (this.ObstacleGrid.Weight[newWanderPoint.X, newWanderPoint.Y] != 0)
-                        TryFindNewPath(newWanderPoint);
-
-                }
-
-            }
-        }
-
-        protected bool TryFindNewPath(Point endPoint)
-        {
-            PathFinderFast finder = new PathFinderFast(this.ObstacleGrid.Weight);
-
-
-            Point start = new Point(Math.Abs((int)this.Position.X / 16),
-             (Math.Abs((int)this.Position.Y / 16)));
-
-            this.CurrentPath = finder.FindPath(start, endPoint, this.Name);
-            if (this.CurrentPath == null)
-            {
-                this.CurrentPath = new List<PathFinderNode>();
-                return false;
-                throw new Exception(this.Name + " was unable to find a path between " + start + " and " + endPoint);
-            }
-            WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
-            return true;
-
-
-        }
-        #endregion
 
 
 
@@ -590,7 +480,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     }
                 }
             }
-            this.CurrentPath.Clear();
+            Navigator.CurrentPath.Clear();
             if (this.IdleSoundEffect != null)
             {
                 Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
@@ -642,12 +532,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
             spriteBatch.Draw(this.HitBoxTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.Green, layerDepth: 1f);
             //spriteBatch.Draw(this.NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
-            if (this.CurrentPath != null)
+            if (Navigator.CurrentPath != null)
             {
-                for (int i = 0; i < this.CurrentPath.Count - 1; i++)
+                for (int i = 0; i < Navigator.CurrentPath.Count - 1; i++)
                 {
-                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(this.CurrentPath[i].X * 16 + 8, this.CurrentPath[i].Y * 16
-                         + 8), new Vector2(this.CurrentPath[i + 1].X * 16 + 8, this.CurrentPath[i + 1].Y * 16 + 8), this.DebugColor);
+                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(Navigator.CurrentPath[i].X * 16 + 8, Navigator.CurrentPath[i].Y * 16
+                         + 8), new Vector2(Navigator.CurrentPath[i + 1].X * 16 + 8, Navigator.CurrentPath[i + 1].Y * 16 + 8), this.DebugColor);
                 }
             }
 

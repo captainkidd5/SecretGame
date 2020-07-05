@@ -16,7 +16,6 @@ namespace SecretProject.Class.NPCStuff
     public interface INPC : IEntity
     {
         string Name { get; set; }
-        Vector2 Position { get; set; }
         Sprite[] NPCAnimatedSprite { get; set; }
         Rectangle NPCHitBoxRectangle { get; }
         Texture2D Texture { get; set; }
