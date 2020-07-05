@@ -362,15 +362,16 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         }
 
 
-                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth,
+                            Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
                         if (HasBeenSpokenToAtLeastOnce)
                         {
-                            if (!skeleton.HasQuestOptionBeenAdded)
-                            {
-                                skeleton.TextToWrite += "`";
-                                skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
-                                skeleton.HasQuestOptionBeenAdded = true;
-                            }
+                            //if (!skeleton.HasQuestOptionBeenAdded)
+                            //{
+                            //    skeleton.TextToWrite += "`";
+                            //    skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
+                            //    skeleton.HasQuestOptionBeenAdded = true;
+                            //}
 
                         }
                         HasBeenSpokenToAtLeastOnce = true;

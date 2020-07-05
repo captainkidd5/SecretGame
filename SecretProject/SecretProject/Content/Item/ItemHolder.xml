@@ -332,7 +332,7 @@
 <ID>333</ID>
 <Description>Used to safely capture wildlife.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
-<PlaceID>1575</PlaceID>
+<PlaceID>367</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -372,7 +372,7 @@
 <ID>480</ID>
 <Description>Oak floorboards.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
-<PlaceID>632</PlaceID>
+<PlaceID>462</PlaceID>
 <TilingSet>OakFloorTiling</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
@@ -382,7 +382,7 @@
 <ID>482</ID>
 <Description>Smooth and sturdy.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
-<PlaceID>1621</PlaceID>
+<PlaceID>1407</PlaceID>
 <TilingSet>SandRuin</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
@@ -392,7 +392,7 @@
 <ID>483</ID>
 <Description>Rough and patchy.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
-<PlaceID>4142</PlaceID>
+<PlaceID>1054</PlaceID>
 <TilingSet>VillageFloor</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
@@ -402,7 +402,7 @@
 <ID>484</ID>
 <Description>Smooth and warm.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
-<PlaceID>3346</PlaceID>
+<PlaceID>1048</PlaceID>
 <TilingSet>ArcaneFloor</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
@@ -901,7 +901,7 @@
 <ID>1055</ID>
 <Description>Can be used to cook recipes.</Description>
 <InvMaximum>99</InvMaximum><Price>80</Price>
-<PlaceID>2139</PlaceID>
+<PlaceID>4324</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1023,7 +1023,7 @@
 <ID>1160</ID>
 <Description>A round, wooden storage unit.</Description>
 <InvMaximum>99</InvMaximum><Price>50</Price>
-<PlaceID>2051</PlaceID>
+<PlaceID>4318</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1032,7 +1032,7 @@
 <ID>1161</ID>
 <Description>A hollowed out dish.</Description>
 <InvMaximum>99</InvMaximum><Price>2</Price>
-<PlaceID>2050</PlaceID>
+<PlaceID>4316</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1051,7 +1051,7 @@
 <ID>1163</ID>
 <Description>Can host life.</Description>
 <InvMaximum>99</InvMaximum><Price>5</Price>
-<PlaceID>1589</PlaceID>
+<PlaceID>4508</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1070,7 +1070,7 @@
 <ID>1165</ID>
 <Description>A weak barrier.</Description>
 <InvMaximum>99</InvMaximum><Price>5</Price>
-<PlaceID>3937</PlaceID>
+<PlaceID>856</PlaceID>
 <TilingSet>VillageFence</TilingSet>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1080,7 +1080,7 @@
 <ID>1166</ID>
 <Description>A strong magical barrier.</Description>
 <InvMaximum>99</InvMaximum><Price>5</Price>
-<PlaceID>3946</PlaceID>
+<PlaceID>852</PlaceID>
 <TilingSet>ArcaneFence</TilingSet>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1090,7 +1090,7 @@
 <ID>1200</ID>
 <Description>A large whetstone used to sharpen tools.</Description>
 <InvMaximum>99</InvMaximum><Price>100</Price>
-<PlaceID>2142</PlaceID>
+<PlaceID>4322</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1099,7 +1099,7 @@
 <ID>1201</ID>
 <Description>A machine for turning logs into planks.</Description>
 <InvMaximum>99</InvMaximum><Price>100</Price>
-<PlaceID>2144</PlaceID>
+<PlaceID>4125</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1108,7 +1108,7 @@
 <ID>1202</ID>
 <Description>Used to refine ores into Ingots.</Description>
 <InvMaximum>99</InvMaximum><Price>100</Price>
-<PlaceID>2143</PlaceID>
+<PlaceID>4224</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1126,7 +1126,7 @@
 <ID>1204</ID>
 <Description>An industrial light.</Description>
 <InvMaximum>99</InvMaximum><Price>500</Price>
-<PlaceID>1845</PlaceID>
+<PlaceID>4527</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1135,7 +1135,7 @@
 <ID>1205</ID>
 <Description>An industrial light.</Description>
 <InvMaximum>99</InvMaximum><Price>500</Price>
-<PlaceID>2140</PlaceID>
+<PlaceID>4412</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1144,7 +1144,7 @@
 <ID>1206</ID>
 <Description>Extracts ore from the ground.</Description>
 <InvMaximum>99</InvMaximum><Price>500</Price>
-<PlaceID>2341</PlaceID>
+<PlaceID>4723</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1153,7 +1153,7 @@
 <ID>1207</ID>
 <Description>Extracts ore from the ground.</Description>
 <InvMaximum>99</InvMaximum><Price>500</Price>
-<PlaceID>4139</PlaceID>
+<PlaceID>857</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 
@@ -1194,7 +1194,7 @@
 <ID>1403</ID>
 <Description>A small shelter.</Description>
 <InvMaximum>99</InvMaximum><Price>20</Price>
-<PlaceID>1648</PlaceID>
+<PlaceID>4606</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 

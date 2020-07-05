@@ -19,8 +19,17 @@ namespace SecretProject.Class.DialogueStuff
         none = 2
     }
 
+    
+
     public class TextBuilder
     {
+        private enum TextBoxState
+        {
+            close = 0,
+            speaking = 1,
+            waitingforresponse = 2
+
+        }
         public string StringToWrite { get; set; }
         public bool IsActive { get; set; } = false;
         public float WriteSpeed { get; set; }
@@ -47,7 +56,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public bool IsPaused { get; set; }
         public bool HaveOptionsBeenChecked { get; set; }
-        public bool AreSelectableOptionsActivated { get; set; }
+
         public bool MoveToSelectableOptions { get; set; }
 
         public DialogueSkeleton Skeleton { get; set; }
@@ -59,6 +68,8 @@ namespace SecretProject.Class.DialogueStuff
 
         public Texture2D SpeakerTexture { get; set; }
         public Rectangle SpeakerPortraitSourceRectangle { get; set; }
+
+        private TextBoxState textBoxState{ get; set; }
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
@@ -81,11 +92,11 @@ namespace SecretProject.Class.DialogueStuff
             SelectableOptions = new List<SelectableOption>();
             this.MoveToSelectableOptions = false;
             this.HaveOptionsBeenChecked = false;
-            this.AreSelectableOptionsActivated = false;
+
 
         }
 
-        public void ChangedParsedText()
+        private void ChangedParsedText()
         {
             parsedText = ParseText(this.StringToWrite, this.LineLimit, this.Scale);
         }
@@ -137,7 +148,7 @@ namespace SecretProject.Class.DialogueStuff
 
 
             ChangedParsedText();
-
+            this.textBoxState = TextBoxState.speaking;
             if (this.UseTextBox)
             {
                 this.PositionToWriteTo = new Vector2(this.SpeechBox.DestinationRectangle.X, this.SpeechBox.DestinationRectangle.Y);
@@ -151,115 +162,115 @@ namespace SecretProject.Class.DialogueStuff
         {
             if (this.IsActive)
             {
-                if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
-                {
-                    Reset();
-                    this.IsActive = false;
-                }
-                if (this.UseTextBox)
+                if(UseTextBox)
                 {
                     Game1.Player.UserInterface.BottomBar.IsActive = false;
-
-                }
-                if (this.AreSelectableOptionsActivated)
-                {
-                    Game1.freeze = true;
-                    ClearWindowForResponse();
-                    foreach (SelectableOption option in SelectableOptions)
+                    switch (textBoxState)
                     {
-                        option.Update(gameTime, this.CharacterTalking);
-                    }
-                }
-
-                else
-                {
-
-                    if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
-                    {
-                        Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
-                    }
-
-
-                    if (this.NumberOfClicks >= 1)
-                    {
-                        this.SpeedAnchor = .1f;
-                        if (this.IsPaused)
-                        {
-                            if (this.MoveToSelectableOptions && this.Skeleton != null)
+                        case TextBoxState.speaking:
+                            if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
                             {
-                                if (this.Skeleton.SelectableOptions != null)
+                                Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
+                            }
+
+
+                            if (this.NumberOfClicks >= 1)
+                            {
+                                this.SpeedAnchor = .1f;
+                                if (this.IsPaused)
                                 {
-                                    if (!this.HaveOptionsBeenChecked)
+                                    if (this.MoveToSelectableOptions && this.Skeleton != null)
                                     {
-                                        CheckSelectableOptions(this.Skeleton);
-                                        this.HaveOptionsBeenChecked = true;
+                                        if (this.Skeleton.SelectableOptions != null)
+                                        {
+                                            if (!this.HaveOptionsBeenChecked)
+                                            {
+                                                CheckSelectableOptions(this.Skeleton);
+                                                this.HaveOptionsBeenChecked = true;
+
+                                            }
+
+                                        }
 
                                     }
+                                    else
+                                    {
+                                        MoveTextToNewWindow();
+                                        this.IsPaused = false;
+                                        this.HaveOptionsBeenChecked = false;
+                                    }
+
 
                                 }
+                            }
+                            if (this.NumberOfClicks == 2)
+                            {
+                                if (this.Skeleton != null)
+                                {
+
+                                }
+                                else
+                                {
+                                    Reset();
+                                }
+
+                            }
+                            if (Game1.MouseManager.IsClicked)
+                            {
+                                this.NumberOfClicks++;
+                            }
+                            if (this.FreezeStage && this.NumberOfClicks < 2)
+                            {
+                                Game1.freeze = true;
 
                             }
                             else
                             {
-                                MoveTextToNewWindow();
-                                this.IsPaused = false;
-                                this.HaveOptionsBeenChecked = false;
+                                Reset();
                             }
 
 
-                        }
-                    }
-                    if (this.NumberOfClicks == 2)
-                    {
-                        if (this.Skeleton != null)
-                        {
-
-                        }
-                        else
-                        {
-                            Reset();
-                        }
-
-                    }
-                    if (Game1.MouseManager.IsClicked)
-                    {
-                        this.NumberOfClicks++;
-                    }
-                    if (this.FreezeStage && this.NumberOfClicks < 2)
-                    {
-                        Game1.freeze = true;
-
-                    }
-                    else
-                    {
-                        Reset();
-                    }
-
-
-                    if (!isDoneDrawing && !this.IsPaused)
-                    {
-                        if (this.WriteSpeed == 0)
-                        {
-                            typedText = parsedText;
-                            isDoneDrawing = true;
-                        }
-                        else if (typedTextLength < parsedText.Length - 1)
-                        {
-                            HandleSpecialCase();
-
-
-                            this.SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / this.WriteSpeed);
-                            if (this.SpeedAnchor > 2f)
+                            if (!isDoneDrawing && !this.IsPaused)
                             {
-                                typedTextLength++;
-                                PlayTextNoise();
-                                this.SpeedAnchor = 0f;
+                                if (this.WriteSpeed == 0)
+                                {
+                                    typedText = parsedText;
+                                    isDoneDrawing = true;
+                                }
+                                else if (typedTextLength < parsedText.Length - 1)
+                                {
+                                    HandleSpecialCase();
+
+
+                                    this.SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / this.WriteSpeed);
+                                    if (this.SpeedAnchor > 2f)
+                                    {
+                                        typedTextLength++;
+                                        PlayTextNoise();
+                                        this.SpeedAnchor = 0f;
+                                    }
+
+                                    typedText = parsedText.Substring(0, (int)typedTextLength);
+                                }
                             }
+                            break;
 
-                            typedText = parsedText.Substring(0, (int)typedTextLength);
-                        }
+                        case TextBoxState.waitingforresponse:
+                            Game1.freeze = true;
+                            ClearWindowForResponse();
+                            foreach (SelectableOption option in SelectableOptions)
+                            {
+                                option.Update(gameTime, this.CharacterTalking);
+                            }
+                            break;
                     }
+                }
+                
 
+                if (Game1.KeyboardManager.WasKeyPressed(Keys.Escape))
+                {
+                    Reset();
+                    this.IsActive = false;
                 }
             }
         }
@@ -392,7 +403,7 @@ namespace SecretProject.Class.DialogueStuff
             this.Skeleton = null;
             SelectableOptions = new List<SelectableOption>();
             this.HaveOptionsBeenChecked = false;
-            this.AreSelectableOptionsActivated = false;
+
             this.MoveToSelectableOptions = false;
             if(this.CharacterTalking != null)
             {
@@ -442,7 +453,8 @@ namespace SecretProject.Class.DialogueStuff
             }
             if (options.Length > 0)
             {
-                this.AreSelectableOptionsActivated = true;
+                this.textBoxState = TextBoxState.waitingforresponse;
+               
             }
 
             //Reset();
@@ -478,13 +490,14 @@ namespace SecretProject.Class.DialogueStuff
                 }
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, 1f);
 
-                if (this.AreSelectableOptionsActivated)
+                if(textBoxState == TextBoxState.waitingforresponse)
                 {
                     foreach (SelectableOption option in SelectableOptions)
                     {
                         option.Draw(spriteBatch);
                     }
                 }
+ 
 
             }
         }
