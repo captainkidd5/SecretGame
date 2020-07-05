@@ -49,21 +49,23 @@ namespace SecretProject.Class.Misc
                     int amt = Game1.Utility.RNumber(1, 5);
                     for(int i = 0; i < amt; i++)
                     {
-                        this.FunItems.Add(new SmallBird(this.Graphics, GetRandomEdgeOfMap(), this.FunItems));
+                        this.FunItems.Add(new SmallBird(this.Graphics,GetDirection(),  this.FunItems));
                     }
                     
                     break;
             }
         }
 
-        /// <summary>
-        /// TODO
-        /// </summary>
-        /// <returns></returns>
-        private Vector2 GetRandomEdgeOfMap()
-        {
+        
 
-            return new Vector2(-200, 800 + Game1.Utility.RNumber(-800, 800));
+        private Dir GetDirection()
+        {
+            if (Game1.Utility.RGenerator.Next(0, 2) == 0)
+                return Dir.Right;
+            else
+                return Dir.Left;
+
+
         }
 
         /// <summary>

@@ -21,14 +21,36 @@ namespace SecretProject.Class.Misc
         private float Speed { get; set; } = 1.7f;
         public List<FunItems> FunItems { get; set; }
 
-        public SmallBird(GraphicsDevice graphics, Vector2 position, List<FunItems> funItems)
+        public SmallBird(GraphicsDevice graphics, Dir direction, List<FunItems> funItems)
         {
             this.Texture = Game1.AllTextures.ButterFlys;
-            this.Position = position;
-            this.AnimatedSprite = new Sprite(graphics, Texture, 0, 32, 16, 16, 2, .25f, Position);
+            this.Position = GetStartPosition(direction);
+            if (direction == Dir.Right)
+            {
+                this.AnimatedSprite = new Sprite(graphics, Texture, 0, 32, 16, 16, 2, .25f, Position);
+                this.DestinationPosition = new Vector2(2400, Game1.Utility.RNumber(400, 1800));
+            }
+                
+            else
+            {
+                this.AnimatedSprite = new Sprite(graphics, Texture, 0, 32, 16, 16, 2, .25f, Position) { Flip = true };
+                this.DestinationPosition = new Vector2(0, Game1.Utility.RNumber(400, 1800));
+            }
 
-            this.DestinationPosition = new Vector2(2400, Game1.Utility.RNumber(400,1800));
             this.FunItems = funItems;
+        }
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <returns></returns>
+        private Vector2 GetStartPosition(Dir direction)
+        {
+            if(direction == Dir.Right)
+                return new Vector2(-200, 800 + Game1.Utility.RNumber(-800, 800));
+            else
+                return new Vector2(2200, 800 + Game1.Utility.RNumber(-800, 800));
+
+
         }
 
         private bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
