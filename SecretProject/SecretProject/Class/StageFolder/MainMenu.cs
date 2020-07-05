@@ -26,6 +26,7 @@ using SecretProject.Class.Playable;
 using XMLData.RouteStuff;
 using System.IO;
 using SecretProject.Class.UI.ButtonStuff;
+using SecretProject.Class.Misc;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -122,6 +123,7 @@ namespace SecretProject.Class.StageFolder
         public List<ParticleEngine> ParticleEngines { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string SavePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public NPCGenerator NPCGenerator { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public FunBox FunBox { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private Game1 game;
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)

@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff
         bool IsMoving { get; set; }
         Vector2 TotalVelocity { get; set; }
         Vector2 DirectionVector { get; set; }
-        Dir CurrentDirection { get; set; }
+
         CircleCollider Collider { get; set; }
         bool CollideOccured { get; set; }
         EmoticonType CurrentEmoticon { get; set; }

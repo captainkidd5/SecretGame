@@ -8,6 +8,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
@@ -53,7 +54,7 @@ namespace SecretProject.Class.StageFolder
         int TilesetTilesHigh { get; set; }
         Texture2D TileSet { get; set; }
         ITileManager AllTiles { get; set; }
-
+        FunBox FunBox { get; set; }
         Camera2D Cam { get; set; }
 
         TileSetType TileSetNumber { get; set; }

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.Misc
 {
@@ -23,7 +24,7 @@ namespace SecretProject.Class.Misc
         public List<FunItems> FunItems { get; set; }
 
         private Texture2D Texture { get; set; }
-        private Vector2 Position { get; set; }
+        private Vector2 position;
         private Sprite[] AnimatedSprite { get; set; }
 
         private Vector2 DestinationPosition { get; set; }
@@ -31,23 +32,25 @@ namespace SecretProject.Class.Misc
         private float Speed { get; set; } = 1.7f;
 
         private Navigator Navigator { get; set; }
+        private Dir CurrentDirection;
 
 
         public GrassCreature(GrassCreatureType grassCreatureType, GraphicsDevice graphics, Vector2 position, List<FunItems> funItems)
         {
-            this.Position = position;
+            this.position = position;
             this.FunItems = funItems;
             this.Texture = Game1.AllTextures.ButterFlys;
             
-            this.AnimatedSprite = new Sprite[3];
+            this.AnimatedSprite = new Sprite[4];
             this.EntityName = GetName(funItems.Count);
-
+            this.GrassCreatureType = grassCreatureType;
             switch(grassCreatureType)
             {
                 case GrassCreatureType.mouse:
-                    this.AnimatedSprite[0] = new Sprite(graphics, Texture, 0, 64, 16, 16, 3, .25f, this.Position, changeFrames: false);
-                    this.AnimatedSprite[1] = new Sprite(graphics, Texture, 16, 64, 16, 16, 3, .25f, this.Position, changeFrames: false);
-                    this.AnimatedSprite[2] = new Sprite(graphics, Texture, 32, 64, 16, 16, 3, .25f, this.Position, changeFrames: false);
+                    this.AnimatedSprite[0] = new Sprite(graphics, Texture, 0, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
+                    this.AnimatedSprite[1] = new Sprite(graphics, Texture, 16, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
+                    this.AnimatedSprite[2] = new Sprite(graphics, Texture, 32, 64, 16, 16, 3, .25f, this.position, changeFrames: false) { Flip = true };
+                    this.AnimatedSprite[3] = new Sprite(graphics, Texture, 32, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
                     break;
             }
             
@@ -61,11 +64,36 @@ namespace SecretProject.Class.Misc
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            switch(this.GrassCreatureType)
+            {
+                case GrassCreatureType.mouse:
+                    Navigator.Wander(gameTime, ref this.position,ref CurrentDirection);
+                    this.position += new Vector2(.5f, .5f) * Navigator.DirectionVector;
+                    
+                    if (Navigator.HasFinishedCurrentPath)
+                    {
+                        FunItems.Remove(this);
+                    }
+                    if (Navigator.HasReachedNextPoint)
+                    {
+                        if(Navigator.CurrentPath.Count == 0)
+                        {
+                            FunItems.Remove(this);
+                        }
+                        else
+                        {
+                            Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
+                        }
+                    }
+                        
+                    break;
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            this.AnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.position.X - Texture.Width / 3.5f,
+                this.position.Y - Texture.Height / 1.5f),
+                    .5f + (position.Y + Texture.Height) * Utility.ForeGroundMultiplier);
         }
 
         

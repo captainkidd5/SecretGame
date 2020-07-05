@@ -21,6 +21,7 @@ namespace SecretProject.Class.PathFinding
 
         private float WanderTimer { get; set; }
         public bool HasReachedNextPoint { get; set; }
+        public bool HasFinishedCurrentPath { get; set; }
 
 
         public Navigator(string entityName, byte[,] grid)
@@ -37,8 +38,9 @@ namespace SecretProject.Class.PathFinding
         /// If on current path, moves towards next point. Else if allowed to wander, finds a new path.
         /// </summary>
         /// <param name="gameTime"></param>
-        public void Wander(GameTime gameTime, ref Vector2 entityPosition)
+        public void Wander(GameTime gameTime, ref Vector2 entityPosition, ref Dir entityDirection)
         {
+            this.HasFinishedCurrentPath = false;
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (this.CurrentPath.Count > 0)
@@ -70,6 +72,7 @@ namespace SecretProject.Class.PathFinding
                 }
 
             }
+            entityDirection = UpdateDirection();
         }
 
         private bool TryFindNewPath(Vector2 currentEntityPosition, Point endPoint)
@@ -104,6 +107,8 @@ namespace SecretProject.Class.PathFinding
                 if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16),ref position,  gameTime))
                 {
                     HasReachedNextPoint = true;
+                    if(CurrentPath.Count == 0)
+                        this.HasFinishedCurrentPath = true;
                 }
                 return true;
             }
@@ -158,6 +163,33 @@ namespace SecretProject.Class.PathFinding
 
             position -= direction * speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+        }
+
+        public Dir UpdateDirection()
+        {
+            if (this.DirectionVector.X > .5f)
+            {
+                return Dir.Right; //right
+            }
+            else if (this.DirectionVector.X < -.5f)
+            {
+                return Dir.Left; //left
+            }
+            else if (this.DirectionVector.Y < .5f) // up
+            {
+                return  Dir.Up;
+            }
+
+            else if (this.DirectionVector.Y > .5f)
+            {
+                return  Dir.Down;
+            }
+            else
+            {
+                return Dir.Down;
+            }
+
+           
         }
     }
 }

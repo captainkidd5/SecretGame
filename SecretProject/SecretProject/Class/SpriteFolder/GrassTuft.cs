@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
@@ -12,6 +13,7 @@ namespace SecretProject.Class.SpriteFolder
 {
     public class GrassTuft : IEntity
     {
+        private GraphicsDevice Graphics { get; set; }
         public int GrassType { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle DestinationRectangle { get; set; }
@@ -45,6 +47,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
         {
+            this.Graphics = graphics;
             this.GrassType = grassType;
             this.Position = position;
             this.DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, 16, 32);
@@ -119,8 +122,14 @@ namespace SecretProject.Class.SpriteFolder
             {
                 location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
             }
-            if(this.TuftsIsPartOf != null)
+            if (Game1.Utility.RNumber(0, 3) == 1)
+            {
+                Game1.CurrentStage.FunBox.AddGrassCreature(GrassCreatureType.mouse, this.Position);
+            }
+            if (this.TuftsIsPartOf != null)
             this.TuftsIsPartOf.Remove(this);
+
+           
 
                 
         }

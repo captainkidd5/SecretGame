@@ -39,6 +39,22 @@ namespace SecretProject.Class.Misc
             };
         }
 
+        public void AddGrassCreature(GrassCreatureType grassCreatureType, Vector2 position)
+        {
+            GrassCreature grassCreature;
+            switch(grassCreatureType)
+            {
+                case GrassCreatureType.mouse:
+                    grassCreature = new GrassCreature(GrassCreatureType.mouse, this.Graphics, position, this.FunItems);
+                    break;
+
+                default:
+                    grassCreature = new GrassCreature(GrassCreatureType.mouse, this.Graphics, position, this.FunItems);
+                    break;
+            }
+            this.FunItems.Add(grassCreature);
+        }
+
         public void AddRandomElement()
         {
             IWeightable data = WheelSelection.GetSelection(FunData);

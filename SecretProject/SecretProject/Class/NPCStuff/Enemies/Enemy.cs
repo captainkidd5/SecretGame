@@ -46,8 +46,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Texture2D HitBoxTexture { get; set; }
 
         public float Speed { get; set; }
-        //0 = down, 1 = left, 2 =  right, 3 = up
-        public Dir CurrentDirection { get; set; }
+
+        public Dir CurrentDirection;
         public bool IsMoving { get; set; }
         protected Vector2 primaryVelocity;
         protected Vector2 oldPrimaryVelocity;
@@ -171,8 +171,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 primaryVelocity = new Vector2(.5f, .5f);
 
 
-                UpdateDirection();
-
                 if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
                     mouse.ChangeMouseTexture(CursorType.Normal);
 
@@ -257,8 +255,11 @@ namespace SecretProject.Class.NPCStuff.Enemies
             switch (this.CurrentBehaviour)
             {
                 case CurrentBehaviour.Wander:
-                    Navigator.Wander(gameTime,ref this.Position);
+                    Navigator.Wander(gameTime,ref this.Position, ref CurrentDirection);
                     this.DirectionVector = Navigator.DirectionVector;
+                    this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X - this.NPCAnimatedSprite[(int)CurrentDirection].Width / 2,
+                        (int)this.Position.Y - this.NPCAnimatedSprite[(int)CurrentDirection].Height / 2,
+                        this.NPCAnimatedSprite[(int)CurrentDirection].Width, this.NPCAnimatedSprite[(int)CurrentDirection].Height);
                     break;
                 case CurrentBehaviour.Chase:
                     //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
@@ -276,7 +277,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     break;
 
                 case CurrentBehaviour.Flee:
-                    MoveAwayFromPoint(Game1.Player.Position, gameTime);
+                    Navigator.MoveAwayFromPoint(Game1.Player.Position,this.Speed, ref this.Position, gameTime);
                     break;
             }
         }
@@ -353,75 +354,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
         }
 
-        public bool MoveTowardsVector(Vector2 goal, GameTime gameTime)
-        {
-            
-            // If we're already at the goal return immediatly
-            this.IsMoving = true;
-            if(Position.X + 2 > goal.X && Position.X - 2 < goal.X
-                &&Position.Y + 2 > goal.Y && Position.Y - 2 < goal.Y)
-            {
-                return true;
-            }
-
-            // Find direction from current position to goal
-            Vector2 direction = Vector2.Normalize(goal - this.Position);
-            this.DirectionVector = direction;
-
-            // If we moved PAST the goal, move it back to the goal
-            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
-                this.Position = goal;
-
-            // Return whether we've reached the goal or not, leeway of 2 pixels 
-            if (Position.X + 2 > goal.X && Position.Y - 2 < goal.X
-               && Position.Y + 2 > goal.Y && Position.Y - 2 < goal.Y)
-            {
-                return true;
-            }
-            return false;
-        }
-        protected void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
-        {
-
-            this.IsMoving = true;
 
 
-            Vector2 direction = Vector2.Normalize(positionToMoveAwayFrom - this.Position);
-            this.DirectionVector = new Vector2(direction.X * -1, direction.Y * -1);
-
-            this.Position -= direction * this.Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-        }
-
-
-
-
-        private void UpdateDirection()
-        {
-            if (this.DirectionVector.X > .5f)
-            {
-                this.CurrentDirection = Dir.Right; //right
-            }
-            else if (this.DirectionVector.X < -.5f)
-            {
-                this.CurrentDirection = Dir.Left; //left
-            }
-            else if (this.DirectionVector.Y < .5f) // up
-            {
-                this.CurrentDirection = Dir.Up;
-            }
-
-            else if (this.DirectionVector.Y > .5f)
-            {
-                this.CurrentDirection = Dir.Down;
-            }
-            else
-            {
-                this.CurrentDirection = Dir.Down;
-            }
-
-            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X - this.NPCAnimatedSprite[(int)CurrentDirection].Width / 2, (int)this.Position.Y - this.NPCAnimatedSprite[(int)CurrentDirection].Height / 2, this.NPCAnimatedSprite[(int)CurrentDirection].Width, this.NPCAnimatedSprite[(int)CurrentDirection].Height);
-        }
 
         public virtual void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
