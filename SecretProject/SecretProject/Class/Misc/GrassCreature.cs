@@ -14,8 +14,8 @@ namespace SecretProject.Class.Misc
 {
     public enum GrassCreatureType
     {
-       none = 0,
-       mouse = 1
+        none = 0,
+        mouse = 1
     }
     public class GrassCreature : FunItems
     {
@@ -33,6 +33,11 @@ namespace SecretProject.Class.Misc
 
         private Navigator Navigator { get; set; }
         private Dir CurrentDirection;
+        private float SourceRectangleHeight { get; set; }
+
+        private float ColorMultiplier { get; set; }
+        private SimpleTimer SimpleTimer { get; set; }
+        private bool IsMoving { get; set; }
 
 
         public GrassCreature(GrassCreatureType grassCreatureType, GraphicsDevice graphics, Vector2 position, List<FunItems> funItems)
@@ -40,20 +45,26 @@ namespace SecretProject.Class.Misc
             this.position = position;
             this.FunItems = funItems;
             this.Texture = Game1.AllTextures.ButterFlys;
-            
+
             this.AnimatedSprite = new Sprite[4];
             this.EntityName = GetName(funItems.Count);
             this.GrassCreatureType = grassCreatureType;
-            switch(grassCreatureType)
+            switch (grassCreatureType)
             {
                 case GrassCreatureType.mouse:
                     this.AnimatedSprite[0] = new Sprite(graphics, Texture, 0, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
                     this.AnimatedSprite[1] = new Sprite(graphics, Texture, 16, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
                     this.AnimatedSprite[2] = new Sprite(graphics, Texture, 32, 64, 16, 16, 3, .25f, this.position, changeFrames: false) { Flip = true };
                     this.AnimatedSprite[3] = new Sprite(graphics, Texture, 32, 64, 16, 16, 3, .25f, this.position, changeFrames: false);
+
+                    this.SourceRectangleHeight = 16;
+                    this.SimpleTimer = new SimpleTimer(3f);
+                    this.IsMoving = true;
+                    this.ColorMultiplier = 1f;
                     break;
+
             }
-            
+
             this.Navigator = new Navigator(this.EntityName, Game1.CurrentStage.AllTiles.PathGrid.Weight);
         }
 
@@ -62,40 +73,59 @@ namespace SecretProject.Class.Misc
             return this.GrassCreatureType.ToString() + "_" + index.ToString();
         }
 
+        private bool Fade(GameTime gameTime)
+        {
+            if (SimpleTimer.Run(gameTime))
+                return true;
+            if (this.ColorMultiplier >= 0)
+            {
+                this.ColorMultiplier -= (float)gameTime.ElapsedGameTime.TotalSeconds * 2f;
+            }
+
+            return false;
+        }
+
         public void Update(GameTime gameTime)
         {
-            switch(this.GrassCreatureType)
+            switch (this.GrassCreatureType)
             {
                 case GrassCreatureType.mouse:
-                    Navigator.Wander(gameTime, ref this.position,ref CurrentDirection);
-                    this.position += new Vector2(.5f, .5f) * Navigator.DirectionVector;
-                    
-                    if (Navigator.HasFinishedCurrentPath)
+                    if (IsMoving)
                     {
-                        FunItems.Remove(this);
+
                     }
+                    else
+                    {
+                        if (Fade(gameTime)) //make mouse more transparent if reached end of path, then delete.
+                            FunItems.Remove(this);
+
+
+                    }
+                    Navigator.Wander(gameTime, ref this.position, ref CurrentDirection);
+                    this.position += new Vector2(1f, 1f) * Navigator.DirectionVector;
+
+
                     if (Navigator.HasReachedNextPoint)
                     {
-                        if(Navigator.CurrentPath.Count == 0)
+                        if (Navigator.CurrentPath.Count == 0)
                         {
-                            FunItems.Remove(this);
+                            IsMoving = false;
+                            //FunItems.Remove(this);
                         }
-                        else
-                        {
-                            Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
-                        }
+
                     }
-                        
+
                     break;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.AnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.position.X - Texture.Width / 3.5f,
-                this.position.Y - Texture.Height / 1.5f),
-                    .5f + (position.Y + Texture.Height) * Utility.ForeGroundMultiplier);
+            this.AnimatedSprite[(int)this.CurrentDirection].ColorMultiplier = this.ColorMultiplier;
+            this.AnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.position.X - this.SourceRectangleHeight / 3.5f,
+                this.position.Y - this.SourceRectangleHeight / 1.5f),
+                    .5f + (position.Y + SourceRectangleHeight) * Utility.ForeGroundMultiplier);
         }
 
-        
+
     }
 }

@@ -124,7 +124,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             if (Game1.Utility.RNumber(0, 3) == 1)
             {
-                Game1.CurrentStage.FunBox.AddGrassCreature(GrassCreatureType.mouse, this.Position);
+                Game1.CurrentStage.FunBox.AddGrassCreature(GrassCreatureType.mouse, new Vector2(this.Position.X , this.Position.Y + 4));
             }
             if (this.TuftsIsPartOf != null)
             this.TuftsIsPartOf.Remove(this);

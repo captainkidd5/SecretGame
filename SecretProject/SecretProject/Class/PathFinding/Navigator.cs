@@ -107,7 +107,8 @@ namespace SecretProject.Class.PathFinding
                 if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16),ref position,  gameTime))
                 {
                     HasReachedNextPoint = true;
-                    if(CurrentPath.Count == 0)
+                    CurrentPath.RemoveAt(CurrentPath.Count - 1);
+                    if (CurrentPath.Count == 0)
                         this.HasFinishedCurrentPath = true;
                 }
                 return true;

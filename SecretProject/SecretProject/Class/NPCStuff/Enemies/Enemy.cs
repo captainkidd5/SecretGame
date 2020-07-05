@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
@@ -203,8 +204,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     //}
                 }
                 this.Position += this.primaryVelocity * DirectionVector;
-                if(Navigator.HasReachedNextPoint)
-                    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
+                //if(Navigator.HasReachedNextPoint)
+                //    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
 
 
             }
