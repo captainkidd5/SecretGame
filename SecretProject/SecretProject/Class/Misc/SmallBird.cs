@@ -18,7 +18,7 @@ namespace SecretProject.Class.Misc
 
         private Vector2 DestinationPosition { get; set; }
 
-        private float Speed { get; set; } = 2f;
+        private float Speed { get; set; } = 1.7f;
         public List<FunItems> FunItems { get; set; }
 
         public SmallBird(GraphicsDevice graphics, Vector2 position, List<FunItems> funItems)
@@ -27,7 +27,7 @@ namespace SecretProject.Class.Misc
             this.Position = position;
             this.AnimatedSprite = new Sprite(graphics, Texture, 0, 32, 16, 16, 2, .25f, Position);
 
-            this.DestinationPosition = new Vector2(1600, 1600);
+            this.DestinationPosition = new Vector2(2400, Game1.Utility.RNumber(400,1800));
             this.FunItems = funItems;
         }
 
@@ -54,7 +54,7 @@ namespace SecretProject.Class.Misc
         {
             if(MoveTowardsPoint(this.DestinationPosition, gameTime))
             {
-                FunItems.Remove(this);
+                 FunItems.Remove(this);
             }
             this.AnimatedSprite.UpdateAnimations(gameTime, this.Position);
         }

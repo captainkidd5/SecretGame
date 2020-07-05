@@ -46,7 +46,12 @@ namespace SecretProject.Class.Misc
             switch((data as FunItemData).FunBoxElement)
             {
                 case FunBoxElement.bird:
-                    this.FunItems.Add(new SmallBird(this.Graphics, GetRandomEdgeOfMap(), this.FunItems));
+                    int amt = Game1.Utility.RNumber(1, 5);
+                    for(int i = 0; i < amt; i++)
+                    {
+                        this.FunItems.Add(new SmallBird(this.Graphics, GetRandomEdgeOfMap(), this.FunItems));
+                    }
+                    
                     break;
             }
         }
@@ -57,7 +62,8 @@ namespace SecretProject.Class.Misc
         /// <returns></returns>
         private Vector2 GetRandomEdgeOfMap()
         {
-            return Vector2.Zero;
+
+            return new Vector2(-200, 800 + Game1.Utility.RNumber(-800, 800));
         }
 
         /// <summary>
