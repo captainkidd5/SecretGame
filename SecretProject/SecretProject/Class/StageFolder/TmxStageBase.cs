@@ -341,6 +341,22 @@ namespace SecretProject.Class.StageFolder
                 }
 
             }
+
+            for (int creature = 0; creature < this.FunBox.FunItems.Count; creature++)
+            {
+                if ((this.FunBox.FunItems[creature].GetType() == typeof(GrassCreature)))
+                {
+                    this.QuadTree.Insert((this.FunBox.FunItems[creature] as GrassCreature).CircleCollider);
+                }
+
+            }
+
+            for (int p = 0; p < AllProjectiles.Count; p++)
+            {
+                this.QuadTree.Insert(AllProjectiles[p].Collider);
+
+            }
+
             List<Item> items = this.AllTiles.AllItems;
             for (int i = 0; i < items.Count; i++)
             {
@@ -431,7 +447,10 @@ namespace SecretProject.Class.StageFolder
             this.FunBox.Update(gameTime);
             this.TextBuilder.Update(gameTime);
             this.ParticleEngine.Update(gameTime);
-
+            for (int p = 0; p < AllProjectiles.Count; p++)
+            {
+                AllProjectiles[p].Update(gameTime);
+            }
             if (!Game1.freeze)
             {
                 Game1.GlobalClock.Update(gameTime);
@@ -499,7 +518,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
-                
+
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if (Game1.CurrentWeather != WeatherType.None)
                 {
@@ -510,10 +529,14 @@ namespace SecretProject.Class.StageFolder
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {
                     this.Enemies[i].Draw(spriteBatch, this.Graphics);
-                    if(ShowBorders)
+                    if (ShowBorders)
                     {
                         this.Enemies[i].DrawDebug(spriteBatch, .95f);
                     }
+                }
+                for (int p = 0; p < this.AllProjectiles.Count; p++)
+                {
+                    AllProjectiles[p].Draw(spriteBatch);
                 }
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
@@ -563,7 +586,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.FunBox.Draw(spriteBatch);
-                
+
 
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);

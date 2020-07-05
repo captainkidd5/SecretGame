@@ -562,18 +562,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             // Return whether we've reached the goal or not
             return this.Position == goal;
         }
-        //public bool TestRoute(Route route)
-        //{
-        //    if (route.Month == Game1.GlobalClock.Calendar.CurrentMonth && route.WeekDay == (WeekDay)Game1.GlobalClock.Calendar.CurrentDay)
-        //    {
-        //        if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
-        //            Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+
         public void MoveToTileRoute(GameTime gameTime, Route route)
         {
 

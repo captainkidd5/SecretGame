@@ -13,7 +13,10 @@ namespace SecretProject.Class.Misc
     public enum FunBoxElement
     {
         none = 0,
-        bird = 1
+        bird = 1,
+        mouse = 2,
+        scarab = 3,
+        
     }
     public class FunBox
     {
@@ -22,8 +25,9 @@ namespace SecretProject.Class.Misc
 
         private int NextInterval { get; set; }
 
-        private List<FunItems> FunItems { get; set; }
+        public List<FunItems> FunItems { get; set; }
         private List<IWeightable> FunData { get; set; }
+        private List<IWeightable> GrassCreatureData { get; set; }
         private GraphicsDevice Graphics { get; set; }
 
         private int TimeLastElementAdded { get; set; }
@@ -36,6 +40,12 @@ namespace SecretProject.Class.Misc
             this.FunData = new List<IWeightable>()
             {
                 new FunItemData(FunBoxElement.bird, 25),
+            };
+
+            this.GrassCreatureData = new List<IWeightable>()
+            {
+                new FunItemData(FunBoxElement.mouse, 50),
+                new FunItemData(FunBoxElement.scarab, 50),
             };
         }
 
@@ -53,6 +63,27 @@ namespace SecretProject.Class.Misc
                     break;
             }
             this.FunItems.Add(grassCreature);
+        }
+
+        public void AddRandomGrassCreature(Vector2 position)
+        {
+            FunItemData grassCreature = (FunItemData)WheelSelection.GetSelection(this.GrassCreatureData);
+            GrassCreature creature = null;
+            switch (grassCreature.FunBoxElement)
+            {
+                case FunBoxElement.mouse:
+                    creature = new GrassCreature(GrassCreatureType.mouse, this.Graphics, position, this.FunItems);
+                    break;
+
+                case FunBoxElement.scarab:
+                    creature = new GrassCreature(GrassCreatureType.scarab, this.Graphics, position, this.FunItems);
+                    break;
+
+                default:
+                    creature = new GrassCreature(GrassCreatureType.mouse, this.Graphics, position, this.FunItems);
+                    break;
+            }
+            this.FunItems.Add(creature);
         }
 
         public void AddRandomElement()

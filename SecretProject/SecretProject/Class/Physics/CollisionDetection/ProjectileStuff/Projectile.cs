@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.CollisionDetection.ProjectileStuff
@@ -91,6 +92,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                         }
                     }
                 }
+                
 
                 if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
@@ -117,6 +119,11 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                         return;
 
                     }
+                }
+                else if (returnObjects[i].ColliderType == ColliderType.grass)
+                {
+                    (returnObjects[i].Entity as GrassTuft).SelfDestruct();
+                    return;
                 }
 
                 else
@@ -150,7 +157,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, this.CurrentPosition, this.SourceRectangle, Color.White, this.Rotation + 2.4f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, this.CurrentPosition, this.SourceRectangle, Color.White, this.Rotation + 2.4f, Game1.Utility.Origin, 1f, SpriteEffects.None, .5f + (this.CurrentPosition.Y + this.SourceRectangle.Height - 8) * Utility.ForeGroundMultiplier);
         }
 
         public void MouseCollisionInteraction()

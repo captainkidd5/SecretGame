@@ -43,6 +43,7 @@ namespace SecretProject.Class.CollisionDetection
 
             this.ShowRectangle = true;
             this.Entity = entity;
+            this.Rectangle = rectangle;
 
         }
 
@@ -201,7 +202,7 @@ namespace SecretProject.Class.CollisionDetection
         /// <summary>
         /// Updates circle to be centered in rectangle.
         /// </summary>
-        private void UpdateCirclePosition()
+        public void UpdateCirclePosition()
         {
             this.Circle.Center = new Vector2(this.Rectangle.X + this.Rectangle.Width / 2, this.Rectangle.Y + this.Rectangle.Height / 2);
         }
