@@ -447,26 +447,27 @@ namespace SecretProject.Class.Playable
         {
             if (!IsPerformingAction)
             {
+                Dir movementDir = Dir.None;
                 switch (controls.Direction)
                 {
                     case Dir.Right:
                         PrimaryVelocity.X = Speed1;
-                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Right, this.IsMoving);
+                        movementDir = Dir.Right;
                         break;
 
                     case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
+                        movementDir = Dir.Left;
                         break;
 
                     case Dir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
+                        movementDir = Dir.Down;
                         break;
 
                     case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        Wardrobe.UpdateAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
+                        movementDir = Dir.Up;
                         break;
 
                     default:
@@ -474,31 +475,32 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                switch (controls.SecondaryDirection)
+                switch (controls.SecondaryDirection) //if a second key is being pressed we'll use that for the animation direction instead of the first one pressed.
                 {
                     case Dir.Right:
                         PrimaryVelocity.X = Speed1;
-                        // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Right,this.IsMoving);
+                        movementDir = Dir.Right;
                         break;
                     case Dir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        // Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Left, this.IsMoving);
+                        movementDir = Dir.Left;
 
                         break;
                     case Dir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        //Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Down, this.IsMoving);
+                        movementDir = Dir.Down;
 
                         break;
                     case Dir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        //  Wardrobe.UpdateMovementAnimations(gameTime, this.Position, Dir.Up, this.IsMoving);
+                        movementDir = Dir.Up;
                         break;
 
                     default:
                         break;
 
                 }
+                Wardrobe.UpdateAnimations(gameTime, this.Position, movementDir, this.IsMoving);
             }
         }
 
@@ -537,11 +539,15 @@ namespace SecretProject.Class.Playable
                     #region SWORD INTERACTIONS
                     if (this.Wardrobe.ToolPiece != null)
                     {
-                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
+                        if(this.Wardrobe.ToolPiece.ToolLine != null)
                         {
-                            if (collider.ColliderType == ColliderType.grass)
-                                (collider.Entity as GrassTuft).SelfDestruct();
+                            if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
+                            {
+                                if (collider.ColliderType == ColliderType.grass)
+                                    (collider.Entity as GrassTuft).SelfDestruct();
+                            }
                         }
+                       
                     }
                     #endregion
                 }

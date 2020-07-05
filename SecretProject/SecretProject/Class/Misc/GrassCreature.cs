@@ -78,7 +78,7 @@ namespace SecretProject.Class.Misc
             }
             this.CircleCollider = new CircleCollider(graphics, new Rectangle((int)this.position.X, (int)this.position.Y,
                 16, 16),
-                new Circle(this.position,8), this, ColliderType.Enemy);
+                new Circle(this.position,8), this, ColliderType.GrassCreature);
             this.IsMoving = true;
             this.ColorMultiplier = 1f;
 

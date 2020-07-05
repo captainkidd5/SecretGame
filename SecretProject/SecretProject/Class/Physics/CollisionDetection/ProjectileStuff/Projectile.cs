@@ -122,8 +122,11 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
                 {
-                    (returnObjects[i].Entity as GrassTuft).SelfDestruct();
-                    return;
+                    if (this.Collider.IsIntersecting(returnObjects[i]))
+                    {
+                        (returnObjects[i].Entity as GrassTuft).SelfDestruct();
+                        return;
+                    }
                 }
 
                 else

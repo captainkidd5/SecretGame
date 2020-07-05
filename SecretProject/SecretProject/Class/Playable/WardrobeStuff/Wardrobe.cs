@@ -33,10 +33,10 @@ namespace SecretProject.Class.Playable
     public class Wardrobe : ISaveable
     {
 
-        public GraphicsDevice Graphics { get; set; }
+        private GraphicsDevice Graphics { get; set; }
 
 
-        public int MaxSpriteIndex { get; set; }
+        private int MaxSpriteIndex { get; set; }
 
 
 
