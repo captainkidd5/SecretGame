@@ -74,10 +74,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         }
 
-        public override void QuadTreeInsertion()
-        {
-            //no insertion at all bc butterflies are too light to move anything lul
-        }
+        //public override bool QuadTreeInsertion()
+        //{
+        //    //no insertion at all bc butterflies are too light to move anything lul
+        //}
 
         public void SwitchDirections(GameTime gameTime)
         {

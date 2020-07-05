@@ -50,6 +50,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Dir CurrentDirection { get; set; }
         public bool IsMoving { get; set; }
         protected Vector2 primaryVelocity;
+        protected Vector2 oldPrimaryVelocity;
         public Vector2 TotalVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
@@ -102,6 +103,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
         private float WanderTimer = 2f;
+
+        private bool HasReachedNextPoint { get; set; }
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
         {
             this.Pack = pack;
@@ -157,8 +160,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
         {
             this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(cameraRectangle);
-
+            this.HasReachedNextPoint = false;
             this.IsMoving = true;
+            oldPrimaryVelocity = primaryVelocity;
             if (DoesIntersectScreen)
             {
                 if (TestDeath(enemies))
@@ -193,7 +197,19 @@ namespace SecretProject.Class.NPCStuff.Enemies
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);
-                QuadTreeInsertion();
+                if(QuadTreeInsertion())
+                {
+                    //if(oldPrimaryVelocity == primaryVelocity)
+                    //{
+                    //    primaryVelocity = new Vector2(primaryVelocity.X + .5f, primaryVelocity.Y + .5f);
+                    //    DirectionVector = Vector2.One;
+                    //}
+                }
+                this.Position += this.primaryVelocity * DirectionVector;
+                if(HasReachedNextPoint)
+                    this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
+
+
             }
             else
             {
@@ -265,8 +281,11 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     break;
             }
         }
-
-        public virtual void QuadTreeInsertion()
+        /// <summary>
+        /// returns whether or not a collision occurred with a solid object
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool QuadTreeInsertion()
         {
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
@@ -301,21 +320,16 @@ namespace SecretProject.Class.NPCStuff.Enemies
                         if (returnObjects[i].ColliderType == ColliderType.inert)
                         {
                             Vector2 oldVelocity = primaryVelocity;
-                            if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
-                            {
-                                //if()
-                            }
+                            //if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
+                            //{
+                            //    return true;
+                            //}
                         }
                     }
 
                 }
-
-
-                // IsMoving = false;
-
-
-
             }
+            return false;
         }
 
         public void RollPeriodicDrop(Vector2 positionToDrop)
@@ -342,22 +356,30 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public bool MoveTowardsVector(Vector2 goal, GameTime gameTime)
         {
+            
             // If we're already at the goal return immediatly
             this.IsMoving = true;
-            if (this.Position == goal) return true;
+            if(Position.X + 2 > goal.X && Position.X - 2 < goal.X
+                &&Position.Y + 2 > goal.Y && Position.Y - 2 < goal.Y)
+            {
+                return true;
+            }
 
             // Find direction from current position to goal
             Vector2 direction = Vector2.Normalize(goal - this.Position);
             this.DirectionVector = direction;
-            // Move in that direction
-            this.Position += direction * primaryVelocity;// * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // If we moved PAST the goal, move it back to the goal
             if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
                 this.Position = goal;
 
-            // Return whether we've reached the goal or not
-            return this.Position == goal;
+            // Return whether we've reached the goal or not, leeway of 2 pixels 
+            if (Position.X + 2 > goal.X && Position.Y - 2 < goal.X
+               && Position.Y + 2 > goal.Y && Position.Y - 2 < goal.Y)
+            {
+                return true;
+            }
+            return false;
         }
         protected void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
         {
@@ -372,13 +394,25 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         }
 
-
-        protected void MoveTowardsPointAndDecrementPath(GameTime gameTime)
+        /// <summary>
+        /// returns true if the next point is clear. False if not. Only reason this would happen would be if their path is changed
+        /// after it is already found. Example: player placing a barrel in front of them.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <returns></returns>
+        protected bool MoveTowardsPointAndDecrementPath(GameTime gameTime)
         {
-            if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
+            PathFinderNode node = this.CurrentPath[this.CurrentPath.Count - 1];
+            if (Game1.CurrentStage.AllTiles.PathGrid.Weight[node.X, node.Y] == (int)GridStatus.Clear)
             {
-                this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
+                if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
+                {
+                    HasReachedNextPoint = true;
+                }
+                return true;
             }
+            else
+               return false;
         }
 
 
@@ -419,7 +453,11 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             if (this.CurrentPath.Count > 0)
             {
-                MoveTowardsPointAndDecrementPath(gameTime);
+                if(!MoveTowardsPointAndDecrementPath(gameTime))
+                {
+                    this.CurrentPath = new List<PathFinderNode>();
+                    this.WanderTimer = 0;
+                }
 
             }
             else if (WanderTimer > 0)
