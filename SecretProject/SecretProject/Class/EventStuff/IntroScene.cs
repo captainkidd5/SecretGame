@@ -122,8 +122,8 @@ namespace SecretProject.Class.EventStuff
                     {
                         if (!StepsCompleted[this.CurrentStep])
                         {
-                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "Hmm... Where did I leave my dibber again?", 2f, null, null);
-                            StepsCompleted[this.CurrentStep] = true;
+                            //Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "Hmm... Where did I leave my dibber again?", 2f, null, null);
+                            //StepsCompleted[this.CurrentStep] = true;
                         }
                         if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                         {
@@ -182,8 +182,8 @@ namespace SecretProject.Class.EventStuff
                             if (!StepsCompleted[this.CurrentStep])
                             {
                                 Game1.Dobbin.ActivateEmoticon(EmoticonType.Exclamation);
-                                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                    "Hey, are you okay!?", 2f, null, null);
+                                //Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                                //    "Hey, are you okay!?", 2f, null, null);
                                 StepsCompleted[this.CurrentStep] = true;
                             }
                         }
@@ -203,8 +203,8 @@ namespace SecretProject.Class.EventStuff
                     {
                         if (!StepsCompleted[this.CurrentStep])
                         {
-                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                "%300 . . . %005 You'd better come with me!", 2f, null, null);
+                            //Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                            //    "%300 . . . %005 You'd better come with me!", 2f, null, null);
                             StepsCompleted[this.CurrentStep] = true;
                         }
 
@@ -259,8 +259,8 @@ namespace SecretProject.Class.EventStuff
                         if (!StepsCompleted[this.CurrentStep])
                         {
                             Game1.Dobbin.NPCAnimatedSprite[(int)Game1.Dobbin.CurrentDirection].SetFrame(0);
-                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                "Here you go.", 2f, null, null);
+                            //Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                            //    "Here you go.", 2f, null, null);
                             StepsCompleted[this.CurrentStep] = true;
                         }
 
@@ -279,9 +279,9 @@ namespace SecretProject.Class.EventStuff
                     Game1.cam.pos = new Vector2(580, 500);
                     if (!StepsCompleted[this.CurrentStep])
                     {
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                            "I'll be back to check up on you.# You're free to stay here as long as you like. # Come downstairs when you're feeling better" +
-                            " and we can try to figure out what's going on.", 2f, null, null);
+                        //Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                        //    "I'll be back to check up on you.# You're free to stay here as long as you like. # Come downstairs when you're feeling better" +
+                        //    " and we can try to figure out what's going on.", 2f, null, null);
                         StepsCompleted[this.CurrentStep] = true;
                     }
 

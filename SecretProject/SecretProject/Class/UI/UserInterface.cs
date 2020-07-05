@@ -285,7 +285,6 @@ namespace SecretProject.Class.UI
                     else if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
                     {
                         this.TextBuilder.IsActive = !this.TextBuilder.IsActive;
-                        this.TextBuilder.UseTextBox = true;
                     }
 
                     else if (Game1.KeyboardManager.WasKeyPressed(Keys.N))
@@ -563,11 +562,11 @@ namespace SecretProject.Class.UI
 
         public void HandleSceneChanged(object sender, EventArgs eventArgs)
         {
-            this.TextBuilder.Reset();
-            this.TextBuilder.StringToWrite = Game1.CurrentStage.StageName;
-            this.TextBuilder.Scale = 4f;
-            this.TextBuilder.Color = Color.Black;
-            this.TextBuilder.IsActive = true;
+            //this.TextBuilder.Reset();
+            //this.TextBuilder.StringToWrite = Game1.CurrentStage.StageName;
+            //this.TextBuilder.Scale = 4f;
+            //this.TextBuilder.Color = Color.Black;
+            //this.TextBuilder.IsActive = true;
 
         }
     }

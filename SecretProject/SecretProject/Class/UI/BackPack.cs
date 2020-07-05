@@ -178,8 +178,8 @@ namespace SecretProject.Class.UI
 
         public void ItemInfoInteraction(Button button, InventorySlot slot, ItemData itemData)
         {
-            TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
-                      new Vector2(button.Position.X, button.Position.Y - 32), 200f);
+            //TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
+            //          new Vector2(button.Position.X, button.Position.Y - 32), 200f);
 
             Vector2 infoBoxPosition = new Vector2(button.Position.X, button.Position.Y - 150);
 

@@ -646,7 +646,7 @@ namespace SecretProject.Class.Playable
                 this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Bottom - 16);
             }
         }
-        int oldSoundFrame1 = 0;
+
         public int WalkSoundEffect { get; set; }
 
         public bool IsDrawn { get; set; }

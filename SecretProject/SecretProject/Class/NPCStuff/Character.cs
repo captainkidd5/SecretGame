@@ -224,7 +224,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.PrimaryVelocity = new Vector2(1, 1);
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
 
-            List<ICollidable> returnObjects = new List<ICollidable>();
 
 
             for (int i = 0; i < 4; i++)
@@ -366,12 +365,12 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                             Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
                         if (HasBeenSpokenToAtLeastOnce)
                         {
-                            //if (!skeleton.HasQuestOptionBeenAdded)
-                            //{
-                            //    skeleton.TextToWrite += "`";
-                            //    skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
-                            //    skeleton.HasQuestOptionBeenAdded = true;
-                            //}
+                            if (!skeleton.HasQuestOptionBeenAdded)
+                            {
+                                skeleton.TextToWrite += "`";
+                                skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
+                                skeleton.HasQuestOptionBeenAdded = true;
+                            }
 
                         }
                         HasBeenSpokenToAtLeastOnce = true;
@@ -403,7 +402,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void FinishUpDialogue(int frameToSet, string textToWrite, DialogueSkeleton skeleton)
         {
-            Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + textToWrite, 2f);
+            Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, true, this.Name + ": " + textToWrite, 2f);
 
 
             Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
@@ -430,7 +429,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
+                   // Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     if (skeleton.SelectableOptions != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
@@ -694,15 +693,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
             {
-                PathFinderFast finder = null;
-                //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                //{
-                //    finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
-                //}
-                //else
-                //{
+                PathFinderFast finder;
+
                     finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
-                //}
 
 
                 Point start = new Point((int)(this.Position.X / 16),

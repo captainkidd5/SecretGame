@@ -113,7 +113,6 @@ namespace SecretProject.Class.TileStuff
         {
             int result = (int)Math.Floor((float)((float)worldPos / 16f));
             return result;
-            return worldPos / 16;
         }
         /// <summary>
         /// Finds and indexes into a chunk, returning the proper tile.
@@ -151,7 +150,7 @@ namespace SecretProject.Class.TileStuff
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
             tileToAssign.TileKey = tileToAssign.GetTileKeyStringNew(layer, container);
-            string propertyString = string.Empty;
+            string propertyString;
             tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
             if (tileSet.ContainsKey(tileToAssign.GID))
             {
@@ -386,7 +385,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         int startI = rectangleCoords[0] / 16;
                         int endI = rectangleCoords[2] / 16;
-                        endI = endI + startI;
+                        endI += startI;
 
                         int startJ = rectangleCoords[1] / 16;
                         int endJ = rectangleCoords[3] / 16;
@@ -403,7 +402,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         int startI = rectangleCoords[0] / 16;
                         int endI = rectangleCoords[2] / 16;
-                        endI = endI + startI;
+                        endI += startI;
 
                         int startJ = (int)Math.Floor(((float)rectangleCoords[1] / (float)16));
 
@@ -1265,7 +1264,6 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 float currentduration = container.MapName.Tilesets[container.TileSetNumber].Tiles[tile.GID].AnimationFrames[0].Duration;
-                float anchorDuration = currentduration;
                 frames.Add(new EditableAnimationFrame(currentduration, tile.GID));
             }
 

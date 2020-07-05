@@ -398,7 +398,7 @@ namespace SecretProject.Class.StageFolder
             }
             PerformQuadTreeInsertions(gameTime, player);
             this.IsDark = Game1.GlobalClock.IsNight;
-            float playerOldYPosition = player.position.Y;
+
             UpdatePortals(player, mouse);
 
             Game1.MouseManager.ToggleGeneralInteraction = false;

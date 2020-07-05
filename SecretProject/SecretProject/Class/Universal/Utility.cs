@@ -372,63 +372,7 @@ namespace SecretProject.Class.Universal
             texture.SetData<Color>(Colors.ToArray());
             return texture;
         }
-        #region SPEECHUTILITY
-        public void PerformSpeechAction(string action, Character character)
-        {
-            
-            switch (action)
-            {
-                case "OpenJulianShop":
-                    Game1.freeze = true;
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.JulianShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-
-                    break;
-                case "OpenDobbinShop":
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-
-                case "OpenElixirShop":
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.ElixirShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-                case "OpenKayaShop":
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.KayaShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-                case "OpenSarahShop":
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.SarahShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-
-                case "OpenBusinessSnailShop":
-                    Game1.Player.UserInterface.ActivateShop(OpenShop.BusinessSnailShop);
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-                case "LoadQuest":
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.QuestHandler.ActiveQuest.MidQuestSkeleton.TextToWrite, 2f);
-                    Game1.Player.UserInterface.TextBuilder.Skeleton = character.QuestHandler.ActiveQuest.MidQuestSkeleton;
-                    break;
-
-                case "CheckCurrentProject":
-
-                case "ExitDialogue":
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-                    break;
-                default:
-                    Game1.Player.UserInterface.TextBuilder.Reset();
-
-                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.Name + ": " + action, 2f);
-
-                        //   Game1.freeze = true;
-                        return;
-                    
-
-            }
-        }
-        #endregion
+        
 
         /// <summary>
         /// If number is less than zero, make it zero and return false, meaning the number provided was not originally positive

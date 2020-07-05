@@ -29,7 +29,6 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public string RoomDirectory { get; set; }
 
         public DungeonGraph DungeonGraph { get; private set; }
-        public NPCGenerator NPCGenerator{ get; private set; }
 
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
