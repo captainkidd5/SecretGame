@@ -10,6 +10,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
@@ -121,6 +122,7 @@ namespace SecretProject.Class.StageFolder
         public string SavePath { get; set; }
 
         public NPCGenerator NPCGenerator { get; set; }
+        public FunBox FunBox { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -219,6 +221,7 @@ namespace SecretProject.Class.StageFolder
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();
             this.QuadTree = new QuadTree(0, this.MapRectangle);
+            this.FunBox = new FunBox(this.Graphics);
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -425,7 +428,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.TotalHours = 22;
 
             }
-
+            this.FunBox.Update(gameTime);
             this.TextBuilder.Update(gameTime);
             this.ParticleEngine.Update(gameTime);
 
@@ -559,7 +562,7 @@ namespace SecretProject.Class.StageFolder
                     sprite.Draw(spriteBatch, .7f);
                 }
 
-
+                this.FunBox.Draw(spriteBatch);
                 
 
 

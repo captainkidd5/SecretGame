@@ -29,7 +29,6 @@ namespace SecretProject.Class.DialogueStuff
         private float WriteSpeed { get; set; }
         private float SpeedAnchor { get; set; }
         private Vector2 PositionToWriteTo { get; set; }
-        private Vector2 TextBoxLocation { get; set; }
         private bool FreezeStage { get; set; }
         public float Scale { get; set; }
         public Color Color { get; set; }
@@ -37,45 +36,34 @@ namespace SecretProject.Class.DialogueStuff
 
         String parsedText;
         String typedText;
-        double typedTextLength;
+        float typedTextLength;
         bool isDoneDrawing;
 
         List<SelectableOption> SelectableOptions;
         private float LineLimit { get; set; }
 
         private TextBox SpeechBox { get; set; }
-        private float startDisplay { get; set; }
-
-
         private bool IsPaused { get; set; }
         private bool HaveOptionsBeenChecked { get; set; }
-
         private bool MoveToSelectableOptions { get; set; }
-
         public DialogueSkeleton Skeleton { get; set; }
-
         private Character CharacterTalking { get; set; }
-        private string SpeakerName { get; set; }
-        private int SpeakerID { get; set; }
-
-
         public Texture2D SpeakerTexture { get; set; }
         public Rectangle SpeakerPortraitSourceRectangle { get; set; }
-
         private TextBoxState textBoxState { get; set; }
+
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
             this.SpeedAnchor = writeSpeed;
             this.PositionToWriteTo = Game1.Utility.DialogueTextLocation;
+
             this.Scale = 2f;
             this.Color = Color.Black;
             this.NumberOfClicks = 0;
 
-
-            this.TextBoxLocation = new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y);
-            this.SpeechBox = new TextBox(this.TextBoxLocation, 1);
+            this.SpeechBox = new TextBox(this.PositionToWriteTo, 1);
             this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y);
             this.LineLimit = this.SpeechBox.DestinationRectangle.Width - 100;
             typedText = "";
@@ -85,7 +73,7 @@ namespace SecretProject.Class.DialogueStuff
             SelectableOptions = new List<SelectableOption>();
             this.MoveToSelectableOptions = false;
             this.HaveOptionsBeenChecked = false;
-
+            this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
 
         }
 
@@ -100,8 +88,7 @@ namespace SecretProject.Class.DialogueStuff
             this.CharacterTalking = character;
             this.SpeakerTexture = character.CharacterPortraitTexture;
             this.SpeakerPortraitSourceRectangle = character.CharacterPortraitSourceRectangle;
-            this.SpeakerID = character.SpeakerID;
-            this.SpeakerName = character.Name;
+
             this.IsActive = true;
             this.FreezeStage = freezeStage;
             this.StringToWrite = stringToWrite;
@@ -369,8 +356,6 @@ namespace SecretProject.Class.DialogueStuff
                 this.CharacterTalking.IsBeingSpokenTo = false;
             }
 
-            this.SpeakerName = null;
-            this.SpeakerID = -1;
 
 
         }
@@ -426,7 +411,7 @@ namespace SecretProject.Class.DialogueStuff
             if (this.IsActive)
             {
 
-                this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
+               // this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
                 this.SpeechBox.Draw(spriteBatch, false);
                 if (this.SpeakerTexture != null)
                 {

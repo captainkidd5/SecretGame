@@ -282,11 +282,6 @@ namespace SecretProject.Class.UI
 
                     }
 
-                    else if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
-                    {
-                        this.TextBuilder.IsActive = !this.TextBuilder.IsActive;
-                    }
-
                     else if (Game1.KeyboardManager.WasKeyPressed(Keys.N))
                     {
                         Game1.SoundManager.PlayOpenUI();
