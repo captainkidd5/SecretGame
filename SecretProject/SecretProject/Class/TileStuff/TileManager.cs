@@ -215,9 +215,9 @@ namespace SecretProject.Class.TileStuff
                 }
 
 
-                if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+                if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
                 {
-                    Game1.PortalGraph.AddEdge(portal.From, portal.To);
+                    Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
                 }
 
             }

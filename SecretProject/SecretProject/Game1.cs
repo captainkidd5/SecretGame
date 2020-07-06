@@ -668,7 +668,7 @@ namespace SecretProject
         {
 
             Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(25, 12));
-            Elixir = new Character("Elixir", new Vector2(25, 12), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Game1.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
+            Elixir = new Character("Elixir", new Vector2(19, 26), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Game1.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]

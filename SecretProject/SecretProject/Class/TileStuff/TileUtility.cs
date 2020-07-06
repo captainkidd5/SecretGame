@@ -185,9 +185,9 @@ namespace SecretProject.Class.TileStuff
                     int from = (int)Enum.Parse(typeof(Stages), portalString[1]);
                     int to = (int)Enum.Parse(typeof(Stages), portalString[2]);
                     Portal portal = new Portal(from, to, 0, -32, clickRequired);
-                    if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+                    if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
                     {
-                        Game1.PortalGraph.AddEdge(portal.From, portal.To);
+                        Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
                     }
                     portal.PortalStart = new Rectangle(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + 32, tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                     container.ITileManager.Stage.AllPortals.Add(portal);

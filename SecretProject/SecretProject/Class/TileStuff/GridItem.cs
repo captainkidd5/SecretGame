@@ -222,9 +222,9 @@ namespace SecretProject.Class.TileStuff
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
                                     Game1.CurrentStage.AllPortals.Add(tempPortal);
 
-                                    if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
+                                    if (!Game1.PortalGraph.HasEdge((Stages)tempPortal.From, (Stages)tempPortal.To))
                                     {
-                                        Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
+                                        Game1.PortalGraph.AddEdge((Stages)tempPortal.From, (Stages)tempPortal.To);
                                     }
                                 }
                                 TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
