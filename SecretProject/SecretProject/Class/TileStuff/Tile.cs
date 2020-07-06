@@ -54,7 +54,7 @@ namespace SecretProject.Class.TileStuff
             return new Vector2(this.DestinationRectangle.X + container.X, this.DestinationRectangle.Y + container.Y);
         }
 
-        public string GetTileKeyStringNew(int layer, IInformationContainer container)
+        public string GetTileKeyString(int layer, IInformationContainer container)
         {
             return "" + this.X + "," + this.Y + "," + layer;
         }

@@ -203,7 +203,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     { GenerationType.PollutedSand, new TilingContainer(GenerationType.PollutedSand, FillTilingDictionary((int)GenerationType.PollutedSand), new List<int>()) },
             };
 
-            this.OverWorldBedRockNoise = new List<NoiseInterval>();
+            this.OverWorldBedRockNoise = new List<NoiseInterval>()
+            {
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.BedRock),-1f, 1f ),
+            };
             //NOISE INTERVALS, must be sorted by interval
             this.OverWorldBackgroundNoise = new List<NoiseInterval>()
             {

@@ -40,6 +40,7 @@ using TiledSharp;
 using SecretProject.Class.StageFolder.DungeonStuff;
 using System.Linq;
 using XMLData.ItemStuff.MessageStuff;
+using SecretProject.Class.StageFolder.DungeonStuff.Desert;
 
 
 
@@ -90,6 +91,7 @@ namespace SecretProject
         GisaardRanch = 13,
         HomeStead = 14,
         ForestDungeon = 15,
+        DesertDungeon = 16,
         MainMenu = 50,
         Exit = 55,
 
@@ -149,6 +151,7 @@ namespace SecretProject
         public static TmxStageBase GisaardRanch;
         public static TmxStageBase HomeStead;
         public static TmxStageBase ForestDungeon;
+        public static TmxStageBase DesertDungeon;
 
 
         public static List<ILocation> AllStages;
@@ -590,11 +593,12 @@ namespace SecretProject
             CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/CasparHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
             MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/MountainTop.tmx"), 1, 0) { StageIdentifier = (int)Stages.MountainTop };
             GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/GisaardRanch.tmx"), 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
-            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.HomeStead };
-            ForestDungeon = new Dungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/Forest.tmx"), 1, 0) { StageIdentifier = (int)Stages.ForestDungeon };
+            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.HomeStead };
+            ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.ForestDungeon };
+            DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.DesertDungeon };
 
 
-            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon };
+            AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon,DesertDungeon };
 
         }
         private void LoadShops()

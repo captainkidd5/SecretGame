@@ -149,7 +149,7 @@ namespace SecretProject.Class.TileStuff
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
-            tileToAssign.TileKey = tileToAssign.GetTileKeyStringNew(layer, container);
+            tileToAssign.TileKey = tileToAssign.GetTileKeyString(layer, container);
             string propertyString;
             tileToAssign.Position = new Vector2(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y);
             if (tileSet.ContainsKey(tileToAssign.GID))
@@ -599,7 +599,7 @@ namespace SecretProject.Class.TileStuff
                                 mouse.ChangeMouseTexture(CursorType.Planting);
                                 if (mouse.IsClicked)
                                 {
-                                    if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(3, container)))
+                                    if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyString(3, container)))
                                     {
 
                                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
@@ -628,7 +628,7 @@ namespace SecretProject.Class.TileStuff
                             mouse.ChangeMouseTexture(CursorType.Planting);
                             if (mouse.IsClicked)
                             {
-                                if (!container.Crops.ContainsKey(container.AllTiles[(int)MapLayer.ForeGround][i, j].GetTileKeyStringNew((int)MapLayer.ForeGround, container)))
+                                if (!container.Crops.ContainsKey(container.AllTiles[(int)MapLayer.ForeGround][i, j].GetTileKeyString((int)MapLayer.ForeGround, container)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
@@ -1055,7 +1055,7 @@ namespace SecretProject.Class.TileStuff
                 bool atLeastOneObjectExists = false;
                 for (int i = 0; i < 4; i++)
                 {
-                    if (container.Objects.ContainsKey(tile.GetTileKeyStringNew(i, container)))
+                    if (container.Objects.ContainsKey(tile.GetTileKeyString(i, container)))
                     {
                         atLeastOneObjectExists = true;
                     }
@@ -1087,9 +1087,9 @@ namespace SecretProject.Class.TileStuff
                 //   //  Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
 
-            if (container.Crops.ContainsKey(tile.GetTileKeyStringNew(layer, container)))
+            if (container.Crops.ContainsKey(tile.GetTileKeyString(layer, container)))
             {
-                container.Crops.Remove(tile.GetTileKeyStringNew(layer, container));
+                container.Crops.Remove(tile.GetTileKeyString(layer, container));
                 string[] info = container.TileSetDictionary[tile.GID].Properties["destructable"].Split(',');
                 Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(info));
                 TileUtility.ReplaceTile(0, x, y, 87, container);

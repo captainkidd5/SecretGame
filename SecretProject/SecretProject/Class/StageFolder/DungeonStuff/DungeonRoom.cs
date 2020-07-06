@@ -21,24 +21,24 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
     {
         public int Width { get; set; }
         public bool IsStartingRoom { get; set; }
-        public Dungeon Dungeon { get; private set; }
+        protected Dungeon Dungeon { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public ITileManager TileManager { get; private set; }
+        public ITileManager TileManager { get; set; }
 
         public bool HasGenerated { get; set; }
 
         public List<DungeonPortal> DungeonPortals { get; set; }
 
-        private int leftWallTop;
-        private int rightWallTop;
-        private int topWallLeft;
-        private int bottomWallLeft;
+        protected int leftWallTop;
+        protected int rightWallTop;
+        protected int topWallLeft;
+        protected int bottomWallLeft;
 
-        private bool ContainsDoorDown;
-        private bool ContainsDoorUp;
-        private bool ContainsDoorLeft;
-        private bool ContainsDoorRight;
+        protected bool ContainsDoorDown;
+        protected bool ContainsDoorUp;
+        protected bool ContainsDoorLeft;
+        protected bool ContainsDoorRight;
 
 
         public DungeonRoom(Dungeon dungeon, int x, int y)
@@ -49,6 +49,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
 
             this.DungeonPortals = new List<DungeonPortal>();
+
+            this.Width = 128;
 
         }
         //for starting room
@@ -88,7 +90,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// <param name="gid"></param>
         /// <param name="i"></param>
         /// <param name="j"></param>
-        private void GenerateSorroundingWalls(ref int gid, int i, int j)
+        protected virtual void GenerateSorroundingWalls(ref int gid, int i, int j)
         {
             if (j <= 3 || j >= this.Width - 3) //top and bottom walls
             {
@@ -162,7 +164,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         {
             if(j + yTilesBelow >= this.Width)
             {
-                return false;
+                return true;
             }
             for(int z  = j; z < j+ yTilesBelow; z++)
             {
@@ -179,7 +181,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// </summary>
         /// <param name="positiveGID"></param>
         /// <param name="negativeGID"></param>
-        private void PlaceFront(int positiveGID, int negativeGID)
+        protected virtual void PlaceFront(int positiveGID, int negativeGID)
         {
             CellularAutomata cellularAutomata = new CellularAutomata();
             bool[,] boolMap = cellularAutomata.generateMap(this.Width);
@@ -188,25 +190,35 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 for(int j = 0; j < this.Width; j++)
                 {
+
                     int gid;
-                    if(boolMap[i,j] && YTilesBelowDoNotMatchGID(118, (int)MapLayer.BackGround, i, j, (int)MapLayer.ForeGround))//not above water!
+                    if (i <=1 || i >= this.Width - 2 || j  <= 1 || j >= this.Width - 2) //edges are always solid, unless they are a portal.
                     {
-                        gid = positiveGID;
-                        
+                        gid = 3032;
                     }
                     else
                     {
-                        gid = negativeGID;
+
+
+                        if (boolMap[i, j] && YTilesBelowDoNotMatchGID(118, (int)MapLayer.BackGround, i, j, (int)MapLayer.ForeGround))//not above water!
+                        {
+                            gid = positiveGID;
+
+                        }
+                        else
+                        {
+                            gid = negativeGID;
+                        }
                     }
                     TileManager.AllTiles[(int)MapLayer.Front][i, j] = new Tile(i, j, gid) { LayerToDrawAt = (int)MapLayer.Front };
                 }
             }
         }
 
-        public void Generate(string path)
+        public virtual void Generate(string path)
         {
             GetDoorwaysBasedOnPortals();
-            int roomDimensions = 64;
+            int roomDimensions = this.Width;
             this.Width = roomDimensions;
             this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
             topWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
@@ -298,8 +310,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                                 {
 
                                     int newGID = this.TileManager.AllTiles[z][i, j].GID;
-                                    Game1.Procedural.GenerationReassignForTiling(newGID, container.GeneratableTiles, container.TilingDictionary,
+
+                                    if(i > 0 && i < this.Width - 1 && j > 0 && j < this.Width -1) //dont reassign outer tiles for retiling, otherwise its obvious where the map ends.
+                                    {
+                                        Game1.Procedural.GenerationReassignForTiling(newGID, container.GeneratableTiles, container.TilingDictionary,
                                         z, i, j, this.TileManager.AllTiles[z].GetLength(0), this.TileManager.AllTiles[z].GetLength(0), (IInformationContainer)this.TileManager, null);
+                                    }
+
+                                    
                                 }
                             }
                         }
@@ -316,14 +334,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     {
                         if (z == (int)MapLayer.ForeGround)
                         {
-                            if (j >= (int)MapLayer.ForeGround)
+                            if (j >= 4)
                             {
 
-
-                                if (this.TileManager.AllTiles[(int)MapLayer.ForeGround][i, j - 3].GID == 3031)
+                                int trunkTestForestGid = this.TileManager.AllTiles[(int)MapLayer.Front][i, j - 3].GID;
+                                if (trunkTestForestGid == 3031 || trunkTestForestGid == 2935)
                                 {
                                    Tile tempTile = new Tile(i, j, 3332) { LayerToDrawAt = z };
-                                    this.TileManager.AllTiles[z][i, j] = tempTile;
+                                    this.TileManager.AllTiles[(int)MapLayer.ForeGround][i, j] = tempTile;
                                 }
                             }
                         }

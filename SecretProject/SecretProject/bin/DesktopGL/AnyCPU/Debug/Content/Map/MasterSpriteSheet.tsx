@@ -624,10 +624,10 @@
    </object>
   </objectgroup>
   <animation>
-   <frame tileid="241" duration="80"/>
-   <frame tileid="242" duration="80"/>
-   <frame tileid="243" duration="80"/>
-   <frame tileid="244" duration="80"/>
+   <frame tileid="241" duration="200"/>
+   <frame tileid="242" duration="200"/>
+   <frame tileid="243" duration="200"/>
+   <frame tileid="244" duration="200"/>
   </animation>
  </tile>
  <tile id="249">

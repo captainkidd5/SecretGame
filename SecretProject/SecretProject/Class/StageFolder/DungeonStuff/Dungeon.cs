@@ -22,7 +22,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         private readonly int startingRoomX = 99;
         private readonly int startingRoomY = 0;
 
-        public DungeonRoom CurrentRoom { get; private set; }
+        protected DungeonRoom CurrentRoom { get;  set; }
         public DungeonRoom[,] Rooms { get;  set; }
         public ContentManager Content { get; private set; }
 
@@ -44,7 +44,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             return (this.CurrentRoom.X == startingRoomX && this.CurrentRoom.Y == startingRoomY);
         }
 
-        private void InitializeRooms()
+        protected virtual void InitializeRooms()
         {
 
             for(int i =0; i < MaxDungeonRooms; i++)
@@ -100,7 +100,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
         }
 
-        private void CreateFirstRoom()
+        protected virtual void CreateFirstRoom()
         {
             DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 0, this.Content); //starting room is top right
             Rooms[99, 0] = startingRoom;

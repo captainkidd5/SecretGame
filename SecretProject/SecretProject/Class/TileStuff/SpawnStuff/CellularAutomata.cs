@@ -9,7 +9,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     public class CellularAutomata
     {
         float chanceToStartAlive = 0.45f;
-        int numberOfSteps = 3;
+        int numberOfSteps = 6;
         int birthLimit = 4;
         int deathLimit = 3;
 
