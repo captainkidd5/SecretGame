@@ -377,21 +377,14 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect FetchNewSong()
         {
-            switch (Game1.gameStages)
+            if(Game1.CurrentStage == Game1.mainMenu)
             {
-                case Stages.MainMenu:
-                    return TitleSongs.FetchSong();
-                //case Stages.OverWorld:
-
-                //    return WorldSongs.FetchSong();
-     
-                //case Stages.UnderWorld:
-                //    return UnRaiSongs.FetchSong();
-                default:
-                    return InteriorSongs.FetchSong();
-
+                return TitleSongs.FetchSong();
             }
-
+            else
+            {
+                return InteriorSongs.FetchSong();
+            }
         }
 
         public bool FadeSongOut(GameTime gameTime)

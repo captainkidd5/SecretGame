@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI.ButtonStuff
         }
         private void Teleport()
         {
-            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.Town);
+            Game1.SwitchStage( Game1.Town);
             Game1.Player.position = teleportPosition;
 
         }

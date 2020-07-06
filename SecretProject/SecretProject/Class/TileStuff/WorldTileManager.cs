@@ -1032,5 +1032,10 @@ namespace SecretProject.Class.TileStuff
         {
             throw new NotImplementedException();
         }
+
+        public void StartNew(bool isBasedOnPremadeMap)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

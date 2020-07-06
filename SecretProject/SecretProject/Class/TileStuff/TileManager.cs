@@ -227,7 +227,7 @@ namespace SecretProject.Class.TileStuff
         /// <summary>
         /// Runs only when new save is started. Will not run on load game. See LoadNewSave for that.
         /// </summary>
-        public void StartNew()
+        public void StartNew(bool isBasedOnPremadeMap = true)
         {
             TmxMap map = this.MapName;
             List<TmxLayer> allLayers = new List<TmxLayer>()
@@ -239,7 +239,6 @@ namespace SecretProject.Class.TileStuff
            map.Layers["foreGround"],
            map.Layers["front"]
         };
-
             for (int i = 0; i < this.AllTiles.Count; i++)
             {
                 foreach (TmxLayerTile layerNameTile in allLayers[i].Tiles)
@@ -250,52 +249,59 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            for (int z = 0; z < this.AllTiles.Count; z++)
+            if (isBasedOnPremadeMap) //don't assign properties if we don't have to.
             {
-                for (int i = 0; i < this.MapWidth; i++)
+                for (int z = 0; z < this.AllTiles.Count; z++)
                 {
-                    for (int j = 0; j < this.MapHeight; j++)
+                    for (int i = 0; i < this.MapWidth; i++)
                     {
-
-
-                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
-
-
-
-                    }
-                }
-            }
-            if (this.Stage == Game1.Town || this.Stage == Game1.ForestDungeon)
-            {
-
-                for (int i = 0; i < this.MapWidth; i++)
-                {
-                    for (int j = 0; j < this.MapHeight; j++)
-                    {
-                        if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
+                        for (int j = 0; j < this.MapHeight; j++)
                         {
-                            bool canAddGrass = true;
-                            for (int layer = (int)MapLayer.Buildings; layer < (int)MapLayer.Front; layer++)
-                            {
-                                if (AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
-                                {
-                                    canAddGrass = false;
-                                    break;
-                                }
-                            }
 
 
-                            if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
-                            {
-                                SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
-                            }
+                            TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+
+
 
                         }
                     }
                 }
-
+                if (this.Stage == Game1.Town || this.Stage == Game1.HomeStead)
+                {
+                    AddInitialGrassTufts();
+                }
             }
 
+            
+
+        }
+        private void AddInitialGrassTufts()
+        {
+            for (int i = 0; i < this.MapWidth; i++)
+            {
+                for (int j = 0; j < this.MapHeight; j++)
+                {
+                    if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
+                    {
+                        bool canAddGrass = true;
+                        for (int layer = (int)MapLayer.Buildings; layer < (int)MapLayer.Front; layer++)
+                        {
+                            if (AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
+                            {
+                                canAddGrass = false;
+                                break;
+                            }
+                        }
+
+
+                        if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
+                        {
+                            SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
+                        }
+
+                    }
+                }
+            }
         }
         /// <summary>
         /// Loads tiling dictionaries in from tileset and assigns them into Game1.procedural so that the wangmanager knows what to do.

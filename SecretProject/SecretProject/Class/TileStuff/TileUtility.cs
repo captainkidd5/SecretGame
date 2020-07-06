@@ -686,7 +686,7 @@ namespace SecretProject.Class.TileStuff
                             Portal portal = container.ITileManager.Stage.AllPortals.Find(x => x.To == to && x.From == from);
 
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage((Stages)from, (Stages)to, portal);
+                            Game1.SwitchStage(Game1.GetStageFromEnum((Stages)to), portal);
                         }
                     }
                     break;
@@ -796,22 +796,7 @@ namespace SecretProject.Class.TileStuff
                 case "enterPortal":
                     if (mouse.IsClicked)
                     {
-                        //if (Game1.GetCurrentStageInt() == Stages.OverWorld)
-                        //{
-                        //    foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
-                        //    {
-                        //        if (!chunk.AreReadersAndWritersDone)
-                        //        {
-                        //            return;
-                        //        }
-                        //    }
-                        //    Game1.Player.UserInterface.WarpGate.To = Stages.Town;
-                        //}
-                        //else 
-                        if (Game1.GetCurrentStageInt() == Stages.Town)
-                        {
-                            //Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
-                        }
+                    
 
                     }
                     break;

@@ -48,5 +48,6 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(DungeonGraph.GetNode(99, 1), 0, -64, Dir.Down));
             this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80, 16);
         }
+
     }
 }

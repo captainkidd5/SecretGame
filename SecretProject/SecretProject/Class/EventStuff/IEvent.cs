@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.StageFolder;
 using System.Collections.Generic;
 
 namespace SecretProject.Class.EventStuff
@@ -11,7 +12,7 @@ namespace SecretProject.Class.EventStuff
         List<Character> CharactersInvolved { get; set; }
         bool FreezePlayerControls { get; set; }
         int DayToTrigger { get; set; }
-        int StageToTrigger { get; set; }
+        ILocation StageToTrigger { get; set; }
         bool IsCompleted { get; set; }
         bool IsActive { get; set; }
         int CurrentStep { get; set; }

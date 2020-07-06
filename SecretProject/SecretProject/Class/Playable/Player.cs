@@ -350,13 +350,13 @@ namespace SecretProject.Class.Playable
                         }
                         else if (Game1.CurrentStage.StageType == StageType.Sanctuary)
                         {
-                            SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
-                            if (tracker.UpdateCompletionGuide(item.ID))
-                            {
-                                CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics);
-                                this.UserInterface.BackPack.Inventory.RemoveItem(item);
-                                DoPlayerAnimation(AnimationType.HandsPicking);
-                            }
+                            //SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
+                            //if (tracker.UpdateCompletionGuide(item.ID))
+                            //{
+                            //    CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics);
+                            //    this.UserInterface.BackPack.Inventory.RemoveItem(item);
+                            //    DoPlayerAnimation(AnimationType.HandsPicking);
+                            //}
                         }
 
                     }
@@ -787,7 +787,7 @@ namespace SecretProject.Class.Playable
                 if (this.Health == 0)
                 {
                     this.Health = 6;
-                    Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.PlayerHouse);
+                    Game1.SwitchStage(Game1.PlayerHouse);
                     this.Position = new Vector2(600, 600);
                     Game1.GlobalClock.IncrementDay();
                     UserInterface.BackPack.Inventory.Money -= 200;

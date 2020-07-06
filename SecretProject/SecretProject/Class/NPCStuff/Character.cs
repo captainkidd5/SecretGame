@@ -73,7 +73,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             set { }
         }
 
-        public Stages CurrentStageLocation { get; set; }
+        public ILocation CurrentStageLocation { get; set; }
         // refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
         public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
@@ -95,7 +95,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public Route CurrentRoute { get; set; }
 
-        public Stages HomeStage { get; set; }
+        public ILocation HomeStage { get; set; }
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
@@ -104,7 +104,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public bool IsBeingSpokenTo { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, ILocation currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
 
@@ -213,7 +213,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 UpdateBasicNPC(gameTime, mouse);
                 return;
             }
-            if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            if (Game1.CurrentStage == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
             }
@@ -293,7 +293,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }
-            if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            if (this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
             }
@@ -521,21 +521,21 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
         int nodeToEndAt;
-        public Point FindIntermediateStages(int stageFrom, int stageTo)
+        public Point FindIntermediateStages(ILocation stageFrom, ILocation stageTo)
         {
             nodeToEndAt = 100;
             if (this.PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
             {
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
-                Portal portal = Game1.GetStageFromInt(this.CurrentStageLocation).AllPortals.Find(x => x.To == stageTo);
+                Portal portal =CurrentStageLocation.AllPortals.Find(x => x.To == stageTo);
                 return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16, (portal.PortalStart.Y) / 16);
             }
             else
             {
                 int node = this.PortalTraverser.GetNextNodeInPath(stageFrom, stageTo);
                 nodeToEndAt = node;
-                Portal portal = Game1.GetStageFromInt(this.CurrentStageLocation).AllPortals.Find(x => x.To == node);
+                Portal portal = this.CurrentStageLocation.AllPortals.Find(x => x.To == node);
                 return new Point((portal.PortalStart.X) / 16,
                             (portal.PortalStart.Y) / 16);
                 //throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
@@ -579,14 +579,14 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                     {
                         if (nodeToEndAt != (int)this.CurrentStageLocation)
                         {
-                            Portal portalTo = Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation);
+                            Portal portalTo = Game1.GetStageFromEnum((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation);
                             if (portalTo != null)
                             {
                                 
                                
-                                Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
+                                Game1.GetStageFromEnum(this.CurrentStageLocation).CharactersPresent.Remove(this);
                                 this.CurrentStageLocation = (Stages)nodeToEndAt;
-                                Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
+                                Game1.GetStageFromEnum(this.CurrentStageLocation).CharactersPresent.Add(this);
                            //     if (CurrentStageLocation == Stages.OverWorld)
                            //     {
                            //         this.Position = new Vector2(portalTo.PortalStart.X + 16,
@@ -607,7 +607,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             else if (this.Position != new Vector2(route.EndX * 16, route.EndY * 16))
             {
-                PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
+                PathFinderFast finder = new PathFinderFast(Game1.GetStageFromEnum(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
                 finder.SearchLimit = 10000;
                 if (route.StageToEndAt == (int)this.CurrentStageLocation)
                 {
@@ -684,7 +684,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 PathFinderFast finder;
 
-                    finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
+                    finder = new PathFinderFast(Game1.GetStageFromEnum(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
 
 
                 Point start = new Point((int)(this.Position.X / 16),
@@ -784,9 +784,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }
-            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
+            Game1.GetStageFromEnum(this.CurrentStageLocation).CharactersPresent.Remove(this);
             this.CurrentStageLocation = this.HomeStage;
-            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
+            Game1.GetStageFromEnum(this.CurrentStageLocation).CharactersPresent.Add(this);
             
 
         }

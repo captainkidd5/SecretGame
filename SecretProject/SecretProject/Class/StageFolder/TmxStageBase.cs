@@ -38,7 +38,7 @@ namespace SecretProject.Class.StageFolder
         #region FIELDS
         public LocationType LocationType { get; set; }
         public StageType StageType { get; set; }
-        public int StageIdentifier { get; set; }
+        public Stages StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
 
@@ -202,12 +202,7 @@ namespace SecretProject.Class.StageFolder
             };
 
             this.AllPortals = new List<Portal>();
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this);
-            if (!Game1.AreGeneratableTilesLoaded)
-            {
-                this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
-                Game1.AreGeneratableTilesLoaded = true;
-            }
+            LoadTileManager();
             this.TileWidth = this.Map.Tilesets[(int)this.TileSetNumber].TileWidth;
             this.TileHeight = this.Map.Tilesets[(int)this.TileSetNumber].TileHeight;
 
@@ -222,6 +217,16 @@ namespace SecretProject.Class.StageFolder
             this.AllCrops = new Dictionary<string, Crop>();
             this.QuadTree = new QuadTree(0, this.MapRectangle);
             this.FunBox = new FunBox(this.Graphics);
+        }
+
+        protected virtual void LoadTileManager()
+        {
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this);
+            if (!Game1.AreGeneratableTilesLoaded)
+            {
+                this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
+                Game1.AreGeneratableTilesLoaded = true;
+            }
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -293,7 +298,7 @@ namespace SecretProject.Class.StageFolder
             }
             else
             {
-                AllTiles.StartNew();
+                AllTiles.StartNew(true);
             }
         }
 
@@ -387,7 +392,7 @@ namespace SecretProject.Class.StageFolder
                         if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            Game1.SwitchStage(Game1.GetStageFromEnum((Stages)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -397,7 +402,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
                         {
-                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
+                            Game1.SwitchStage(Game1.GetStageFromEnum((Stages)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;

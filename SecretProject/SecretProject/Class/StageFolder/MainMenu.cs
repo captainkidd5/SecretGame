@@ -88,7 +88,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsDrawn { get; set; }
         public LocationType LocationType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public StageType StageType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Stages StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int TileWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int TileHeight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -285,15 +285,15 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            foreach(ILocation location in Game1.AllStages)
-            {
-                location.AllTiles.StartNew();
-            }
+            //foreach(ILocation location in Game1.AllStages)
+            //{
+            //    location.AllTiles.StartNew();
+            //}
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
-            Game1.SwitchStage(0, Stages.PlayerHouse);
+            Game1.SwitchStage(Game1.PlayerHouse);
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.005f);
             Game1.Player.position = new Vector2(460, 660);
 
@@ -319,7 +319,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                 Game1.ItemVault.LoadInteriorContent(Game1.Town.AllTiles);
                 CurrentMenuState = MenuState.Primary;
-                Game1.SwitchStage(0, Stages.Town);
+                Game1.SwitchStage(Game1.Town);
             }
             else if (StartGameInWilderness.isClicked)
             {

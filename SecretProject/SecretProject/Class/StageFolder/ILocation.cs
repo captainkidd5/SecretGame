@@ -46,7 +46,7 @@ namespace SecretProject.Class.StageFolder
     {
         LocationType LocationType { get; set; }
         StageType StageType { get; set; }
-        int StageIdentifier { get; set; }
+        Stages StageIdentifier { get; set; }
         string StageName { get; set; }
         int TileWidth { get; set; }
         int TileHeight { get; set; }

@@ -187,7 +187,7 @@ namespace SecretProject.Class.UI
 
                    newString = char.ToUpper(newString[0]) + newString.Substring(1);
                     Stages newStage = (Stages)Enum.Parse(typeof(Stages), newString, true);
-                    Game1.SwitchStage(Game1.GetCurrentStageInt(), newStage);
+                    Game1.SwitchStage(Game1.GetStageFromEnum(newStage));
                     break;
                 case "clear":
                     this.DisplayLog = string.Empty;

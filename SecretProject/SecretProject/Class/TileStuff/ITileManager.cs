@@ -67,7 +67,7 @@ namespace SecretProject.Class.TileStuff
 
         void SaveTiles();
         void Unload();
-        void StartNew();
+        void StartNew(bool isBasedOnPremadeMap);
 
 
     }

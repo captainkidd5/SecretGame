@@ -178,7 +178,7 @@ namespace SecretProject
         public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
-        public static Stages gameStages = Stages.MainMenu;
+
 
         //screen stuff
         public static Rectangle ScreenRectangle = new Rectangle(0, 0, 0, 0);
@@ -383,19 +383,15 @@ namespace SecretProject
         }
         #endregion
 
-
-        public static ILocation GetStageFromInt(Stages stage)
+        /// <summary>
+        /// primarily used by portals.
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <returns></returns>
+        public static ILocation GetStageFromEnum(Stages stage)
         {
-            return (AllStages[(int)stage]);
-
-
+            return AllStages.Find(x => x.StageIdentifier == stage);
         }
-
-        public static Stages GetCurrentStageInt()
-        {
-            return gameStages;
-        }
-
 
 
         #region LOADCONTENT
@@ -470,10 +466,7 @@ namespace SecretProject
 
             AllEvents = new List<IEvent>()
             {
-               // new IntroduceSanctuary(),
-               // new IntroduceJulianShop(GraphicsDevice),
-                new IntroScene(this.GraphicsDevice),
-                new MeetJulian(this.GraphicsDevice)
+
             };
             IsEventActive = false;
 
@@ -578,24 +571,24 @@ namespace SecretProject
 
 
 
-            ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/elixirShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
-            JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/JulianShop.tmx"), 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
-           // OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.OverWorld };
-            DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
-            PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx"), 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
-            GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/GeneralStore.tmx"), 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
-            KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/KayaHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
-            Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/Cafe.tmx"), 1, 0) { StageIdentifier = (int)Stages.Cafe };
-          //  UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
-            DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx"), 1, 0) { StageIdentifier = (int)Stages.DobbinHouseUpper };
-            MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/MarcusHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
-            LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/LightHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.LightHouse };
-            CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/CasparHouse.tmx"), 1, 0) { StageIdentifier = (int)Stages.CasparHouse };
-            MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/MountainTop.tmx"), 1, 0) { StageIdentifier = (int)Stages.MountainTop };
-            GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/GisaardRanch.tmx"), 1, 0) { StageIdentifier = (int)Stages.GisaardRanch };
-            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.HomeStead };
-            ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.ForestDungeon };
-            DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = (int)Stages.DesertDungeon };
+            ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/elixirShop.tmx"), 1, 0) { StageIdentifier = Stages.ElixirHouse };
+            JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/JulianShop.tmx"), 1, 0) { StageIdentifier = Stages.JulianHouse };
+           // OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager,  AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = Stages.OverWorld };
+            DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouse.tmx"), 1, 0) { StageIdentifier = Stages.DobbinHouse };
+            PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx"), 1, 0) { StageIdentifier = Stages.PlayerHouse };
+            GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/GeneralStore.tmx"), 1, 0) { StageIdentifier = Stages.GeneralStore };
+            KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/KayaHouse.tmx"), 1, 0) { StageIdentifier = Stages.KayaHouse };
+            Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/Cafe.tmx"), 1, 0) { StageIdentifier = Stages.Cafe };
+          //  UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, townMap, 1, 0) { StageIdentifier = Stages.UnderWorld };
+            DobbinHouseUpper = new TmxStageBase("DobbinHouseUpper", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx"), 1, 0) { StageIdentifier = Stages.DobbinHouseUpper };
+            MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/MarcusHouse.tmx"), 1, 0) { StageIdentifier = Stages.MarcusHouse };
+            LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/LightHouse.tmx"), 1, 0) { StageIdentifier = Stages.LightHouse };
+            CasparHouse = new TmxStageBase("CasparHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager,  AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/CasparHouse.tmx"), 1, 0) { StageIdentifier = Stages.CasparHouse };
+            MountainTop = new TmxStageBase("MountainTop", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/MountainTop.tmx"), 1, 0) { StageIdentifier = Stages.MountainTop };
+            GisaardRanch =  new TmxStageBase("GisaardRanch", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/GisaardRanch.tmx"), 1, 0) { StageIdentifier = Stages.GisaardRanch };
+            HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = Stages.HomeStead };
+            ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = Stages.ForestDungeon };
+            DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0) { StageIdentifier = Stages.DesertDungeon };
 
 
             AllStages = new List<ILocation>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead,ForestDungeon,DesertDungeon };
@@ -675,7 +668,7 @@ namespace SecretProject
         {
 
             Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(25, 12));
-            Elixir = new Character("Elixir", new Vector2(25, 12), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Stages.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
+            Elixir = new Character("Elixir", new Vector2(25, 12), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], Game1.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -703,7 +696,7 @@ namespace SecretProject
 
 
             Vector2 dobbinPosition = Character.GetWorldPosition(new Vector2(18, 8));
-            Dobbin = new Character("Dobbin", new Vector2(5, 7), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], Stages.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
+            Dobbin = new Character("Dobbin", new Vector2(5, 7), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], Game1.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -727,7 +720,7 @@ namespace SecretProject
 
 
             Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
-            Kaya = new Character("Kaya", new Vector2(51, 32), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Stages.Town, false, KayaQuests, AllTextures.KayaPortrait)
+            Kaya = new Character("Kaya", new Vector2(51, 32), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], Game1.Town, false, KayaQuests, AllTextures.KayaPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -755,13 +748,13 @@ namespace SecretProject
                 0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 3,
-                CurrentStageLocation = Stages.Town,
+                CurrentStageLocation = Game1.Town,
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
 
             Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 15));
-            Julian = new Character("Julian", new Vector2(16, 15), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], Stages.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
+            Julian = new Character("Julian", new Vector2(16, 15), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], Game1.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -784,7 +777,7 @@ namespace SecretProject
 
 
             Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(56, 28));
-            Sarah = new Character("Sarah", new Vector2(56, 28), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Stages.Town, false, SarahQuests, AllTextures.SarahPortrait)
+            Sarah = new Character("Sarah", new Vector2(56, 28), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], Game1.Town, false, SarahQuests, AllTextures.SarahPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -813,7 +806,7 @@ namespace SecretProject
                 0, 0, 32, 32, 1, 1f, new Vector2(1280, 600)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 7,
-                CurrentStageLocation = Stages.Town,
+                CurrentStageLocation = Game1.Town,
                 FrameToSet = 0,
                 IsBasicNPC = true
             };
@@ -823,7 +816,7 @@ namespace SecretProject
 
 
             Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(49, 33));
-            Mippin = new Character("Mippin", new Vector2(49, 33), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Stages.Town, false, MippinQuests, AllTextures.MippinPortrait)
+            Mippin = new Character("Mippin", new Vector2(49, 33), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], Game1.Town, false, MippinQuests, AllTextures.MippinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -846,7 +839,7 @@ namespace SecretProject
 
 
             Vector2 nedPosition = Character.GetWorldPosition(new Vector2(52, 15));
-            Ned = new Character("Ned", new Vector2(52, 15), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Stages.Town, false, NedQuests, AllTextures.NedPortrait)
+            Ned = new Character("Ned", new Vector2(52, 15), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], Game1.Town, false, NedQuests, AllTextures.NedPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -870,7 +863,7 @@ namespace SecretProject
 
 
             Vector2 tealPosition = Character.GetWorldPosition(new Vector2(55, 17));
-            Teal = new Character("Teal", new Vector2(55, 17), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Stages.Town, false, TealQuests, AllTextures.TealPortrait)
+            Teal = new Character("Teal", new Vector2(55, 17), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], Game1.Town, false, TealQuests, AllTextures.TealPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -893,7 +886,7 @@ namespace SecretProject
 
 
             Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(16, 26));
-            Marcus = new Character("Marcus", new Vector2(16, 26), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], Stages.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
+            Marcus = new Character("Marcus", new Vector2(16, 26), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], Game1.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -917,7 +910,7 @@ namespace SecretProject
 
 
             Vector2 casparPosition = Character.GetWorldPosition(new Vector2(16, 14));
-            Caspar = new Character("Caspar", new Vector2(16, 14), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Stages.CasparHouse,false, CasparQuests, AllTextures.CasparPortrait)
+            Caspar = new Character("Caspar", new Vector2(16, 14), graphics.GraphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], Game1.CasparHouse,false, CasparQuests, AllTextures.CasparPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -959,7 +952,7 @@ namespace SecretProject
             {
                 foreach (Character character in AllCharacters)
                 {
-                    if (character.CurrentStageLocation == (Stages)stage.StageIdentifier)
+                    if (character.CurrentStageLocation == CurrentStage)
                     {
                         stage.CharactersPresent.Add(character);
                     }
@@ -997,25 +990,19 @@ namespace SecretProject
 
 
 
-        public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
+        public static void SwitchStage(ILocation stageToSwitchTo, Portal portal = null)
         {
             Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
             IsFadingOut = true;
             
-            ILocation location = GetStageFromInt(currentStage);
-            location.UnloadContent();
-            ILocation newLocation = GetStageFromInt(stageToSwitchTo);
-            gameStages = (Stages)stageToSwitchTo;
-            //if (newLocation.LocationType == LocationType.Interior || gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
-            //{
-            //    Game1.Player.LockBounds = false;
+ 
+            CurrentStage.UnloadContent();
+            ILocation newLocation = stageToSwitchTo;
 
-            //}
-            //else
-            //{
+
                 Game1.Player.LockBounds = true;
-         //   }
+
             if (!newLocation.IsLoaded)
             {
 
@@ -1026,8 +1013,8 @@ namespace SecretProject
 
             if (portal != null)
             {
-                List<Portal> portalTest = GetStageFromInt(stageToSwitchTo).AllPortals;
-                Portal tempPortal = GetStageFromInt(stageToSwitchTo).AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
+                List<Portal> portalTest = stageToSwitchTo.AllPortals;
+                Portal tempPortal = stageToSwitchTo.AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 if (tempPortal != null)
                 {
                     float x = tempPortal.PortalStart.X;
@@ -1103,19 +1090,19 @@ namespace SecretProject
             {
                 foreach (IEvent e in AllEvents)
                 {
-                    if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
-                    {
-                        int num = (int)GetCurrentStageInt();
-                        if (!e.IsActive)
-                        {
-                            //e.Start();
-                            IsEventActive = true;
-                            CurrentEvent = e;
-                            CurrentEvent.Start();
-                        }
+                    //if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == stageToSwitchTo && !e.IsCompleted)
+                    //{
+                    //    int num = (int)GetCurrentStageInt();
+                    //    if (!e.IsActive)
+                    //    {
+                    //        //e.Start();
+                    //        IsEventActive = true;
+                    //        CurrentEvent = e;
+                    //        CurrentEvent.Start();
+                    //    }
 
 
-                    }
+                    //}
                 }
             }
             if (CurrentEvent != null)

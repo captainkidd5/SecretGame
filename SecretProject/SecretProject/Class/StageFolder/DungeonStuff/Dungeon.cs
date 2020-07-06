@@ -93,7 +93,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
             else
             {
-                AllTiles.StartNew();
+                AllTiles.StartNew(false);
                 this.DungeonGraph.GenerateLayout();
                 CreateFirstRoom();
                 this.DungeonGraph.GeneratePortalConnections();
