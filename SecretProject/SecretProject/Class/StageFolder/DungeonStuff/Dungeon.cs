@@ -117,6 +117,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this,false);
         }
 
+        public override void StartNew()
+        {
+        }
+
         protected virtual void CreateFirstRoom()
         {
             DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 0, this.Content); //starting room is top right

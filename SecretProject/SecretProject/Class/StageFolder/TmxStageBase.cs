@@ -231,7 +231,7 @@ namespace SecretProject.Class.StageFolder
             }
         }
 
-        public void StartNew()
+        public virtual void StartNew()
         {
             this.AllTiles.StartNew(this.IsBasedOnPreloadedMap);
         }
