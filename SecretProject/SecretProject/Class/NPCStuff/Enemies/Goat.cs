@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Goat : Enemy
     {
-        public Goat( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base( pack, position, graphics, container)
+        public Goat( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager) : base( pack, position, graphics, TileManager)
         {
             
             this.Texture = Game1.AllTextures.EnemySpriteSheet;

@@ -33,18 +33,18 @@ namespace SecretProject.Class.TileStuff.TileModifications
                 ITileModifiable modifier = Modifiers[i];
                 if (modifier.Update(gameTime))
                 {
-                    TileUtility.FinalizeTile(modifier.TileLayer, gameTime, modifier.TileX, modifier.TileY, modifier.Container);
+                    TileUtility.FinalizeTile(modifier.TileLayer, gameTime, modifier.TileX, modifier.TileY, modifier.TileManager);
                     Modifiers.RemoveAt(i);
                 }
             }
         }
 
-        public static ITileModifiable GetTileModificationType(string info, IInformationContainer container, int layer, int x, int y, Tile tile, Dir dir)
+        public static ITileModifiable GetTileModificationType(string info, TileManager TileManager, int layer, int x, int y, Tile tile, Dir dir)
         {
             switch(info)
             {
                 case "tree":
-                    return new TileRotator(tile,container, layer, x, y, dir);
+                    return new TileRotator(tile,TileManager, layer, x, y, dir);
                 default:
                     throw new Exception("tile property type does not contain a definition for " + info);
             }

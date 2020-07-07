@@ -12,7 +12,7 @@ namespace SecretProject.Class.TileStuff.TileModifications
          int TileX { get; set; }
          int TileY { get; set; }
          int TileLayer { get; set; }
-         IInformationContainer Container { get; set; }
+         TileManager TileManager { get; set; }
         Tile Tile { get; set; }
         bool Update(GameTime gameTime);
     }

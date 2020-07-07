@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Chicken : Enemy
     {
-        public Chicken( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container ) : base( pack, position, graphics, container)
+        public Chicken( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager ) : base( pack, position, graphics, TileManager)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

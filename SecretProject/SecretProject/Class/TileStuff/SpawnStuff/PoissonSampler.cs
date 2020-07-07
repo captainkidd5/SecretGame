@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         }
 
         public void Generate(int gid, Tile[,] tiles, int layerToPlace, int layerToPlaceOn, int layerToCheckIfEmpty,
-            IInformationContainer container, GenerationType generationType, Random random, bool isCrop)
+            TileManager TileManager, GenerationType generationType, Random random, bool isCrop)
         {
             //generate first point randomly within grid
             activeSamples.Add(new Point(random.Next(0, Grid.GetLength(0) - 1),
@@ -64,21 +64,21 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                         {
                             if (IsFarEnough(newPoint))
                             {
-                                if (container.AllTiles[layerToPlaceOn][newPoint.X, newPoint.Y].GenerationType == generationType)
+                                if (TileManager.AllTiles[layerToPlaceOn][newPoint.X, newPoint.Y].GenerationType == generationType)
                                 {
                                     if(layerToCheckIfEmpty != (int)MapLayer.BackGround)
                                     {
-                                        if (container.AllTiles[layerToCheckIfEmpty][newPoint.X, newPoint.Y].GID == -1)
+                                        if (TileManager.AllTiles[layerToCheckIfEmpty][newPoint.X, newPoint.Y].GID == -1)
                                         {
                                             found = true;
                                             activeSamples.Add(newPoint);
                                             Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
-                                            TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
+                                            TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, TileManager);
                                             
                                             if (isCrop)
                                             {
                                                 Crop crop = Game1.AllCrops.GetCropFromGID(gid);
-                                                TileUtility.AddCropToTile(crop,container.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, container, true);
+                                                TileUtility.AddCropToTile(crop,TileManager.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, TileManager, true);
                                             }
                                             break;
                                         }
@@ -89,11 +89,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                         found = true;
                                         activeSamples.Add(newPoint);
                                         Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
-                                        TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
+                                        TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, TileManager);
                                         if (isCrop)
                                         {
                                             Crop crop = Game1.AllCrops.GetCropFromGID(gid);
-                                            TileUtility.AddCropToTile(crop,container.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, container, true);
+                                            TileUtility.AddCropToTile(crop,TileManager.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, TileManager, true);
                                         }
                                         break;
                                     }

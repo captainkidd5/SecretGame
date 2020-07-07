@@ -30,14 +30,18 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
+    public enum LocationType
+    {
 
+        Exterior = 0,
+        Interior = 1
+    }
 
-    public class TmxStageBase : ILocation
+    public class TmxStageBase
     {
 
         #region FIELDS
         public LocationType LocationType { get; set; }
-        public StageType StageType { get; set; }
         public Stages StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
@@ -100,7 +104,7 @@ namespace SecretProject.Class.StageFolder
         public event EventHandler SceneChanged;
 
         public bool IsLoaded { get; set; }
-        public ITileManager AllTiles { get; set; }
+        public TileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
 
@@ -117,7 +121,6 @@ namespace SecretProject.Class.StageFolder
         public List<Projectile> AllProjectiles { get; set; }
         public List<ParticleEngine> ParticleEngines { get; set; }
 
-        public TileSetType TileSetNumber { get; set; }
         //SAVE STUFF
         public string SavePath { get; set; }
 
@@ -131,11 +134,11 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, bool isBasedOnPreloadedMap = true)
+        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, bool isBasedOnPreloadedMap = true)
         {
             this.StageName = name;
             this.LocationType = locationType;
-            this.StageType = stageType;
+
             this.Graphics = graphics;
 
             this.StageContentManager = new ContentManager(content.ServiceProvider);
@@ -154,17 +157,13 @@ namespace SecretProject.Class.StageFolder
             this.Enemies = new List<Enemy>();
             this.AllProjectiles = new List<Projectile>();
             this.Map = tmxMap;
-            if (locationType == LocationType.Interior)
-            {
-                this.TileSetNumber = TileSetType.Exterior;
-            }
-            else if (locationType == LocationType.Exterior)
-            {
-                this.TileSetNumber = TileSetType.Exterior;
-            }
+
             LoadPreliminaryContent();
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
 
+        }
+        public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        {
         }
 
         public virtual void AssignPath(string startPath)
@@ -205,8 +204,8 @@ namespace SecretProject.Class.StageFolder
 
             this.AllPortals = new List<Portal>();
             LoadTileManager();
-            this.TileWidth = this.Map.Tilesets[(int)this.TileSetNumber].TileWidth;
-            this.TileHeight = this.Map.Tilesets[(int)this.TileSetNumber].TileHeight;
+            this.TileWidth = this.Map.Tilesets[(int)this.LocationType].TileWidth;
+            this.TileHeight = this.Map.Tilesets[(int)this.LocationType].TileHeight;
 
             this.TilesetTilesWide = this.TileSet.Width / this.TileWidth;
             this.TilesetTilesHigh = this.TileSet.Height / this.TileHeight;
@@ -223,7 +222,7 @@ namespace SecretProject.Class.StageFolder
 
         protected virtual void LoadTileManager()
         {
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this);
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, 0, this); //tileset should always be zero!
             if (!Game1.AreGeneratableTilesLoaded)
             {
                 this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
@@ -253,7 +252,7 @@ namespace SecretProject.Class.StageFolder
             SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             this.AllTextToWrite = new List<StringWrapper>();
-            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, this.Graphics);
+            this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, this.Graphics);
             this.IsLoaded = true;
 
         }

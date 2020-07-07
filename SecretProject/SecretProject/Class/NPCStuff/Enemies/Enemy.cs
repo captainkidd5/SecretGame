@@ -104,7 +104,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         private Navigator Navigator { get; set; }
 
         private bool HasReachedNextPoint { get; set; }
-        public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
+        public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager)
         {
             this.Pack = pack;
             this.Position = position;
@@ -120,7 +120,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.PrimaryPlayerInterationBehavior = CurrentBehaviour.Chase;
 
-            this.ObstacleGrid = container.PathGrid;
+            this.ObstacleGrid = TileManager.PathGrid;
             this.Navigator = new Navigator("blank", ObstacleGrid.Weight);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
 
@@ -134,10 +134,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
 
-        public void UpdateCurrentChunk(IInformationContainer container)
+        public void UpdateCurrentChunk(TileManager TileManager)
         {
 
-            this.ObstacleGrid = container.PathGrid;
+            this.ObstacleGrid = TileManager.PathGrid;
         }
 
         /// <summary>

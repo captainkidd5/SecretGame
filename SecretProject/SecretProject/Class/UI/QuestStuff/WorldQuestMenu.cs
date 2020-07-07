@@ -30,7 +30,7 @@ namespace SecretProject.Class.UI.QuestStuff
         public int TileLayer { get; set; }
         public int TileI { get; set; }
         public int TileJ { get; set; }
-        public IInformationContainer Container { get; set; }
+        public TileManager TileManager { get; set; }
 
         public string Description { get; set; }
         public Vector2 DescriptionPosition { get; set; }
@@ -61,7 +61,7 @@ namespace SecretProject.Class.UI.QuestStuff
             this.ItemRequirementButtons = new List<ItemButton>();
         }
 
-        public void LoadQuest(WorldQuest worldQuest, int tileLayer, int tileI, int tileJ, IInformationContainer container)
+        public void LoadQuest(WorldQuest worldQuest, int tileLayer, int tileI, int tileJ, TileManager TileManager)
         {
             this.WorldQuest = worldQuest;
             this.TileLayer = tileLayer;
@@ -73,10 +73,10 @@ namespace SecretProject.Class.UI.QuestStuff
 
             this.RewardDescription = worldQuest.RewardDescription;
             this.RewardDescriptionPosition = new Vector2(Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, Game1.Utility.GetCenterOfRectangle(this.BackSourceRectangle, this.Position, this.Scale), this.Description, this.Scale).X, this.Position.Y + this.BackSourceRectangle.Height * Scale * .75f);
-            this.Container = container;
+            this.TileManager = TileManager;
             this.ItemRequirementButtons = new List<ItemButton>();
 
-            this.TileSourceRectangle = container.AllTiles[tileLayer][tileI, tileJ].SourceRectangle;
+            this.TileSourceRectangle = TileManager.AllTiles[tileLayer][tileI, tileJ].SourceRectangle;
             this.TileDrawPosition = Game1.Utility.CenterRectangleInRectangle(this.BackSourceRectangle, this.TileSourceRectangle, new Vector2(this.Position.X, this.Position.Y - 32), this.Scale, this.Scale);
 
             for(int i =0; i < worldQuest.ItemsRequired.Count; i++)
@@ -88,7 +88,7 @@ namespace SecretProject.Class.UI.QuestStuff
             }
         }
 
-        public void AddSpriteToDictionary(Dictionary<string, Sprite> dictionary, IInformationContainer container, Tile tile)
+        public void AddSpriteToDictionary(Dictionary<string, Sprite> dictionary, TileManager TileManager, Tile tile)
         {
             if(!dictionary.ContainsKey(tile.TileKey))
             {
@@ -116,9 +116,9 @@ namespace SecretProject.Class.UI.QuestStuff
                 {
                     Game1.WorldQuestHolder.RemoveItemsFromPlayerInventory(this.WorldQuest);
 
-                    TileUtility.ReplaceTile(this.TileLayer,this.TileI,this.TileJ, WorldQuest.ReplacementGID, Container);
+                    TileUtility.ReplaceTile(this.TileLayer,this.TileI,this.TileJ, WorldQuest.ReplacementGID, TileManager);
                     this.WorldQuest.Completed = true;
-                    Container.QuestIcons.Remove(Container.AllTiles[TileLayer][TileI, TileJ].GetTileKeyString(TileLayer, Container));
+                    TileManager.QuestIcons.Remove(TileManager.AllTiles[TileLayer][TileI, TileJ].GetTileKeyString(TileLayer, TileManager));
                     Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "Repaired!");
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }

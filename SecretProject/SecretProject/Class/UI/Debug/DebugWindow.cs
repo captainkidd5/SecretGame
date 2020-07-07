@@ -141,16 +141,6 @@ namespace SecretProject.Class.UI
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.CurrentStage.AllTiles).ToString()
 
 
-        public string WriteChunkCoordinateValue(Chunk chunk)
-        {
-            return "[" + chunk.X + "," + chunk.Y + "] ";
-        }
-
-        public string WriteChunkArrayValue(Chunk chunk)
-        {
-            return "["+chunk.ArrayI + "," + chunk.ArrayJ + "] ";
-        }
-
         private string WriteDungeonGrid()
         {
             return Game1.ForestDungeon.GetDebugString();

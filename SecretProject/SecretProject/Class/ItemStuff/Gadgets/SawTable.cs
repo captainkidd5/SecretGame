@@ -32,7 +32,7 @@ namespace SecretProject.Class.ItemStuff
 
         public Vector2 TimerStringLocation { get; set; }
         public Tile Tile { get; set; }
-        public IInformationContainer Container { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public TileManager TileManager { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int Layer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int X { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int Y { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -65,13 +65,13 @@ namespace SecretProject.Class.ItemStuff
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
                new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
         }
-        public void Activate(IInformationContainer container, int x, int y, int layer)
+        public void Activate(TileManager TileManager, int x, int y, int layer)
         {
             this.IsUpdating = true;
-            this.Tile = container.AllTiles[layer][x, y];
+            this.Tile = TileManager.AllTiles[layer][x, y];
             this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
 
-            TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+            TileUtility.Animate(Dir.Right, layer, x, y, TileManager, false);
 
         }
 

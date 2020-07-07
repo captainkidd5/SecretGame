@@ -37,7 +37,7 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
-        public Item GetandSpawnLootFromXML(int gid, Vector2 position, IInformationContainer container)
+        public Item GetandSpawnLootFromXML(int gid, Vector2 position, TileManager TileManager)
         {
             LootData data = LootInfo[gid];
             for (int i = 0; i < data.LootPieces.Count; i++)
@@ -46,14 +46,14 @@ namespace SecretProject.Class.ItemStuff
                 {
                     for(int g =0; g < data.LootPieces[i].MinNumberToSpawn; g++)
                     {
-                        Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, container.AllItems);
+                        Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, TileManager.AllItems);
                     }
 
                     for (int g = 0; g < data.LootPieces[i].MaxNumberToSpawn; g++) 
                     {
                         if (Game1.Utility.RNumber(0, 100) < data.LootPieces[i].ProbabilityAdditionalSpawn)
                         {
-                            Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, container.AllItems);
+                            Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true, TileManager.AllItems);
                         }
                         else
                         {
@@ -70,11 +70,11 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public Item GetLootFromTileset(int gid, Vector2 position, string lootString, IInformationContainer container)
+        public Item GetLootFromTileset(int gid, Vector2 position, string lootString, TileManager TileManager)
         {
             int lootID = int.Parse(lootString);
-            Game1.ItemVault.GenerateNewItem(lootID, position, true, container.AllItems);
-            // container.AllItems.Add(Game1.ItemVault.GenerateNewItem(lootID, position, true));
+            Game1.ItemVault.GenerateNewItem(lootID, position, true, TileManager.AllItems);
+            // TileManager.AllItems.Add(Game1.ItemVault.GenerateNewItem(lootID, position, true));
             return Game1.ItemVault.GenerateNewItem(lootID, null);
         }
     }

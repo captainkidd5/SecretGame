@@ -20,7 +20,7 @@ namespace SecretProject.Class.UI.CraftingStuff
         public CraftingWindow CraftingWindow { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle BackSourceRectangle { get; set; }
-        public RecipeContainer CurrentRecipe { get; set; }
+        public RecipeTileManager CurrentRecipe { get; set; }
 
         public RedEsc RedEsc { get; set; }
 
@@ -91,17 +91,17 @@ namespace SecretProject.Class.UI.CraftingStuff
             }
         }
 
-        public void CraftItem(RecipeContainer container)
+        public void CraftItem(RecipeTileManager TileManager)
         {
-            for(int i =0; i < container.ItemRecipe.AllItemsRequired.Count; i++)
+            for(int i =0; i < TileManager.ItemRecipe.AllItemsRequired.Count; i++)
             {
-                for(int j =0; j < container.ItemRecipe.AllItemsRequired[i].Count; j++)
+                for(int j =0; j < TileManager.ItemRecipe.AllItemsRequired[i].Count; j++)
                 {
-                    Game1.Player.Inventory.RemoveItem(container.ItemRecipe.AllItemsRequired[i].ItemID);
+                    Game1.Player.Inventory.RemoveItem(TileManager.ItemRecipe.AllItemsRequired[i].ItemID);
                 }
                 
             }
-            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(container.ItemRecipe.ItemToCraftID,null));
+            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(TileManager.ItemRecipe.ItemToCraftID,null));
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -55,13 +55,13 @@ namespace SecretProject.Class.NPCStuff
 
 
 
-        private IInformationContainer container;
+        private TileManager TileManager;
 
         private GraphicsDevice Graphics;
 
-        public NPCGenerator(IInformationContainer container, GraphicsDevice graphics)
+        public NPCGenerator(TileManager TileManager, GraphicsDevice graphics)
         {
-            this.container = container;
+            this.TileManager = TileManager;
             Graphics = graphics;
             
         }
@@ -71,21 +71,21 @@ namespace SecretProject.Class.NPCStuff
             packValue -= .1f;
         }
 
-        public List<Enemy> SpawnTargetNPCPack(NPCType type, IInformationContainer container, int numberToSpawn, Vector2 position)
+        public List<Enemy> SpawnTargetNPCPack(NPCType type, TileManager TileManager, int numberToSpawn, Vector2 position)
         {
             List<Enemy> NPCPack = new List<Enemy>();
 
             for(int i =0; i < numberToSpawn; i++)
             {
-                NPCPack.Add(NPCSpawnData.GetNewEnemy(type, this.Graphics, NPCPack, position, container));
+                NPCPack.Add(NPCSpawnData.GetNewEnemy(type, this.Graphics, NPCPack, position, TileManager));
             }
             return NPCPack;
            
         }
 
-        public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position, IInformationContainer container)
+        public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position, TileManager TileManager)
         {
-            this.container = container;
+            this.TileManager = TileManager;
             List<Enemy> NPCPack = new List<Enemy>();
             NPCSpawnData spawnData = null;
             for (int i = 0; i < NPCInfo.Count; i++)
@@ -111,25 +111,25 @@ namespace SecretProject.Class.NPCStuff
                     bool flag = true;
                     while (flag)
                     {
-                        flag = DetermineNewNPCS(NPCPack, spawnData, ref numberInPack, position,container);
+                        flag = DetermineNewNPCS(NPCPack, spawnData, ref numberInPack, position,TileManager);
                     }
                 
                 return NPCPack;
             }
         }
 
-        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, ref int numberAlreadyInPack, Vector2 positionToSpawn, IInformationContainer container)
+        private bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, ref int numberAlreadyInPack, Vector2 positionToSpawn, TileManager TileManager)
         {
             if(numberAlreadyInPack == 0)
             {
-                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, TileManager));
                 numberAlreadyInPack++;
                 return true;
             }
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(info.PackFrequency);
-                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.container));
+                enemyList.Add(NPCSpawnData.GetNewEnemy(info.Type, Graphics, enemyList, positionToSpawn, this.TileManager));
                 return true;
             }
             else
@@ -167,33 +167,33 @@ namespace SecretProject.Class.NPCStuff
             this.PackFrequency = packFrequency;
         }
 
-        public static Enemy GetNewEnemy(NPCType type, GraphicsDevice graphics, List<Enemy> pack, Vector2 position, IInformationContainer container)
+        public static Enemy GetNewEnemy(NPCType type, GraphicsDevice graphics, List<Enemy> pack, Vector2 position, TileManager TileManager)
         {
             switch (type)
             {
                 case NPCType.boar:
 
-                    return new Boar( pack, position, graphics, container) { HasPackAggression = true } ;
+                    return new Boar( pack, position, graphics, TileManager) { HasPackAggression = true } ;
 
 
                 case NPCType.crab:
-                    return new Crab( pack, position, graphics, container) { HasPackAggression = true };
+                    return new Crab( pack, position, graphics, TileManager) { HasPackAggression = true };
 
                 case NPCType.rabbit:
-                    return new Rabbit( pack, position, graphics, container);
+                    return new Rabbit( pack, position, graphics, TileManager);
 
                 case NPCType.butterfly:
-                    return new Butterfly( pack, position, graphics, container);
+                    return new Butterfly( pack, position, graphics, TileManager);
                 case NPCType.warchicken:
-                    return new WarChicken( pack, position, graphics, container) { HasPackAggression = true };
+                    return new WarChicken( pack, position, graphics, TileManager) { HasPackAggression = true };
                 case NPCType.cavetoad:
-                    return new CaveToad(pack, position, graphics, container) { HasPackAggression = true };
+                    return new CaveToad(pack, position, graphics, TileManager) { HasPackAggression = true };
                 case NPCType.sporeshooter:
-                    return new SporeShooter( pack, position, graphics, container) { HasPackAggression = true };
+                    return new SporeShooter( pack, position, graphics, TileManager) { HasPackAggression = true };
                 case NPCType.goat:
-                    return new Goat( pack, position, graphics, container) { HasPackAggression = true };
+                    return new Goat( pack, position, graphics, TileManager) { HasPackAggression = true };
                 case NPCType.bee:
-                    return new Bee( pack, position, graphics, container) { HasPackAggression = true };
+                    return new Bee( pack, position, graphics, TileManager) { HasPackAggression = true };
                 default:
                     return null;
             }

@@ -8,13 +8,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 {
     public class NoiseInterval
     {
-        public TilingContainer TilingContainer { get; set; }
+        public TilingTileManager TilingTileManager { get; set; }
         public float LowerBound { get; set; }
         public float UpperBound { get; set; }
 
-        public NoiseInterval( TilingContainer tilingContainer,float lowerBound, float upperBound)
+        public NoiseInterval( TilingTileManager tilingTileManager,float lowerBound, float upperBound)
         {
-            this.TilingContainer = tilingContainer;
+            this.TilingTileManager = tilingTileManager;
             this.LowerBound = lowerBound;
             this.UpperBound = upperBound;
         }

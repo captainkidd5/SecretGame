@@ -12,15 +12,15 @@ namespace SecretProject.Class.TileStuff.TileModifications
         public int TileX { get; set; }
         public int TileY { get; set; }
         public int TileLayer { get; set; }
-        public IInformationContainer Container { get; set; }
+        public TileManager TileManager { get; set; }
         public Tile Tile { get; set; }
         public float DesiredRotation { get; private set; }
         public float RotationSpeed { get; private set; }
 
-        public TileRotator(Tile tile, IInformationContainer container, int layer, int tileX, int tileY, Dir sideOfTreePlayerOn)
+        public TileRotator(Tile tile, TileManager TileManager, int layer, int tileX, int tileY, Dir sideOfTreePlayerOn)
         {
             this.Tile = tile;
-            this.Container = container;
+            this.TileManager = TileManager;
             this.TileLayer = layer;
             this.TileX = tileX;
             this.TileY = tileY;

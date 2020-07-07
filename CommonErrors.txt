@@ -1,0 +1,6 @@
+Common Errors:
+
+Tileset:
+
+Errors:
+Crazy interior hitboxes and source rectangles: Solution: tilesets for all tmxmaps should be at Index[0], otherwise they use the properties from the other tileset!

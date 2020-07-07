@@ -23,7 +23,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         }
         //for starting room
-        public DesertRoom(ITileManager tileManager, Dungeon dungeon, int x, int y, ContentManager content) : base(tileManager, dungeon, x, y, content)
+        public DesertRoom(TileManager tileManager, Dungeon dungeon, int x, int y, ContentManager content) : base(tileManager, dungeon, x, y, content)
         {
             this.Dungeon = dungeon;
             this.X = x;

@@ -15,14 +15,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class ForestDungeon : Dungeon
     {
-        public ForestDungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
+        public ForestDungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
 
             this.Rooms = new ForestRoom[MaxDungeonRooms, MaxDungeonRooms];
             InitializeRooms();
             this.Content = content;
             this.DungeonGraph = new DungeonGraph(this, 100);
-            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, graphics);
+            this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, graphics);
             this.AllPortals.Clear();
         }
 

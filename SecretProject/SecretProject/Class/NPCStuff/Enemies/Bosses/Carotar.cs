@@ -23,7 +23,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
         //public bool DrawShadow { get; set; }
         //public float ShadowScale { get; set; }
         //public Vector2 LandingSpot { get; set; }
-        ////public Carotar(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, container, primaryPlayerInteractionBehavior)
+        ////public Carotar(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, TileManager, primaryPlayerInteractionBehavior)
         ////{
         ////    this.NPCAnimatedSprite = new Sprite[1];
 

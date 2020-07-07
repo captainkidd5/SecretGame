@@ -164,7 +164,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             }
         }
 
-        public static void SpawnOverWorld(SpawnHolder holder, IInformationContainer container, Random random)
+        public static void SpawnOverWorld(SpawnHolder holder, TileManager TileManager, Random random)
         {
             foreach (SpawnElement element in holder.OverWorldSpawnElements)
             {
@@ -172,11 +172,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 {
                     if (element.SpawnMethod == SpawnMethod.Poisson)
                     {
-                        PoissonSpawn(element, container, random);
+                        PoissonSpawn(element, TileManager, random);
                     }
                     else if (element.SpawnMethod == SpawnMethod.RandomScatter)
                     {
-                        ScatterSpawn(element, container, random);
+                        ScatterSpawn(element, TileManager, random);
                     }
 
                 }
@@ -189,40 +189,40 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// Good for things which don't necessarily clump, like sticks, or random rocks. Basically throwing darts for points.
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="container"></param>
+        /// <param name="TileManager"></param>
         /// <param name="random"></param>
-        private static void ScatterSpawn(SpawnElement element, IInformationContainer container, Random random)
+        private static void ScatterSpawn(SpawnElement element, TileManager TileManager, Random random)
         {
             if (random.Next(0, 101) < (int)element.Rarity) //odds of first one even spawning at all
             {
                 while(random.Next(0, 100) < 99)
                 {
-                    int xSpawn = random.Next(0, container.AllTiles[(int)element.TileLayer].GetLength(0));
-                    int ySpawn = random.Next(0, container.AllTiles[(int)element.TileLayer].GetLength(1));
+                    int xSpawn = random.Next(0, TileManager.AllTiles[(int)element.TileLayer].GetLength(0));
+                    int ySpawn = random.Next(0, TileManager.AllTiles[(int)element.TileLayer].GetLength(1));
 
-                    if (container.PathGrid.Weight[xSpawn, ySpawn] == (int)GridStatus.Clear &&
-                        container.AllTiles[(int)element.LayerToPlaceOn][xSpawn, ySpawn].GenerationType == element.GenerationType)
+                    if (TileManager.PathGrid.Weight[xSpawn, ySpawn] == (int)GridStatus.Clear &&
+                        TileManager.AllTiles[(int)element.LayerToPlaceOn][xSpawn, ySpawn].GenerationType == element.GenerationType)
                     {
 
                         if ((int)element.MapLayerToCheckIfEmpty != (int)MapLayer.BackGround)
                         {
-                            if (container.AllTiles[(int)element.MapLayerToCheckIfEmpty][xSpawn, ySpawn].GID == -1)
+                            if (TileManager.AllTiles[(int)element.MapLayerToCheckIfEmpty][xSpawn, ySpawn].GID == -1)
                             {
-                                TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
+                                TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, TileManager);
                                 if (element.IsCrop)
                                 {
                                     Crop crop = Game1.AllCrops.GetCropFromGID(element.GID);
-                                    TileUtility.AddCropToTile(crop,container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
+                                    TileUtility.AddCropToTile(crop,TileManager.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, TileManager, true);
                                 }
                             }
                         }
                         else
                         {
-                            TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, container);
+                            TileUtility.ReplaceTile((int)element.TileLayer, xSpawn, ySpawn, element.GID, TileManager);
                             if (element.IsCrop)
                             {
                                 Crop crop = Game1.AllCrops.GetCropFromGID(element.GID);
-                                TileUtility.AddCropToTile(crop,container.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, container, true);
+                                TileUtility.AddCropToTile(crop,TileManager.AllTiles[3][xSpawn, ySpawn], xSpawn, ySpawn, (int)MapLayer.ForeGround, TileManager, true);
                             }
                         }
 
@@ -241,18 +241,18 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         /// A clumpy type of spawning. Good for objects like trees or rock formations
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="container"></param>
+        /// <param name="TileManager"></param>
         /// <param name="random"></param>
-        public static void PoissonSpawn(SpawnElement element, IInformationContainer container, Random random)
+        public static void PoissonSpawn(SpawnElement element, TileManager TileManager, Random random)
         {
            // if (random.Next(0, 101) < (int)element.Rarity) //odds of first one even spawning at all
            // {
-                PoissonSampler sampler = new PoissonSampler(element.DistanceBetweenNeighbors, element.DistanceBetweenNeighbors, container.PathGrid, (int)element.OddsOfAdditionalSpawn, element.Rarity);
-                sampler.Generate(element.GID, container.AllTiles[(int)element.TileLayer],  (int)element.TileLayer, (int)element.LayerToPlaceOn, (int)element.MapLayerToCheckIfEmpty,container, element.GenerationType, random, element.IsCrop);
+                PoissonSampler sampler = new PoissonSampler(element.DistanceBetweenNeighbors, element.DistanceBetweenNeighbors, TileManager.PathGrid, (int)element.OddsOfAdditionalSpawn, element.Rarity);
+                sampler.Generate(element.GID, TileManager.AllTiles[(int)element.TileLayer],  (int)element.TileLayer, (int)element.LayerToPlaceOn, (int)element.MapLayerToCheckIfEmpty,TileManager, element.GenerationType, random, element.IsCrop);
             //}
         }
 
-        public static void AddGrassTufts(IInformationContainer container, Tile tile, Tile zeroTile)
+        public static void AddGrassTufts(TileManager TileManager, Tile tile, Tile zeroTile)
         {
             if (tile.GID == -1)
             {
@@ -261,7 +261,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 {
                     if (Game1.Utility.RGenerator.Next(0, 10) < 2)
                     {
-                        if ((container.Tufts.ContainsKey(tile.TileKey)))
+                        if ((TileManager.Tufts.ContainsKey(tile.TileKey)))
                         {
                         }
                         else
@@ -272,14 +272,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
                                 int grassType = Game1.Utility.RGenerator.Next(1, 5);
-                                GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
+                                GrassTuft grassTuft = new GrassTuft(TileManager.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
                                     + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                 grassTuft.TuftsIsPartOf = tuftList;
                                 tuftList.Add(grassTuft);
 
 
                             }
-                            container.Tufts.Add(tile.TileKey, tuftList);
+                            TileManager.Tufts.Add(tile.TileKey, tuftList);
 
                         }
                     }

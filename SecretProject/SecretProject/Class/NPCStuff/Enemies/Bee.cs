@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Bee : Enemy
     {
-        public Bee(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container ) : base( pack, position, graphics, container)
+        public Bee(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager ) : base( pack, position, graphics, TileManager)
         {
             
             this.Texture = Game1.AllTextures.EnemySpriteSheet;

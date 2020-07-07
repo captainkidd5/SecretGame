@@ -20,7 +20,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public int FlutterDirection { get; set; }
 
-        public Butterfly( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container) : base( pack, position, graphics, container)
+        public Butterfly( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager) : base( pack, position, graphics, TileManager)
         {
             this.NPCAnimatedSprite = new Sprite[1];
             int butterflyColor = Game1.Utility.RGenerator.Next(0, 4);

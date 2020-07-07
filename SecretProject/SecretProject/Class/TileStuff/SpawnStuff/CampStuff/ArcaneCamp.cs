@@ -27,15 +27,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
 
         }
 
-        public override void Spawn(IInformationContainer container, ILocation location)
+        public override void Spawn(TileManager TileManager, TmxStageBase location)
         {
-            base.Spawn(container, location);
-            Vector2 position = new Vector2(container.X * 16 * 16 + 64, container.Y * 16 * 16 + 64);
+            base.Spawn(TileManager, location);
+            Vector2 position = new Vector2(TileManager.X * 16 * 16 + 64, TileManager.Y * 16 * 16 + 64);
 
 
-            location.Enemies.Add(new InkWizard( null, position, container.GraphicsDevice, container));
+            location.Enemies.Add(new InkWizard( null, position, TileManager.GraphicsDevice, TileManager));
 
-            TilingContainer floortiling = Game1.Procedural.GetTilingContainerFromGID(GenerationType.ArcaneFloor);
+            TilingTileManager floortiling = Game1.Procedural.GetTilingTileManagerFromGID(GenerationType.ArcaneFloor);
 
             for (int i = 0; i < 15; i++)
             {
@@ -43,9 +43,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
                 {
                     if(Game1.Utility.RGenerator.Next(0, 10) < 6)
                     {
-                        TileUtility.ReplaceTile(1, i, j, this.FloorTileID, container);
-                        Vector2 tilePosition = container.AllTiles[1][i, j].GetPosition(container);
-                        WangManager.ChunkGroupReassignForTiling((int)tilePosition.X, (int)tilePosition.Y, this.FloorTileID, floortiling.GeneratableTiles, floortiling.TilingDictionary, 1,  container.ITileManager);
+                        TileUtility.ReplaceTile(1, i, j, this.FloorTileID, TileManager);
+                        Vector2 tilePosition = TileManager.AllTiles[1][i, j].GetPosition(TileManager);
+                       // WangManager.ChunkGroupReassignForTiling((int)tilePosition.X, (int)tilePosition.Y, this.FloorTileID, floortiling.GeneratableTiles, floortiling.TilingDictionary, 1,  TileManager.TileManager);
                     }
                     
                    

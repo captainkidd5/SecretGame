@@ -66,7 +66,7 @@ namespace SecretProject.Class.SavingStuff
             writer.Write(saveSlot.DirectoryPath);
 
             Game1.Player.Save(writer);
-            //foreach(ILocation location in Game1.AllStages)
+            //foreach(TmxStageBase location in Game1.AllStages)
             //{
             //    location.Save(writer);
             //}
@@ -96,7 +96,7 @@ namespace SecretProject.Class.SavingStuff
             saveSlot.DirectoryPath = reader.ReadString();
             Game1.Player.Load(reader);
             saveSlot.AssignPaths();
-            //foreach (ILocation location in Game1.AllStages)
+            //foreach (TmxStageBase location in Game1.AllStages)
             //{
             //    location.Load(reader);
             //}

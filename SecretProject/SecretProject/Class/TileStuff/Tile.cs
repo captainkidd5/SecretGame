@@ -49,12 +49,12 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public Vector2 GetPosition(IInformationContainer container)
+        public Vector2 GetPosition(TileManager TileManager)
         {
-            return new Vector2(this.DestinationRectangle.X + container.X, this.DestinationRectangle.Y + container.Y);
+            return new Vector2(this.DestinationRectangle.X + TileManager.X, this.DestinationRectangle.Y + TileManager.Y);
         }
 
-        public string GetTileKeyString(int layer, IInformationContainer container)
+        public string GetTileKeyString(int layer, TileManager TileManager)
         {
             return "" + this.X + "," + this.Y + "," + layer;
         }

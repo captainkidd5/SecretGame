@@ -48,10 +48,10 @@ namespace SecretProject.Class.UI.CraftingStuff
             }
             this.CurrentOpenTab = CategoryTabs[0];
 
-            RecipeContainer container = CategoryTabs[0].RecipeContainers[0];
+            RecipeTileManager TileManager = CategoryTabs[0].RecipeTileManagers[0];
             
-            this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, container.Item.SourceTextureRectangle, Graphics,
-                ExternalCraftingWindow.ItemToCraftButton.Position, Controls.CursorType.Normal, Scale + 1f, container.Item);
+            this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, TileManager.Item.SourceTextureRectangle, Graphics,
+                ExternalCraftingWindow.ItemToCraftButton.Position, Controls.CursorType.Normal, Scale + 1f, TileManager.Item);
 
 
 

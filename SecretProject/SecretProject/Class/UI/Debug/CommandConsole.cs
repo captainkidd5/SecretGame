@@ -242,7 +242,7 @@ namespace SecretProject.Class.UI
                     break;
                 case "addmob":
                     NPCType type = (NPCType)Enum.Parse(typeof(NPCType), separatedString[1].ToLower());
-                    Game1.CurrentStage.Enemies.AddRange(Game1.CurrentStage.NPCGenerator.SpawnTargetNPCPack(type, (IInformationContainer)Game1.CurrentStage.AllTiles, 1, Game1.Player.position));
+                    Game1.CurrentStage.Enemies.AddRange(Game1.CurrentStage.NPCGenerator.SpawnTargetNPCPack(type, (TileManager)Game1.CurrentStage.AllTiles, 1, Game1.Player.position));
                     break;
                 case "getmobs":
                     var mobValues = (NPCType[])Enum.GetValues(typeof(NPCType));

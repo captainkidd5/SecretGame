@@ -340,24 +340,7 @@ namespace SecretProject.Class.Playable
                     if (item.CrateType != 0)
                     {
 
-                        if (Game1.CurrentStage.StageType == StageType.Procedural)
-                        {
-
-
-                            CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics, Game1.CurrentStage.AllTiles.ChunkUnderPlayer);
-                            this.UserInterface.BackPack.Inventory.RemoveItem(item);
-                            DoPlayerAnimation(AnimationType.HandsPicking);
-                        }
-                        else if (Game1.CurrentStage.StageType == StageType.Sanctuary)
-                        {
-                            //SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
-                            //if (tracker.UpdateCompletionGuide(item.ID))
-                            //{
-                            //    CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics);
-                            //    this.UserInterface.BackPack.Inventory.RemoveItem(item);
-                            //    DoPlayerAnimation(AnimationType.HandsPicking);
-                            //}
-                        }
+                       
 
                     }
 

@@ -29,7 +29,7 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void LoadExteriorContent(ITileManager exteriorTileManager)
+        public void LoadExteriorContent(TileManager exteriorTileManager)
         {
             this.ExteriorGridItems = new Dictionary<int, GridItem>();
             for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
@@ -45,7 +45,7 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void LoadInteriorContent(ITileManager interiorTileManager)
+        public void LoadInteriorContent(TileManager interiorTileManager)
         {
             this.InteriorGridItems = new Dictionary<int, GridItem>();
             for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)

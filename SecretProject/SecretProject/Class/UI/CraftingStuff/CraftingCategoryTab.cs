@@ -21,7 +21,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public float Scale { get; set; }
 
-        public List<RecipeContainer> RecipeContainers { get; set; }
+        public List<RecipeTileManager> RecipeTileManagers { get; set; }
 
         public CraftingCategoryTab(CraftingWindow craftingWindow,CraftingCategory craftingCategory,  Vector2 position)
         {
@@ -36,7 +36,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
             CraftingPage craftingPage = craftingWindow.CraftingGuide.CraftingPages.Find(x => x.CategoryName == this.Category);
 
-            this.RecipeContainers = new List<RecipeContainer>();
+            this.RecipeTileManagers = new List<RecipeTileManager>();
 
 
             int row = 0;
@@ -49,16 +49,16 @@ namespace SecretProject.Class.UI.CraftingStuff
                     row++;
                     column = 1;
                 }
-                this.RecipeContainers.Add(new RecipeContainer(craftingWindow, craftingPage.CraftingRecipes[i],
+                this.RecipeTileManagers.Add(new RecipeTileManager(craftingWindow, craftingPage.CraftingRecipes[i],
                     new Vector2(CraftingWindow.Position.X + column * 16 * Scale, CraftingWindow.Position.Y + 32+ row * 16 * Scale)));
             }
            
         }
         public void Update(GameTime gameTime)
         {
-            for(int i =0; i < this.RecipeContainers.Count; i++)
+            for(int i =0; i < this.RecipeTileManagers.Count; i++)
             {
-                this.RecipeContainers[i].Update(gameTime);
+                this.RecipeTileManagers[i].Update(gameTime);
             }
             //if(Game1.Player.Inventory.HasChangedSinceLastFrame)
             //{
@@ -67,16 +67,16 @@ namespace SecretProject.Class.UI.CraftingStuff
         }
         public void UpdateToolTips()
         {
-            for (int i = 0; i < this.RecipeContainers.Count; i++)
+            for (int i = 0; i < this.RecipeTileManagers.Count; i++)
             {
-                this.RecipeContainers[i].CheckIfCanCraft();
+                this.RecipeTileManagers[i].CheckIfCanCraft();
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < this.RecipeContainers.Count; i++)
+            for (int i = 0; i < this.RecipeTileManagers.Count; i++)
             {
-                this.RecipeContainers[i].Draw(spriteBatch);
+                this.RecipeTileManagers[i].Draw(spriteBatch);
             }
         }
     }

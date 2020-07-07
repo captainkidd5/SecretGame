@@ -24,9 +24,9 @@ using XMLData.ItemStuff;
 namespace SecretProject.Class.TileStuff
 {
 
-    public class TileManager : ITileManager, IInformationContainer, ISaveable
+    public class TileManager : ISaveable
     {
-        public ILocation Stage { get; set; }
+        public TmxStageBase Stage;
         public int Type { get; set; }
         protected Game1 game;
         public Texture2D TileSet { get; set; }
@@ -82,11 +82,8 @@ namespace SecretProject.Class.TileStuff
         public int X { get; set; }
         public int Y { get; set; }
         public int NumberOfLayers { get; set; }
-        public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public ITileManager ITileManager { get; set; }
+
+
         public List<int[,]> AdjacentNoise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Random Random { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<SPlot> AllPlots { get; set; }
@@ -100,10 +97,9 @@ namespace SecretProject.Class.TileStuff
 
 
         //Instantiate with a premade map
-        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage, bool addMapPortals = true,int presetDimension = 0)
+        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, TmxStageBase currentStage, bool addMapPortals = true,int presetDimension = 0)
         {
             this.Stage = currentStage;
-            this.ITileManager = this;
             this.Type = 0;
             this.TileSet = tileSet;
             this.MapName = mapName;
@@ -300,7 +296,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
                         {
-                            SpawnHolder.AddGrassTufts((IInformationContainer)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
+                            SpawnHolder.AddGrassTufts((TileManager)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
                         }
 
                     }
@@ -323,9 +319,9 @@ namespace SecretProject.Class.TileStuff
                     if (didSucceed)
                     {
                         GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), generationProperty);
-                        if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
+                        if (!Game1.Procedural.GetTilingTileManagerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
                         {
-                            Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
+                            Game1.Procedural.AllTilingTileManagers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
                         }
                     }
                     // throw new Exception("GenerationType value not supported. Check to make sure the tiled value of generate property is supported. Capitals matter.");
@@ -717,10 +713,6 @@ namespace SecretProject.Class.TileStuff
             throw new NotImplementedException();
         }
 
-        public Chunk GetChunkFromPosition(Vector2 entityPosition)
-        {
-            throw new NotImplementedException();
-        }
         public void UpdateCropTile()
         {
 

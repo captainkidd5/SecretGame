@@ -73,7 +73,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             set { }
         }
 
-        public ILocation CurrentStageLocation { get; set; }
+        public TmxStageBase CurrentStageLocation { get; set; }
         // refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
         public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
@@ -95,7 +95,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public Route CurrentRoute { get; set; }
 
-        public ILocation HomeStage { get; set; }
+        public TmxStageBase HomeStage { get; set; }
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
@@ -104,7 +104,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public bool IsBeingSpokenTo { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, ILocation currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, TmxStageBase currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
 
@@ -521,7 +521,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
         int nodeToEndAt;
-        public Point FindIntermediateStages(ILocation stageFrom, ILocation stageTo)
+        public Point FindIntermediateStages(TmxStageBase stageFrom, TmxStageBase stageTo)
         {
             nodeToEndAt = 100;
             if (this.PortalTraverser.Graph.HasEdge(stageFrom.StageIdentifier, stageTo.StageIdentifier))

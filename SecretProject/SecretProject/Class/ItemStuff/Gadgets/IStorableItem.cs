@@ -31,7 +31,7 @@ namespace SecretProject.Class.ItemStuff
 
         Tile Tile { get; set; }
 
-        IInformationContainer Container { get; set; }
+        TileManager TileManager { get; set; }
 
         int Layer { get; set; }
         int X { get; set; }
@@ -40,7 +40,7 @@ namespace SecretProject.Class.ItemStuff
 
         bool IsAnimationOpen { get; set; }
         void Update(GameTime gameTime);
-        void Activate(IInformationContainer container, int layer, int x, int y);
+        void Activate(TileManager TileManager, int layer, int x, int y);
         void Deactivate();
         void Draw(SpriteBatch spriteBatch);
 

@@ -12,7 +12,7 @@ using XMLData.ItemStuff.CraftingStuff;
 
 namespace SecretProject.Class.UI.CraftingStuff
 {
-    public class RecipeContainer
+    public class RecipeTileManager
     {
         public CraftingWindow CraftingWindow { get; set; }
         public Item Item { get; set; }
@@ -25,7 +25,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public List<ExternalToolTip> ToolTips { get; set; }
 
-        public RecipeContainer(CraftingWindow craftingWindow, ItemRecipe itemRecipe, Vector2 position)
+        public RecipeTileManager(CraftingWindow craftingWindow, ItemRecipe itemRecipe, Vector2 position)
         {
             this.CraftingWindow = craftingWindow;
             this.ItemRecipe = itemRecipe;

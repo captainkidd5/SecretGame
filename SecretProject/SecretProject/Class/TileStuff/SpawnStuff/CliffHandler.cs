@@ -22,13 +22,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.CliffSize = ((this.BottomGID - this.CenterGID) / 100) - 1;
         }
 
-        public void ExtendCliffs(IInformationContainer container)
+        public void ExtendCliffs(TileManager TileManager)
         {
             for (int i = 0; i < TileUtility.ChunkWidth; i++)
             {
                 for (int j = 0; j < TileUtility.ChunkHeight; j++)
                 {
-                    if (TopEdges.Contains(container.AllTiles[3][i, j].GID))
+                    if (TopEdges.Contains(TileManager.AllTiles[3][i, j].GID))
                     {
 
                         int counter = 1;
@@ -39,12 +39,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                             {
 
 
-                                container.AllTiles[2][i, j + counter].GID = container.AllTiles[3][i, j].GID + 1 + 100 * counter;
+                                TileManager.AllTiles[2][i, j + counter].GID = TileManager.AllTiles[3][i, j].GID + 1 + 100 * counter;
 
-                                container.AllTiles[3][i, j + counter].GID = 0;
+                                TileManager.AllTiles[3][i, j + counter].GID = 0;
                                 if (c < j + CliffSize - 1)
                                 {
-                                    container.AllTiles[0][i, j + counter].GID = 0;
+                                    TileManager.AllTiles[0][i, j + counter].GID = 0;
                                 }
 
                                 counter++;
@@ -59,14 +59,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         }
 
-        public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
+        public void HandleCliffEdgeCases(TileManager TileManager, List<int[,,]> allAdjacentChunkNoise)
         {
 
             int gidToTest = this.CenterGID;
             int gidBottomToTest = this.BottomGID;
 
             int jDifference = this.BottomGID - this.CenterGID;
-            //if (container.ITileManager.Stage == Game1.OverWorld)
+            //if (TileManager.TileManager.Stage == Game1.OverWorld)
             //{
             //    gidToTest = 4124;
             //    gidBottomToTest = 4724;
@@ -95,12 +95,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                         {
 
                             newCliffGID += 100;
-                            container.AllTiles[2][i, newY].GID = newCliffGID;
+                            TileManager.AllTiles[2][i, newY].GID = newCliffGID;
                             if (newCliffGID != gidBottomToTest)
                             {
-                                container.AllTiles[0][i, newY].GID = 0;
+                                TileManager.AllTiles[0][i, newY].GID = 0;
 
-                                container.AllTiles[1][i, newY].GID = 0;
+                                TileManager.AllTiles[1][i, newY].GID = 0;
 
                             }
 
@@ -119,9 +119,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         //                4222, 4223, 4224,4021,4025,4026,4027,4028
         //            };
 
-        public static List<int> GetTopCliffEdges(TilingContainer tilingContainer)
+        public static List<int> GetTopCliffEdges(TilingTileManager tilingTileManager)
         {
-            int centralID = tilingContainer.TilingDictionary[15];
+            int centralID = tilingTileManager.TilingDictionary[15];
             List<int> edgeList = new List<int>()
             {
                 centralID - 102, centralID + 99, centralID + 100, centralID + 101, centralID - 98,

@@ -113,7 +113,7 @@ namespace SecretProject.Class.SpriteFolder
         public void SelfDestruct()
         {
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
-            ILocation location = Game1.CurrentStage;
+            TmxStageBase location = Game1.CurrentStage;
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);

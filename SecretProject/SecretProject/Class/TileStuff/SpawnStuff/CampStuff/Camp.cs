@@ -29,13 +29,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
             this.Chance = probability;
         }
 
-        public virtual void Spawn(IInformationContainer container, ILocation location)
+        public virtual void Spawn(TileManager TileManager, TmxStageBase location)
         {
             //for(int i =0; i < this.SpawnElements.Count; i++)
             //{
             //    SpawnElement element = SpawnElements[i];
             //    TileUtility.GenerateRandomlyDistributedTiles((int)element.MapLayerToPlace, element.GID, element.GenerationType, element.Frequency,
-            //                    (int)element.MapLayerToCheckIfEmpty, container, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
+            //                    (int)element.MapLayerToCheckIfEmpty, TileManager, element.ZeroLayerOnly, element.AssertLeftAndRight, element.Limit);
             //}
             
             

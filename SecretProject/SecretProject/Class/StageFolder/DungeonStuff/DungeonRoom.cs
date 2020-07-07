@@ -24,7 +24,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         protected Dungeon Dungeon { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public ITileManager TileManager { get; set; }
+        public TileManager TileManager { get; set; }
 
         public bool HasGenerated { get; set; }
 
@@ -54,7 +54,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         }
         //for starting room
-        public DungeonRoom(ITileManager tileManager, Dungeon dungeon, int x, int y, ContentManager content)
+        public DungeonRoom(TileManager tileManager, Dungeon dungeon, int x, int y, ContentManager content)
         {
             this.Dungeon = dungeon;
             this.X = x;
@@ -220,7 +220,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             GetDoorwaysBasedOnPortals();
             int roomDimensions = this.Width;
             this.Width = roomDimensions;
-            this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, false,roomDimensions);
+            this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.LocationType, Dungeon, false,roomDimensions);
             topWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             bottomWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             leftWallTop = Game1.Utility.RGenerator.Next(0, this.Width - 5);
@@ -262,7 +262,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         int gid = 0;
                        // if (z != 4)
                        // {
-                            gid = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(ChunkType.Rai, bottomNoise[i, j], z);
+                            gid = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(bottomNoise[i, j], z);
                         // }
 
                        
@@ -301,20 +301,20 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                             if (tileDictionary[TileManager.AllTiles[z][i, j].GID].Properties.ContainsKey("generate"))
                             {
                                 this.TileManager.AllTiles[z][i, j].GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType),
-                                    tileDictionary[TileManager.AllTiles[z][i, j].GID].Properties["generate"]);
+                                    tileDictionary[this.TileManager.AllTiles[z][i, j].GID].Properties["generate"]);
                                 //grass = 1, stone = 2, wood = 3, sand = 4
 
 
-                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.TileManager.AllTiles[z][i, j].GenerationType);
-                                if (container != null)
+                                TilingTileManager TileManager = Game1.Procedural.GetTilingTileManagerFromGID(this.TileManager.AllTiles[z][i, j].GenerationType);
+                                if (TileManager != null)
                                 {
 
                                     int newGID = this.TileManager.AllTiles[z][i, j].GID;
 
                                     if(i > 0 && i < this.Width - 1 && j > 0 && j < this.Width -1) //dont reassign outer tiles for retiling, otherwise its obvious where the map ends.
                                     {
-                                        Game1.Procedural.GenerationReassignForTiling(newGID, container.GeneratableTiles, container.TilingDictionary,
-                                        z, i, j, this.TileManager.AllTiles[z].GetLength(0), this.TileManager.AllTiles[z].GetLength(0), (IInformationContainer)this.TileManager, null);
+                                        Game1.Procedural.GenerationReassignForTiling(newGID, TileManager.GeneratableTiles, TileManager.TilingDictionary,
+                                        z, i, j, this.TileManager.AllTiles[z].GetLength(0), this.TileManager.AllTiles[z].GetLength(0), (TileManager)this.TileManager, null);
                                     }
 
                                     
@@ -346,14 +346,14 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                             }
                         }
 
-                        TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (IInformationContainer)this.TileManager);
+                        TileUtility.AssignProperties(this.TileManager.AllTiles[z][i, j], z, i, j, (TileManager)this.TileManager);
                         if (z == (int)MapLayer.ForeGround)
                         {
                             if (this.TileManager.PathGrid.Weight[i, j] == (int)GridStatus.Clear)
                             {
                                 if (this.TileManager.AllTiles[z][i, j].TileKey != null)
                                 {
-                                    SpawnHolder.AddGrassTufts((IInformationContainer)TileManager, this.TileManager.AllTiles[z][i, j], this.TileManager.AllTiles[(int)MapLayer.MidGround][i, j]);
+                                    SpawnHolder.AddGrassTufts((TileManager)TileManager, this.TileManager.AllTiles[z][i, j], this.TileManager.AllTiles[(int)MapLayer.MidGround][i, j]);
                                 }
 
                             }
@@ -362,7 +362,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                     }
                 }
             }
-            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (IInformationContainer)this.TileManager, Game1.Utility.RGenerator);
+            SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (TileManager)this.TileManager, Game1.Utility.RGenerator);
             Dungeon.AllTiles = this.TileManager;
             Dungeon.Enemies = new List<NPCStuff.Enemies.Enemy>();
             if (Game1.AllowNaturalNPCSpawning)
@@ -378,11 +378,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                         Tile tile = SearchForEmptyTile(3);
                         if (tile != null)
                         {
-                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
-                            if (tilingContainer != null)
+                            TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGID(tile.GenerationType);
+                            if (tilingTileManager != null)
                             {
 
-                                Dungeon.Enemies.AddRange(Dungeon.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), (IInformationContainer)this.TileManager));
+                                Dungeon.Enemies.AddRange(Dungeon.NPCGenerator.SpawnNpcPack(tilingTileManager.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), (TileManager)this.TileManager));
                             }
 
                         }

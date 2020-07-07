@@ -29,7 +29,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         int ShotsFiredDuringInterval;
         public SporeShooterState ShooterState { get; set; }
 
-        public SporeShooter( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container ) : base(pack, position, graphics, container)
+        public SporeShooter( List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager ) : base(pack, position, graphics, TileManager)
         {
             this.NPCAnimatedSprite = new Sprite[3];
 

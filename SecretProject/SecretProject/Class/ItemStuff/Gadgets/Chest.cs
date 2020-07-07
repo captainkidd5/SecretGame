@@ -27,7 +27,7 @@ namespace SecretProject.Class.ItemStuff
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
 
-        public IInformationContainer Container { get; set; }
+        public TileManager TileManager { get; set; }
         public Tile Tile { get; set; }
         public int Layer { get; set; }
         public int X { get; set; }
@@ -74,7 +74,7 @@ namespace SecretProject.Class.ItemStuff
             this.StorageManager = new StorageManager(this.Inventory, Game1.Player.Inventory, this.ItemSlots);
         }
 
-        public void Activate(IInformationContainer container, int layer, int x, int y)
+        public void Activate(TileManager TileManager, int layer, int x, int y)
         {
             if (!this.IsAnimationOpen)
             {
@@ -85,15 +85,15 @@ namespace SecretProject.Class.ItemStuff
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
                         this.IsAnimationOpen = true;
 
-                        this.Container = container;
+                        this.TileManager = TileManager;
                         this.Layer = layer;
                         this.X = x;
                         this.Y = y;
                         this.IsUpdating = true;
-                        this.Tile = container.AllTiles[layer][x, y];
+                        this.Tile = TileManager.AllTiles[layer][x, y];
                         // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
-                        container.AnimationFrames.Remove(Tile.TileKey);
-                        TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+                        TileManager.AnimationFrames.Remove(Tile.TileKey);
+                        TileUtility.Animate(Dir.Right, layer, x, y, TileManager, false);
                     }
                 }
                 else
@@ -101,15 +101,15 @@ namespace SecretProject.Class.ItemStuff
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.ChestOpen, true, 1f, .6f);
                     this.IsAnimationOpen = true;
 
-                    this.Container = container;
+                    this.TileManager = TileManager;
                     this.Layer = layer;
                     this.X = x;
                     this.Y = y;
                     this.IsUpdating = true;
-                    this.Tile = container.AllTiles[layer][x, y];
+                    this.Tile = TileManager.AllTiles[layer][x, y];
                     // this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
-                    container.AnimationFrames.Remove(Tile.TileKey);
-                    TileUtility.Animate(Dir.Right, layer, x, y, container, false);
+                    TileManager.AnimationFrames.Remove(Tile.TileKey);
+                    TileUtility.Animate(Dir.Right, layer, x, y, TileManager, false);
                 }
                
             }
@@ -122,7 +122,7 @@ namespace SecretProject.Class.ItemStuff
                 this.IsAnimationOpen = false;
 
                 this.IsUpdating = false;
-                TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.Container, false);
+                TileUtility.Animate(Dir.Left, this.Layer, this.X, this.Y, this.TileManager, false);
             }
         }
 

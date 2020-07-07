@@ -41,7 +41,7 @@ namespace SecretProject.Class.ItemStuff
 
         public ParticleEngine SmokeParticleEngine { get; set; }
         public ParticleEngine FireParticleEngine { get; set; }
-        public IInformationContainer Container { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public TileManager TileManager { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int Layer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int X { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int Y { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -78,7 +78,7 @@ namespace SecretProject.Class.ItemStuff
             this.SmokeParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(this.Location.X + 8, this.Location.Y));
             this.FireParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.Fire }, new Vector2(this.Location.X + 10, this.Location.Y + 10));
         }
-        public void Activate(IInformationContainer container, Tile tile)
+        public void Activate(TileManager TileManager, Tile tile)
         {
             //if (!this.IsUpdating)
             //{
@@ -90,12 +90,12 @@ namespace SecretProject.Class.ItemStuff
 
 
         }
-        public void Activate(IInformationContainer container, int x, int y, int layer)
+        public void Activate(TileManager TileManager, int x, int y, int layer)
         {
             //if (!this.IsUpdating)
             //{
             //    this.IsUpdating = true;
-            //    this.Tile = container.AllTiles[layer][x,y];
+            //    this.Tile = TileManager.AllTiles[layer][x,y];
             //    TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
             //    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
             //}

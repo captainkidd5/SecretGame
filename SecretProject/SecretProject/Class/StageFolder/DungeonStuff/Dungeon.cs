@@ -30,13 +30,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected DungeonGraph DungeonGraph { get;  set; }
 
-        public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
+        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             InitializeRooms();
             this.Content = content;
             this.DungeonGraph = new DungeonGraph(this, 100);
-            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, graphics);
+            this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, graphics);
         }
 
         private bool IsStartingRoom()
@@ -114,7 +114,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected override void LoadTileManager()
         {
-            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this,false);
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.LocationType, this,false);
         }
 
         public override void StartNew()

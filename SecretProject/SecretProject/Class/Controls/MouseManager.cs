@@ -332,12 +332,12 @@ namespace SecretProject.Class.Controls
             }
         }
 
-        public Tile GetMouseOverTile(IInformationContainer container)
+        public Tile GetMouseOverTile(TileManager TileManager)
         {
             if (this.SquarePosition.X > 0 && this.SquarePosition.Y > 0)
             {
 
-                return container.AllTiles[0][(int)this.SquarePosition.X / (container.X + 1), (int)this.SquarePosition.Y / (container.Y + 1)];
+                return TileManager.AllTiles[0][(int)this.SquarePosition.X / (TileManager.X + 1), (int)this.SquarePosition.Y / (TileManager.Y + 1)];
 
             }
             else
@@ -347,14 +347,14 @@ namespace SecretProject.Class.Controls
 
         }
 
-        public Tile[] GetMouseOverTileArray(IInformationContainer container)
+        public Tile[] GetMouseOverTileArray(TileManager TileManager)
         {
-            Tile[] tilesToReturn = new Tile[container.AllTiles.Count];
+            Tile[] tilesToReturn = new Tile[TileManager.AllTiles.Count];
             if (this.SquarePosition.X > 0 && this.SquarePosition.Y > 0)
             {
-                for (int i = 0; i < container.AllTiles.Count; i++)
+                for (int i = 0; i < TileManager.AllTiles.Count; i++)
                 {
-                    tilesToReturn[i] = container.AllTiles[i][(int)this.SquarePosition.X / (container.X + 1), (int)this.SquarePosition.Y / (container.Y + 1)];
+                    tilesToReturn[i] = TileManager.AllTiles[i][(int)this.SquarePosition.X / (TileManager.X + 1), (int)this.SquarePosition.Y / (TileManager.Y + 1)];
                 }
             }
             return tilesToReturn;

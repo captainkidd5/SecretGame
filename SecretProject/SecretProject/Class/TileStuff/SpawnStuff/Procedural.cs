@@ -124,7 +124,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public List<List<int>> AllGeneratableTiles;
 
 
-        public Dictionary<GenerationType, TilingContainer> AllTilingContainers;
+        public Dictionary<GenerationType, TilingTileManager> AllTilingTileManagers;
 
         public List<CliffHandler> TopCliffs { get; set; }
         public List<CliffHandler> BottomCliffs { get; set; }
@@ -169,74 +169,74 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
 
-            AllTilingContainers = new Dictionary<GenerationType, TilingContainer>()
+            AllTilingTileManagers = new Dictionary<GenerationType, TilingTileManager>()
             {
                  { GenerationType.None, null},
-                { GenerationType.Grass, new TilingContainer(GenerationType.Grass, FillTilingDictionary((int)GenerationType.Grass), new List<int>()) },
-                { GenerationType.Dirt, new TilingContainer(GenerationType.Dirt, FillTilingDictionary((int)GenerationType.Dirt), new List<int>()) },
-                { GenerationType.Sand, new TilingContainer(GenerationType.Sand, FillTilingDictionary((int)GenerationType.Sand), new List<int>()) },
-                { GenerationType.SandRuin, new TilingContainer(GenerationType.SandRuin, FillTilingDictionary((int)GenerationType.SandRuin), new List<int>()) },
-                 { GenerationType.Water, new TilingContainer(GenerationType.Water, FillTilingDictionary((int)GenerationType.Water), new List<int>()) },
-                 { GenerationType.Stone, new TilingContainer(GenerationType.Stone, FillTilingDictionary((int)GenerationType.Stone), new List<int>()) },
-                 { GenerationType.DirtCliff, new TilingContainer(GenerationType.DirtCliff, TallFillCliffTilingDictionary((int)GenerationType.DirtCliff), new List<int>()) },
-                 { GenerationType.FenceTiling, new TilingContainer(GenerationType.FenceTiling, FillFenceTilingDictionary((int)GenerationType.FenceTiling), new List<int>()) },
-                 { GenerationType.OakFloorTiling, new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary((int)GenerationType.OakFloorTiling), new List<int>()) },
-                 { GenerationType.StoneWallTiling, new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary((int)GenerationType.StoneWallTiling), new List<int>()) },
-                 { GenerationType.LandSwamp, new TilingContainer(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()) },
-                 { GenerationType.WaterSwamp, new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()) },
-                 { GenerationType.CaveCliff, new TilingContainer(GenerationType.CaveCliff, FillCliffTilingDictionary((int)GenerationType.CaveCliff), new List<int>()) },
-                 { GenerationType.CaveDirt, new TilingContainer(GenerationType.CaveDirt, FillTilingDictionary((int)GenerationType.CaveDirt), new List<int>()) },
-                 { GenerationType.CaveWater, new TilingContainer(GenerationType.CaveWater, FillTilingDictionary((int)GenerationType.CaveWater), new List<int>()) },
-                 { GenerationType.VillageFloor, new TilingContainer(GenerationType.VillageFloor, FillTilingDictionary((int)GenerationType.VillageFloor), new List<int>()) },
-                 { GenerationType.VillageFence, new TilingContainer(GenerationType.VillageFence, FillFenceTilingDictionary((int)GenerationType.VillageFence), new List<int>()) },
-                 { GenerationType.ArcaneFloor, new TilingContainer(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
-                 { GenerationType.ArcaneFence, new TilingContainer(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
-                 { GenerationType.ForestWall, new TilingContainer(GenerationType.ForestWall, TallFillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
-                 { GenerationType.SandStoneWall, new TilingContainer(GenerationType.SandStoneWall, ShortFillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
-                 { GenerationType.DesertStone, new TilingContainer(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
-                 { GenerationType.GrassLake, new TilingContainer(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
-                 { GenerationType.DeepForest, new TilingContainer(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
-                   { GenerationType.DarkGrass, new TilingContainer(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
-                   { GenerationType.BedRock, new TilingContainer(GenerationType.BedRock, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
-                    { GenerationType.FertileSoil, new TilingContainer(GenerationType.FertileSoil, FillTilingDictionary((int)GenerationType.FertileSoil), new List<int>()) },
-                    { GenerationType.PollutedSoil, new TilingContainer(GenerationType.PollutedSoil, FillTilingDictionary((int)GenerationType.PollutedSoil), new List<int>()) },
-                    { GenerationType.PollutedSand, new TilingContainer(GenerationType.PollutedSand, FillTilingDictionary((int)GenerationType.PollutedSand), new List<int>()) },
+                { GenerationType.Grass, new TilingTileManager(GenerationType.Grass, FillTilingDictionary((int)GenerationType.Grass), new List<int>()) },
+                { GenerationType.Dirt, new TilingTileManager(GenerationType.Dirt, FillTilingDictionary((int)GenerationType.Dirt), new List<int>()) },
+                { GenerationType.Sand, new TilingTileManager(GenerationType.Sand, FillTilingDictionary((int)GenerationType.Sand), new List<int>()) },
+                { GenerationType.SandRuin, new TilingTileManager(GenerationType.SandRuin, FillTilingDictionary((int)GenerationType.SandRuin), new List<int>()) },
+                 { GenerationType.Water, new TilingTileManager(GenerationType.Water, FillTilingDictionary((int)GenerationType.Water), new List<int>()) },
+                 { GenerationType.Stone, new TilingTileManager(GenerationType.Stone, FillTilingDictionary((int)GenerationType.Stone), new List<int>()) },
+                 { GenerationType.DirtCliff, new TilingTileManager(GenerationType.DirtCliff, TallFillCliffTilingDictionary((int)GenerationType.DirtCliff), new List<int>()) },
+                 { GenerationType.FenceTiling, new TilingTileManager(GenerationType.FenceTiling, FillFenceTilingDictionary((int)GenerationType.FenceTiling), new List<int>()) },
+                 { GenerationType.OakFloorTiling, new TilingTileManager(GenerationType.OakFloorTiling, FillTilingDictionary((int)GenerationType.OakFloorTiling), new List<int>()) },
+                 { GenerationType.StoneWallTiling, new TilingTileManager(GenerationType.StoneWallTiling, FillFenceTilingDictionary((int)GenerationType.StoneWallTiling), new List<int>()) },
+                 { GenerationType.LandSwamp, new TilingTileManager(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()) },
+                 { GenerationType.WaterSwamp, new TilingTileManager(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()) },
+                 { GenerationType.CaveCliff, new TilingTileManager(GenerationType.CaveCliff, FillCliffTilingDictionary((int)GenerationType.CaveCliff), new List<int>()) },
+                 { GenerationType.CaveDirt, new TilingTileManager(GenerationType.CaveDirt, FillTilingDictionary((int)GenerationType.CaveDirt), new List<int>()) },
+                 { GenerationType.CaveWater, new TilingTileManager(GenerationType.CaveWater, FillTilingDictionary((int)GenerationType.CaveWater), new List<int>()) },
+                 { GenerationType.VillageFloor, new TilingTileManager(GenerationType.VillageFloor, FillTilingDictionary((int)GenerationType.VillageFloor), new List<int>()) },
+                 { GenerationType.VillageFence, new TilingTileManager(GenerationType.VillageFence, FillFenceTilingDictionary((int)GenerationType.VillageFence), new List<int>()) },
+                 { GenerationType.ArcaneFloor, new TilingTileManager(GenerationType.ArcaneFloor, FillTilingDictionary((int)GenerationType.ArcaneFloor), new List<int>()) },
+                 { GenerationType.ArcaneFence, new TilingTileManager(GenerationType.ArcaneFence, FillFenceTilingDictionary((int)GenerationType.ArcaneFence), new List<int>()) },
+                 { GenerationType.ForestWall, new TilingTileManager(GenerationType.ForestWall, TallFillCliffTilingDictionary((int)GenerationType.ForestWall), new List<int>()) },
+                 { GenerationType.SandStoneWall, new TilingTileManager(GenerationType.SandStoneWall, ShortFillCliffTilingDictionary((int)GenerationType.SandStoneWall), new List<int>()) },
+                 { GenerationType.DesertStone, new TilingTileManager(GenerationType.DesertStone, FillTilingDictionary((int)GenerationType.DesertStone), new List<int>()) },
+                 { GenerationType.GrassLake, new TilingTileManager(GenerationType.GrassLake, FillTilingDictionary((int)GenerationType.GrassLake), new List<int>()) },
+                 { GenerationType.DeepForest, new TilingTileManager(GenerationType.DeepForest, BigTileFillDictionary((int)GenerationType.DeepForest), new List<int>()) },
+                   { GenerationType.DarkGrass, new TilingTileManager(GenerationType.DarkGrass, FillTilingDictionary((int)GenerationType.DarkGrass), new List<int>()) },
+                   { GenerationType.BedRock, new TilingTileManager(GenerationType.BedRock, FillTilingDictionary((int)GenerationType.BedRock), new List<int>()) },
+                    { GenerationType.FertileSoil, new TilingTileManager(GenerationType.FertileSoil, FillTilingDictionary((int)GenerationType.FertileSoil), new List<int>()) },
+                    { GenerationType.PollutedSoil, new TilingTileManager(GenerationType.PollutedSoil, FillTilingDictionary((int)GenerationType.PollutedSoil), new List<int>()) },
+                    { GenerationType.PollutedSand, new TilingTileManager(GenerationType.PollutedSand, FillTilingDictionary((int)GenerationType.PollutedSand), new List<int>()) },
             };
 
             this.OverWorldBedRockNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.BedRock),-1f, 1f ),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.BedRock),-1f, 1f ),
             };
             //NOISE INTERVALS, must be sorted by interval
             this.OverWorldBackgroundNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake),-1f, -.4f ),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), -.4f, -.08f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), -.08f, .04f),
-                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.GrassLake), .04f, .07f),
-                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), .07f, .36f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt),.36f, .37f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.37f, .372f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt),.372f, .39f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.39f, .43f),
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt),.43f, .46f),
-                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),.46f, 1f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.GrassLake),-1f, -.4f ),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt), -.4f, -.08f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt), -.08f, .04f),
+                 new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.GrassLake), .04f, .07f),
+                 new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt), .07f, .36f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt),.36f, .37f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Water),.37f, .372f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt),.372f, .39f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Water),.39f, .43f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Dirt),.43f, .46f),
+                 new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.Water),.46f, 1f),
 
 
             };
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.14f, -.12f ),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.05f, -.047f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),-.07f, .03f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.071f, .12f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.12f,.123f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.13f, .18f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.24f,.27f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.27f, .32f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.37f, .372f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.39f, .43f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DarkGrass),.46f, 1f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),-.14f, -.12f ),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),-.05f, -.047f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),-.07f, .03f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.071f, .12f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.12f,.123f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.13f, .18f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.24f,.27f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.27f, .32f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.37f, .372f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.39f, .43f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DarkGrass),.46f, 1f),
 
                 };
             this.OverWorldBuildingsNoise = new List<NoiseInterval>()
@@ -246,25 +246,25 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .3f,.33f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DirtCliff), .3f,.33f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
 
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.ForestWall), .02f,.024f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.29f),
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.24f,-.2f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.ForestWall), .02f,.024f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.SandStoneWall), -.3f,-.29f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.SandStoneWall), -.24f,-.2f),
 
-                    //new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.SandStoneWall), -.115f,-.1f),
+                    //new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.SandStoneWall), -.115f,-.1f),
 
 
                 };
 
             this.OverWorldFrontNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
-                    new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .2f,.25f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .14f,.145f),
+                    new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.DeepForest), .1f,.119f),
             };
 
             List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
@@ -280,18 +280,18 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.UnderWorldBackgroundNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveDirt),-1f, 1f ),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.CaveDirt),-1f, 1f ),
             };
             this.UnderWorldMidgroundNoise = new List<NoiseInterval>()
             {
-                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveWater),-.2f, 0f ),
+                new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.CaveWater),-.2f, 0f ),
             };
             this.UnderWorldBuildingsNoise = new List<NoiseInterval>()
             {
             };
             this.UnderworldForegroundNoise = new List<NoiseInterval>()
             {
-                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveCliff),.2f, 1f ),
+                  new NoiseInterval(GetTilingTileManagerFromGenerationType(GenerationType.CaveCliff),.2f, 1f ),
             };
             List<List<NoiseInterval>> allUnderWorldNoise = new List<List<NoiseInterval>>()
             {
@@ -303,15 +303,15 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             this.NoiseConverter = new NoiseConverter(allOverworldNoise, allUnderWorldNoise);
 
-            TilingContainer sandStoneWallContainer = GetTilingContainerFromGenerationType(GenerationType.SandStoneWall);
+            TilingTileManager sandStoneWallTileManager = GetTilingTileManagerFromGenerationType(GenerationType.SandStoneWall);
             this.TopCliffs = new List<CliffHandler>()
             {
-               // new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffContainer), dirtCliffContainer.TilingDictionary[15], 4723),
-                //new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallContainer), forestWallContainer.TilingDictionary[15], 4613),
-              //  new CliffHandler(CliffHandler.GetTopCliffEdges(sandStoneWallContainer), sandStoneWallContainer.TilingDictionary[15], 5113),
+               // new CliffHandler(CliffHandler.GetTopCliffEdges(dirtCliffTileManager), dirtCliffTileManager.TilingDictionary[15], 4723),
+                //new CliffHandler(CliffHandler.GetTopCliffEdges(forestWallTileManager), forestWallTileManager.TilingDictionary[15], 4613),
+              //  new CliffHandler(CliffHandler.GetTopCliffEdges(sandStoneWallTileManager), sandStoneWallTileManager.TilingDictionary[15], 5113),
 
             };
-            TilingContainer unraiCliffs = GetTilingContainerFromGenerationType(GenerationType.CaveCliff);
+            TilingTileManager unraiCliffs = GetTilingTileManagerFromGenerationType(GenerationType.CaveCliff);
             this.BottomCliffs = new List<CliffHandler>()
             {
                 new CliffHandler(CliffHandler.GetTopCliffEdges(unraiCliffs), unraiCliffs.TilingDictionary[15], 5428),
@@ -320,53 +320,53 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             };
         }
 
-        public void ExtendCliffs(IInformationContainer container)
+        public void ExtendCliffs(TileManager TileManager)
         {
            // if(Game1.CurrentStage == Game1.OverWorld)
           //  {
                 foreach(CliffHandler handler in this.TopCliffs)
                 {
-                    handler.ExtendCliffs(container);
+                    handler.ExtendCliffs(TileManager);
                 }
             //}
             //else if (Game1.CurrentStage == Game1.UnderWorld)
             //{
             //    foreach (CliffHandler handler in this.BottomCliffs)
             //    {
-            //        handler.ExtendCliffs(container);
+            //        handler.ExtendCliffs(TileManager);
             //    }
             //}
         }
 
-        public void HandleCliffEdgeCases(IInformationContainer container, List<int[,,]> allAdjacentChunkNoise)
+        public void HandleCliffEdgeCases(TileManager TileManager, List<int[,,]> allAdjacentChunkNoise)
         {
-          //  this.TopCliffs[1].HandleCliffEdgeCases(container, allAdjacentChunkNoise);
+          //  this.TopCliffs[1].HandleCliffEdgeCases(TileManager, allAdjacentChunkNoise);
             foreach (CliffHandler handler in this.TopCliffs)
             {
-                handler.HandleCliffEdgeCases(container, allAdjacentChunkNoise);
+                handler.HandleCliffEdgeCases(TileManager, allAdjacentChunkNoise);
             }
         }
 
-        public TilingContainer GetTilingContainerFromGenerationType(GenerationType generationType)
+        public TilingTileManager GetTilingTileManagerFromGenerationType(GenerationType generationType)
         {
-            return AllTilingContainers[generationType];
+            return AllTilingTileManagers[generationType];
         }
 
-        public TilingContainer GetTilingContainerFromGID(GenerationType tileGeneratyionType)
+        public TilingTileManager GetTilingTileManagerFromGID(GenerationType tileGeneratyionType)
         {
-            return AllTilingContainers[tileGeneratyionType];
+            return AllTilingTileManagers[tileGeneratyionType];
 
 
         }
 
-        //public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
+        //public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, TileManager TileManager, int comparisonLayer, int chance = 100)
         //{
         //    if (chance == 100)
         //    {
-        //        if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-        //       acceptableGenerationTiles, container, comparisonLayer))
+        //        if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, TileManager) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+        //       acceptableGenerationTiles, TileManager, comparisonLayer))
         //        {
-        //            container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+        //            TileManager.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
         //        }
         //    }
 
@@ -374,10 +374,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         //    {
         //        if (Game1.Utility.RGenerator.Next(0, 101) < chance)
         //        {
-        //            if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-        //       acceptableGenerationTiles, container, comparisonLayer))
+        //            if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, TileManager) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+        //       acceptableGenerationTiles, TileManager, comparisonLayer))
         //            {
-        //                container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+        //                TileManager.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
         //            }
         //        }
 
@@ -400,7 +400,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
         public void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-           int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[,,]> adjacentChunkInfo = null)
+           int x, int y, int worldWidth, int worldHeight, TileManager TileManager, List<int[,,]> adjacentChunkInfo = null)
         {
             List<int> secondaryTiles = new List<int>();
             //if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
@@ -418,7 +418,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //}
 
 
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
+            if (!generatableTiles.Contains(TileManager.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(TileManager.AllTiles[layer][x, y].GID))
             {
 
                 return;
@@ -427,7 +427,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                if (generatableTiles.Contains(TileManager.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(TileManager.AllTiles[layer][x, y - 1].GID))
                 {
                     keyToCheck += 1;
                 }
@@ -443,7 +443,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             if (y < worldHeight - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
+                if (generatableTiles.Contains(TileManager.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(TileManager.AllTiles[layer][x, y + 1].GID))
                 {
                     keyToCheck += 8;
                 }
@@ -457,7 +457,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
+                if (generatableTiles.Contains(TileManager.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(TileManager.AllTiles[layer][x + 1, y].GID))
                 {
                     keyToCheck += 4;
                 }
@@ -472,7 +472,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
             if (x > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
+                if (generatableTiles.Contains(TileManager.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(TileManager.AllTiles[layer][x - 1, y].GID))
                 {
                     keyToCheck += 2;
                 }
@@ -489,7 +489,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             }
             else
             {
-                container.AllTiles[layer][x, y].GID = tilingDictionary[keyToCheck] + 1;
+                TileManager.AllTiles[layer][x, y].GID = tilingDictionary[keyToCheck] + 1;
             }
         }
 
@@ -501,13 +501,13 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
     }
 
-    public class TilingContainer
+    public class TilingTileManager
     {
         public GenerationType GenerationType { get; set; }
         public Dictionary<int, int> TilingDictionary { get; set; }
         public List<int> GeneratableTiles { get; set; }
 
-        public TilingContainer(GenerationType generationType, Dictionary<int, int> tilingDictionary, List<int> generatableTiles)
+        public TilingTileManager(GenerationType generationType, Dictionary<int, int> tilingDictionary, List<int> generatableTiles)
         {
             this.GenerationType = generationType;
             this.TilingDictionary = tilingDictionary;

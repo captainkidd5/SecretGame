@@ -13,7 +13,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff.Desert
 {
     public class DesertDungeon : Dungeon
     {
-        public DesertDungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
+        public DesertDungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
             this.Rooms = new ForestRoom[MaxDungeonRooms, MaxDungeonRooms];
         }

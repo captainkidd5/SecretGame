@@ -124,7 +124,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void AssignPaths()
         {
-            foreach (ILocation stage in Game1.AllStages)
+            foreach (TmxStageBase stage in Game1.AllStages)
             {
 
 
