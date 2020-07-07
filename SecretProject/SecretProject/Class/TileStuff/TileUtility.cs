@@ -224,13 +224,13 @@ namespace SecretProject.Class.TileStuff
                     Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
                     LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
 
-                    PointLight pointLight = new PointLight()
+                    Spotlight pointLight = new Spotlight()
                     {
                         Position = tileToAssign.Position,
                         Scale = new Vector2(400),
                         ShadowType = ShadowType.Occluded,
                     };
-                    TileManager.Stage.Penumbra.Lights.Add(pointLight);
+                    Game1.Penumbra.Lights.Add(pointLight);
                     
                     if (newLight.LightType == LightType.NightTime)
                     {
@@ -363,9 +363,9 @@ namespace SecretProject.Class.TileStuff
                         TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
                     }
                     TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
-                    Hull hull = GetHullFromTile(TileManager, tempObjectBody.Rectangle, tileToAssign);
-                    TileManager.Stage.Penumbra.Hulls.Add(hull);
-
+                    Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
+                    hull.Enabled = true;
+                    Game1.Penumbra.Hulls.Add(hull);
                     // reassignGrid = false;
                     if (TileManager.Type == 0)
                     {
@@ -425,9 +425,10 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
-                            Hull hull = GetHullFromTile(TileManager, tempObjectBody.Rectangle, tileToAssign);
+                            Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
                             hull.Enabled = true;
-                            TileManager.Stage.Penumbra.Hulls.Add(hull);
+                            Game1.Penumbra.Hulls.Add(hull);
+                            //Game1.Penumbra.Hulls.Add(hull);
                         }
 
 
@@ -472,7 +473,7 @@ namespace SecretProject.Class.TileStuff
         {;
             return new Hull(new List<Vector2>()
                 {
-                    new Vector2(tile.X, destinationRectangle.Y),
+                    new Vector2(destinationRectangle.X, destinationRectangle.Y),
                     new Vector2(destinationRectangle.Y, destinationRectangle.Y + destinationRectangle.Height),
                     new Vector2(destinationRectangle.Y + destinationRectangle.Height, destinationRectangle.X + destinationRectangle.Width),
                     new Vector2(destinationRectangle.X + destinationRectangle.Width, destinationRectangle.X ),

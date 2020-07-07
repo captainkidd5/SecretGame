@@ -104,7 +104,6 @@ namespace SecretProject.Class.StageFolder
         public List<LightSource> AllNightLights { get; set; }
         public List<LightSource> AllDayTimeLights { get; set; }
 
-        public PenumbraComponent Penumbra;
 
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
@@ -169,13 +168,11 @@ namespace SecretProject.Class.StageFolder
             LoadPreliminaryContent();
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
             this.ServiceProvider = service;
-            this.Penumbra = (PenumbraComponent)this.ServiceProvider.GetService(typeof(PenumbraComponent));
-            this.Penumbra.Hulls.Clear();
-            this.Penumbra.Lights.Clear();
 
-            Game1.Player.LoadPenumbraLights(this.Penumbra);
-            this.Penumbra.Enabled = true;
-            //this.Penumbra.Transform = Game1.cam.getTransformation(graphics);
+
+            Game1.Player.LoadPenumbraLights(Game1.Penumbra);
+
+            
 
         }
         public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -439,6 +436,7 @@ namespace SecretProject.Class.StageFolder
         }
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            Game1.Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
@@ -520,19 +518,20 @@ namespace SecretProject.Class.StageFolder
 
         protected virtual void BeginPenumbra()
         {
-           
-            this.Penumbra.AmbientColor = Color.DarkGray;
-            this.Penumbra.BeginDraw();    
+
+            Game1.Penumbra.AmbientColor = Color.DarkGray;
+            Game1.Penumbra.BeginDraw();    
         }
 
         protected virtual void DrawPenumbra(GameTime gameTime)
         {
-            this.Penumbra.Draw(gameTime);
+            Game1.Penumbra.Draw(gameTime);
         }
 
         #region DRAW
         public virtual void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
+            //Game1.Penumbra.Hulls.Clear();
             if (player.Health > 0)
             {
                 if (this.IsDark)

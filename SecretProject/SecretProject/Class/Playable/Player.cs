@@ -139,6 +139,7 @@ namespace SecretProject.Class.Playable
         public Wardrobe Wardrobe { get; set; }
 
         public List<Light> PenumbraLights { get; set; }
+        public Hull Hull { get; set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
@@ -187,15 +188,15 @@ namespace SecretProject.Class.Playable
                     new Vector2(Rectangle.Y + Rectangle.Height, Rectangle.X + Rectangle.Width),
                     new Vector2(Rectangle.X + Rectangle.Width, Rectangle.X ),
                 };
-             Hull playerHull = new Hull(vectors);
-            penumbra.Hulls.Add(playerHull);
-             playerHull.Enabled = true;
+             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(10));
+            penumbra.Hulls.Add(Hull);
+            Hull.Enabled = true;
             this.PenumbraLights = new List<Light>()
             {
-                new Spotlight()
+                new PointLight()
                 {
                     Position = position,
-                    Scale = new Vector2(400),
+                    Scale = new Vector2(64),
                     ShadowType = ShadowType.Occluded,
                     Color = Color.FloralWhite,
                     
@@ -203,7 +204,7 @@ namespace SecretProject.Class.Playable
              };
             for (int i = 0; i < this.PenumbraLights.Count; i++)
             {
-                penumbra.Lights.Add(this.PenumbraLights[i]);
+               // penumbra.Lights.Add(this.PenumbraLights[i]);
             };
         }
         private void UpdatePenumbraLights()
@@ -212,6 +213,12 @@ namespace SecretProject.Class.Playable
             {
                 PenumbraLights[i].Position = this.Position;
             }
+            UpdateHullPosition();
+        }
+
+        private void UpdateHullPosition()
+        {
+            this.Hull.Position = this.Position;
         }
         public ItemData GetCurrentEquippedToolData()
         {

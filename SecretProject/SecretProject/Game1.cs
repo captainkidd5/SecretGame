@@ -388,6 +388,7 @@ namespace SecretProject
             };
             Services.AddService(Penumbra);
             //Components.Add(Penumbra);
+            Penumbra.Enabled = true;
             base.Initialize();
         }
         #endregion
