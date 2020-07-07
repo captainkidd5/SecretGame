@@ -285,10 +285,10 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            //foreach(ILocation location in Game1.AllStages)
-            //{
-            //    location.AllTiles.StartNew();
-            //}
+            foreach (ILocation location in Game1.AllStages)
+            {
+                location.StartNew();
+            }
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
@@ -489,6 +489,11 @@ namespace SecretProject.Class.StageFolder
         }
 
         public void Load(BinaryReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartNew()
         {
             throw new NotImplementedException();
         }

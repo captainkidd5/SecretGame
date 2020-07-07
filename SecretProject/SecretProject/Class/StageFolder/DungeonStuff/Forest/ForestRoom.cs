@@ -34,6 +34,8 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.Width = 128;
         }
 
+        
+
         protected override void GenerateSorroundingWalls(ref int gid, int i, int j)
         {
             if (j <= 3 || j >= this.Width - 3) //top and bottom walls

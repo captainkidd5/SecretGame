@@ -110,11 +110,12 @@ namespace SecretProject.Class.StageFolder
 
         void SaveLocation();
         void TryLoadExistingStage();
-        
 
 
+      
         void AssignPath(string startPath);
 
         string GetDebugString();
+        void StartNew();
     }
 }

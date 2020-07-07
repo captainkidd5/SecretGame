@@ -26,7 +26,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             //    this.Dimensions = dimensions;
             //}
             this.Dimensions = dimensions;
-            this.Nodes = new DungeonNode[this.Dimensions,this.Dimensions];
+            this.Nodes = new DungeonNode[this.Dimensions, this.Dimensions];
             this.Dungeon = dungeon;
 
         }
@@ -38,33 +38,34 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         public void GenerateLayout()
         {
-            for(int i =0; i < Nodes.GetLength(0); i++)
-            {
-                for(int j = 0; j < Nodes.GetLength(1); j++)
-                {
-                    Nodes[i, j] = new DungeonNode(i, j, GridStatus.Clear);
-                }
-            }
-        }
-
-        public void GeneratePortalConnections()
-        {
             for (int i = 0; i < Nodes.GetLength(0); i++)
             {
                 for (int j = 0; j < Nodes.GetLength(1); j++)
                 {
-                    
+                    Nodes[i, j] = new DungeonNode(i, j, GridStatus.Clear);
+                }
+            }
+            GeneratePortalConnections();
+        }
+
+        private void GeneratePortalConnections()
+        {
+            int length1 = Nodes.GetLength(0);
+            int length2 = Nodes.GetLength(1);
+            for (int i = 0; i < length1; i++)
+            {
+                for (int j = 0; j < length2; j++)
+                {
+
                     int key = WangRooms(Nodes[i, j].GridStatus, i, j, this.Dimensions, this.Dimensions);
-                    if(!(i == 99 && j == 0))
-                    {
-                        Dungeon.Rooms[i, j].DungeonPortals = GetPortalsFromWang(Nodes[i, j], key);
-                    }
-                    
+                    Dungeon.Rooms[i, j].DungeonPortals = GetPortalsFromWang(Nodes[i, j], key);
+
+
                 }
             }
         }
 
-        public int WangRooms(GridStatus gridStatus, 
+        private int WangRooms(GridStatus gridStatus,
    int x, int y, int worldWidth, int worldHeight)
         {
             int keyToCheck = 0;
@@ -72,7 +73,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 return 0;
             }
-            
+
             if (y > 0)
             {
                 if (Nodes[x, y - 1].GridStatus == GridStatus.Clear)
@@ -94,7 +95,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
-                if (Nodes[x + 1, y ].GridStatus == GridStatus.Clear)
+                if (Nodes[x + 1, y].GridStatus == GridStatus.Clear)
                 {
                     keyToCheck += 4;
                 }
@@ -116,12 +117,12 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         }
 
-        public List<DungeonPortal> GetPortalsFromWang(DungeonNode currentNode, int wangKey)
+        private List<DungeonPortal> GetPortalsFromWang(DungeonNode currentNode, int wangKey)
         {
             List<DungeonPortal> portals = new List<DungeonPortal>();
 
 
-            switch(wangKey)
+            switch (wangKey)
             {
                 case 0: //isolated, no portals
                     break;
@@ -153,7 +154,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
                     break;
                 case 7: //one up, one left, one right
-    
+
 
                     AddPortal(portals, currentNode, Dir.Up);
                     AddPortal(portals, currentNode, Dir.Left);
@@ -218,12 +219,12 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             return portals;
         }
 
-        private void AddPortal(List<DungeonPortal> portals,DungeonNode currentNode, Dir direction)
+        private void AddPortal(List<DungeonPortal> portals, DungeonNode currentNode, Dir direction)
         {
             int plusX = 0;
             int plusY = 0;
 
-            switch(direction)
+            switch (direction)
             {
                 case Dir.Down:
                     plusY = 1;
@@ -289,7 +290,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         /// <returns></returns>
         public static Rectangle GetRectangleFromDirection(Vector2 tilePosition, int extendedTileAmt, Dir wallDirection)
         {
-          
+
             switch (wallDirection)
             {
                 case Dir.Down:

@@ -24,11 +24,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected DungeonRoom CurrentRoom { get;  set; }
         public DungeonRoom[,] Rooms { get;  set; }
-        public ContentManager Content { get; private set; }
+        public ContentManager Content { get;  set; }
 
         public string RoomDirectory { get; set; }
 
-        public DungeonGraph DungeonGraph { get; private set; }
+        protected DungeonGraph DungeonGraph { get;  set; }
 
         public Dungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
@@ -112,6 +112,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
         }
 
+        protected override void LoadTileManager()
+        {
+            this.AllTiles = new TileManager(this.TileSet, this.Map, this.Graphics, this.StageContentManager, (int)this.TileSetNumber, this,false);
+        }
+
         protected virtual void CreateFirstRoom()
         {
             DungeonRoom startingRoom = new DungeonRoom(this.AllTiles, this, 99, 0, this.Content); //starting room is top right
@@ -131,19 +136,21 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             
             this.CurrentRoom.DungeonPortals.Add(new DungeonPortal( DungeonGraph.GetNode(99, 1),0, -64,Dir.Down));
             this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80,16);
-            GenerateRoomSavePath(startingRoom);
+            GenerateRoomSavePath(startingRoom, startingRoom.X, startingRoom.Y);
         }
+
+
 
         public void SwitchRooms(int x, int y, Dir directionToGoTo)
         {
             this.CurrentRoom.Save(this.RoomDirectory + "/" + this.CurrentRoom.X + "," + CurrentRoom.Y + ".dat");
             DungeonRoom room;
-            ResetDebugString();
+            ResetDebugString(); 
             room = this.Rooms[x, y];
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition();
             this.Enemies = new List<NPCStuff.Enemies.Enemy>();
             
-                GenerateRoomSavePath(room);
+                GenerateRoomSavePath(room,x,y);
             
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
@@ -185,9 +192,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             Game1.Player.position = new Vector2(newPlayerX, newPlayerY);
         }
 
-        public void GenerateRoomSavePath(DungeonRoom room)
+        public void GenerateRoomSavePath(DungeonRoom room, int x, int y)
         {
-            string path = this.RoomDirectory + "/" + room.X + "," + room.Y + ".dat";
+            string path = this.RoomDirectory + "/" + x + "," + y + ".dat";
             if (File.Exists(path))
             {
 

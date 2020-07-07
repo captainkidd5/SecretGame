@@ -100,7 +100,7 @@ namespace SecretProject.Class.TileStuff
 
 
         //Instantiate with a premade map
-        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage, int presetDimension = 0)
+        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, ILocation currentStage, bool addMapPortals = true,int presetDimension = 0)
         {
             this.Stage = currentStage;
             this.ITileManager = this;
@@ -177,8 +177,12 @@ namespace SecretProject.Class.TileStuff
             this.TileModificationHandler = new TileModificationHandler();
 
             #region PORTALS
-            for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
-                FetchPortals(mapName);
+            if(addMapPortals)
+            {
+                for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
+                    FetchPortals(mapName);
+            }
+            
             #endregion
 
             currentStage.AllNightLights = this.NightTimeLights;

@@ -220,7 +220,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             GetDoorwaysBasedOnPortals();
             int roomDimensions = this.Width;
             this.Width = roomDimensions;
-            this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, roomDimensions);
+            this.TileManager = new TileManager(Dungeon.AllTiles.TileSet, Dungeon.AllTiles.MapName, Dungeon.Graphics, Dungeon.Content, (int)Dungeon.TileSetNumber, Dungeon, false,roomDimensions);
             topWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             bottomWallLeft = Game1.Utility.RGenerator.Next(0, this.Width - 5);
             leftWallTop = Game1.Utility.RGenerator.Next(0, this.Width - 5);

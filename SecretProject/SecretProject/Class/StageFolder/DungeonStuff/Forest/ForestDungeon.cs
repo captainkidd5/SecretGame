@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +17,13 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
     {
         public ForestDungeon(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
         {
+
             this.Rooms = new ForestRoom[MaxDungeonRooms, MaxDungeonRooms];
+            InitializeRooms();
+            this.Content = content;
+            this.DungeonGraph = new DungeonGraph(this, 100);
+            this.NPCGenerator = new NPCGenerator((IInformationContainer)this.AllTiles, graphics);
+            this.AllPortals.Clear();
         }
 
         protected override void InitializeRooms()
@@ -30,17 +38,18 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         }
         protected override void CreateFirstRoom()
         {
-            DungeonRoom startingRoom = new ForestRoom(this.AllTiles, this, 99, 0, this.Content); //starting room is top right
-            Rooms[99, 0] = startingRoom;
+            DungeonRoom startingRoom = Rooms[99, 0];
 
             string startingRoomSavePath = this.RoomDirectory + "/" + startingRoom.X + "," + startingRoom.Y + ".dat";
 
             this.CurrentRoom = startingRoom;
 
-            this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(DungeonGraph.GetNode(99, 1), 0, -64, Dir.Down));
-            this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80, 16);
-            GenerateRoomSavePath(startingRoom);
+            //this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(DungeonGraph.GetNode(99, 1), 0, -64, Dir.Down));
+            //this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80, 16);
+            GenerateRoomSavePath(startingRoom,startingRoom.X,startingRoom.Y);
         }
+
+
 
         protected override void AddFirstRoomPortal()
         {

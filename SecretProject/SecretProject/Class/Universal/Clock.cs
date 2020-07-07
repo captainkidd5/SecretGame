@@ -113,12 +113,20 @@ namespace SecretProject.Class.Universal
             {
                 character.ResetEndOfDay();
             }
-            TileUtility.ReplaceTile(3, 67, 114, 5523, (IInformationContainer)Game1.Town.AllTiles);
 
-            
+            ReplaceDirtContainer();
             AdjustClockText();
             Game1.Player.RestorePlayerToFull();
             Game1.SaveLoadManager.Save(Game1.SaveLoadManager.CurrentSave);
+        }
+
+        /// <summary>
+        /// replaces dirt bin at the docks with a non-empty one.
+        /// </summary>
+        private void ReplaceDirtContainer()
+        {
+            TileUtility.ReplaceTile(3, 67, 114, 5523, (IInformationContainer)Game1.Town.AllTiles);
+
         }
 
         public int GetTimeFromString(string time)

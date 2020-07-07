@@ -589,5 +589,10 @@ namespace SecretProject.Class.StageFolder
         {
             throw new NotImplementedException();
         }
+
+        public void StartNew()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

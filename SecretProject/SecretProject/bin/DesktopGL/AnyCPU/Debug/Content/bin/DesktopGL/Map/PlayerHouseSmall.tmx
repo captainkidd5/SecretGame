@@ -417,7 +417,7 @@
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-50"/>
     <property name="standardFrom" value="PlayerHouse"/>
-    <property name="standardTo" value="Town"/>
+    <property name="standardTo" value="HomeStead"/>
    </properties>
   </object>
  </objectgroup>

@@ -74,9 +74,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                                             activeSamples.Add(newPoint);
                                             Grid[newPoint.X, newPoint.Y] = (int)GridStatus.Obstructed;
                                             TileUtility.ReplaceTile(layerToPlace, newPoint.X, newPoint.Y, gid, container);
-                                            Crop crop = Game1.AllCrops.GetCropFromGID(gid);
+                                            
                                             if (isCrop)
                                             {
+                                                Crop crop = Game1.AllCrops.GetCropFromGID(gid);
                                                 TileUtility.AddCropToTile(crop,container.AllTiles[(int)MapLayer.ForeGround][newPoint.X, newPoint.Y], newPoint.X, newPoint.Y, (int)MapLayer.ForeGround, container, true);
                                             }
                                             break;

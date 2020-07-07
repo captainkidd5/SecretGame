@@ -123,13 +123,15 @@ namespace SecretProject.Class.StageFolder
 
         public NPCGenerator NPCGenerator { get; set; }
         public FunBox FunBox { get; set; }
+
+        protected bool IsBasedOnPreloadedMap { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, bool isBasedOnPreloadedMap = true)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -161,7 +163,7 @@ namespace SecretProject.Class.StageFolder
                 this.TileSetNumber = TileSetType.Exterior;
             }
             LoadPreliminaryContent();
-
+            this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
 
         }
 
@@ -227,6 +229,11 @@ namespace SecretProject.Class.StageFolder
                 this.AllTiles.LoadGeneratableTileLists(); //just here so it only happens once!
                 Game1.AreGeneratableTilesLoaded = true;
             }
+        }
+
+        public void StartNew()
+        {
+            this.AllTiles.StartNew(this.IsBasedOnPreloadedMap);
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
