@@ -98,9 +98,14 @@ namespace SecretProject.Class.StageFolder
         public List<Portal> AllPortals { get; set; }
 
         public int DialogueToRetrieve { get; set; }
+
+
         public bool IsDark { get; set; }
         public List<LightSource> AllNightLights { get; set; }
         public List<LightSource> AllDayTimeLights { get; set; }
+
+        public PenumbraComponent Penumbra;
+
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
@@ -129,13 +134,15 @@ namespace SecretProject.Class.StageFolder
         public FunBox FunBox { get; set; }
 
         protected bool IsBasedOnPreloadedMap { get; set; }
+
+        protected IServiceProvider ServiceProvider { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, bool isBasedOnPreloadedMap = true)
+        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber,IServiceProvider service, bool isBasedOnPreloadedMap = true)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -161,6 +168,14 @@ namespace SecretProject.Class.StageFolder
 
             LoadPreliminaryContent();
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
+            this.ServiceProvider = service;
+            this.Penumbra = (PenumbraComponent)this.ServiceProvider.GetService(typeof(PenumbraComponent));
+            this.Penumbra.Hulls.Clear();
+            this.Penumbra.Lights.Clear();
+
+            Game1.Player.LoadPenumbraLights(this.Penumbra);
+            this.Penumbra.Enabled = true;
+            //this.Penumbra.Transform = Game1.cam.getTransformation(graphics);
 
         }
         public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -219,6 +234,9 @@ namespace SecretProject.Class.StageFolder
             this.AllCrops = new Dictionary<string, Crop>();
             this.QuadTree = new QuadTree(0, this.MapRectangle);
             this.FunBox = new FunBox(this.Graphics);
+
+          
+
         }
 
         protected virtual void LoadTileManager()
@@ -236,7 +254,7 @@ namespace SecretProject.Class.StageFolder
             this.AllTiles.StartNew(this.IsBasedOnPreloadedMap);
         }
 
-        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        public virtual void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
@@ -255,7 +273,6 @@ namespace SecretProject.Class.StageFolder
             this.AllTextToWrite = new List<StringWrapper>();
             this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, this.Graphics);
             this.IsLoaded = true;
-
         }
         public void OnSceneChanged()
         {
@@ -353,7 +370,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
             }
-
+             
             for (int creature = 0; creature < this.FunBox.FunItems.Count; creature++)
             {
                 if ((this.FunBox.FunItems[creature].GetType() == typeof(GrassCreature)))
@@ -501,6 +518,18 @@ namespace SecretProject.Class.StageFolder
         }
         #endregion
 
+        protected virtual void BeginPenumbra()
+        {
+           
+            this.Penumbra.AmbientColor = Color.DarkGray;
+            this.Penumbra.BeginDraw();    
+        }
+
+        protected virtual void DrawPenumbra(GameTime gameTime)
+        {
+            this.Penumbra.Draw(gameTime);
+        }
+
         #region DRAW
         public virtual void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
@@ -531,26 +560,10 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.Clear(Color.Transparent);
 
-                Game1.Penumbra.AmbientColor = Color.Gray;
-                Game1.Penumbra.BeginDraw();
+                BeginPenumbra();
 
 
-                List<Vector2> vectors = new List<Vector2>()
-                {
-                    new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y),
-                    new Vector2(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y + Game1.Player.Rectangle.Height),
-                    new Vector2(Game1.Player.Rectangle.Y + Game1.Player.Rectangle.Height, Game1.Player.Rectangle.X + Game1.Player.Rectangle.Width),
-                    new Vector2(Game1.Player.Rectangle.X + Game1.Player.Rectangle.Width, Game1.Player.Rectangle.X ),
-                };
-                Hull playerHull = new Hull(vectors);
-                playerHull.Enabled = true;
-                Light spotLight = new Spotlight()
-                {
-                    Position = Game1.Player.position,
-                    Scale = new Vector2(800),
-                    ShadowType = ShadowType.Occluded,
-                };
-                Game1.Penumbra.Lights.Add(spotLight);
+                
 
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
 
@@ -627,7 +640,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
-                Game1.Penumbra.Draw(gameTime);
+                DrawPenumbra(gameTime);
 
                 graphics.SetRenderTarget(null);
 

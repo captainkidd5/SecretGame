@@ -30,7 +30,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected DungeonGraph DungeonGraph { get;  set; }
 
-        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
+        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber,service)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             InitializeRooms();

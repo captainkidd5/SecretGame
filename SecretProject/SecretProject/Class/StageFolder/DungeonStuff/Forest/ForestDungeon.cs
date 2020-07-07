@@ -15,7 +15,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 {
     public class ForestDungeon : Dungeon
     {
-        public ForestDungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber)
+        public ForestDungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber,  service)
         {
 
             this.Rooms = new ForestRoom[MaxDungeonRooms, MaxDungeonRooms];
@@ -60,6 +60,17 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             {
                 Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
             }
+        }
+
+        protected override void BeginPenumbra()
+        {
+            Game1.Penumbra.AmbientColor = Color.DarkGray;
+            Game1.Penumbra.BeginDraw();
+        }
+
+        protected override void DrawPenumbra(GameTime gameTime)
+        {
+            Game1.Penumbra.Draw(gameTime);
         }
 
     }

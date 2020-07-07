@@ -173,12 +173,23 @@ namespace SecretProject.Class.Playable
 
             this.Wardrobe = new Wardrobe(graphics, position);
 
-            LoadPenumbraLights();
+          
 
         }
 
-        private void LoadPenumbraLights()
+        public void LoadPenumbraLights(PenumbraComponent penumbra)
         {
+
+            List<Vector2> vectors = new List<Vector2>()
+                {
+                    new Vector2(Rectangle.X, Rectangle.Y),
+                    new Vector2(Rectangle.Y, Rectangle.Y + Rectangle.Height),
+                    new Vector2(Rectangle.Y + Rectangle.Height, Rectangle.X + Rectangle.Width),
+                    new Vector2(Rectangle.X + Rectangle.Width, Rectangle.X ),
+                };
+             Hull playerHull = new Hull(vectors);
+            penumbra.Hulls.Add(playerHull);
+             playerHull.Enabled = true;
             this.PenumbraLights = new List<Light>()
             {
                 new Spotlight()
@@ -186,12 +197,13 @@ namespace SecretProject.Class.Playable
                     Position = position,
                     Scale = new Vector2(400),
                     ShadowType = ShadowType.Occluded,
+                    Color = Color.FloralWhite,
                     
                 },
              };
             for (int i = 0; i < this.PenumbraLights.Count; i++)
             {
-                Game1.Penumbra.Lights.Add(this.PenumbraLights[i]);
+                penumbra.Lights.Add(this.PenumbraLights[i]);
             };
         }
         private void UpdatePenumbraLights()
@@ -453,6 +465,8 @@ namespace SecretProject.Class.Playable
 
                 }
 
+                UpdatePenumbraLights();
+
             }
         }
 
@@ -693,6 +707,8 @@ namespace SecretProject.Class.Playable
 
 
                 }
+
+                
             }
 
         }
