@@ -41,6 +41,7 @@ using SecretProject.Class.StageFolder.DungeonStuff;
 using System.Linq;
 using XMLData.ItemStuff.MessageStuff;
 using SecretProject.Class.StageFolder.DungeonStuff.Desert;
+using Penumbra;
 
 
 
@@ -284,6 +285,9 @@ namespace SecretProject
         public RenderTarget2D NightLightsTarget;
         public RenderTarget2D DayLightsTarget;
 
+        //LIGHTING
+        public static PenumbraComponent Penumbra;
+
 
         public static PresentationParameters PresentationParameters;
 
@@ -378,7 +382,12 @@ namespace SecretProject
 
 
             AllActions = new List<ActionTimer>();
-
+            Penumbra = new PenumbraComponent(this)
+            {
+                AmbientColor = Color.White,
+            };
+            Services.AddService(Penumbra);
+            //Components.Add(Penumbra);
             base.Initialize();
         }
         #endregion
@@ -484,6 +493,9 @@ namespace SecretProject
             ForestTracker = new SanctuaryTracker(Player.UserInterface.CompletionHub.AllGuides[0]);
             OverWorldSpawnHolder = new SpawnHolder();
 
+
+            Penumbra.Initialize();
+            
         }
 
         private void LoadDialogue()
@@ -1124,14 +1136,14 @@ namespace SecretProject
         {
 
 
+           
             this.GraphicsDevice.Clear(Color.Black);
-            CurrentStage.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, MouseManager, Player);
-
-            if (CurrentEvent != null)
-            {
-                CurrentEvent.Draw(spriteBatch);
-            }
+           
             Game1.DebugWindow.Draw(spriteBatch);
+
+            CurrentStage.Draw(gameTime, graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, spriteBatch, MouseManager, Player);
+
+
 
             base.Draw(gameTime);
         }

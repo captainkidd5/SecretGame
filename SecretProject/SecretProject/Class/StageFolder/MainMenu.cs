@@ -350,7 +350,7 @@ namespace SecretProject.Class.StageFolder
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
-        public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public override void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
 
         {
 
@@ -399,8 +399,8 @@ namespace SecretProject.Class.StageFolder
 
             Back.Draw(spriteBatch, Game1.AllTextures.MenuText, "Back", Back.FontLocation, Back.Color,Utility.StandardButtonDepth, Utility.StandardTextDepth);
 
-
             spriteBatch.End();
+         
         }
 
 

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Penumbra;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
@@ -137,6 +138,8 @@ namespace SecretProject.Class.Playable
 
         public Wardrobe Wardrobe { get; set; }
 
+        public List<Light> PenumbraLights { get; set; }
+
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
             this.content = content;
@@ -169,8 +172,35 @@ namespace SecretProject.Class.Playable
 
 
             this.Wardrobe = new Wardrobe(graphics, position);
+
+            LoadPenumbraLights();
+
         }
 
+        private void LoadPenumbraLights()
+        {
+            this.PenumbraLights = new List<Light>()
+            {
+                new Spotlight()
+                {
+                    Position = position,
+                    Scale = new Vector2(400),
+                    ShadowType = ShadowType.Occluded,
+                    
+                },
+             };
+            for (int i = 0; i < this.PenumbraLights.Count; i++)
+            {
+                Game1.Penumbra.Lights.Add(this.PenumbraLights[i]);
+            };
+        }
+        private void UpdatePenumbraLights()
+        {
+            for (int i = 0; i < this.PenumbraLights.Count; i++)
+            {
+                PenumbraLights[i].Position = this.Position;
+            }
+        }
         public ItemData GetCurrentEquippedToolData()
         {
             return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -340,7 +370,7 @@ namespace SecretProject.Class.Playable
                     if (item.CrateType != 0)
                     {
 
-                       
+
 
                     }
 
@@ -522,7 +552,7 @@ namespace SecretProject.Class.Playable
                     #region SWORD INTERACTIONS
                     if (this.Wardrobe.ToolPiece != null)
                     {
-                        if(this.Wardrobe.ToolPiece.ToolLine != null)
+                        if (this.Wardrobe.ToolPiece.ToolLine != null)
                         {
                             if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
                             {
@@ -530,7 +560,7 @@ namespace SecretProject.Class.Playable
                                     (collider.Entity as GrassTuft).SelfDestruct();
                             }
                         }
-                       
+
                     }
                     #endregion
                 }

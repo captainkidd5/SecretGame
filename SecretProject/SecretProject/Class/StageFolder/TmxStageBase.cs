@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Penumbra;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.CollisionDetection.ProjectileStuff;
@@ -501,7 +502,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public virtual void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public virtual void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             if (player.Health > 0)
             {
@@ -525,9 +526,32 @@ namespace SecretProject.Class.StageFolder
                     spriteBatch.End();
                 }
 
-
                 graphics.SetRenderTarget(mainTarget);
+
+
                 graphics.Clear(Color.Transparent);
+
+                Game1.Penumbra.AmbientColor = Color.Gray;
+                Game1.Penumbra.BeginDraw();
+
+
+                List<Vector2> vectors = new List<Vector2>()
+                {
+                    new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y),
+                    new Vector2(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y + Game1.Player.Rectangle.Height),
+                    new Vector2(Game1.Player.Rectangle.Y + Game1.Player.Rectangle.Height, Game1.Player.Rectangle.X + Game1.Player.Rectangle.Width),
+                    new Vector2(Game1.Player.Rectangle.X + Game1.Player.Rectangle.Width, Game1.Player.Rectangle.X ),
+                };
+                Hull playerHull = new Hull(vectors);
+                playerHull.Enabled = true;
+                Light spotLight = new Spotlight()
+                {
+                    Position = Game1.Player.position,
+                    Scale = new Vector2(800),
+                    ShadowType = ShadowType.Occluded,
+                };
+                Game1.Penumbra.Lights.Add(spotLight);
+
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
@@ -603,6 +627,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
+                Game1.Penumbra.Draw(gameTime);
 
                 graphics.SetRenderTarget(null);
 
