@@ -34,19 +34,23 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             Rooms[99, 0] = startingRoom;
 
             string startingRoomSavePath = this.RoomDirectory + "/" + startingRoom.X + "," + startingRoom.Y + ".dat";
-            if (File.Exists(startingRoomSavePath))
-            {
 
-                startingRoom.Load(startingRoomSavePath);
-            }
-            else
-            {
-                startingRoom.Save(startingRoomSavePath);
-            }
             this.CurrentRoom = startingRoom;
 
             this.CurrentRoom.DungeonPortals.Add(new DungeonPortal(DungeonGraph.GetNode(99, 1), 0, -64, Dir.Down));
             this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80, 16);
+            GenerateRoomSavePath(startingRoom);
+        }
+
+        protected override void AddFirstRoomPortal()
+        {
+            Portal portal = new Portal((int)this.StageIdentifier, (int)Game1.HomeStead.StageIdentifier, 0, 32, false);
+            this.AllPortals.Add(portal);
+
+            if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
+            {
+                Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
+            }
         }
 
     }

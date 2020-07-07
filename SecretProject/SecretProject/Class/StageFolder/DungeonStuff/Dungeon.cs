@@ -96,7 +96,19 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 AllTiles.StartNew(false);
                 this.DungeonGraph.GenerateLayout();
                 CreateFirstRoom();
-                this.DungeonGraph.GeneratePortalConnections();
+                SwitchRooms(99, 0, Dir.Down);
+            }
+            AddFirstRoomPortal();
+        }
+
+        protected virtual void AddFirstRoomPortal()
+        {
+            Portal portal = new Portal((int)this.StageIdentifier, (int)Game1.HomeStead.StageIdentifier, 0, 32, false);
+            this.AllPortals.Add(portal);
+
+            if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
+            {
+                Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
             }
         }
 
@@ -119,6 +131,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             
             this.CurrentRoom.DungeonPortals.Add(new DungeonPortal( DungeonGraph.GetNode(99, 1),0, -64,Dir.Down));
             this.CurrentRoom.DungeonPortals[0].InteractionRectangle = new Rectangle(512, 1006, 80,16);
+            GenerateRoomSavePath(startingRoom);
         }
 
         public void SwitchRooms(int x, int y, Dir directionToGoTo)
@@ -129,7 +142,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             room = this.Rooms[x, y];
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition();
             this.Enemies = new List<NPCStuff.Enemies.Enemy>();
-            GenerateRoomSavePath(room);
+            
+                GenerateRoomSavePath(room);
+            
             this.Rooms[x, y] = room;
             this.CurrentRoom = room;
             this.AllTiles = this.CurrentRoom.TileManager;

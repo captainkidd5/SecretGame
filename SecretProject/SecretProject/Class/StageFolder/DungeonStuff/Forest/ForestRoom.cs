@@ -31,6 +31,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             this.TileManager = tileManager;
 
             this.DungeonPortals = new List<DungeonPortal>();
+            this.Width = 128;
         }
 
         protected override void GenerateSorroundingWalls(ref int gid, int i, int j)
