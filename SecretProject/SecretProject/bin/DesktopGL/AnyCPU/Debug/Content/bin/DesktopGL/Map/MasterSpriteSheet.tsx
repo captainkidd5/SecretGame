@@ -1528,7 +1528,7 @@
  <tile id="731">
   <properties>
    <property name="destructable" value="21,4,5,3,3,2"/>
-   <property name="newHitBox" value="-16,0,48,16"/>
+   <property name="newHitBox" value="-12,0,32,16"/>
    <property name="newSource" value="-16,-16,48,32"/>
    <property name="transparent" value="-16,-16, 48, 16"/>
   </properties>
@@ -4520,7 +4520,7 @@
  </tile>
  <tile id="4127">
   <properties>
-   <property name="lightSource" value="1,0,0,NightTime"/>
+   <property name="lightSource" value="1,0,0,Orange"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -4721,7 +4721,7 @@
  <tile id="4527">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
-   <property name="lightSource" value="1,0,-48,NightTime"/>
+   <property name="lightSource" value="1,0,-48,White"/>
    <property name="newSource" value="0,-48,16,64"/>
    <property name="transparent" value="0,-48,16,64"/>
   </properties>
@@ -5273,6 +5273,8 @@
  <tile id="8836">
   <properties>
    <property name="action" value="portal"/>
+   <property name="newHitBox">-64,-112,112,128
+</property>
    <property name="newSource" value="-64,-128,112,144"/>
    <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
@@ -5457,6 +5459,7 @@
  <tile id="9635">
   <properties>
    <property name="action" value="portal"/>
+   <property name="newHitBox" value="-64,-96,144,112"/>
    <property name="newSource" value="-64,-112,144,128"/>
    <property name="portal" value="true,Town,GeneralStore"/>
   </properties>

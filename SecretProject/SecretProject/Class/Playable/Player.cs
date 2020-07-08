@@ -182,7 +182,8 @@ namespace SecretProject.Class.Playable
         {
 
 
-             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(8));
+             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6));
+
             penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
             this.PenumbraLights = new List<Light>()
@@ -212,7 +213,7 @@ namespace SecretProject.Class.Playable
 
         private void UpdateHullPosition()
         {
-            this.Hull.Position = new Vector2(this.MainCollider.Rectangle.X + 4, this.MainCollider.Rectangle.Y + 4);
+            this.Hull.Position = new Vector2(this.MainCollider.Rectangle.X + 4, this.MainCollider.Rectangle.Y + 6);
         }
         public ItemData GetCurrentEquippedToolData()
         {

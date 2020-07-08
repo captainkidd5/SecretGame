@@ -140,7 +140,7 @@ namespace SecretProject.Class.TileStuff
 
                     int grasstype = int.Parse(propertyString);
                     GrassTuft grassTuft = new GrassTuft(TileManager.GraphicsDevice, grasstype, new Vector2(tileToAssign.DestinationRectangle.X + 8
-                                , tileToAssign.DestinationRectangle.Y + 8));
+                                , tileToAssign.DestinationRectangle.Y + 8),TileManager.Stage);
                     List<GrassTuft> tufts = new List<GrassTuft>()
                     {
                         grassTuft,
@@ -222,13 +222,18 @@ namespace SecretProject.Class.TileStuff
 
 
                     Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
-                   // LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
+                    Color lightColor = LightSource.GetLightType(propertyString);
+                    // LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
 
                     PointLight pointLight = new PointLight()
                     {
                         Position = new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y),
                         Scale = new Vector2(400),
-                        ShadowType = ShadowType.Solid,
+                        ShadowType = ShadowType.Occluded,
+
+                        Color = lightColor,
+
+                        
                     };
                     TileManager.Stage.Lights.Add(pointLight);
                     
@@ -367,6 +372,15 @@ namespace SecretProject.Class.TileStuff
                     //hull.Enabled = true;
                     //TileManager.Stage.Hulls.Add(hull);
                     // reassignGrid = false;
+
+                    propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
+                    if (!GetProperty(tileSet, tileToAssign.GID, ref propertyString))
+                    {
+                        Hull hull = Hull.CreateRectangle(new Vector2(tempObjectBody.Rectangle.X + (float)tempObjectBody.Rectangle.Width / 2,
+                            tempObjectBody.Rectangle.Y + (float)tempObjectBody.Rectangle.Height / 2),
+                            new Vector2((float)tempObjectBody.Rectangle.Width, (float)tempObjectBody.Rectangle.Height));
+                        TileManager.Stage.Hulls.Add(hull);
+                    }
                     if (TileManager.Type == 0)
                     {
                         int startI = rectangleCoords[0] / 16;
@@ -477,16 +491,6 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static Hull GetHullFromTile(TileManager tileManager,Rectangle destinationRectangle,Tile tile)
-        {;
-            return new Hull(new List<Vector2>()
-                {
-                    new Vector2(destinationRectangle.X, destinationRectangle.Y),
-                    new Vector2(destinationRectangle.Y, destinationRectangle.Y + destinationRectangle.Height),
-                    new Vector2(destinationRectangle.Y + destinationRectangle.Height, destinationRectangle.X + destinationRectangle.Width),
-                    new Vector2(destinationRectangle.X + destinationRectangle.Width, destinationRectangle.X ),
-                });
-        }
 
         public static void AddCropToTile(Crop crop, Tile tileToAssign, int x, int y, int layer, TileManager TileManager, bool randomize = false)
         {

@@ -526,7 +526,7 @@ namespace SecretProject.Class.StageFolder
         {
             if (IsDark)
             {
-                Penumbra.AmbientColor = new Color(251, 62, 255);
+                Penumbra.AmbientColor = Color.DarkSlateGray;
                 Penumbra.BeginDraw();
             }
                

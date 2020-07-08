@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Penumbra;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
@@ -45,7 +46,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public RectangleCollider RectangleCollider;
 
-        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
+        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position,TmxStageBase stage)
         {
             this.Graphics = graphics;
             this.GrassType = grassType;
@@ -75,6 +76,8 @@ namespace SecretProject.Class.SpriteFolder
             this.GrassOffset = new Vector2(8, 24);
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
+
+
         }
         public void Update(GameTime gameTime)
         {

@@ -10,6 +10,14 @@ namespace SecretProject.Class.LightStuff
         NightTime = 2
     }
 
+    public enum LightColor
+    {
+        None = 0,
+        White = 1,
+        Yellow = 2,
+        Orange = 3
+    }
+
     public class LightSource
     {
         public LightType LightType { get; set; }
@@ -21,7 +29,7 @@ namespace SecretProject.Class.LightStuff
         {
             this.LightTexture = GetTextureFromID(int.Parse(data.Split(',')[0]));
             Position = new Vector2(position.X + 8 - this.LightTexture.Width / 2, position.Y - this.LightTexture.Height / 2);
-            this.LightType = GetLightType(data);
+            //this.LightType = GetLightType(data);
             
         }
 
@@ -42,10 +50,21 @@ namespace SecretProject.Class.LightStuff
             spriteBatch.Draw(this.LightTexture, Position, Color.White);
         }
 
-        public LightType GetLightType(string data)
+        public static Color GetLightType(string data)
         {
 
-            return (LightType)Enum.Parse(typeof(LightType), data.Split(',')[3]);
+           // return (LightColor)Enum.Parse(typeof(LightColor), data.Split(',')[3]);
+            switch((LightColor)Enum.Parse(typeof(LightColor), data.Split(',')[3]))
+            {
+                case LightColor.Orange:
+                    return Color.Orange;
+                case LightColor.White:
+                    return Color.White;
+                case LightColor.Yellow:
+                    return Color.Yellow;
+                default:
+                    return Color.White;
+            }
         }
 
         public static Vector2 ParseLightData(string data)
