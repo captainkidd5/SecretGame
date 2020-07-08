@@ -1057,7 +1057,7 @@ namespace SecretProject
                     float y = tempPortal.PortalStart.Y;
                     float safteyX = tempPortal.SafteyOffSetX;
                     float safteyY = tempPortal.SafteyOffSetY;
-                    Player.position = new Vector2(x + width + safteyX, y + safteyY);
+                    Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
                 }
             }
 

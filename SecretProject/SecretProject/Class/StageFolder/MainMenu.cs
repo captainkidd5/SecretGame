@@ -248,7 +248,7 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            Game1.HomeStead.StartNew();
+            Game1.PlayerHouse.StartNew();
             //foreach (TmxStageBase location in Game1.AllStages)
             //{
             //    location.StartNew();
@@ -257,7 +257,7 @@ namespace SecretProject.Class.StageFolder
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
-            Game1.SwitchStage(Game1.HomeStead);
+            Game1.SwitchStage(Game1.PlayerHouse);
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.005f);
             Game1.Player.position = new Vector2(460, 660);
 

@@ -186,8 +186,14 @@ namespace SecretProject.Class.Playable
             this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius /2, 0f, this.MainCollider.Circle.Center);
             CollisionBody.BodyType = BodyType.Dynamic;
             CollisionBody.Restitution = .3f;
-            CollisionBody.Friction = 1f;
+            CollisionBody.Friction = 10f;
 
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            CollisionBody.SetTransform(position, 0f);
+            this.Position = CollisionBody.Position;
         }
 
         public void LoadPenumbraLights(PenumbraComponent penumbra)
@@ -451,8 +457,9 @@ namespace SecretProject.Class.Playable
                 
                 CollisionBody.ApplyLinearImpulse(PrimaryVelocity * 100);
                 this.MainCollider.Circle.Center = CollisionBody.Position;
-                Wardrobe.UpdateAnimations(gameTime, this.MainCollider.Circle.Center, movementDir, this.IsMoving);
-                this.Position = MainCollider.Circle.Center;
+                 Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
+                Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
+                
                 // this.MainCollider.Update(this.ColliderRectangle);
 
 
@@ -465,7 +472,7 @@ namespace SecretProject.Class.Playable
                 if (controls.IsMoving && !IsPerformingAction)
                 {
                     UpdateStaminaDrainFlag();
-                    this.Position = CollisionBody.Position;
+                   // this.Position = CollisionBody.Position;
                     //if (controls.IsSprinting)
                     //{
                     //    this.Position += PrimaryVelocity * 10;
