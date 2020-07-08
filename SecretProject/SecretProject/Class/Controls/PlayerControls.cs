@@ -165,6 +165,7 @@ namespace SecretProject.Class.Controls
                             break;
 
                         case Keys.None:
+                            this.Direction = Dir.None;
                             this.IsMoving = false;
                             break;
                     }

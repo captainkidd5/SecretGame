@@ -20,6 +20,9 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
+using VelcroPhysics.Utilities;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.Playable
@@ -138,8 +141,14 @@ namespace SecretProject.Class.Playable
 
         public Wardrobe Wardrobe { get; set; }
 
+        //PENUMBRA
         public List<Light> PenumbraLights { get; set; }
         public Hull Hull { get; set; }
+
+        //VELCROPHYSICS
+        public Body CollisionBody { get; set; }
+
+ 
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
@@ -174,7 +183,10 @@ namespace SecretProject.Class.Playable
 
             this.Wardrobe = new Wardrobe(graphics, position);
 
-          
+            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius /2, 0f, this.MainCollider.Circle.Center);
+            CollisionBody.BodyType = BodyType.Dynamic;
+            CollisionBody.Restitution = .3f;
+            CollisionBody.Friction = 1f;
 
         }
 
@@ -339,6 +351,7 @@ namespace SecretProject.Class.Playable
         {
             if (this.Activate)
             {
+                
                 PrimaryVelocity = Vector2.Zero;
                 controls.UpdateKeys();
                 controls.Update();
@@ -430,33 +443,37 @@ namespace SecretProject.Class.Playable
                 //}
 
 
-
+                Dir movementDir = Dir.None;
                 if (EnableControls)
                 {
-                    MoveFromKeys(gameTime);
+                    movementDir = MoveFromKeys(gameTime);
                 }
+                
+                CollisionBody.ApplyLinearImpulse(PrimaryVelocity * 100);
+                this.MainCollider.Circle.Center = CollisionBody.Position;
+                Wardrobe.UpdateAnimations(gameTime, this.MainCollider.Circle.Center, movementDir, this.IsMoving);
+                this.Position = MainCollider.Circle.Center;
+                // this.MainCollider.Update(this.ColliderRectangle);
 
 
-                this.MainCollider.Update(this.ColliderRectangle);
+                // this.BigCollider.Update(this.ClickRangeRectangle);
 
 
-                this.BigCollider.Update(this.ClickRangeRectangle);
-
-
-                CheckAndHandleCollisions();
+                // CheckAndHandleCollisions();
 
 
                 if (controls.IsMoving && !IsPerformingAction)
                 {
                     UpdateStaminaDrainFlag();
-                    if (controls.IsSprinting)
-                    {
-                        this.Position += PrimaryVelocity * 10;
-                    }
-                    else
-                    {
-                        this.Position += PrimaryVelocity;
-                    }
+                    this.Position = CollisionBody.Position;
+                    //if (controls.IsSprinting)
+                    //{
+                    //    this.Position += PrimaryVelocity * 10;
+                    //}
+                    //else
+                    //{
+                    //    this.Position += PrimaryVelocity;
+                    //}
 
 
                     if (this.LockBounds)
@@ -472,11 +489,12 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        private void MoveFromKeys(GameTime gameTime)
+        private Dir MoveFromKeys(GameTime gameTime)
         {
+            Dir movementDir = Dir.None;
             if (!IsPerformingAction)
             {
-                Dir movementDir = Dir.None;
+               
                 switch (controls.Direction)
                 {
                     case Dir.Right:
@@ -529,8 +547,9 @@ namespace SecretProject.Class.Playable
                         break;
 
                 }
-                Wardrobe.UpdateAnimations(gameTime, this.Position, movementDir, this.IsMoving);
+                
             }
+            return movementDir;
         }
 
         private void CheckAndHandleCollisions()
@@ -695,7 +714,7 @@ namespace SecretProject.Class.Playable
                 Wardrobe.Draw(spriteBatch, layerDepth);
                 if (!IsPerformingAction)
                 {
-
+                    
 
                     if (this.IsMoving)
                     {

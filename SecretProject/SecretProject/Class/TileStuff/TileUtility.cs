@@ -16,6 +16,8 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
@@ -341,7 +343,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     int[] rectangleCoords = GetRectangeFromString(propertyString);
-
+                    BodyFactory.CreateRectangle(Game1.VelcroWorld, rectangleCoords[2], rectangleCoords[3], .5f, tileToAssign.Position, 0f, BodyType.Static);
                     RectangleCollider tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
@@ -428,12 +430,14 @@ namespace SecretProject.Class.TileStuff
                         {
                             Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
                             tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
+
+                            BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
                         }
                         else
                         {
                             tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
 
-
+                            BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height, .5f, new Vector2(colliderRectangle.X, colliderRectangle.Y), 0f, BodyType.Static);
                         }
                         if (layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
                         {

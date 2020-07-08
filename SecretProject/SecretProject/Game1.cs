@@ -42,6 +42,8 @@ using System.Linq;
 using XMLData.ItemStuff.MessageStuff;
 using SecretProject.Class.StageFolder.DungeonStuff.Desert;
 using Penumbra;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Utilities;
 
 
 
@@ -331,6 +333,10 @@ namespace SecretProject
         //NETWORK
         private NetworkConnection netWorkConnection;
 
+        //VELCRO PHYSICS
+
+        public static World VelcroWorld;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -351,6 +357,8 @@ namespace SecretProject
 
             this.IsFixedTimeStep = false;
             netWorkConnection = new NetworkConnection();
+
+            VelcroWorld = new World(new Vector2(0, 0));
         }
         #endregion
 
@@ -403,6 +411,10 @@ namespace SecretProject
             return AllStages.Find(x => x.StageIdentifier == stage);
         }
 
+        private void LoadPhysics()
+        {
+            //ConvertUnits.SetDisplayUnitToSimUnitRatio(16f); //one world unit is 16 pixels.
+        }
 
         #region LOADCONTENT
         protected override void LoadContent()
@@ -496,6 +508,8 @@ namespace SecretProject
 
 
             Penumbra.Initialize();
+
+            LoadPhysics();
             
         }
 
@@ -525,6 +539,8 @@ namespace SecretProject
                 holder.RemoveAllNewLines();
             }
             DialogueLibrary = new DialogueLibrary(tempListHolder);
+
+           
         }
         private void LoadItems()
         {
@@ -1006,8 +1022,8 @@ namespace SecretProject
             Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
             IsFadingOut = true;
-            
- 
+
+            //VelcroWorld.Clear();
             CurrentStage.UnloadContent();
             if (CurrentStage.Penumbra != null)
             {
@@ -1016,6 +1032,7 @@ namespace SecretProject
 
 
             }
+            
             TmxStageBase newLocation = stageToSwitchTo;
 
 
@@ -1049,7 +1066,10 @@ namespace SecretProject
             //{
             //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
             //}
+
            
+            VelcroWorld.BodyList.Add(Player.CollisionBody);
+            
            
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
@@ -1067,6 +1087,8 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
+            VelcroWorld.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f);
+
             KeyboardManager.Update();
             // IsEventActive = false;
 
