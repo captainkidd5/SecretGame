@@ -428,10 +428,13 @@ namespace SecretProject.Class.TileStuff
                             
                    
                         }
-
-                        Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X, colliderRectangle.Y), new Vector2(colliderRectangle.Width, colliderRectangle.Height));
-                        hull.Enabled = true;
-                        TileManager.Stage.Hulls.Add(hull);
+                        if(layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
+                        {
+                            Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
+                           // hull.Enabled = true;
+                            TileManager.Stage.Hulls.Add(hull);
+                        }
+                       
 
 
 
