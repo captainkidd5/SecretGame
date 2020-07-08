@@ -297,12 +297,12 @@ namespace SecretProject.Class.Universal
 
 
 
-                if (this.TotalHours > 2 && this.TotalHours < 18)
+                if (this.TotalHours >= 5 && this.TotalHours <= 18)
                 {
                     PlayRandomInstance(1);
                     this.IsNight = false;
                 }
-                if (this.TotalHours < 2 || this.TotalHours > 21)
+                if (this.TotalHours <= 4 || this.TotalHours >= 19)
                 {
                     PlayRandomInstance(2);
                     Game1.SoundManager.PlaySoundEffectFromInt(1, 12);

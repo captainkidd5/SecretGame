@@ -227,8 +227,8 @@ namespace SecretProject.Class.TileStuff
                     PointLight pointLight = new PointLight()
                     {
                         Position = new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y),
-                        Scale = new Vector2(600),
-                        ShadowType = ShadowType.Occluded,
+                        Scale = new Vector2(400),
+                        ShadowType = ShadowType.Solid,
                     };
                     TileManager.Stage.Lights.Add(pointLight);
                     
@@ -430,9 +430,14 @@ namespace SecretProject.Class.TileStuff
                         }
                         if(layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
                         {
-                            Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
-                           // hull.Enabled = true;
-                            TileManager.Stage.Hulls.Add(hull);
+                            
+                                propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
+                            if (!GetProperty(tileSet, tileToAssign.GID, ref propertyString))
+                            {
+                                Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
+                                TileManager.Stage.Hulls.Add(hull);
+                            }
+                               
                         }
                        
 

@@ -442,7 +442,7 @@ namespace SecretProject.Class.StageFolder
         }
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-            Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
+           
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
@@ -524,14 +524,22 @@ namespace SecretProject.Class.StageFolder
 
         protected virtual void BeginPenumbra()
         {
-
-            Penumbra.AmbientColor = Color.DarkGray;
-            Penumbra.BeginDraw();    
+            if (IsDark)
+            {
+                Penumbra.AmbientColor = new Color(251, 62, 255);
+                Penumbra.BeginDraw();
+            }
+               
         }
 
         protected virtual void DrawPenumbra(GameTime gameTime)
         {
-            Penumbra.Draw(gameTime);
+            if(IsDark)
+            {
+                Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
+                Penumbra.Draw(gameTime);
+            }
+           
         }
 
         #region DRAW
@@ -652,11 +660,11 @@ namespace SecretProject.Class.StageFolder
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                if (this.IsDark)
-                {
-                    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(nightLightsTarget);
-                    Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
-                }
+                //if (this.IsDark)
+                //{
+                //    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(nightLightsTarget);
+                //    Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
+                //}
 
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
                 if (Game1.KeyboardManager.WasKeyPressed(Keys.PageDown))

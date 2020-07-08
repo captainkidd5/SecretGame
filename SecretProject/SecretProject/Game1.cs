@@ -1060,7 +1060,8 @@ namespace SecretProject
                     CurrentStage.Penumbra.Lights.Add(CurrentStage.Lights[i]);
                 }
                 CurrentStage.Penumbra.Hulls.Add(Player.Hull);
-
+                CurrentStage.Hulls.Clear();
+                CurrentStage.Lights.Clear();
             }
         }
 
@@ -1157,11 +1158,11 @@ namespace SecretProject
            
             this.GraphicsDevice.Clear(Color.Black);
            
-            Game1.DebugWindow.Draw(spriteBatch);
+           
 
             CurrentStage.Draw(gameTime, graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, spriteBatch, MouseManager, Player);
 
-
+            Game1.DebugWindow.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
