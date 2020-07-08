@@ -140,7 +140,7 @@ namespace SecretProject.Class.TileStuff
 
                     int grasstype = int.Parse(propertyString);
                     GrassTuft grassTuft = new GrassTuft(TileManager.GraphicsDevice, grasstype, new Vector2(tileToAssign.DestinationRectangle.X + 8
-                                , tileToAssign.DestinationRectangle.Y + 8),TileManager.Stage);
+                                , tileToAssign.DestinationRectangle.Y + 8), TileManager.Stage);
                     List<GrassTuft> tufts = new List<GrassTuft>()
                     {
                         grassTuft,
@@ -220,39 +220,26 @@ namespace SecretProject.Class.TileStuff
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
 
-
-                    Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
-                    Color lightColor = LightSource.GetLightType(propertyString);
-                    // LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
-
-                    PointLight pointLight = new PointLight()
+                    if (!TileManager.Stage.Lights.ContainsKey(tileToAssign.TileKey))
                     {
-                        Position = new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y),
-                        Scale = new Vector2(400),
-                        ShadowType = ShadowType.Occluded,
+                        Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
+                        Color lightColor = LightSource.GetLightType(propertyString);
 
-                        Color = lightColor,
+                        PointLight pointLight = new PointLight()
+                        {
+                            Position = new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y),
+                            Scale = new Vector2(400),
+                            ShadowType = ShadowType.Solid,
 
-                        
-                    };
-                    TileManager.Stage.Lights.Add(pointLight);
-                    
-                    //if (newLight.LightType == LightType.NightTime)
-                    //{
-                    //    if (!TileManager.NightTimeLights.Contains(newLight))
-                    //    {
-                    //        TileManager.NightTimeLights.Add(newLight);
-                    //    }
+                            Color = lightColor,
 
-                    //}
-                    //else
-                    //{
-                    //    if (!TileManager.DayTimeLights.Contains(newLight))
-                    //    {
-                    //        TileManager.DayTimeLights.Add(newLight);
-                    //    }
 
-                    //}
+                        };
+                        TileManager.Stage.Lights.Add(tileToAssign.TileKey, pointLight);
+                    }
+
+
+
                 }
 
 
@@ -376,10 +363,14 @@ namespace SecretProject.Class.TileStuff
                     propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
                     if (!GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                     {
-                        Hull hull = Hull.CreateRectangle(new Vector2(tempObjectBody.Rectangle.X + (float)tempObjectBody.Rectangle.Width / 2,
+                        if (!TileManager.Stage.Hulls.ContainsKey(tileToAssign.TileKey))
+                        {
+                            Hull hull = Hull.CreateRectangle(new Vector2(tempObjectBody.Rectangle.X + (float)tempObjectBody.Rectangle.Width / 2,
                             tempObjectBody.Rectangle.Y + (float)tempObjectBody.Rectangle.Height / 2),
                             new Vector2((float)tempObjectBody.Rectangle.Width, (float)tempObjectBody.Rectangle.Height));
-                        TileManager.Stage.Hulls.Add(hull);
+                            TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
+                        }
+
                     }
                     if (TileManager.Type == 0)
                     {
@@ -398,7 +389,7 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
-                    
+
 
                 }
 
@@ -439,21 +430,25 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
-                            
-                   
+
+
                         }
-                        if(layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
+                        if (layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
                         {
-                            
-                                propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
+
+                            propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
                             if (!GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                             {
-                                Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
-                                TileManager.Stage.Hulls.Add(hull);
+                                if (!TileManager.Stage.Hulls.ContainsKey(tileToAssign.TileKey))
+                                {
+                                    Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
+                                    TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
+                                }
+
                             }
-                               
+
                         }
-                       
+
 
 
 
@@ -570,7 +565,7 @@ namespace SecretProject.Class.TileStuff
                                             int cx = (int)Game1.MouseManager.WorldMousePosition.X;
                                             int cy = (int)Game1.MouseManager.WorldMousePosition.Y;
 
-                                          
+
 
                                             break;
                                     }
@@ -779,7 +774,7 @@ namespace SecretProject.Class.TileStuff
                 case "enterPortal":
                     if (mouse.IsClicked)
                     {
-                    
+
 
                     }
                     break;
@@ -853,9 +848,9 @@ namespace SecretProject.Class.TileStuff
                 case "message":
                     if (Game1.MouseManager.IsClicked)
                     {
-                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, Game1.MessageHolder.GetMessage(i,j));
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, Game1.MessageHolder.GetMessage(i, j));
                     }
-                        break;
+                    break;
 
             }
         }
@@ -1038,6 +1033,19 @@ namespace SecretProject.Class.TileStuff
             {
                 TileManager.TileHitPoints.Remove(tile.TileKey);
             }
+            if (Game1.CurrentStage.Hulls.ContainsKey(tile.TileKey))
+            {
+                
+                Hull hull = Game1.CurrentStage.Hulls[tile.TileKey];
+                Game1.CurrentStage.Hulls.Remove(tile.TileKey);
+                Game1.CurrentStage.Penumbra.Hulls.Remove(hull);
+            }
+            if (Game1.CurrentStage.Lights.ContainsKey(tile.TileKey))
+            {
+                Light light = Game1.CurrentStage.Lights[tile.TileKey];
+                Game1.CurrentStage.Lights.Remove(tile.TileKey);
+                Game1.CurrentStage.Penumbra.Lights.Remove(light);
+            }
             //if tileset has loot value, then use that. otherwise check the loot xml data.
             Item itemToCheckForReassasignTiling;
             if (TileManager.TileSetDictionary[tile.GID].Properties.ContainsKey("loot"))
@@ -1192,7 +1200,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 TileManager.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 Crop crop = Game1.AllCrops.GetCropFromGID(id);
-                AddCropToTile(crop,TileManager.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, TileManager, true);
+                AddCropToTile(crop, TileManager.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, TileManager, true);
                 return true;
 
             }

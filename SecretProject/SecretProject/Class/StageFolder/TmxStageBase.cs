@@ -137,8 +137,8 @@ namespace SecretProject.Class.StageFolder
         protected IServiceProvider ServiceProvider { get; set; }
         public PenumbraComponent Penumbra { get; set; }
 
-        public List<Hull> Hulls{ get; set; }
-        public List<Light> Lights { get; set; }
+        public Dictionary<string, Hull> Hulls{ get; set; }
+        public Dictionary<string,Light> Lights { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -176,8 +176,8 @@ namespace SecretProject.Class.StageFolder
             Penumbra = (PenumbraComponent)ServiceProvider.GetService(typeof(PenumbraComponent));
             Game1.Player.LoadPenumbraLights(Penumbra);
 
-            this.Lights = new List<Light>();
-            this.Hulls = new List<Hull>();
+            this.Lights = new Dictionary<string, Light>();
+            this.Hulls = new Dictionary<string, Hull>();
             
 
         }

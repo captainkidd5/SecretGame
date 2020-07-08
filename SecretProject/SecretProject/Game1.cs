@@ -1051,15 +1051,16 @@ namespace SecretProject
             {
                 CurrentStage.Penumbra.Lights.Clear();
                 CurrentStage.Penumbra.Hulls.Clear();
-                for (int i = 0; i < CurrentStage.Hulls.Count; i++)
+                foreach(KeyValuePair<string,Light> light in CurrentStage.Lights)
                 {
-                    CurrentStage.Penumbra.Hulls.Add(CurrentStage.Hulls[i]);
+                    CurrentStage.Penumbra.Lights.Add(light.Value);
                 }
-                for (int i = 0; i < CurrentStage.Lights.Count; i++)
+                foreach (KeyValuePair<string, Hull> hull in CurrentStage.Hulls)
                 {
-                    CurrentStage.Penumbra.Lights.Add(CurrentStage.Lights[i]);
+                    CurrentStage.Penumbra.Hulls.Add(hull.Value);
                 }
-                CurrentStage.Penumbra.Hulls.Add(Player.Hull);
+
+
                 CurrentStage.Hulls.Clear();
                 CurrentStage.Lights.Clear();
             }

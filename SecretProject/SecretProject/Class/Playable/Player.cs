@@ -182,7 +182,7 @@ namespace SecretProject.Class.Playable
         {
 
 
-             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6));
+             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6, 3));
 
             penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
