@@ -1009,6 +1009,13 @@ namespace SecretProject
             
  
             CurrentStage.UnloadContent();
+            if (CurrentStage.Penumbra != null)
+            {
+                CurrentStage.Penumbra.Lights.Clear();
+                CurrentStage.Penumbra.Hulls.Clear();
+
+
+            }
             TmxStageBase newLocation = stageToSwitchTo;
 
 
@@ -1047,23 +1054,7 @@ namespace SecretProject
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
 
-            if (CurrentStage.Penumbra != null)
-            {
-                CurrentStage.Penumbra.Lights.Clear();
-                CurrentStage.Penumbra.Hulls.Clear();
-                foreach(KeyValuePair<string,Light> light in CurrentStage.Lights)
-                {
-                    CurrentStage.Penumbra.Lights.Add(light.Value);
-                }
-                foreach (KeyValuePair<string, Hull> hull in CurrentStage.Hulls)
-                {
-                    CurrentStage.Penumbra.Hulls.Add(hull.Value);
-                }
-
-
-                CurrentStage.Hulls.Clear();
-                CurrentStage.Lights.Clear();
-            }
+            
         }
 
 

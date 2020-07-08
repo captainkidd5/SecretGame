@@ -302,10 +302,11 @@ namespace SecretProject.Class.StageFolder
             Save(binaryWriter);
             binaryWriter.Flush();
             binaryWriter.Close();
-            if (this != Game1.Town)
-            {
+            
                 AllTiles.Unload();
-            }
+                this.Lights.Clear();
+                this.Hulls.Clear();
+            
 
 
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;

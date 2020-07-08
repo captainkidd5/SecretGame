@@ -236,6 +236,7 @@ namespace SecretProject.Class.TileStuff
 
                         };
                         TileManager.Stage.Lights.Add(tileToAssign.TileKey, pointLight);
+                        TileManager.Stage.Penumbra.Lights.Add(pointLight);
                     }
 
 
@@ -369,6 +370,7 @@ namespace SecretProject.Class.TileStuff
                             tempObjectBody.Rectangle.Y + (float)tempObjectBody.Rectangle.Height / 2),
                             new Vector2((float)tempObjectBody.Rectangle.Width, (float)tempObjectBody.Rectangle.Height));
                             TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
+                            TileManager.Stage.Penumbra.Hulls.Add(hull);
                         }
 
                     }
@@ -443,6 +445,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
                                     TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
+                                    TileManager.Stage.Penumbra.Hulls.Add(hull);
                                 }
 
                             }

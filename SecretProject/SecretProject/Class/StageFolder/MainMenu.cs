@@ -248,10 +248,11 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
-            foreach (TmxStageBase location in Game1.AllStages)
-            {
-                location.StartNew();
-            }
+            Game1.PlayerHouse.StartNew();
+            //foreach (TmxStageBase location in Game1.AllStages)
+            //{
+            //    location.StartNew();
+            //}
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
