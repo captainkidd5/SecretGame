@@ -1042,9 +1042,26 @@ namespace SecretProject
             //{
             //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
             //}
-
+           
+           
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
+
+            if (CurrentStage.Penumbra != null)
+            {
+                CurrentStage.Penumbra.Lights.Clear();
+                CurrentStage.Penumbra.Hulls.Clear();
+                for (int i = 0; i < CurrentStage.Hulls.Count; i++)
+                {
+                    CurrentStage.Penumbra.Hulls.Add(CurrentStage.Hulls[i]);
+                }
+                for (int i = 0; i < CurrentStage.Lights.Count; i++)
+                {
+                    CurrentStage.Penumbra.Lights.Add(CurrentStage.Lights[i]);
+                }
+                CurrentStage.Penumbra.Hulls.Add(Player.Hull);
+
+            }
         }
 
 

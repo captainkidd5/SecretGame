@@ -222,32 +222,32 @@ namespace SecretProject.Class.TileStuff
 
 
                     Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
-                    LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
+                   // LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
 
-                    Spotlight pointLight = new Spotlight()
+                    PointLight pointLight = new PointLight()
                     {
-                        Position = tileToAssign.Position,
-                        Scale = new Vector2(400),
+                        Position = new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y),
+                        Scale = new Vector2(600),
                         ShadowType = ShadowType.Occluded,
                     };
-                    Game1.Penumbra.Lights.Add(pointLight);
+                    TileManager.Stage.Lights.Add(pointLight);
                     
-                    if (newLight.LightType == LightType.NightTime)
-                    {
-                        if (!TileManager.NightTimeLights.Contains(newLight))
-                        {
-                            TileManager.NightTimeLights.Add(newLight);
-                        }
+                    //if (newLight.LightType == LightType.NightTime)
+                    //{
+                    //    if (!TileManager.NightTimeLights.Contains(newLight))
+                    //    {
+                    //        TileManager.NightTimeLights.Add(newLight);
+                    //    }
 
-                    }
-                    else
-                    {
-                        if (!TileManager.DayTimeLights.Contains(newLight))
-                        {
-                            TileManager.DayTimeLights.Add(newLight);
-                        }
+                    //}
+                    //else
+                    //{
+                    //    if (!TileManager.DayTimeLights.Contains(newLight))
+                    //    {
+                    //        TileManager.DayTimeLights.Add(newLight);
+                    //    }
 
-                    }
+                    //}
                 }
 
 
@@ -363,9 +363,9 @@ namespace SecretProject.Class.TileStuff
                         TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
                     }
                     TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
-                    Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
-                    hull.Enabled = true;
-                    Game1.Penumbra.Hulls.Add(hull);
+                    //Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
+                    //hull.Enabled = true;
+                    //TileManager.Stage.Hulls.Add(hull);
                     // reassignGrid = false;
                     if (TileManager.Type == 0)
                     {
@@ -425,13 +425,13 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
-                            Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
-                            hull.Enabled = true;
-                            Game1.Penumbra.Hulls.Add(hull);
-                            //Game1.Penumbra.Hulls.Add(hull);
+                            
+                   
                         }
 
-
+                        Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X, colliderRectangle.Y), new Vector2(colliderRectangle.Width, colliderRectangle.Height));
+                        hull.Enabled = true;
+                        TileManager.Stage.Hulls.Add(hull);
 
 
 

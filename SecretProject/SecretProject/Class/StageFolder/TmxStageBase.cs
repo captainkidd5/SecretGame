@@ -135,6 +135,10 @@ namespace SecretProject.Class.StageFolder
         protected bool IsBasedOnPreloadedMap { get; set; }
 
         protected IServiceProvider ServiceProvider { get; set; }
+        public PenumbraComponent Penumbra { get; set; }
+
+        public List<Hull> Hulls{ get; set; }
+        public List<Light> Lights { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -169,9 +173,11 @@ namespace SecretProject.Class.StageFolder
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
             this.ServiceProvider = service;
 
+            Penumbra = (PenumbraComponent)ServiceProvider.GetService(typeof(PenumbraComponent));
+            Game1.Player.LoadPenumbraLights(Penumbra);
 
-            Game1.Player.LoadPenumbraLights(Game1.Penumbra);
-
+            this.Lights = new List<Light>();
+            this.Hulls = new List<Hull>();
             
 
         }
@@ -436,7 +442,7 @@ namespace SecretProject.Class.StageFolder
         }
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-            Game1.Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
+            Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
@@ -519,13 +525,13 @@ namespace SecretProject.Class.StageFolder
         protected virtual void BeginPenumbra()
         {
 
-            Game1.Penumbra.AmbientColor = Color.DarkGray;
-            Game1.Penumbra.BeginDraw();    
+            Penumbra.AmbientColor = Color.DarkGray;
+            Penumbra.BeginDraw();    
         }
 
         protected virtual void DrawPenumbra(GameTime gameTime)
         {
-            Game1.Penumbra.Draw(gameTime);
+            Penumbra.Draw(gameTime);
         }
 
         #region DRAW

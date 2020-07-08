@@ -181,13 +181,7 @@ namespace SecretProject.Class.Playable
         public void LoadPenumbraLights(PenumbraComponent penumbra)
         {
 
-            List<Vector2> vectors = new List<Vector2>()
-                {
-                    new Vector2(Rectangle.X, Rectangle.Y),
-                    new Vector2(Rectangle.Y, Rectangle.Y + Rectangle.Height),
-                    new Vector2(Rectangle.Y + Rectangle.Height, Rectangle.X + Rectangle.Width),
-                    new Vector2(Rectangle.X + Rectangle.Width, Rectangle.X ),
-                };
+
              this.Hull = Hull.CreateRectangle( this.Position, new Vector2(10));
             penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
@@ -211,14 +205,14 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < this.PenumbraLights.Count; i++)
             {
-                PenumbraLights[i].Position = this.Position;
+               // PenumbraLights[i].Position = new Vector2(this.MainCollider.Rectangle.X, this.MainCollider.Rectangle.Y);
             }
             UpdateHullPosition();
         }
 
         private void UpdateHullPosition()
         {
-            this.Hull.Position = this.Position;
+            this.Hull.Position = new Vector2(this.MainCollider.Rectangle.X, this.MainCollider.Rectangle.Y);
         }
         public ItemData GetCurrentEquippedToolData()
         {

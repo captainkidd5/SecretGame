@@ -4716,11 +4716,6 @@
    <property name="newSource" value="0,-48,16,64"/>
    <property name="transparent" value="0,-48,16,64"/>
   </properties>
-  <objectgroup draworder="index" id="2">
-   <object id="3" x="2" y="3" width="13" height="12">
-    <ellipse/>
-   </object>
-  </objectgroup>
  </tile>
  <tile id="4606">
   <properties>
