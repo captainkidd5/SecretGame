@@ -51,7 +51,8 @@ namespace SecretProject.Class.StageFolder
 
         public TmxMap Map { get; set; }
 
-        public Player player { get; set; }
+        public Player player { get;
+            set; }
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
