@@ -240,7 +240,7 @@ namespace SecretProject.Class.Playable
 
         private void UpdateHullPosition()
         {
-            this.Hull.Position = Position;
+            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y + 16);
         }
         public ItemData GetCurrentEquippedToolData()
         {

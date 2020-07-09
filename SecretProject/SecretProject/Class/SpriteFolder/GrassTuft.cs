@@ -85,10 +85,14 @@ namespace SecretProject.Class.SpriteFolder
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
 
             this.Body = BodyFactory.CreateBody(Game1.VelcroWorld, new Vector2(this.Rectangle.X, this.Rectangle.Y));
+            this.Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             this.Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
             this.Body.BodyType = BodyType.Dynamic;
-            Fixture fixture = Body.CreateFixture(new CircleShape(5f, 1f));
+            this.Body.Enabled = true;
+            Fixture fixture = Body.CreateFixture(new CircleShape(25f, 1f));
             fixture.OnCollision += OnCollision;
+            fixture.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
+            fixture.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
 
 
         }

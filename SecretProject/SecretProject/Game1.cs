@@ -1083,7 +1083,7 @@ namespace SecretProject
 
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
-            
+            Penumbra.Hulls.Add(Player.Hull);
             VelcroWorld.ProcessChanges();
 
             
