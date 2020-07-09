@@ -358,7 +358,7 @@ namespace SecretProject
             this.IsFixedTimeStep = false;
             netWorkConnection = new NetworkConnection();
 
-            VelcroWorld = new World(new Vector2(1f, 1f));
+            VelcroWorld = new World(new Vector2(0, 0));
         }
         #endregion
 

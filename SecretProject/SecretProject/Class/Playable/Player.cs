@@ -191,8 +191,10 @@ namespace SecretProject.Class.Playable
         {
             this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius / 2, 0f, this.MainCollider.Circle.Center);
             CollisionBody.BodyType = BodyType.Dynamic;
-            CollisionBody.Restitution = .3f;
+            CollisionBody.Restitution = 0f;
             CollisionBody.Friction = 1f;
+            CollisionBody.Inertia = 0;
+            CollisionBody.SleepingAllowed = true;
         }
 
         public void SetPosition(Vector2 position)
@@ -460,11 +462,25 @@ namespace SecretProject.Class.Playable
                     movementDir = MoveFromKeys(gameTime);
                 }
                 
-                CollisionBody.ApplyLinearImpulse(PrimaryVelocity * 100);
+                if(movementDir != Dir.None)
+                {
+                    CollisionBody.ApplyLinearImpulse(PrimaryVelocity * 10);
+                }
+                else
+                {
+                    CollisionBody.Inertia = 0f;
+                    CollisionBody.LinearVelocity = Vector2.Zero;
+                    CollisionBody.AngularVelocity = 0f;
+                }
+                
                 this.MainCollider.Circle.Center = CollisionBody.Position;
                  Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
+                Wardrobe.SetZero();
+
                 Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
-                
+
+
+
                 // this.MainCollider.Update(this.ColliderRectangle);
 
 

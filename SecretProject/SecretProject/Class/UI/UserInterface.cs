@@ -206,6 +206,7 @@ namespace SecretProject.Class.UI
             {
 
                 Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
+                Game1.Player.CollisionBody.Awake = !Game1.Player.CollisionBody.Awake;
             }
             if (this.BottomBar.IsActive)
             {

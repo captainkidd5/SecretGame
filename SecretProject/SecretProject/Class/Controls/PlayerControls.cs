@@ -141,7 +141,7 @@ namespace SecretProject.Class.Controls
                     ////////
                     ///
 
-
+                    IsMoving = false; 
                     switch (this.MovementKey)
                     {
                         case Keys.D:
