@@ -9,6 +9,11 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Collision.ContactSystem;
+using VelcroPhysics.Collision.Handlers;
+using VelcroPhysics.Collision.Shapes;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -46,6 +51,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public RectangleCollider RectangleCollider;
 
+        public Body Body { get; set; }
+
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position,TmxStageBase stage)
         {
             this.Graphics = graphics;
@@ -77,8 +84,31 @@ namespace SecretProject.Class.SpriteFolder
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
 
+            this.Body = BodyFactory.CreateBody(Game1.VelcroWorld, new Vector2(this.Rectangle.X, this.Rectangle.Y));
+            this.Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            this.Body.BodyType = BodyType.Dynamic;
+            Fixture fixture = Body.CreateFixture(new CircleShape(5f, 1f));
+            fixture.OnCollision += OnCollision;
+
 
         }
+
+        //public OnCollisionHandler OnGrassCollision()
+        //{
+        //    return new OnCollisionHandler(Body.fix)
+        //}
+
+        private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+
+        {
+            Console.WriteLine("hi");
+        }
+
+        public bool GrassOnCollision(Fixture f1, Fixture f2, Contact contact)
+        {
+            return true;
+        }
+        
         public void Update(GameTime gameTime)
         {
 
@@ -100,7 +130,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             if (this.StartShuff)
             {
-                Shuff(gameTime, (int)this.InitialShuffDirection);
+                Shuff((int)this.InitialShuffDirection);
                 this.ShuffDirectionPicked = true;
             }
         }
@@ -137,7 +167,7 @@ namespace SecretProject.Class.SpriteFolder
                 
         }
 
-        public void Shuff(GameTime gameTime, int direction)
+        public void Shuff(int direction)
         {
             if (!this.ShuffDirectionPicked)
             {
@@ -161,7 +191,7 @@ namespace SecretProject.Class.SpriteFolder
                 {
                     if (this.Rotation < this.RotationCap + .5)
                     {
-                        this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * this.ShuffSpeed;
+                        this.Rotation += (float).5f * this.ShuffSpeed;
                     }
                     else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
                     {
@@ -178,7 +208,7 @@ namespace SecretProject.Class.SpriteFolder
                 {
                     if (this.Rotation > this.RotationCap - 1)
                     {
-                        this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * this.ShuffSpeed;
+                        this.Rotation -= .5f * this.ShuffSpeed;
                     }
                     else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
                     {

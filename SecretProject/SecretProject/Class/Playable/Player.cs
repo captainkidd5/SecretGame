@@ -195,6 +195,8 @@ namespace SecretProject.Class.Playable
             CollisionBody.Friction = 1f;
             CollisionBody.Inertia = 0;
             CollisionBody.SleepingAllowed = true;
+            CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
         }
 
         public void SetPosition(Vector2 position)
@@ -482,7 +484,7 @@ namespace SecretProject.Class.Playable
 
                 Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 
-
+                
 
                 // this.MainCollider.Update(this.ColliderRectangle);
 
