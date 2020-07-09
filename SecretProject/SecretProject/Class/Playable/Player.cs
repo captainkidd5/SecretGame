@@ -20,6 +20,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using VelcroPhysics.Collision.ContactSystem;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Factories;
 using VelcroPhysics.Utilities;
@@ -197,6 +198,8 @@ namespace SecretProject.Class.Playable
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;
             CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
+
+            CollisionBody.OnCollision += OnCollision;
         }
 
         public void SetPosition(Vector2 position)
@@ -229,6 +232,11 @@ namespace SecretProject.Class.Playable
                // penumbra.Lights.Add(this.PenumbraLights[i]);
             };
         }
+        private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+
+        {
+          //  Console.WriteLine("hi");
+        }
         private void UpdatePenumbraLights()
         {
             for (int i = 0; i < this.PenumbraLights.Count; i++)
@@ -240,7 +248,7 @@ namespace SecretProject.Class.Playable
 
         private void UpdateHullPosition()
         {
-            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y + 16);
+            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y + 32);
         }
         public ItemData GetCurrentEquippedToolData()
         {

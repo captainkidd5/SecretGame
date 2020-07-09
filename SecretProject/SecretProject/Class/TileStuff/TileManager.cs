@@ -830,19 +830,19 @@ namespace SecretProject.Class.TileStuff
 
             //}
 
-            //binaryWriter.Write(this.Tufts.Count);
-            //foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
-            //{
-            //    binaryWriter.Write(tuft.Key);
-            //    binaryWriter.Write(tuft.Value.Count);
+            binaryWriter.Write(this.Tufts.Count);
+            foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
+            {
+                binaryWriter.Write(tuft.Key);
+                binaryWriter.Write(tuft.Value.Count);
 
-            //    for (int i = 0; i < tuft.Value.Count; i++)
-            //    {
-            //        binaryWriter.Write(tuft.Value[i].GrassType);
-            //        binaryWriter.Write(tuft.Value[i].Position.X);
-            //        binaryWriter.Write(tuft.Value[i].Position.Y);
-            //    }
-            //}
+                for (int i = 0; i < tuft.Value.Count; i++)
+                {
+                    binaryWriter.Write(tuft.Value[i].GrassType);
+                    binaryWriter.Write(tuft.Value[i].Position.X);
+                    binaryWriter.Write(tuft.Value[i].Position.Y);
+                }
+            }
         }
 
         public void Load(BinaryReader binaryReader)
@@ -1000,22 +1000,23 @@ namespace SecretProject.Class.TileStuff
             //      TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
             //  }
 
-            //int tuftListCount = binaryReader.ReadInt32();
+            int tuftListCount = binaryReader.ReadInt32();
 
-            //for (int i = 0; i < tuftListCount; i++)
-            //{
-            //    string key = binaryReader.ReadString();
-            //    int smallListCount = binaryReader.ReadInt32();
-            //    List<GrassTuft> tufts = new List<GrassTuft>();
-            //    for (int j = 0; j < smallListCount; j++)
-            //    {
-            //        GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
-            //            new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
-            //        tuft.TuftsIsPartOf = tufts;
-            //        tufts.Add(tuft);
-            //    }
-            //    this.Tufts.Add(key, tufts);
-            //}
+            for (int i = 0; i < tuftListCount; i++)
+            {
+                string key = binaryReader.ReadString();
+                int smallListCount = binaryReader.ReadInt32();
+                List<GrassTuft> tufts = new List<GrassTuft>();
+                for (int j = 0; j < smallListCount; j++)
+                {
+                    GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
+                        new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), Stage);
+                    tuft.TuftsIsPartOf = tufts;
+                    tufts.Add(tuft);
+                }
+                if(!Tufts.ContainsKey(key))
+                this.Tufts.Add(key, tufts);
+            }
             //  }
 
         }

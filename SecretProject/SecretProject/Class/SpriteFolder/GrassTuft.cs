@@ -84,33 +84,22 @@ namespace SecretProject.Class.SpriteFolder
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
 
-            this.Body = BodyFactory.CreateBody(Game1.VelcroWorld, new Vector2(this.Rectangle.X, this.Rectangle.Y));
+            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f,new Vector2(this.Rectangle.X, this.Rectangle.Y));
             this.Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             this.Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
-            this.Body.BodyType = BodyType.Dynamic;
-            this.Body.Enabled = true;
-            Fixture fixture = Body.CreateFixture(new CircleShape(25f, 1f));
-            fixture.OnCollision += OnCollision;
-            fixture.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            fixture.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            this.Body.BodyType = BodyType.Static;
+            this.Body.OnCollision += OnCollision;
 
 
         }
 
-        //public OnCollisionHandler OnGrassCollision()
-        //{
-        //    return new OnCollisionHandler(Body.fix)
-        //}
+
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 
         {
             Console.WriteLine("hi");
-        }
-
-        public bool GrassOnCollision(Fixture f1, Fixture f2, Contact contact)
-        {
-            return true;
+            SelfDestruct();
         }
         
         public void Update(GameTime gameTime)
@@ -163,9 +152,12 @@ namespace SecretProject.Class.SpriteFolder
             {
                 Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X , this.Position.Y + 4));
             }
+            Game1.VelcroWorld.RemoveBody(this.Body);
             if (this.TuftsIsPartOf != null)
             this.TuftsIsPartOf.Remove(this);
 
+
+           
            
 
                 

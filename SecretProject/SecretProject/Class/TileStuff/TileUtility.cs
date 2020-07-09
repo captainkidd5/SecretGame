@@ -428,8 +428,6 @@ namespace SecretProject.Class.TileStuff
                     for (int k = 0; k < tileSet[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = tileSet[tileToAssign.GID].ObjectGroups[0].Objects[k];
-
-                        ICollidable tempObjectBody;
                         Rectangle colliderRectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height));
