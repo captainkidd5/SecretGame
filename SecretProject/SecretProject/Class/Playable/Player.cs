@@ -183,11 +183,16 @@ namespace SecretProject.Class.Playable
 
             this.Wardrobe = new Wardrobe(graphics, position);
 
-            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius /2, 0f, this.MainCollider.Circle.Center);
+            
+
+        }
+
+        public void CreateBody()
+        {
+            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius / 2, 0f, this.MainCollider.Circle.Center);
             CollisionBody.BodyType = BodyType.Dynamic;
             CollisionBody.Restitution = .3f;
-            CollisionBody.Friction = 10f;
-
+            CollisionBody.Friction = 1f;
         }
 
         public void SetPosition(Vector2 position)
@@ -200,7 +205,7 @@ namespace SecretProject.Class.Playable
         {
 
 
-             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6, 3));
+             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6,6));
 
             penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
@@ -231,7 +236,7 @@ namespace SecretProject.Class.Playable
 
         private void UpdateHullPosition()
         {
-            this.Hull.Position = new Vector2(this.MainCollider.Rectangle.X + 4, this.MainCollider.Rectangle.Y + 6);
+            this.Hull.Position = Position;
         }
         public ItemData GetCurrentEquippedToolData()
         {

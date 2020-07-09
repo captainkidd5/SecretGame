@@ -27,6 +27,7 @@ using XMLData.RouteStuff;
 using System.IO;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Misc;
+using SecretProject.Class.StageFolder.DungeonStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -248,11 +249,17 @@ namespace SecretProject.Class.StageFolder
         public void StartNewGame()
         {
             UnloadContent();
+            
+            foreach (TmxStageBase location in Game1.AllStages) //initialize then unload all stages, except one the player starts in.
+            {
+                if(location != Game1.PlayerHouse && location != Game1.ForestDungeon && location != Game1.DesertDungeon)
+                {
+                    location.StartNew();
+                    location.UnloadContent();
+                }
+                
+            }
             Game1.PlayerHouse.StartNew();
-            //foreach (TmxStageBase location in Game1.AllStages)
-            //{
-            //    location.StartNew();
-            //}
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;

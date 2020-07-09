@@ -358,7 +358,7 @@ namespace SecretProject
             this.IsFixedTimeStep = false;
             netWorkConnection = new NetworkConnection();
 
-            VelcroWorld = new World(new Vector2(0, 0));
+            VelcroWorld = new World(new Vector2(1f, 1f));
         }
         #endregion
 
@@ -1015,15 +1015,15 @@ namespace SecretProject
 
         //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
 
-
-
         public static void SwitchStage(TmxStageBase stageToSwitchTo, Portal portal = null)
         {
             Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
             IsFadingOut = true;
 
-            //VelcroWorld.Clear();
+            VelcroWorld.Clear();
+            //VelcroWorld.ProcessChanges();
+
             CurrentStage.UnloadContent();
             if (CurrentStage.Penumbra != null)
             {
@@ -1057,22 +1057,29 @@ namespace SecretProject
                     float y = tempPortal.PortalStart.Y;
                     float safteyX = tempPortal.SafteyOffSetX;
                     float safteyY = tempPortal.SafteyOffSetY;
+                    Player.CreateBody();
                     Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
+
                 }
+                else
+                {
+                    Player.CreateBody();
+                }
+            }
+            else
+            {
+                Player.CreateBody();
             }
 
             Player.Wardrobe.UpdateForCreationMenu();
-            //if (GetStageFromInt(stageToSwitchTo) == OverWorld)
-            //{
-            //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
-            //}
+
 
            
-            VelcroWorld.BodyList.Add(Player.CollisionBody);
-            
-           
+
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
+            
+            VelcroWorld.ProcessChanges();
 
             
         }
