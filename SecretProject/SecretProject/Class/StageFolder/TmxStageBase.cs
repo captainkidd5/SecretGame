@@ -492,7 +492,7 @@ namespace SecretProject.Class.StageFolder
 
                // 
                 player.Update(gameTime, this.AllTiles.AllItems, mouse);
-                this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
+                this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);
@@ -626,7 +626,10 @@ namespace SecretProject.Class.StageFolder
                     }
                     Game1.Player.MainCollider.DrawDebug(spriteBatch);
                 }
-
+                //for(int v =0; v < Game1.VelcroWorld.BodyList.Count; v++)
+                //{
+                //    Game1.VelcroWorld.BodyList[v].
+                //}
                 this.AllTiles.DrawTiles(spriteBatch);
                 for (int s = 0; s < this.AllTextToWrite.Count; s++)
                 {

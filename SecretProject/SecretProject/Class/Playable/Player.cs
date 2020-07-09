@@ -310,7 +310,7 @@ namespace SecretProject.Class.Playable
 
             Vector2 direction = Vector2.Normalize(goal - this.Position);
 
-            this.PrimaryVelocity = direction * speed;
+            this.PrimaryVelocity = direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
                 this.Position = goal;
@@ -358,7 +358,7 @@ namespace SecretProject.Class.Playable
                 }
             }
         }
-
+        public Vector2 PlayerCamPos { get; set; }
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
         {
@@ -464,7 +464,9 @@ namespace SecretProject.Class.Playable
                 
                 if(movementDir != Dir.None)
                 {
-                    CollisionBody.ApplyLinearImpulse(PrimaryVelocity * 10);
+                    CollisionBody.ApplyLinearImpulse(PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    CollisionBody.Inertia = 0f;
+                    //CollisionBody.LinearVelocity = PrimaryVelocity;
                 }
                 else
                 {
@@ -476,6 +478,7 @@ namespace SecretProject.Class.Playable
                 this.MainCollider.Circle.Center = CollisionBody.Position;
                  Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
                 //Wardrobe.SetZero();
+                PlayerCamPos = new Vector2((int)this.Position.X, (int)this.Position.Y);
 
                 Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 

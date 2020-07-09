@@ -340,15 +340,20 @@ namespace SecretProject.Class.TileStuff
                 propertyString = "newHitBox";
                 if (GetProperty(tileSet, tileToAssign.GID, ref propertyString))
                 {
-
-
                     int[] rectangleCoords = GetRectangeFromString(propertyString);
-                    BodyFactory.CreateRectangle(Game1.VelcroWorld, rectangleCoords[2], rectangleCoords[3], .5f, tileToAssign.Position, 0f, BodyType.Static);
-                    RectangleCollider tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice,
-                            new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
+                    Rectangle tileDestinationRectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
-                            rectangleCoords[3]), tileToAssign, ColliderType.inert);
+                           rectangleCoords[3]);
 
+                    
+                    //BodyFactory.CreateRectangle(Game1.VelcroWorld, rectangleCoords[2], rectangleCoords[3], .5f, tileToAssign.Position, 0f, BodyType.Static);
+                    //RectangleCollider tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice,
+                    //        new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
+                    //        GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
+                    //        rectangleCoords[3]), tileToAssign, ColliderType.inert);
+
+                    BodyFactory.CreateRectangle(Game1.VelcroWorld, tileDestinationRectangle.Width, tileDestinationRectangle.Height,
+                        .5f, new Vector2(tileDestinationRectangle.X ,tileDestinationRectangle.Y ), 0f, BodyType.Static);
                     if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                     {
 
@@ -357,7 +362,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
                     }
-                    TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
+                   // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
                     //Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
                     //hull.Enabled = true;
                     //TileManager.Stage.Hulls.Add(hull);
@@ -368,9 +373,9 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (!TileManager.Stage.Hulls.ContainsKey(tileToAssign.TileKey))
                         {
-                            Hull hull = Hull.CreateRectangle(new Vector2(tempObjectBody.Rectangle.X + (float)tempObjectBody.Rectangle.Width / 2,
-                            tempObjectBody.Rectangle.Y + (float)tempObjectBody.Rectangle.Height / 2),
-                            new Vector2((float)tempObjectBody.Rectangle.Width, (float)tempObjectBody.Rectangle.Height));
+                            Hull hull = Hull.CreateRectangle(new Vector2(tileDestinationRectangle.X + (float)tileDestinationRectangle.Width / 2,
+                            tileDestinationRectangle.Y + (float)tileDestinationRectangle.Height / 2),
+                            new Vector2((float)tileDestinationRectangle.Width, (float)tileDestinationRectangle.Height));
                             TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
                             TileManager.Stage.Penumbra.Hulls.Add(hull);
                         }
@@ -423,19 +428,19 @@ namespace SecretProject.Class.TileStuff
 
                         ICollidable tempObjectBody;
                         Rectangle colliderRectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
-                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                            (int)Math.Ceiling(tempObj.Height) + 5);
+                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                            (int)Math.Ceiling(tempObj.Height));
 
                         if (tempObj.ObjectType == TmxObjectType.Ellipse)
                         {
                             Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
-                            tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
+                            //tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
 
                             BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
                         }
                         else
                         {
-                            tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
+                            //tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
 
                             BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height, .5f, new Vector2(colliderRectangle.X, colliderRectangle.Y), 0f, BodyType.Static);
                         }
@@ -459,7 +464,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
+                        //TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
 
                     }
                 }

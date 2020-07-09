@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -59,17 +60,32 @@ namespace SecretProject.Class.CameraStuff
 
         public void Follow(Vector2 amount, Rectangle rectangle)
         {
+            //OldCamPosition = pos;
             if (!Game1.freeze)
             {
 
 
 
-                pos.X = (int)amount.X;
+               // pos.X = (float)Math.Round(amount.X);
 
-                pos.Y = (int)amount.Y;
+                //pos.Y = (float)Math.Round(amount.Y);
 
-                //pos.X = MathHelper.Lerp(pos.X, amount.X, .08f);
-                // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);
+                 //pos.X += amount.X;
+             //   pos.Y += amount.Y;
+
+
+                const int camera_smoothing = 10;
+                const float camera_frame_size_hor = 4;
+                const float camera_frame_size_ver = 3;
+
+                float camera_target_x = Math.Min(Math.Max(pos.X, amount.X - camera_frame_size_hor), amount.X + camera_frame_size_hor);
+                float camera_target_y = Math.Min(Math.Max(pos.Y, amount.Y - camera_frame_size_ver), amount.Y + camera_frame_size_ver);
+                pos.X = ((pos.X) * (camera_smoothing - 1) + camera_target_x) / camera_smoothing;
+                pos.Y = ((pos.Y) * (camera_smoothing - 1) + camera_target_y) / camera_smoothing;
+
+
+                //pos.X = MathHelper.Lerp(pos.X, amount.X, .5f);
+                // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .5f);
                 this.ViewPortRectangle = new Rectangle((int)(Game1.CurrentStage.MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
                   (int)(Game1.CurrentStage.MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
                     (int)(Game1.CurrentStage.MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),

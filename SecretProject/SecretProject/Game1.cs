@@ -44,6 +44,8 @@ using SecretProject.Class.StageFolder.DungeonStuff.Desert;
 using Penumbra;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Utilities;
+using VelcroPhysics.Extensions;
+using VelcroPhysics.Extensions.DebugView;
 
 
 
@@ -344,6 +346,7 @@ namespace SecretProject
         {
             graphics = new GraphicsDeviceManager(this);
 
+
             HomeContentManager = new ContentManager(this.Content.ServiceProvider);
             MainMenuContentManager = new ContentManager(this.Content.ServiceProvider);
             this.Content.RootDirectory = "Content";
@@ -359,6 +362,8 @@ namespace SecretProject
             netWorkConnection = new NetworkConnection();
 
             VelcroWorld = new World(new Vector2(0, 0));
+
+            
         }
         #endregion
 
