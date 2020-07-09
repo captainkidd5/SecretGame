@@ -79,7 +79,7 @@ namespace SecretProject.Class.Playable
         public List<Color> HairColors { get; set; }
         public int HairColorIndex { get; set; }
 
-
+        public Dir CurrentFacedDirection { get; set; }
 
 
         public Wardrobe(GraphicsDevice graphics, Vector2 playerPosition)
@@ -204,8 +204,11 @@ namespace SecretProject.Class.Playable
 
         public void UpdateAnimations(GameTime gameTime, Vector2 position, Dir direction, bool isMoving)
         {
-
-            this.CurrentAnimationSet.Update(gameTime, position,  direction, isMoving);
+            if(direction != Dir.None)
+            {
+                this.CurrentDirection = direction; //direction must be in one of the four directions. 
+            }
+            this.CurrentAnimationSet.Update(gameTime, position, CurrentDirection, isMoving);
 
         }
 

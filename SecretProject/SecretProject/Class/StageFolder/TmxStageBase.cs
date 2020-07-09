@@ -490,8 +490,9 @@ namespace SecretProject.Class.StageFolder
             {
                 Game1.GlobalClock.Update(gameTime);
 
-                this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
+               // 
                 player.Update(gameTime, this.AllTiles.AllItems, mouse);
+                this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);

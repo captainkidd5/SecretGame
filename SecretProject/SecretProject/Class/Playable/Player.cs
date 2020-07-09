@@ -475,7 +475,7 @@ namespace SecretProject.Class.Playable
                 
                 this.MainCollider.Circle.Center = CollisionBody.Position;
                  Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
-                Wardrobe.SetZero();
+                //Wardrobe.SetZero();
 
                 Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 
