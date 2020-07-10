@@ -13,6 +13,7 @@ using VelcroPhysics.Collision.ContactSystem;
 using VelcroPhysics.Collision.Handlers;
 using VelcroPhysics.Collision.Shapes;
 using VelcroPhysics.Dynamics;
+using VelcroPhysics.Dynamics.Joints;
 using VelcroPhysics.Factories;
 
 namespace SecretProject.Class.SpriteFolder
@@ -53,7 +54,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public Body Body { get; set; }
 
-        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position,TmxStageBase stage)
+        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, TmxStageBase stage)
         {
             this.Graphics = graphics;
             this.GrassType = grassType;
@@ -75,20 +76,24 @@ namespace SecretProject.Class.SpriteFolder
 
             int Column = 534 % 100;
             int Row = (int)Math.Floor((double)534 / (double)100);
-            this.SourceRectangle = new Rectangle(16 * Column + 16 * this.GrassType, 16 * Row - 16 , 16, 32);
+            this.SourceRectangle = new Rectangle(16 * Column + 16 * this.GrassType, 16 * Row - 16, 16, 32);
 
-          
 
-            this.LayerDepth = .5f + (this.DestinationRectangle.Y+ 8) * Utility.ForeGroundMultiplier + this.YOffSet;
+
+            this.LayerDepth = .5f + (this.DestinationRectangle.Y + 8) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
 
-            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f,new Vector2(this.Rectangle.X, this.Rectangle.Y));
+            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f, new Vector2(this.Rectangle.X, this.Rectangle.Y));
             this.Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             this.Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
-            this.Body.BodyType = BodyType.Static;
+            this.Body.BodyType = BodyType.Dynamic;
+            this.Body.Restitution = .2f;
+            this.Body.Mass = .2f;
             this.Body.OnCollision += OnCollision;
+            
+            WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, Game1.Pinboard, )
 
 
         }
@@ -96,12 +101,12 @@ namespace SecretProject.Class.SpriteFolder
 
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
-
         {
+            fixtureA.
             Console.WriteLine("hi");
             SelfDestruct();
         }
-        
+
         public void Update(GameTime gameTime)
         {
 
@@ -144,23 +149,23 @@ namespace SecretProject.Class.SpriteFolder
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
             location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
-            if(Game1.Utility.RGenerator.Next(0,5) < 2)
+            if (Game1.Utility.RGenerator.Next(0, 5) < 2)
             {
                 location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
             }
             if (Game1.Utility.RNumber(0, 3) == 1)
             {
-                Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X , this.Position.Y + 4));
+                Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X, this.Position.Y + 4));
             }
             Game1.VelcroWorld.RemoveBody(this.Body);
             if (this.TuftsIsPartOf != null)
-            this.TuftsIsPartOf.Remove(this);
+                this.TuftsIsPartOf.Remove(this);
 
 
-           
-           
 
-                
+
+
+
         }
 
         public void Shuff(int direction)
@@ -254,7 +259,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-          //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+            //  spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -46,6 +46,7 @@ using VelcroPhysics.Dynamics;
 using VelcroPhysics.Utilities;
 using VelcroPhysics.Extensions;
 using VelcroPhysics.Extensions.DebugView;
+using VelcroPhysics.Factories;
 
 
 
@@ -1017,7 +1018,16 @@ namespace SecretProject
 
 
         }
-
+        public static Body Pinboard { get; set; }
+        /// <summary>
+        /// create large collision box that spans the entire backdrop which we can pin things to like grass.
+        /// </summary>
+        private static void CreatePinBoard()
+        {
+            Body pinBoard = BodyFactory.CreateRectangle(VelcroWorld, 1600, 1600, 1f, Vector2.Zero, 0, BodyType.Static);
+            pinBoard.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Pinboard;
+            Pinboard = pinBoard;
+        }
         //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
 
         public static void SwitchStage(TmxStageBase stageToSwitchTo, Portal portal = null)
@@ -1084,6 +1094,7 @@ namespace SecretProject
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
             Penumbra.Hulls.Add(Player.Hull);
+            CreatePinBoard();
             VelcroWorld.ProcessChanges();
 
             
