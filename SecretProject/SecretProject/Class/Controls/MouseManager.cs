@@ -261,7 +261,9 @@ namespace SecretProject.Class.Controls
                 }
 
             }
-            
+
+           // if (EnableBody)
+                //DrawDebug(spriteBatch);
 
 
         }
@@ -269,7 +271,7 @@ namespace SecretProject.Class.Controls
         public void DrawDebug(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.redPixel, this.MouseBody.Position, new Rectangle(0, 0, 1, 1),
-                Color.White, 1f, new Vector2(.5f, .5f), new Vector2(10f, 10f), SpriteEffects.None, .99f);
+                Color.White, 1f, new Vector2(.5f, .5f), new Vector2(9.6f, 9.6f), SpriteEffects.None, .99f);
         }
 
         public void ChangeMouseTexture(CursorType type)
@@ -319,9 +321,6 @@ namespace SecretProject.Class.Controls
         {
             return new Vector2((int)(mousePosition.X / 16), (int)(mousePosition.Y / 16));
         }
-
-
-
 
         public bool IsHovering(Rectangle rectangle)
         {
@@ -381,8 +380,8 @@ namespace SecretProject.Class.Controls
         public FixedMouseJoint MouseJoint { get; set; }
         public void AttachMouseBody()
         {
-            MouseBody = BodyFactory.CreateCircle(Game1.VelcroWorld,ConvertUnits.ToSimUnits( 8f), 1f);
-            MouseBody.Position = ConvertUnits.ToSimUnits(WorldMousePosition);
+            MouseBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 8f, 1f);
+            MouseBody.Position = WorldMousePosition;
             MouseBody.BodyType = BodyType.Dynamic;
             MouseBody.Mass = .4f;
             MouseBody.Restitution = .2f;
@@ -390,9 +389,11 @@ namespace SecretProject.Class.Controls
             MouseBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Mouse;
             MouseBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
             MouseBody.FixedRotation = true;
+            MouseBody.IgnoreGravity = true;
 
              MouseJoint = JointFactory.CreateFixedMouseJoint(Game1.VelcroWorld, MouseBody, MouseBody.Position);
             MouseJoint.MaxForce = 500f;
+
 
             //MouseBody.OnCollision += OnCollision;
 

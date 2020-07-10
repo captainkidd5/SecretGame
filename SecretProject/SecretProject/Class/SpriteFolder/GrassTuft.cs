@@ -15,6 +15,7 @@ using VelcroPhysics.Collision.Shapes;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Dynamics.Joints;
 using VelcroPhysics.Factories;
+using VelcroPhysics.Utilities;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -24,17 +25,9 @@ namespace SecretProject.Class.SpriteFolder
         public int GrassType { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle DestinationRectangle { get; set; }
-        public float Rotation { get; set; }
-        public float RotationCap { get; set; }
-        public bool StartShuff { get; set; }
-        public float ShuffSpeed { get; set; }
+
+
         public float YOffSet { get; set; }
-
-        public Dir InitialShuffDirection { get; set; }
-        public Dir ShuffDirection { get; set; }
-        public bool ShuffDirectionPicked { get; set; }
-
-        public Rectangle Rectangle { get; set; }
 
         public Rectangle SourceRectangle { get; set; }
 
@@ -61,15 +54,10 @@ namespace SecretProject.Class.SpriteFolder
             this.GrassType = grassType;
             this.Position = position;
             this.DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, 16, 32);
-            this.Rotation = 0f;
-            this.RotationCap = .25f;
-            this.ShuffSpeed = 2f;
-            this.StartShuff = false;
-            this.YOffSet = Game1.Utility.RFloat(.00000001f, Utility.ForeGroundMultiplier);
-            this.ShuffDirection = Dir.Left;
-            this.ShuffDirectionPicked = false;
 
-            this.Rectangle = new Rectangle(this.DestinationRectangle.X, this.DestinationRectangle.Y, 8, 8);
+            this.YOffSet = Game1.Utility.RFloat(.00000001f, Utility.ForeGroundMultiplier);
+
+
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
@@ -84,57 +72,61 @@ namespace SecretProject.Class.SpriteFolder
             this.LayerDepth = .5f + (this.DestinationRectangle.Y + 8) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
 
-            this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
+            this.RectangleCollider = new RectangleCollider(graphics, this.DestinationRectangle, this, ColliderType.grass);
 
             Rectangle PinBoxRectangle = SecretPhysics.CreatePinBox(position, 32, 32);
             //CONNECTOR
 
-            PinBox = BodyFactory.CreateRectangle(Game1.VelcroWorld, PinBoxRectangle.Width, PinBoxRectangle.Height, 1f);
-            PinBox.Position = new Vector2(this.Position.X + PinBoxRectangle.Width / 2f, this.Position.Y + PinBoxRectangle.Height / 2);
-            PinBox.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Pinboard;
-            PinBox.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
-            PinBox.BodyType = BodyType.Static;
-            PinBox.Restitution = .2f;
-            PinBox.Mass = 1f;
-            PinBox.Friction = .8f;
-  
+            //PinBox = BodyFactory.CreateRectangle(Game1.VelcroWorld, PinBoxRectangle.Width, PinBoxRectangle.Height, 1f);
+            //PinBox.Position = new Vector2(this.Position.X + PinBoxRectangle.Width / 2f, this.Position.Y + PinBoxRectangle.Height / 2);
+            //PinBox.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Pinboard;
+            ////PinBox.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
+            //PinBox.BodyType = BodyType.Static;
+            //PinBox.Restitution = .2f;
+            //PinBox.Mass = 1f;
+            //PinBox.Friction = .8f;
+
 
 
             //GRASS ITSELF
-            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f, 
-                new Vector2(this.Rectangle.X + SourceRectangle.Width/2, this.Rectangle.Y + SourceRectangle.Height / 2));
+            this.Body = BodyFactory.CreateCircle(Game1.VelcroWorld, this.DestinationRectangle.Width,1f); 
+
+                this.Body.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width/2,
+                   this.DestinationRectangle.Y + SourceRectangle.Height / 2);
             Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Grass;
-            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
-            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Mouse;
+           Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            //Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Mouse;
             Body.BodyType = BodyType.Dynamic;
             Body.Restitution = .7f;
+           // this.Body.FixedRotation = false;
             Body.Mass = .2f;
             Body.Friction = .2f;
-          //  this.Body.OnCollision += OnCollision;
-            this.Body.FixedRotation = false;
+             this.Body.OnCollision += OnCollision;
+            
+            
+           // float damp = .23f, hz = 17;
 
-            float damp = .23f, hz = 17;
-
-            WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, PinBox, new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - Rectangle.Height /2),
-                 new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - Rectangle.Height / 2), true);
-            root.CollideConnected = false;
-            root.FrequencyHz = hz;
-            root.DampingRatio = damp;
+            //WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, PinBox,
+            //    new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - DestinationRectangle.Height /2),
+            //     new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - DestinationRectangle.Height / 2), true);
+            //root.CollideConnected = false;
+            //root.FrequencyHz = hz;
+            //root.DampingRatio = damp;
 
         }
 
         private void DrawDebugLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color, float thickness = 2f)
         {
             Vector2 delta = end - start;
-            float rot = (float)Math.Atan2(delta.Y, delta.X);
+            float rotation = (float)Math.Atan2(delta.Y, delta.X);
             spriteBatch.Draw(Game1.AllTextures.redPixel, start, new Rectangle(0, 0, 1, 1),
-                color, rot,new Vector2(0,.5f), new Vector2(delta.Length(), thickness), SpriteEffects.None, .99f);
+                color, rotation,new Vector2(0,.5f), new Vector2(delta.Length(), thickness), SpriteEffects.None, .99f);
         }
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-           // fixtureA.
-            Console.WriteLine("hi");
+           
+          //  Body.Rotation += 5f;
            // SelfDestruct();
         }
 
@@ -143,34 +135,21 @@ namespace SecretProject.Class.SpriteFolder
 
 
 
-            if (!this.StartShuff && !this.ShuffDirectionPicked)
-            {
-                this.StartShuff = true;
-
-            }
-
-
-
-            if (!this.StartShuff && this.ShuffDirectionPicked)
-            {
-                RotateBackToOrigin(gameTime);
-                //this.ShuffDirectionPicked = false;
-                //  this.IsUpdating = false;
-            }
-            if (this.StartShuff)
-            {
-                Shuff((int)this.InitialShuffDirection);
-                this.ShuffDirectionPicked = true;
-            }
         }
+
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
+            if(this.Body.Rotation != 0)
+            {
+                Console.WriteLine("hi");
+            }
+            //Vector2 grassVector = ((Body.Position - new Vector2(PinBox.Position.X, PinBox.Position.Y)) * 2);
+            //Vector2 realPos = PinBox.Position + grassVector;
+            //DrawDebugLine(spriteBatch, PinBox.Position, realPos, Color.Green);
 
-            Vector2 grassVector = ((Body.Position - new Vector2(PinBox.Position.X, PinBox.Position.Y)) * 2);
-            Vector2 realPos = PinBox.Position + grassVector;
-            DrawDebugLine(spriteBatch, PinBox.Position, realPos, Color.Green);
-            spriteBatch.Draw(texture, this.DestinationRectangle, this.SourceRectangle,
-                Color.White, this.Body.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
+
+            spriteBatch.Draw(texture, this.Body.Position, this.SourceRectangle,
+                Color.White, this.Body.Rotation, this.GrassOffset, 1f,  SpriteEffects.None, this.LayerDepth);
 
         }
 
@@ -180,7 +159,7 @@ namespace SecretProject.Class.SpriteFolder
             TmxStageBase location = Game1.CurrentStage;
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
-            location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
+            location.ParticleEngine.EmitterLocation = new Vector2(this.DestinationRectangle.X, this.DestinationRectangle.Y - 5);
             location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             if (Game1.Utility.RGenerator.Next(0, 5) < 2)
             {
@@ -199,95 +178,6 @@ namespace SecretProject.Class.SpriteFolder
 
 
 
-        }
-
-        public void Shuff(int direction)
-        {
-            if (!this.ShuffDirectionPicked)
-            {
-                if (direction == (int)Dir.Up || direction == (int)Dir.Down)
-                {
-                    this.ShuffDirection = (Dir)Game1.Utility.RGenerator.Next(2, 4);
-                }
-                if (direction == (int)Dir.Right)
-                {
-                    this.ShuffDirection = Dir.Right;
-                }
-                if (direction == (int)(Dir.Left))
-                {
-                    this.ShuffDirection = Dir.Left;
-                }
-
-            }
-            else
-            {
-                if (this.ShuffDirection == Dir.Right)
-                {
-                    if (this.Rotation < this.RotationCap + .5)
-                    {
-                        this.Rotation += (float).5f * this.ShuffSpeed;
-                    }
-                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
-                    {
-
-                    }
-                    else
-                    {
-                        this.StartShuff = false;
-                    }
-
-
-                }
-                else if (this.ShuffDirection == Dir.Left)
-                {
-                    if (this.Rotation > this.RotationCap - 1)
-                    {
-                        this.Rotation -= .5f * this.ShuffSpeed;
-                    }
-                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
-                    {
-
-                    }
-                    else
-                    {
-                        this.StartShuff = false;
-                    }
-                }
-            }
-
-        }
-
-        public void RotateBackToOrigin(GameTime gameTime)
-        {
-            if (this.Rotation > 0)
-            {
-                this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
-
-                if (this.Rotation <= 0)
-                {
-                    this.StartShuff = false;
-                    this.IsUpdating = false;
-                    this.ShuffDirectionPicked = false;
-                    return;
-                }
-            }
-            else if (this.Rotation < 0)
-            {
-                this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
-                if (this.Rotation >= 0)
-                {
-                    this.StartShuff = false;
-                    this.IsUpdating = false;
-                    this.ShuffDirectionPicked = false;
-                    return;
-                }
-            }
-            else
-            {
-                this.StartShuff = false;
-                this.IsUpdating = false;
-                this.ShuffDirectionPicked = false;
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)

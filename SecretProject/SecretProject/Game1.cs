@@ -419,7 +419,7 @@ namespace SecretProject
 
         private void LoadPhysics()
         {
-            //ConvertUnits.SetDisplayUnitToSimUnitRatio(16f); //one world unit is 16 pixels.
+            ConvertUnits.SetDisplayUnitToSimUnitRatio(16f); //one world unit is 16 pixels.
         }
 
         #region LOADCONTENT

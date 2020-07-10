@@ -619,7 +619,7 @@ namespace SecretProject.Class.Playable
                     if (this.MainCollider.IsIntersecting(collider))
                     {
                         (collider.Entity as GrassTuft).IsUpdating = true;
-                        (collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
+                        //(collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
 
                         //if (Game1.EnablePlayerCollisions)
                         //{

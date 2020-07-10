@@ -309,7 +309,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
                        (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
-                        (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
+                      //  (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
                     }
                 }
                 else

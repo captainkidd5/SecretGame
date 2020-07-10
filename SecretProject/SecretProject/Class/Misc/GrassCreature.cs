@@ -207,7 +207,7 @@ namespace SecretProject.Class.Misc
                     if (this.CircleCollider.IsIntersecting(returnObjects[i]))
                     {
                         (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
-                        (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
+                      //  (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
                     }
                 }
 
