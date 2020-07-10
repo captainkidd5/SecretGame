@@ -433,7 +433,10 @@ namespace SecretProject.Class.TileStuff
                         if (mi >= 0 && mi < MapWidth && mj >= 0 && mj < MapWidth)
                         {
 
-
+                            if(this.AllTiles == null)
+                            {
+                                return;
+                            }
 
 
                             Rectangle newIntersectionRectangle = new Rectangle(this.AllTiles[z][mi, mj].DestinationRectangle.X,

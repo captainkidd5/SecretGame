@@ -5,7 +5,13 @@ using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.TileStuff;
+using System;
 using System.Collections.Generic;
+using VelcroPhysics.Collision.ContactSystem;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Dynamics.Joints;
+using VelcroPhysics.Factories;
+using VelcroPhysics.Utilities;
 
 namespace SecretProject.Class.Controls
 {
@@ -25,6 +31,7 @@ namespace SecretProject.Class.Controls
     }
     public class MouseManager : IEntity
     {
+        public bool EnableBody { get; set; }
         public bool IsDown { get; set; }
         public bool IsClicked { get; set; }
         public bool IsRightClicked { get; set; }
@@ -119,6 +126,7 @@ namespace SecretProject.Class.Controls
 
             this.OldMouseInterfacePosition = Vector2.Zero;
             this.MouseCollider = new RectangleCollider(graphicsDevice, new Rectangle(0,0,1,1), this, ColliderType.MouseCollider);
+            AttachMouseBody();
         }
 
         public void Update(GameTime gameTime)
@@ -232,6 +240,9 @@ namespace SecretProject.Class.Controls
                     }
                 }
             }
+                MouseBody.Enabled = EnableBody;
+
+            MouseJoint.WorldAnchorB = WorldMousePosition;
 
         }
 
@@ -250,8 +261,15 @@ namespace SecretProject.Class.Controls
                 }
 
             }
+            
 
 
+        }
+
+        public void DrawDebug(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Game1.AllTextures.redPixel, this.MouseBody.Position, new Rectangle(0, 0, 1, 1),
+                Color.White, 1f, new Vector2(.5f, .5f), new Vector2(10f, 10f), SpriteEffects.None, .99f);
         }
 
         public void ChangeMouseTexture(CursorType type)
@@ -358,6 +376,32 @@ namespace SecretProject.Class.Controls
                 }
             }
             return tilesToReturn;
+        }
+        public Body MouseBody { get; set; }
+        public FixedMouseJoint MouseJoint { get; set; }
+        public void AttachMouseBody()
+        {
+            MouseBody = BodyFactory.CreateCircle(Game1.VelcroWorld,ConvertUnits.ToSimUnits( 8f), 1f);
+            MouseBody.Position = ConvertUnits.ToSimUnits(WorldMousePosition);
+            MouseBody.BodyType = BodyType.Dynamic;
+            MouseBody.Mass = .4f;
+            MouseBody.Restitution = .2f;
+            MouseBody.Friction = .4f;
+            MouseBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Mouse;
+            MouseBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
+            MouseBody.FixedRotation = true;
+
+             MouseJoint = JointFactory.CreateFixedMouseJoint(Game1.VelcroWorld, MouseBody, MouseBody.Position);
+            MouseJoint.MaxForce = 500f;
+
+            //MouseBody.OnCollision += OnCollision;
+
+        }
+        private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            // fixtureA.
+            Console.WriteLine("mouse hit grass");
+            // SelfDestruct();
         }
 
         public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)

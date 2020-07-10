@@ -53,6 +53,7 @@ namespace SecretProject.Class.SpriteFolder
         public RectangleCollider RectangleCollider;
 
         public Body Body { get; set; }
+        public Body PinBox { get; set; }
 
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, TmxStageBase stage)
         {
@@ -85,26 +86,56 @@ namespace SecretProject.Class.SpriteFolder
 
             this.RectangleCollider = new RectangleCollider(graphics, this.Rectangle, this, ColliderType.grass);
 
-            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f, new Vector2(this.Rectangle.X, this.Rectangle.Y));
-            this.Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            this.Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
-            this.Body.BodyType = BodyType.Dynamic;
-            this.Body.Restitution = .2f;
-            this.Body.Mass = .2f;
-            this.Body.OnCollision += OnCollision;
-            
-            WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, Game1.Pinboard, )
+            Rectangle PinBoxRectangle = SecretPhysics.CreatePinBox(position, 32, 32);
+            //CONNECTOR
 
+            PinBox = BodyFactory.CreateRectangle(Game1.VelcroWorld, PinBoxRectangle.Width, PinBoxRectangle.Height, 1f);
+            PinBox.Position = new Vector2(this.Position.X + PinBoxRectangle.Width / 2f, this.Position.Y + PinBoxRectangle.Height / 2);
+            PinBox.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Pinboard;
+            PinBox.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
+            PinBox.BodyType = BodyType.Static;
+            PinBox.Restitution = .2f;
+            PinBox.Mass = 1f;
+            PinBox.Friction = .8f;
+  
+
+
+            //GRASS ITSELF
+            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Rectangle.Width, this.Rectangle.Height, 1f, 
+                new Vector2(this.Rectangle.X + SourceRectangle.Width/2, this.Rectangle.Y + SourceRectangle.Height / 2));
+            Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Grass;
+            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Mouse;
+            Body.BodyType = BodyType.Dynamic;
+            Body.Restitution = .7f;
+            Body.Mass = .2f;
+            Body.Friction = .2f;
+          //  this.Body.OnCollision += OnCollision;
+            this.Body.FixedRotation = false;
+
+            float damp = .23f, hz = 17;
+
+            WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, PinBox, new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - Rectangle.Height /2),
+                 new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - Rectangle.Height / 2), true);
+            root.CollideConnected = false;
+            root.FrequencyHz = hz;
+            root.DampingRatio = damp;
 
         }
 
-
+        private void DrawDebugLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color, float thickness = 2f)
+        {
+            Vector2 delta = end - start;
+            float rot = (float)Math.Atan2(delta.Y, delta.X);
+            spriteBatch.Draw(Game1.AllTextures.redPixel, start, new Rectangle(0, 0, 1, 1),
+                color, rot,new Vector2(0,.5f), new Vector2(delta.Length(), thickness), SpriteEffects.None, .99f);
+        }
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-            fixtureA.
+           // fixtureA.
             Console.WriteLine("hi");
-            SelfDestruct();
+           // SelfDestruct();
         }
 
         public void Update(GameTime gameTime)
@@ -135,9 +166,11 @@ namespace SecretProject.Class.SpriteFolder
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
 
-
+            Vector2 grassVector = ((Body.Position - new Vector2(PinBox.Position.X, PinBox.Position.Y)) * 2);
+            Vector2 realPos = PinBox.Position + grassVector;
+            DrawDebugLine(spriteBatch, PinBox.Position, realPos, Color.Green);
             spriteBatch.Draw(texture, this.DestinationRectangle, this.SourceRectangle,
-                Color.White, this.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
+                Color.White, this.Body.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
 
         }
 

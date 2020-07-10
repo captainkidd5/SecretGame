@@ -51,8 +51,11 @@ namespace SecretProject.Class.StageFolder
 
         public TmxMap Map { get; set; }
 
-        public Player player { get;
-            set; }
+        public Player player
+        {
+            get;
+            set;
+        }
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
@@ -138,15 +141,15 @@ namespace SecretProject.Class.StageFolder
         protected IServiceProvider ServiceProvider { get; set; }
         public PenumbraComponent Penumbra { get; set; }
 
-        public Dictionary<string, Hull> Hulls{ get; set; }
-        public Dictionary<string,Light> Lights { get; set; }
+        public Dictionary<string, Hull> Hulls { get; set; }
+        public Dictionary<string, Light> Lights { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber,IServiceProvider service, bool isBasedOnPreloadedMap = true)
+        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service, bool isBasedOnPreloadedMap = true)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -179,7 +182,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Lights = new Dictionary<string, Light>();
             this.Hulls = new Dictionary<string, Hull>();
-            
+
 
         }
         public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -239,7 +242,7 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree = new QuadTree(0, this.MapRectangle);
             this.FunBox = new FunBox(this.Graphics);
 
-          
+
 
         }
 
@@ -258,7 +261,7 @@ namespace SecretProject.Class.StageFolder
             this.AllTiles.StartNew(this.IsBasedOnPreloadedMap);
         }
 
-        public virtual void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules)
+        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
@@ -303,11 +306,11 @@ namespace SecretProject.Class.StageFolder
             Save(binaryWriter);
             binaryWriter.Flush();
             binaryWriter.Close();
-            
-                AllTiles.Unload();
-                this.Lights.Clear();
-                this.Hulls.Clear();
-            
+
+            AllTiles.Unload();
+            this.Lights.Clear();
+            this.Hulls.Clear();
+
 
 
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
@@ -375,7 +378,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
             }
-             
+
             for (int creature = 0; creature < this.FunBox.FunItems.Count; creature++)
             {
                 if ((this.FunBox.FunItems[creature].GetType() == typeof(GrassCreature)))
@@ -444,7 +447,7 @@ namespace SecretProject.Class.StageFolder
         }
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-           
+
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
@@ -490,7 +493,7 @@ namespace SecretProject.Class.StageFolder
             {
                 Game1.GlobalClock.Update(gameTime);
 
-               // 
+                // 
                 player.Update(gameTime, this.AllTiles.AllItems, mouse);
                 this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
@@ -532,17 +535,17 @@ namespace SecretProject.Class.StageFolder
                 Penumbra.AmbientColor = Color.DarkSlateGray;
                 Penumbra.BeginDraw();
             }
-               
+
         }
 
         protected virtual void DrawPenumbra(GameTime gameTime)
         {
-            if(IsDark)
+            if (IsDark)
             {
                 Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
                 Penumbra.Draw(gameTime);
             }
-           
+
         }
 
         #region DRAW
@@ -579,7 +582,7 @@ namespace SecretProject.Class.StageFolder
                 BeginPenumbra();
 
 
-                
+
 
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
 
@@ -657,7 +660,10 @@ namespace SecretProject.Class.StageFolder
 
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
-
+                if (Game1.MouseManager.EnableBody)
+                {
+                    Game1.MouseManager.DrawDebug(spriteBatch);
+                }
                 spriteBatch.End();
                 DrawPenumbra(gameTime);
 
@@ -671,12 +677,13 @@ namespace SecretProject.Class.StageFolder
                 //    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(nightLightsTarget);
                 //    Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
                 //}
-
+                
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
                 if (Game1.KeyboardManager.WasKeyPressed(Keys.PageDown))
                 {
                     Game1.Player.UserInterface.CommandConsole.TakeScreenShot(mainTarget);
                 }
+                
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);

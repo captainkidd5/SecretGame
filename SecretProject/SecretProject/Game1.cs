@@ -362,8 +362,8 @@ namespace SecretProject
             this.IsFixedTimeStep = false;
             netWorkConnection = new NetworkConnection();
 
-            VelcroWorld = new World(new Vector2(0, 0));
-
+            VelcroWorld = new World(new Vector2(0, 9.8f));
+            //CreatePinBoard();
             
         }
         #endregion
@@ -1089,12 +1089,12 @@ namespace SecretProject
             Player.Wardrobe.UpdateForCreationMenu();
 
 
-           
 
+            MouseManager.AttachMouseBody();
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
             Penumbra.Hulls.Add(Player.Hull);
-            CreatePinBoard();
+            //CreatePinBoard();
             VelcroWorld.ProcessChanges();
 
             
