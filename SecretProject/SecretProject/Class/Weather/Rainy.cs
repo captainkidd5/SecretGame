@@ -27,7 +27,7 @@ namespace SecretProject.Class.Weather
            };
 
             this.ParticleEngine = new ParticleEngine(this.ParticleTextures, new Vector2(Game1.Player.Position.X - Game1.ScreenWidth, Game1.Player.Position.Y - 100)) { AddNewParticleTimer = .0001f };
-            RainyMask = Game1.Utility.GetColoredRectangle(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Teal);
+            RainyMask = Game1.Utility.GetColoredRectangle( Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Teal);
             this.ChanceToOccur = .7f;
         }
 

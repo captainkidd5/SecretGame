@@ -444,16 +444,17 @@ namespace SecretProject.Class.TileStuff
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
                             collisionBody.IgnoreGravity = true;
+                            //TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
                             // if(!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                             // {
                             //TileManager.Objects.Add(tileToAssign.TileKey, tempobjs);
                             // }
 
-                            CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
-                            tempObjectBody.Body = collisionBody;
-                            TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
+                            // CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
+                            // tempObjectBody.Body = collisionBody;
+                            // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
 
-                            TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
+                           // TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
 
                         }
                         else

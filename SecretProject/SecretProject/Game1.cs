@@ -1037,6 +1037,8 @@ namespace SecretProject
             IsFadingOut = true;
 
             VelcroWorld.Clear();
+           
+            
             //VelcroWorld.ProcessChanges();
 
             CurrentStage.UnloadContent();
@@ -1091,6 +1093,10 @@ namespace SecretProject
 
 
             MouseManager.AttachMouseBody();
+            if (CurrentStage.DebuggableShapes != null)
+            {
+                CurrentStage.DebuggableShapes.Clear();
+            }
             CurrentStage = newLocation;
             CurrentStage.AllTiles.UpdateCropTile();
             Penumbra.Hulls.Add(Player.Hull);

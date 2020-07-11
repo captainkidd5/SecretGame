@@ -631,7 +631,7 @@ namespace SecretProject.Class.StageFolder
 
                     //}
                     Game1.Player.MainCollider.DrawDebug(spriteBatch);
-                    for(int i =0; i < this.DebuggableShapes.Count; i++)
+                    for (int i = 0; i < this.DebuggableShapes.Count; i++)
                     {
                         DebuggableShapes[i].Draw(spriteBatch);
                     }

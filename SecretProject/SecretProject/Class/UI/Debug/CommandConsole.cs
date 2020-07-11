@@ -62,11 +62,11 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("addmob", "mobID"),
                 new CommandWindowCommand("getmobs", "gets a list of all the mob ids")
             };
-            this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 400, new Color(0, 0, 0, 30));
+            this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle( 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
             this.backGroundPosition = new Vector2(0, Game1.ScreenHeight - (float)(backGroundRectangle.Height * 1.5));
 
-            this.typeBoxTexture = Game1.Utility.GetColoredRectangle(graphics, 600, 50, new Color(0, 0, 0, 30));
+            this.typeBoxTexture = Game1.Utility.GetColoredRectangle( 600, 50, new Color(0, 0, 0, 30));
             this.testTypeRectangle = Game1.Utility.GetRectangleFromTexture(typeBoxTexture);
             this.typeBoxPosition = new Vector2(0, backGroundPosition.Y + this.backGroundRectangle.Height);
 

@@ -31,7 +31,7 @@ namespace SecretProject.Class.UI.Transitions
         public LoadingScreen(GraphicsDevice graphics)
         {
             this.Graphics = graphics;
-            this.Texture = Game1.Utility.GetColoredRectangle(this.Graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
+            this.Texture = Game1.Utility.GetColoredRectangle( Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
             this.ColorMultiplier = 1f;
             this.Speed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);

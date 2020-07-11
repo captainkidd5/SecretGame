@@ -4,6 +4,7 @@ using Penumbra;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Physics;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
@@ -46,7 +47,7 @@ namespace SecretProject.Class.SpriteFolder
         public RectangleCollider RectangleCollider;
 
         public Body Body { get; set; }
-        public Body PinBox { get; set; }
+
 
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, TmxStageBase stage)
         {
@@ -87,24 +88,26 @@ namespace SecretProject.Class.SpriteFolder
             //PinBox.Friction = .8f;
 
 
-
+           // float radius = 4f;
             //GRASS ITSELF
-            this.Body = BodyFactory.CreateCircle(Game1.VelcroWorld, this.DestinationRectangle.Width,1f); 
+            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width, DestinationRectangle.Height, 1f); 
 
                 this.Body.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width/2,
                    this.DestinationRectangle.Y + SourceRectangle.Height / 2);
-            Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Grass;
+            Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
             //Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Mouse;
             Body.BodyType = BodyType.Dynamic;
             Body.Restitution = .7f;
-           // this.Body.FixedRotation = false;
+            Body.IgnoreGravity = true;
+            this.Body.FixedRotation = false;
             Body.Mass = .2f;
             Body.Friction = .2f;
              this.Body.OnCollision += OnCollision;
-            
-            
-           // float damp = .23f, hz = 17;
+
+            // stage.DebuggableShapes.Add(new CircleDebugger(Body, stage.DebuggableShapes));
+
+            // float damp = .23f, hz = 17;
 
             //WeldJoint root = JointFactory.CreateWeldJoint(Game1.VelcroWorld, this.Body, PinBox,
             //    new Vector2(this.PinBox.Position.X, this.PinBox.Position.Y - DestinationRectangle.Height /2),
@@ -113,6 +116,7 @@ namespace SecretProject.Class.SpriteFolder
             //root.FrequencyHz = hz;
             //root.DampingRatio = damp;
 
+            stage.DebuggableShapes.Add(new RectangleDebugger(Body, stage.DebuggableShapes));
         }
 
         private void DrawDebugLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color, float thickness = 2f)
@@ -125,8 +129,9 @@ namespace SecretProject.Class.SpriteFolder
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-           
-          //  Body.Rotation += 5f;
+
+            //  Body.Rotation += 5f;
+           // Console.WriteLine("hi");
            // SelfDestruct();
         }
 
@@ -136,9 +141,16 @@ namespace SecretProject.Class.SpriteFolder
 
 
         }
+        public Vector2 PositionLastFrame { get; set; }
+        public Vector2 PositionThisFrame { get; set; }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
+            if(PositionLastFrame != PositionThisFrame)
+            {
+                Console.WriteLine("hi");
+            }
+            PositionLastFrame = PositionThisFrame;
             if(this.Body.Rotation != 0)
             {
                 Console.WriteLine("hi");
@@ -150,7 +162,7 @@ namespace SecretProject.Class.SpriteFolder
 
             spriteBatch.Draw(texture, this.Body.Position, this.SourceRectangle,
                 Color.White, this.Body.Rotation, this.GrassOffset, 1f,  SpriteEffects.None, this.LayerDepth);
-
+            PositionThisFrame = this.Body.Position;
         }
 
         public void SelfDestruct()

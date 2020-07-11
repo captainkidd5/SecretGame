@@ -292,14 +292,14 @@ namespace SecretProject.Class.Universal
             return angle;
         }
         #endregion
-        public Texture2D GetColoredRectangle(GraphicsDevice graphics, int width, int height, Color desiredColor)
+        public Texture2D GetColoredRectangle(int width, int height, Color desiredColor)
         {
             Color[] dataColors = new Color[width * height];
             for (int i = 0; i < dataColors.Length; i++)
             {
                 dataColors[i] = desiredColor;
             }
-            Texture2D texture = new Texture2D(graphics, width, height);
+            Texture2D texture = new Texture2D(this.Graphics, width, height);
             texture.SetData(0, new Rectangle(0, 0, width, height), dataColors, 0, width * height);
             return texture;
         }
