@@ -15,6 +15,7 @@ using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.Physics;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
@@ -143,6 +144,8 @@ namespace SecretProject.Class.StageFolder
 
         public Dictionary<string, Hull> Hulls { get; set; }
         public Dictionary<string, Light> Lights { get; set; }
+
+        public List<IDebuggableShape> DebuggableShapes { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -183,7 +186,7 @@ namespace SecretProject.Class.StageFolder
             this.Lights = new Dictionary<string, Light>();
             this.Hulls = new Dictionary<string, Hull>();
 
-
+            this.DebuggableShapes = new List<IDebuggableShape>();
         }
         public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -618,16 +621,20 @@ namespace SecretProject.Class.StageFolder
                     {
                         character.DrawDebug(spriteBatch, .4f);
                     }
-                    foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
-                    {
+                    //foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
+                    //{
 
-                        for (int j = 0; j < obj.Value.Count; j++)
-                        {
-                            obj.Value[j].DrawDebug(spriteBatch);
-                        }
+                    //    for (int j = 0; j < obj.Value.Count; j++)
+                    //    {
+                    //        obj.Value[j].DrawDebug(spriteBatch);
+                    //    }
 
-                    }
+                    //}
                     Game1.Player.MainCollider.DrawDebug(spriteBatch);
+                    for(int i =0; i < this.DebuggableShapes.Count; i++)
+                    {
+                        DebuggableShapes[i].Draw(spriteBatch);
+                    }
                 }
                 //for(int v =0; v < Game1.VelcroWorld.BodyList.Count; v++)
                 //{

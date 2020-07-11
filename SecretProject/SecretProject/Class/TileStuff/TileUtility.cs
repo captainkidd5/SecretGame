@@ -16,6 +16,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
+using VelcroPhysics.Collision.Shapes;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Factories;
 using XMLData.ItemStuff;
@@ -436,25 +437,24 @@ namespace SecretProject.Class.TileStuff
                         if (tempObj.ObjectType == TmxObjectType.Ellipse)
                         {
                             Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
-                            CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
-
-                           
-                           // List<ICollidable> tempobjs = new List<ICollidable>();
-
-                           // tempobjs.Add(tempObjectBody);
-
-                            TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
+                            
                             
 
                             Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Dynamic);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
                             collisionBody.IgnoreGravity = true;
-                           // if(!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
-                           // {
-                                //TileManager.Objects.Add(tileToAssign.TileKey, tempobjs);
-                           // }
-                            
+                            // if(!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
+                            // {
+                            //TileManager.Objects.Add(tileToAssign.TileKey, tempobjs);
+                            // }
+
+                            CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
+                            tempObjectBody.Body = collisionBody;
+                            TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
+
+                            TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
+
                         }
                         else
                         {

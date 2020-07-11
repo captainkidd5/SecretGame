@@ -5,6 +5,7 @@ using SecretProject.Class.Physics;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Dynamics;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -30,6 +31,7 @@ namespace SecretProject.Class.CollisionDetection
 
         public Circle Circle;
 
+        public Body Body { get; set; }
 
         public CircleCollider(GraphicsDevice graphicsDevice, Rectangle rectangle, Circle circle, IEntity entity, ColliderType colliderType = ColliderType.inert)
         {
@@ -211,8 +213,8 @@ namespace SecretProject.Class.CollisionDetection
 
         public void DrawDebug(SpriteBatch spriteBatch)
         {
-            Vector2 drawPosition = new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y + this.Circle.Radius / 2);
-            spriteBatch.Draw(this.Circle.DebugTexture, new Vector2(Circle.Center.X - this.Circle.Radius / 2, Circle.Center.Y - this.Circle.Radius / 2), color: Color.White * .5f, layerDepth: 1f);
+            Vector2 drawPosition = new Vector2(this.Body.Position.X - Circle.Radius / 2, this.Body.Position.Y - Circle.Radius/ 2);
+            spriteBatch.Draw(this.Circle.DebugTexture, drawPosition, color: Color.White * .5f, layerDepth: 1f);
 
             float length = (Game1.Player.MainCollider.Circle.Center - this.Circle.Center).Length();
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Center = " + Circle.Center.X + "," + Circle.Center.Y + "\n" +

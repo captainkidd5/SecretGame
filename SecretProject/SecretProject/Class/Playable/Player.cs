@@ -201,6 +201,7 @@ namespace SecretProject.Class.Playable
             CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnCollision;
+            this.MainCollider.Body = CollisionBody;
         }
 
         public void SetPosition(Vector2 position)
