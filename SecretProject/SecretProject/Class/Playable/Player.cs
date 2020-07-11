@@ -603,8 +603,6 @@ namespace SecretProject.Class.Playable
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
 
-            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.BigCollider);
-
 
 
             for (int i = 0; i < returnObjects.Count; i++)

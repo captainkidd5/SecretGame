@@ -122,7 +122,7 @@ namespace SecretProject.Class.StageFolder
         public List<StringWrapper> AllTextToWrite { get; set; }
 
         public List<INPC> OnScreenNPCS { get; set; }
-        public QuadTree QuadTree { get; set; }
+
         public List<RisingText> AllRisingText { get; set; }
 
         public SanctuaryTracker SanctuaryTracker { get; set; }
@@ -244,7 +244,7 @@ namespace SecretProject.Class.StageFolder
             this.MapRectangle = new Rectangle(0, 0, this.TileWidth * this.Map.Width, this.TileHeight * this.Map.Height);
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();
-            this.QuadTree = new QuadTree(0, this.MapRectangle);
+
             this.FunBox = new FunBox(this.Graphics);
 
 
@@ -345,79 +345,7 @@ namespace SecretProject.Class.StageFolder
 
         #region UPDATE
 
-        public virtual void PerformQuadTreeInsertions(GameTime gameTime, Player player)
-        {
-            this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
-
-            foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
-            {
-                for (int z = 0; z < obj.Value.Count; z++)
-                {
-                    if (obj.Value[z].ColliderType == ColliderType.TransperencyDetector)
-                    {
-                        obj.Value[z].Entity.Reset();
-                    }
-                    this.QuadTree.Insert(obj.Value[z]);
-                }
-            }
-
-            foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
-            {
-                //for (int g = 0; g < grass.Value.Count; g++)
-                //{
-                //    if (grass.Value[g].IsUpdating)
-                //    {
-                //        grass.Value[g].Update(gameTime);
-                //    }
-
-                //    this.QuadTree.Insert(grass.Value[g].RectangleCollider);
-
-                //}
-            }
-
-            for (int e = 0; e < this.Enemies.Count; e++)
-            {
-                if (this.Enemies[e] != null)
-                {
-                    this.QuadTree.Insert(this.Enemies[e].Collider);
-
-                }
-
-            }
-
-            for (int creature = 0; creature < this.FunBox.FunItems.Count; creature++)
-            {
-                if ((this.FunBox.FunItems[creature].GetType() == typeof(GrassCreature)))
-                {
-                    this.QuadTree.Insert((this.FunBox.FunItems[creature] as GrassCreature).CircleCollider);
-                }
-
-            }
-
-            for (int p = 0; p < AllProjectiles.Count; p++)
-            {
-                this.QuadTree.Insert(AllProjectiles[p].Collider);
-
-            }
-
-            List<Item> items = this.AllTiles.AllItems;
-            for (int i = 0; i < items.Count; i++)
-            {
-                this.QuadTree.Insert(items[i].RectangleCollider);
-                if (items[i].RectangleCollider.Rectangle.Intersects(Cam.CameraScreenRectangle))
-                {
-                    items[i].Update(gameTime);
-                }
-            }
-
-            // QuadTree.Insert(player.MainCollider);
-            this.QuadTree.Insert(player.BigCollider);
-
-            foreach (Character character in this.CharactersPresent)
-            {
-                this.QuadTree.Insert(character.Collider);
-            }
-        }
+        
 
         public virtual void UpdatePortals(Player player, MouseManager mouse)
         {
@@ -459,7 +387,7 @@ namespace SecretProject.Class.StageFolder
             {
                 this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle, this.Enemies);
             }
-            PerformQuadTreeInsertions(gameTime, player);
+
             this.IsDark = Game1.GlobalClock.IsNight;
 
             UpdatePortals(player, mouse);

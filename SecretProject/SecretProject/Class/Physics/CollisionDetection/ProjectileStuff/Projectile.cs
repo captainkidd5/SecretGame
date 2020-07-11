@@ -75,7 +75,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.PrimaryVelocity = new Vector2(Speed, Speed);
             this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4, 4);
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
+       
             for (int i = 0; i < returnObjects.Count; i++)
             {
 

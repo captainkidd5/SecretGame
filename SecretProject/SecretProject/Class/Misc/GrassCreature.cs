@@ -199,7 +199,7 @@ namespace SecretProject.Class.Misc
             this.CircleCollider.Rectangle = new Rectangle((int)this.position.X, (int)this.position.Y,
                16, 16);
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.CircleCollider);
+            
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 if (returnObjects[i].ColliderType == ColliderType.grass)

@@ -221,7 +221,7 @@ namespace SecretProject.Class.Controls
                 {
                     this.MouseCollider.Rectangle = this.WorldMouseRectangle;
                     List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.MouseCollider);
+                  
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         if (returnObjects[i].ColliderType == ColliderType.inert)

@@ -290,7 +290,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
+          
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)

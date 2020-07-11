@@ -79,6 +79,8 @@ namespace SecretProject.Class.ItemStuff
 
 
         public RectangleCollider RectangleCollider { get; set; }
+
+        //public int MyProperty { get; set; }
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
@@ -193,7 +195,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 List<ICollidable> returnObjects = new List<ICollidable>();
 
-                Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.RectangleCollider);
+                
 
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
