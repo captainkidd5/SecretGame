@@ -192,9 +192,9 @@ namespace SecretProject.Class.Playable
         {
             this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius / 2, 0f, this.MainCollider.Circle.Center);
             CollisionBody.BodyType = BodyType.Dynamic;
-            CollisionBody.Restitution = .2f;
+            CollisionBody.Restitution = 0f;
             CollisionBody.Friction = .4f;
-            CollisionBody.Mass = .4f;
+            CollisionBody.Mass = 1f;
             CollisionBody.Inertia = 0;
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;

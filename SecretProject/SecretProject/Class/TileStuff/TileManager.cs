@@ -277,31 +277,31 @@ namespace SecretProject.Class.TileStuff
         }
         private void AddInitialGrassTufts()
         {
-            //for (int i = 0; i < this.MapWidth; i++)
-            //{
-            //    for (int j = 0; j < this.MapHeight; j++)
-            //    {
-            //        if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
-            //        {
-            //            bool canAddGrass = true;
-            //            for (int layer = (int)MapLayer.Buildings; layer < (int)MapLayer.Front; layer++)
-            //            {
-            //                if (AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
-            //                {
-            //                    canAddGrass = false;
-            //                    break;
-            //                }
-            //            }
+            for (int i = 0; i < this.MapWidth; i++)
+            {
+                for (int j = 0; j < this.MapHeight; j++)
+                {
+                    if (PathGrid.Weight[i, j] == (int)GridStatus.Clear)
+                    {
+                        bool canAddGrass = true;
+                        for (int layer = (int)MapLayer.Buildings; layer < (int)MapLayer.Front; layer++)
+                        {
+                            if (AllTiles[layer][i, j].GID != -1) //do not add grass if anything above midground isn't clear.
+                            {
+                                canAddGrass = false;
+                                break;
+                            }
+                        }
 
 
-            //            if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
-            //            {
-            //                SpawnHolder.AddGrassTufts((TileManager)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
-            //            }
+                        if (canAddGrass && AllTiles[(int)MapLayer.ForeGround][i, j].TileKey != null)
+                        {
+                            SpawnHolder.AddGrassTufts((TileManager)this, AllTiles[(int)MapLayer.ForeGround][i, j], AllTiles[(int)MapLayer.MidGround][i, j]);
+                        }
 
-            //        }
-            //    }
-            //}
+                    }
+                }
+            }
         }
         /// <summary>
         /// Loads tiling dictionaries in from tileset and assigns them into Game1.procedural so that the wangmanager knows what to do.

@@ -46,7 +46,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public RectangleCollider RectangleCollider;
 
-        public Body Body { get; set; }
+        public Body RotatableBody { get; set; }
+        public Body AnchorBody { get; set; }
 
 
         public bool BodyLoaded { get; set; }
@@ -87,30 +88,49 @@ namespace SecretProject.Class.SpriteFolder
         {
             // float radius = 4f;
             //GRASS ITSELF
-            this.Body = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width, DestinationRectangle.Height, 1f);
+            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, DestinationRectangle.Height / 2, 1f);
 
-            this.Body.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 2,
-               this.DestinationRectangle.Y + SourceRectangle.Height / 2);
-            Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            this.RotatableBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
+               this.DestinationRectangle.Y + SourceRectangle.Height);
+            RotatableBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
+            RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
 
-            Body.BodyType = BodyType.Dynamic;
-            Body.Restitution = .7f;
-            Body.IgnoreGravity = true;
-            this.Body.FixedRotation = false;
-            Body.Mass = .2f;
-            Body.Friction = .2f;
-            this.Body.OnCollision += OnCollision;
+            RotatableBody.BodyType = BodyType.Dynamic;
+            RotatableBody.Restitution = .7f;
+            RotatableBody.IgnoreGravity = true;
+            this.RotatableBody.FixedRotation = false;
+            RotatableBody.Mass = .2f;
+            RotatableBody.Friction = .2f;
+            this.RotatableBody.OnCollision += OnCollision;
 
 
-            stage.DebuggableShapes.Add(new RectangleDebugger(Body, stage.DebuggableShapes));
+            stage.DebuggableShapes.Add(new RectangleDebugger(RotatableBody, stage.DebuggableShapes));
 
             BodyLoaded = true;
+
+            this.AnchorBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width, DestinationRectangle.Height /2, 1f);
+
+            this.AnchorBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 2,
+               this.DestinationRectangle.Y + SourceRectangle.Height );
+            AnchorBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.None;
+
+            AnchorBody.BodyType = BodyType.Static;
+            AnchorBody.IsSensor = true;
+            AnchorBody.Restitution = .7f;
+            AnchorBody.IgnoreGravity = true;
+            AnchorBody.Mass = .2f;
+            AnchorBody.Friction = .2f;
+
+            float damp = .05f, hz = 2f;
+            WeldJoint joint = JointFactory.CreateWeldJoint(Game1.VelcroWorld, AnchorBody, RotatableBody, this.AnchorBody.Position, AnchorBody.Position,true);
+            joint.CollideConnected = false;
+            joint.FrequencyHz = hz;
+            joint.DampingRatio = damp;
         }
 
         public void UnloadBody()
         {
-            this.Body = null;
+            this.RotatableBody = null;
             this.BodyLoaded = false;
         }
 
@@ -136,28 +156,19 @@ namespace SecretProject.Class.SpriteFolder
 
 
         }
-        public Vector2 PositionLastFrame { get; set; }
-        public Vector2 PositionThisFrame { get; set; }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
-            if (PositionLastFrame != PositionThisFrame)
+    
+  
+            if (this.RotatableBody.Rotation != 0)
             {
                 Console.WriteLine("hi");
             }
-            PositionLastFrame = PositionThisFrame;
-            if (this.Body.Rotation != 0)
-            {
-                Console.WriteLine("hi");
-            }
-            //Vector2 grassVector = ((Body.Position - new Vector2(PinBox.Position.X, PinBox.Position.Y)) * 2);
-            //Vector2 realPos = PinBox.Position + grassVector;
-            //DrawDebugLine(spriteBatch, PinBox.Position, realPos, Color.Green);
 
+            spriteBatch.Draw(texture, this.RotatableBody.Position, this.SourceRectangle,
+                Color.White, MathHelper.ToDegrees(RotatableBody.Rotation), this.GrassOffset, 1f, SpriteEffects.None, this.LayerDepth);
 
-            spriteBatch.Draw(texture, this.Body.Position, this.SourceRectangle,
-                Color.White, this.Body.Rotation, this.GrassOffset, 1f, SpriteEffects.None, this.LayerDepth);
-            PositionThisFrame = this.Body.Position;
         }
 
         public void SelfDestruct()
@@ -176,7 +187,7 @@ namespace SecretProject.Class.SpriteFolder
             {
                 Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X, this.Position.Y + 4));
             }
-            Game1.VelcroWorld.RemoveBody(this.Body);
+            Game1.VelcroWorld.RemoveBody(this.RotatableBody);
             if (this.TuftsIsPartOf != null)
                 this.TuftsIsPartOf.Remove(this);
 
