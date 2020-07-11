@@ -356,7 +356,7 @@ namespace SecretProject.Class.TileStuff
                     Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, tileDestinationRectangle.Width, tileDestinationRectangle.Height,
                         .5f, new Vector2(tileDestinationRectangle.X + tileDestinationRectangle.Width / 2, tileDestinationRectangle.Y + tileDestinationRectangle.Height / 2), 0f, BodyType.Static);
                     collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-                    collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+                    collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
 
                     if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                     {
@@ -442,7 +442,7 @@ namespace SecretProject.Class.TileStuff
 
                             Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-                            collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+                            collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                             collisionBody.IgnoreGravity = true;
                             //TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
                             // if(!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
@@ -464,7 +464,7 @@ namespace SecretProject.Class.TileStuff
                             Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height,
                                 .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-                            collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+                            collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                         }
                         if (layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
                         {

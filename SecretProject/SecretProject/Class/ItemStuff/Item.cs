@@ -11,6 +11,9 @@ using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Collision.ContactSystem;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
@@ -72,15 +75,12 @@ namespace SecretProject.Class.ItemStuff
 
 
         public List<Item> AllItems { get; set; }
-        public Bouncer Bouncer { get; set; }
 
         public float LayerDepth { get; set; }
-        private Vector2 PrimaryVelocity;
 
+        public Body ItemBody { get; set; }
+        public Body ArtificialFloorBody { get; set; }
 
-        public RectangleCollider RectangleCollider { get; set; }
-
-        //public int MyProperty { get; set; }
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
@@ -126,12 +126,36 @@ namespace SecretProject.Class.ItemStuff
                     Entity = this
                 };
                 this.Ignored = true;
-                this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
 
+               
                 float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
-                this.RectangleCollider = new RectangleCollider(this.Graphics, ItemSprite.DestinationRectangle, this, ColliderType.Item);
+
                 AllItems.Add(this);
+
+                ItemBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 4f, 2f, new Vector2(WorldPosition.X + 8, WorldPosition.Y + 8), BodyType.Dynamic);
+                ItemBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Item;
+                ItemBody.IgnoreGravity = false;
+                
+              //  ItemBody.Mass = 2f;
+                ItemBody.Friction = 2f;
+                ItemBody.GravityScale = 2f;
+                ItemBody.Restitution = .6f;
+                ItemBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Solid | VelcroPhysics.Collision.Filtering.Category.ArtificialFloor;
+                ItemBody.OnCollision += OnCollision;
+                ItemBody.ApplyLinearImpulse(new Vector2(400, -40));
+
+                //Artificial floor ensures that objects dont just fall to the bottom of the map. Floor x follows item x.
+                ArtificialFloorBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 20, 2, 1f);
+                ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ItemBody.Position.Y + 20);
+                ArtificialFloorBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ArtificialFloor;
+                ArtificialFloorBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Item;
+                ArtificialFloorBody.IgnoreGravity = true;
+                ArtificialFloorBody.BodyType = BodyType.Static;
+
+
+                
+                //Body.Apl
             }
             else
             {
@@ -145,8 +169,27 @@ namespace SecretProject.Class.ItemStuff
                 this.DurabilityLineWidth = GetDurabilityLineLength();
             }
         }
+        private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if(fixtureB.CollisionCategories ==  VelcroPhysics.Collision.Filtering.Category.Player)
+            {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
+                this.AllItems.Remove(this);
+                this.IsWorldItem = false;
+                if (this.Durability > 0)
+                {
+                    this.AlterDurability(0);
+                }
+                Game1.Player.Inventory.TryAddItem(this);
+                Game1.Player.UserInterface.BackPack.CheckGridItem();
+                Game1.VelcroWorld.RemoveBody(this.ItemBody);
+                Game1.VelcroWorld.RemoveBody(ArtificialFloorBody);
+            }
+            //TryMagnetize();
+           // 
+        }
 
-        private float GetDurabilityLineLength()
+            private float GetDurabilityLineLength()
         {
             return (float)this.Durability / (float)Game1.ItemVault.GetItem(this.ID).Durability;
         }
@@ -155,67 +198,16 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
+                ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ArtificialFloorBody.Position.Y);
+
+                this.ItemSprite.Position = this.ItemBody.Position;
                 this.ItemSprite.Update(gameTime);
-                this.RectangleCollider.Rectangle = this.ItemSprite.DestinationRectangle;
 
-                if (this.Bouncer != null)
-                {
-                    
-                    this.PrimaryVelocity = Bouncer.Velocity;
 
-                    Bouncer.Update(gameTime, ref this.PrimaryVelocity);
-                    CheckCollisions();
-                    this.ItemSprite.Position = Bouncer.BounceObjectPosition;
-                    if (!this.Bouncer.IsActive)
-                    {
-                        this.Bouncer = null;
-                    }
-                    // CheckAndHandleCollisions();
-                }
-                if (this.IsTossable == true)
-                {
-                    this.ItemSprite.Toss(gameTime, 1f, 1f);
-                    if (this.ItemSprite.IsTossed)
-                    {
-                        this.Ignored = false;
-                        this.IsTossable = false;
-                        this.ItemSprite.IsTossed = false;
-                    }
-                }
-                else
-                {
-                    this.Ignored = false;
-                }
+
             }
         }
 
-        private bool CheckCollisions()
-        {
-            if (this.Bouncer != null)
-            {
-                List<ICollidable> returnObjects = new List<ICollidable>();
-
-                
-
-                for (int i = 0; i < returnObjects.Count; i++)
-                {
-                    if (returnObjects[i].ColliderType == ColliderType.inert)
-                    {
-                        if (this.RectangleCollider.HandleMove(this.WorldPosition, ref this.Bouncer.Velocity, returnObjects[i]))
-                        {
-                            Console.WriteLine("Debug!");
-                            
-                            this.IsTossable = false;
-                            return true;
-                        }
-
-                    }
-                }
-
-            }
-
-            return false;
-        }
 
 
 
@@ -240,34 +232,34 @@ namespace SecretProject.Class.ItemStuff
 
         public void Magnetize(Vector2 playerpos)
         {
-            if (this.IsWorldItem)
-            {
+            //if (this.IsWorldItem)
+            //{
 
 
 
-                if (Game1.Player.MainCollider.IsIntersecting(this.RectangleCollider))
-                {
+            //    if (Game1.Player.MainCollider.IsIntersecting(this.RectangleCollider))
+            //    {
 
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
-                    this.AllItems.Remove(this);
-                    // Game1.CurrentStage.AllTiles.GetItems(this.WorldPosition).Remove(this);
-                    this.IsWorldItem = false;
-                    if (this.Durability > 0)
-                    {
-                        this.AlterDurability(0);
-                    }
-                    Game1.Player.Inventory.TryAddItem(this);
-                    Game1.Player.UserInterface.BackPack.CheckGridItem();
-
-
-
-                }
-                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
-                dir.Normalize();
-                this.ItemSprite.Position += dir;
+            //        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
+            //        this.AllItems.Remove(this);
+            //        // Game1.CurrentStage.AllTiles.GetItems(this.WorldPosition).Remove(this);
+            //        this.IsWorldItem = false;
+            //        if (this.Durability > 0)
+            //        {
+            //            this.AlterDurability(0);
+            //        }
+            //        Game1.Player.Inventory.TryAddItem(this);
+            //        Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
-            }
+
+            //    }
+            //    Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
+            //    dir.Normalize();
+            //    this.ItemSprite.Position += dir;
+
+
+            //}
         }
 
 
