@@ -186,8 +186,16 @@ namespace SecretProject.Class.UI
                     string newString = separatedString[1].ToLower();
 
                    newString = char.ToUpper(newString[0]) + newString.Substring(1);
-                    Stages newStage = (Stages)Enum.Parse(typeof(Stages), newString, true);
-                    Game1.SwitchStage(Game1.GetStageFromEnum(newStage));
+                    Stages newStage = Stages.Town;
+                    if(Enum.TryParse(newString, out newStage))
+                    {
+                        Game1.SwitchStage(Game1.GetStageFromEnum(newStage));
+                    }
+                    else
+                    {
+                        this.DisplayLog += "error: wasn't able to identify " + newString;
+                    }
+                    
                     break;
                 case "clear":
                     this.DisplayLog = string.Empty;
@@ -196,7 +204,7 @@ namespace SecretProject.Class.UI
                     int teleportX = int.Parse(separatedString[1].ToLower());
                     int teleportY = int.Parse(separatedString[2].ToLower());
 
-                    Game1.Player.position = new Vector2(teleportX, teleportY);
+                    Game1.Player.SetPosition(new Vector2(teleportX, teleportY));
                     //if(Game1.CurrentStage == Game1.OverWorld)
                     //{
                     //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);

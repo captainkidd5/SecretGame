@@ -181,7 +181,6 @@ namespace SecretProject.Class.StageFolder
             this.ServiceProvider = service;
 
             Penumbra = (PenumbraComponent)ServiceProvider.GetService(typeof(PenumbraComponent));
-            Game1.Player.LoadPenumbraLights(Penumbra);
 
             this.Lights = new Dictionary<string, Light>();
             this.Hulls = new Dictionary<string, Hull>();

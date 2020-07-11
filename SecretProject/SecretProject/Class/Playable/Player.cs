@@ -7,6 +7,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
@@ -40,7 +41,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player : IEntity
+    public class Player : IEntity,ILightBlockable
     {
 
         public Vector2 position;
@@ -183,8 +184,8 @@ namespace SecretProject.Class.Playable
 
 
             this.Wardrobe = new Wardrobe(graphics, position);
+            this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
 
-            
 
         }
 
@@ -210,29 +211,26 @@ namespace SecretProject.Class.Playable
             this.Position = CollisionBody.Position;
         }
 
-        public void LoadPenumbraLights(PenumbraComponent penumbra)
+        public void LoadPenumbra(TmxStageBase stage)
         {
 
-
-             this.Hull = Hull.CreateRectangle( this.Position, new Vector2(6,6));
-
-            penumbra.Hulls.Add(Hull);
+            stage.Penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
-            this.PenumbraLights = new List<Light>()
-            {
-                new PointLight()
-                {
-                    Position = position,
-                    Scale = new Vector2(64),
-                    ShadowType = ShadowType.Occluded,
-                    Color = Color.FloralWhite,
+            //this.PenumbraLights = new List<Light>()
+            //{
+            //    new PointLight()
+            //    {
+            //        Position = position,
+            //        Scale = new Vector2(64),
+            //        ShadowType = ShadowType.Occluded,
+            //        Color = Color.FloralWhite,
                     
-                },
-             };
-            for (int i = 0; i < this.PenumbraLights.Count; i++)
-            {
-               // penumbra.Lights.Add(this.PenumbraLights[i]);
-            };
+            //    },
+            // };
+            //for (int i = 0; i < this.PenumbraLights.Count; i++)
+            //{
+            //   // penumbra.Lights.Add(this.PenumbraLights[i]);
+            //};
         }
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 
@@ -241,17 +239,18 @@ namespace SecretProject.Class.Playable
         }
         private void UpdatePenumbraLights()
         {
-            for (int i = 0; i < this.PenumbraLights.Count; i++)
-            {
-               // PenumbraLights[i].Position = new Vector2(this.MainCollider.Rectangle.X, this.MainCollider.Rectangle.Y);
-            }
+            //for (int i = 0; i < this.PenumbraLights.Count; i++)
+            //{
+            //   // PenumbraLights[i].Position = new Vector2(this.MainCollider.Rectangle.X, this.MainCollider.Rectangle.Y);
+            //}
             UpdateHullPosition();
         }
 
-        private void UpdateHullPosition()
+        public void UpdateHullPosition()
         {
             this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y + 32);
         }
+    
         public ItemData GetCurrentEquippedToolData()
         {
             return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());

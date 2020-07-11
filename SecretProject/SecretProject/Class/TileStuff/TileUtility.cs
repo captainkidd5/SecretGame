@@ -440,7 +440,7 @@ namespace SecretProject.Class.TileStuff
                             
                             
 
-                            Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Dynamic);
+                            Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
                             collisionBody.IgnoreGravity = true;
@@ -461,7 +461,8 @@ namespace SecretProject.Class.TileStuff
                         {
                             //tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
 
-                            Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height, .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
+                            Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height,
+                                .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
                         }

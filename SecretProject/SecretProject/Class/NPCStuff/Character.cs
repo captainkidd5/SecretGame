@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Penumbra;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.Physics;
@@ -19,7 +21,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
-    public class Character : INPC
+    public class Character : INPC, ILightBlockable
     {
         public string Name { get; set; }
         public Vector2 Position { get; set; }
@@ -31,7 +33,7 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)this.Position.X + this.NPCRectangleXOffSet, (int)this.Position.Y + this.NPCRectangleYOffSet, this.NPCRectangleWidthOffSet, this.NPCRectangleHeightOffSet); } }
-        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)this.Position.X , (int)this.Position.Y - 32, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Width, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Height); } }
+        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)this.Position.X, (int)this.Position.Y - 32, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Width, this.NPCAnimatedSprite[(int)this.CurrentDirection].SourceRectangle.Height); } }
 
         public float BaseSpeed { get; private set; } = .65f;
         public float Speed { get; set; } = .65f; //.65
@@ -104,6 +106,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public bool IsBeingSpokenTo { get; set; }
 
+        public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
+        public Hull Hull { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, TmxStageBase currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
@@ -118,7 +123,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8),this);
+            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8), this);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
@@ -144,14 +149,27 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             this.QuestHandler = questHandler;
 
-            
+            this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
         }
         public void LoadLaterStuff(GraphicsDevice graphics)
         {
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             HitBoxTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
-            Collider = new CircleCollider(graphics, NPCHitBoxRectangle,new Circle(this.Position, NPCHitBoxRectangle.Width / 2,false), this, ColliderType.NPC);
+            Collider = new CircleCollider(graphics, NPCHitBoxRectangle, new Circle(this.Position, NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
+            
+        }
+
+        public void LoadPenumbra(TmxStageBase stage)
+        {
+            if (CurrentStageLocation == stage)
+                stage.Penumbra.Hulls.Add(this.Hull);
+
+        }
+
+        public void UpdateHullPosition()
+        {
+            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y );
         }
 
         public static Vector2 GetWorldPosition(Vector2 smallPosition)
@@ -168,7 +186,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, this.NPCHitBoxRectangle.Width/2, false),this, ColliderType.NPC);
+            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, this.NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
             this.CurrentDirection = 0;
             if (characterPortraitTexture != null)
             {
@@ -176,6 +194,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 96, 96);
             this.QuestHandler = questHandler;
+
+            this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
         }
 
         public void ResetAnimations()
@@ -203,7 +223,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             this.IsMoving = false;
             this.CollideOccured = false;
-            if(IsBeingSpokenTo)
+            if (IsBeingSpokenTo)
             {
                 return;
             }
@@ -216,6 +236,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             if (Game1.CurrentStage == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
+                UpdateHullPosition();
             }
             else
             {
@@ -283,7 +304,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         }
 
- 
+
 
         //meant for non-moving, non-Primary NPCS
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
@@ -312,7 +333,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public bool LoadNewQuest()
         {
-            if(this.QuestHandler != null)
+            if (this.QuestHandler != null)
             {
                 Quest newQuest = QuestHandler.FetchCurrentQuest();
                 if (newQuest != null && !QuestHandler.ActiveQuest.Completed)
@@ -325,7 +346,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 Console.WriteLine(Name + " does not have a propery quest handler!");
             }
-            
+
             return false;
 
         }
@@ -333,7 +354,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
             if (Game1.Player.BigCollider.Rectangle.Intersects(this.NPCDialogueRectangle))
-                {
+            {
 
                 if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
                 {
@@ -429,7 +450,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-                   // Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
+                    // Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     if (skeleton.SelectableOptions != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
@@ -528,7 +549,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = (int)stageTo.StageIdentifier;
-                Portal portal =CurrentStageLocation.AllPortals.Find(x => x.To == (int)stageTo.StageIdentifier);
+                Portal portal = CurrentStageLocation.AllPortals.Find(x => x.To == (int)stageTo.StageIdentifier);
                 return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16, (portal.PortalStart.Y) / 16);
             }
             else
@@ -582,21 +603,26 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                             Portal portalTo = Game1.GetStageFromEnum((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation.StageIdentifier);
                             if (portalTo != null)
                             {
-                                
-                               
+
+
                                 this.CurrentStageLocation.CharactersPresent.Remove(this);
+                                if(this.CurrentStageLocation == Game1.CurrentStage)
+                                {
+                                    Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
+                                }
                                 this.CurrentStageLocation = Game1.GetStageFromEnum((Stages)nodeToEndAt);
                                 CurrentStageLocation.CharactersPresent.Add(this);
-                           //     if (CurrentStageLocation == Stages.OverWorld)
-                           //     {
-                           //         this.Position = new Vector2(portalTo.PortalStart.X + 16,
-                           //portalTo.PortalStart.Y + 32);
-                           //     }
-                           //     else
-                           //     {
-                                    this.Position = new Vector2(portalTo.PortalStart.X,
-                           portalTo.PortalStart.Y);
-                              //  }
+                                LoadPenumbra(Game1.CurrentStage);
+                                //     if (CurrentStageLocation == Stages.OverWorld)
+                                //     {
+                                //         this.Position = new Vector2(portalTo.PortalStart.X + 16,
+                                //portalTo.PortalStart.Y + 32);
+                                //     }
+                                //     else
+                                //     {
+                                this.Position = new Vector2(portalTo.PortalStart.X,
+                       portalTo.PortalStart.Y);
+                                //  }
                             }
 
                         }
@@ -664,7 +690,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
         #endregion
         //forEvents
-        public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
 
 
         public void EventMoveToTile(GameTime gameTime, Point endPoint)
@@ -684,7 +709,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 PathFinderFast finder;
 
-                    finder = new PathFinderFast(CurrentStageLocation.AllTiles.PathGrid.Weight);
+                finder = new PathFinderFast(CurrentStageLocation.AllTiles.PathGrid.Weight);
 
 
                 Point start = new Point((int)(this.Position.X / 16),
@@ -787,7 +812,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             Game1.CurrentStage.CharactersPresent.Remove(this);
             this.CurrentStageLocation = this.HomeStage;
             Game1.CurrentStage.CharactersPresent.Add(this);
-            
+
 
         }
 
@@ -846,6 +871,10 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             throw new NotImplementedException();
         }
+
+
+
+
         #endregion
 
     }
