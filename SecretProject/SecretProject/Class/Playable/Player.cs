@@ -75,7 +75,9 @@ namespace SecretProject.Class.Playable
         public Dir SecondDirection { get; set; } = Dir.Down;
         public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
-        public const float Speed1 = 1f;
+
+        public const float BaseSpeed = 5f;
+        public float CurrentSpeed { get; set; }
 
 
 
@@ -186,6 +188,7 @@ namespace SecretProject.Class.Playable
             this.Wardrobe = new Wardrobe(graphics, position);
             this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
 
+            this.CurrentSpeed = BaseSpeed;
 
         }
 
@@ -476,8 +479,9 @@ namespace SecretProject.Class.Playable
                 
                 if(movementDir != Dir.None)
                 {
-                    CollisionBody.ApplyLinearImpulse(PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    CollisionBody.LinearVelocity = PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     CollisionBody.Inertia = 0f;
+
                     //CollisionBody.LinearVelocity = PrimaryVelocity;
                 }
                 else
@@ -541,22 +545,22 @@ namespace SecretProject.Class.Playable
                 switch (controls.Direction)
                 {
                     case Dir.Right:
-                        PrimaryVelocity.X = Speed1;
+                        PrimaryVelocity.X = CurrentSpeed;
                         movementDir = Dir.Right;
                         break;
 
                     case Dir.Left:
-                        PrimaryVelocity.X = -Speed1;
+                        PrimaryVelocity.X = -CurrentSpeed;
                         movementDir = Dir.Left;
                         break;
 
                     case Dir.Down:
-                        PrimaryVelocity.Y = Speed1;
+                        PrimaryVelocity.Y = CurrentSpeed;
                         movementDir = Dir.Down;
                         break;
 
                     case Dir.Up:
-                        PrimaryVelocity.Y = -Speed1;
+                        PrimaryVelocity.Y = -CurrentSpeed;
                         movementDir = Dir.Up;
                         break;
 
@@ -568,21 +572,21 @@ namespace SecretProject.Class.Playable
                 switch (controls.SecondaryDirection) //if a second key is being pressed we'll use that for the animation direction instead of the first one pressed.
                 {
                     case Dir.Right:
-                        PrimaryVelocity.X = Speed1;
+                        PrimaryVelocity.X = CurrentSpeed;
                         movementDir = Dir.Right;
                         break;
                     case Dir.Left:
-                        PrimaryVelocity.X = -Speed1;
+                        PrimaryVelocity.X = -CurrentSpeed;
                         movementDir = Dir.Left;
 
                         break;
                     case Dir.Down:
-                        PrimaryVelocity.Y = Speed1;
+                        PrimaryVelocity.Y = CurrentSpeed;
                         movementDir = Dir.Down;
 
                         break;
                     case Dir.Up:
-                        PrimaryVelocity.Y = -Speed1;
+                        PrimaryVelocity.Y = -CurrentSpeed;
                         movementDir = Dir.Up;
                         break;
 

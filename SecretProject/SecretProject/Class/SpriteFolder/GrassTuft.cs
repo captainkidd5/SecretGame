@@ -5,6 +5,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Misc;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Physics;
+using SecretProject.Class.Playable;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
@@ -112,6 +113,7 @@ namespace SecretProject.Class.SpriteFolder
             RotatableBody.IsSensor = true;
             RotatableBody.Friction = .2f;
             this.RotatableBody.OnCollision += OnCollision;
+            this.RotatableBody.OnSeparation += OnSeparation;
 
 
             stage.DebuggableShapes.Add(new RectangleDebugger(RotatableBody, stage.DebuggableShapes));
@@ -150,8 +152,14 @@ namespace SecretProject.Class.SpriteFolder
                     this.InitialShuffDirection = Dir.Left;
                 this.StartShuff = true;
                 Game1.CurrentStage.UpdatingGrassTufts.Add(this);
+                Game1.Player.CurrentSpeed = Player.BaseSpeed * .25f;
             }
 
+        }
+
+        private void OnSeparation(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            Game1.Player.CurrentSpeed = Player.BaseSpeed;
         }
 
         public void Update(GameTime gameTime, List<GrassTuft> tufts)
