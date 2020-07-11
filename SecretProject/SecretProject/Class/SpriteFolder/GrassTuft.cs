@@ -47,14 +47,20 @@ namespace SecretProject.Class.SpriteFolder
         public RectangleCollider RectangleCollider;
 
         public Body RotatableBody { get; set; }
-        public Body AnchorBody { get; set; }
-        public WeldJoint Joint { get; set; }
 
 
         public bool BodyLoaded { get; set; }
 
 
 
+        public float Rotation { get; set; }
+        public float RotationCap { get; set; }
+        public bool StartShuff { get; set; }
+        public float ShuffSpeed { get; set; }
+
+        public Dir InitialShuffDirection { get; set; }
+        public Dir ShuffDirection { get; set; }
+        public bool ShuffDirectionPicked { get; set; }
 
         public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, TmxStageBase stage)
         {
@@ -66,7 +72,8 @@ namespace SecretProject.Class.SpriteFolder
             this.YOffSet = Game1.Utility.RFloat(.00000001f, Utility.ForeGroundMultiplier);
 
 
-
+            this.RotationCap = .25f;
+            this.ShuffSpeed = 2f;
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
 
@@ -98,11 +105,11 @@ namespace SecretProject.Class.SpriteFolder
             RotatableBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
 
-            RotatableBody.BodyType = BodyType.Dynamic;
-            RotatableBody.Restitution = .2f;
+            RotatableBody.BodyType = BodyType.Static;
+            RotatableBody.Restitution = 0f;
             RotatableBody.IgnoreGravity = true;
-            this.RotatableBody.FixedRotation = false;
-            RotatableBody.Mass = .2f;
+            RotatableBody.Mass = 0f;
+            RotatableBody.IsSensor = true;
             RotatableBody.Friction = .2f;
             this.RotatableBody.OnCollision += OnCollision;
 
@@ -111,30 +118,13 @@ namespace SecretProject.Class.SpriteFolder
 
             BodyLoaded = true;
 
-            this.AnchorBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width, DestinationRectangle.Height /2, 1f);
 
-            this.AnchorBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 2,
-               this.DestinationRectangle.Y + SourceRectangle.Height );
-            AnchorBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.None;
 
-            AnchorBody.BodyType = BodyType.Static;
-            AnchorBody.IsSensor = true;
-            AnchorBody.Restitution = 0f;
-            AnchorBody.IgnoreGravity = true;
-            AnchorBody.Mass = 1f;
-            AnchorBody.Friction = .2f;
-
-            float damp = 15f, hz = 50f;
-            this.Joint= JointFactory.CreateWeldJoint(Game1.VelcroWorld, AnchorBody, RotatableBody, this.AnchorBody.Position, AnchorBody.Position,true);
-            Joint.CollideConnected = false;
-            Joint.FrequencyHz = hz;
-            Joint.DampingRatio = damp;
         }
 
         public void UnloadBody()
         {
             this.RotatableBody = null;
-            this.AnchorBody = null;
             
             this.BodyLoaded = false;
         }
@@ -149,25 +139,53 @@ namespace SecretProject.Class.SpriteFolder
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
+           
+            if (!this.StartShuff && !this.ShuffDirectionPicked)
+            {
+                Vector2 linearVelocity = fixtureB.Body.LinearVelocity;
 
-            //  Body.Rotation += 5f;
-            // Console.WriteLine("hi");
-            // SelfDestruct();
+                if (linearVelocity.X > 0)
+                    this.InitialShuffDirection = Dir.Right;
+                else
+                    this.InitialShuffDirection = Dir.Left;
+                this.StartShuff = true;
+                Game1.CurrentStage.UpdatingGrassTufts.Add(this);
+            }
+
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<GrassTuft> tufts)
         {
 
+            if (!this.StartShuff && !this.ShuffDirectionPicked)
+            {
+                this.StartShuff = true;
 
+            }
+
+
+
+            if (!this.StartShuff && this.ShuffDirectionPicked)
+            {
+                RotateBackToOrigin(gameTime,tufts);
+                //this.ShuffDirectionPicked = false;
+                //  this.IsUpdating = false;
+            }
+            if (this.StartShuff)
+            {
+                Shuff(gameTime, (int)this.InitialShuffDirection);
+                this.ShuffDirectionPicked = true;
+            }
 
         }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
-    
 
-            spriteBatch.Draw(texture, new Vector2(DestinationRectangle.X, this.DestinationRectangle.Y), this.SourceRectangle,
-                Color.White, MathHelper.ToDegrees(RotatableBody.Rotation), this.GrassOffset, 1f, SpriteEffects.None, this.LayerDepth);
+
+            spriteBatch.Draw(texture, this.DestinationRectangle, this.SourceRectangle,
+                Color.White, this.Rotation, this.GrassOffset, SpriteEffects.None, this.LayerDepth);
+
 
         }
 
@@ -197,6 +215,98 @@ namespace SecretProject.Class.SpriteFolder
 
 
         }
+
+        public void Shuff(GameTime gameTime, int direction)
+        {
+            if (!this.ShuffDirectionPicked)
+            {
+                if (direction == (int)Dir.Up || direction == (int)Dir.Down)
+                {
+                    this.ShuffDirection = (Dir)Game1.Utility.RGenerator.Next(2, 4);
+                }
+                if (direction == (int)Dir.Right)
+                {
+                    this.ShuffDirection = Dir.Right;
+                }
+                if (direction == (int)(Dir.Left))
+                {
+                    this.ShuffDirection = Dir.Left;
+                }
+
+            }
+            else
+            {
+                if (this.ShuffDirection == Dir.Right)
+                {
+                    if (this.Rotation < this.RotationCap + .5)
+                    {
+                        this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * this.ShuffSpeed;
+                    }
+                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
+                    {
+
+                    }
+                    else
+                    {
+                        this.StartShuff = false;
+                    }
+
+
+                }
+                else if (this.ShuffDirection == Dir.Left)
+                {
+                    if (this.Rotation > this.RotationCap - 1)
+                    {
+                        this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * this.ShuffSpeed;
+                    }
+                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
+                    {
+
+                    }
+                    else
+                    {
+                        this.StartShuff = false;
+                    }
+                }
+            }
+
+        }
+
+        public void RotateBackToOrigin(GameTime gameTime, List<GrassTuft> tufts)
+        {
+            if (this.Rotation > 0)
+            {
+                this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
+
+                if (this.Rotation <= 0)
+                {
+                    this.StartShuff = false;
+                    this.IsUpdating = false;
+                    this.ShuffDirectionPicked = false;
+                    tufts.Remove(this);
+                    return;
+                }
+            }
+            else if (this.Rotation < 0)
+            {
+                this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
+                if (this.Rotation >= 0)
+                {
+                    this.StartShuff = false;
+                    this.IsUpdating = false;
+                    this.ShuffDirectionPicked = false;
+                    tufts.Remove(this);
+                    return;
+                }
+            }
+            else
+            {
+                this.StartShuff = false;
+                this.IsUpdating = false;
+                this.ShuffDirectionPicked = false;
+            }
+        }
+
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {

@@ -146,6 +146,8 @@ namespace SecretProject.Class.StageFolder
         public Dictionary<string, Light> Lights { get; set; }
 
         public List<IDebuggableShape> DebuggableShapes { get; set; }
+
+        public List<GrassTuft> UpdatingGrassTufts { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -186,6 +188,7 @@ namespace SecretProject.Class.StageFolder
             this.Hulls = new Dictionary<string, Hull>();
 
             this.DebuggableShapes = new List<IDebuggableShape>();
+            this.UpdatingGrassTufts = new List<GrassTuft>();
         }
         public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -312,6 +315,7 @@ namespace SecretProject.Class.StageFolder
             AllTiles.Unload();
             this.Lights.Clear();
             this.Hulls.Clear();
+            this.UpdatingGrassTufts.Clear();
 
 
 
@@ -359,16 +363,16 @@ namespace SecretProject.Class.StageFolder
 
             foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
             {
-                for (int g = 0; g < grass.Value.Count; g++)
-                {
-                    if (grass.Value[g].IsUpdating)
-                    {
-                        grass.Value[g].Update(gameTime);
-                    }
+                //for (int g = 0; g < grass.Value.Count; g++)
+                //{
+                //    if (grass.Value[g].IsUpdating)
+                //    {
+                //        grass.Value[g].Update(gameTime);
+                //    }
 
-                    this.QuadTree.Insert(grass.Value[g].RectangleCollider);
+                //    this.QuadTree.Insert(grass.Value[g].RectangleCollider);
 
-                }
+                //}
             }
 
             for (int e = 0; e < this.Enemies.Count; e++)
@@ -487,6 +491,10 @@ namespace SecretProject.Class.StageFolder
             this.FunBox.Update(gameTime);
             this.TextBuilder.Update(gameTime);
             this.ParticleEngine.Update(gameTime);
+            for(int i =0; i < this.UpdatingGrassTufts.Count;i++)
+            {
+                this.UpdatingGrassTufts[i].Update(gameTime, UpdatingGrassTufts);
+            }
             for (int p = 0; p < AllProjectiles.Count; p++)
             {
                 AllProjectiles[p].Update(gameTime);
