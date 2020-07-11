@@ -133,17 +133,17 @@ namespace SecretProject.Class.ItemStuff
 
                 AllItems.Add(this);
 
-                ItemBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 4f, 2f, new Vector2(WorldPosition.X + 8, WorldPosition.Y + 8), BodyType.Dynamic);
+                ItemBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 4f, 1f, new Vector2(WorldPosition.X + 8, WorldPosition.Y + 8), BodyType.Dynamic);
                 ItemBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Item;
                 ItemBody.IgnoreGravity = false;
                 
-              //  ItemBody.Mass = 2f;
-                ItemBody.Friction = 2f;
-                ItemBody.GravityScale = 2f;
-                ItemBody.Restitution = .6f;
+               ItemBody.Mass = 1f;
+                ItemBody.Friction = .8f;
+                ItemBody.GravityScale = 1.5f;
+                ItemBody.Restitution = .4f;
                 ItemBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Solid | VelcroPhysics.Collision.Filtering.Category.ArtificialFloor;
                 ItemBody.OnCollision += OnCollision;
-                ItemBody.ApplyLinearImpulse(new Vector2(400, -40));
+                ItemBody.ApplyLinearImpulse(new Vector2(20,- 15));
 
                 //Artificial floor ensures that objects dont just fall to the bottom of the map. Floor x follows item x.
                 ArtificialFloorBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 20, 2, 1f);
@@ -198,7 +198,12 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ArtificialFloorBody.Position.Y);
+                if(ItemBody.Position.Y >= ArtificialFloorBody.Position.Y)
+                {
+                    ItemBody.ApplyForce(new Vector2(0, 100));
+                    ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ArtificialFloorBody.Position.Y);
+                }
+                
 
                 this.ItemSprite.Position = this.ItemBody.Position;
                 this.ItemSprite.Update(gameTime);

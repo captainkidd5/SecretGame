@@ -10,6 +10,8 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 
 namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 {
@@ -39,6 +41,8 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
         SimpleTimer TimeToLive;
 
+        public Body Body { get; set; }
+
         public int DamageValue { get; set; }
         public Projectile(GraphicsDevice graphics, ICollidable colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
         {
@@ -60,8 +64,21 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.TimeToLive = new SimpleTimer(8f);
             this.MissSound = Game1.SoundManager.ArrowMiss;
             this.DamageValue = damage;
-        }
 
+            
+        }
+        protected virtual void AddBody(Vector2 startPosition, Vector2 initialVelocity)
+        {
+            this.Body = BodyFactory.CreateCircle(Game1.VelcroWorld, 4, 1);
+            this.Body.Position = startPosition;
+            Body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Projectile;
+            Body.IgnoreGravity = true;
+            Body.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Solid;
+            Body.Mass = 1f;
+            Body.Friction = .8f;
+            Body.Restitution = .8f;
+            Body.ApplyForce(initialVelocity);
+        }
         public virtual void Update(GameTime gameTime)
         {
             this.Speed -= .01f;
