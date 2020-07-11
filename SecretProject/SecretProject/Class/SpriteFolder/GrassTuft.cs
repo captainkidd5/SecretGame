@@ -91,15 +91,15 @@ namespace SecretProject.Class.SpriteFolder
         {
             // float radius = 4f;
             //GRASS ITSELF
-            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, DestinationRectangle.Height / 4, 1f);
+            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2,2, 1f);
 
             this.RotatableBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
-               this.DestinationRectangle.Y + SourceRectangle.Height);
+               this.DestinationRectangle.Y + SourceRectangle.Height / 4);
             RotatableBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
 
             RotatableBody.BodyType = BodyType.Dynamic;
-            RotatableBody.Restitution = .7f;
+            RotatableBody.Restitution = .2f;
             RotatableBody.IgnoreGravity = true;
             this.RotatableBody.FixedRotation = false;
             RotatableBody.Mass = .2f;
@@ -119,12 +119,12 @@ namespace SecretProject.Class.SpriteFolder
 
             AnchorBody.BodyType = BodyType.Static;
             AnchorBody.IsSensor = true;
-            AnchorBody.Restitution = .7f;
+            AnchorBody.Restitution = 0f;
             AnchorBody.IgnoreGravity = true;
-            AnchorBody.Mass = .2f;
+            AnchorBody.Mass = 1f;
             AnchorBody.Friction = .2f;
 
-            float damp = .05f, hz = 2f;
+            float damp = 15f, hz = 50f;
             this.Joint= JointFactory.CreateWeldJoint(Game1.VelcroWorld, AnchorBody, RotatableBody, this.AnchorBody.Position, AnchorBody.Position,true);
             Joint.CollideConnected = false;
             Joint.FrequencyHz = hz;
@@ -166,7 +166,7 @@ namespace SecretProject.Class.SpriteFolder
         {
     
 
-            spriteBatch.Draw(texture, this.RotatableBody.Position, this.SourceRectangle,
+            spriteBatch.Draw(texture, new Vector2(DestinationRectangle.X, this.DestinationRectangle.Y), this.SourceRectangle,
                 Color.White, MathHelper.ToDegrees(RotatableBody.Rotation), this.GrassOffset, 1f, SpriteEffects.None, this.LayerDepth);
 
         }

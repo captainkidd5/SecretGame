@@ -200,6 +200,7 @@ namespace SecretProject.Class.Playable
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;
             CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
+
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnCollision;
             this.MainCollider.Body = CollisionBody;
