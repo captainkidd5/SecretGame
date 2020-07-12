@@ -48,6 +48,7 @@ using VelcroPhysics.Extensions;
 using VelcroPhysics.Extensions.DebugView;
 using VelcroPhysics.Factories;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.Physics;
 
 
 
@@ -1082,7 +1083,10 @@ namespace SecretProject
 
             }
             newLocation.TryLoadExistingStage();
-
+            if (CurrentStage.DebuggableShapes != null)
+            {
+                CurrentStage.DebuggableShapes.Clear();
+            }
             if (portal != null)
             {
                 List<Portal> portalTest = stageToSwitchTo.AllPortals;
@@ -1113,11 +1117,9 @@ namespace SecretProject
 
 
             MouseManager.AttachMouseBody();
-            if (CurrentStage.DebuggableShapes != null)
-            {
-                CurrentStage.DebuggableShapes.Clear();
-            }
+            
             CurrentStage = newLocation;
+            CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
             CurrentStage.AllTiles.UpdateCropTile();
             LoadPenumbraEntities();
             //CreatePinBoard();

@@ -206,17 +206,26 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 LoadPenumbra(stageToSwitchTo);
             }
         }
-        private void CheckIfRemoveBody(TmxStageBase stageToSwitchTo)
+        private void CheckIfDisableBody(TmxStageBase stageToSwitchTo)
         {
             if (Game1.CurrentStage != CurrentStageLocation)
             {
-                Game1.VelcroWorld.RemoveBody(this.InteractionBody);
+                this.InteractionBody.Enabled = false;
+                //Game1.VelcroWorld.RemoveBody(this.InteractionBody);
 
             }
             else
             {
-                CreateBody();
-                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                if (this.InteractionBody == null)
+                {
+                    CreateBody();
+                    CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                }
+                else
+                {
+                    this.InteractionBody.Enabled = true;
+                }
+
                 LoadPenumbra(stageToSwitchTo);
             }
         }
@@ -225,7 +234,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             stageToSwitchTo.CharactersPresent.Remove(this);
             this.CurrentStageLocation = stageToSwitchTo;
-            CheckIfRemoveBody(stageToSwitchTo);
+            CheckIfDisableBody(stageToSwitchTo);
 
             CurrentStageLocation.CharactersPresent.Add(this);
         }
@@ -300,7 +309,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.DisableInteractions = false;
                 UpdateHullPosition();
-                this.InteractionBody.Position = this.Position;
+                if (this.InteractionBody != null)
+                    this.InteractionBody.Position = this.Position;
             }
             else
             {
@@ -435,7 +445,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             if (InRangeOfPlayer)
             {
-                if(mouse.IsClicked)
+                if (mouse.IsClicked)
                 {
                     Console.WriteLine("speech occurred");
                 }

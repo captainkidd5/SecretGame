@@ -215,11 +215,12 @@ namespace SecretProject.Class.Playable
             LargeProximitySensor.IsSensor = true;
             LargeProximitySensor.SleepingAllowed = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
-            LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
+            LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
             LargeProximitySensor.IgnoreGravity = true;
-            if (Game1.CurrentStage.DebuggableShapes != null)
-                Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(LargeProximitySensor, Game1.CurrentStage.DebuggableShapes));
+
+            //if (Game1.CurrentStage.DebuggableShapes != null)
+            //    Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(LargeProximitySensor, Game1.CurrentStage.DebuggableShapes));
         }
 
         public void SetPosition(Vector2 position)
@@ -482,7 +483,20 @@ namespace SecretProject.Class.Playable
 
 
                 //}
+                int sprintMultiplier = 1;
+                if (controls.IsMoving && !IsPerformingAction)
+                {
+                    UpdateStaminaDrainFlag();
+                    if (controls.IsSprinting)
+                    {
+                        sprintMultiplier = 3;
+                    }
 
+                    if (this.LockBounds)
+                    {
+                        CheckOutOfBounds(this.Position);
+                    }
+                }
 
                 Dir movementDir = Dir.None;
                 if (EnableControls)
@@ -492,7 +506,7 @@ namespace SecretProject.Class.Playable
 
                 if (movementDir != Dir.None)
                 {
-                    CollisionBody.LinearVelocity = PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    CollisionBody.LinearVelocity = PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds * sprintMultiplier;
                     CollisionBody.Inertia = 0f;
 
                     //CollisionBody.LinearVelocity = PrimaryVelocity;
@@ -514,38 +528,7 @@ namespace SecretProject.Class.Playable
                     Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 
 
-
-                // this.MainCollider.Update(this.ColliderRectangle);
-
-
-                // this.BigCollider.Update(this.ClickRangeRectangle);
-
-
-                // CheckAndHandleCollisions();
-
-
-                if (controls.IsMoving && !IsPerformingAction)
-                {
-                    UpdateStaminaDrainFlag();
-                    // this.Position = CollisionBody.Position;
-                    //if (controls.IsSprinting)
-                    //{
-                    //    this.Position += PrimaryVelocity * 10;
-                    //}
-                    //else
-                    //{
-                    //    this.Position += PrimaryVelocity;
-                    //}
-
-
-                    if (this.LockBounds)
-                    {
-                        CheckOutOfBounds(this.Position);
-                    }
-
-
-                }
-
+            
                 UpdatePenumbraLights();
 
             }
