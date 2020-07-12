@@ -97,6 +97,8 @@ namespace SecretProject.Class.Controls
 
         public float MouseAngleInRelationToPlayer { get; set; }
 
+
+
         private MouseManager()
         {
 
@@ -240,10 +242,7 @@ namespace SecretProject.Class.Controls
                     }
                 }
             }
-                MouseBody.Enabled = EnableBody;
-
-            MouseJoint.WorldAnchorB = WorldMousePosition;
-
+            MouseBody.Position = worldMousePosition;
         }
 
         public void Draw(SpriteBatch spriteBatch, float depth)
@@ -377,32 +376,23 @@ namespace SecretProject.Class.Controls
             return tilesToReturn;
         }
         public Body MouseBody { get; set; }
-        public FixedMouseJoint MouseJoint { get; set; }
         public void AttachMouseBody()
         {
-            MouseBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 8f, 1f);
+            MouseBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 4f, 1f);
             MouseBody.Position = WorldMousePosition;
-            MouseBody.BodyType = BodyType.Dynamic;
-            MouseBody.Mass = .4f;
-            MouseBody.Restitution = .2f;
-            MouseBody.Friction = .4f;
+            MouseBody.BodyType = BodyType.Static;
+
             MouseBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Mouse;
-            MouseBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Grass;
-            MouseBody.FixedRotation = true;
+            MouseBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             MouseBody.IgnoreGravity = true;
-
-             MouseJoint = JointFactory.CreateFixedMouseJoint(Game1.VelcroWorld, MouseBody, MouseBody.Position);
-            MouseJoint.MaxForce = 500f;
-
+            MouseBody.IsSensor = true;
 
             //MouseBody.OnCollision += OnCollision;
 
         }
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-            // fixtureA.
-            Console.WriteLine("mouse hit grass");
-            // SelfDestruct();
+          
         }
 
         public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)

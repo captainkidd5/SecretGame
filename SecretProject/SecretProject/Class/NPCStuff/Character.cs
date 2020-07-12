@@ -15,6 +15,7 @@ using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Collision.ContactSystem;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Factories;
 using XMLData.DialogueStuff;
@@ -161,7 +162,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             HitBoxTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
             Collider = new CircleCollider(graphics, NPCHitBoxRectangle, new Circle(this.Position, NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
-            
+
         }
 
         public void CreateBody()
@@ -175,29 +176,42 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             InteractionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
             InteractionBody.IgnoreGravity = true;
+            InteractionBody.OnCollision += OnProximityCollision;
+            InteractionBody.OnSeparation += OnProximitySeparation;
         }
 
         public void LoadPenumbra(TmxStageBase stage)
         {
             if (CurrentStageLocation == stage)
             {
-                if(!stage.Penumbra.Hulls.Contains(this.Hull))
+                if (!stage.Penumbra.Hulls.Contains(this.Hull))
                 {
                     stage.Penumbra.Hulls.Add(this.Hull);
                 }
             }
-                
+
 
         }
 
-        private void SwitchStage(TmxStageBase stageToSwitchTo)
+        /// <summary>
+        /// Call on Game1.SwitchStage in order to add this NPCs information to the current stage.
+        /// </summary>
+        /// <param name="stageToSwitchTo"></param>
+        public void CheckIfAddBody(TmxStageBase stageToSwitchTo)
         {
-            stageToSwitchTo.CharactersPresent.Remove(this);
-            this.CurrentStageLocation = stageToSwitchTo;
-            if(Game1.CurrentStage != CurrentStageLocation)
+            if (CurrentStageLocation == stageToSwitchTo)
+            {
+                CreateBody();
+                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                LoadPenumbra(stageToSwitchTo);
+            }
+        }
+        private void CheckIfRemoveBody(TmxStageBase stageToSwitchTo)
+        {
+            if (Game1.CurrentStage != CurrentStageLocation)
             {
                 Game1.VelcroWorld.RemoveBody(this.InteractionBody);
-                
+
             }
             else
             {
@@ -205,13 +219,20 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
                 LoadPenumbra(stageToSwitchTo);
             }
+        }
+
+        private void SwitchStage(TmxStageBase stageToSwitchTo)
+        {
+            stageToSwitchTo.CharactersPresent.Remove(this);
+            this.CurrentStageLocation = stageToSwitchTo;
+            CheckIfRemoveBody(stageToSwitchTo);
 
             CurrentStageLocation.CharactersPresent.Add(this);
         }
 
         public void UpdateHullPosition()
         {
-            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y );
+            this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y);
         }
 
         public static Vector2 GetWorldPosition(Vector2 smallPosition)
@@ -393,11 +414,31 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             return false;
 
         }
+        public bool InRangeOfPlayer { get; set; }
+        private void OnProximityCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
+            {
+                this.InRangeOfPlayer = true;
+            }
+        }
+
+        private void OnProximitySeparation(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
+            {
+                this.InRangeOfPlayer = false;
+            }
+        }
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
-            if (Game1.Player.BigCollider.Rectangle.Intersects(this.NPCDialogueRectangle))
+            if (InRangeOfPlayer)
             {
+                if(mouse.IsClicked)
+                {
+                    Console.WriteLine("speech occurred");
+                }
 
                 if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
                 {
@@ -649,13 +690,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-                                if(this.CurrentStageLocation == Game1.CurrentStage)
+                                if (this.CurrentStageLocation == Game1.CurrentStage)
                                 {
                                     Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
                                 }
                                 SwitchStage(Game1.GetStageFromEnum((Stages)nodeToEndAt));
 
-                                
+
                                 this.Position = new Vector2(portalTo.PortalStart.X,
                        portalTo.PortalStart.Y);
                                 //  }

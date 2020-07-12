@@ -1050,8 +1050,8 @@ namespace SecretProject
           
             for (int i = 0; i < AllCharacters.Count; i++)
             {
-                ILightBlockable character = (ILightBlockable)AllCharacters[i];
-                character.LoadPenumbra(CurrentStage);
+                AllCharacters[i].CheckIfAddBody(Game1.CurrentStage);
+                AllCharacters[i].InRangeOfPlayer = false;
             }
             Player.LoadPenumbra(CurrentStage);
         }
