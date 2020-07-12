@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Caspar/CasparPortrait.png</SourceFile>
-  <SourceTime>2020-06-30T12:53:21.0406082-07:00</SourceTime>
+  <SourceTime>2020-07-12T10:42:02.771334-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/NPC/Caspar/CasparPortrait.xnb</DestFile>
-  <DestTime>2020-06-30T12:56:21.251106-07:00</DestTime>
+  <DestTime>2020-07-12T10:47:14.5213109-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

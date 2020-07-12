@@ -198,7 +198,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                if(ItemBody.Position.Y >= ArtificialFloorBody.Position.Y)
+                if(ItemBody.Position.Y <= ArtificialFloorBody.Position.Y - 5)
                 {
                     ItemBody.ApplyForce(new Vector2(0, 100));
                     ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ArtificialFloorBody.Position.Y);

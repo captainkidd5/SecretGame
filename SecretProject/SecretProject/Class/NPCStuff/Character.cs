@@ -15,6 +15,8 @@ using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 using XMLData.DialogueStuff;
 using XMLData.QuestStuff;
 using XMLData.RouteStuff;
@@ -109,6 +111,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
         public Hull Hull { get; set; }
 
+        public Body InteractionBody { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, TmxStageBase currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
@@ -158,6 +162,19 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             //DebugTexture = SetRectangleTexture(graphics, )
             Collider = new CircleCollider(graphics, NPCHitBoxRectangle, new Circle(this.Position, NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
             
+        }
+
+        public void CreateBody()
+        {
+            this.InteractionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 64, 64, 1f);
+            InteractionBody.Position = this.Position;
+            InteractionBody.BodyType = BodyType.Static;
+            InteractionBody.IsSensor = true;
+            InteractionBody.SleepingAllowed = true;
+            InteractionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
+            InteractionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
+
+            InteractionBody.IgnoreGravity = true;
         }
 
         public void LoadPenumbra(TmxStageBase stage)

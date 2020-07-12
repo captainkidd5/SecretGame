@@ -41,7 +41,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player : IEntity,ILightBlockable
+    public class Player : IEntity, ILightBlockable
     {
 
         public Vector2 position;
@@ -152,7 +152,8 @@ namespace SecretProject.Class.Playable
         //VELCROPHYSICS
         public Body CollisionBody { get; set; }
 
- 
+        public Body LargeProximitySensor { get; set; }
+
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
@@ -207,6 +208,16 @@ namespace SecretProject.Class.Playable
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnCollision;
             this.MainCollider.Body = CollisionBody;
+
+            this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld,64,64,1f);
+            LargeProximitySensor.Position = this.Position;
+            LargeProximitySensor.BodyType = BodyType.Static;
+            LargeProximitySensor.IsSensor = true;
+            LargeProximitySensor.SleepingAllowed = true;
+            LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
+            LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
+
+            LargeProximitySensor.IgnoreGravity = true;
         }
 
         public void SetPosition(Vector2 position)
@@ -228,7 +239,7 @@ namespace SecretProject.Class.Playable
             //        Scale = new Vector2(64),
             //        ShadowType = ShadowType.Occluded,
             //        Color = Color.FloralWhite,
-                    
+
             //    },
             // };
             //for (int i = 0; i < this.PenumbraLights.Count; i++)
@@ -239,7 +250,7 @@ namespace SecretProject.Class.Playable
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 
         {
-          //  Console.WriteLine("hi");
+            //  Console.WriteLine("hi");
         }
         private void UpdatePenumbraLights()
         {
@@ -254,7 +265,7 @@ namespace SecretProject.Class.Playable
         {
             this.Hull.Position = new Vector2(this.Position.X + 8, this.Position.Y + 32);
         }
-    
+
         public ItemData GetCurrentEquippedToolData()
         {
             return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -379,7 +390,7 @@ namespace SecretProject.Class.Playable
         {
             if (this.Activate)
             {
-                
+
                 PrimaryVelocity = Vector2.Zero;
                 controls.UpdateKeys();
                 controls.Update();
@@ -476,8 +487,8 @@ namespace SecretProject.Class.Playable
                 {
                     movementDir = MoveFromKeys(gameTime);
                 }
-                
-                if(movementDir != Dir.None)
+
+                if (movementDir != Dir.None)
                 {
                     CollisionBody.LinearVelocity = PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     CollisionBody.Inertia = 0f;
@@ -490,15 +501,16 @@ namespace SecretProject.Class.Playable
                     CollisionBody.LinearVelocity = Vector2.Zero;
                     CollisionBody.AngularVelocity = 0f;
                 }
-                
+
                 this.MainCollider.Circle.Center = CollisionBody.Position;
-                 Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
+                Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
                 //Wardrobe.SetZero();
                 PlayerCamPos = new Vector2((int)this.Position.X, (int)this.Position.Y);
 
-                Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
+                if (!IsPerformingAction)
+                    Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 
-                
+
 
                 // this.MainCollider.Update(this.ColliderRectangle);
 
@@ -512,7 +524,7 @@ namespace SecretProject.Class.Playable
                 if (controls.IsMoving && !IsPerformingAction)
                 {
                     UpdateStaminaDrainFlag();
-                   // this.Position = CollisionBody.Position;
+                    // this.Position = CollisionBody.Position;
                     //if (controls.IsSprinting)
                     //{
                     //    this.Position += PrimaryVelocity * 10;
@@ -541,7 +553,7 @@ namespace SecretProject.Class.Playable
             Dir movementDir = Dir.None;
             if (!IsPerformingAction)
             {
-               
+
                 switch (controls.Direction)
                 {
                     case Dir.Right:
@@ -594,7 +606,7 @@ namespace SecretProject.Class.Playable
                         break;
 
                 }
-                
+
             }
             return movementDir;
         }
@@ -759,7 +771,7 @@ namespace SecretProject.Class.Playable
                 Wardrobe.Draw(spriteBatch, layerDepth);
                 if (!IsPerformingAction)
                 {
-                    
+
 
                     if (this.IsMoving)
                     {
@@ -774,7 +786,7 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                
+
             }
 
         }
