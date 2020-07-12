@@ -209,7 +209,7 @@ namespace SecretProject.Class.Playable
             CollisionBody.OnCollision += OnCollision;
             this.MainCollider.Body = CollisionBody;
 
-            this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld,64,64,1f);
+            this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 64, 64, 1f);
             LargeProximitySensor.Position = this.Position;
             LargeProximitySensor.BodyType = BodyType.Static;
             LargeProximitySensor.IsSensor = true;
@@ -218,6 +218,8 @@ namespace SecretProject.Class.Playable
             LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid;
 
             LargeProximitySensor.IgnoreGravity = true;
+            if (Game1.CurrentStage.DebuggableShapes != null)
+                Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(LargeProximitySensor, Game1.CurrentStage.DebuggableShapes));
         }
 
         public void SetPosition(Vector2 position)
@@ -503,6 +505,7 @@ namespace SecretProject.Class.Playable
                 }
 
                 this.MainCollider.Circle.Center = CollisionBody.Position;
+                this.LargeProximitySensor.Position = CollisionBody.Position;
                 Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
                 //Wardrobe.SetZero();
                 PlayerCamPos = new Vector2((int)this.Position.X, (int)this.Position.Y);

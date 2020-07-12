@@ -180,8 +180,33 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void LoadPenumbra(TmxStageBase stage)
         {
             if (CurrentStageLocation == stage)
-                stage.Penumbra.Hulls.Add(this.Hull);
+            {
+                if(!stage.Penumbra.Hulls.Contains(this.Hull))
+                {
+                    stage.Penumbra.Hulls.Add(this.Hull);
+                }
+            }
+                
 
+        }
+
+        private void SwitchStage(TmxStageBase stageToSwitchTo)
+        {
+            stageToSwitchTo.CharactersPresent.Remove(this);
+            this.CurrentStageLocation = stageToSwitchTo;
+            if(Game1.CurrentStage != CurrentStageLocation)
+            {
+                Game1.VelcroWorld.RemoveBody(this.InteractionBody);
+                
+            }
+            else
+            {
+                CreateBody();
+                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                LoadPenumbra(stageToSwitchTo);
+            }
+
+            CurrentStageLocation.CharactersPresent.Add(this);
         }
 
         public void UpdateHullPosition()
@@ -254,6 +279,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.DisableInteractions = false;
                 UpdateHullPosition();
+                this.InteractionBody.Position = this.Position;
             }
             else
             {
@@ -622,21 +648,14 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                             {
 
 
-                                this.CurrentStageLocation.CharactersPresent.Remove(this);
+
                                 if(this.CurrentStageLocation == Game1.CurrentStage)
                                 {
                                     Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
                                 }
-                                this.CurrentStageLocation = Game1.GetStageFromEnum((Stages)nodeToEndAt);
-                                CurrentStageLocation.CharactersPresent.Add(this);
-                                LoadPenumbra(Game1.CurrentStage);
-                                //     if (CurrentStageLocation == Stages.OverWorld)
-                                //     {
-                                //         this.Position = new Vector2(portalTo.PortalStart.X + 16,
-                                //portalTo.PortalStart.Y + 32);
-                                //     }
-                                //     else
-                                //     {
+                                SwitchStage(Game1.GetStageFromEnum((Stages)nodeToEndAt));
+
+                                
                                 this.Position = new Vector2(portalTo.PortalStart.X,
                        portalTo.PortalStart.Y);
                                 //  }
