@@ -346,13 +346,6 @@ namespace SecretProject.Class.TileStuff
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
                            rectangleCoords[3]);
 
-
-                    //BodyFactory.CreateRectangle(Game1.VelcroWorld, rectangleCoords[2], rectangleCoords[3], .5f, tileToAssign.Position, 0f, BodyType.Static);
-                    //RectangleCollider tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice,
-                    //        new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
-                    //        GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
-                    //        rectangleCoords[3]), tileToAssign, ColliderType.inert);
-
                     Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, tileDestinationRectangle.Width, tileDestinationRectangle.Height,
                         .5f, new Vector2(tileDestinationRectangle.X + tileDestinationRectangle.Width / 2, tileDestinationRectangle.Y + tileDestinationRectangle.Height / 2), 0f, BodyType.Static);
                     collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
@@ -360,11 +353,11 @@ namespace SecretProject.Class.TileStuff
 
                     if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                     {
-
+                        TileManager.Objects[tileToAssign.TileKey].Add(collisionBody);
                     }
                     else
                     {
-                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>());
+                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>() { collisionBody });
                     }
                     // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
                     //Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
@@ -438,16 +431,16 @@ namespace SecretProject.Class.TileStuff
                         {
                             Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
 
-                            
+
 
                             Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                             collisionBody.IgnoreGravity = true;
                             //TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
+                            bodies.Add(collisionBody);
                             if (!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                             {
-                                bodies.Add(collisionBody);
                                 TileManager.Objects.Add(tileToAssign.TileKey, bodies);
                             }
 
@@ -466,10 +459,15 @@ namespace SecretProject.Class.TileStuff
                                 .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
+                            bodies.Add(collisionBody);
 
-                            if (!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
+                            if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                             {
-                                bodies.Add(collisionBody);
+                                //TileManager.Objects.Add(tileToAssign.TileKey, bodies);
+                                TileManager.Objects[tileToAssign.TileKey].Add(collisionBody);
+                            }
+                            else
+                            {
                                 TileManager.Objects.Add(tileToAssign.TileKey, bodies);
                             }
                         }
@@ -1040,6 +1038,34 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+
+        private static void ProcessBodyRemoval(TileManager tileManager,Tile tile)
+        {
+            List<Body> bodies = tileManager.Objects[tile.TileKey];
+            for (int i = 0; i < bodies.Count; i++)
+            {
+                Body body = bodies[i];
+                Game1.VelcroWorld.RemoveBody(bodies[i]);
+                bodies.RemoveAt(i);
+            }
+            tileManager.Objects.Remove(tile.TileKey);
+        }
+
+        private static void ProcessGridRemoval(TileManager tileManager, Tile tile, int x, int y)
+        {
+            bool atLeastOneObjectExists = false;
+            for (int i = 0; i < 4; i++)
+            {
+                if (tileManager.Objects.ContainsKey(tile.GetTileKeyString(i, tileManager)))
+                {
+                    atLeastOneObjectExists = true;
+                }
+            }
+            if (!atLeastOneObjectExists)
+            {
+                tileManager.PathGrid.UpdateGrid(x, y, PathFinding.GridStatus.Clear);
+            }
+        }
         /// <summary>
         /// Replaces tile with default and possibly removes associated: objects, hitpoints, spawnwith, crops, as well as reassigning adjacent tiles
         /// </summary>
@@ -1052,37 +1078,13 @@ namespace SecretProject.Class.TileStuff
         public static void FinalizeTile(int layer, GameTime gameTime, int x, int y, TileManager TileManager, float delayTimer = 0f)
         {
 
-            //if(TileManager.AllTiles[layer][x, y].TileKey == null)
-            //{
-            //    TileManager.AllTiles[layer][x, y].TileKey = TileManager.AllTiles[layer][x, y].GetTileKeyStringNew(layer, TileManager);
-            //}
             Tile tile = TileManager.AllTiles[layer][x, y];
 
             if (TileManager.Objects.ContainsKey(tile.TileKey))
             {
-
-                List<Body> bodies = TileManager.Objects[tile.TileKey];
-                for (int i = 0; i < bodies.Count; i++)
-                {
-                    Body body = bodies[i];
-                    Game1.VelcroWorld.RemoveBody(bodies[i]);
-                }
-
-                //Game1.VelcroWorld.ProcessChanges();
-                TileManager.Objects.Remove(tile.TileKey);
-                bool atLeastOneObjectExists = false;
-                for (int i = 0; i < 4; i++)
-                {
-                    if (TileManager.Objects.ContainsKey(tile.GetTileKeyString(i, TileManager)))
-                    {
-                        atLeastOneObjectExists = true;
-                    }
-                }
-                if (!atLeastOneObjectExists)
-                {
-                    TileManager.PathGrid.UpdateGrid(x, y, PathFinding.GridStatus.Clear);
-                }
-                // if(Game1.VelcroWorld.BodyList.Remove())
+                ProcessBodyRemoval(TileManager, tile);
+                ProcessGridRemoval(TileManager, tile,x,y);
+               
             }
 
             if (TileManager.TileHitPoints.ContainsKey(tile.TileKey))
@@ -1143,22 +1145,12 @@ namespace SecretProject.Class.TileStuff
                         (TileManager)Game1.CurrentStage.AllTiles);
                 }
             }
-            //if (itemToCheckForReassasignTiling != null)
-            //{
-            //    if (itemToCheckForReassasignTiling.GenerationType != 0)
-            //    {
-            //        TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
-            //        WangManager.GroupReassignForTiling((int)Game1.MouseManager.WorldMousePosition.X, (int)Game1.MouseManager.WorldMousePosition.Y, -1, tilingTileManager.GeneratableTiles,
-            //            tilingTileManager.TilingDictionary,
-            //       itemToCheckForReassasignTiling.TilingLayer, Game1.CurrentStage.AllTiles);
-            //    }
 
-            //}
         }
         #endregion
 
 
-        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, TileManager TileManager)
+        private static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, TileManager TileManager)
         {
             if (TileManager.AllTiles[layer][tileX, tileY].GID != -1)
             {
@@ -1170,7 +1162,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles, TileManager TileManager, int comparisonLayer = 0)
+        private static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles, TileManager TileManager, int comparisonLayer = 0)
         {
             for (int i = 0; i < acceptablTiles.Count; i++)
             {
@@ -1182,93 +1174,6 @@ namespace SecretProject.Class.TileStuff
             return false;
         }
 
-        #region GENERATION
-        /// <summary>
-        /// Generates desired tiles at a certain frequency, and can be restricted to certain tiles and layers
-        /// </summary>
-        /// <param name="layerToPlace">Layer which tile will try to generate</param>
-        /// <param name="gid"></param>
-        /// <param name="type">tileset to check which you want to spawn on</param>
-        /// <param name="frequency">will try at most this many times to spawn</param>
-        /// <param name="layerToCheckIfEmpty">layer which the tileset youre looking at is empty</param>
-        /// <param name="TileManager"></param>
-        /// <param name="onlyLayerZero">set to true if you want to disallow spawning if path layer is occupied</param>
-        /// <param name="assertLeftAndRight">if true, the tiles to the left and right of the found tile must also be in the allowable tiles</param>
-        /// <param name="limit">Maximum number of this type of tile we can spawn in a chunk</param>
-        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, TileManager TileManager, bool onlyLayerZero = false, bool assertLeftAndRight = false, int limit = 0)
-        {
-
-            int cap = TileManager.Random.Next(0, frequency);
-
-            int limitCounter = 0;
-
-            for (int g = 0; g < cap; g++)
-            {
-                if (RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingTileManagerFromGenerationType(type).GeneratableTiles, TileManager, layerToCheckIfEmpty, onlyLayerZero, assertLeftAndRight))
-                {
-                    limitCounter++;
-                }
-                if (limit > 0 && limitCounter >= limit)
-                {
-                    return;
-                }
-            }
-        }
-        /// <summary>
-        /// Randomly chooses a location within the bounds of the chunk. If it meets the criteria then it will reassign that tile. 
-        /// </summary>
-        /// <param name="layer"></param>
-        /// <param name="id"></param>
-        /// <param name="acceptableTiles">Tiles which may be considered to spawn on</param>
-        /// <param name="TileManager"></param>
-        /// <param name="comparisonLayer"></param>
-        /// <param name="zeroLayerOnly">Will only spawn on layer zero when path layer is not occupied</param>
-        /// <param name="assertLeftAndRight">will only be considered if tiles to the right and left are also in the acceptable tiles list</param>
-        public static bool RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, TileManager TileManager,
-             int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
-        {
-            int newTileX = TileManager.Random.Next(0, TileManager.AllTiles[0].GetLength(0));
-            int newTileY = TileManager.Random.Next(1, TileManager.AllTiles[0].GetLength(0));
-            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, TileManager) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
-                acceptableTiles, TileManager, comparisonLayer))
-            {
-                if (zeroLayerOnly)
-                {
-                    if (TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, 1, TileManager))
-                    {
-                        return false;
-                    }
-                }
-                if (assertLeftAndRight)
-                {
-                    if (newTileX < 15 && newTileY < 15 && newTileX > 0)
-                    {
-                        if (!acceptableTiles.Contains(TileManager.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(TileManager.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
-                        {
-                            return false;
-                        }
-                    }
-
-                }
-                if (id == 3438 || id == 3439)
-                {
-                    Console.WriteLine("hi");
-                }
-                TileManager.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
-                Crop crop = Game1.AllCrops.GetCropFromGID(id);
-                AddCropToTile(crop, TileManager.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, TileManager, true);
-                return true;
-
-            }
-            else
-
-            {
-                return false;
-            }
-        }
-
-
-        #endregion
 
 
         public static void Animate(Dir direction, int layer, int x, int y, TileManager TileManager, bool terminates = true)
