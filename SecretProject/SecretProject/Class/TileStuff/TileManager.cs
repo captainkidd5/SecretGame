@@ -19,6 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using TiledSharp;
+using VelcroPhysics.Dynamics;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
@@ -64,7 +65,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         // public List<ICollidable> Objects { get; set; }
-        public Dictionary<string, List<ICollidable>> Objects { get; set; }
+        public Dictionary<string, List<Body>> Objects { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> NightTimeLights { get; set; }
         public List<LightSource> DayTimeLights { get; set; }
@@ -163,7 +164,7 @@ namespace SecretProject.Class.TileStuff
                 this.AllTiles.Add(new Tile[this.MapWidth, this.MapHeight]);
 
             }
-            this.Objects = new Dictionary<string, List<ICollidable>>();
+            this.Objects = new Dictionary<string, List<Body>>();
 
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             //if (Game1.IsFirstTimeStartup)
@@ -860,7 +861,7 @@ namespace SecretProject.Class.TileStuff
             this.MapHeight = mapWidth;
             this.AllTiles = new List<Tile[,]>();
             this.AllItems = new List<Item>();
-            this.Objects = new Dictionary<string, List<ICollidable>>();
+            this.Objects = new Dictionary<string, List<Body>>();
 
             for (int i = 0; i < layerCount; i++)
             {

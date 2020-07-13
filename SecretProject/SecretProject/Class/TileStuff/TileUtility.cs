@@ -364,7 +364,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     else
                     {
-                        TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
+                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>());
                     }
                     // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
                     //Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
@@ -423,7 +423,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     else
                     {
-                        TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
+                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>());
                     }
 
                     for (int k = 0; k < tileSet[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
@@ -433,11 +433,11 @@ namespace SecretProject.Class.TileStuff
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height));
 
-                        
+                        List<Body> bodies = new List<Body>();
                         if (tempObj.ObjectType == TmxObjectType.Ellipse)
                         {
                             Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
-                            
+
                             
 
                             Body collisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, circle.Radius / 2, .5f, circle.Center, BodyType.Static);
@@ -445,16 +445,17 @@ namespace SecretProject.Class.TileStuff
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                             collisionBody.IgnoreGravity = true;
                             //TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
-                            // if(!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
-                            // {
-                            //TileManager.Objects.Add(tileToAssign.TileKey, tempobjs);
-                            // }
+                            if (!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
+                            {
+                                bodies.Add(collisionBody);
+                                TileManager.Objects.Add(tileToAssign.TileKey, bodies);
+                            }
 
                             // CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
                             // tempObjectBody.Body = collisionBody;
                             // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
 
-                           // TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
+                            // TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
 
                         }
                         else
@@ -465,6 +466,12 @@ namespace SecretProject.Class.TileStuff
                                 .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
+
+                            if (!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
+                            {
+                                bodies.Add(collisionBody);
+                                TileManager.Objects.Add(tileToAssign.TileKey, bodies);
+                            }
                         }
                         if (layer > (int)MapLayer.MidGround) // only blocks light if over midground layer
                         {
@@ -485,8 +492,8 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        
-  
+
+
 
                     }
                 }
@@ -497,17 +504,22 @@ namespace SecretProject.Class.TileStuff
 
 
                     int[] nums = GetRectangeFromString(propertyString);
-                    RectangleCollider tempBody = new RectangleCollider(TileManager.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
-                        nums[2], nums[3]), tileToAssign, ColliderType.TransperencyDetector);
+                    Body body = BodyFactory.CreateRectangle(Game1.VelcroWorld, nums[2], nums[3], 1f);
+                    body.Position = new Vector2(tileToAssign.Position.X + nums[0] / 2, tileToAssign.Position.Y + nums[1] / 2);
+                    body.IsSensor = true;
+                    body.IgnoreGravity = true;
+                    body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.TransparencySensor;
+                    //RectangleCollider tempBody = new RectangleCollider(TileManager.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
+                    //    nums[2], nums[3]), tileToAssign, ColliderType.TransperencyDetector);
                     if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                     {
-                        TileManager.Objects[tileToAssign.TileKey].Add(tempBody);
+                        TileManager.Objects[tileToAssign.TileKey].Add(body);
                     }
                     else
                     {
-                        TileManager.Objects.Add(tileToAssign.TileKey, new List<ICollidable>()
+                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>()
                         {
-                            tempBody
+                            body
                         });
 
                     }
@@ -1048,6 +1060,15 @@ namespace SecretProject.Class.TileStuff
 
             if (TileManager.Objects.ContainsKey(tile.TileKey))
             {
+
+                List<Body> bodies = TileManager.Objects[tile.TileKey];
+                for (int i = 0; i < bodies.Count; i++)
+                {
+                    Body body = bodies[i];
+                    Game1.VelcroWorld.RemoveBody(bodies[i]);
+                }
+
+                //Game1.VelcroWorld.ProcessChanges();
                 TileManager.Objects.Remove(tile.TileKey);
                 bool atLeastOneObjectExists = false;
                 for (int i = 0; i < 4; i++)
@@ -1061,7 +1082,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     TileManager.PathGrid.UpdateGrid(x, y, PathFinding.GridStatus.Clear);
                 }
-               // if(Game1.VelcroWorld.BodyList.Remove())
+                // if(Game1.VelcroWorld.BodyList.Remove())
             }
 
             if (TileManager.TileHitPoints.ContainsKey(tile.TileKey))

@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TiledSharp;
+using VelcroPhysics.Dynamics;
 using XMLData.DialogueStuff;
 using XMLData.ItemStuff;
 using XMLData.RouteStuff;
@@ -73,7 +74,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public Dictionary<string, ICollidable> AllObjects { get; set; }
+        public Dictionary<string, Body> AllObjects { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
@@ -225,7 +226,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            this.AllObjects = new Dictionary<string, ICollidable>()
+            this.AllObjects = new Dictionary<string, Body>()
             {
 
             };
