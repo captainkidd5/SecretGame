@@ -359,11 +359,6 @@ namespace SecretProject.Class.TileStuff
                     {
                         TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>() { collisionBody });
                     }
-                    // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
-                    //Hull hull = Hull.CreateRectangle(tileToAssign.GetPosition(TileManager), new Vector2(10));
-                    //hull.Enabled = true;
-                    //TileManager.Stage.Hulls.Add(hull);
-                    // reassignGrid = false;
 
                     propertyString = "lightIgnores"; //do not add hull if this object should not obstruct light.
                     if (!GetProperty(tileSet, tileToAssign.GID, ref propertyString))
@@ -409,27 +404,17 @@ namespace SecretProject.Class.TileStuff
 
                     TileManager.PathGrid.UpdateGrid(x, y, 0);
 
-
-                    if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
-                    {
-
-                    }
-                    else
-                    {
-                        TileManager.Objects.Add(tileToAssign.TileKey, new List<Body>());
-                    }
-
                     for (int k = 0; k < tileSet[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = tileSet[tileToAssign.GID].ObjectGroups[0].Objects[k];
-                        Rectangle colliderRectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                        Rectangle rectangle = new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height));
 
                         List<Body> bodies = new List<Body>();
                         if (tempObj.ObjectType == TmxObjectType.Ellipse)
                         {
-                            Circle circle = new Circle(new Vector2((float)(colliderRectangle.X + tempObj.Width / 2), (float)(colliderRectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
+                            Circle circle = new Circle(new Vector2((float)(rectangle.X + tempObj.Width / 2), (float)(rectangle.Y + tempObj.Height / 2)), (float)(tempObj.Width));
 
 
 
@@ -437,33 +422,28 @@ namespace SecretProject.Class.TileStuff
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                             collisionBody.IgnoreGravity = true;
-                            //TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
+                            TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
                             bodies.Add(collisionBody);
                             if (!TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                             {
                                 TileManager.Objects.Add(tileToAssign.TileKey, bodies);
                             }
-
-                            // CircleCollider tempObjectBody = new CircleCollider(TileManager.GraphicsDevice, colliderRectangle, circle, null, ColliderType.inert);
-                            // tempObjectBody.Body = collisionBody;
-                            // TileManager.Objects[tileToAssign.TileKey].Add(tempObjectBody);
-
-                            // TileManager.Stage.DebuggableShapes.Add(new CircleDebugger(collisionBody, TileManager.Stage.DebuggableShapes));
-
+                            else
+                            {
+                                TileManager.Objects[tileToAssign.TileKey].Add(collisionBody);
+                            }
+ 
                         }
                         else
                         {
-                            //tempObjectBody = new RectangleCollider(TileManager.GraphicsDevice, colliderRectangle, null, ColliderType.inert);
-
-                            Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, colliderRectangle.Width, colliderRectangle.Height,
-                                .5f, new Vector2(colliderRectangle.X + colliderRectangle.Width / 2, colliderRectangle.Y + colliderRectangle.Height / 2), 0f, BodyType.Static);
+                            Body collisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, rectangle.Width, rectangle.Height,
+                                .5f, new Vector2(rectangle.X + rectangle.Width / 2, rectangle.Y + rectangle.Height / 2), 0f, BodyType.Static);
                             collisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
                             collisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Item;
                             bodies.Add(collisionBody);
 
                             if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
                             {
-                                //TileManager.Objects.Add(tileToAssign.TileKey, bodies);
                                 TileManager.Objects[tileToAssign.TileKey].Add(collisionBody);
                             }
                             else
@@ -479,7 +459,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (!TileManager.Stage.Hulls.ContainsKey(tileToAssign.TileKey))
                                 {
-                                    Hull hull = Hull.CreateRectangle(new Vector2(colliderRectangle.X + (float)tempObj.Width / 2, colliderRectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
+                                    Hull hull = Hull.CreateRectangle(new Vector2(rectangle.X + (float)tempObj.Width / 2, rectangle.Y + (float)tempObj.Height / 2), new Vector2((float)tempObj.Width, (float)tempObj.Height));
                                     TileManager.Stage.Hulls.Add(tileToAssign.TileKey, hull);
                                     TileManager.Stage.Penumbra.Hulls.Add(hull);
                                 }
