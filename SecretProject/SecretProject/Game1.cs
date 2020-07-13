@@ -1046,15 +1046,15 @@ namespace SecretProject
 
         }
 
-        private static void LoadPenumbraEntities()
+        private static void LoadCharacterBodies(TmxStageBase oldStage, TmxStageBase newStage)
         {
           
             for (int i = 0; i < AllCharacters.Count; i++)
             {
-                AllCharacters[i].CheckIfAddBody(Game1.CurrentStage);
+                AllCharacters[i].ProcessPlayerChangeStage(oldStage, newStage);
                 AllCharacters[i].InRangeOfPlayer = false;
             }
-            Player.LoadPenumbra(CurrentStage);
+            
         }
         public static void SwitchStage(TmxStageBase stageToSwitchTo, Portal portal = null)
         {
@@ -1100,6 +1100,7 @@ namespace SecretProject
                     float safteyY = tempPortal.SafteyOffSetY;
                     Player.CreateBody();
                     Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
+                    cam.pos = Player.Position;
 
                 }
                 else
@@ -1117,12 +1118,13 @@ namespace SecretProject
 
 
             MouseManager.AttachMouseBody();
-            
+
+            LoadCharacterBodies(CurrentStage, newLocation);
             CurrentStage = newLocation;
             CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
             CurrentStage.AllTiles.UpdateCropTile();
-            LoadPenumbraEntities();
-            //CreatePinBoard();
+           
+            Player.LoadPenumbra(CurrentStage);
             VelcroWorld.ProcessChanges();
             Game1.GlobalClock.ProcessNewDayChanges();
 
@@ -1235,7 +1237,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("NAME", new Vector2(600, 700), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice) { Activate = true, IsDrawn = true };
+            Player = new Player("NAME", new Vector2(630, 600), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
 

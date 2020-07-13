@@ -5042,7 +5042,7 @@
  <tile id="7030">
   <properties>
    <property name="action" value="portal"/>
-   <property name="newHitBox" value="-32, -48, 80, 60"/>
+   <property name="newHitBox" value="-32, -48, 84, 60"/>
    <property name="newSource" value="-32, -112, 96, 128"/>
    <property name="portal" value="true,Town,MarcusHouse"/>
    <property name="transparent" value="-32, -96, 80, 112"/>

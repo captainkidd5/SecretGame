@@ -211,8 +211,8 @@ namespace SecretProject.Class.Playable
 
             this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 64, 64, 1f);
             LargeProximitySensor.Position = this.Position;
-            LargeProximitySensor.BodyType = BodyType.Static;
-            LargeProximitySensor.IsSensor = true;
+            LargeProximitySensor.BodyType = BodyType.Dynamic;
+          // LargeProximitySensor.IsSensor = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 

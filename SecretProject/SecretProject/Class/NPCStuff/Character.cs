@@ -177,6 +177,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             InteractionBody.IgnoreGravity = true;
             InteractionBody.OnCollision += OnProximityCollision;
             InteractionBody.OnSeparation += OnProximitySeparation;
+            
         }
 
         public void LoadPenumbra(TmxStageBase stage)
@@ -192,51 +193,42 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         }
 
-        /// <summary>
-        /// Call on Game1.SwitchStage in order to add this NPCs information to the current stage.
-        /// </summary>
-        /// <param name="stageToSwitchTo"></param>
-        public void CheckIfAddBody(TmxStageBase stageToSwitchTo)
+        public void ProcessPlayerChangeStage(TmxStageBase oldStage, TmxStageBase newStage)
         {
-            if (CurrentStageLocation == stageToSwitchTo)
+            if (this.CurrentStageLocation == oldStage)
+            {
+                Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
+            }
+            else if (this.CurrentStageLocation == newStage)
             {
                 CreateBody();
                 CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
-                LoadPenumbra(stageToSwitchTo);
+                Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
             }
         }
-        private void CheckIfDisableBody(TmxStageBase stageToSwitchTo)
+
+
+        private void CharacterChangeStage(TmxStageBase stageToSwitchTo)
         {
-            if (Game1.CurrentStage != CurrentStageLocation)
+            if (this.CurrentStageLocation == Game1.CurrentStage) //if leaving current stage.
             {
-                if (this.InteractionBody != null)
-                    this.InteractionBody.Enabled = false;
+                Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
+                Game1.VelcroWorld.RemoveBody(this.InteractionBody);
                 Game1.VelcroWorld.ProcessChanges();
-                //Game1.VelcroWorld.RemoveBody(this.InteractionBody);
 
             }
-            else
-            {
-                if (this.InteractionBody == null)
-                {
-                    CreateBody();
-                    CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
-                }
-                else
-                {
-                    this.InteractionBody.Enabled = true;
-                    Game1.VelcroWorld.ProcessChanges();
-                }
 
-                LoadPenumbra(stageToSwitchTo);
-            }
-        }
-
-        private void SwitchStage(TmxStageBase stageToSwitchTo)
-        {
             stageToSwitchTo.CharactersPresent.Remove(this);
-            this.CurrentStageLocation = stageToSwitchTo;
-            CheckIfDisableBody(stageToSwitchTo);
+
+
+            this.CurrentStageLocation = stageToSwitchTo; // NOW we switch stages.
+
+            if (this.CurrentStageLocation == Game1.CurrentStage)
+            {
+                CreateBody();
+                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
+            }
 
             CurrentStageLocation.CharactersPresent.Add(this);
         }
@@ -311,14 +303,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.DisableInteractions = false;
                 UpdateHullPosition();
-                if (this.InteractionBody != null)
-                {
-                    if(this.InteractionBody.Enabled)
-                    {
-                        this.InteractionBody.Position = this.Position;
-                    }
-                }
-                  
+
+                this.InteractionBody.Position = this.Position;
             }
             else
             {
@@ -708,11 +694,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-                                if (this.CurrentStageLocation == Game1.CurrentStage)
-                                {
-                                    Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
-                                }
-                                SwitchStage(Game1.GetStageFromEnum((Stages)nodeToEndAt));
+
+                                CharacterChangeStage(Game1.GetStageFromEnum((Stages)nodeToEndAt));
 
 
                                 this.Position = new Vector2(portalTo.PortalStart.X,
