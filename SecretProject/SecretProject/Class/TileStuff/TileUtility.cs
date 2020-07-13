@@ -1061,6 +1061,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     TileManager.PathGrid.UpdateGrid(x, y, PathFinding.GridStatus.Clear);
                 }
+               // if(Game1.VelcroWorld.BodyList.Remove())
             }
 
             if (TileManager.TileHitPoints.ContainsKey(tile.TileKey))
