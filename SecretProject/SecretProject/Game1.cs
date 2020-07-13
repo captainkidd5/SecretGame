@@ -1124,7 +1124,7 @@ namespace SecretProject
             LoadPenumbraEntities();
             //CreatePinBoard();
             VelcroWorld.ProcessChanges();
-
+            Game1.GlobalClock.ProcessNewDayChanges();
 
         }
 

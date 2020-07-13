@@ -171,7 +171,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             InteractionBody.Position = this.Position;
             InteractionBody.BodyType = BodyType.Static;
             InteractionBody.IsSensor = true;
-            InteractionBody.SleepingAllowed = true;
             InteractionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             InteractionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
@@ -210,7 +209,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             if (Game1.CurrentStage != CurrentStageLocation)
             {
-                this.InteractionBody.Enabled = false;
+                if (this.InteractionBody != null)
+                    this.InteractionBody.Enabled = false;
+                Game1.VelcroWorld.ProcessChanges();
                 //Game1.VelcroWorld.RemoveBody(this.InteractionBody);
 
             }
@@ -224,6 +225,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 else
                 {
                     this.InteractionBody.Enabled = true;
+                    Game1.VelcroWorld.ProcessChanges();
                 }
 
                 LoadPenumbra(stageToSwitchTo);
@@ -310,7 +312,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 this.DisableInteractions = false;
                 UpdateHullPosition();
                 if (this.InteractionBody != null)
-                    this.InteractionBody.Position = this.Position;
+                {
+                    if(this.InteractionBody.Enabled)
+                    {
+                        this.InteractionBody.Position = this.Position;
+                    }
+                }
+                  
             }
             else
             {
@@ -321,7 +329,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < NPCAnimatedSprite.Length; i++)
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }

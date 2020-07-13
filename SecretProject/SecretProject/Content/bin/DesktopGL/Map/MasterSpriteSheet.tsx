@@ -4369,6 +4369,9 @@
   </objectgroup>
  </tile>
  <tile id="3810">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="15" height="16"/>
   </objectgroup>
@@ -4450,6 +4453,9 @@
   </objectgroup>
  </tile>
  <tile id="3910">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="15" height="16"/>
   </objectgroup>
@@ -4461,21 +4467,33 @@
   </properties>
  </tile>
  <tile id="4007">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="4" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4008">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="4" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4009">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="4" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="4010">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="15" height="16"/>
   </objectgroup>
@@ -4733,17 +4751,26 @@
   </properties>
  </tile>
  <tile id="4612">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="1"/>
    <object id="2" x="0" y="0" width="1" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4613">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4614">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="15" y="0" width="1" height="16"/>
    <object id="2" x="0" y="0" width="16" height="1"/>
@@ -4765,11 +4792,17 @@
   </objectgroup>
  </tile>
  <tile id="4712">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="1" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4714">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="15" y="0" width="1" height="16"/>
   </objectgroup>
@@ -4815,16 +4848,25 @@
   </properties>
  </tile>
  <tile id="4812">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4813">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="4814">
+  <properties>
+   <property name="lightIgnores" value=""/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -5213,7 +5255,9 @@
    <property name="lightIgnores" value=""/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="15" height="14"/>
+   <object id="2" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="8725">
@@ -5221,7 +5265,9 @@
    <property name="lightIgnores" value=""/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="13"/>
+   <object id="2" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="8727">

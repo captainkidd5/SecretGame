@@ -113,10 +113,9 @@ namespace SecretProject.Class.Universal
             {
                 character.ResetEndOfDay();
             }
-
-            ReplaceDirtTileManager();
             AdjustClockText();
             Game1.Player.RestorePlayerToFull();
+            HasDirtBucketBeenUpdated = false;
             Game1.SaveLoadManager.Save(Game1.SaveLoadManager.CurrentSave);
         }
 
@@ -127,6 +126,22 @@ namespace SecretProject.Class.Universal
         {
             TileUtility.ReplaceTile(3, 67, 114, 5523, (TileManager)Game1.Town.AllTiles);
 
+        }
+        public bool HasDirtBucketBeenUpdated { get; set; }
+
+        /// <summary>
+        /// Updates events which should occur on a new day. Will trigger every time stages are switched.
+        /// </summary>
+        public void ProcessNewDayChanges()
+        {
+            if(!HasDirtBucketBeenUpdated)
+            {
+                if(Game1.CurrentStage == Game1.Town)
+                {
+                    ReplaceDirtTileManager();
+                    HasDirtBucketBeenUpdated = true;
+                }
+            }
         }
 
         public int GetTimeFromString(string time)

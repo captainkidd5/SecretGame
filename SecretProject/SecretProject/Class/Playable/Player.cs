@@ -213,7 +213,6 @@ namespace SecretProject.Class.Playable
             LargeProximitySensor.Position = this.Position;
             LargeProximitySensor.BodyType = BodyType.Static;
             LargeProximitySensor.IsSensor = true;
-            LargeProximitySensor.SleepingAllowed = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
