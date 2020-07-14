@@ -41,7 +41,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player : IEntity, ILightBlockable
+    public class Player : IEntity, ILightBlockable, ICollidable
     {
 
         public Vector2 position;
@@ -598,91 +598,91 @@ namespace SecretProject.Class.Playable
 
         private void CheckAndHandleCollisions()
         {
-            List<ICollidable> returnObjects = new List<ICollidable>();
+            //List<ICollidable> returnObjects = new List<ICollidable>();
 
 
 
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                ICollidable collider = returnObjects[i];
+            //for (int i = 0; i < returnObjects.Count; i++)
+            //{
+            //    ICollidable collider = returnObjects[i];
 
-                if (collider.ColliderType == ColliderType.Item)
-                {
+            //    if (collider.ColliderType == ColliderType.Item)
+            //    {
 
-                    if (this.MainCollider.IsIntersecting(collider))
-                    {
-                        (collider.Entity as Item).TryMagnetize();
-                    }
-                }
-                else if (collider.ColliderType == ColliderType.grass)
-                {
-                    if (this.MainCollider.IsIntersecting(collider))
-                    {
-                        (collider.Entity as GrassTuft).IsUpdating = true;
-                        //(collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
+            //        if (this.MainCollider.IsIntersecting(collider))
+            //        {
+            //            (collider.Entity as Item).TryMagnetize();
+            //        }
+            //    }
+            //    else if (collider.ColliderType == ColliderType.grass)
+            //    {
+            //        if (this.MainCollider.IsIntersecting(collider))
+            //        {
+            //            (collider.Entity as GrassTuft).IsUpdating = true;
+            //            //(collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
 
-                        //if (Game1.EnablePlayerCollisions)
-                        //{
-                        //    CurrentSpeed = Speed1 / 2;
-                        //}
-                    }
-                    #region SWORD INTERACTIONS
-                    if (this.Wardrobe.ToolPiece != null)
-                    {
-                        if (this.Wardrobe.ToolPiece.ToolLine != null)
-                        {
-                            if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
-                            {
-                                if (collider.ColliderType == ColliderType.grass)
-                                    (collider.Entity as GrassTuft).SelfDestruct();
-                            }
-                        }
+            //            //if (Game1.EnablePlayerCollisions)
+            //            //{
+            //            //    CurrentSpeed = Speed1 / 2;
+            //            //}
+            //        }
+            //        #region SWORD INTERACTIONS
+            //        if (this.Wardrobe.ToolPiece != null)
+            //        {
+            //            if (this.Wardrobe.ToolPiece.ToolLine != null)
+            //            {
+            //                if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
+            //                {
+            //                    if (collider.ColliderType == ColliderType.grass)
+            //                        (collider.Entity as GrassTuft).SelfDestruct();
+            //                }
+            //            }
 
-                    }
-                    #endregion
-                }
-                else if (collider.ColliderType == ColliderType.Enemy)
-                {
-                    if (this.Wardrobe.ToolPiece != null)
-                    {
-                        if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
-                        {
-                            collider.Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
-                        }
-                    }
-                }
-                else if (collider.ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
-                {
-                    if (this.MainCollider.IsIntersecting(collider))
-                    {
-                        collider.Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
-                    }
-                }
+            //        }
+            //        #endregion
+            //    }
+            //    else if (collider.ColliderType == ColliderType.Enemy)
+            //    {
+            //        if (this.Wardrobe.ToolPiece != null)
+            //        {
+            //            if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
+            //            {
+            //                collider.Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
+            //            }
+            //        }
+            //    }
+            //    else if (collider.ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
+            //    {
+            //        if (this.MainCollider.IsIntersecting(collider))
+            //        {
+            //            collider.Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
+            //        }
+            //    }
 
-                else
-                {
-                    if (this.IsMoving)
-                    {
-                        if (collider.Entity != this && collider.ColliderType != ColliderType.MouseCollider)
-                        {
-                            if (Game1.EnablePlayerCollisions)
-                            {
-                                if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, collider))
-                                { this.IsBeingKnockedBack = false; }
-
-
-
-                            }
+            //    else
+            //    {
+            //        if (this.IsMoving)
+            //        {
+            //            if (collider.Entity != this && collider.ColliderType != ColliderType.MouseCollider)
+            //            {
+            //                if (Game1.EnablePlayerCollisions)
+            //                {
+            //                    if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, collider))
+            //                    { this.IsBeingKnockedBack = false; }
 
 
-                        }
+
+            //                }
 
 
-                    }
+            //            }
 
-                }
 
-            }
+            //        }
+
+            //    }
+
+            //}
         }
 
         public void UpdateStaminaDrainFlag()

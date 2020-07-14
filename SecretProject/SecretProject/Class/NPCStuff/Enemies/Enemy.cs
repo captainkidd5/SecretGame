@@ -14,6 +14,7 @@ using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using VelcroPhysics.Dynamics;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
@@ -104,6 +105,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
         private Navigator Navigator { get; set; }
 
         private bool HasReachedNextPoint { get; set; }
+
+        public Body Body { get; set; }
+
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager)
         {
             this.Pack = pack;
@@ -126,6 +130,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.DamageImmunityTimer = new SimpleTimer(.5f);
             LoadTextures(graphics);
+
+   
         }
 
         protected virtual void LoadTextures(GraphicsDevice graphics)
