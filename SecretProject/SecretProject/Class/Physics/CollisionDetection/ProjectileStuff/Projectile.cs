@@ -19,8 +19,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     public class Projectile : IEntity
     {
         public GraphicsDevice Graphics { get; private set; }
-        public ICollidable ColliderFiredFrom { get; set; }
- 
+
         public Vector2 CurrentPosition { get; set; }
         public Vector2 PositionToMoveTowards { get; set; }
         public Vector2 DirectionVector { get; set; }
@@ -32,7 +31,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public float Speed { get; private set; }
 
         public Rectangle SourceRectangle { get; set; }
-        public RectangleCollider Collider { get; set; }
+
 
         public List<Projectile> AllProjectiles { get; set; }
 
@@ -44,10 +43,10 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public Body Body { get; set; }
 
         public int DamageValue { get; set; }
-        public Projectile(GraphicsDevice graphics, ICollidable colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
+        public Projectile(GraphicsDevice graphics, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
         {
             this.Graphics = graphics;
-            this.ColliderFiredFrom = colliderFiredFrom;
+
             this.DirectionFiredFrom = directionFiredFrom;
             this.CurrentPosition = startPosition;
             this.PositionToMoveTowards = positionToMoveToward;
@@ -56,7 +55,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.Rotation = rotation;
             this.Speed = speed;
             this.PrimaryVelocity = new Vector2(Speed, Speed);
-            this.Collider = new RectangleCollider(this.Graphics, new Rectangle((int)startPosition.X, (int)startPosition.Y, 4, 4), this, ColliderType.Projectile);
+
             this.AllProjectiles = allProjectiles;
             this.DamagesPlayer = damagesPlayer;
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(280, null).SourceTextureRectangle;
@@ -90,72 +89,72 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 return;
             }
             this.PrimaryVelocity = new Vector2(Speed, Speed);
-            this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4, 4);
-            List<ICollidable> returnObjects = new List<ICollidable>();
+           // this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4, 4);
+            //List<ICollidable> returnObjects = new List<ICollidable>();
        
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
+            //for (int i = 0; i < returnObjects.Count; i++)
+            //{
 
-                if (returnObjects[i].ColliderType == ColliderType.PlayerMainCollider)
-                {
+            //    if (returnObjects[i].ColliderType == ColliderType.PlayerMainCollider)
+            //    {
 
                     
-                    if (DamagesPlayer)
-                    {
-                        if (this.Collider.Rectangle.Intersects(Game1.Player.MainCollider.Rectangle))
-                        {
-                            Game1.Player.TakeDamage(this.DamageValue);
-                            this.AllProjectiles.Remove(this);
-                        }
-                    }
-                }
+            //        if (DamagesPlayer)
+            //        {
+            //            if (this.Collider.Rectangle.Intersects(Game1.Player.MainCollider.Rectangle))
+            //            {
+            //                Game1.Player.TakeDamage(this.DamageValue);
+            //                this.AllProjectiles.Remove(this);
+            //            }
+            //        }
+            //    }
                 
 
-                if (returnObjects[i].ColliderType == ColliderType.Enemy)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
+            //    if (returnObjects[i].ColliderType == ColliderType.Enemy)
+            //    {
+            //        if (this.Collider.IsIntersecting(returnObjects[i]))
+            //        {
 
     
-                        if ((returnObjects[i].Rectangle != this.ColliderFiredFrom.Rectangle))
-                        {
-                            returnObjects[i].Entity.DamageCollisionInteraction(this.DamageValue, 5, this.DirectionFiredFrom);
-                            this.AllProjectiles.Remove(this);
-                            return;
-                        }
+            //            if ((returnObjects[i].Rectangle != this.ColliderFiredFrom.Rectangle))
+            //            {
+            //                returnObjects[i].Entity.DamageCollisionInteraction(this.DamageValue, 5, this.DirectionFiredFrom);
+            //                this.AllProjectiles.Remove(this);
+            //                return;
+            //            }
 
 
-                    }
-                }
-                else if (returnObjects[i].ColliderType == ColliderType.inert)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
-                        Miss();
-                        this.AllProjectiles.Remove(this);
-                        return;
+            //        }
+            //    }
+            //    else if (returnObjects[i].ColliderType == ColliderType.inert)
+            //    {
+            //        if (this.Collider.IsIntersecting(returnObjects[i]))
+            //        {
+            //            Miss();
+            //            this.AllProjectiles.Remove(this);
+            //            return;
 
-                    }
-                }
-                else if (returnObjects[i].ColliderType == ColliderType.grass)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
-                        (returnObjects[i].Entity as GrassTuft).SelfDestruct();
-                        return;
-                    }
-                }
+            //        }
+            //    }
+            //    else if (returnObjects[i].ColliderType == ColliderType.grass)
+            //    {
+            //        if (this.Collider.IsIntersecting(returnObjects[i]))
+            //        {
+            //            (returnObjects[i].Entity as GrassTuft).SelfDestruct();
+            //            return;
+            //        }
+            //    }
 
-                else
-                {
-
-
-                }
+            //    else
+            //    {
 
 
+            //    }
 
 
-            }
+
+
+            //}
 
             this.CurrentPosition += this.DirectionVector * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
 

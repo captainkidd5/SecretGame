@@ -43,7 +43,7 @@ namespace SecretProject.Class.Misc
 
         private bool IsMoving { get; set; }
 
-        public CircleCollider CircleCollider { get; set; }
+        //public CircleCollider CircleCollider { get; set; }
 
 
         public GrassCreature(GrassCreatureType grassCreatureType, GraphicsDevice graphics, Vector2 position, List<FunItems> funItems)
@@ -76,9 +76,9 @@ namespace SecretProject.Class.Misc
                     break;
 
             }
-            this.CircleCollider = new CircleCollider(graphics, new Rectangle((int)this.position.X, (int)this.position.Y,
-                16, 16),
-                new Circle(this.position,8), this, ColliderType.GrassCreature);
+           // this.CircleCollider = new CircleCollider(graphics, new Rectangle((int)this.position.X, (int)this.position.Y,
+              //  16, 16),
+             //   new Circle(this.position,8), this, ColliderType.GrassCreature);
             this.IsMoving = true;
             this.ColorMultiplier = 1f;
 
@@ -122,17 +122,17 @@ namespace SecretProject.Class.Misc
 
                     }
 
-                    this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
-                 this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
-                    this.CircleCollider.UpdateCirclePosition();
-                    QuadTreeInsertion();
+                    //this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
+               //  this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
+                  //  this.CircleCollider.UpdateCirclePosition();
+                  //  QuadTreeInsertion();
                     Navigator.Wander(gameTime, ref this.position, ref CurrentDirection);
                     this.position += new Vector2(1f, 1f) * Navigator.DirectionVector;
 
-                    this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
-                this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
-                    this.CircleCollider.UpdateCirclePosition();
-                    QuadTreeInsertion();
+                  //  this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
+                //this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
+                 //   this.CircleCollider.UpdateCirclePosition();
+                 //   QuadTreeInsertion();
                     if (Navigator.HasReachedNextPoint)
                     {
                         if (Navigator.CurrentPath.Count == 0)
@@ -159,10 +159,10 @@ namespace SecretProject.Class.Misc
                     }
                     Navigator.Wander(gameTime, ref this.position, ref CurrentDirection);
                     this.position += new Vector2(1f, 1f) * Navigator.DirectionVector;
-                    this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
-                this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
-                    this.CircleCollider.UpdateCirclePosition();
-                    QuadTreeInsertion();
+                  //  this.CircleCollider.Update(new Rectangle((int)this.position.X, (int)this.position.Y,
+               // this.AnimatedSprite[0].Rectangle.Width, this.AnimatedSprite[0].Rectangle.Height));
+                //    this.CircleCollider.UpdateCirclePosition();
+                    //QuadTreeInsertion();
 
 
                     if (Navigator.HasReachedNextPoint)
@@ -186,7 +186,7 @@ namespace SecretProject.Class.Misc
                     .5f + (position.Y + SourceRectangleHeight- 8) * Utility.ForeGroundMultiplier);
             if(Game1.CurrentStage.ShowBorders)
             {
-                this.CircleCollider.DrawDebug(spriteBatch);
+             //   this.CircleCollider.DrawDebug(spriteBatch);
             }
         }
 
@@ -194,26 +194,26 @@ namespace SecretProject.Class.Misc
         /// returns whether or not a collision occurred with a solid object
         /// </summary>
         /// <returns></returns>
-        private bool QuadTreeInsertion()
-        {
-            this.CircleCollider.Rectangle = new Rectangle((int)this.position.X, (int)this.position.Y,
-               16, 16);
-            List<ICollidable> returnObjects = new List<ICollidable>();
+        //private bool QuadTreeInsertion()
+        //{
+        //    //this.CircleCollider.Rectangle = new Rectangle((int)this.position.X, (int)this.position.Y,
+        //       16, 16);
+        //    List<ICollidable> returnObjects = new List<ICollidable>();
             
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                if (returnObjects[i].ColliderType == ColliderType.grass)
-                {
-                    if (this.CircleCollider.IsIntersecting(returnObjects[i]))
-                    {
-                        (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
-                      //  (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
-                    }
-                }
+        //    for (int i = 0; i < returnObjects.Count; i++)
+        //    {
+        //       // if (returnObjects[i].ColliderType == ColliderType.grass)
+        //        //{
+        //         //   if (this.CircleCollider.IsIntersecting(returnObjects[i]))
+        //         //   {
+        //         //       (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
+        //              //  (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
+        //        //    }
+        //        }
 
-            }
-            return false;
-        }
+        //    }
+        //    return false;
+        //}
 
         public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {

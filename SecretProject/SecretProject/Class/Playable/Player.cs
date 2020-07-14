@@ -84,9 +84,6 @@ namespace SecretProject.Class.Playable
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
 
-        public CircleCollider MainCollider { get; set; }
-        public RectangleCollider BigCollider { get; set; }
-
         public bool IsPerformingAction = false;
 
         public Line ToolLine { get; set; }
@@ -166,9 +163,6 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
 
-
-            this.MainCollider = new CircleCollider(graphics, this.ColliderRectangle, new Circle(this.Position, 12), this, ColliderType.PlayerMainCollider);
-            this.BigCollider = new RectangleCollider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             this.Inventory = new Inventory(30) { Money = 10000 };
 
             this.EnableControls = true;
@@ -195,7 +189,7 @@ namespace SecretProject.Class.Playable
 
         public void CreateBody()
         {
-            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, this.MainCollider.Circle.Radius / 2, 0f, this.MainCollider.Circle.Center);
+            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 6, 0f, this.position);
             CollisionBody.BodyType = BodyType.Dynamic;
             CollisionBody.Restitution = 0f;
             CollisionBody.Friction = .4f;
@@ -207,7 +201,7 @@ namespace SecretProject.Class.Playable
 
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnCollision;
-            this.MainCollider.Body = CollisionBody;
+
 
             this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             LargeProximitySensor.Position = this.Position;
@@ -427,8 +421,8 @@ namespace SecretProject.Class.Playable
                             ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8),
-                                MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles, false, arrowData.Damage));
+                            //Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8),
+                            //    MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles, false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                             item.AlterDurability(1);
                             UserInterface.StaminaBar.DecreaseStamina(1);
@@ -517,9 +511,8 @@ namespace SecretProject.Class.Playable
                     CollisionBody.AngularVelocity = 0f;
                 }
 
-                this.MainCollider.Circle.Center = CollisionBody.Position;
                 this.LargeProximitySensor.Position = CollisionBody.Position;
-                Position = new Vector2(MainCollider.Circle.Center.X - 8, MainCollider.Circle.Center.Y - 32);
+                Position = new Vector2(CollisionBody.Position.X - 8, CollisionBody.Position.Y - 32);
                 //Wardrobe.SetZero();
                 PlayerCamPos = new Vector2((int)this.Position.X, (int)this.Position.Y);
 
@@ -886,11 +879,11 @@ namespace SecretProject.Class.Playable
                     UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "You have run out of health (-200G)!");
                 }
                 this.IsImmuneToDamage = true;
-                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
+              //  UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
             }
             else
             {
-                UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "Invincible!", 50f, Color.Red, true, 3f, true));
+             //   UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "Invincible!", 50f, Color.Red, true, 3f, true));
             }
 
         }

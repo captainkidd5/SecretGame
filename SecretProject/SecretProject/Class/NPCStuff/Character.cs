@@ -49,8 +49,6 @@ namespace SecretProject.Class.NPCStuff
         //0 = down, 1 = left, 2 =  right, 3 = up
         public Dir CurrentDirection { get; set; }
 
-
-        public CircleCollider Collider { get; set; }
         public bool CollideOccured { get; set; } = false;
         public int SpeakerID { get; set; }
         public bool IsMoving { get; set; }
@@ -128,7 +126,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8), this);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
@@ -161,7 +158,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             HitBoxTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
-            Collider = new CircleCollider(graphics, NPCHitBoxRectangle, new Circle(this.Position, NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
 
         }
 
@@ -252,7 +248,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
 
-            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, this.NPCHitBoxRectangle.Width / 2, false), this, ColliderType.NPC);
             this.CurrentDirection = 0;
             if (characterPortraitTexture != null)
             {
@@ -311,8 +306,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 this.DisableInteractions = true;
             }
             this.PrimaryVelocity = new Vector2(1, 1);
-            this.Collider.Rectangle = this.NPCHitBoxRectangle;
-
 
 
             for (int i = 0; i < NPCAnimatedSprite.Length; i++)

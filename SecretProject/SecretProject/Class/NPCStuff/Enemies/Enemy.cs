@@ -56,7 +56,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Vector2 TotalVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
-        public CircleCollider Collider { get; set; }
+
         public bool CollideOccured { get; set; }
 
         protected Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
@@ -114,8 +114,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.Position = position;
             this.Graphics = graphics;
             this.Texture = Game1.AllTextures.EnemySpriteSheet;
-            this.Collider = new CircleCollider(graphics, this.NPCHitBoxRectangle, new Circle(this.Position, 8),this, ColliderType.Enemy);
-            
+
 
             this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NextPointRectangle);
@@ -201,14 +200,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);
-                if(QuadTreeInsertion())
-                {
-                    //if(oldPrimaryVelocity == primaryVelocity)
-                    //{
-                    //    primaryVelocity = new Vector2(primaryVelocity.X + .5f, primaryVelocity.Y + .5f);
-                    //    DirectionVector = Vector2.One;
-                    //}
-                }
+
                 this.Position += this.primaryVelocity * DirectionVector;
                 //if(Navigator.HasReachedNextPoint)
                 //    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
@@ -288,56 +280,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     break;
             }
         }
-        /// <summary>
-        /// returns whether or not a collision occurred with a solid object
-        /// </summary>
-        /// <returns></returns>
-        public virtual bool QuadTreeInsertion()
-        {
-            this.Collider.Rectangle = this.NPCHitBoxRectangle;
-            List<ICollidable> returnObjects = new List<ICollidable>();
-          
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
-                {
-                    if (this.Collider.IsIntersecting(Game1.Player.MainCollider))
-                    {
-                        if (!Game1.Player.IsImmuneToDamage)
-                        {
-                            Game1.Player.DamageCollisionInteraction(1, 200, this.CurrentDirection);
-                        }
 
-                    }
-                }
-                else if (returnObjects[i].ColliderType == ColliderType.grass)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
-                       (returnObjects[i].Entity as GrassTuft).IsUpdating = true;
-                      //  (returnObjects[i].Entity as GrassTuft).InitialShuffDirection = this.CurrentDirection;
-                    }
-                }
-                else
-                {
-                    if (this.IsMoving)
-                    {
-
-
-                        if (returnObjects[i].ColliderType == ColliderType.inert)
-                        {
-                            Vector2 oldVelocity = primaryVelocity;
-                            //if (Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]))
-                            //{
-                            //    return true;
-                            //}
-                        }
-                    }
-
-                }
-            }
-            return false;
-        }
 
         public void RollPeriodicDrop(Vector2 positionToDrop)
         {

@@ -93,7 +93,6 @@ namespace SecretProject.Class.Controls
 
         GraphicsDevice graphicsDevice;
 
-        public RectangleCollider MouseCollider { get; set; }
 
         public float MouseAngleInRelationToPlayer { get; set; }
 
@@ -127,7 +126,6 @@ namespace SecretProject.Class.Controls
             this.RequiredHoldTime = .15f;
 
             this.OldMouseInterfacePosition = Vector2.Zero;
-            this.MouseCollider = new RectangleCollider(graphicsDevice, new Rectangle(0,0,1,1), this, ColliderType.MouseCollider);
             AttachMouseBody();
         }
 
@@ -215,33 +213,7 @@ namespace SecretProject.Class.Controls
                 }
             }
 
-            if (Game1.CurrentStage != null && Game1.CurrentStage != Game1.mainMenu)
-            {
-
-
-                if (WorldMouseRectangle.Intersects(Game1.Player.BigCollider.Rectangle))
-                {
-                    this.MouseCollider.Rectangle = this.WorldMouseRectangle;
-                    List<ICollidable> returnObjects = new List<ICollidable>();
-                  
-                    for (int i = 0; i < returnObjects.Count; i++)
-                    {
-                        if (returnObjects[i].ColliderType == ColliderType.inert)
-                        {
-                            if (this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
-                            {
-                                // Tile tile = (Tile)returnObjects[i].Entity;
-                                if (returnObjects[i].Entity != null)
-                                {
-                                    returnObjects[i].Entity.MouseCollisionInteraction();
-                                }
-
-                            }
-                        }
-
-                    }
-                }
-            }
+            
             MouseBody.Position = worldMousePosition;
         }
 

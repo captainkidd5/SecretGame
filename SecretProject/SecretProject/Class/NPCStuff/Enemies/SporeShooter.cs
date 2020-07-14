@@ -66,9 +66,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 {
 
 
-                    float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
+                 //   float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SporeShoot, true, .15f);
-                    Game1.CurrentStage.AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,true, 2));
+                  //  Game1.CurrentStage.AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,true, 2));
                     this.ShotsFiredDuringInterval++;
                     
                 }
@@ -97,22 +97,22 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
 
-            this.Collider.Rectangle = this.NPCHitBoxRectangle;
-            List<ICollidable> returnObjects = new List<ICollidable>();
+            //this.Collider.Rectangle = this.NPCHitBoxRectangle;
+            //List<ICollidable> returnObjects = new List<ICollidable>();
          
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
+            //for (int i = 0; i < returnObjects.Count; i++)
+            //{
 
-                this.CollideOccured = true;
-                if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
-                {
-                   if(this.Collider.Rectangle.Intersects(returnObjects[i].Rectangle))
-                    {
-                        this.CurrentBehaviour = CurrentBehaviour.Chase;
-                    }
-                }
+            //    this.CollideOccured = true;
+            //    if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
+            //    {
+            //       if(this.Collider.Rectangle.Intersects(returnObjects[i].Rectangle))
+            //        {
+            //            this.CurrentBehaviour = CurrentBehaviour.Chase;
+            //        }
+            //    }
 
-            }
+            //}
             this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
           //  UpdateDirection();
 

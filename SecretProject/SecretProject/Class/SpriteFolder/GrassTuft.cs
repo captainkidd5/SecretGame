@@ -33,7 +33,6 @@ namespace SecretProject.Class.SpriteFolder
 
         public Rectangle SourceRectangle { get; set; }
 
-        public ColliderType ColliderType { get; set; }
         public string LocationKey { get; set; }
 
         public bool IsUpdating { get; set; }
@@ -45,7 +44,6 @@ namespace SecretProject.Class.SpriteFolder
 
         public Vector2 GrassOffset { get; set; }
 
-        public RectangleCollider RectangleCollider;
 
         public Body RotatableBody { get; set; }
 
@@ -75,7 +73,7 @@ namespace SecretProject.Class.SpriteFolder
 
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
-            this.ColliderType = ColliderType.grass;
+
             this.IsUpdating = false;
 
 
@@ -87,8 +85,6 @@ namespace SecretProject.Class.SpriteFolder
 
             this.LayerDepth = .5f + (this.DestinationRectangle.Y + 8) * Utility.ForeGroundMultiplier + this.YOffSet;
             this.GrassOffset = new Vector2(8, 24);
-
-            this.RectangleCollider = new RectangleCollider(graphics, this.DestinationRectangle, this, ColliderType.grass);
 
             if (!BodyLoaded)
                 LoadBody(stage);

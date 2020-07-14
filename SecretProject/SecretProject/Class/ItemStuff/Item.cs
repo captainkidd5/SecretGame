@@ -122,7 +122,6 @@ namespace SecretProject.Class.ItemStuff
                     TextureScaleY = .75f,
                     IsWorldItem = true,
                     LayerDepth = .7f,
-                    ColliderType = ColliderType.Item,
                     Entity = this
                 };
                 this.Ignored = true;
