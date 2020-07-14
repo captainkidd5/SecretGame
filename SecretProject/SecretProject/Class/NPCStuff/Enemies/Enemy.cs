@@ -130,14 +130,14 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.CurrentBehaviour = CurrentBehaviour.Wander;
 
             this.DamageImmunityTimer = new SimpleTimer(.5f);
-            LoadTextures(graphics);
 
+            CreateBody();
    
         }
 
         protected virtual void LoadTextures(GraphicsDevice graphics)
         {
-            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.NPCAnimatedSprite[0].Width, this.NPCAnimatedSprite[0].Height);
+            this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.NPCAnimatedSprite[0].FrameWidth, this.NPCAnimatedSprite[0].FrameHeight);
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
 
@@ -214,8 +214,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);
-
-                this.Position += this.primaryVelocity * DirectionVector;
+                CollisionBody.LinearVelocity = this.primaryVelocity * DirectionVector * 5 *(float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                this.Position = CollisionBody.Position;
                 //if(Navigator.HasReachedNextPoint)
                 //    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
 
