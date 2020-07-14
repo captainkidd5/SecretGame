@@ -56,15 +56,17 @@ namespace SecretProject.Class.Physics.Tools
                 this.CollisionBody, this.Entity.CollisionBody.Position);
             joint.MotorSpeed = MathHelper.PiOver2;
             joint.MaxMotorTorque = 10;
+            joint.Enabled = true;
+            this.Joint = joint;
 
         }
 
-        public void Swing(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             this.Sprite.Update(gameTime);
-            this.Sprite.Rotation = Joint.ReferenceAngle;
+            this.Sprite.Rotation = Joint.JointAngle;
             this.Sprite.Origin = this.CollisionBody.Position;
-            this.Joint.Enabled = true;
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)

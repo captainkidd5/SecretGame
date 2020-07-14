@@ -61,7 +61,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
         {
             base.Draw(spriteBatch, yLayerHeight);
 
-            Game1.Player.Wardrobe.ToolPiece.Draw(spriteBatch, yLayerHeight);
+           // Game1.Player.Wardrobe.ToolPiece.Draw(spriteBatch, yLayerHeight);
         }
     }
 }

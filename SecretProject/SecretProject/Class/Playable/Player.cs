@@ -12,6 +12,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.Physics;
+using SecretProject.Class.Physics.Tools;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -86,11 +87,7 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
-        public Line ToolLine { get; set; }
-
-        public Sprite CurrentTool { get; set; }
-
-
+        public ITool CurrentEquippedTool { get; set; }
         public UserInterface UserInterface { get; set; }
 
         public Texture2D BigHitBoxRectangleTexture;
@@ -124,10 +121,6 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        //WHIRLPOOL
-        public Vector2 MoveToPosition { get; private set; }
-        public bool IsMovingTowardsPoint { get; private set; }
-        public bool TransportAfterMove { get; set; }
 
         //TAKEDAMAGE
         public SimpleTimer DamageImmunityTimer;
@@ -167,8 +160,6 @@ namespace SecretProject.Class.Playable
 
             this.EnableControls = true;
             controls = new PlayerControls(0);
-
-
 
 
 
@@ -331,7 +322,8 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
-                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+                    this.CurrentEquippedTool = Sword.CreateSword(this.Graphics, this, GetCurrentEquippedToolData());
+                 //   Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
 
                     break;
 
@@ -358,22 +350,8 @@ namespace SecretProject.Class.Playable
 
             return this.Position == goal;
         }
-        public void MoveToPoint(Vector2 position)
-        {
-            this.MoveToPosition = position;
-            this.IsMovingTowardsPoint = true;
-        }
-        public void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
-        {
-
-            this.IsMoving = true;
 
 
-            Vector2 direction = Vector2.Normalize(positionToMoveAwayFrom - this.Position);
-
-            this.PrimaryVelocity += direction * 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-        }
         #endregion
 
 
@@ -428,6 +406,7 @@ namespace SecretProject.Class.Playable
                     Item item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                     if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
                     {
+
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordSwing, true, 1f);
                         DoPlayerAnimation(AnimationType.Swiping);
                         item.AlterDurability(1);
@@ -458,7 +437,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (this.IsMoving && !IsMovingTowardsPoint && !IsPerformingAction)
+                if (this.IsMoving && !IsPerformingAction)
                 {
                     HandleStamina();
 
@@ -473,18 +452,16 @@ namespace SecretProject.Class.Playable
                     }
 
                     //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
-                    //if (this.CurrentTool != null)
-                    //{
-                    //    this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
-                    //    this.ToolLine.Point2 = new Vector2(this.CurrentTool.Position.X + 20, this.CurrentTool.Position.Y + 20);
-                    //    this.ToolLine.Rotation = this.CurrentTool.Rotation + (float)3.5;
+                    if (this.CurrentEquippedTool != null)
+                    {
+                        CurrentEquippedTool.Update(gameTime);
+                     //   this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
 
-
-                    //}
+                    }
 
                     if (IsPerformingAction == false)
                     {
-                        this.CurrentTool = null;
+                        this.CurrentEquippedTool = null;
                     }
 
                 }
@@ -608,94 +585,7 @@ namespace SecretProject.Class.Playable
             return movementDir;
         }
 
-        private void CheckAndHandleCollisions()
-        {
-            //List<ICollidable> returnObjects = new List<ICollidable>();
-
-
-
-            //for (int i = 0; i < returnObjects.Count; i++)
-            //{
-            //    ICollidable collider = returnObjects[i];
-
-            //    if (collider.ColliderType == ColliderType.Item)
-            //    {
-
-            //        if (this.MainCollider.IsIntersecting(collider))
-            //        {
-            //            (collider.Entity as Item).TryMagnetize();
-            //        }
-            //    }
-            //    else if (collider.ColliderType == ColliderType.grass)
-            //    {
-            //        if (this.MainCollider.IsIntersecting(collider))
-            //        {
-            //            (collider.Entity as GrassTuft).IsUpdating = true;
-            //            //(collider.Entity as GrassTuft).InitialShuffDirection = controls.Direction;
-
-            //            //if (Game1.EnablePlayerCollisions)
-            //            //{
-            //            //    CurrentSpeed = Speed1 / 2;
-            //            //}
-            //        }
-            //        #region SWORD INTERACTIONS
-            //        if (this.Wardrobe.ToolPiece != null)
-            //        {
-            //            if (this.Wardrobe.ToolPiece.ToolLine != null)
-            //            {
-            //                if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
-            //                {
-            //                    if (collider.ColliderType == ColliderType.grass)
-            //                        (collider.Entity as GrassTuft).SelfDestruct();
-            //                }
-            //            }
-
-            //        }
-            //        #endregion
-            //    }
-            //    else if (collider.ColliderType == ColliderType.Enemy)
-            //    {
-            //        if (this.Wardrobe.ToolPiece != null)
-            //        {
-            //            if (this.Wardrobe.ToolPiece.ToolLine.IntersectsRectangle(collider.Rectangle))
-            //            {
-            //                collider.Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
-            //            }
-            //        }
-            //    }
-            //    else if (collider.ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
-            //    {
-            //        if (this.MainCollider.IsIntersecting(collider))
-            //        {
-            //            collider.Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
-            //        }
-            //    }
-
-            //    else
-            //    {
-            //        if (this.IsMoving)
-            //        {
-            //            if (collider.Entity != this && collider.ColliderType != ColliderType.MouseCollider)
-            //            {
-            //                if (Game1.EnablePlayerCollisions)
-            //                {
-            //                    if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, collider))
-            //                    { this.IsBeingKnockedBack = false; }
-
-
-
-            //                }
-
-
-            //            }
-
-
-            //        }
-
-            //    }
-
-            //}
-        }
+       
 
         public void UpdateStaminaDrainFlag()
         {
@@ -766,6 +656,10 @@ namespace SecretProject.Class.Playable
             {
 
                 Wardrobe.Draw(spriteBatch, layerDepth);
+                if(CurrentEquippedTool != null)
+                {
+                    CurrentEquippedTool.Draw(spriteBatch, layerDepth);
+                }
                 if (!IsPerformingAction)
                 {
 
@@ -831,7 +725,6 @@ namespace SecretProject.Class.Playable
 
         public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
-            //  CheckMouseRotationFromEntity(this.Position);
 
             if (item != null)
             {
@@ -872,10 +765,6 @@ namespace SecretProject.Class.Playable
             //}
         }
 
-        public void Interact()
-        {
-            throw new NotImplementedException();
-        }
 
         public void RestorePlayerToFull()
         {
