@@ -48,9 +48,11 @@ namespace SecretProject.Class.Physics
         {
             this.Shapes = shapes;
             this.RectangleShape = body;
-
-            this.DebugRectangle = new Rectangle((int)body.Position.X - 8, (int)body.Position.Y - 8, 16, 16);
-            this.Texture = RetrieveDebugTexture(16, 16);
+            PolygonShape shape = (PolygonShape)RectangleShape.FixtureList[0].Shape;
+            float width = shape.Vertices[0].X - shape.Vertices[3].X;
+            float height = shape.Vertices[1].Y - shape.Vertices[0].Y;
+            this.DebugRectangle = new Rectangle((int)body.Position.X - 8, (int)body.Position.Y - 8, (int)width, (int)height);
+            this.Texture = RetrieveDebugTexture((int)width, (int)height);
         }
 
         public void Draw(SpriteBatch spriteBatch)

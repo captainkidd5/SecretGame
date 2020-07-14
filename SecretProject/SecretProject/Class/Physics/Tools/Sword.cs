@@ -51,27 +51,30 @@ namespace SecretProject.Class.Physics.Tools
         }
         public void CreateBody()
         {
-
+            Body entityStaticBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 16, 1f);
+            entityStaticBody.Position = this.Entity.CollisionBody.Position;
+            entityStaticBody.BodyType = BodyType.Static;
+            entityStaticBody.IgnoreGravity = true;
 
             this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 1, (int)SwordLength.X, 1f);
             this.CollisionBody.BodyType = BodyType.Dynamic;
-            this.CollisionBody.Position = this.Entity.CollisionBody.Position;
+            this.CollisionBody.Position = entityStaticBody.Position;
             this.CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Weapon;
             this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy | VelcroPhysics.Collision.Filtering.Category.Solid;
             this.CollisionBody.IgnoreGravity = true;
             this.CollisionBody.OnCollision += OnCollision;
 
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
-                this.CollisionBody, this.Entity.CollisionBody, this.Entity.CollisionBody.Position);
+                this.CollisionBody, entityStaticBody, entityStaticBody.Position);
             joint.LocalAnchorA = new Vector2(0, 0);
             joint.LocalAnchorB = new Vector2(0, 0);
             joint.ReferenceAngle = 0;
 
             joint.MotorEnabled = true;
+            //joint.LowerLimit
+            joint.MotorSpeed = 40;
 
-            joint.MotorSpeed = 360;
-
-            joint.MaxMotorTorque = 60;
+            joint.MaxMotorTorque = 100;
             joint.Enabled = true;
             // joint.
             this.Joint = joint;
@@ -91,7 +94,7 @@ namespace SecretProject.Class.Physics.Tools
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             this.Sprite.DrawRotationalSprite(spriteBatch, Sprite.Position, MathHelper.ToDegrees(Joint.JointAngle),
-                Vector2.Zero, layerDepth);
+                Sprite.Origin, layerDepth);
             
 
         }
@@ -103,17 +106,24 @@ namespace SecretProject.Class.Physics.Tools
             int damage;
             Rectangle sourceRectangle;
             Sprite swordSprite;
-            // if (itemData != null)
-            //  {
+
             texture = Game1.AllTextures.ItemSpriteSheet;
             sourceRectangle = Game1.ItemVault.GenerateNewItem(itemData.ID, null).SourceTextureRectangle;
             damage = itemData.Damage;
 
-            //  }
-            swordSprite = new Sprite(graphics, texture, sourceRectangle, holder.CollisionBody.Position, (int)sourceRectangle.Width, (int)sourceRectangle.Height);
+
+            //Vector2 centralPosition = new Vector2(holder.CollisionBody.Position.X + 16, holder.CollisionBody.Position.Y + 16);
+            swordSprite = new Sprite(graphics, texture, sourceRectangle, holder.CollisionBody.Position, (int)sourceRectangle.Width, (int)sourceRectangle.Height) { Origin = new Vector2(16, 16) };
             sword = new Sword(holder, holder.CollisionBody.Position, swordSprite, damage, sourceRectangle.Width, null);
 
             return sword;
+        }
+
+        public void Remove()
+        {
+            Game1.VelcroWorld.RemoveBody(this.CollisionBody);
+            
+            //Game1.VelcroWorld.RemoveJoint(this.Joint);
         }
 
 

@@ -339,10 +339,6 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
-        public void Eject(GameTime gameTime)
-        {
-
-        }
 
         public void PlayOnce(GameTime gameTime, Vector2 position)
         {

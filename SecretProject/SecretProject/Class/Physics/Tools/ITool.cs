@@ -12,5 +12,7 @@ namespace SecretProject.Class.Physics.Tools
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, float layerDepth);
+
+        void Remove();
     }
 }

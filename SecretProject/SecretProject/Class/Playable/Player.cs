@@ -200,8 +200,8 @@ namespace SecretProject.Class.Playable
 
             this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             LargeProximitySensor.Position = this.Position;
-            LargeProximitySensor.BodyType = BodyType.Dynamic;
-            // LargeProximitySensor.IsSensor = true;
+            LargeProximitySensor.BodyType = BodyType.Static;
+             LargeProximitySensor.IsSensor = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
@@ -461,6 +461,7 @@ namespace SecretProject.Class.Playable
 
                     if (IsPerformingAction == false)
                     {
+                        this.CurrentEquippedTool.Remove();
                         this.CurrentEquippedTool = null;
                     }
 
