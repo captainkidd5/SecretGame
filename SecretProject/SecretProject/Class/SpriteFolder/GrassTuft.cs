@@ -100,7 +100,7 @@ namespace SecretProject.Class.SpriteFolder
             this.RotatableBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
                this.DestinationRectangle.Y + SourceRectangle.Height / 4);
             RotatableBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Weapon;
 
             RotatableBody.BodyType = BodyType.Static;
             RotatableBody.Restitution = 0f;
@@ -127,13 +127,7 @@ namespace SecretProject.Class.SpriteFolder
             this.BodyLoaded = false;
         }
 
-        private void DrawDebugLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color, float thickness = 2f)
-        {
-            Vector2 delta = end - start;
-            float rotation = (float)Math.Atan2(delta.Y, delta.X);
-            spriteBatch.Draw(Game1.AllTextures.redPixel, start, new Rectangle(0, 0, 1, 1),
-                color, rotation, new Vector2(0, .5f), new Vector2(delta.Length(), thickness), SpriteEffects.None, .99f);
-        }
+        
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
