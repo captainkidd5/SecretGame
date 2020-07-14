@@ -24,7 +24,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
-    public class Character : INPC, ILightBlockable
+    public class Character : INPC, ILightBlockable, ICollidable
     {
         public string Name { get; set; }
         public Vector2 Position { get; set; }
@@ -110,7 +110,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
         public Hull Hull { get; set; }
 
-        public Body InteractionBody { get; set; }
+        public Body CollisionBody { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, TmxStageBase currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
@@ -163,16 +163,16 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void CreateBody()
         {
-            this.InteractionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
-            InteractionBody.Position = this.Position;
-            InteractionBody.BodyType = BodyType.Static;
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
+            CollisionBody.Position = this.Position;
+            CollisionBody.BodyType = BodyType.Static;
             //InteractionBody.IsSensor = true;
-            InteractionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
-            InteractionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
+            CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
-            InteractionBody.IgnoreGravity = true;
-            InteractionBody.OnCollision += OnProximityCollision;
-            InteractionBody.OnSeparation += OnProximitySeparation;
+            CollisionBody.IgnoreGravity = true;
+            CollisionBody.OnCollision += OnProximityCollision;
+            CollisionBody.OnSeparation += OnProximitySeparation;
             
         }
 
@@ -198,7 +198,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             else if (this.CurrentStageLocation == newStage)
             {
                 CreateBody();
-                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, CurrentStageLocation.DebuggableShapes));
                 Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
             }
         }
@@ -209,7 +209,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             if (this.CurrentStageLocation == Game1.CurrentStage) //if leaving current stage.
             {
                 Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
-                Game1.VelcroWorld.RemoveBody(this.InteractionBody);
+                Game1.VelcroWorld.RemoveBody(this.CollisionBody);
                 Game1.VelcroWorld.ProcessChanges();
 
             }
@@ -222,7 +222,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             if (this.CurrentStageLocation == Game1.CurrentStage)
             {
                 CreateBody();
-                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(InteractionBody, CurrentStageLocation.DebuggableShapes));
+                CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, CurrentStageLocation.DebuggableShapes));
                 Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
             }
 
@@ -299,7 +299,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 this.DisableInteractions = false;
                 UpdateHullPosition();
 
-                this.InteractionBody.Position = this.Position;
+                this.CollisionBody.Position = this.Position;
             }
             else
             {

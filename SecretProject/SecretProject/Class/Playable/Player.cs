@@ -197,16 +197,20 @@ namespace SecretProject.Class.Playable
             CollisionBody.Inertia = 0;
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;
-            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid | VelcroPhysics.Collision.Filtering.Category.Item | VelcroPhysics.Collision.Filtering.Category.TransparencySensor;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid |
+                VelcroPhysics.Collision.Filtering.Category.Item |
+                VelcroPhysics.Collision.Filtering.Category.TransparencySensor |
+                VelcroPhysics.Collision.Filtering.Category.Enemy;
 
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnCollision;
+            CollisionBody.OnSeparation += OnSeparation;
 
 
             this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             LargeProximitySensor.Position = this.Position;
             LargeProximitySensor.BodyType = BodyType.Dynamic;
-          // LargeProximitySensor.IsSensor = true;
+            // LargeProximitySensor.IsSensor = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             LargeProximitySensor.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 
@@ -246,7 +250,22 @@ namespace SecretProject.Class.Playable
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 
         {
-            //  Console.WriteLine("hi");
+
+            if (fixtureB.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.TransparencySensor)
+            {
+
+                (fixtureB.Body.UserData as Tile).ColorMultiplier = .25f;
+            }
+        }
+
+        private void OnSeparation(Fixture fixtureA, Fixture fixtureB, Contact contact)
+
+        {
+            if (fixtureB.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.TransparencySensor)
+            {
+                Console.WriteLine("hi");
+                (fixtureB.Body.UserData as Tile).ColorMultiplier = 1f;
+            }
         }
         private void UpdatePenumbraLights()
         {
@@ -520,7 +539,7 @@ namespace SecretProject.Class.Playable
                     Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
 
 
-            
+
                 UpdatePenumbraLights();
 
             }
@@ -879,11 +898,11 @@ namespace SecretProject.Class.Playable
                     UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen, "You have run out of health (-200G)!");
                 }
                 this.IsImmuneToDamage = true;
-              //  UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
+                //  UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
             }
             else
             {
-             //   UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "Invincible!", 50f, Color.Red, true, 3f, true));
+                //   UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X + 600, this.MainCollider.Rectangle.Y), 100, "Invincible!", 50f, Color.Red, true, 3f, true));
             }
 
         }

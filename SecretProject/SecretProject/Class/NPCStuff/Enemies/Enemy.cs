@@ -15,6 +15,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
@@ -36,7 +37,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-    public class Enemy : INPC, IEntity
+    public class Enemy : INPC, IEntity, ICollidable
     {
 
         protected GraphicsDevice Graphics { get; set; }
@@ -107,6 +108,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         private bool HasReachedNextPoint { get; set; }
 
         public Body Body { get; set; }
+        public Body CollisionBody { get; set; }
 
         public Enemy(List<Enemy> pack, Vector2 position, GraphicsDevice graphics, TileManager TileManager)
         {
@@ -139,11 +141,23 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
         }
 
-        public void UpdateCurrentChunk(TileManager TileManager)
+        public virtual void CreateBody()
         {
+            this.CollisionBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 6, 0f, this.Position);
+            CollisionBody.BodyType = BodyType.Dynamic;
+            CollisionBody.Restitution = 0f;
+            CollisionBody.Friction = .4f;
+            CollisionBody.Mass = 1f;
+            CollisionBody.Inertia = 0;
+            CollisionBody.SleepingAllowed = true;
+            CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Enemy;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid | VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.TransparencySensor;
 
-            this.ObstacleGrid = TileManager.PathGrid;
+            CollisionBody.IgnoreGravity = true;
+            //CollisionBody.OnCollision += OnCollision;
         }
+
+
 
         /// <summary>
         /// If enemy hitpoints are 0 or less, drop items and remove from game.
@@ -436,5 +450,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

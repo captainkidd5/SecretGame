@@ -487,6 +487,7 @@ namespace SecretProject.Class.TileStuff
                     body.IsSensor = true;
                     body.IgnoreGravity = true;
                     body.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.TransparencySensor;
+                    body.UserData = tileToAssign;
                     //RectangleCollider tempBody = new RectangleCollider(TileManager.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
                     //    nums[2], nums[3]), tileToAssign, ColliderType.TransperencyDetector);
                     if (TileManager.Objects.ContainsKey(tileToAssign.TileKey))
