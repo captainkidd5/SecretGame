@@ -63,7 +63,7 @@ namespace SecretProject.Class.Physics
                 return;
             }
             Vector2 drawPosition = new Vector2(this.RectangleShape.Position.X , this.RectangleShape.Position.Y );
-            spriteBatch.Draw(this.Texture, drawPosition, rotation: RectangleShape.Rotation,color: Color.White * .5f, layerDepth: 1f);
+            spriteBatch.Draw(this.Texture, drawPosition, rotation:RectangleShape.Rotation,color: Color.White * .5f, layerDepth: 1f);
 
         }
 

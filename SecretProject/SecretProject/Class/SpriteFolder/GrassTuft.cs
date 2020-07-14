@@ -95,7 +95,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             // float radius = 4f;
             //GRASS ITSELF
-            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2,2, 1f);
+            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, 2, 1f);
 
             this.RotatableBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
                this.DestinationRectangle.Y + SourceRectangle.Height / 4);
@@ -123,26 +123,34 @@ namespace SecretProject.Class.SpriteFolder
         public void UnloadBody()
         {
             this.RotatableBody = null;
-            
+
             this.BodyLoaded = false;
         }
 
-        
+
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-           
-            if (!this.StartShuff && !this.ShuffDirectionPicked)
+            if (fixtureA.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.Weapon)
             {
-                Vector2 linearVelocity = fixtureB.Body.LinearVelocity;
+                SelfDestruct();
+            }
+            else
+            {
 
-                if (linearVelocity.X > 0)
-                    this.InitialShuffDirection = Dir.Right;
-                else
-                    this.InitialShuffDirection = Dir.Left;
-                this.StartShuff = true;
-                Game1.CurrentStage.UpdatingGrassTufts.Add(this);
-                Game1.Player.CurrentSpeed = Player.BaseSpeed * .25f;
+
+                if (!this.StartShuff && !this.ShuffDirectionPicked)
+                {
+                    Vector2 linearVelocity = fixtureB.Body.LinearVelocity;
+
+                    if (linearVelocity.X > 0)
+                        this.InitialShuffDirection = Dir.Right;
+                    else
+                        this.InitialShuffDirection = Dir.Left;
+                    this.StartShuff = true;
+                    Game1.CurrentStage.UpdatingGrassTufts.Add(this);
+                    Game1.Player.CurrentSpeed = Player.BaseSpeed * .25f;
+                }
             }
 
         }
@@ -165,7 +173,7 @@ namespace SecretProject.Class.SpriteFolder
 
             if (!this.StartShuff && this.ShuffDirectionPicked)
             {
-                RotateBackToOrigin(gameTime,tufts);
+                RotateBackToOrigin(gameTime, tufts);
                 //this.ShuffDirectionPicked = false;
                 //  this.IsUpdating = false;
             }

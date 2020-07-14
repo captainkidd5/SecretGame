@@ -56,25 +56,27 @@ namespace SecretProject.Class.Physics.Tools
             entityStaticBody.BodyType = BodyType.Static;
             entityStaticBody.IgnoreGravity = true;
 
-            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 1, (int)SwordLength.X, 1f);
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 6, (int)SwordLength.X, 1f);
             this.CollisionBody.BodyType = BodyType.Dynamic;
             this.CollisionBody.Position = entityStaticBody.Position;
             this.CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Weapon;
             this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy | VelcroPhysics.Collision.Filtering.Category.Solid;
             this.CollisionBody.IgnoreGravity = true;
             this.CollisionBody.OnCollision += OnCollision;
+            CollisionBody.FixedRotation = false;
 
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
                 this.CollisionBody, entityStaticBody, entityStaticBody.Position);
-            joint.LocalAnchorA = new Vector2(0, 0);
-            joint.LocalAnchorB = new Vector2(0, 0);
-            joint.ReferenceAngle = 0;
+           // joint.LocalAnchorA = new Vector2(0, 0);
+           // joint.LocalAnchorB = new Vector2(0, 0);
+           //// joint.ReferenceAngle = 0;
 
             joint.MotorEnabled = true;
-            //joint.LowerLimit
-            joint.MotorSpeed = 40;
 
-            joint.MaxMotorTorque = 100;
+            //joint.LowerLimit
+            joint.MotorSpeed = 2;
+
+            joint.MaxMotorTorque = 40;
             joint.Enabled = true;
             // joint.
             this.Joint = joint;
@@ -89,11 +91,12 @@ namespace SecretProject.Class.Physics.Tools
         public void Update(GameTime gameTime)
         {
             this.Sprite.Update(gameTime);
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            this.Sprite.DrawRotationalSprite(spriteBatch, Sprite.Position, MathHelper.ToDegrees(Joint.JointAngle),
+            this.Sprite.DrawRotationalSprite(spriteBatch, Sprite.Position, CollisionBody.Rotation,
                 Sprite.Origin, layerDepth);
             
 
