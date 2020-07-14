@@ -209,7 +209,7 @@ namespace SecretProject.Class.Playable
             CollisionBody.OnCollision += OnCollision;
             this.MainCollider.Body = CollisionBody;
 
-            this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 64, 64, 1f);
+            this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             LargeProximitySensor.Position = this.Position;
             LargeProximitySensor.BodyType = BodyType.Dynamic;
           // LargeProximitySensor.IsSensor = true;

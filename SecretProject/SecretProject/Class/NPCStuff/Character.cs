@@ -167,10 +167,10 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void CreateBody()
         {
-            this.InteractionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 64, 64, 1f);
+            this.InteractionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             InteractionBody.Position = this.Position;
             InteractionBody.BodyType = BodyType.Static;
-            InteractionBody.IsSensor = true;
+            //InteractionBody.IsSensor = true;
             InteractionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
             InteractionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
 

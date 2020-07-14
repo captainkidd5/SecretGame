@@ -93,13 +93,16 @@ namespace SecretProject.Class.Misc
             switch((data as FunItemData).FunBoxElement)
             {
                 case FunBoxElement.bird:
-                    int amt = Game1.Utility.RNumber(1, 5);
-                    for(int i = 0; i < amt; i++)
+                    if(Game1.CurrentStage.LocationType == StageFolder.LocationType.Exterior)
                     {
-                        this.FunItems.Add(new SmallBird(this.Graphics,GetDirection(),  this.FunItems));
+                        int amt = Game1.Utility.RNumber(1, 5);
+                        for (int i = 0; i < amt; i++)
+                        {
+                            this.FunItems.Add(new SmallBird(this.Graphics, GetDirection(), this.FunItems));
+                        }
                     }
-                    
                     break;
+
             }
         }
 
