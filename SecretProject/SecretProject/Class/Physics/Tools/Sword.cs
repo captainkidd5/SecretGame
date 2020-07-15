@@ -33,6 +33,8 @@ namespace SecretProject.Class.Physics.Tools
 
         private Dir SwingDirection { get; set; }
 
+        public float BaseRotation { get; set; } = 3 * MathHelper.Pi / 4; //sowrds are tilted to the top left in the sprite sheet. Need to rotate them back to 0.
+
         public Sword(ICollidable entityData, Vector2 entityPosition, Sprite swordSprite, int damage, Dir direction,float? swordLength, Vector2? customSwordLength)
         {
             this.Entity = entityData;
@@ -62,23 +64,26 @@ namespace SecretProject.Class.Physics.Tools
             entityStaticBody.IgnoreGravity = true;
             entityStaticBody.IsSensor = true;
 
-            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 2, 32, 1f);
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 4, 1f);
 
-            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X, entityStaticBody.Position.Y); //X + 16 so the end of the rectangle is attached to the side of the static one
+            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 8, entityStaticBody.Position.Y); //X + 16 so the end of the rectangle is attached to the side of the static one
 
             this.CollisionBody.BodyType = BodyType.Dynamic;
             
             this.CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Weapon;
-            this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy | VelcroPhysics.Collision.Filtering.Category.Solid;
+            this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy |
+                VelcroPhysics.Collision.Filtering.Category.Solid;
             this.CollisionBody.IgnoreGravity = true;
+            CollisionBody.Mass = .5f;
+            
             this.CollisionBody.OnCollision += OnCollision;
             CollisionBody.FixedRotation = false;
 
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
-                entityStaticBody, this.CollisionBody, new Vector2(entityStaticBody.Position.X , entityStaticBody.Position.Y));
+                entityStaticBody, this.CollisionBody, new Vector2(entityStaticBody.Position.X , entityStaticBody.Position.Y)); //Joints connect bodies, not fixtures.
             joint.LocalAnchorA = new Vector2(0, 0);
-            joint.LocalAnchorB = new Vector2(0, 16);
-            float referenceAngle = (float)Math.PI;
+            joint.LocalAnchorB = new Vector2(0, 0);
+            float referenceAngle = 0;
             
            // joint.an
 
@@ -91,13 +96,13 @@ namespace SecretProject.Class.Physics.Tools
             switch(SwingDirection)
             {
                 case Dir.Left:
-                    torque = 6000;
-                    motorSpeed = -1500;
+                    torque = 16000;
+                    motorSpeed = (float)(Math.PI * -1); //half rotation per second backwards.
                     break;
                 case Dir.Right:
-                    torque = 6000;
+                    torque = 16000;
                    // referenceAngle = (float)Math.PI;
-                    motorSpeed = 1500;
+                    motorSpeed = (float)(Math.PI * 1); //half rotation per second fowards.
                     break;
 
                 default:
@@ -108,6 +113,7 @@ namespace SecretProject.Class.Physics.Tools
             joint.MotorSpeed = motorSpeed;
             joint.MaxMotorTorque = torque;
             joint.Enabled = true;
+            joint.CollideConnected = false;
             // joint.
             this.Joint = joint;
             Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, Game1.CurrentStage.DebuggableShapes));
@@ -127,11 +133,8 @@ namespace SecretProject.Class.Physics.Tools
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            this.Sprite.DrawRotationalSprite(spriteBatch, CollisionBody.Position + Joint.LocalAnchorB, CollisionBody.Rotation,
+            this.Sprite.DrawRotationalSprite(spriteBatch, CollisionBody.Position + Joint.LocalAnchorB, BaseRotation +  CollisionBody.Rotation,
                 Sprite.Origin, layerDepth);
-
-            //body.Position = new Vector2(CollisionBody.Position.X, CollisionBody.Position.Y - 1);
-            
 
         }
 
@@ -147,9 +150,7 @@ namespace SecretProject.Class.Physics.Tools
             sourceRectangle = Game1.ItemVault.GetSourceRectangle(itemData.ID); ;
             damage = itemData.Damage;
 
-
-            //Vector2 centralPosition = new Vector2(holder.CollisionBody.Position.X + 16, holder.CollisionBody.Position.Y + 16);
-            swordSprite = new Sprite(graphics, texture, sourceRectangle, holder.CollisionBody.Position, (int)sourceRectangle.Width, (int)sourceRectangle.Height) { Origin = new Vector2(16, 16) };
+            swordSprite = new Sprite(graphics, texture, sourceRectangle, holder.CollisionBody.Position, (int)sourceRectangle.Width, (int)sourceRectangle.Height) { Origin = new Vector2(16, 16) }; //handle is in bottom right hand corner of sword sprites.
             sword = new Sword(holder, holder.CollisionBody.Position, swordSprite, damage, direction, sourceRectangle.Width, null);
 
             return sword;
@@ -160,7 +161,6 @@ namespace SecretProject.Class.Physics.Tools
             Game1.VelcroWorld.RemoveBody(this.CollisionBody);
             this.CollisionBody = null;
             
-            //Game1.VelcroWorld.RemoveJoint(this.Joint);
         }
 
 

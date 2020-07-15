@@ -151,7 +151,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
             CollisionBody.Inertia = 0;
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Enemy;
-            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid | VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.TransparencySensor;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Solid |
+                VelcroPhysics.Collision.Filtering.Category.Player |
+                VelcroPhysics.Collision.Filtering.Category.TransparencySensor |
+                VelcroPhysics.Collision.Filtering.Category.Weapon;
 
             CollisionBody.IgnoreGravity = true;
             //CollisionBody.OnCollision += OnCollision;

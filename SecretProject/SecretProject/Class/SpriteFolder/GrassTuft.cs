@@ -45,7 +45,7 @@ namespace SecretProject.Class.SpriteFolder
         public Vector2 GrassOffset { get; set; }
 
 
-        public Body RotatableBody { get; set; }
+        public Body CollisionBody { get; set; }
 
 
         public bool BodyLoaded { get; set; }
@@ -87,32 +87,32 @@ namespace SecretProject.Class.SpriteFolder
             this.GrassOffset = new Vector2(8, 24);
 
             if (!BodyLoaded)
-                LoadBody(stage);
+                CreateBody(stage);
 
         }
 
-        public void LoadBody(TmxStageBase stage)
+        public void CreateBody(TmxStageBase stage)
         {
             // float radius = 4f;
             //GRASS ITSELF
-            this.RotatableBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, 2, 1f);
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, 2, 1f);
 
-            this.RotatableBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
+            this.CollisionBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
                this.DestinationRectangle.Y + SourceRectangle.Height / 4);
-            RotatableBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            RotatableBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Weapon;
+            CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Weapon;
 
-            RotatableBody.BodyType = BodyType.Static;
-            RotatableBody.Restitution = 0f;
-            RotatableBody.IgnoreGravity = true;
-            RotatableBody.Mass = 0f;
-            RotatableBody.IsSensor = true;
-            RotatableBody.Friction = .2f;
-            this.RotatableBody.OnCollision += OnCollision;
-            this.RotatableBody.OnSeparation += OnSeparation;
+            CollisionBody.BodyType = BodyType.Static;
+            CollisionBody.Restitution = 0f;
+            CollisionBody.IgnoreGravity = true;
+            CollisionBody.Mass = 1f;
+            CollisionBody.IsSensor = true;
+            CollisionBody.Friction = .2f;
+            this.CollisionBody.OnCollision += OnCollision;
+            this.CollisionBody.OnSeparation += OnSeparation;
 
 
-            stage.DebuggableShapes.Add(new RectangleDebugger(RotatableBody, stage.DebuggableShapes));
+            stage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, stage.DebuggableShapes));
 
             BodyLoaded = true;
 
@@ -122,7 +122,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void UnloadBody()
         {
-            this.RotatableBody = null;
+            this.CollisionBody = null;
 
             this.BodyLoaded = false;
         }
@@ -216,7 +216,7 @@ namespace SecretProject.Class.SpriteFolder
             if (this.TuftsIsPartOf != null)
                 this.TuftsIsPartOf.Remove(this);
 
-            Game1.VelcroWorld.RemoveBody(this.RotatableBody);
+            Game1.VelcroWorld.RemoveBody(this.CollisionBody);
 
 
 
