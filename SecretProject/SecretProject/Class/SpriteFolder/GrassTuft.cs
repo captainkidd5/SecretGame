@@ -212,11 +212,11 @@ namespace SecretProject.Class.SpriteFolder
             {
                 Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X, this.Position.Y + 4));
             }
-            Game1.VelcroWorld.RemoveBody(this.RotatableBody);
+            
             if (this.TuftsIsPartOf != null)
                 this.TuftsIsPartOf.Remove(this);
 
-
+            Game1.VelcroWorld.RemoveBody(this.RotatableBody);
 
 
 

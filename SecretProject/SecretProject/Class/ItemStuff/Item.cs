@@ -173,7 +173,7 @@ namespace SecretProject.Class.ItemStuff
             if(fixtureB.CollisionCategories ==  VelcroPhysics.Collision.Filtering.Category.Player)
             {
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
-                this.AllItems.Remove(this);
+                
                 this.IsWorldItem = false;
                 if (this.Durability > 0)
                 {
@@ -181,8 +181,13 @@ namespace SecretProject.Class.ItemStuff
                 }
                 Game1.Player.Inventory.TryAddItem(this);
                 Game1.Player.UserInterface.BackPack.CheckGridItem();
+
+
                 Game1.VelcroWorld.RemoveBody(this.ItemBody);
                 Game1.VelcroWorld.RemoveBody(ArtificialFloorBody);
+
+                this.AllItems.Remove(this);
+                
             }
             //TryMagnetize();
            // 
