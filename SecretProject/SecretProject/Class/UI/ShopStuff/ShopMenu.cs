@@ -7,6 +7,7 @@ using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.UI.ShopStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI.ShopStuff
 {
@@ -182,12 +183,12 @@ namespace SecretProject.Class.UI.ShopStuff
 
 
 
-        public void TrySellToShop(Item item, int amountToSell)
+        public void TrySellToShop(ItemData item, int amountToSell)
         {
             TryAddStock(item.ID, amountToSell);
             for (int i = 0; i < amountToSell; i++)
             {
-                Game1.Player.Inventory.Money += Game1.ItemVault.GetItem(item.ID).Price;
+                Game1.Player.Inventory.Money += Game1.ItemVault.GetData(item.ID).Price;
             }
             Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, Graphics, Game1.Player.UserInterface.BottomBar.GoldIconPosition,
                 new Vector2(Game1.Player.UserInterface.BottomBar.GoldIconPosition.X, Game1.Player.UserInterface.BottomBar.GoldIconPosition.Y - 50),

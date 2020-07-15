@@ -126,10 +126,10 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public bool DepositItem(Item item)
+        public bool DepositItem(ItemData referenceItem)
         {
 
-                    if (this.Inventory.TryAddItem(item))
+                    if (this.Inventory.TryAddItem(referenceItem))
                     {
                         return true;
                     }
@@ -144,7 +144,7 @@ namespace SecretProject.Class.ItemStuff
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public bool IsItemAllowedToBeStored(Item item)
+        public bool IsItemAllowedToBeStored(ItemData item)
         {
             return true;
         }
@@ -199,7 +199,7 @@ namespace SecretProject.Class.ItemStuff
             for (int i = 0; i < slotsToFill; i++)
             {
                 int selection = Game1.Utility.RGenerator.Next(0, Game1.AllItems.AllItems.Count);
-                this.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(Game1.AllItems.AllItems[selection].ID, null));
+                this.Inventory.TryAddItem(Game1.ItemVault.GetData(Game1.AllItems.AllItems[selection].ID));
             }
 
         }

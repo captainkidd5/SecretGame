@@ -81,7 +81,7 @@ namespace SecretProject.Class.UI.ButtonStuff
             if(item != null)
             {
                 this.Item = item;
-                this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
+                this.ItemSourceRectangleToDraw = Game1.ItemVault.GetSourceRectangle(item.ID);
             }
             this.FontLocation = Game1.Utility.CenterTextOnRectangle(Game1.AllTextures.MenuText, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width , this.Position.Y + this.BackGroundSourceRectangle.Height),  "test", this.HitBoxScale);
         }
@@ -89,8 +89,8 @@ namespace SecretProject.Class.UI.ButtonStuff
         public void ChangeItemTexture(Item item)
         {
             this.Item = item;
-            this.ItemSourceRectangleToDraw = item.SourceTextureRectangle;
-            this.BackGroundSourceRectangle = item.SourceTextureRectangle;
+            this.ItemSourceRectangleToDraw = Game1.ItemVault.GetSourceRectangle(item.ID);
+            this.BackGroundSourceRectangle = Game1.ItemVault.GetSourceRectangle(item.ID);
         }
 
         public void UpdateHitBoxRectanlge(Rectangle newSourceRectangle)

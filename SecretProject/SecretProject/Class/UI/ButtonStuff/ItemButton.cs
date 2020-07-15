@@ -38,7 +38,7 @@ namespace SecretProject.Class.UI.ButtonStuff
  
 
                 this.Item = item;
-                this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
+                this.ItemSourceRectangleToDraw = Game1.ItemVault.GetSourceRectangle(Item.ID);
             this.StringToWrite = string.Empty;
             this.CountNeeded = countNeeded;
         }

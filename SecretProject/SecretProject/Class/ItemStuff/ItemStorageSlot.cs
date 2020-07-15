@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.UI.ButtonStuff;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -43,7 +44,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
             {
-                Item item = slot.GetItem();
+                ItemData item = slot.GetItem();
                 if (item != null)
                 {
                     for (int shiftItem = slot.ItemCount - 1; shiftItem >= 0; shiftItem--)
@@ -107,14 +108,14 @@ namespace SecretProject.Class.ItemStuff
 
                             if (dragSlot.IsActive) //replace current slot with whatever is in dragslot. 
                             {
-                                Item tempItem = dragSlot.InventorySlot.GetItem();
+                                ItemData tempItem = dragSlot.InventorySlot.GetItem();
                                 int currentItemCount = dragSlot.InventorySlot.ItemCount;
 
                                 for (int j = 0; j < currentItemCount; j++)
                                 {
                                     dragSlot.InventorySlot.RemoveItemFromSlot();
                                     Item newItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, null);
-                                    this.Slot.AddItemToSlot(newItem);
+                                    this.Slot.AddItemToSlot(tempItem);
 
                                 }
 
@@ -134,8 +135,8 @@ namespace SecretProject.Class.ItemStuff
 
             if (Slot.ItemCount != 0)
             {
-                this.Button.Texture = Slot.Item.ItemSprite.AtlasTexture;
-                this.Button.ItemSourceRectangleToDraw = Slot.Item.SourceTextureRectangle;
+                this.Button.Texture = Game1.AllTextures.ItemSpriteSheet;
+                this.Button.ItemSourceRectangleToDraw = Game1.ItemVault.GetSourceRectangle(Slot.Item.ID);
             }
             else
             {

@@ -62,7 +62,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 else
                 {
                     Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
-                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CountRequired.ToString() + "/" + this.CountRequired.ToString() + " " + Game1.ItemVault.GetItem(this.ItemID).Name + " Completed!", 50f, Color.Blue, true, 1f));
+                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CountRequired.ToString() + "/" + this.CountRequired.ToString() + " " + Game1.ItemVault.GetData(this.ItemID).Name + " Completed!", 50f, Color.Blue, true, 1f));
                 }
 
 
@@ -70,7 +70,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             else
             {
                 Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
-                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, "+ 1 " + Game1.ItemVault.GetItem(ItemID).Name + "!", 100f, Color.White, true, 1f));
+                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, "+ 1 " + Game1.ItemVault.GetData(ItemID).Name + "!", 100f, Color.White, true, 1f));
             }
         }
 
@@ -78,7 +78,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             if (item != null)
             {
-                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(item.ID, null));
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GetData(item.ID));
                 IndividualRewards[index] = true;
                 return;
             }
@@ -114,7 +114,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 if (lootUnlock != 0)
                 {
                     Game1.LootBank.LootInfo[gidUnlock].LootPieces[lootUnlock].Unlocked = true;
-                Game1.Player.UserInterface.AddAlert(AlertType.Normal, Vector2.Zero, "You are now able to harvest " + Game1.ItemVault.GetItem(lootUnlock).Name);
+                Game1.Player.UserInterface.AddAlert(AlertType.Normal, Vector2.Zero, "You are now able to harvest " + Game1.ItemVault.GetData(lootUnlock).Name);
             }
                 IndividualRewards[index] = true;
             

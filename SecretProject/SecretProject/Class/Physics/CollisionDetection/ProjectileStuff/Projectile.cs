@@ -58,7 +58,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
             this.AllProjectiles = allProjectiles;
             this.DamagesPlayer = damagesPlayer;
-            this.SourceRectangle = Game1.ItemVault.GenerateNewItem(280, null).SourceTextureRectangle;
+            this.SourceRectangle = Game1.ItemVault.GetSourceRectangle(280);
 
             this.TimeToLive = new SimpleTimer(8f);
             this.MissSound = Game1.SoundManager.ArrowMiss;

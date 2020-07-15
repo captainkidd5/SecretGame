@@ -7,6 +7,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -246,5 +247,14 @@ namespace SecretProject.Class.ItemStuff
             redEsc.Draw(spriteBatch);
         }
 
+        public bool IsItemAllowedToBeStored(ItemData item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool DepositItem(ItemData referenceItem)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     {
         public SlimeBall(GraphicsDevice graphics,Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage) : base(graphics, directionFiredFrom, startPosition, rotation, speed, positionToMoveToward, allProjectiles, damagesPlayer, damage)
         {
-            this.SourceRectangle = Game1.ItemVault.GenerateNewItem(255, null).SourceTextureRectangle;
+            this.SourceRectangle = Game1.ItemVault.GetSourceRectangle(255); ;
             this.MissSound = Game1.SoundManager.SlimeHit;
         }
 

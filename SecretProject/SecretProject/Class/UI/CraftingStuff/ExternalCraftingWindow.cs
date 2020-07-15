@@ -39,7 +39,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.BackSourceRectangle = new Rectangle(432, 400, 80, 96);
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackSourceRectangle, RedEsc.RedEscRectangle, this.Position, craftingWindow.Scale), craftingWindow.Graphics);
             this.Item = Game1.ItemVault.GenerateNewItem(1, null);
-            this.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
+            this.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(Item.ID), craftingWindow.Graphics,
                 new Vector2(this.Position.X + this.BackSourceRectangle.Width * craftingWindow.Scale /2 - 32 , this.Position.Y + 32),
                 Controls.CursorType.Normal, craftingWindow.Scale + 2f, this.Item);
 
@@ -69,7 +69,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
                     Game1.Player.UserInterface.InfoBox.DisplayTitle = true;
-                    ItemData itemData = Game1.ItemVault.GetItem(Item.ID);
+                    ItemData itemData = Game1.ItemVault.GetData(Item.ID);
                     Game1.Player.UserInterface.InfoBox.FitTitleText(itemData.Name, 1f);
                     Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
 
@@ -101,7 +101,7 @@ namespace SecretProject.Class.UI.CraftingStuff
                 }
                 
             }
-            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(TileManager.ItemRecipe.ItemToCraftID,null));
+            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GetData(TileManager.ItemRecipe.ItemToCraftID));
         }
 
         public void Draw(SpriteBatch spriteBatch)

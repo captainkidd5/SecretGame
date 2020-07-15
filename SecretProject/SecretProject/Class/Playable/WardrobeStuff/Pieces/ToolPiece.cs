@@ -40,7 +40,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
             this.Scale = 1f;
             this.Item = Game1.ItemVault.GenerateNewItem(0, null);
             this.ItemSprite = Item.ItemSprite;
-            this.SourceRectangle = Item.SourceTextureRectangle;
+            this.SourceRectangle = Game1.ItemVault.GetSourceRectangle(Item.ID);
 
             this.Color = defaultColor;
 
@@ -50,7 +50,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         {
             this.Item = Game1.ItemVault.GenerateNewItem(id, null);
             this.ItemSprite = Item.ItemSprite;
-            this.SourceRectangle = Item.SourceTextureRectangle;
+            this.SourceRectangle = Game1.ItemVault.GetSourceRectangle(Item.ID);
             this.Rotation = -.25f;
             this.Origin = new Vector2(15, 15);
 

@@ -28,7 +28,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.CraftingWindow = craftingWindow;
             this.Item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Position = position;
-            this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, craftingWindow.Graphics,
+            this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(Item.ID), craftingWindow.Graphics,
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
             this.CountRequired = countRequired;
         }
@@ -40,7 +40,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
                 Game1.Player.UserInterface.InfoBox.DisplayTitle = true;
-                ItemData itemData = Game1.ItemVault.GetItem(Item.ID);
+                ItemData itemData = Game1.ItemVault.GetData(Item.ID);
                 Game1.Player.UserInterface.InfoBox.FitTitleText(itemData.Name, 1f);
                 Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
 

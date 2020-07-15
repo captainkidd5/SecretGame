@@ -8,6 +8,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -57,7 +58,7 @@ namespace SecretProject.Class.TileStuff
         {
             if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(this.PlaceID))
             {
-                if(this.PlaceID == 4118)
+                if (this.PlaceID == 4118)
                 {
                     Console.WriteLine("hi");
                 }
@@ -114,16 +115,16 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            
+
             this.SourceRectangle = new Rectangle(this.SourceRectangle.X + this.RectangleCoordinates[0], this.SourceRectangle.Y + this.RectangleCoordinates[1],
                                    this.SourceRectangle.Width + this.RectangleCoordinates[2], this.SourceRectangle.Height + this.RectangleCoordinates[3]);
 
         }
 
         public bool CanPlaceTotal { get; set; }
-       
-        
-       
+
+
+
 
 
         public void NormalUpdate(GameTime gameTime, TileManager tileManager, TileManager TileManager)
@@ -136,7 +137,7 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
-                Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                ItemData item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                 if (item != null)
                 {
                     TileManager allTiles = Game1.CurrentStage.AllTiles;
@@ -163,23 +164,14 @@ namespace SecretProject.Class.TileStuff
 
 
                             subX = (int)Game1.MouseManager.SquarePosition.X + i;
-                            subY = (int)Game1.MouseManager.SquarePosition.Y+ j;
+                            subY = (int)Game1.MouseManager.SquarePosition.Y + j;
                             if (Game1.Player.ColliderRectangle.Intersects(this.DestinationRectangle))
-                                {
-                                    CanPlaceTotal = false;
-                                }
-                                if (item.TilingLayer == 1)
-                                {
-                                    if (allTiles.AllTiles[1][subX, subY].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                        CanPlaceTotal = false;
-                                    }
-                                }
-                                else if (allTiles.PathGrid.Weight[subX, subY] == (int)GridStatus.Clear)
+                            {
+                                CanPlaceTotal = false;
+                            }
+                            if (item.TilingLayer == 1)
+                            {
+                                if (allTiles.AllTiles[1][subX, subY].GID == -1) //Floor tiles check to make sure there's not already a floor there. Grass etc.
                                 {
 
                                 }
@@ -187,6 +179,15 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     CanPlaceTotal = false;
                                 }
+                            }
+                            else if (allTiles.PathGrid.Weight[subX, subY] == (int)GridStatus.Clear)
+                            {
+
+                            }
+                            else
+                            {
+                                CanPlaceTotal = false;
+                            }
                         }
 
                     }
@@ -218,15 +219,22 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID, TileManager);
-                                if (item.GenerationType != 0)
+                                string tilingSet = item.TilingSet;
+                                if (tilingSet != string.Empty)
                                 {
 
 
-                                    TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGenerationType(item.GenerationType);
+                                    GenerationType generationType = (GenerationType)Enum.Parse(typeof(GenerationType), item.TilingSet);
+                                    if (generationType != 0)
+                                    {
 
-                                    int worldWidth = Game1.CurrentStage.AllTiles.MapWidth;
-                                    WangManager.ReassignForTiling(PlaceID, tilingTileManager.GeneratableTiles, tilingTileManager.TilingDictionary,
-                                        item.TilingLayer, (int)Game1.MouseManager.SquarePosition.X, (int)Game1.MouseManager.SquarePosition.Y, worldWidth, worldWidth, (TileManager)allTiles);
+
+                                        TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGenerationType(generationType);
+
+                                        int worldWidth = Game1.CurrentStage.AllTiles.MapWidth;
+                                        WangManager.ReassignForTiling(PlaceID, tilingTileManager.GeneratableTiles, tilingTileManager.TilingDictionary,
+                                            item.TilingLayer, (int)Game1.MouseManager.SquarePosition.X, (int)Game1.MouseManager.SquarePosition.Y, worldWidth, worldWidth, (TileManager)allTiles);
+                                    }
                                 }
 
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -273,7 +281,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
                         subX = (int)Game1.MouseManager.SquarePosition.X + i;
-                        subY = (int)Game1.MouseManager.SquarePosition.Y + j ;
+                        subY = (int)Game1.MouseManager.SquarePosition.Y + j;
 
 
 
@@ -283,14 +291,14 @@ namespace SecretProject.Class.TileStuff
 
                         if (CanPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet,Game1.CurrentStage.AllTiles.AllTiles[3][subX , subY].GetPosition((TileManager)Game1.CurrentStage.AllTiles),
+                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX, subY].GetPosition((TileManager)Game1.CurrentStage.AllTiles),
                                 newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX, subY] .GetPosition((TileManager)Game1.CurrentStage.AllTiles),
-                              newSourceRectangle, Color.Red ,
+                            spriteBatch.Draw(tileManager.TileSet, Game1.CurrentStage.AllTiles.AllTiles[3][subX, subY].GetPosition((TileManager)Game1.CurrentStage.AllTiles),
+                              newSourceRectangle, Color.Red,
                                       0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }

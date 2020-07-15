@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI.ShopStuff
 {
@@ -53,7 +54,7 @@ namespace SecretProject.Class.UI.ShopStuff
         {
             this.Button.Update(mouse);
             this.GoldButton.Update(mouse);
-            this.Price = Game1.ItemVault.GetItem(this.ItemID).Price;
+            this.Price = Game1.ItemVault.GetData(this.ItemID).Price;
             Vector2 infoBoxPosition = new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64);
             if (Stock > 0)
             {
@@ -62,7 +63,7 @@ namespace SecretProject.Class.UI.ShopStuff
 
                     if(ButtonHoveredLastFrame != Button)
                     {
-                        InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetItem(this.ItemID), infoBoxPosition);
+                        InfoPopUp infoBox = new InfoPopUp(this.Graphics, Game1.ItemVault.GetData(this.ItemID), infoBoxPosition);
 
 
                         Game1.Player.UserInterface.InfoBox = infoBox;
@@ -72,13 +73,13 @@ namespace SecretProject.Class.UI.ShopStuff
                     colorMultiplier = .5f;
                     if (this.Button.isClicked)
                     {
-                        Item item = Game1.ItemVault.GenerateNewItem(this.ItemID, null);
+                        ItemData item = Game1.ItemVault.GetData(this.ItemID);
                         if (Game1.Player.Inventory.Money >= Price)
                         {
                             if (Game1.Player.Inventory.TryAddItem(item))
                             {
                                 Stock--;
-                                Game1.Player.Inventory.Money -= Game1.ItemVault.GetItem(item.ID).Price;
+                                Game1.Player.Inventory.Money -= Game1.ItemVault.GetData(item.ID).Price;
                                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Sell1);
                             }
 

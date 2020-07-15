@@ -554,10 +554,10 @@ namespace SecretProject.Class.TileStuff
 
                     if (TileManager.AllTiles[1][i, j].GID == -1)
                     {
-                        Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                        ItemData item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                         if (item != null)
                         {
-                            if (item.ItemType == ItemType.Shovel)
+                            if (item.Type == ItemType.Shovel)
                             {
                                 Game1.Player.UserInterface.DrawTileSelector = true;
 
@@ -591,7 +591,7 @@ namespace SecretProject.Class.TileStuff
                                     TileManager.WasModifiedDuringInterval = true;
                                 }
                             }
-                            else if (item.ItemType == ItemType.Tree)
+                            else if (item.Type == ItemType.Tree)
                             {
                                 mouse.ChangeMouseTexture(CursorType.Planting);
                                 if (mouse.IsClicked)
@@ -988,7 +988,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 else if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType == (ItemType)actionType)
+                    if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == (ItemType)actionType)
                     {
 
 
@@ -997,7 +997,7 @@ namespace SecretProject.Class.TileStuff
                             Game1.Utility.GetTileEffectColor(TileManager.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, TileManager))
                         {
                             Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
-                            Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
+                            Game1.ItemVault.AlterDurability(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem(), 1);
                             if (TileManager.TileHitPoints.ContainsKey(tile.TileKey))
                             {
                                 TileManager.TileHitPoints[tile.TileKey]--;

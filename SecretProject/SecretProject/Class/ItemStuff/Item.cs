@@ -44,10 +44,6 @@ namespace SecretProject.Class.ItemStuff
         private ContentManager Content { get; set; }
 
 
-
-
-
-        public Rectangle SourceTextureRectangle { get; set; }
         public Rectangle DestinationTextureRectangle { get; set; }
         public float DurabilityLineWidth { get; set; }
 
@@ -87,9 +83,6 @@ namespace SecretProject.Class.ItemStuff
 
             this.ID = itemData.ID;
 
-
-            this.SourceTextureRectangle = Game1.AllTextures.GetItemTexture(this.ID, 40);
-
             this.Durability = itemData.Durability;
 
 
@@ -115,7 +108,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-                this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle,
+                this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(this.ID),
                     WorldPosition, 16, 16)
                 {
                     TextureScaleX = .75f,
@@ -126,7 +119,7 @@ namespace SecretProject.Class.ItemStuff
                 };
                 this.Ignored = true;
 
-               
+
                 float randomOffSet = Game1.Utility.RFloat(Utility.ForeGroundMultiplier, Utility.ForeGroundMultiplier * 10);
                 this.LayerDepth = .5f + (this.WorldPosition.Y) * Utility.ForeGroundMultiplier + randomOffSet;
 
@@ -135,8 +128,8 @@ namespace SecretProject.Class.ItemStuff
                 ItemBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 4f, 1f, new Vector2(WorldPosition.X + 8, WorldPosition.Y + 8), BodyType.Dynamic);
                 ItemBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Item;
                 ItemBody.IgnoreGravity = false;
-                
-               ItemBody.Mass = 1f;
+
+                ItemBody.Mass = 1f;
                 ItemBody.Friction = .8f;
                 ItemBody.GravityScale = 1.5f;
                 ItemBody.Restitution = .4f;
@@ -144,7 +137,7 @@ namespace SecretProject.Class.ItemStuff
                     VelcroPhysics.Collision.Filtering.Category.Solid |
                     VelcroPhysics.Collision.Filtering.Category.ArtificialFloor;
                 ItemBody.OnCollision += OnCollision;
-                ItemBody.ApplyLinearImpulse(new Vector2(20,- 15));
+                ItemBody.ApplyLinearImpulse(new Vector2(20, -15));
 
                 //Artificial floor ensures that objects dont just fall to the bottom of the map. Floor x follows item x.
                 ArtificialFloorBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 20, 2, 1f);
@@ -155,65 +148,67 @@ namespace SecretProject.Class.ItemStuff
                 ArtificialFloorBody.BodyType = BodyType.Static;
 
 
-                
+
                 //Body.Apl
             }
-            else
-            {
-                this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
+            //else
+            //{
+            //    this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
 
-               
-                if (this.Durability > 0)
-                {
 
-                }
-                this.DurabilityLineWidth = GetDurabilityLineLength();
-            }
+            //    if (this.Durability > 0)
+            //    {
+
+            //    }
+            //    this.DurabilityLineWidth = GetDurabilityLineLength();
+            //}
         }
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-            if(fixtureB.CollisionCategories ==  VelcroPhysics.Collision.Filtering.Category.Player)
+            if (fixtureB.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.Player)
             {
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem, true, .5f, 0f);
-                
+
                 this.IsWorldItem = false;
                 if (this.Durability > 0)
                 {
                     this.AlterDurability(0);
                 }
-                ItemData itemData = Game1.ItemVault.GetItem(this.ID);
-                if(this.Durability != 0)
+                ItemData itemData = Game1.ItemVault.GetItemDataCopy(this.ID);
+                if (this.Durability != 0)
                 {
                     itemData.Durability = this.Durability;
                 }
 
-                Game1.Player.Inventory.TryAddItem(this);
+                Game1.Player.Inventory.TryAddItem(itemData);
                 Game1.Player.UserInterface.BackPack.CheckGridItem();
+
+                ItemBody.OnCollision -= this.OnCollision;
 
 
                 Game1.VelcroWorld.RemoveBody(this.ItemBody);
                 Game1.VelcroWorld.RemoveBody(ArtificialFloorBody);
 
                 this.AllItems.Remove(this);
-                
+
             }
         }
 
-            private float GetDurabilityLineLength()
+        private float GetDurabilityLineLength()
         {
-            return (float)this.Durability / (float)Game1.ItemVault.GetItem(this.ID).Durability;
+            return (float)this.Durability / (float)Game1.ItemVault.GetData(this.ID).Durability;
         }
 
         public void Update(GameTime gameTime)
         {
             if (this.IsWorldItem)
             {
-                if(ItemBody.Position.Y <= ArtificialFloorBody.Position.Y - 5)
+                if (ItemBody.Position.Y <= ArtificialFloorBody.Position.Y - 5)
                 {
                     ItemBody.ApplyForce(new Vector2(0, 100));
                     ArtificialFloorBody.Position = new Vector2(ItemBody.Position.X, ArtificialFloorBody.Position.Y);
                 }
-                
+
 
                 this.ItemSprite.Position = this.ItemBody.Position;
                 this.ItemSprite.Update(gameTime);
@@ -243,7 +238,7 @@ namespace SecretProject.Class.ItemStuff
             this.Durability -= amountToSubtract;
             if (this.Durability <= 0)
             {
-                Game1.Player.Inventory.RemoveItem(this);
+                Game1.Player.Inventory.RemoveItem(this.ID);
                 Game1.SoundManager.ToolBreak.Play();
             }
             else

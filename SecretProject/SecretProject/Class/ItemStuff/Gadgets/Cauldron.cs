@@ -7,6 +7,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -113,20 +114,20 @@ namespace SecretProject.Class.ItemStuff
             //}
         }
 
-        public bool DepositItem(Item item)
+        public bool DepositItem(ItemData referenceItem)
         {
-            if (Game1.ItemVault.GetItem(item.ID).Food == true)
+            if (Game1.ItemVault.GetData(referenceItem.ID).Food == true)
             {
-                this.Inventory.TryAddItem(item);
+                this.Inventory.TryAddItem(referenceItem);
                 return true;
             }
 
             return false;
         }
 
-        public bool IsItemAllowedToBeStored(Item item)
+        public bool IsItemAllowedToBeStored(ItemData item)
         {
-            if (Game1.ItemVault.GetItem(item.ID).Food == true)
+            if (Game1.ItemVault.GetData(item.ID).Food == true)
             {
                 return true;
             }
@@ -156,9 +157,9 @@ namespace SecretProject.Class.ItemStuff
             byte fruitValue = 0;
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                meatValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).MeatValue;
-                vegetableValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).VegetableValue;
-                fruitValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Slot.Item.ID).FruitValue;
+                meatValue += Game1.ItemVault.GetData(this.ItemSlots[i].Slot.Item.ID).MeatValue;
+                vegetableValue += Game1.ItemVault.GetData(this.ItemSlots[i].Slot.Item.ID).VegetableValue;
+                fruitValue += Game1.ItemVault.GetData(this.ItemSlots[i].Slot.Item.ID).FruitValue;
             }
             Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin <= meatValue) &&
             (x.VegetableValueMax >= vegetableValue) && (x.VegetableValueMin <= vegetableValue) &&

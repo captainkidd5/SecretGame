@@ -50,7 +50,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
             RecipeTileManager TileManager = CategoryTabs[0].RecipeTileManagers[0];
             
-            this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, TileManager.Item.SourceTextureRectangle, Graphics,
+            this.ExternalCraftingWindow.ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(TileManager.Item.ID), Graphics,
                 ExternalCraftingWindow.ItemToCraftButton.Position, Controls.CursorType.Normal, Scale + 1f, TileManager.Item);
 
 

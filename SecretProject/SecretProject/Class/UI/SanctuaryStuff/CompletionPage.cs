@@ -67,7 +67,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
             FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(128, 688, 80, 32),
                       this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward.ItemUnlock, null))
-            { Description = TextBuilder.ParseText("Complete the page to unlock the " + Game1.ItemVault.GetItem((int)FinalReward.ItemUnlock).Name, 112 * 2.5f, 1.5f) };
+            { Description = TextBuilder.ParseText("Complete the page to unlock the " + Game1.ItemVault.GetData((int)FinalReward.ItemUnlock).Name, 112 * 2.5f, 1.5f) };
 
             this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
             this.ScrollDownButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 655, 16, 32), this.Graphics, new Vector2(backgroundPosition.X + backGroundSourceRectangle.Width, backgroundPosition.Y + 64), Controls.CursorType.Normal, 2f, null);
@@ -139,7 +139,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             if (CanClaimFinalReward())
             {
                 //Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item.ID);
-                FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GetItem((int)FinalReward.ItemUnlock).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
+                FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GetData((int)FinalReward.ItemUnlock).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
                 Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
                 if (this.GIDUnlock != 0)
                 {

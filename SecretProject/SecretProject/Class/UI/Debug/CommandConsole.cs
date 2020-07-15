@@ -160,7 +160,7 @@ namespace SecretProject.Class.UI
                     int itemID = int.Parse(separatedString[1]);
                     for (int i =0; i < numberToSpawn; i++)
                     {
-                        Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(itemID, null));
+                        Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GetData(itemID));
                     }
                     
                     break;

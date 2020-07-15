@@ -13,19 +13,28 @@ namespace SecretProject.Class.ItemStuff
         public Dictionary<int, GridItem> InteriorGridItems { get; set; }
         private Dictionary<int,ItemData> ItemDictionary { get; set; }
 
+        private Dictionary<int,Rectangle> SourceRectangles { get; set; }
+
         public ItemBank()
         {
 
 
         }
+
+        public Rectangle GetSourceRectangle(int id)
+        {
+            return SourceRectangles[id];
+        }
         
         public void Load()
         {
             ItemDictionary = new Dictionary<int, ItemData>();
-
+            SourceRectangles = new Dictionary<int, Rectangle>();
             for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
             {
-                ItemDictionary.Add(Game1.AllItems.AllItems[i].ID, Game1.AllItems.AllItems[i]);
+                int id = Game1.AllItems.AllItems[i].ID;
+                ItemDictionary.Add(id, Game1.AllItems.AllItems[i]);
+                this.SourceRectangles.Add(id, Game1.AllTextures.GetItemTexture(id, 40));
             }
         }
 
@@ -61,7 +70,7 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public ItemData GetItem(int itemID)
+        public ItemData GetData(int itemID)
         {
             if(ItemDictionary.ContainsKey(itemID))
             {
@@ -72,9 +81,35 @@ namespace SecretProject.Class.ItemStuff
             
         }
 
+        public void AlterDurability(ItemData item, int amountToSubtract)
+        {
+            item.Durability -= amountToSubtract;
+            if (item.Durability <= 0)
+            {
+                Game1.Player.Inventory.RemoveItem(item.ID);
+                Game1.SoundManager.ToolBreak.Play();
+            }
+            
+        }
+
+        public ItemData GetItemDataCopy(int itemID)
+        {
+            if (ItemDictionary.ContainsKey(itemID))
+            {
+                ItemData referenceData = ItemDictionary[itemID];
+                ItemData newData = new ItemData();
+                newData.Name = referenceData.Name;
+                newData.ID = referenceData.ID;
+                newData.Durability = referenceData.Durability;
+                return newData;
+
+            }
+            return null;
+        }
+
         public GenerationType GetPlantableTileType(int id)
         {
-            string generationType = GetItem(id).GrowsOn;
+            string generationType = GetData(id).GrowsOn;
             return (GenerationType)Enum.Parse(typeof (GenerationType), generationType);
         }
 

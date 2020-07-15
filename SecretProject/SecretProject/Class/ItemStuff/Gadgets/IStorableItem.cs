@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.TileStuff;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -36,7 +37,7 @@ namespace SecretProject.Class.ItemStuff
         int Layer { get; set; }
         int X { get; set; }
         int Y { get; set; }
-        bool IsItemAllowedToBeStored(Item item);
+        bool IsItemAllowedToBeStored(ItemData item);
 
         bool IsAnimationOpen { get; set; }
         void Update(GameTime gameTime);
@@ -44,6 +45,6 @@ namespace SecretProject.Class.ItemStuff
         void Deactivate();
         void Draw(SpriteBatch spriteBatch);
 
-        bool DepositItem(Item item);
+        bool DepositItem(ItemData referenceItem);
     }
 }

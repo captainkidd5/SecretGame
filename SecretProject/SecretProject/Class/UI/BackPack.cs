@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI
 
         private List<ActionTimer> AllActions;
 
-        public Item CurrentEquippedItem { get; set; }
+        public ItemData CurrentEquippedItem { get; set; }
 
         public DragSlot DraggedSlot { get; set; }
 
@@ -114,12 +114,12 @@ namespace SecretProject.Class.UI
         /// </summary>
         public void HandleFoodItem()
         {
-            Item item = GetCurrentEquippedToolAsItem();
+            ItemData item = GetCurrentEquippedToolAsItem();
             if (item != null)
             {
-                if (Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount > 0)
+                if (Game1.ItemVault.GetData(item.ID).StaminaRestoreAmount > 0)
                 {
-                    Game1.Player.UserInterface.StaminaBar.IncreaseStamina(Game1.ItemVault.GetItem(item.ID).StaminaRestoreAmount);
+                    Game1.Player.UserInterface.StaminaBar.IncreaseStamina(Game1.ItemVault.GetData(item.ID).StaminaRestoreAmount);
                     this.Inventory.RemoveItem(item.ID);
                 }
             }
@@ -323,7 +323,7 @@ namespace SecretProject.Class.UI
                             {
                                 if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
                                 {
-                                    Item item = newInventorySlot.GetItem();
+                                    ItemData item = newInventorySlot.GetItem();
 
                                     if (Game1.KeyboardManager.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                     {
@@ -368,7 +368,7 @@ namespace SecretProject.Class.UI
             {
                 if (!Game1.MouseManager.MouseRectangle.Intersects(this.InventoryAreaRectangle))
                 {
-                    Item tempItem = DraggedSlot.InventorySlot.GetItem();
+                    ItemData tempItem = DraggedSlot.InventorySlot.GetItem();
                     int currentItemCount = DraggedSlot.InventorySlot.ItemCount;
 
                     if (InteractWithStorageItem(DraggedSlot.InventorySlot))
@@ -454,7 +454,7 @@ namespace SecretProject.Class.UI
             }
             if (this.DraggedSlot.IsActive)
             {
-                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.DraggedSlot.InventorySlot.GetItem().SourceTextureRectangle, Game1.MouseManager.UIPosition, 16, 16) { TextureScaleX = 5f, TextureScaleY = 5f };
+                this.DragSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(this.DraggedSlot.InventorySlot.GetItem().ID), Game1.MouseManager.UIPosition, 16, 16) { TextureScaleX = 5f, TextureScaleY = 5f };
             }
             else
             {
@@ -512,7 +512,7 @@ namespace SecretProject.Class.UI
             }
            
         }
-        private void HandleStorageItem(int i, Item item)
+        private void HandleStorageItem(int i, ItemData item)
         {
             if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[i].GetItem()))
             {
@@ -593,12 +593,13 @@ namespace SecretProject.Class.UI
 
                     }
                     this.AllItemButtons[i].Draw(spriteBatch, this.AllItemButtons[i].ItemSourceRectangleToDraw, this.AllItemButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllItemButtons[i].ItemCounter.ToString(), new Vector2(this.AllItemButtons[i].Position.X + 5, this.AllItemButtons[i].Position.Y + 5), Color.White * colorMultiplier, 2f, 2f,Utility.StandardButtonDepth);
-                    Item item = this.Inventory.currentInventory[i].GetItem();
+                    ItemData item = this.Inventory.currentInventory[i].GetItem();
                     if (item != null)
                     {
                         if (item.Durability > 0)
                         {
-                            spriteBatch.Draw(Game1.AllTextures.redPixel, new Rectangle((int)AllItemButtons[i].Position.X + 4, (int)AllItemButtons[i].Position.Y + (int)AllItemButtons[i].HitBoxRectangle.Height - 8, (int)(item.DurabilityLineWidth * 50), 8), null,
+
+                            spriteBatch.Draw(Game1.AllTextures.redPixel, new Rectangle((int)AllItemButtons[i].Position.X + 4, (int)AllItemButtons[i].Position.Y + (int)AllItemButtons[i].HitBoxRectangle.Height - 8, (int)((item.Durability / Game1.ItemVault.GetData(item.ID).Durability) * 50), 8), null,
     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .9f);
                         }
 
@@ -622,7 +623,7 @@ namespace SecretProject.Class.UI
         private void EjectItem()
         {
 
-            Item oldItem = this.Inventory.currentInventory[currentSliderPosition - 1].GetItem();
+            ItemData oldItem = this.Inventory.currentInventory[currentSliderPosition - 1].GetItem();
 
             Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].GetItem().ID, Game1.Player.CollisionBody.Position, true, Game1.CurrentStage.AllTiles.GetItems(Game1.Player.position));
             newWorldItem.IsTossable = true;
@@ -647,8 +648,8 @@ namespace SecretProject.Class.UI
 
             if (this.AllItemButtons[index].ItemCounter > 0)
             {
-                this.AllItemButtons[index].Texture = Inventory.currentInventory.ElementAt(index).GetItem().ItemSprite.AtlasTexture;
-                this.AllItemButtons[index].ItemSourceRectangleToDraw = Inventory.currentInventory.ElementAt(index).GetItem().SourceTextureRectangle;
+                this.AllItemButtons[index].Texture = Game1.AllTextures.ItemSpriteSheet;
+                this.AllItemButtons[index].ItemSourceRectangleToDraw = Game1.ItemVault.GetSourceRectangle(Inventory.currentInventory.ElementAt(index).GetItem().ID);
             }
             else
             {
@@ -748,7 +749,7 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public Item GetCurrentEquippedToolAsItem()
+        public ItemData GetCurrentEquippedToolAsItem()
         {
             if (this.Inventory != null && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).ItemCount > 0)
             {
@@ -798,7 +799,7 @@ namespace SecretProject.Class.UI
 
         public Rectangle GetCurrentItemTexture()
         {
-            return this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
+            return Game1.ItemVault.GetSourceRectangle(this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().ID);
         }
 
         public void DrawToStageMatrix(SpriteBatch spriteBatch)

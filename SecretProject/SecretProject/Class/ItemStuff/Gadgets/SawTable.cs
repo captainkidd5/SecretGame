@@ -6,6 +6,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -82,7 +83,7 @@ namespace SecretProject.Class.ItemStuff
 
         public bool DepositItem(Item item)
         {
-            if (Game1.ItemVault.GetItem(item.ID).Food == true)
+            if (Game1.ItemVault.GetData(item.ID).Food == true)
             {
                 for (int i = 0; i < this.ItemSlots.Count; i++)
                 {
@@ -172,5 +173,14 @@ namespace SecretProject.Class.ItemStuff
             redEsc.Draw(spriteBatch);
         }
 
+        public bool IsItemAllowedToBeStored(ItemData item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool DepositItem(ItemData referenceItem)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -144,7 +144,7 @@ namespace SecretProject.Class.Physics.Tools
             Sprite swordSprite;
 
             texture = Game1.AllTextures.ItemSpriteSheet;
-            sourceRectangle = Game1.ItemVault.GenerateNewItem(itemData.ID, null).SourceTextureRectangle;
+            sourceRectangle = Game1.ItemVault.GetSourceRectangle(itemData.ID); ;
             damage = itemData.Damage;
 
 

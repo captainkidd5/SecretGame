@@ -31,7 +31,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             this.ItemRecipe = itemRecipe;
             this.Unlocked = itemRecipe.Unlocked;
             this.Item = Game1.ItemVault.GenerateNewItem(this.ItemRecipe.ItemToCraftID, null);
-            this.ItemButton = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, craftingWindow.Graphics,
+            this.ItemButton = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GetSourceRectangle(Item.ID), craftingWindow.Graphics,
                 position, Controls.CursorType.Normal, craftingWindow.Scale, this.Item);
             this.ToolTips = new List<ExternalToolTip>();
             Vector2 tooltipsPosition = new Vector2(craftingWindow.ExternalCraftingWindow.Position.X, craftingWindow.ExternalCraftingWindow.Position.Y + 96);

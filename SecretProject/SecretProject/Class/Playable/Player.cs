@@ -274,12 +274,12 @@ namespace SecretProject.Class.Playable
 
         public ItemData GetCurrentEquippedToolData()
         {
-            return Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
+            return Game1.ItemVault.GetData(this.UserInterface.BackPack.GetCurrentEquippedTool());
         }
 
         public int GetCurrentToolID()
         {
-            ItemData data = Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedTool());
+            ItemData data = Game1.ItemVault.GetData(this.UserInterface.BackPack.GetCurrentEquippedTool());
             if (data != null)
             {
                 return data.ID;
@@ -403,26 +403,26 @@ namespace SecretProject.Class.Playable
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    Item item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                    if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
+                    ItemData item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                    if (item.Type == XMLData.ItemStuff.ItemType.Sword)
                     {
 
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordSwing, true, 1f);
                         DoPlayerAnimation(AnimationType.Swiping);
-                        item.AlterDurability(1);
+                        Game1.ItemVault.AlterDurability(item, 1);
                         UserInterface.StaminaBar.DecreaseStamina(1);
                     }
-                    else if (item.ItemType == XMLData.ItemStuff.ItemType.Bow)
+                    else if (item.Type == XMLData.ItemStuff.ItemType.Bow)
                     {
                         if (UserInterface.BackPack.Inventory.ContainsAtLeastOne(280))
                         {
-                            ItemData arrowData = Game1.ItemVault.GetItem(280);
+                            ItemData arrowData = Game1.ItemVault.GetData(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
                             //Game1.CurrentStage.AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8),
                             //    MathHelper.ToRadians(Game1.MouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles, false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
-                            item.AlterDurability(1);
+                            Game1.ItemVault.AlterDurability(item, 1);
                             UserInterface.StaminaBar.DecreaseStamina(1);
                         }
 
@@ -721,7 +721,7 @@ namespace SecretProject.Class.Playable
             return Dir.Up;
         }
 
-        public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
+        public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, ItemData item = null)
         {
 
             if (item != null)

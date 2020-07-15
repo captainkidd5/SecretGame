@@ -49,7 +49,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public bool TryAddItem(Item item)
+        public bool TryAddItem(ItemData item)
         {
             foreach (InventorySlot s in currentInventory)
             {
@@ -67,10 +67,10 @@ namespace SecretProject.Class.ItemStuff
         public void ReplaceHeldItem(int slotIndex, int newItemID)
         {
             this.currentInventory[slotIndex].Clear();
-            this.currentInventory[slotIndex].AddItemToSlot(Game1.ItemVault.GenerateNewItem(newItemID, null));
+            this.currentInventory[slotIndex].AddItemToSlot(Game1.ItemVault.GetData(newItemID));
         }
 
-        public bool AddToFirstEmptySlotOnly(Item item)
+        public bool AddToFirstEmptySlotOnly(ItemData item)
         {
             foreach (InventorySlot s in currentInventory)
             {
@@ -120,7 +120,7 @@ namespace SecretProject.Class.ItemStuff
             }
             return false;
         }
-        public bool RemoveItem(Item item)
+        public bool RemoveItem(ItemData item)
         {
             foreach (InventorySlot s in currentInventory)
             {
@@ -242,12 +242,9 @@ namespace SecretProject.Class.ItemStuff
                 if(itemCount > 0)
                 {
                     int itemId = reader.ReadInt32();
-                    Item item = Game1.ItemVault.GenerateNewItem(itemId, null);
+                    ItemData item = Game1.ItemVault.GetData(itemId);
                     item.Durability = reader.ReadInt32();
-                    if(item.Durability > 0)
-                    {
-                        item.AlterDurability(0);
-                    }
+
                     
                     slot.AddItemToSlot(item);
                     slot.Item = item;
@@ -266,12 +263,12 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
-        public Item Item { get; set; }
+        public ItemData Item { get; set; }
         public int ItemCount { get; set; }
         public int Capacity { get; set; }
         public bool IsCurrentSelection = false;
 
-        public InventorySlot(Item item)
+        public InventorySlot(ItemData item)
         {
             this.Item = item;
             this.ItemCount = 1;
@@ -288,10 +285,10 @@ namespace SecretProject.Class.ItemStuff
 
         public ItemData GetItemData()
         {
-            return Game1.ItemVault.GetItem(this.Item.ID);
+            return Game1.ItemVault.GetData(this.Item.ID);
         }
 
-        public Item GetItem()
+        public ItemData GetItem()
         {
             return this.Item;
         }
@@ -323,7 +320,7 @@ namespace SecretProject.Class.ItemStuff
                 return true;
             }
             
-            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount < this.Capacity)
+            else if (this.ItemCount <= Game1.ItemVault.GetData(item.ID).InvMaximum && this.ItemCount < this.Capacity)
             {
 
                 return true;
@@ -331,7 +328,7 @@ namespace SecretProject.Class.ItemStuff
             return false;
         }
 
-        public bool AddItemToSlot(Item item)
+        public bool AddItemToSlot(ItemData item)
         {
 
             if (this.Item == null)
@@ -340,7 +337,7 @@ namespace SecretProject.Class.ItemStuff
                 this.ItemCount = 1;
                 return true;
             }
-            else if (item.ID == this.Item.ID && this.ItemCount < Game1.ItemVault.GetItem(item.ID).InvMaximum && this.ItemCount <= this.Capacity)
+            else if (item.ID == this.Item.ID && item.Durability == this.Item.Durability && this.ItemCount < Game1.ItemVault.GetData(item.ID).InvMaximum && this.ItemCount <= this.Capacity)
             {
                 this.ItemCount++;
                 return true;
