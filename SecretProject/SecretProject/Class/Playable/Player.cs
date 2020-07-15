@@ -322,7 +322,7 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
-                    this.CurrentEquippedTool = Sword.CreateSword(this.Graphics, this, GetCurrentEquippedToolData());
+                    this.CurrentEquippedTool = Sword.CreateSword(this.Graphics, this, direction, GetCurrentEquippedToolData());
                  //   Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
 
                     break;
@@ -449,20 +449,18 @@ namespace SecretProject.Class.Playable
                     {
                         this.IsPerformingAction = false;
                         Wardrobe.CurrentAnimationSet = Wardrobe.RunSet;
+                        if(CurrentEquippedTool != null)
+                        {
+                            this.CurrentEquippedTool.Remove();
+                            this.CurrentEquippedTool = null;
+                        }
+                      
                     }
 
-                    //  IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
                     if (this.CurrentEquippedTool != null)
                     {
                         CurrentEquippedTool.Update(gameTime);
-                     //   this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
-
-                    }
-
-                    if (IsPerformingAction == false)
-                    {
-                        this.CurrentEquippedTool.Remove();
-                        this.CurrentEquippedTool = null;
+      
                     }
 
                 }
@@ -515,7 +513,6 @@ namespace SecretProject.Class.Playable
 
                 if (!IsPerformingAction)
                     Wardrobe.UpdateAnimations(gameTime, Position, movementDir, this.IsMoving);
-
 
 
                 UpdatePenumbraLights();
@@ -701,7 +698,7 @@ namespace SecretProject.Class.Playable
 
         public Dir GetAnimationDirection()
         {
-            CheckMouseRotationFromEntity(new Vector2(this.Position.X + 8, this.Position.Y + 20));
+            CheckMouseRotationFromEntity(new Vector2(this.Position.X + 8, this.Position.Y + 16));
             if (Game1.MouseManager.MouseAngleInRelationToPlayer > 285 || Game1.MouseManager.MouseAngleInRelationToPlayer < 45)
             {
                 return Dir.Up;

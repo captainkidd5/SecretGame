@@ -131,7 +131,8 @@ namespace SecretProject.Class.SpriteFolder
 
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-            if (fixtureA.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.Weapon)
+
+            if (fixtureB.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.Weapon)
             {
                 SelfDestruct();
             }

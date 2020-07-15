@@ -12,7 +12,7 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } = 1f;
+        public float GameVolume { get; set; } = .25f;
         //Sound Effects are WAV
         //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
