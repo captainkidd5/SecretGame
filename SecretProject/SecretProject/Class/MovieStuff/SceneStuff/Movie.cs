@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,42 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
     internal class Movie
     {
 
-        private List<MovieScene> MovieScenes { get; set; }
+        protected List<MovieScene> MovieScenes { get; set; }
+        public ContentManager ContentManager { get; set; }
         public Movie()
         {
-            this.MovieScenes = new List<MovieScene>();
+
         }
 
-        public void Update(GameTime gameTime)
+        protected virtual void LoadContent()
+        {
+
+        }
+
+        public void InsertMovie(IServiceProvider serviceProvider)
+        {
+            LoadContentManager(serviceProvider);
+            LoadContent();
+        }
+
+        public void EjectMovie()
+        {
+            this.ContentManager.Unload();
+        }
+
+        protected void LoadContentManager(IServiceProvider serviceProvider)
+        {
+            this.ContentManager = new ContentManager(serviceProvider);
+            ContentManager.RootDirectory = "Content";
+        }
+
+        protected virtual Texture2D LoadTexture(string path)
+        {
+            return ContentManager.Load<Texture2D>(path);
+        }
+
+
+        public virtual void Update(GameTime gameTime)
         {
             for (int i = 0; i < this.MovieScenes.Count; i++)
             {
@@ -25,7 +55,7 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < this.MovieScenes.Count; i++)
             {

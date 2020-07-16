@@ -49,6 +49,7 @@ using VelcroPhysics.Extensions.DebugView;
 using VelcroPhysics.Factories;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.Physics;
+using SecretProject.Class.MovieStuff;
 
 
 
@@ -335,6 +336,9 @@ namespace SecretProject
 
         public static World VelcroWorld;
 
+        //Movies
+        public static MoviePlayer MoviePlayer;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -511,6 +515,8 @@ namespace SecretProject
             Penumbra.Initialize();
 
             LoadPhysics();
+
+            MoviePlayer = new MoviePlayer(Content.ServiceProvider);
 
         }
 

@@ -9,12 +9,23 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.MovieStuff
 {
+    public enum MovieName
+    {
+        None =0,
+        Intro = 1
+    }
     public class MoviePlayer
     {
         private List<Movie> Movies { get; set; }
-        public MoviePlayer()
+        private Movie CurrentMovie{ get; set; }
+        public MoviePlayer(IServiceProvider serviceProvider)
         {
             Movies = new List<Movie>();
+        }
+
+        public void ChangeMovie(MovieName movieName)
+        {
+            
         }
 
         public void Update(GameTime gameTime)

@@ -23,5 +23,7 @@ namespace SecretProject.Class.Universal
         public bool AllowNaturalNPCSpawning = true;
         public bool UpdateCharacters = true;
         public HouseLocation HouseLocation;
+
+        public bool PlayIntroMovie = true;
     }
 }

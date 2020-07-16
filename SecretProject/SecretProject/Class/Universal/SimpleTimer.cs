@@ -14,7 +14,12 @@ namespace SecretProject.Class.Universal
             ResetToZero();
         }
 
-
+        /// <summary>
+        /// Returns true if time has reached target time.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="multiplier"></param>
+        /// <returns></returns>
         public bool Run(GameTime gameTime, float multiplier = 1f)
         {
             Time += (float)gameTime.ElapsedGameTime.TotalSeconds * multiplier;
