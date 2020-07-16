@@ -101,7 +101,7 @@ namespace SecretProject.Class.Physics.Tools
                 case Dir.Left:
                     torque = 100000;
                     motorSpeed = (float)(Math.PI * -1); //half rotation per second backwards.
-                    CollisionBody.Rotation = (float)(Math.PI ); // start half a rotation earlier, e.a on left side of player
+                    CollisionBody.Rotation = (float)(Math.PI /2); // start quarter a rotation earlier, e.a on top side of player
                     break;
                 case Dir.Right:
                     torque = 100000;

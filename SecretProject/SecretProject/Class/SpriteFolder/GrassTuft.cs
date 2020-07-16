@@ -97,7 +97,7 @@ namespace SecretProject.Class.SpriteFolder
             //GRASS ITSELF
             this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, DestinationRectangle.Width / 2, 2, 1f);
 
-            this.CollisionBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 4,
+            this.CollisionBody.Position = new Vector2(this.DestinationRectangle.X + SourceRectangle.Width / 8,
                this.DestinationRectangle.Y + SourceRectangle.Height / 4);
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
             CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player | VelcroPhysics.Collision.Filtering.Category.Weapon;
