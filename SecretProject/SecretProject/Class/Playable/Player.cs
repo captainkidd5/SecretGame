@@ -322,9 +322,7 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
-                    this.CurrentEquippedTool = Sword.CreateSword(this.Graphics, this, direction, GetCurrentEquippedToolData());
-                 //   Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
-
+                    this.CurrentEquippedTool = Sword.CreateTool(this.Graphics, this, direction, GetCurrentEquippedToolData());
                     break;
 
                 case AnimationType.PortalJump:
@@ -772,7 +770,7 @@ namespace SecretProject.Class.Playable
 
         public void TakeDamage(int dmgAmount)
         {
-            if (!Game1.EnablePlayerInvincibility)
+            if (!Game1.Flags.EnablePlayerInvincibility)
             {
                 this.Health -= (int)dmgAmount;
                 if (this.Health == 0)

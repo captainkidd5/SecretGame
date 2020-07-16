@@ -782,6 +782,16 @@
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
+ <tile id="1600">
+  <properties>
+   <property name="action" value="cycleLocation"/>
+  </properties>
+ </tile>
+ <tile id="1602">
+  <properties>
+   <property name="action" value="cycleLocation"/>
+  </properties>
+ </tile>
  <tile id="1631">
   <properties>
    <property name="newHitBox" value="0,0,32,16"/>

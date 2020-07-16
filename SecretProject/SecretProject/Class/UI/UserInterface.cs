@@ -205,7 +205,7 @@ namespace SecretProject.Class.UI
             if (Game1.KeyboardManager.WasKeyPressed(Keys.F3))
             {
 
-                Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
+                Game1.Flags.EnablePlayerCollisions = !Game1.Flags.EnablePlayerCollisions;
                 Game1.Player.CollisionBody.Awake = !Game1.Player.CollisionBody.Awake;
                 Game1.MouseManager.EnableBody = !Game1.MouseManager.EnableBody;
             }

@@ -365,7 +365,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             SpawnHolder.SpawnOverWorld(Game1.OverWorldSpawnHolder, (TileManager)this.TileManager, Game1.Utility.RGenerator);
             Dungeon.AllTiles = this.TileManager;
             Dungeon.Enemies = new List<NPCStuff.Enemies.Enemy>();
-            if (Game1.AllowNaturalNPCSpawning)
+            if (Game1.Flags.AllowNaturalNPCSpawning)
             {
 
 

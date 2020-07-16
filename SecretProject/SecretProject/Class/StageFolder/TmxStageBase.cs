@@ -453,7 +453,7 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                if (Game1.UpdateCharacters)
+                if (Game1.Flags.UpdateCharacters)
                 {
                     foreach (Character character in Game1.AllCharacters)
                     {

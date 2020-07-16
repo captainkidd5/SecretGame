@@ -117,14 +117,7 @@ namespace SecretProject
     public class Game1 : Game
     {
         #region FIELDS
-        public static bool EnablePlayerInvincibility = false;
-        public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
-        public static bool EnableMusic = false;
-        public static bool InfiniteArrows = false;
-        public static bool GenerateChunkLandscape = true;
-        public static bool AllowNaturalNPCSpawning = true;
-        public static bool UpdateCharacters = true;
+        public static Flags Flags;
 
         public static int NPCSpawnCountLimit = 50;
 
@@ -348,7 +341,7 @@ namespace SecretProject
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-
+            Flags = new Flags();
 
             HomeContentManager = new ContentManager(this.Content.ServiceProvider);
             MainMenuContentManager = new ContentManager(this.Content.ServiceProvider);
@@ -1154,7 +1147,7 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
-            if (EnableMusic)
+            if (Game1.Flags.EnableMusic)
             {
                 SoundManager.PlaySong();
                 if (IsFadingOut)
@@ -1182,7 +1175,7 @@ namespace SecretProject
                 CurrentStage.Update(gameTime, MouseManager, Player);
 
             }
-            if (EnableCutScenes && !IsEventActive)
+            if (Flags.EnableCutScenes && !IsEventActive)
             {
                 foreach (IEvent e in AllEvents)
                 {

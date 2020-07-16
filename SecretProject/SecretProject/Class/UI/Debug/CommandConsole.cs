@@ -240,7 +240,7 @@ namespace SecretProject.Class.UI
                     Game1.Player.LockBounds = !Game1.Player.LockBounds;
                     break;
                 case "togglemusic":
-                    Game1.EnableMusic = !Game1.EnableMusic;
+                    Game1.Flags.EnableMusic = !Game1.Flags.EnableMusic;
                     break;
                 case "showtileindex":
                     DisplayTileIndex = !DisplayTileIndex;
