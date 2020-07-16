@@ -58,15 +58,15 @@ namespace SecretProject.Class.Physics.Tools
         }
         public void CreateBody()
         {
-            Body entityStaticBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 5,1f);
+            Body entityStaticBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 1,1f);
             entityStaticBody.Position = new Vector2(this.Entity.CollisionBody.Position.X, this.Entity.CollisionBody.Position.Y - 8);//so that its halfway up the sprite, where the hands usually are!
             entityStaticBody.BodyType = BodyType.Static;
             entityStaticBody.IgnoreGravity = true;
-            entityStaticBody.IsSensor = true;
+            //entityStaticBody.IsSensor = true;
 
-            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 4, 1f);
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 4, 1f);
 
-            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 8, entityStaticBody.Position.Y); //X + 16 so the end of the rectangle is attached to the side of the static one
+            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 16, entityStaticBody.Position.Y); //X + 16 so the end of the rectangle is attached to the side of the static one
 
             this.CollisionBody.BodyType = BodyType.Dynamic;
             
@@ -82,7 +82,7 @@ namespace SecretProject.Class.Physics.Tools
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
                 entityStaticBody, this.CollisionBody, new Vector2(entityStaticBody.Position.X , entityStaticBody.Position.Y)); //Joints connect bodies, not fixtures.
             joint.LocalAnchorA = new Vector2(0, 0);
-            joint.LocalAnchorB = new Vector2(0, 0);
+            joint.LocalAnchorB = new Vector2(-16, 0);
             float referenceAngle = 0;
             
            // joint.an
@@ -96,13 +96,13 @@ namespace SecretProject.Class.Physics.Tools
             switch(SwingDirection)
             {
                 case Dir.Left:
-                    torque = 16000;
+                    torque = 100000;
                     motorSpeed = (float)(Math.PI * -1); //half rotation per second backwards.
                     break;
                 case Dir.Right:
-                    torque = 16000;
+                    torque = 100000;
                    // referenceAngle = (float)Math.PI;
-                    motorSpeed = (float)(Math.PI * 1); //half rotation per second fowards.
+                    motorSpeed = (float)(Math.PI); //half rotation per second fowards.
                     break;
 
                 default:

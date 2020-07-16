@@ -217,7 +217,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             if (this.IsMoving)
             {
                 UpdateBehaviours(gameTime);
-                CollisionBody.LinearVelocity = this.primaryVelocity * DirectionVector * 5 *(float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                CollisionBody.LinearVelocity = this.primaryVelocity * DirectionVector * 1 *(float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 this.Position = CollisionBody.Position;
                 //if(Navigator.HasReachedNextPoint)
                 //    Navigator.CurrentPath.RemoveAt(Navigator.CurrentPath.Count - 1);
@@ -271,7 +271,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             switch (this.CurrentBehaviour)
             {
                 case CurrentBehaviour.Wander:
-                    Navigator.Wander(gameTime,ref this.Position, ref CurrentDirection);
+                //    Navigator.Wander(gameTime,ref this.Position, ref CurrentDirection);
                     this.DirectionVector = Navigator.DirectionVector;
                     this.NPCHitBoxRectangle = new Rectangle((int)this.Position.X - this.NPCAnimatedSprite[(int)CurrentDirection].Width / 2,
                         (int)this.Position.Y - this.NPCAnimatedSprite[(int)CurrentDirection].Height / 2,
