@@ -98,14 +98,25 @@ namespace SecretProject.Class.Physics.Tools
             float torque;
             switch(SwingDirection)
             {
+                case Dir.Down:
+                    motorSpeed = (float)(Math.PI * 2 * -1); //half rotation per second Backward.
+                    torque = 100000;
+                    CollisionBody.Rotation = (float)(Math.PI); // start quarter a rotation earlier, e.a on left side of player
+                    break;
+                case Dir.Up:
+                    motorSpeed = (float)(Math.PI * 2 ); //half rotation per second Foward.
+                    torque = 100000;
+                    CollisionBody.Rotation = (float)(Math.PI ); // start quarter a rotation earlier, e.a on left side of player
+                    break;
                 case Dir.Left:
                     torque = 100000;
-                    motorSpeed = (float)(Math.PI * -1); //half rotation per second backwards.
-                    CollisionBody.Rotation = (float)(Math.PI /2); // start quarter a rotation earlier, e.a on top side of player
+                    motorSpeed = (float)(Math.PI * 2 * -1); //half rotation per second backwards.
+                    CollisionBody.Rotation = (float)(Math.PI * 3/2); // start quarter a rotation earlier, e.a on top side of player
                     break;
                 case Dir.Right:
                     torque = 100000;
-                    motorSpeed = (float)(Math.PI); //half rotation per second fowards.
+                    motorSpeed = (float)(Math.PI * 2); //half rotation per second fowards.
+                    CollisionBody.Rotation = (float)(Math.PI * 3 / 2); // start quarter a rotation earlier, e.a on top side of player
                     break;
 
                 default:
