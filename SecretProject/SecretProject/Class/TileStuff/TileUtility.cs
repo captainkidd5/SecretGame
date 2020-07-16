@@ -552,7 +552,7 @@ namespace SecretProject.Class.TileStuff
                 //including animation frame id to replace!
                 case "diggable":
 
-                    if (TileManager.AllTiles[1][i, j].GID == -1)
+                    if (TileManager.AllTiles[(int)MapLayer.MidGround][i, j].GID == -1)
                     {
                         ItemData item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                         if (item != null)
