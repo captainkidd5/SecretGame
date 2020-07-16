@@ -309,7 +309,8 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Mining:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
-                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+                    this.CurrentEquippedTool = Tool.CreateTool(this.Graphics, this, direction, GetCurrentEquippedToolData());
+                    //Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
 
                     break;
 

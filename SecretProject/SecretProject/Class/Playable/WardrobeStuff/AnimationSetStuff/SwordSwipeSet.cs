@@ -11,8 +11,6 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
 {
     public class SwordSwipeSet : AnimationSet
     {
-        public ToolPiece ToolPiece { get; set; }
-
         public bool HasGottenDirection { get; set; }
         public Dir Direction { get; set; }
 
@@ -46,10 +44,7 @@ namespace SecretProject.Class.Playable.WardrobeStuff.AnimationSetStuff
             {
                 Pieces[i].UpdateSwordSwipe(gameTime, position, this.CurrentFrame, Direction);
             }
-            if (Game1.Player.Wardrobe.ToolPiece != null)
-            {
-                Game1.Player.Wardrobe.ToolPiece.UpdateSwordSwipe(gameTime, position, this.CurrentFrame, Direction);
-            }
+
 
 
 

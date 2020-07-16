@@ -51,8 +51,6 @@ namespace SecretProject.Class.Playable
         public ShoesPiece ShoesPiece { get; set; }
         public ArmsPiece ArmsPiece { get; set; }
 
-        public ToolPiece ToolPiece { get; set; }
-
 
         public List<ClothingPiece> BasicClothing { get; set; }
 
@@ -163,11 +161,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void ChangeTool(int itemID, Dir direction)
-        {
-            this.ToolPiece = new ToolPiece(Color.White);
-            this.ToolPiece.ChangeTool(itemID, direction);
-        }
+
 
         public void ChangeSkin(CycleDirection direction)
         {

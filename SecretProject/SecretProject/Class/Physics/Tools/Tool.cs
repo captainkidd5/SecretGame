@@ -186,6 +186,9 @@ namespace SecretProject.Class.Physics.Tools
                 case ItemType.Axe:
                     tool = new Axe(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
                     break;
+                case ItemType.Hammer:
+                    tool = new Hammer(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
+                    break;
                 default:
                     tool = new Sword(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
                     break;
