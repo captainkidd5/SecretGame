@@ -87,7 +87,7 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
-        public ITool CurrentEquippedTool { get; set; }
+        public Tool CurrentEquippedTool { get; set; }
         public UserInterface UserInterface { get; set; }
 
         public Texture2D BigHitBoxRectangleTexture;
@@ -316,13 +316,14 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.ChopSet;
-                    Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+                    //Wardrobe.ChangeTool(UserInterface.BackPack.GetCurrentEquippedTool(), direction);
+                    this.CurrentEquippedTool = Tool.CreateTool(this.Graphics, this, direction, GetCurrentEquippedToolData());
                     break;
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
                     Wardrobe.CurrentAnimationSet = Wardrobe.SwipeSet;
-                    this.CurrentEquippedTool = Sword.CreateTool(this.Graphics, this, direction, GetCurrentEquippedToolData());
+                    this.CurrentEquippedTool = Tool.CreateTool(this.Graphics, this, direction, GetCurrentEquippedToolData());
                     break;
 
                 case AnimationType.PortalJump:

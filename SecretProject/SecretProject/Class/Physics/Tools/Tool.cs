@@ -18,7 +18,7 @@ using XMLData.ItemStuff;
 namespace SecretProject.Class.Physics.Tools
 {
 
-    public class Tool : ICollidable, ITool
+    public class Tool : ICollidable
     {
         public Body CollisionBody { get; set; }
         public ICollidable Entity { get; set; }
@@ -58,32 +58,15 @@ namespace SecretProject.Class.Physics.Tools
 
 
         }
-        public void CreateBody()
+
+        /// <summary>
+        /// Create joint of which the tool image will rotate around.
+        /// </summary>
+        /// <param name="staticBody">The "pinboard" on which to stick the rotating shape.</param>
+        protected virtual void CreateJoint(Body staticBody)
         {
-            Body entityStaticBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 1, 1f);
-            entityStaticBody.Position = new Vector2(this.Entity.CollisionBody.Position.X, this.Entity.CollisionBody.Position.Y - 16);//so that its halfway up the sprite, where the hands usually are!
-            entityStaticBody.BodyType = BodyType.Static;
-            entityStaticBody.IgnoreGravity = true;
-            JointCenter = entityStaticBody.Position;
-            //entityStaticBody.IsSensor = true;
-
-            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 4, 1f);
-
-            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 16, entityStaticBody.Position.Y); //Move rectangle entirely outside of circle. 
-
-            this.CollisionBody.BodyType = BodyType.Dynamic;
-
-            this.CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Weapon;
-            this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy |
-                VelcroPhysics.Collision.Filtering.Category.Solid;
-            this.CollisionBody.IgnoreGravity = true;
-            CollisionBody.Mass = .5f;
-
-            this.CollisionBody.OnCollision += OnCollision;
-            CollisionBody.FixedRotation = false;
-
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
-                entityStaticBody, this.CollisionBody, new Vector2(entityStaticBody.Position.X, entityStaticBody.Position.Y)); //Joints connect bodies, not fixtures.
+               staticBody, this.CollisionBody, new Vector2(staticBody.Position.X, staticBody.Position.Y)); //Joints connect bodies, not fixtures.
             joint.LocalAnchorA = new Vector2(0, 0);
             joint.LocalAnchorB = new Vector2(-16, 0); //create pivot point on left side of rectangle, but in middle of anchor circle.
             float referenceAngle = 0;
@@ -132,22 +115,48 @@ namespace SecretProject.Class.Physics.Tools
             joint.CollideConnected = false;
             // joint.
             this.Joint = joint;
+        }
+        public virtual void CreateBody()
+        {
+            Body entityStaticBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 1, 1f);
+            entityStaticBody.Position = new Vector2(this.Entity.CollisionBody.Position.X, this.Entity.CollisionBody.Position.Y - 16);//so that its halfway up the sprite, where the hands usually are!
+            entityStaticBody.BodyType = BodyType.Static;
+            entityStaticBody.IgnoreGravity = true;
+            JointCenter = entityStaticBody.Position;
+            //entityStaticBody.IsSensor = true;
+
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 4, 1f);
+
+            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 16, entityStaticBody.Position.Y); //Move rectangle entirely outside of circle. 
+
+            this.CollisionBody.BodyType = BodyType.Dynamic;
+
+            this.CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Weapon;
+            this.CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Enemy |
+                VelcroPhysics.Collision.Filtering.Category.Solid;
+            this.CollisionBody.IgnoreGravity = true;
+            CollisionBody.Mass = .5f;
+
+            this.CollisionBody.OnCollision += OnCollision;
+            CollisionBody.FixedRotation = false;
+
+            CreateJoint(entityStaticBody);
             Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, Game1.CurrentStage.DebuggableShapes));
             Sprite.Position = CollisionBody.Position + Joint.LocalAnchorB;
         }
 
-        private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        protected virtual void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
             Console.WriteLine("sword collided");
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             this.Sprite.Update(gameTime);
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, float layerDepth)
+        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             this.Sprite.DrawRotationalSprite(spriteBatch, JointCenter, BaseRotation + CollisionBody.Rotation,
                 Sprite.Origin, layerDepth);
@@ -156,6 +165,7 @@ namespace SecretProject.Class.Physics.Tools
 
         public static Tool CreateTool(GraphicsDevice graphics, ICollidable holder, Dir direction, ItemData itemData = null)
         {
+           
             Texture2D texture;
             Tool tool;
             int damage;
@@ -167,12 +177,23 @@ namespace SecretProject.Class.Physics.Tools
             damage = itemData.Damage;
 
             sprite = new Sprite(graphics, texture, sourceRectangle, holder.CollisionBody.Position, (int)sourceRectangle.Width, (int)sourceRectangle.Height) { Origin = new Vector2(16, 16) }; //handle is in bottom right hand corner of sword sprites.
-            tool = new Tool(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
 
+            switch (itemData.Type)
+            {
+                case ItemType.Sword:
+                    tool = new Sword(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
+                    break;
+                case ItemType.Axe:
+                    tool = new Axe(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
+                    break;
+                default:
+                    tool = new Sword(holder, holder.CollisionBody.Position, sprite, damage, direction, sourceRectangle.Width, null);
+                    break;
+            }
             return tool;
         }
 
-        public void Remove()
+        public virtual void Remove()
         {
             Game1.VelcroWorld.RemoveBody(this.CollisionBody);
             this.CollisionBody = null;

@@ -209,6 +209,16 @@
    <object id="1" x="1" y="4" width="8" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="484">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="485">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="506">
   <properties>
    <property name="step" value="3"/>
@@ -331,6 +341,20 @@
  <tile id="574">
   <objectgroup draworder="index">
    <object id="1" x="0" y="3" width="8" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="583">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="586">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="609">
