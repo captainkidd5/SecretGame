@@ -16,10 +16,11 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
 
         public SimpleTimer SimpleTimer { get; set; }
 
-        public MovieScene(string name, List<MovieProp> movieProps)
+        public MovieScene(string name, List<MovieProp> movieProps, float duration)
         {
             this.Name = name;
             this.Props = movieProps;
+            this.SimpleTimer = new SimpleTimer(duration);
 
         }
 

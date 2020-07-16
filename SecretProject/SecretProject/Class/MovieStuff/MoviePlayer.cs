@@ -11,38 +11,38 @@ namespace SecretProject.Class.MovieStuff
 {
     public enum MovieName
     {
-        None =0,
+        None = 0,
         Intro = 1
     }
     public class MoviePlayer
     {
+        public bool IsActive { get; set; }
         private List<Movie> Movies { get; set; }
-        private Movie CurrentMovie{ get; set; }
-        public MoviePlayer(IServiceProvider serviceProvider)
+        private Movie CurrentMovie { get; set; }
+        public MoviePlayer()
         {
             Movies = new List<Movie>();
+            Movies.Add(new IntroMovie(MovieName.Intro));
         }
 
-        public void ChangeMovie(MovieName movieName)
+        public void ChangeMovie(MovieName movieName, IServiceProvider serviceProvider)
         {
-            
+            this.CurrentMovie = Movies.Find(x => x.MovieName == movieName);
+            this.CurrentMovie.InsertMovie(serviceProvider);
         }
 
         public void Update(GameTime gameTime)
         {
-            for(int i =0; i < this.Movies.Count;i++)
-            {
-                Movies[i].Update(gameTime);
-            }
+            if (CurrentMovie.Update(gameTime))
+                this.IsActive = false;
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < this.Movies.Count; i++)
-            {
-                Movies[i].Draw(spriteBatch);
-            }
+            if (this.IsActive)
+                CurrentMovie.Draw(spriteBatch);
         }
     }
 
-    
+
 }

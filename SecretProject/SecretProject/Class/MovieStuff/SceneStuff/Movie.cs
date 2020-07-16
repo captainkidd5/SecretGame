@@ -14,9 +14,12 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
 
         protected List<MovieScene> MovieScenes { get; set; }
         public ContentManager ContentManager { get; set; }
-        public Movie()
-        {
+        private int SceneIndex { get; set; }
 
+        public MovieName MovieName { get; set; }
+        public Movie(MovieName movieName)
+        {
+            this.MovieName = movieName;
         }
 
         protected virtual void LoadContent()
@@ -47,20 +50,29 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         }
 
 
-        public virtual void Update(GameTime gameTime)
+        /// <summary>
+        /// returns true if movie is finished.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <returns></returns>
+        public virtual bool Update(GameTime gameTime)
         {
-            for (int i = 0; i < this.MovieScenes.Count; i++)
+            if (!MovieScenes[SceneIndex].Update(gameTime))
             {
-                MovieScenes[i].Update(gameTime);
+                if (SceneIndex >= MovieScenes.Count)
+                {
+                    EjectMovie(); //movie is finished, unload stuff.
+                    return true;
+                }
+                SceneIndex++;
             }
+            return false;
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < this.MovieScenes.Count; i++)
-            {
-                MovieScenes[i].Draw(spriteBatch);
-            }
+            MovieScenes[SceneIndex].Draw(spriteBatch);
         }
     }
 }

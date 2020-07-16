@@ -11,7 +11,7 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
 {
     internal class IntroMovie : Movie
     {
-        public IntroMovie( ) : base()
+        public IntroMovie(MovieName movieName ) : base(movieName)
         {
             
 

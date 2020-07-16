@@ -516,7 +516,7 @@ namespace SecretProject
 
             LoadPhysics();
 
-            MoviePlayer = new MoviePlayer(Content.ServiceProvider);
+            MoviePlayer = new MoviePlayer();
 
         }
 
