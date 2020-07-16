@@ -33,6 +33,8 @@ namespace SecretProject.Class.Physics.Tools
 
         private Dir SwingDirection { get; set; }
 
+        public Vector2 JointCenter { get; set; }
+
         public float BaseRotation { get; set; } = 3 * MathHelper.Pi / 4; //sowrds are tilted to the top left in the sprite sheet. Need to rotate them back to 0.
 
         public Sword(ICollidable entityData, Vector2 entityPosition, Sprite swordSprite, int damage, Dir direction,float? swordLength, Vector2? customSwordLength)
@@ -59,14 +61,15 @@ namespace SecretProject.Class.Physics.Tools
         public void CreateBody()
         {
             Body entityStaticBody = BodyFactory.CreateCircle(Game1.VelcroWorld, 1,1f);
-            entityStaticBody.Position = new Vector2(this.Entity.CollisionBody.Position.X, this.Entity.CollisionBody.Position.Y - 8);//so that its halfway up the sprite, where the hands usually are!
+            entityStaticBody.Position = new Vector2(this.Entity.CollisionBody.Position.X, this.Entity.CollisionBody.Position.Y -16);//so that its halfway up the sprite, where the hands usually are!
             entityStaticBody.BodyType = BodyType.Static;
             entityStaticBody.IgnoreGravity = true;
+            JointCenter = entityStaticBody.Position;
             //entityStaticBody.IsSensor = true;
 
-            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 4, 1f);
+            this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 16, 4, 1f);
 
-            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 16, entityStaticBody.Position.Y); //X + 16 so the end of the rectangle is attached to the side of the static one
+            this.CollisionBody.Position = new Vector2(entityStaticBody.Position.X + 16, entityStaticBody.Position.Y); //X + 
 
             this.CollisionBody.BodyType = BodyType.Dynamic;
             
@@ -82,7 +85,7 @@ namespace SecretProject.Class.Physics.Tools
             RevoluteJoint joint = JointFactory.CreateRevoluteJoint(Game1.VelcroWorld,
                 entityStaticBody, this.CollisionBody, new Vector2(entityStaticBody.Position.X , entityStaticBody.Position.Y)); //Joints connect bodies, not fixtures.
             joint.LocalAnchorA = new Vector2(0, 0);
-            joint.LocalAnchorB = new Vector2(-16, 0);
+            joint.LocalAnchorB = new Vector2(-16, 0); //create pivot point on left side of rectangle, but in middle of anchor circle.
             float referenceAngle = 0;
             
            // joint.an
@@ -98,10 +101,10 @@ namespace SecretProject.Class.Physics.Tools
                 case Dir.Left:
                     torque = 100000;
                     motorSpeed = (float)(Math.PI * -1); //half rotation per second backwards.
+                    CollisionBody.Rotation = (float)(Math.PI ); // start half a rotation earlier, e.a on left side of player
                     break;
                 case Dir.Right:
                     torque = 100000;
-                   // referenceAngle = (float)Math.PI;
                     motorSpeed = (float)(Math.PI); //half rotation per second fowards.
                     break;
 
@@ -109,10 +112,12 @@ namespace SecretProject.Class.Physics.Tools
                     torque = 0;
                     break;
             }
+
             joint.ReferenceAngle = referenceAngle;
             joint.MotorSpeed = motorSpeed;
             joint.MaxMotorTorque = torque;
             joint.Enabled = true;
+            
             joint.CollideConnected = false;
             // joint.
             this.Joint = joint;
@@ -133,7 +138,7 @@ namespace SecretProject.Class.Physics.Tools
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            this.Sprite.DrawRotationalSprite(spriteBatch, CollisionBody.Position + Joint.LocalAnchorB, BaseRotation +  CollisionBody.Rotation,
+            this.Sprite.DrawRotationalSprite(spriteBatch, JointCenter , BaseRotation +  CollisionBody.Rotation,
                 Sprite.Origin, layerDepth);
 
         }
