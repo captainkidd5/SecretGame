@@ -25,6 +25,7 @@ namespace SecretProject.Class.Universal
                 Game1.SippiDesert
 
             };
+            CurrentLocation = Game1.Town;
         }
 
         public void CycleLocation(Dir direction)
@@ -38,7 +39,7 @@ namespace SecretProject.Class.Universal
                     break;
                 case Dir.Left:
                     CurrentIndex--;
-                    if (CurrentIndex <= 0)
+                    if (CurrentIndex < 0)
                         CurrentIndex = AvailableLocations.Count - 1;
                     break;
                 default:

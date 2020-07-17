@@ -3099,6 +3099,19 @@
    <property name="loot" value="1007"/>
   </properties>
  </tile>
+ <tile id="1914">
+  <properties>
+   <property name="destructable" value="Mining,0,0,20,20,0"/>
+   <property name="loot" value="1001"/>
+  </properties>
+ </tile>
+ <tile id="1915">
+  <properties>
+   <property name="destructable" value="Mining,0,0,20,20,0"/>
+   <property name="loot" value="1001"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="2102">
   <properties>
    <property name="destructable" value="Mining,0,0,8,20,0"/>
@@ -3350,12 +3363,6 @@
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
  </tile>
- <tile id="2509">
-  <properties>
-   <property name="newHitBox" value="0,0, 32, 16"/>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
- </tile>
  <tile id="2515">
   <properties>
    <property name="action" value="diggable"/>
@@ -3446,6 +3453,12 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="2611">
+  <properties>
+   <property name="newHitBox" value="0,0, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
  </tile>
  <tile id="2615">
   <properties>
