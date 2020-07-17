@@ -60,7 +60,8 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("showtileindex", "shows x and y coords of tiles"),
                 new CommandWindowCommand("setzoom", "setzoom (float) zoomamt"),
                 new CommandWindowCommand("addmob", "mobID"),
-                new CommandWindowCommand("getmobs", "gets a list of all the mob ids")
+                new CommandWindowCommand("getmobs", "gets a list of all the mob ids"),
+                new CommandWindowCommand("playmovie", "playmovie moviename")
             };
             this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle( 600, 400, new Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
@@ -258,6 +259,9 @@ namespace SecretProject.Class.UI
                     {
                         this.DisplayLog += mobType.ToString() + "\n";
                     }
+                    break;
+                case "playmovie":
+                    Game1.PlayMovie(MovieStuff.MovieName.Intro);
                     break;
                 case "":
                     break;

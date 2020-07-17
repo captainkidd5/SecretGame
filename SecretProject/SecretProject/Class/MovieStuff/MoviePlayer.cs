@@ -16,19 +16,21 @@ namespace SecretProject.Class.MovieStuff
     }
     public class MoviePlayer
     {
+        public IServiceProvider IServiceProvider { get; set; }
         public bool IsActive { get; set; }
         private List<Movie> Movies { get; set; }
         private Movie CurrentMovie { get; set; }
-        public MoviePlayer()
+        public MoviePlayer(IServiceProvider serviceProvider)
         {
             Movies = new List<Movie>();
             Movies.Add(new IntroMovie(MovieName.Intro));
+            this.IServiceProvider = serviceProvider;
         }
 
-        public void ChangeMovie(MovieName movieName, IServiceProvider serviceProvider)
+        public void ChangeMovie(MovieName movieName)
         {
             this.CurrentMovie = Movies.Find(x => x.MovieName == movieName);
-            this.CurrentMovie.InsertMovie(serviceProvider);
+            this.CurrentMovie.InsertMovie(this.IServiceProvider);
         }
 
         public void Update(GameTime gameTime)

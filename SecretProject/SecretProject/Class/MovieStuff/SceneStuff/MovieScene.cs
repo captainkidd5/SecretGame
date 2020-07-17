@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Universal;
 using System;
@@ -13,13 +14,15 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
     {
         public string Name { get; set; }
         private List<MovieProp> Props { get; set; }
+        private List<MovieSound> SoundEffects { get; set; }
 
         public SimpleTimer SimpleTimer { get; set; }
 
-        public MovieScene(string name, List<MovieProp> movieProps, float duration)
+        public MovieScene(string name, List<MovieProp> movieProps, List<MovieSound> soundEffects, float duration)
         {
             this.Name = name;
             this.Props = movieProps;
+            this.SoundEffects = soundEffects;
             this.SimpleTimer = new SimpleTimer(duration);
 
         }
@@ -31,16 +34,20 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         /// <returns></returns>
         public bool Update(GameTime gameTime)
         {
-            if(!SimpleTimer.Run(gameTime))
+            if (!SimpleTimer.Run(gameTime))
             {
                 for (int i = 0; i < this.Props.Count; i++)
                 {
                     Props[i].Update(gameTime);
                 }
+                for(int i =0; i < this.SoundEffects.Count; i++)
+                {
+                    SoundEffects[i].Update(SimpleTimer);
+                }
                 return true;
             }
             return false;
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -56,14 +63,16 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             private Texture2D Texture { get; set; }
             private Vector2 Position { get; set; }
             private float LayerDepth { get; set; }
+            private float Scale { get; set; }
 
             private Vector2 Velocity { get; set; }
-            public MovieProp(Texture2D texture, Vector2 position, float layerDepth, Vector2 velocity)
+            public MovieProp(Texture2D texture, Vector2 position, float layerDepth, Vector2 velocity, float scale)
             {
                 this.Texture = texture;
                 this.Position = position;
                 this.LayerDepth = layerDepth;
                 this.Velocity = velocity;
+                this.Scale = scale;
             }
 
             public void Update(GameTime gameTIme)
@@ -72,7 +81,37 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             }
             public void Draw(SpriteBatch spriteBatch)
             {
-                spriteBatch.Draw(this.Texture, this.Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, this.LayerDepth);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
+
+                spriteBatch.Draw(this.Texture, this.Position, null, Color.White, 0f, Vector2.Zero, this.Scale, SpriteEffects.None, this.LayerDepth);
+                spriteBatch.End();
+            }
+        }
+
+        public class MovieSound
+        {
+            private SoundEffect SoundEffect { get; set; }
+            private List<int> TimeStamps { get; set; }
+            public MovieSound(SoundEffect soundEffect, List<int> timeStamps)
+            {
+                this.SoundEffect = soundEffect;
+                this.TimeStamps = timeStamps;
+            }
+
+            /// <summary>
+            /// Play sound every time the timer is greater than the time stamp. 
+            /// </summary>
+            /// <param name="simpleTimer"></param>
+            public void Update(SimpleTimer simpleTimer)
+            {
+                for(int i = 0; i < this.TimeStamps.Count; i++)
+                {
+                    if(TimeStamps[i] < simpleTimer.Time)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(this.SoundEffect);
+                        TimeStamps.RemoveAt(i);
+                    }
+                }
             }
         }
     }

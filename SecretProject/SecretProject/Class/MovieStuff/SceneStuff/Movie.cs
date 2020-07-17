@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -49,6 +50,11 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             return ContentManager.Load<Texture2D>(path);
         }
 
+        protected virtual SoundEffect LoadSound(string path)
+        {
+            return ContentManager.Load<SoundEffect>(path);
+        }
+
 
         /// <summary>
         /// returns true if movie is finished.
@@ -59,7 +65,7 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         {
             if (!MovieScenes[SceneIndex].Update(gameTime))
             {
-                if (SceneIndex >= MovieScenes.Count)
+                if (SceneIndex >= MovieScenes.Count - 1)
                 {
                     EjectMovie(); //movie is finished, unload stuff.
                     return true;

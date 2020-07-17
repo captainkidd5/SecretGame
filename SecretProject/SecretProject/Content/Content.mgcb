@@ -1736,3 +1736,9 @@
 /processorParam:TextureFormat=Color
 /build:MovieStuff/IntroMovie/flames.png
 
+#begin MovieStuff/IntroMovie/airRaid.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MovieStuff/IntroMovie/airRaid.wav
+

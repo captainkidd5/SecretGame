@@ -337,7 +337,7 @@ namespace SecretProject
         public static World VelcroWorld;
 
         //Movies
-        public static MoviePlayer MoviePlayer;
+        protected static MoviePlayer MoviePlayer;
 
         #endregion
 
@@ -516,7 +516,7 @@ namespace SecretProject
 
             LoadPhysics();
 
-            MoviePlayer = new MoviePlayer();
+            MoviePlayer = new MoviePlayer(Content.ServiceProvider);
 
         }
 
@@ -1019,16 +1019,8 @@ namespace SecretProject
 
 
         }
-        public static Body Pinboard { get; set; }
-        /// <summary>
-        /// create large collision box that spans the entire backdrop which we can pin things to like grass.
-        /// </summary>
-        private static void CreatePinBoard()
-        {
-            Body pinBoard = BodyFactory.CreateRectangle(VelcroWorld, 1600, 1600, 1f, Vector2.Zero, 0, BodyType.Static);
-            pinBoard.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Pinboard;
-            Pinboard = pinBoard;
-        }
+
+
         //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
 
 
@@ -1129,7 +1121,11 @@ namespace SecretProject
 
         }
 
-
+        public static void PlayMovie(MovieName movieName)
+        {
+            MoviePlayer.ChangeMovie(movieName);
+            MoviePlayer.IsActive = true;
+        }
         public static void FullScreenToggle()
         {
 
@@ -1176,34 +1172,18 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            if (!IsEventActive)
+            if(MoviePlayer.IsActive)
+            {
+                MoviePlayer.Update(gameTime);
+            }
+            else
             {
                 CurrentStage.Update(gameTime, MouseManager, Player);
-
             }
-            if (Flags.EnableCutScenes && !IsEventActive)
-            {
-                foreach (IEvent e in AllEvents)
-                {
-                    //if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == stageToSwitchTo && !e.IsCompleted)
-                    //{
-                    //    int num = (int)GetCurrentStageInt();
-                    //    if (!e.IsActive)
-                    //    {
-                    //        //e.Start();
-                    //        IsEventActive = true;
-                    //        CurrentEvent = e;
-                    //        CurrentEvent.Start();
-                    //    }
+                
 
+            
 
-                    //}
-                }
-            }
-            if (CurrentEvent != null)
-            {
-                CurrentEvent.Update(gameTime);
-            }
 
 
 
@@ -1225,8 +1205,16 @@ namespace SecretProject
             this.GraphicsDevice.Clear(Color.Black);
 
 
+            if(MoviePlayer.IsActive)
+            {
+                MoviePlayer.Draw(spriteBatch);
+            }
+            else
+            {
+                CurrentStage.Draw(gameTime, graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, spriteBatch, MouseManager, Player);
 
-            CurrentStage.Draw(gameTime, graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, spriteBatch, MouseManager, Player);
+            }
+           
 
             Game1.DebugWindow.Draw(spriteBatch);
 
