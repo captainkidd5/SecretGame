@@ -2960,6 +2960,11 @@
    <property name="generate" value="DesertStone"/>
   </properties>
  </tile>
+ <tile id="1706">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="1753">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -3057,6 +3062,16 @@
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
+ <tile id="1902">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="1904">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="1905">
   <properties>
    <property name="destructable" value="Mining,0,0,8,20,0"/>
@@ -3104,6 +3119,11 @@
    <property name="destructable" value="Mining,0,0,20,20,0"/>
    <property name="loot" value="1001"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="2" y="8" width="11" height="9">
+    <ellipse/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="1915">
   <properties>
@@ -3111,6 +3131,11 @@
    <property name="loot" value="1001"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="2102">
   <properties>

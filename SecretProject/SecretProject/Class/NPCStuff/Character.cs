@@ -166,14 +166,30 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             CollisionBody.Position = this.Position;
             CollisionBody.BodyType = BodyType.Static;
-            //InteractionBody.IsSensor = true;
+            CollisionBody.IsSensor = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
-            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.ProximitySensor;
-
+            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player;
+            CollisionBody.Enabled = true;
             CollisionBody.IgnoreGravity = true;
             CollisionBody.OnCollision += OnProximityCollision;
             CollisionBody.OnSeparation += OnProximitySeparation;
             
+        }
+
+        private void OnProximityCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
+            {
+                this.InRangeOfPlayer = true;
+            }
+        }
+
+        private void OnProximitySeparation(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
+            {
+                this.InRangeOfPlayer = false;
+            }
         }
 
         public void LoadPenumbra(TmxStageBase stage)
@@ -412,21 +428,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         }
         public bool InRangeOfPlayer { get; set; }
-        private void OnProximityCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
-        {
-            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
-            {
-                this.InRangeOfPlayer = true;
-            }
-        }
-
-        private void OnProximitySeparation(Fixture fixtureA, Fixture fixtureB, Contact contact)
-        {
-            if (fixtureB.Body.BodyId == Game1.Player.LargeProximitySensor.BodyId)
-            {
-                this.InRangeOfPlayer = false;
-            }
-        }
+        
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
