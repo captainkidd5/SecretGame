@@ -200,7 +200,7 @@ namespace SecretProject.Class.Playable
 
             this.LargeProximitySensor = BodyFactory.CreateRectangle(Game1.VelcroWorld, 32, 32, 1f);
             LargeProximitySensor.Position = this.Position;
-            LargeProximitySensor.BodyType = BodyType.Static;
+            LargeProximitySensor.BodyType = BodyType.Dynamic;
              LargeProximitySensor.IsSensor = true;
             CollisionBody.Enabled = true;
             LargeProximitySensor.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Player;
@@ -208,14 +208,14 @@ namespace SecretProject.Class.Playable
 
             LargeProximitySensor.IgnoreGravity = true;
 
-            //if (Game1.CurrentStage.DebuggableShapes != null)
-            //    Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(LargeProximitySensor, Game1.CurrentStage.DebuggableShapes));
+
         }
 
         public void SetPosition(Vector2 position)
         {
             CollisionBody.SetTransform(position, 0f);
             this.Position = CollisionBody.Position;
+            this.LargeProximitySensor.Position = this.Position;
         }
 
         public void LoadPenumbra(TmxStageBase stage)
@@ -247,6 +247,10 @@ namespace SecretProject.Class.Playable
             {
 
                 (fixtureB.Body.UserData as Tile).ColorMultiplier = .25f;
+            }
+            else if(fixtureB.CollisionCategories == VelcroPhysics.Collision.Filtering.Category.ProximitySensor)
+            {
+                Console.WriteLine("hi");
             }
         }
 
@@ -507,7 +511,9 @@ namespace SecretProject.Class.Playable
                     CollisionBody.AngularVelocity = 0f;
                 }
 
-                this.LargeProximitySensor.Position = CollisionBody.Position;
+                this.LargeProximitySensor.LinearVelocity = CollisionBody.LinearVelocity;
+                LargeProximitySensor.Inertia = CollisionBody.Inertia;
+                LargeProximitySensor.AngularVelocity = CollisionBody.AngularVelocity;
                 Position = new Vector2(CollisionBody.Position.X - 8, CollisionBody.Position.Y - 32);
                 //Wardrobe.SetZero();
                 PlayerCamPos = new Vector2((int)this.Position.X, (int)this.Position.Y);

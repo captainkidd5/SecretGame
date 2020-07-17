@@ -57,12 +57,13 @@ namespace SecretProject.Class.Physics
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
             if (this.RectangleShape == null)
             {
                 Shapes.Remove(this);
                 return;
             }
-            Vector2 drawPosition = new Vector2(this.RectangleShape.Position.X , this.RectangleShape.Position.Y );
+            Vector2 drawPosition = RectangleShape.Position;
             spriteBatch.Draw(this.Texture, drawPosition, rotation:RectangleShape.Rotation,color: Color.White * .5f, layerDepth: 1f);
 
         }
