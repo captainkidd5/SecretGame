@@ -28,8 +28,8 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             MovieProp background = new MovieProp(backgroundTexture, Vector2.Zero, .1f, Vector2.Zero,1f);
             MovieProp flames = new MovieProp(LoadTexture("flames"), new Vector2(200, 200), .2f, new Vector2(-10,-10), 1f);
             Texture2D airplaneTexture = LoadTexture("airplane");
-            MovieProp airPlane = new MovieProp(airplaneTexture, new Vector2(800, 350), .4f, new Vector2(-50, 0),1f);
-            MovieProp airPlane1 = new MovieProp(airplaneTexture, new Vector2(1000,400), .35f, new Vector2(-25, 0), .5f);
+            MovieProp airPlane = new MovieProp(airplaneTexture, new Vector2(1200, 350), .4f, new Vector2(-50, 0),1f);
+            MovieProp airPlane1 = new MovieProp(airplaneTexture, new Vector2(1200,400), .35f, new Vector2(-25, 0), .5f);
             MovieProp airPlane2 = new MovieProp(airplaneTexture, new Vector2(400, 100), .32f, new Vector2(-10, 0), .15f);
             MovieProp airPlane3 = new MovieProp(airplaneTexture, new Vector2(600, 50), .3f, new Vector2(-5, 0), .1f);
             scene1Props.Add(background);
@@ -39,7 +39,13 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             scene1Props.Add(airPlane1);
             scene1Props.Add(airPlane);
 
-            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, 18f));
+            MovieSound airRaid = new MovieSound(LoadSound("airRaid"), new List<int>() { 0 });
+            List<MovieSound> movieSounds = new List<MovieSound>()
+            {
+                airRaid,
+            };
+
+            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, movieSounds, 25f));
         }
 
         protected override Texture2D LoadTexture(string path)

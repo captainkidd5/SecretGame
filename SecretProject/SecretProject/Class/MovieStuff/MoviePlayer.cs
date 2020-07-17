@@ -20,11 +20,27 @@ namespace SecretProject.Class.MovieStuff
         public bool IsActive { get; set; }
         private List<Movie> Movies { get; set; }
         private Movie CurrentMovie { get; set; }
+
+        public bool Paused { get; set; }
         public MoviePlayer(IServiceProvider serviceProvider)
         {
             Movies = new List<Movie>();
             Movies.Add(new IntroMovie(MovieName.Intro));
             this.IServiceProvider = serviceProvider;
+        }
+
+        /// <summary>
+        /// TODO, need user interface involved to work.
+        /// </summary>
+        private void EndMovieEarly()
+        {
+            CurrentMovie.EjectMovie();
+            this.IsActive = false;
+        }
+        private void Unpause()
+        {
+            Game1.mainMenu.ReturnToDefaultState();
+            this.Paused = false;
         }
 
         public void ChangeMovie(MovieName movieName)
@@ -35,14 +51,32 @@ namespace SecretProject.Class.MovieStuff
 
         public void Update(GameTime gameTime)
         {
-            if (CurrentMovie.Update(gameTime))
-                this.IsActive = false;
+            Game1.Player.UserInterface.Update(gameTime, Game1.Player.Inventory);
+
+            if(Game1.KeyboardManager.WasKeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
+            {
+                Paused = true;
+                Action action = new Action(EndMovieEarly);
+                Game1.Player.UserInterface.AddAlert(UI.AlertType.Confirmation, Game1.Utility.centerScreen,
+                    "Skip Cutscene?", action, new Action(Unpause));
+            }
+            if(!Paused)
+            {
+                if (CurrentMovie.Update(gameTime))
+                    this.IsActive = false;
+            }
+           
 
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             if (this.IsActive)
+            {
                 CurrentMovie.Draw(spriteBatch);
+                Game1.Player.UserInterface.Draw(spriteBatch);
+            }
+                
         }
     }
 
