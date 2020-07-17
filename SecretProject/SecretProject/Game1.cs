@@ -1125,6 +1125,7 @@ namespace SecretProject
         {
             MoviePlayer.ChangeMovie(movieName);
             MoviePlayer.IsActive = true;
+            
         }
         public static void FullScreenToggle()
         {
@@ -1178,6 +1179,7 @@ namespace SecretProject
             }
             else
             {
+                Game1.Player.UserInterface.CinematicMode = false;
                 CurrentStage.Update(gameTime, MouseManager, Player);
             }
                 

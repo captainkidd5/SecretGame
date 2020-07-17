@@ -45,7 +45,7 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
                 airRaid,
             };
 
-            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, movieSounds, 25f));
+            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, movieSounds, 20f));
         }
 
         protected override Texture2D LoadTexture(string path)

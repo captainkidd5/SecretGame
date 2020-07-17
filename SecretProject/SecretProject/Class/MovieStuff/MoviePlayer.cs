@@ -36,17 +36,21 @@ namespace SecretProject.Class.MovieStuff
         {
             CurrentMovie.EjectMovie();
             this.IsActive = false;
+            Game1.Player.UserInterface.CinematicMode = false;
         }
         private void Unpause()
         {
             Game1.mainMenu.ReturnToDefaultState();
             this.Paused = false;
+            Game1.Player.UserInterface.CinematicMode = true;
         }
 
         public void ChangeMovie(MovieName movieName)
         {
             this.CurrentMovie = Movies.Find(x => x.MovieName == movieName);
             this.CurrentMovie.InsertMovie(this.IServiceProvider);
+            this.Paused = false;
+            Game1.Player.UserInterface.CinematicMode = true;
         }
 
         public void Update(GameTime gameTime)
