@@ -5367,6 +5367,11 @@
    <property name="portal" value="true,Town,JulianHouse"/>
   </properties>
  </tile>
+ <tile id="8847">
+  <properties>
+   <property name="newSource" value="-32,-80,80,96"/>
+  </properties>
+ </tile>
  <tile id="8910">
   <properties>
    <property name="newHitBox" value="-32,-48,96,60"/>

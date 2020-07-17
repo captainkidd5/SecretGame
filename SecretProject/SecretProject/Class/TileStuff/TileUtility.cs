@@ -877,10 +877,10 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen,"Location changed!");
 
                         if (TileManager.AllTiles[z][i, j].GID == 1603)
-                            Game1.TurnDial.CycleLocation(Dir.Right);
+                            Game1.TurnDial.CycleLocation(Dir.Right, TileManager, z, i, j);
 
                         else
-                            Game1.TurnDial.CycleLocation(Dir.Left);
+                            Game1.TurnDial.CycleLocation(Dir.Left, TileManager, z,i,j);
 
 
                     }

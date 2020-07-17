@@ -510,7 +510,7 @@ namespace SecretProject.Class.Playable
                     CollisionBody.LinearVelocity = Vector2.Zero;
                     CollisionBody.AngularVelocity = 0f;
                 }
-
+                this.LargeProximitySensor.Position = CollisionBody.Position;
                 this.LargeProximitySensor.LinearVelocity = CollisionBody.LinearVelocity;
                 LargeProximitySensor.Inertia = CollisionBody.Inertia;
                 LargeProximitySensor.AngularVelocity = CollisionBody.AngularVelocity;

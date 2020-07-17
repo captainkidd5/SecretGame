@@ -1,4 +1,5 @@
 ﻿using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,17 +29,20 @@ namespace SecretProject.Class.Universal
             CurrentLocation = Game1.Town;
         }
 
-        public void CycleLocation(Dir direction)
+        public void CycleLocation(Dir direction, TileManager tileManager, int layer, int x, int y)
         {
+            int tilePosition = 0;
             switch(direction)
             {
                 case Dir.Right:
                     CurrentIndex++;
+                    tilePosition = -1;
                     if (CurrentIndex >= AvailableLocations.Count)
                         CurrentIndex = 0;
                     break;
                 case Dir.Left:
                     CurrentIndex--;
+                    tilePosition = 1;
                     if (CurrentIndex < 0)
                         CurrentIndex = AvailableLocations.Count - 1;
                     break;
@@ -46,6 +50,7 @@ namespace SecretProject.Class.Universal
                     throw new Exception("Turn dial cannot be turned in direction " + direction.ToString());
             }
 
+            TileUtility.ReplaceTile(layer, x + tilePosition, y, 1601 + 100 * CurrentIndex, tileManager);
             CurrentLocation = AvailableLocations[CurrentIndex];
         }
     }
