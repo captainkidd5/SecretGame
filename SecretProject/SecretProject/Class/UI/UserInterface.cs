@@ -460,7 +460,7 @@ namespace SecretProject.Class.UI
         {
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
-            Game1.GlobalClock.Draw(spriteBatch);
+            
             Game1.MouseManager.Draw(spriteBatch, 1f);
             for (int i = 0; i < AllUISprites.Count; i++)
             {
@@ -472,7 +472,7 @@ namespace SecretProject.Class.UI
             }
             if (!this.CinematicMode)
             {
-
+                Game1.GlobalClock.Draw(spriteBatch);
 
                 switch (CurrentOpenInterfaceItem)
                 {
@@ -551,7 +551,7 @@ namespace SecretProject.Class.UI
                 LoadingScreen.DrawTransitionTexture(spriteBatch);
             }
 
-            this.StaminaBar.Draw(spriteBatch);
+            //this.StaminaBar.Draw(spriteBatch);
 
             spriteBatch.End();
 

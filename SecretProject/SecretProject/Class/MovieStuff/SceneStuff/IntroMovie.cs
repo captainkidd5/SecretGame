@@ -21,18 +21,38 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         protected override void LoadContent()
         {
             this.MovieScenes = new List<MovieScene>();
+            ////////////////////////////////
+            ///
+            #region SCENE 0
+            List<MovieProp> scene0Props = new List<MovieProp>();
+            Texture2D backgroundTexture0 = LoadTexture("slide0");
+            MovieProp background0 = new MovieProp(backgroundTexture0, Vector2.Zero, .1f, new Vector2(0, -100), 1f);
 
+            scene0Props.Add(background0);
+
+            List<MovieSound> movieSounds0 = new List<MovieSound>()
+            {
+                //airRaid,
+            };
+
+            MovieScenes.Add(new MovieScene("Peace Scene", scene0Props, movieSounds0, 10));
+            #endregion
+            //////////////////////////////////
+            ///
+            #region SCENE 1
+
+            
 
             List<MovieProp> scene1Props = new List<MovieProp>();
-            Texture2D backgroundTexture = LoadTexture("fierybackground");
-            MovieProp background = new MovieProp(backgroundTexture, Vector2.Zero, .1f, Vector2.Zero,1f);
+            Texture2D backgroundtexture1 = LoadTexture("fierybackground");
+            MovieProp background1 = new MovieProp(backgroundtexture1, Vector2.Zero, .1f, Vector2.Zero,1f);
             MovieProp flames = new MovieProp(LoadTexture("flames"), new Vector2(200, 200), .2f, new Vector2(-10,-10), 1f);
             Texture2D airplaneTexture = LoadTexture("airplane");
             MovieProp airPlane = new MovieProp(airplaneTexture, new Vector2(1200, 350), .4f, new Vector2(-50, 0),1f);
-            MovieProp airPlane1 = new MovieProp(airplaneTexture, new Vector2(1200,400), .35f, new Vector2(-25, 0), .5f);
+            MovieProp airPlane1 = new MovieProp(airplaneTexture, new Vector2(1200,100), .35f, new Vector2(-25, 0), .5f);
             MovieProp airPlane2 = new MovieProp(airplaneTexture, new Vector2(400, 100), .32f, new Vector2(-10, 0), .15f);
             MovieProp airPlane3 = new MovieProp(airplaneTexture, new Vector2(600, 50), .3f, new Vector2(-5, 0), .1f);
-            scene1Props.Add(background);
+            scene1Props.Add(background1);
             scene1Props.Add(flames);
             scene1Props.Add(airPlane3);
             scene1Props.Add(airPlane2);
@@ -40,12 +60,14 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             scene1Props.Add(airPlane);
 
             MovieSound airRaid = new MovieSound(LoadSound("airRaid"), new List<int>() { 0 });
-            List<MovieSound> movieSounds = new List<MovieSound>()
+            List<MovieSound> movieSounds1 = new List<MovieSound>()
             {
                 airRaid,
             };
 
-            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, movieSounds, 20f));
+            MovieScenes.Add(new MovieScene("bombing scene", scene1Props, movieSounds1, 20f));
+
+            #endregion
         }
 
         protected override Texture2D LoadTexture(string path)
