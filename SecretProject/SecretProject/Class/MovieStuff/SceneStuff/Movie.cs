@@ -32,11 +32,13 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         {
             LoadContentManager(serviceProvider);
             LoadContent();
+            SceneIndex = 0;
         }
 
         public void EjectMovie()
         {
             this.ContentManager.Unload();
+            SceneIndex = 0;
         }
 
         protected void LoadContentManager(IServiceProvider serviceProvider)

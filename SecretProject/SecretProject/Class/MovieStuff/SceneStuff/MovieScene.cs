@@ -15,16 +15,17 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
         public string Name { get; set; }
         private List<MovieProp> Props { get; set; }
         private List<MovieSound> SoundEffects { get; set; }
+        private MovieText Text { get; set; }
 
         public SimpleTimer SimpleTimer { get; set; }
 
-        public MovieScene(string name, List<MovieProp> movieProps, List<MovieSound> soundEffects, float duration)
+        public MovieScene(string name, List<MovieProp> movieProps, List<MovieSound> soundEffects, MovieText movieText,float duration)
         {
             this.Name = name;
             this.Props = movieProps;
             this.SoundEffects = soundEffects;
             this.SimpleTimer = new SimpleTimer(duration);
-
+            this.Text = movieText;
         }
 
         /// <summary>
@@ -44,6 +45,7 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
                 {
                     SoundEffects[i].Update(SimpleTimer);
                 }
+                Text.Update(gameTime);
                 return true;
             }
             return false;
@@ -52,10 +54,14 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
+
             for (int i = 0; i < this.Props.Count; i++)
             {
                 Props[i].Draw(spriteBatch);
             }
+            Text.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
         public class MovieProp
@@ -81,10 +87,9 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
             }
             public void Draw(SpriteBatch spriteBatch)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
-
+                
                 spriteBatch.Draw(this.Texture, this.Position, null, Color.White, 0f, Vector2.Zero, this.Scale, SpriteEffects.None, this.LayerDepth);
-                spriteBatch.End();
+                
             }
         }
 
@@ -111,6 +116,43 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
                         Game1.SoundManager.PlaySoundEffect(this.SoundEffect);
                         TimeStamps.RemoveAt(i);
                     }
+                }
+            }
+        }
+
+        public class MovieText
+        {
+            private List<string> Lines { get; set; }
+            private List<Vector2> LinePositions{ get; set; }
+            private float TextScale { get; set; } = 3f;
+
+            public MovieText(List<string> lines)
+            {
+                this.Lines = lines;
+                // this.LinePositions = linePositions;
+                LinePositions = new List<Vector2>();
+
+                Vector2 basePosition = new Vector2(80, Game1.ScreenHeight - 320);
+                for (int i = 0; i < this.Lines.Count; i++)
+                {
+                    LinePositions.Add(new Vector2(basePosition.X, basePosition.Y + 32 * i * TextScale));
+                }
+            }
+
+            public void Update(GameTime gameTime)
+            {
+                for(int i =0; i < this.Lines.Count; i++)
+                {
+                    
+                }
+            }
+
+            public void Draw(SpriteBatch spriteBatch)
+            {
+                for (int i = 0; i < this.Lines.Count; i++)
+                {
+                    spriteBatch.DrawString(Game1.AllTextures.MenuText, Lines[i],
+                        LinePositions[i], Color.White, 0f, Vector2.Zero, TextScale, SpriteEffects.None, Utility.StandardTextDepth);
                 }
             }
         }

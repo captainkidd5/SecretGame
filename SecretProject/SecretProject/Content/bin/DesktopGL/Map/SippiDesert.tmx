@@ -410,15 +410,6 @@
 </data>
  </layer>
  <objectgroup id="5" name="Portal">
-  <object id="49" x="1013" y="597" width="6" height="39.75">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="-48"/>
-    <property name="SafteyOffSetY" value="0"/>
-    <property name="standardFrom" value="HomeStead"/>
-    <property name="standardTo" value="Town"/>
-   </properties>
-  </object>
   <object id="51" x="640" y="1008" width="112" height="16">
    <properties>
     <property name="Click" value="false"/>
@@ -426,15 +417,6 @@
     <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="HomeStead"/>
     <property name="standardTo" value="ForestDungeon"/>
-   </properties>
-  </object>
-  <object id="53" x="192" y="1" width="112" height="16">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="32"/>
-    <property name="standardFrom" value="HomeStead"/>
-    <property name="standardTo" value="DesertDungeon"/>
    </properties>
   </object>
  </objectgroup>

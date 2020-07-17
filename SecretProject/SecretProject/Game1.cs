@@ -101,6 +101,7 @@ namespace SecretProject
         HomeStead = 14,
         ForestDungeon = 15,
         DesertDungeon = 16,
+        SippiDesert = 17,
         MainMenu = 50,
         Exit = 55,
 
@@ -154,10 +155,12 @@ namespace SecretProject
         public static TmxStageBase HomeStead;
         public static TmxStageBase ForestDungeon;
         public static TmxStageBase DesertDungeon;
+        public static TmxStageBase SippiDesert;
 
 
         public static List<TmxStageBase> AllStages;
         public static TmxStageBase CurrentStage;
+        public static TurnDial TurnDial;
         public static int PreviousStage = 0;
         public static bool freeze = false;
 
@@ -623,10 +626,12 @@ namespace SecretProject
             HomeStead = new TmxStageBase("HomeStead", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.HomeStead };
             ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.ForestDungeon };
             DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.DesertDungeon };
+            SippiDesert = new TmxStageBase("SippiDesert", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/SippiDesert.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.SippiDesert };
 
 
-            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon };
+            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon,SippiDesert };
 
+            TurnDial = new TurnDial();
         }
         private void LoadShops()
         {
@@ -1061,6 +1066,8 @@ namespace SecretProject
             CurrentStage.UnloadContent();
             UnloadPenumbraEntities();
 
+            if (CurrentStage == PlayerHouse)
+                stageToSwitchTo = TurnDial.CurrentLocation;
 
             TmxStageBase newLocation = stageToSwitchTo;
 

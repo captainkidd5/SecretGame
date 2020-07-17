@@ -432,7 +432,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 TileManager.Objects[tileToAssign.TileKey].Add(collisionBody);
                             }
- 
+
                         }
                         else
                         {
@@ -871,6 +871,21 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
+                case "cycleLocation":
+                    if (Game1.MouseManager.IsClicked)
+                    {
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen,"Location changed!");
+
+                        if (TileManager.AllTiles[z][i, j].GID == 1603)
+                            Game1.TurnDial.CycleLocation(Dir.Right);
+
+                        else
+                            Game1.TurnDial.CycleLocation(Dir.Left);
+
+
+                    }
+                    break;
+
             }
         }
 
@@ -1014,7 +1029,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        private static void ProcessBodyRemoval(TileManager tileManager,Tile tile)
+        private static void ProcessBodyRemoval(TileManager tileManager, Tile tile)
         {
             List<Body> bodies = tileManager.Objects[tile.TileKey];
             for (int i = 0; i < bodies.Count; i++)
@@ -1058,8 +1073,8 @@ namespace SecretProject.Class.TileStuff
             if (TileManager.Objects.ContainsKey(tile.TileKey))
             {
                 ProcessBodyRemoval(TileManager, tile);
-                ProcessGridRemoval(TileManager, tile,x,y);
-               
+                ProcessGridRemoval(TileManager, tile, x, y);
+
             }
 
             if (TileManager.TileHitPoints.ContainsKey(tile.TileKey))
