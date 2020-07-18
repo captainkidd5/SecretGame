@@ -822,6 +822,33 @@
 <InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
 
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Plastic Rings</Name>
+<ID>960</ID>
+<Description>Lucky these didn't end up in an animals belly!</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Glass Bottle</Name>
+<ID>961</ID>
+<Description>An empty bottle.</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Soda Can</Name>
+<ID>962</ID>
+<Description>Scrunched up tin.</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Gum Wrapper</Name>
+<ID>963</ID>
+<Description>This is just gross.</Description>
+<InvMaximum>99</InvMaximum><Price>5</Price>
+</Item>
 
 
 <Item Type="XMLData.ItemStuff.ItemData">

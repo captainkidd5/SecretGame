@@ -1440,6 +1440,10 @@
   </properties>
  </tile>
  <tile id="705">
+  <properties>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
+   <property name="loot" value="960"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16">
     <ellipse/>
@@ -1447,6 +1451,10 @@
   </objectgroup>
  </tile>
  <tile id="706">
+  <properties>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
+   <property name="loot" value="961"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="9" width="8" height="7">
     <ellipse/>
@@ -1622,6 +1630,10 @@
   </properties>
  </tile>
  <tile id="805">
+  <properties>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
+   <property name="loot" value="963"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="3" width="11" height="12">
     <ellipse/>
@@ -1629,6 +1641,10 @@
   </objectgroup>
  </tile>
  <tile id="806">
+  <properties>
+   <property name="destructable" value="HandsPicking,1,0,5,5,0"/>
+   <property name="loot" value="962"/>
+  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="3" width="10" height="10">
     <ellipse/>
@@ -5370,6 +5386,16 @@
  <tile id="8847">
   <properties>
    <property name="newSource" value="-32,-80,80,96"/>
+  </properties>
+ </tile>
+ <tile id="8854">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="8857">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
   </properties>
  </tile>
  <tile id="8910">

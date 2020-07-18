@@ -220,7 +220,7 @@ namespace SecretProject.Class.TileStuff
                                 TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID, TileManager);
                                 string tilingSet = item.TilingSet;
-                                if (tilingSet != string.Empty)
+                                if (tilingSet != null)
                                 {
 
 
