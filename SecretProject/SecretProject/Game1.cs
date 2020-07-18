@@ -102,6 +102,7 @@ namespace SecretProject
         ForestDungeon = 15,
         DesertDungeon = 16,
         SippiDesert = 17,
+        TrainStation = 18,
         MainMenu = 50,
         Exit = 55,
 
@@ -156,6 +157,7 @@ namespace SecretProject
         public static TmxStageBase ForestDungeon;
         public static TmxStageBase DesertDungeon;
         public static TmxStageBase SippiDesert;
+        public static TmxStageBase TrainStation;
 
 
         public static List<TmxStageBase> AllStages;
@@ -627,9 +629,10 @@ namespace SecretProject
             ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.ForestDungeon };
             DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/HomeStead.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.DesertDungeon };
             SippiDesert = new TmxStageBase("SippiDesert", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/SippiDesert.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.SippiDesert };
+            TrainStation = new TmxStageBase("TrainStation", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/TrainStation.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.TrainStation };
 
 
-            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon,SippiDesert };
+            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon,SippiDesert,TrainStation };
 
             TurnDial = new TurnDial();
         }
