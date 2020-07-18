@@ -812,7 +812,7 @@
     <property name="standardTo" value="MountainTop"/>
    </properties>
   </object>
-  <object id="52" x="1239" y="5" width="52" height="4.75">
+  <object id="52" x="1239" y="0" width="52" height="4.75">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
