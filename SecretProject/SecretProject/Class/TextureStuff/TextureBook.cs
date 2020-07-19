@@ -161,6 +161,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D PlayerSilouhette;
         public Texture2D ButterFlys { get; set; }
 
+        public Texture2D Train;
+
 
         //BackDrops
 
@@ -302,7 +304,7 @@ namespace SecretProject.Class.TextureStuff
             Gears = content.Load<Texture2D>("WorldProps/Gears");
             PlayerSilouhette = content.Load<Texture2D>("WorldProps/introplayersillohoutte");
             this.ButterFlys = content.Load<Texture2D>("WorldProps/Butterflys");
-
+            this.Train = content.Load<Texture2D>("WorldProps/train");
 
             //backdrops
         }
