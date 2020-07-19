@@ -3281,6 +3281,20 @@
    <property name="transparent" value="-32,-96, 64, 94"/>
   </properties>
  </tile>
+ <tile id="2331">
+  <properties>
+   <property name="destructable" value="Chopping,4,5,3,19,Tier0"/>
+   <property name="loot" value=""/>
+   <property name="newSource" value="-16,-80,48,96"/>
+   <property name="tileType" value="tree"/>
+   <property name="transparent" value="-16,-64, 48, 75"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16">
+    <ellipse/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="2402">
   <properties>
    <property name="destructable" value="Mining,0,0,8,20,0"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="49">
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="50">
  <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
  <layer id="7" name="bedRock" width="64" height="64">
   <data encoding="csv">
@@ -417,6 +417,15 @@
     <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="RooltapCastle"/>
     <property name="standardTo" value="TrainStation"/>
+   </properties>
+  </object>
+  <object id="49" x="493" y="415" width="64" height="49">
+   <properties>
+    <property name="Click" value="true"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="32"/>
+    <property name="standardFrom" value="RooltapCastle"/>
+    <property name="standardTo" value="ThroneRoom"/>
    </properties>
   </object>
  </objectgroup>

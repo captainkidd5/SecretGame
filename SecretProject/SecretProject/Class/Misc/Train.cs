@@ -44,7 +44,7 @@ namespace SecretProject.Class.Misc
             
             if(CollisionBody.Position.X < CastleArrivePosition.X)
             {
-                this.CollisionBody.ApplyForce(PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds);
+                this.CollisionBody.LinearVelocity = PrimaryVelocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 PrimaryVelocity = new Vector2(10, 0);
             }
             else
@@ -103,17 +103,16 @@ namespace SecretProject.Class.Misc
             this.CollisionBody = BodyFactory.CreateRectangle(Game1.VelcroWorld, this.Texture.Width, this.Texture.Height, 1f);
             CollisionBody.BodyType = BodyType.Dynamic;
             CollisionBody.Restitution = 0f;
-            CollisionBody.Friction = .4f;
-            CollisionBody.Mass = 10f;
+            CollisionBody.Friction = 5f;
+            CollisionBody.Mass = 15f;
             CollisionBody.Inertia = 0;
             CollisionBody.SleepingAllowed = true;
             CollisionBody.CollisionCategories = VelcroPhysics.Collision.Filtering.Category.Solid;
-            CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player |
-                VelcroPhysics.Collision.Filtering.Category.Item |
-                VelcroPhysics.Collision.Filtering.Category.Enemy;
+            //CollisionBody.CollidesWith = VelcroPhysics.Collision.Filtering.Category.Player; 
 
             CollisionBody.IgnoreGravity = true;
             CollisionBody.Position = this.Position;
+            Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, Game1.CurrentStage.DebuggableShapes));
         }
 
         public void Update(GameTime gameTime)

@@ -105,6 +105,7 @@ namespace SecretProject
         SippiDesert = 17,
         TrainStation = 18,
         RooltapCastle = 19,
+        ThroneRoom = 20,
         MainMenu = 50,
         Exit = 55,
 
@@ -161,6 +162,7 @@ namespace SecretProject
         public static TmxStageBase SippiDesert;
         public static TmxStageBase TrainStation;
         public static TmxStageBase RooltapCastle;
+        public static TmxStageBase ThroneRoom;
 
         public static List<TmxStageBase> AllStages;
         public static TmxStageBase CurrentStage;
@@ -637,9 +639,10 @@ namespace SecretProject
             SippiDesert = new TmxStageBase("SippiDesert", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/SippiDesert.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.SippiDesert };
             TrainStation = new TmxStageBase("TrainStation", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/TrainStation.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.TrainStation };
             RooltapCastle = new TmxStageBase("RuletapCastle", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, AllTextures.MasterTileSet, new TmxMap("Content/bin/DesktopGL/Map/RooltapCastle.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.RooltapCastle };
+            ThroneRoom = new TmxStageBase("ThroneRoom", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, AllTextures.InteriorTileSet1, new TmxMap("Content/bin/DesktopGL/Map/ThroneRoom.tmx"), 1, 0, Content.ServiceProvider) { StageIdentifier = Stages.ThroneRoom };
 
 
-            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon,SippiDesert,TrainStation,RooltapCastle };
+            AllStages = new List<TmxStageBase>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon,SippiDesert,TrainStation,RooltapCastle,ThroneRoom };
 
             TurnDial = new TurnDial();
         }
