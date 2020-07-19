@@ -50,6 +50,7 @@ using VelcroPhysics.Factories;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.Physics;
 using SecretProject.Class.MovieStuff;
+using SecretProject.Class.Misc;
 
 
 
@@ -345,6 +346,9 @@ namespace SecretProject
         //Movies
         protected static MoviePlayer MoviePlayer;
 
+        //Props
+        public static Train Train;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -523,6 +527,7 @@ namespace SecretProject
             LoadPhysics();
 
             MoviePlayer = new MoviePlayer(Content.ServiceProvider);
+            Train = new Train();
 
         }
 
@@ -1128,6 +1133,8 @@ namespace SecretProject
             CurrentStage.AllTiles.UpdateCropTile();
            
             Player.LoadPenumbra(CurrentStage);
+
+            Train.SwitchStage(CurrentStage.StageIdentifier);
             VelcroWorld.ProcessChanges();
             Game1.GlobalClock.ProcessNewDayChanges();
 

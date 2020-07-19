@@ -431,7 +431,7 @@ namespace SecretProject.Class.StageFolder
             if (!Game1.freeze)
             {
                 Game1.GlobalClock.Update(gameTime);
-
+                Game1.Train.Update(gameTime);
                 // 
                 player.Update(gameTime, this.AllTiles.AllItems, mouse);
                 this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
@@ -544,6 +544,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllProjectiles[p].Draw(spriteBatch);
                 }
+                Game1.Train.Draw(spriteBatch);
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
