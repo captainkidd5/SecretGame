@@ -1128,13 +1128,14 @@ namespace SecretProject
             MouseManager.AttachMouseBody();
 
             LoadCharacterBodies(CurrentStage, newLocation);
+            Train.SwitchStage(CurrentStage.StageIdentifier, newLocation.StageIdentifier);
             CurrentStage = newLocation;
             CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
             CurrentStage.AllTiles.UpdateCropTile();
            
             Player.LoadPenumbra(CurrentStage);
 
-            Train.SwitchStage(CurrentStage.StageIdentifier);
+        
             VelcroWorld.ProcessChanges();
             Game1.GlobalClock.ProcessNewDayChanges();
 
