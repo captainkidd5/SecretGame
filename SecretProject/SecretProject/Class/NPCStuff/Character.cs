@@ -41,29 +41,19 @@ namespace SecretProject.Class.NPCStuff
         public float BaseSpeed { get; private set; } = .65f;
         public float Speed { get; set; } = .65f; //.65
         public Vector2 PrimaryVelocity { get; set; }
-        public Vector2 TotalVelocity { get; set; }
 
         public Vector2 DirectionVector { get; set; }
 
 
         //0 = down, 1 = left, 2 =  right, 3 = up
         public Dir CurrentDirection { get; set; }
-
-        public bool CollideOccured { get; set; } = false;
         public int SpeakerID { get; set; }
         public bool IsMoving { get; set; }
-        public int CurrentRoutePosition { get; set; }
 
-
-
-        public int FrameNumber { get; set; } = 25;
 
         public RouteSchedule RouteSchedule { get; set; }
 
-        public Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
-        public Texture2D NextPointTexture { get; set; }
-        public Rectangle NextPointRectangle { get; set; }
-        public Texture2D NextPointRectangleTexture { get; set; }
+
         public Texture2D HitBoxRectangleTexture { get; set; }
         public int FrameToSet { get; set; }
         public Rectangle NPCPathFindRectangle
@@ -130,12 +120,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             this.RouteSchedule = routeSchedule;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.CurrentStageLocation = currentStageLocation;
             this.IsBasicNPC = isBasicNPC;
-
-            // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
-            //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             this.DebugColor = Color.White;
             this.PortalTraverser = new GraphTraverser(Game1.PortalGraph);
 
@@ -155,7 +141,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
         public void LoadLaterStuff(GraphicsDevice graphics)
         {
-            NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             HitBoxTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
 
@@ -299,7 +284,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public virtual void Update(GameTime gameTime, MouseManager mouse)
         {
             this.IsMoving = false;
-            this.CollideOccured = false;
             if (IsBeingSpokenTo)
             {
                 return;
@@ -920,7 +904,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            if (this.NextPointRectangleTexture != null && this.HitBoxTexture != null)
+            if (this.HitBoxTexture != null)
             {
                 //spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
                 spriteBatch.Draw(this.HitBoxTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: this.DebugColor, layerDepth: 1f);

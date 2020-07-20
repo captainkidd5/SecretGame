@@ -54,7 +54,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public bool IsMoving { get; set; }
         protected Vector2 primaryVelocity;
         protected Vector2 oldPrimaryVelocity;
-        public Vector2 TotalVelocity { get; set; }
+        public Vector2 PrimaryVelocity { get; set; }
         public Vector2 DirectionVector { get; set; }
         public bool IsUpdating { get; set; }
 
