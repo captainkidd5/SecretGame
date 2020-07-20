@@ -482,7 +482,7 @@ namespace SecretProject.Class.Playable
                     UpdateStaminaDrainFlag();
                     if (controls.IsSprinting)
                     {
-                        sprintMultiplier = 3;
+                        sprintMultiplier =25;
                     }
 
                     if (this.LockBounds)

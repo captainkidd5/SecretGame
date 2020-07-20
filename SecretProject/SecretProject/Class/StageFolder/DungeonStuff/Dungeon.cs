@@ -193,7 +193,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
                 }
             }
             
-            Game1.Player.SetPosition(new Vector2(newPlayerX, newPlayerY));
+           // Game1.Player.SetPosition(new Vector2(newPlayerX, newPlayerY));
         }
 
         public void GenerateRoomSavePath(DungeonRoom room, int x, int y)

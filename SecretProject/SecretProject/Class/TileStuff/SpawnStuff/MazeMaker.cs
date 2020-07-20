@@ -24,10 +24,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public MazeMaker(int dimension)
         {
+            //dimension = dimension;
             this.Cells = new MazeCell[dimension, dimension];
-            for(int i =0; i < dimension; i++)
+            for (int i = 0; i < dimension; i++)
             {
-                for(int j =0; j < dimension;j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     Cells[i, j] = new MazeCell(i, j, Cells);
                 }
@@ -38,25 +39,83 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public MazeCell[,] Generate()
         {
-            int totalCells = Cells.GetLength(0);
+            int totalCells = Cells.GetLength(0) * Cells.GetLength(0);
             int visitedCells = 0;
 
-            while (visitedCells < totalCells)
+            while (visitedCells <= (totalCells - 2))
             {
                 GetUnvisitednNeighbor(ref visitedCells, CurrentCell);
             }
             return this.Cells;
         }
 
+        public bool[,] TransformMap()
+        {
+            int dimension = this.Cells.GetLength(0);
+
+            bool[,] newMap = new bool[dimension, dimension];
+
+
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    MazeCell cell = Cells[i, j];
+                    
+
+                    if (j > 0)
+                    {
+                        if (Cells[i, j].Walls[0] == 1) //wall above is intact.
+                        {
+                            newMap[i, j - 1] = true;
+                        }
+                    }
+                    if (j < dimension - 2)
+                    {
+                        if (Cells[i, j].Walls[2] == 1) //wall below is intact.
+                        {
+                            newMap[i, j + 1] = true;
+                        }
+                    }
+                    if (i > 0)
+                    {
+                        if (Cells[i, j].Walls[3] == 1) //wall left is intact.
+                        {
+                            newMap[i - 1, j] = true;
+                        }
+                    }
+                    if (i < dimension- 2)
+                    {
+                        if (Cells[i, j].Walls[1] == 1) //wall right is intact.
+                        {
+                            newMap[i + 1, j] = true;
+                        }
+                    }
+                  
+
+                }
+               
+            }
+
+            return newMap;
+        }
+
+
+
+
         public void GetUnvisitednNeighbor(ref int visistedCells, MazeCell previousCell)
         {
             List<MazeCell> neighborsWithAllFourWalls = new List<MazeCell>();
             List<WallDirection> correspondingDirections = new List<WallDirection>();
-
+            if (CurrentCell.x > 2 && CurrentCell.y > 2 && CurrentCell.x < 120 && CurrentCell.y < 120)
+            {
+                Console.WriteLine("test");
+            }
             for (int i = 0; i < 4; i++)
             {
-                MazeCell newCell = previousCell.GetCellFromDirection((WallDirection)i);
-                if (!newCell.isDummy)
+                bool gotValidCell = true;
+                MazeCell newCell = previousCell.GetCellFromDirection(ref gotValidCell,(WallDirection)i);
+                if (gotValidCell)
                 {
                     if (newCell.HasAllWalls())
                     {
@@ -66,29 +125,32 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 }
 
             }
-            if(neighborsWithAllFourWalls.Count > 0)
+            if (neighborsWithAllFourWalls.Count > 0)
             {
                 int index = Game1.Utility.RNumber(0, neighborsWithAllFourWalls.Count);
                 MazeCell newCell = neighborsWithAllFourWalls[index];
-                newCell.KnockDownWall(correspondingDirections[index]);
+                newCell.KnockDownWall(newCell.GetOppositeWall(correspondingDirections[index]));
+                CurrentCell.KnockDownWall(correspondingDirections[index]);
                 CellStack.Push(CurrentCell);
+
+                
                 CurrentCell = newCell;
+                
                 visistedCells++;
             }
-            else
+            else if(CellStack.Count > 0)
             {
                 CurrentCell = CellStack.Pop();
             }
-           
+
 
         }
     }
 
     public struct MazeCell
     {
-        public bool isDummy;
-        int x;
-        int y;
+        public int x;
+        public int y;
         public int[] Walls;
         private MazeCell[,] Cells;
 
@@ -98,12 +160,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.y = y;
             this.Walls = new int[4];
             this.Cells = cells;
-            isDummy = false;
+
 
 
         }
 
-        
+
 
         public bool HasAllWalls()
         {
@@ -117,39 +179,40 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             return true;
         }
 
-        public MazeCell GetCellFromDirection(WallDirection wall)
+        public MazeCell GetCellFromDirection(ref bool gotValidCell, WallDirection wall)
         {
             switch (wall)
             {
                 case WallDirection.Up:
-                    return GetCell(x, y - 1);
+                    return GetCell(ref gotValidCell, x, y - 1);
                 case WallDirection.Right:
-                    return GetCell(x + 1, y);
+                    return GetCell(ref gotValidCell, x + 1, y);
                 case WallDirection.Down:
-                    return GetCell(x, y + 1);
+                    return GetCell(ref gotValidCell, x, y + 1);
                 case WallDirection.Left:
-                    return GetCell(x - 1, y);
+                    return GetCell(ref gotValidCell, x - 1, y);
                 default:
                     throw new Exception("WallDirection " + wall.ToString() + " does not exist.");
             }
         }
 
-        private MazeCell GetCell(int x, int y)
+        private MazeCell GetCell(ref bool gotValidCell, int x, int y)
         {
-            if(x < 0 || y < 0 || x > Cells.GetLength(0) || y > Cells.GetLength(0))
+            if (x < 0 || y < 0 || x >= Cells.GetLength(0) || y >= Cells.GetLength(0))
             {
-                MazeCell dummyCell = new MazeCell();
-                dummyCell.isDummy = true;
-                return dummyCell;
+                gotValidCell = false;
+                return Cells[0,0]; 
+
 
             }
             else
             {
+                gotValidCell = true;
                 return Cells[x, y];
             }
         }
 
-        private WallDirection GetOppositeWall(WallDirection initialWall)
+        public WallDirection GetOppositeWall(WallDirection initialWall)
         {
             switch (initialWall)
             {
@@ -169,8 +232,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void KnockDownWall(WallDirection wall)
         {
-            Walls[(int)wall] = 0; // 0 means no wall
-            GetCellFromDirection(wall).KnockDownWall(GetOppositeWall(wall));
+            Walls[(int)wall] = 1; // 1 means no wall
+
 
 
         }

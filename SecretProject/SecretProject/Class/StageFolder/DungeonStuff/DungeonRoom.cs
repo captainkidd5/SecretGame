@@ -184,7 +184,10 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         protected virtual void PlaceFront(int positiveGID, int negativeGID)
         {
             CellularAutomata cellularAutomata = new CellularAutomata();
-            bool[,] boolMap = cellularAutomata.generateMap(this.Width);
+            MazeMaker mazeMaker = new MazeMaker(this.Width);
+            mazeMaker.Generate();
+            bool[,] boolMap= mazeMaker.TransformMap();
+          //  bool[,] boolMap = cellularAutomata.generateMap(this.Width); //true == filled
 
             for(int i =0; i < this.Width; i++)
             {
