@@ -16,31 +16,79 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
     }
     public class MazeMaker
     {
-        public MazeCell[,] Cells { get; set; }
+        private MazeCell[,] Cells { get; set; }
 
+        private MazeCell CurrentCell { get; set; }
+
+        private Stack<MazeCell> CellStack { get; set; }
 
         public MazeMaker(int dimension)
         {
             this.Cells = new MazeCell[dimension, dimension];
+            for(int i =0; i < dimension; i++)
+            {
+                for(int j =0; j < dimension;j++)
+                {
+                    Cells[i, j] = new MazeCell(i, j, Cells);
+                }
+            }
+            CurrentCell = Cells[0, 0];
+            CellStack = new Stack<MazeCell>();
         }
 
-        public void Generate()
+        public MazeCell[,] Generate()
         {
             int totalCells = Cells.GetLength(0);
             int visitedCells = 0;
 
             while (visitedCells < totalCells)
             {
+                GetUnvisitednNeighbor(ref visitedCells, CurrentCell);
+            }
+            return this.Cells;
+        }
+
+        public void GetUnvisitednNeighbor(ref int visistedCells, MazeCell previousCell)
+        {
+            List<MazeCell> neighborsWithAllFourWalls = new List<MazeCell>();
+            List<WallDirection> correspondingDirections = new List<WallDirection>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                MazeCell newCell = previousCell.GetCellFromDirection((WallDirection)i);
+                if (!newCell.isDummy)
+                {
+                    if (newCell.HasAllWalls())
+                    {
+                        neighborsWithAllFourWalls.Add(newCell);
+                        correspondingDirections.Add((WallDirection)i);
+                    }
+                }
 
             }
+            if(neighborsWithAllFourWalls.Count > 0)
+            {
+                int index = Game1.Utility.RNumber(0, neighborsWithAllFourWalls.Count);
+                MazeCell newCell = neighborsWithAllFourWalls[index];
+                newCell.KnockDownWall(correspondingDirections[index]);
+                CellStack.Push(CurrentCell);
+                CurrentCell = newCell;
+                visistedCells++;
+            }
+            else
+            {
+                CurrentCell = CellStack.Pop();
+            }
+           
+
         }
     }
 
-    public class MazeCell
+    public struct MazeCell
     {
+        public bool isDummy;
         int x;
         int y;
-        bool visited;
         public int[] Walls;
         private MazeCell[,] Cells;
 
@@ -50,37 +98,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.y = y;
             this.Walls = new int[4];
             this.Cells = cells;
+            isDummy = false;
 
 
         }
 
-        public MazeCell GetUnvisitednNeighbor(MazeCell previousCell)
-        {
-            List<MazeCell> neighborsWithAllFourWalls = new List<MazeCell>();
-
-            for(int i = 0; i < 4; i++)
-            {
-                MazeCell newCell = GetCellFromDirection((WallDirection)i);
-                if(newCell.HasAllWalls())
-                {
-                    neighborsWithAllFourWalls.Add(newCell);
-                }
-            }
-
-
-            int index = Game1.Utility.RNumber(0, neighborsWithAllFourWalls.Count);
-            
-
-            if(newCell != null)
-            {
-                if(!newCell.visited)
-                {
-                    return newCell;
-                }
-            }
-
-
-        }
+        
 
         public bool HasAllWalls()
         {
@@ -94,7 +117,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             return true;
         }
 
-        private MazeCell GetCellFromDirection(WallDirection wall)
+        public MazeCell GetCellFromDirection(WallDirection wall)
         {
             switch (wall)
             {
@@ -115,7 +138,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             if(x < 0 || y < 0 || x > Cells.GetLength(0) || y > Cells.GetLength(0))
             {
-                return null;
+                MazeCell dummyCell = new MazeCell();
+                dummyCell.isDummy = true;
+                return dummyCell;
+
             }
             else
             {
