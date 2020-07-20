@@ -11,7 +11,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         float chanceToStartAlive = 0.45f;
         int numberOfSteps = 6;
         int birthLimit = 4;
-        int deathLimit = 3;
+        int deathLimit = 4;
 
         private bool[,] initialiseMap(bool[,] map)
         {
