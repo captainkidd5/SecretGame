@@ -53,8 +53,6 @@ namespace SecretProject.Class.NPCStuff
 
         public RouteSchedule RouteSchedule { get; set; }
 
-
-        public Texture2D HitBoxRectangleTexture { get; set; }
         public int FrameToSet { get; set; }
         public Rectangle NPCPathFindRectangle
         {

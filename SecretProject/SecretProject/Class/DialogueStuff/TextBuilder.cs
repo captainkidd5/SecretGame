@@ -48,8 +48,7 @@ namespace SecretProject.Class.DialogueStuff
         private bool MoveToSelectableOptions { get; set; }
         public DialogueSkeleton Skeleton { get; set; }
         private Character CharacterTalking { get; set; }
-        public Texture2D SpeakerTexture { get; set; }
-        public Rectangle SpeakerPortraitSourceRectangle { get; set; }
+
         private TextBoxState textBoxState { get; set; }
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
@@ -86,9 +85,6 @@ namespace SecretProject.Class.DialogueStuff
         public void ActivateCharacter(Character character, bool freezeStage, string stringToWrite, float scale)
         {
             this.CharacterTalking = character;
-            this.SpeakerTexture = character.CharacterPortraitTexture;
-            this.SpeakerPortraitSourceRectangle = character.CharacterPortraitSourceRectangle;
-
             this.IsActive = true;
             this.FreezeStage = freezeStage;
             this.StringToWrite = stringToWrite;
@@ -106,7 +102,13 @@ namespace SecretProject.Class.DialogueStuff
 
 
         }
-
+        private void UpdateMouseTexture()
+        {
+            if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
+            {
+                Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
+            }
+        }
         public void Update(GameTime gameTime)
         {
             if (this.IsActive)
@@ -118,11 +120,8 @@ namespace SecretProject.Class.DialogueStuff
                 switch (textBoxState)
                 {
                     case TextBoxState.speaking:
-                        if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
-                        {
-                            Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
-                        }
 
+                        UpdateMouseTexture();
 
                         if (this.NumberOfClicks >= 1)
                         {
@@ -413,9 +412,9 @@ namespace SecretProject.Class.DialogueStuff
 
                // this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
                 this.SpeechBox.Draw(spriteBatch, false);
-                if (this.SpeakerTexture != null)
+                if (this.CharacterTalking.CharacterPortraitTexture != null)
                 {
-                    spriteBatch.Draw(this.SpeakerTexture, new Vector2(this.SpeechBox.position.X, this.SpeechBox.position.Y - 276), this.SpeakerPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(this.CharacterTalking.CharacterPortraitTexture, new Vector2(this.SpeechBox.position.X, this.SpeechBox.position.Y - 276), CharacterTalking.CharacterPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
                 }
 
 
