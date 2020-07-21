@@ -6,6 +6,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.UI.ButtonStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using XMLData.DialogueStuff;
@@ -26,8 +27,8 @@ namespace SecretProject.Class.DialogueStuff
         }
         public string StringToWrite { get; set; }
         public bool IsActive { get; set; }
+        public SimpleTimer SimpleTimer { get; set; }
         private float WriteSpeed { get; set; }
-        private float SpeedAnchor { get; set; }
         private Vector2 PositionToWriteTo { get; set; }
         private bool FreezeStage { get; set; }
         public float Scale { get; set; }
@@ -55,7 +56,8 @@ namespace SecretProject.Class.DialogueStuff
         {
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
-            this.SpeedAnchor = writeSpeed;
+            SimpleTimer = new SimpleTimer(2f);
+            
             this.PositionToWriteTo = Game1.Utility.DialogueTextLocation;
 
             this.Scale = 2f;
@@ -89,7 +91,8 @@ namespace SecretProject.Class.DialogueStuff
             this.FreezeStage = freezeStage;
             this.StringToWrite = stringToWrite;
             this.Scale = scale;
-            this.SpeedAnchor = .1f;
+            this.SimpleTimer.ResetToZero();
+
 
 
 
@@ -102,11 +105,18 @@ namespace SecretProject.Class.DialogueStuff
 
 
         }
-        private void UpdateMouseTexture()
+        /// <summary>
+        /// Changes mouse texture if hovering over the speech box, checks for mouse clicks.
+        /// </summary>
+        private void HandleMouse()
         {
             if (this.IsPaused && this.NumberOfClicks == 0 && Game1.MouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
             {
                 Game1.MouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
+            }
+            if (Game1.MouseManager.IsClicked)
+            {
+                this.NumberOfClicks++;
             }
         }
         public void Update(GameTime gameTime)
@@ -121,26 +131,18 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     case TextBoxState.speaking:
 
-                        UpdateMouseTexture();
+                        HandleMouse();
 
                         if (this.NumberOfClicks >= 1)
                         {
-                            this.SpeedAnchor = .1f;
+
+                            this.SimpleTimer.ResetToZero();
                             if (this.IsPaused)
                             {
-                                if (this.MoveToSelectableOptions && this.Skeleton != null)
+                                if (this.MoveToSelectableOptions)
                                 {
-                                    if (this.Skeleton.SelectableOptions != null)
-                                    {
-                                        if (!this.HaveOptionsBeenChecked)
-                                        {
-                                            CheckSelectableOptions(this.Skeleton);
-                                            this.HaveOptionsBeenChecked = true;
 
-                                        }
-
-                                    }
-
+                                    CheckSelectableOptions(this.Skeleton);
                                 }
                                 else
                                 {
@@ -154,20 +156,12 @@ namespace SecretProject.Class.DialogueStuff
                         }
                         if (this.NumberOfClicks == 2)
                         {
-                            if (this.Skeleton != null)
-                            {
-
-                            }
-                            else
+                            if (this.Skeleton == null)
                             {
                                 Reset();
                             }
+                        }
 
-                        }
-                        if (Game1.MouseManager.IsClicked)
-                        {
-                            this.NumberOfClicks++;
-                        }
                         if (this.FreezeStage && this.NumberOfClicks < 2)
                         {
                             Game1.freeze = true;
@@ -190,13 +184,11 @@ namespace SecretProject.Class.DialogueStuff
                             {
                                 HandleSpecialCase(parsedText[(int)typedTextLength + 1]);
 
-
-                                this.SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / this.WriteSpeed);
-                                if (this.SpeedAnchor > 2f)
+                                if (SimpleTimer.Run(gameTime, WriteSpeed * 100))
                                 {
                                     typedTextLength++;
                                     PlayTextNoise();
-                                    this.SpeedAnchor = 0f;
+                                    SimpleTimer.ResetToZero();
                                 }
 
                                 typedText = parsedText.Substring(0, (int)typedTextLength);
@@ -205,12 +197,7 @@ namespace SecretProject.Class.DialogueStuff
                         break;
 
                     case TextBoxState.waitingforresponse:
-                        Game1.freeze = true;
-                        ClearWindowForResponse();
-                        foreach (SelectableOption option in SelectableOptions)
-                        {
-                            option.Update(gameTime, this.CharacterTalking);
-                        }
+                        WaitForResponse();
                         break;
                 }
 
@@ -223,6 +210,18 @@ namespace SecretProject.Class.DialogueStuff
                 }
             }
         }
+
+        #region STATES
+        private void WaitForResponse()
+        {
+            Game1.freeze = true;
+            ClearWindowForResponse();
+            foreach (SelectableOption option in SelectableOptions)
+            {
+                option.Update(this.CharacterTalking);
+            }
+        }
+        #endregion
 
         /// <summary>
         /// interprets special characters from the dialogue xml.
@@ -387,22 +386,22 @@ namespace SecretProject.Class.DialogueStuff
 
         private void CheckSelectableOptions(DialogueSkeleton skeleton)
         {
-            string[] options = skeleton.SelectableOptions.Split(',');
-            for (int s = 0; s < options.Length; s++)
+            if (!this.HaveOptionsBeenChecked)
             {
-                string response = options[s].Split('~')[0];
-                string action = options[s].Split('~')[1];
-                SelectableOptions.Add(new SelectableOption(response, action, new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y + 64 * s)));
+                string[] options = skeleton.SelectableOptions.Split(',');
+                for (int s = 0; s < options.Length; s++)
+                {
+                    string response = options[s].Split('~')[0];
+                    string action = options[s].Split('~')[1];
+                    SelectableOptions.Add(new SelectableOption(response, action, new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y + 64 * s)));
+                }
+                if (options.Length > 0)
+                {
+                    this.textBoxState = TextBoxState.waitingforresponse;
+
+                }
+                this.HaveOptionsBeenChecked = true;
             }
-            if (options.Length > 0)
-            {
-                this.textBoxState = TextBoxState.waitingforresponse;
-
-            }
-
-            //Reset();
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
@@ -410,7 +409,7 @@ namespace SecretProject.Class.DialogueStuff
             if (this.IsActive)
             {
 
-               // this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
+                // this.SpeechBox.position = new Vector2(this.PositionToWriteTo.X - 50, this.PositionToWriteTo.Y - 50);
                 this.SpeechBox.Draw(spriteBatch, false);
                 if (this.CharacterTalking.CharacterPortraitTexture != null)
                 {
@@ -459,7 +458,7 @@ namespace SecretProject.Class.DialogueStuff
 
         }
 
-        public void Update(GameTime gameTime, Character characterTalking)
+        public void Update(Character characterTalking)
         {
             this.Button.UpdateSelectableText(Game1.MouseManager);
             if (this.Button.isClicked)
