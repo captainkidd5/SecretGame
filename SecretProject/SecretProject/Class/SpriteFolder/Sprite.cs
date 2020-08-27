@@ -232,8 +232,8 @@ namespace SecretProject.Class.SpriteFolder
         {
             this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
 
-            spriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
-                    color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+           //REDO spriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
+               //     color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
 
 
         }
@@ -242,21 +242,21 @@ namespace SecretProject.Class.SpriteFolder
         {
             this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
 
-            spriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
-                    color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+            //REDOspriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
+           //REDO         color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
         }
 
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth, float rotation = 0f)
         {
             if (this.Flip)
             {
-                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
-                    color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+               //REDO spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+               //     color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
             }
             else
             {
-                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
-                    color: this.Color * this.ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+             //REDO   spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+            //        color: this.Color * this.ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
             }
 
         }
@@ -265,8 +265,8 @@ namespace SecretProject.Class.SpriteFolder
         {
             if (this.Flip)
             {
-                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
-                    color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(scale, scale));
+               //REDO spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+                  //  color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(scale, scale));
             }
             else
             {

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using SecretProject.Class.TileStuff.SpawnStuff.MazeStuff;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace SecretProject.Class.UI
 {
@@ -32,11 +33,11 @@ namespace SecretProject.Class.UI
 
         public List<CommandWindowCommand> AllCommands { get; set; }
 
-        private Rectangle backGroundRectangle;
+        private Microsoft.Xna.Framework.Rectangle backGroundRectangle;
         private Texture2D coloredRectangleTexture;
         private Vector2 backGroundPosition;
 
-        private Rectangle testTypeRectangle;
+        private Microsoft.Xna.Framework.Rectangle testTypeRectangle;
         private Texture2D typeBoxTexture;
         private Vector2 typeBoxPosition;
 
@@ -65,11 +66,11 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("playmovie", "playmovie moviename"),
                 new CommandWindowCommand("printmaze", "generates and prints maze")
             };
-            this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle( 600, 400, new Color(0, 0, 0, 30));
+            this.coloredRectangleTexture = Game1.Utility.GetColoredRectangle( 600, 400, new Microsoft.Xna.Framework.Color(0, 0, 0, 30));
             this.backGroundRectangle = Game1.Utility.GetRectangleFromTexture(coloredRectangleTexture);
             this.backGroundPosition = new Vector2(0, Game1.ScreenHeight - (float)(backGroundRectangle.Height * 1.5));
 
-            this.typeBoxTexture = Game1.Utility.GetColoredRectangle( 600, 50, new Color(0, 0, 0, 30));
+            this.typeBoxTexture = Game1.Utility.GetColoredRectangle( 600, 50, new Microsoft.Xna.Framework.Color(0, 0, 0, 30));
             this.testTypeRectangle = Game1.Utility.GetRectangleFromTexture(typeBoxTexture);
             this.typeBoxPosition = new Vector2(0, backGroundPosition.Y + this.backGroundRectangle.Height);
 
@@ -294,7 +295,7 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, this.rasterizerState);
 
-                spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
+                spriteBatch.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle((int)this.typeBoxPosition.X, (int)this.typeBoxPosition.Y, this.testTypeRectangle.Width, this.testTypeRectangle.Height);
 
                 spriteBatch.Draw(this.coloredRectangleTexture, this.backGroundPosition, this.backGroundRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
                 spriteBatch.Draw(this.typeBoxTexture, this.typeBoxPosition, this.testTypeRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
@@ -302,7 +303,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.End();
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, new RasterizerState() { ScissorTestEnable = true });
-                spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)this.backGroundPosition.X, (int)this.backGroundPosition.Y, this.backGroundRectangle.Width, this.backGroundRectangle.Height);
+                spriteBatch.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle((int)this.backGroundPosition.X, (int)this.backGroundPosition.Y, this.backGroundRectangle.Width, this.backGroundRectangle.Height);
 
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, this.DisplayLogPosition, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
             

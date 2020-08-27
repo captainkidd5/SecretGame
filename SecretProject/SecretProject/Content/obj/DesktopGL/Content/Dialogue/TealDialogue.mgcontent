@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/TealDialogue.xml</SourceFile>
-  <SourceTime>2020-02-14T10:53:26.4510811-10:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Dialogue/TealDialogue.xnb</DestFile>
-  <DestTime>2020-05-10T12:06:48.7752153-10:00</DestTime>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/TealDialogue.xml</SourceFile>
+  <SourceTime>2020-08-20T18:55:35.0789407-07:00</SourceTime>
+  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Dialogue/TealDialogue.xnb</DestFile>
+  <DestTime>2020-08-26T21:33:42.1184109-07:00</DestTime>
   <Importer>XmlImporter</Importer>
-  <ImporterTime>2018-09-23T11:55:52-10:00</ImporterTime>
+  <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>
-  <ProcessorTime>2018-09-23T11:55:52-10:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T16:17:54-07:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />

@@ -166,16 +166,16 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundBoard(Game1 game, ContentManager content)
         {
-            this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
+            //this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
 
 
-            GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
+            //GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
 
 
-            PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
+            //PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
 
 
-            DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
+            //DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
 
 
             DigDirt = content.Load<SoundEffect>("SoundEffects/diggingDirt");

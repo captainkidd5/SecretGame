@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemHolder.xml</SourceFile>
-  <SourceTime>2020-07-18T10:11:39.4959051-07:00</SourceTime>
+  <SourceTime>2020-08-20T18:55:35.0829297-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/ItemHolder.xnb</DestFile>
-  <DestTime>2020-07-18T10:11:44.5927812-07:00</DestTime>
+  <DestTime>2020-08-27T10:44:06.1009494-07:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

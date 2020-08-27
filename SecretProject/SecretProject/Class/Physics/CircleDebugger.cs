@@ -32,7 +32,7 @@ namespace SecretProject.Class.Physics
                 return;
             }
             Vector2 drawPosition = new Vector2(this.CircleShape.Position.X - DebugCircle.Radius / 2, this.CircleShape.Position.Y - DebugCircle.Radius / 2);
-            spriteBatch.Draw(this.DebugCircle.DebugTexture, drawPosition, color: Color.White * .5f, layerDepth: 1f);
+           // spriteBatch.Draw(this.DebugCircle.DebugTexture, drawPosition, color: Color.White * .5f, layerDepth: 1f);
 
         }
     }
@@ -64,7 +64,7 @@ namespace SecretProject.Class.Physics
                 return;
             }
             Vector2 drawPosition = RectangleShape.Position;
-            spriteBatch.Draw(this.Texture, drawPosition, rotation:RectangleShape.Rotation,color: Color.White * .5f, layerDepth: 1f);
+           // spriteBatch.Draw(this.Texture, drawPosition, rotation:RectangleShape.Rotation,color: Color.White * .5f, layerDepth: 1f);
 
         }
 
