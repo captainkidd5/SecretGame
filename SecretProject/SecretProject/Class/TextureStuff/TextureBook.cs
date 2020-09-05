@@ -151,6 +151,9 @@ namespace SecretProject.Class.TextureStuff
         public Effect whirlPoolGlow;
         public Texture2D lightMask;
 
+
+
+
         //Debug
         public Texture2D redPixel;
 
@@ -295,6 +298,9 @@ namespace SecretProject.Class.TextureStuff
 
             redPixel = content.Load<Texture2D>("Debug/solidRed");
 
+
+
+
             //MINING FOLDER
 
 
@@ -325,7 +331,7 @@ namespace SecretProject.Class.TextureStuff
 
             return new Rectangle(16 * Column, 16 * Row, 16, 16);
         }
-        
+
 
     }
 }

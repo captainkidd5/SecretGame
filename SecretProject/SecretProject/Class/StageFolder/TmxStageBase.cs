@@ -471,6 +471,7 @@ namespace SecretProject.Class.StageFolder
         {
             if (IsDark)
             {
+                Game1.DrawPenumbra = true;
                 Penumbra.AmbientColor = Color.DarkSlateGray;
                 Penumbra.BeginDraw();
             }
@@ -481,6 +482,7 @@ namespace SecretProject.Class.StageFolder
         {
             if (IsDark)
             {
+              
                 Penumbra.Transform = Game1.cam.getTransformation(this.Graphics);
                 Penumbra.Draw(gameTime);
             }

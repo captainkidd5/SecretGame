@@ -380,8 +380,8 @@ namespace SecretProject
         #region INITIALIZE
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
@@ -409,7 +409,7 @@ namespace SecretProject
 
 
             AllActions = new List<ActionTimer>();
-            Penumbra = new PenumbraComponent(this)
+            Penumbra = new PenumbraComponent(this,Content)
             {
                 AmbientColor = Color.White,
             };
@@ -488,7 +488,7 @@ namespace SecretProject
 
             GlobalClock = new Clock();
             //STAGES
-            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager);
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, Content.ServiceProvider);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
             PortalGraph = new Graph(Enum.GetNames(typeof(Stages)).Length);
 
@@ -526,7 +526,7 @@ namespace SecretProject
             OverWorldSpawnHolder = new SpawnHolder();
 
 
-         //   Penumbra.Initialize();
+            Penumbra.Initialize();
 
             LoadPhysics();
 
@@ -1224,6 +1224,7 @@ namespace SecretProject
         #endregion
 
         #region DRAW
+        public static bool DrawPenumbra;
         protected override void Draw(GameTime gameTime)
         {
 
@@ -1244,7 +1245,7 @@ namespace SecretProject
            
 
             Game1.DebugWindow.Draw(spriteBatch);
-
+            DrawPenumbra = false;
             base.Draw(gameTime);
         }
         #endregion

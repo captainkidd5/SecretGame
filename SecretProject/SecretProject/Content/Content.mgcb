@@ -1754,6 +1754,30 @@
 /processorParam:TextureFormat=Color
 /build:MovieStuff/IntroMovie/slide0.png
 
+#begin Penumbra/PenumbraHull.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Penumbra/PenumbraHull.fx
+
+#begin Penumbra/PenumbraLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Penumbra/PenumbraLight.fx
+
+#begin Penumbra/PenumbraShadow.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Penumbra/PenumbraShadow.fx
+
+#begin Penumbra/PenumbraTexture.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Penumbra/PenumbraTexture.fx
+
 #begin WorldProps/train.png
 /importer:TextureImporter
 /processor:TextureProcessor

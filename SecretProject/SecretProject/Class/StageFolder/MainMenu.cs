@@ -28,6 +28,7 @@ using System.IO;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Misc;
 using SecretProject.Class.StageFolder.DungeonStuff;
+using Penumbra;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -90,7 +91,7 @@ namespace SecretProject.Class.StageFolder
 
 
         private Game1 game;
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, IServiceProvider service) : base(game, graphicsDevice, content)
         {
  
             Graphics = graphicsDevice;
@@ -141,7 +142,7 @@ namespace SecretProject.Class.StageFolder
             this.IsDrawn = true;
 
             this.game = game;
-
+            Penumbra = (PenumbraComponent)service.GetService(typeof(PenumbraComponent));
         }
 
         public void LoadBackGround()
@@ -365,6 +366,7 @@ namespace SecretProject.Class.StageFolder
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null,SamplerState.PointClamp);
             Game1.MouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), null, Color.White, 0f, Game1.Utility.Origin, .75f, SpriteEffects.None, .5f);
+
 
             for (int i = 0; i < AllAlerts.Count; i++)
             {
