@@ -175,7 +175,7 @@ namespace SecretProject.Class.SoundStuff
             //PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
 
 
-            //DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
+           
 
 
             DigDirt = content.Load<SoundEffect>("SoundEffects/diggingDirt");
@@ -300,7 +300,7 @@ namespace SecretProject.Class.SoundStuff
             Alert1 = content.Load<SoundEffect>("SoundEffects/Alert1");
             PageRuffleOpen = content.Load<SoundEffect>("SoundEffects/paperRuffleOpen");
             PageRuffleClose = content.Load<SoundEffect>("SoundEffects/paperRuffleClose");
-
+            DoorOpen = ChestOpen;
             this.SoundEffectDictionary = new Dictionary<int, SoundEffect>()
             {
                 {1, WalkGrass },
