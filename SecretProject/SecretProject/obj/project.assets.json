@@ -263,27 +263,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\armad\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\tucke\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\SecretProject\\SecretProject.csproj",
+      "projectUniqueName": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\SecretProject\\SecretProject.csproj",
       "projectName": "SecretProject",
-      "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\SecretProject\\SecretProject.csproj",
-      "packagesPath": "C:\\Users\\armad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\SecretProject\\obj\\",
+      "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\SecretProject\\SecretProject.csproj",
+      "packagesPath": "C:\\Users\\tucke\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\SecretProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\armad\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\tucke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -294,18 +287,19 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj": {
-              "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj"
+            "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj": {
+              "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenLibrary\\LidgrenLibrary.csproj"
             },
-            "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenServer\\LidgrenServer.csproj": {
-              "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenServer\\LidgrenServer.csproj"
+            "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenServer\\LidgrenServer.csproj": {
+              "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\LidgrenServer\\LidgrenServer.csproj"
             },
-            "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj": {
-              "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj"
+            "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj": {
+              "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj"
             },
-            "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj": {
-              "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj"
+            "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj": {
+              "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj"
             }
           }
         }
@@ -318,6 +312,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MonoGame.Content.Builder.Task": {
             "target": "Package",
@@ -343,7 +338,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },

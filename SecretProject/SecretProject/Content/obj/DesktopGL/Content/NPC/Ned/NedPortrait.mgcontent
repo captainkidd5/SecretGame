@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Ned/NedPortrait.png</SourceFile>
-  <SourceTime>2020-08-20T18:55:35.1716931-07:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Ned/NedPortrait.xnb</DestFile>
-  <DestTime>2020-09-05T11:56:18.1822079-07:00</DestTime>
+  <SourceFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Ned/NedPortrait.png</SourceFile>
+  <SourceTime>2021-02-20T12:35:29.0479329-10:00</SourceTime>
+  <DestFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Ned/NedPortrait.xnb</DestFile>
+  <DestTime>2021-02-20T12:36:17.5166691-10:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
+  <ImporterTime>2020-08-10T16:17:54-10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2020-08-10T16:17:54-07:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T16:17:54-10:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

@@ -12,157 +12,157 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } = .25f;
+        public float GameVolume { get;  set; } = .25f;
         //Sound Effects are WAV
         //Songs are MP3
-        public SoundEffect PickUpItem { get; set; }
+        public SoundEffect PickUpItem { get; private set; }
 
-        public SoundEffect StoneStep { get; set; }
-
-
-        public SoundEffect GrassBreak;
-
-        public SoundEffect PlaceBarrel;
-
-        public SoundEffect DoorOpen;
-
-        public SoundEffect DigDirt;
-
-        public SoundEffect StoneSmash;
-        public SoundEffect MiningHit;
+        public SoundEffect StoneStep { get; private set; }
 
 
-        public SoundEffect TreeFall;
+        public SoundEffect GrassBreak {get;set;}
 
-        public SoundEffect WalkGrass;
+        public SoundEffect PlaceBarrel { get; private set; }
+
+        public SoundEffect DoorOpen { get; private set; }
+
+        public SoundEffect DigDirt { get; private set; }
+
+        public SoundEffect StoneSmash { get; private set; }
+        public SoundEffect MiningHit { get; private set; }
 
 
-        public SoundEffect WalkSand;
+        public SoundEffect TreeFall { get; private set; }
+
+        public SoundEffect WalkGrass { get; private set; }
 
 
-        public SoundEffect WalkWood;
+        public SoundEffect WalkSand { get; private set; }
 
 
-        public SoundEffect WalkStone;
-        public SoundEffect CrunchStep;
+        public SoundEffect WalkWood { get; private set; }
 
-        public SoundEffect Chirp1;
 
-        public SoundEffect Chirp2;
+        public SoundEffect WalkStone { get; private set; }
+        public SoundEffect CrunchStep { get; private set; }
 
-        public SoundEffect Chirp3;
+        public SoundEffect Chirp1 { get; private set; }
 
-        public SoundEffect FoodBite;
-        public SoundEffect GrassCut;
+        public SoundEffect Chirp2 { get; private set; }
+
+        public SoundEffect Chirp3 { get; private set; }
+
+        public SoundEffect FoodBite { get; private set; }
+        public SoundEffect GrassCut { get; private set; }
 
         //GADGETS
-        public SoundEffect PotLidOpen;
-        public SoundEffect PotLidClose;
+        public SoundEffect PotLidOpen { get; private set; }
+        public SoundEffect PotLidClose { get; private set; }
 
         //AMBIENT
-        public SoundEffect Crickets1;
+        public SoundEffect Crickets1 { get; private set; }
 
 
 
-        public SoundEffect OwlHoot1;
-        public SoundEffect LightRain;
-        public SoundEffectInstance LightRainInstance;
+        public SoundEffect OwlHoot1 { get; private set; }
+        public SoundEffect LightRain { get; private set; }
+        public SoundEffectInstance LightRainInstance { get; private set; }
 
-        public SoundEffect SunnySounds;
-        public SoundEffectInstance SunnySoundsInstance;
-
-
-        public SoundEffect PigGrunt;
+        public SoundEffect SunnySounds { get; private set; }
+        public SoundEffectInstance SunnySoundsInstance { get; private set; }
 
 
-        public SoundEffect PigGrunt2;
-
-        public SoundEffect ChickenCluck1;
-
-        public SoundEffect DogBark;
-        public SoundEffect ToadCroak;
-        public SoundEffect GoatBleat;
-
-        public SoundEffect CropPluck;
+        public SoundEffect PigGrunt { get; private set; }
 
 
-        public SoundEffect TextNoise;
-        public SoundEffect TextNoise2;
+        public SoundEffect PigGrunt2 { get; private set; }
 
-        public SoundEffect CraftMetal;
-        public SoundEffect ToolBreak;
+        public SoundEffect ChickenCluck1 { get; private set; }
 
-        public SoundEffect Sell1;
+        public SoundEffect DogBark { get; private set; }
+        public SoundEffect ToadCroak { get; private set; }
+        public SoundEffect GoatBleat { get; private set; }
 
-        public SoundEffect SanctuaryAdd;
-
-        public SoundEffect GearSpin;
-
-        public SoundEffect PlaceItem1;
+        public SoundEffect CropPluck { get; private set; }
 
 
-        public SoundEffect FurnaceLight;
-        public SoundEffect FurnaceFire;
-        public SoundEffect FurnaceDone;
-        public SoundEffect UnlockItem;
+        public SoundEffect TextNoise { get; private set; }
+        public SoundEffect TextNoise2 { get; private set; }
 
-        public SoundEffect ChestOpen;
+        public SoundEffect CraftMetal { get; private set; }
+        public SoundEffect ToolBreak { get; private set; }
 
-        public SoundEffect PumpkinSmash;
+        public SoundEffect Sell1 { get; private set; }
+
+        public SoundEffect SanctuaryAdd { get; private set; }
+
+        public SoundEffect GearSpin { get; private set; }
+
+        public SoundEffect PlaceItem1 { get; private set; }
 
 
-        public SoundEffect CoinGet;
-        public SoundEffect MiniReward;
+        public SoundEffect FurnaceLight { get; private set; }
+        public SoundEffect FurnaceFire { get; private set; }
+        public SoundEffect FurnaceDone { get; private set; }
+        public SoundEffect UnlockItem { get; private set; }
 
-        public SoundEffect BoneRattle1;
-        public SoundEffect BoneRattle2;
+        public SoundEffect ChestOpen { get; private set; }
+
+        public SoundEffect PumpkinSmash { get; private set; }
+
+
+        public SoundEffect CoinGet { get; private set; }
+        public SoundEffect MiniReward { get; private set; }
+
+        public SoundEffect BoneRattle1 { get; private set; }
+        public SoundEffect BoneRattle2 { get; private set; }
 
         //COMBAT
-        public SoundEffect Slash1;
-        public SoundEffect SwordSwing;
-        public SoundEffect SwordImpact;
-        public SoundEffect BushCut;
+        public SoundEffect Slash1 { get; private set; }
+        public SoundEffect SwordSwing { get; private set; }
+        public SoundEffect SwordImpact { get; private set; }
+        public SoundEffect BushCut { get; private set; }
 
         //BOW AND ARROW
-        public SoundEffect BowShoot;
-        public SoundEffect ArrowMiss;
+        public SoundEffect BowShoot { get; private set; }
+        public SoundEffect ArrowMiss { get; private set; }
 
-        public SoundEffect SporeShoot;
-        public SoundEffect SlimeHit;
-        
-        public SoundEffect Thunder1;
+        public SoundEffect SporeShoot { get; private set; }
+        public SoundEffect SlimeHit { get; private set; }
+
+        public SoundEffect Thunder1 { get; private set; }
 
         //songs
-        public SoundEffect DustStorm;
-        public SoundEffect Lakescape;
-        public SoundEffect Title;
-        public SoundEffect MelodyOfTheSea;
-        public SoundEffect DeeperAndDeeper;
-        public SoundEffect ForestersTheme;
-        public SoundEffect LighthouseTheme;
+        public SoundEffect DustStorm { get; private set; }
+        public SoundEffect Lakescape { get; private set; }
+        public SoundEffect Title { get; private set; }
+        public SoundEffect MelodyOfTheSea { get; private set; }
+        public SoundEffect DeeperAndDeeper { get; private set; }
+        public SoundEffect ForestersTheme { get; private set; }
+        public SoundEffect LighthouseTheme { get; private set; }
 
         //Event songs
         //Intro Scene
-        public SoundEffect Downpour;
+        public SoundEffect Downpour { get; private set; }
 
-        public SoundEffect CurrentSong { get; set; }
-        public SoundEffectInstance CurrentSongInstance { get; set; }
+        public SoundEffect CurrentSong { get; private set; }
+        public SoundEffectInstance CurrentSongInstance { get; private set; }
 
         //Emoticons
-        public SoundEffect Exclamation { get; set; }
+        public SoundEffect Exclamation { get; private set; }
 
         //UI
-        public SoundEffect UIClick;
-        public SoundEffect Alert1;
+        public SoundEffect UIClick { get; private set; }
+        public SoundEffect Alert1 { get; private set; }
         public SoundEffect PageRuffleOpen;
         public SoundEffect PageRuffleClose;
 
-        public SongChooser TitleSongs { get; set; }
-        public SongChooser WorldSongs { get; set; }
-        public SongChooser UnRaiSongs { get; set; }
-        public SongChooser InteriorSongs { get; set; }
+        public SongChooser TitleSongs { get; private set; }
+        public SongChooser WorldSongs { get; private set; }
+        public SongChooser UnRaiSongs { get; private set; }
+        public SongChooser InteriorSongs { get; private set; }
 
-        public Dictionary<int,SoundEffect>  SoundEffectDictionary { get; set; }
+        public Dictionary<int,SoundEffect>  SoundEffectDictionary { get; private set; }
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -442,7 +442,7 @@ namespace SecretProject.Class.SoundStuff
             {
                 pitch = Game1.Utility.RFloat(0, pitchHighCap);
             }
-            soundEffect.Play(this.GameVolume, pitch, 1f);
+           // soundEffect.Play(this.GameVolume, pitch, 1f);
         }
 
         public void PlaySoundWithRadius(Vector2 entityPosition, SoundEffect soundEffect, bool randomizePitch = false, float pitchCap = 1f)

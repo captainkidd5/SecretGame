@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/TealQuests.xml</SourceFile>
-  <SourceTime>2020-08-20T18:55:35.2016125-07:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/TealQuests.xnb</DestFile>
-  <DestTime>2020-09-05T11:56:18.3442058-07:00</DestTime>
+  <SourceFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/TealQuests.xml</SourceFile>
+  <SourceTime>2021-02-20T12:35:29.0688769-10:00</SourceTime>
+  <DestFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/TealQuests.xnb</DestFile>
+  <DestTime>2021-02-20T12:36:17.7833576-10:00</DestTime>
   <Importer>XmlImporter</Importer>
-  <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
+  <ImporterTime>2020-08-10T16:17:54-10:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>
-  <ProcessorTime>2020-08-10T16:17:54-07:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T16:17:54-10:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />

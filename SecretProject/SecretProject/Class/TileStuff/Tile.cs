@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Physics.CollisionDetection;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.TileStuff.TileModifications;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -16,11 +20,14 @@ namespace SecretProject.Class.TileStuff
 
     public class Tile : IEntity
     {
+        public static int TileWidth = 16;
 
         private int gid;
         public int GID { get { return gid - 1; } set { gid = value; } }
         public int Y { get; set; }
         public int X { get; set; }
+
+        public float Layer { get; set; }
         public float LayerToDrawAt { get; set; } 
         public float LayerToDrawAtZOffSet { get; set; } 
         public float ColorMultiplier { get; set; } = 1f; //this is reset every frame in the quad tree insertion
@@ -36,6 +43,9 @@ namespace SecretProject.Class.TileStuff
         public float Rotation { get; set; }
         public Vector2 Origin { get; set; }
 
+        public List<HullBody> Bodies { get; set; }
+        public List<ITileAddon> Addons { get; private set; }
+
 
         public Tile(int x, int y, int gID)
         {
@@ -47,6 +57,27 @@ namespace SecretProject.Class.TileStuff
 
             this.Origin = Game1.Utility.Origin;
 
+            this.Bodies = new List<HullBody>();
+            this.Addons = new List<ITileAddon>();
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            for (int i = 0; i < Addons.Count; i++)
+            {
+                Addons[i].Update(gameTime);
+            }
+        }
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture, float layer)
+        {
+            spriteBatch.Draw(texture,Position, SourceRectangle, Color.White * ColorMultiplier,
+                                Rotation, Origin, 1f, SpriteEffects.None, layer + LayerToDrawAtZOffSet);
+
+            for (int i = 0; i < Addons.Count; i++)
+            {
+                Addons[i].Draw(spriteBatch);
+            }
         }
 
         public Vector2 GetPosition(TileManager TileManager)
@@ -67,19 +98,7 @@ namespace SecretProject.Class.TileStuff
 
         public void MouseCollisionInteraction()
         {
-            //Chunk chunk = ChunkUtility.GetChunk(X / 16, Y / 16, Game1.OverWorld.AllTiles.ActiveChunks);
-            //if(chunk != null)
-            //{
-            //    if (Game1.CurrentStage.AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties.ContainsKey("action"))
-            //    {
-            //        string action = Game1.CurrentStage.AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties["action"];
-
-            //        TileUtility.ActionHelper((int)this.LayerToDrawAt, this.X, this.Y, action, Game1.MouseManager, chunk);
-            //        //z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[LayerToDrawAt][X, Y].GID].Properties["action"], mouse, this.ChunkUnderMouse
-            //    }
-            //}
-            
-
+          
         }
 
         public void Reset()

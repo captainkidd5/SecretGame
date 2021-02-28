@@ -48,9 +48,6 @@ namespace SecretProject.Class.StageFolder
         public Stages StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
-
-        public Vector2 TileSize = new Vector2(16, 16); // what?
-
         public TmxMap Map { get; set; }
 
         public Player player
@@ -86,19 +83,12 @@ namespace SecretProject.Class.StageFolder
 
 
 
-
-
-
-        public bool TilesLoaded { get; set; } = false;
-
         public Rectangle MapRectangle { get; set; }
 
         public ContentManager StageContentManager { get; set; }
         public GraphicsDevice Graphics { get; set; }
 
         public ParticleEngine ParticleEngine { get; set; }
-
-        public DialogueHolder AllDockDialogue { get; set; }
 
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get; set; }

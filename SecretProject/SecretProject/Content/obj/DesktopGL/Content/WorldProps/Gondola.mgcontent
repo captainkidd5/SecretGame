@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Gondola.png</SourceFile>
-  <SourceTime>2020-08-20T18:55:36.2779754-07:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/WorldProps/Gondola.xnb</DestFile>
-  <DestTime>2020-08-26T21:34:00.3374212-07:00</DestTime>
+  <SourceFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Gondola.png</SourceFile>
+  <SourceTime>2021-02-20T12:35:30.1705472-10:00</SourceTime>
+  <DestFile>C:/Users/tucke/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/WorldProps/Gondola.xnb</DestFile>
+  <DestTime>2021-02-20T12:36:28.1732848-10:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
+  <ImporterTime>2020-08-10T16:17:54-10:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2020-08-10T16:17:54-07:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T16:17:54-10:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

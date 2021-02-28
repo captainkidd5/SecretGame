@@ -235,57 +235,57 @@ namespace SecretProject
 
         //XMLDATA
 
-        public DialogueHolder ElixirDialogue;
-        public DialogueHolder DobbinDialogue;
-        public DialogueHolder SnawDialogue;
-        public DialogueHolder KayaDialogue;
-        public DialogueHolder JulianDialogue;
-        public DialogueHolder SarahDialogue;
-        public DialogueHolder BusinessSnailDialogue;
-        public DialogueHolder MippinDialogue;
-        public DialogueHolder NedDialogue;
-        public DialogueHolder TealDialogue;
-        public DialogueHolder MarcusDialogue;
-        public DialogueHolder CasparDialogue;
+        public DialogueHolder ElixirDialogue { get; set; }
+        public DialogueHolder DobbinDialogue { get; set; }
+        public DialogueHolder SnawDialogue { get; set; }
+        public DialogueHolder KayaDialogue{ get; private set; }
+        public DialogueHolder JulianDialogue{ get; private set; }
+        public DialogueHolder SarahDialogue{ get; private set; }
+        public DialogueHolder BusinessSnailDialogue{ get; private set; }
+        public DialogueHolder MippinDialogue{ get; private set; }
+        public DialogueHolder NedDialogue{ get; private set; }
+        public DialogueHolder TealDialogue{ get; private set; }
+        public DialogueHolder MarcusDialogue{ get; private set; }
+        public DialogueHolder CasparDialogue{ get; private set; }
 
-        public RouteSchedule DobbinRouteSchedule;
-        public RouteSchedule ElixirRouteSchedule;
-        public RouteSchedule KayaRouteSchedule;
-        public RouteSchedule JulianRouteSchedule;
-        public RouteSchedule SarahRouteSchedule;
-        public RouteSchedule MippinRouteSchedule;
-        public RouteSchedule NedRouteSchedule;
-        public RouteSchedule TealRouteSchedule;
-        public RouteSchedule MarcusRouteSchedule;
-        public RouteSchedule CasparRouteSchedule;
-        public static List<RouteSchedule> AllSchedules;
+        public RouteSchedule DobbinRouteSchedule{ get; private set; }
+        public RouteSchedule ElixirRouteSchedule{ get; private set; }
+        public RouteSchedule KayaRouteSchedule{ get; private set; }
+        public RouteSchedule JulianRouteSchedule{ get; private set; }
+        public RouteSchedule SarahRouteSchedule{ get; private set; }
+        public RouteSchedule MippinRouteSchedule{ get; private set; }
+        public RouteSchedule NedRouteSchedule{ get; private set; }
+        public RouteSchedule TealRouteSchedule{ get; private set; }
+        public RouteSchedule MarcusRouteSchedule{ get; private set; }
+        public RouteSchedule CasparRouteSchedule{ get; private set; }
+        public static List<RouteSchedule> AllSchedules{ get; private set; }
 
-        public QuestHandler DobbinQuests;
-        public QuestHandler ElixirQuests;
-        public QuestHandler KayaQuests;
-        public QuestHandler JulianQuests;
-        public QuestHandler SarahQuests;
-        public QuestHandler MippinQuests;
-        public QuestHandler NedQuests;
-        public QuestHandler TealQuests;
-        public QuestHandler MarcusQuests;
-        public QuestHandler SnawQuests;
-        public QuestHandler BusinessSnailQuests;
-        public QuestHandler CasparQuests;
+        public QuestHandler DobbinQuests{ get; private set; }
+        public QuestHandler ElixirQuests{ get; private set; }
+        public QuestHandler KayaQuests{ get; private set; }
+        public QuestHandler JulianQuests{ get; private set; }
+        public QuestHandler SarahQuests{ get; private set; }
+        public QuestHandler MippinQuests{ get; private set; }
+        public QuestHandler NedQuests{ get; private set; }
+        public QuestHandler TealQuests{ get; private set; }
+        public QuestHandler MarcusQuests{ get; private set; }
+        public QuestHandler SnawQuests{ get; private set; }
+        public QuestHandler BusinessSnailQuests{ get; private set; }
+        public QuestHandler CasparQuests{ get; private set; }
 
 
 
-        public static ItemHolder AllItems;
-        public static LootBank LootBank;
-        public static CropHolder AllCrops;
+        public static ItemHolder AllItems{ get; private set; }
+        public static LootBank LootBank{ get; private set; }
+        public static CropHolder AllCrops{ get; private set; }
 
-        public static DialogueLibrary DialogueLibrary;
+        public static DialogueLibrary DialogueLibrary{ get; private set; }
 
-        public static CookingGuide AllCookingRecipes;
+        public static CookingGuide AllCookingRecipes{ get; private set; }
 
-        public static SpawnHolder OverWorldSpawnHolder { get; set; }
+        public static SpawnHolder OverWorldSpawnHolder { get; private set; }
 
-        public static MessageHolder MessageHolder { get; set; }
+        public static MessageHolder MessageHolder { get; private set; }
 
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }

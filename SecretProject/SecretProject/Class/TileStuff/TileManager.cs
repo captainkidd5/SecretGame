@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
@@ -13,6 +14,7 @@ using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.TileStuff.TileModifications;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +29,10 @@ namespace SecretProject.Class.TileStuff
 
     public class TileManager : ISaveable
     {
+
+        //How many tiles outside of the viewport should be rendered.
+        //some tiles are quite large so we have to extend culling a bit so as to not cut them off!
+        private readonly int CullingLeeWay = 8;
         public TmxStageBase Stage;
         public int Type { get; set; }
         protected Game1 game;
@@ -340,7 +346,57 @@ namespace SecretProject.Class.TileStuff
         {
             return AllItems;
         }
+        #region INDEX VARIABLES
+        private int StartX { get; set; }
+        private int StartY { get; set; }
+        private int EndX { get; set; }
 
+        private int EndY { get; set; }
+
+        private int MouseX { get; set; }
+        private int MouseY { get; set; }
+        #endregion
+        public Tile MouseOverTile { get; private set; }
+
+        
+
+        /// <summary>
+        /// This method will cull tiles, so that only the tiles within the screen are updated/drawn.
+        /// </summary>
+        private void CalculateStartAndEndIndexes()
+        {
+
+            int screenHalfTiles = (int)(Globals.ScreenWidth / Game1.cam.Zoom / 2 / Tile.TileWidth);
+
+            StartX = (int)(Game1.cam.Pos.X / Tile.TileWidth) - screenHalfTiles - CullingLeeWay;
+            if (StartX < 0)
+                StartX = 0;
+
+            StartY = (int)(Game1.cam.Pos.Y / Tile.TileWidth) - screenHalfTiles - CullingLeeWay;
+            if (StartY < 0)
+                StartY = 0;
+
+            EndX = (int)(Game1.cam.Pos.X / Tile.TileWidth) + screenHalfTiles + CullingLeeWay;
+            if (EndX > MapWidth)
+                EndX = MapWidth;
+
+            EndY = (int)(Game1.cam.Pos.Y / Tile.TileWidth) + screenHalfTiles + CullingLeeWay;
+            if (EndY > MapWidth)
+                EndY = MapWidth;
+        }
+
+        ///// <summary>
+        ///// Ensures that mouse indices given from controls are within the bounds of the current map. 
+        ///// </summary>
+        //private void CalculateMouseIndex()
+        //{
+        //    MouseX = Game1.Controls.CursorTileIndex.X;
+        //    MouseY = Game1.Controls.CursorTileIndex.Y;
+        //    if (MouseX >= MapWidth)
+        //        MouseX = MapWidth - 1;
+        //    if (MouseY >= MapWidth)
+        //        MouseY = MapWidth - 1;
+        //}
 
         #region UPDATE
 
@@ -352,26 +408,8 @@ namespace SecretProject.Class.TileStuff
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
             List<string> AnimationFrameKeysToRemove = new List<string>();
-            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.CurrentStage.Cam.Zoom / 2 / 16) - 1;
-            if (starti < 0)
-            {
-                starti = 0;
-            }
-            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.CurrentStage.Cam.Zoom / 2 / 16) - 1;
-            if (startj < 0)
-            {
-                startj = 0;
-            }
-            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.CurrentStage.Cam.Zoom / 2 / 16) + 2;
-            if (endi > this.MapWidth)
-            {
-                endi = this.MapWidth;
-            }
-            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.CurrentStage.Cam.Zoom / 2 / 16) + 2;
-            if (endj > this.MapWidth)
-            {
-                endj = this.MapWidth;
-            }
+
+            CalculateStartAndEndIndexes();
             UpdateAnimationFrames(gameTime);
 
 
@@ -608,30 +646,7 @@ namespace SecretProject.Class.TileStuff
         public void DrawTiles(SpriteBatch spriteBatch)
         {
 
-            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
-            if (starti < 0)
-            {
-                starti = 0;
-            }
-            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) - 1;
-            if (startj < 0)
-            {
-                startj = 0;
-            }
-            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 2;
-            if (endi > this.MapWidth)
-            {
-                endi = this.MapWidth;
-            }
-            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 5;
-            if (endj > this.MapHeight)
-            {
-                endj = this.MapWidth;
-            }
-            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > this.MapWidth || endj > this.MapHeight)
-            {
-                return;
-            }
+
             foreach (KeyValuePair<string, List<GrassTuft>> entry in this.Tufts)
             {
                 for (int grass = 0; grass < entry.Value.Count; grass++)
@@ -643,18 +658,18 @@ namespace SecretProject.Class.TileStuff
             }
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
-                for (var i = starti; i < endi; i++)
+                for (var x = StartX; x < EndX; x++)
                 {
-                    for (var j = startj; j < endj; j++)
+                    for (var y = StartY; y < EndY; y++)
                     {
-                        Tile tile = this.AllTiles[z][i, j];
+                        Tile tile = this.AllTiles[z][x, y];
                         if (tile.GID != -1)
                         {
 
                             Color tileColor = Color.White;
                             if (Game1.CurrentStage.ShowBorders)
                             {
-                                if (this.Objects.ContainsKey(AllTiles[z][i, j].TileKey))
+                                if (this.Objects.ContainsKey(AllTiles[z][x, y].TileKey))
                                 {
                                     tileColor = Color.Red;
                                 }
@@ -671,13 +686,14 @@ namespace SecretProject.Class.TileStuff
 
                             else
                             {
-                                spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor,
-                                tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
+                                tile.Draw(spriteBatch, TileSet, AllDepths[z]);
+                               // spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor,
+                               // tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
                             if (Game1.Player.UserInterface.CommandConsole.DisplayTileIndex)
                             {
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, x + "," + y, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
                             }
 
