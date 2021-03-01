@@ -54,6 +54,7 @@ using SecretProject.Class.Misc;
 
 
 
+
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
 // fix player clipping around when performing action
 // diagonal movement
@@ -223,6 +224,8 @@ namespace SecretProject
         public static List<ActionTimer> AllActions;
 
         public static Texture2D RectangleOutlineTexture;
+
+        //public static DebuggerView VelcroDebugger;
 
         //CLOCK
         public static Clock GlobalClock;

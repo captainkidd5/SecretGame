@@ -250,13 +250,12 @@ namespace SecretProject.Class.SpriteFolder
         {
             if (this.Flip)
             {
-               //REDO spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
-               //     color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+                 
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, this.SourceRectangle, this.Color * this.ColorMultiplier, rotation, Vector2.Zero, new Vector2(this.TextureScaleX, this.TextureScaleY), SpriteEffects.FlipHorizontally, layerDepth);
             }
             else
             {
-             //REDO   spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
-            //        color: this.Color * this.ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, this.SourceRectangle, this.Color * this.ColorMultiplier, rotation, Vector2.Zero, new Vector2(this.TextureScaleX, this.TextureScaleY), SpriteEffects.None, layerDepth);
             }
 
         }

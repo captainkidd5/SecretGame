@@ -674,23 +674,9 @@ namespace SecretProject.Class.TileStuff
                                     tileColor = Color.Red;
                                 }
                             }
-
-
-
-                            if (z >= (int)MapLayer.ForeGround)
-                            {
-                                spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor * tile.ColorMultiplier,
-                                tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + tile.LayerToDrawAtZOffSet);
-
-                            }
-
-                            else
-                            {
+                            
                                 tile.Draw(spriteBatch, TileSet, AllDepths[z]);
-                               // spriteBatch.Draw(this.TileSet, tile.Position, tile.SourceRectangle, tileColor,
-                               // tile.Rotation, tile.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
-                            }
-
+           
                             if (Game1.Player.UserInterface.CommandConsole.DisplayTileIndex)
                             {
                                 spriteBatch.DrawString(Game1.AllTextures.MenuText, x + "," + y, tile.Position, Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
@@ -711,9 +697,6 @@ namespace SecretProject.Class.TileStuff
             {
                 this.AllItems[item].Draw(spriteBatch);
             }
-
-
-
         }
         private void DrawGrassTufts(SpriteBatch spriteBatch)
         {
@@ -749,8 +732,6 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-
-
         }
 
         public void HandleClockChange(object sender, EventArgs eventArgs)

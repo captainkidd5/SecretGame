@@ -810,6 +810,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void Draw(SpriteBatch spriteBatch)
         {
+       
             if (!this.DisableInteractions)
             {
                 if (this.IsBasicNPC)
