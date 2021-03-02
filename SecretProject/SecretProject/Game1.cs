@@ -51,6 +51,7 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.Physics;
 using SecretProject.Class.MovieStuff;
 using SecretProject.Class.Misc;
+using VelcroPhysics.DebugViews.MonoGame;
 
 
 
@@ -225,7 +226,7 @@ namespace SecretProject
 
         public static Texture2D RectangleOutlineTexture;
 
-        //public static DebuggerView VelcroDebugger;
+        public static DebugView VelcroDebugger;
 
         //CLOCK
         public static Clock GlobalClock;

@@ -98,16 +98,6 @@
           "bin/placeholder/TiledSharp.dll": {}
         }
       },
-      "VelcroPhysics.MonoGame/1.0.0": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
-        "compile": {
-          "bin/placeholder/VelcroPhysics.MonoGame.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/VelcroPhysics.MonoGame.dll": {}
-        }
-      },
       "XMLData/1.0.0": {
         "type": "project",
         "compile": {
@@ -256,11 +246,6 @@
       "path": "../packages/TiledSharp-master/TiledSharp-master/TiledSharp/TiledSharp.csproj",
       "msbuildProject": "../packages/TiledSharp-master/TiledSharp-master/TiledSharp/TiledSharp.csproj"
     },
-    "VelcroPhysics.MonoGame/1.0.0": {
-      "type": "project",
-      "path": "../packages/VelcroPhysics/VelcroPhysics/VelcroPhysics.MonoGame.csproj",
-      "msbuildProject": "../packages/VelcroPhysics/VelcroPhysics/VelcroPhysics.MonoGame.csproj"
-    },
     "XMLData/1.0.0": {
       "type": "project",
       "path": "../packages/XMLData/XMLData.csproj",
@@ -274,7 +259,6 @@
       "MonoGame.Content.Builder.Task >= 3.8.0.1641",
       "MonoGame.Framework.DesktopGL >= 3.8.0.1641",
       "TiledSharp >= 1.0.0",
-      "VelcroPhysics.MonoGame >= 1.0.0",
       "XMLData >= 1.0.0"
     ]
   },
@@ -313,9 +297,6 @@
             },
             "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj": {
               "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\TiledSharp-master\\TiledSharp-master\\TiledSharp\\TiledSharp.csproj"
-            },
-            "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\VelcroPhysics\\VelcroPhysics\\VelcroPhysics.MonoGame.csproj": {
-              "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\VelcroPhysics\\VelcroPhysics\\VelcroPhysics.MonoGame.csproj"
             },
             "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj": {
               "projectPath": "C:\\Users\\tucke\\Desktop\\SecretGame\\SecretProject\\packages\\XMLData\\XMLData.csproj"

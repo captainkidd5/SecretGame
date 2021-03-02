@@ -40,7 +40,7 @@ namespace SecretProject.Class.StageFolder
         Interior = 1
     }
 
-    public class TmxStageBase
+    public class TmxStageBase : Component
     {
 
         #region FIELDS
@@ -145,12 +145,12 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service, bool isBasedOnPreloadedMap = true)
+        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
+            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
         {
             this.StageName = name;
             this.LocationType = locationType;
 
-            this.Graphics = graphics;
 
             this.StageContentManager = new ContentManager(content.ServiceProvider);
             this.StageContentManager.RootDirectory = "Content";
@@ -181,7 +181,7 @@ namespace SecretProject.Class.StageFolder
             this.DebuggableShapes = new List<IDebuggableShape>();
             this.UpdatingGrassTufts = new List<GrassTuft>();
         }
-        public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
         }
 
@@ -333,6 +333,10 @@ namespace SecretProject.Class.StageFolder
 
 
         #endregion
+
+
+
+
 
         #region UPDATE
 
@@ -659,6 +663,16 @@ namespace SecretProject.Class.StageFolder
         }
 
         public virtual string GetDebugString()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Unload()
         {
             throw new NotImplementedException();
         }
