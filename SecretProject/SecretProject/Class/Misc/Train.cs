@@ -54,20 +54,20 @@ namespace SecretProject.Class.Misc
             }
         }
 
-        public void SwitchStage(Stages oldLocation, Stages newLocation)
+        public void SwitchStage(StagesEnum oldLocation, StagesEnum newLocation)
         {
             
             
             switch (newLocation)
             {
-                case Stages.TrainStation:
+                case StagesEnum.TrainStation:
 
-                    if(oldLocation == Stages.Town) //Train is already at station.
+                    if(oldLocation == StagesEnum.Town) //Train is already at station.
                     {
 
                         this.Position = TrainStationArrivalPosition;
                     }
-                    else if(oldLocation == Stages.RooltapCastle) //Train is arriving at Train Station.
+                    else if(oldLocation == StagesEnum.RooltapCastle) //Train is arriving at Train Station.
                     {
                         this.Position = new Vector2(-400, TrainStationArrivalPosition.Y);
                         this.IsArriving = true;
@@ -78,8 +78,8 @@ namespace SecretProject.Class.Misc
                     CreateBody();
 
                     break;
-                case Stages.RooltapCastle:
-                    if(oldLocation == Stages.TrainStation) //Train is arriving at the castle.
+                case StagesEnum.RooltapCastle:
+                    if(oldLocation == StagesEnum.TrainStation) //Train is arriving at the castle.
                     {
                         IsArriving = true;
                         this.Position = new Vector2(-400, CastleArrivePosition.Y);

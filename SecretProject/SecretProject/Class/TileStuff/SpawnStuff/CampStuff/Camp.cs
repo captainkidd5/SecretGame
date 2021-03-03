@@ -29,7 +29,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
             this.Chance = probability;
         }
 
-        public virtual void Spawn(TileManager TileManager, TmxStageBase location)
+        public virtual void Spawn(TileManager TileManager, Stage location)
         {
             //for(int i =0; i < this.SpawnElements.Count; i++)
             //{

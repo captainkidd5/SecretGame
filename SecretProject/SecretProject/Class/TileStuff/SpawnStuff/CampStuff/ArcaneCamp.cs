@@ -27,7 +27,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff.CampStuff
 
         }
 
-        public override void Spawn(TileManager TileManager, TmxStageBase location)
+        public override void Spawn(TileManager TileManager, Stage location)
         {
             base.Spawn(TileManager, location);
             Vector2 position = new Vector2(TileManager.X * 16 * 16 + 64, TileManager.Y * 16 * 16 + 64);

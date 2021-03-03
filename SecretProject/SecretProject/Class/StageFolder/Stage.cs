@@ -40,24 +40,22 @@ namespace SecretProject.Class.StageFolder
         Interior = 1
     }
 
-    public class TmxStageBase : Component
+    public class Stage : Component
     {
 
         #region FIELDS
+
+
+        public string Name { get; private set; }
+        private readonly StageHandler stageHandler;
+        private readonly GraphicsDevice graphics;
+        private readonly Camera2D camera;
         public LocationType LocationType { get; set; }
-        public Stages StageIdentifier { get; set; }
+        public StagesEnum StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
         public TmxMap Map { get; set; }
 
-        public Player player
-        {
-            get;
-            set;
-        }
-
-        public int TileWidth { get; set; }
-        public int TileHeight { get; set; }
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
 
@@ -131,6 +129,7 @@ namespace SecretProject.Class.StageFolder
         protected bool IsBasedOnPreloadedMap { get; set; }
 
         protected IServiceProvider ServiceProvider { get; set; }
+        public PlayerManager PlayerManager { get; }
         public PenumbraComponent Penumbra { get; set; }
 
         public Dictionary<string, Hull> Hulls { get; set; }
@@ -145,8 +144,8 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
-            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
+        public Stage(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
+            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, PlayerManager playerManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -172,7 +171,7 @@ namespace SecretProject.Class.StageFolder
             LoadPreliminaryContent();
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
             this.ServiceProvider = service;
-
+            PlayerManager = playerManager;
             Penumbra = (PenumbraComponent)ServiceProvider.GetService(typeof(PenumbraComponent));
 
             this.Lights = new Dictionary<string, Light>();
@@ -181,7 +180,7 @@ namespace SecretProject.Class.StageFolder
             this.DebuggableShapes = new List<IDebuggableShape>();
             this.UpdatingGrassTufts = new List<GrassTuft>();
         }
-        public TmxStageBase(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
+        public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
         }
 
@@ -223,16 +222,16 @@ namespace SecretProject.Class.StageFolder
 
             this.AllPortals = new List<Portal>();
             LoadTileManager();
-            this.TileWidth = this.Map.Tilesets[(int)this.LocationType].TileWidth;
-            this.TileHeight = this.Map.Tilesets[(int)this.LocationType].TileHeight;
+            Tile.TileWidth = this.Map.Tilesets[(int)this.LocationType].TileWidth;
+            Tile.TileWidth = this.Map.Tilesets[(int)this.LocationType].TileHeight;
 
-            this.TilesetTilesWide = this.TileSet.Width / this.TileWidth;
-            this.TilesetTilesHigh = this.TileSet.Height / this.TileHeight;
+            this.TilesetTilesWide = this.TileSet.Width / Tile.TileWidth;
+            this.TilesetTilesHigh = this.TileSet.Height / Tile.TileWidth;
 
 
             this.AllActions = new List<ActionTimer>();
 
-            this.MapRectangle = new Rectangle(0, 0, this.TileWidth * this.Map.Width, this.TileHeight * this.Map.Height);
+            this.MapRectangle = new Rectangle(0, 0, Tile.TileWidth * this.Map.Width, Tile.TileWidth * this.Map.Height);
             this.Map = null;
             this.AllCrops = new Dictionary<string, Crop>();
 
@@ -335,12 +334,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
 
-
-
-
         #region UPDATE
-
-        
 
         public virtual void UpdatePortals(Player player, MouseManager mouse)
         {
@@ -353,7 +347,7 @@ namespace SecretProject.Class.StageFolder
                         if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage(Game1.GetStageFromEnum((Stages)this.AllPortals[p].To), this.AllPortals[p]);
+                            Game1.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -363,7 +357,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
                         {
-                            Game1.SwitchStage(Game1.GetStageFromEnum((Stages)this.AllPortals[p].To), this.AllPortals[p]);
+                            Game1.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -374,18 +368,18 @@ namespace SecretProject.Class.StageFolder
 
             }
         }
-        public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public virtual void Update(GameTime gameTime)
         {
-
+            PlayerManager.Update(gameTime);
             player.CollideOccured = false;
             for (int i = 0; i < this.Enemies.Count; i++)
             {
-                this.Enemies[i].Update(gameTime, mouse, Cam.CameraScreenRectangle, this.Enemies);
+                this.Enemies[i].Update(gameTime, Cam.CameraScreenRectangle, this.Enemies);
             }
 
             this.IsDark = Game1.GlobalClock.IsNight;
 
-            UpdatePortals(player, mouse);
+            UpdatePortals(mouse);
 
             Game1.MouseManager.ToggleGeneralInteraction = false;
 
@@ -427,7 +421,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
                 Game1.Train.Update(gameTime);
                 // 
-                player.Update(gameTime, this.AllTiles.AllItems, mouse);
+                Player.Update(gameTime, this.AllTiles.AllItems);
                 this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
@@ -441,7 +435,7 @@ namespace SecretProject.Class.StageFolder
 
                 }
 
-                this.AllTiles.Update(gameTime, mouse);
+                this.AllTiles.Update(gameTime);
                 for (int s = 0; s < this.AllTextToWrite.Count; s++)
                 {
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
@@ -451,7 +445,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     foreach (Character character in Game1.AllCharacters)
                     {
-                        character.Update(gameTime, mouse);
+                        character.Update(gameTime);
                     }
                 }
 
@@ -484,11 +478,9 @@ namespace SecretProject.Class.StageFolder
         }
 
         #region DRAW
-        public virtual void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public virtual void Draw(SpriteBatch spriteBatch, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget)
         {
             //Game1.Penumbra.Hulls.Clear();
-            if (player.Health > 0)
-            {
                 if (this.IsDark)
                 {
 
@@ -625,7 +617,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 
                 spriteBatch.End();
-            }
+            
             Game1.Player.DrawUserInterface(spriteBatch);
 
         }

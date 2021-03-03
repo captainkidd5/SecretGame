@@ -61,7 +61,7 @@ namespace SecretProject.Class.SpriteFolder
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
 
-        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, TmxStageBase stage)
+        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position, Stage stage)
         {
             this.Graphics = graphics;
             this.GrassType = grassType;
@@ -91,7 +91,7 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
-        public void CreateBody(TmxStageBase stage)
+        public void CreateBody(Stage stage)
         {
             // float radius = 4f;
             //GRASS ITSELF
@@ -199,7 +199,7 @@ namespace SecretProject.Class.SpriteFolder
         public void SelfDestruct()
         {
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
-            TmxStageBase location = Game1.CurrentStage;
+            Stage location = Game1.CurrentStage;
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.DestinationRectangle.X, this.DestinationRectangle.Y - 5);

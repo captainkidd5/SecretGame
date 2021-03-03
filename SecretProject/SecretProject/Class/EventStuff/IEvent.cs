@@ -12,7 +12,7 @@ namespace SecretProject.Class.EventStuff
         List<Character> CharactersInvolved { get; set; }
         bool FreezePlayerControls { get; set; }
         int DayToTrigger { get; set; }
-        TmxStageBase StageToTrigger { get; set; }
+        Stage StageToTrigger { get; set; }
         bool IsCompleted { get; set; }
         bool IsActive { get; set; }
         int CurrentStep { get; set; }

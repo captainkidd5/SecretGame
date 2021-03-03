@@ -127,10 +127,6 @@ namespace SecretProject.Class.TextureStuff
 
 
 
-        //TileSets
-        public Texture2D MasterTileSet;
-        public Texture2D InteriorTileSet1;
-
 
         public Texture2D ItemSpriteSheet;
 
@@ -274,8 +270,6 @@ namespace SecretProject.Class.TextureStuff
             BitFont = content.Load<SpriteFont>("SpriteFont/grakFont");
             ArialFont = content.Load<SpriteFont>("SpriteFont/arial_22");
 
-            MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
-            InteriorTileSet1 = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
             //OrchardTileSet = content.Load<Texture2D>("Map/orchard");
 
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");

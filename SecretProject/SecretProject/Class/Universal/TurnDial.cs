@@ -11,15 +11,15 @@ namespace SecretProject.Class.Universal
     public class TurnDial
     {
         
-        public TmxStageBase CurrentLocation { get; set; }
+        public Stage CurrentLocation { get; set; }
 
-        private List<TmxStageBase> AvailableLocations { get; set; }
+        private List<Stage> AvailableLocations { get; set; }
         private int CurrentIndex { get; set; }
 
         public TurnDial()
         {
             this.CurrentIndex = 0;
-            this.AvailableLocations = new List<TmxStageBase>()
+            this.AvailableLocations = new List<Stage>()
             {
                 Game1.Town,
                 Game1.HomeStead,

@@ -218,7 +218,7 @@ namespace SecretProject.Class.Playable
             this.LargeProximitySensor.Position = this.Position;
         }
 
-        public void LoadPenumbra(TmxStageBase stage)
+        public void LoadPenumbra(Stage stage)
         {
 
             stage.Penumbra.Hulls.Add(Hull);
@@ -384,7 +384,7 @@ namespace SecretProject.Class.Playable
         }
         public Vector2 PlayerCamPos { get; set; }
         public bool CollideOccured { get; set; }
-        public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
+        public void Update(GameTime gameTime)
         {
             if (this.Activate)
             {
@@ -406,7 +406,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                if (Game1.MouseManager.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
                     ItemData item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                     if (item.Type == XMLData.ItemStuff.ItemType.Sword)
@@ -631,24 +631,24 @@ namespace SecretProject.Class.Playable
 
         private void CheckOutOfBounds(Vector2 position)
         {
-            if (position.X < Game1.CurrentStage.MapRectangle.Left)
-            {
-                this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Left, this.position.Y);
-            }
+            //if (position.X < Game1.CurrentStage.MapRectangle.Left)
+            //{
+            //    this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Left, this.position.Y);
+            //}
 
 
-            if (position.X > Game1.CurrentStage.MapRectangle.Right)
-            {
-                this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Right, this.position.Y);
-            }
-            if (position.Y < Game1.CurrentStage.MapRectangle.Top)
-            {
-                this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Top);
-            }
-            if (position.Y > Game1.CurrentStage.MapRectangle.Bottom - 16)
-            {
-                this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Bottom - 16);
-            }
+            //if (position.X > Game1.CurrentStage.MapRectangle.Right)
+            //{
+            //    this.Position = new Vector2(Game1.CurrentStage.MapRectangle.Right, this.position.Y);
+            //}
+            //if (position.Y < Game1.CurrentStage.MapRectangle.Top)
+            //{
+            //    this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Top);
+            //}
+            //if (position.Y > Game1.CurrentStage.MapRectangle.Bottom - 16)
+            //{
+            //    this.Position = new Vector2(this.position.X, Game1.CurrentStage.MapRectangle.Bottom - 16);
+            //}
         }
 
         public int WalkSoundEffect { get; set; }
@@ -785,7 +785,7 @@ namespace SecretProject.Class.Playable
                 if (this.Health == 0)
                 {
                     this.Health = 6;
-                    Game1.SwitchStage(Game1.PlayerHouse);
+                    //Game1.SwitchStage(Game1.PlayerHouse);
                     this.Position = new Vector2(600, 600);
                     Game1.GlobalClock.IncrementDay();
                     UserInterface.BackPack.Inventory.Money -= 200;

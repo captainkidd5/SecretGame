@@ -33,7 +33,7 @@ namespace SecretProject.Class.TileStuff
         //How many tiles outside of the viewport should be rendered.
         //some tiles are quite large so we have to extend culling a bit so as to not cut them off!
         private readonly int CullingLeeWay = 8;
-        public TmxStageBase Stage;
+        public Stage Stage;
         public int Type { get; set; }
         protected Game1 game;
         public Texture2D TileSet { get; set; }
@@ -104,7 +104,7 @@ namespace SecretProject.Class.TileStuff
 
 
         //Instantiate with a premade map
-        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, TmxStageBase currentStage, bool addMapPortals = true,int presetDimension = 0)
+        public TileManager(Texture2D tileSet, TmxMap mapName, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, Stage currentStage, bool addMapPortals = true,int presetDimension = 0)
         {
             this.Stage = currentStage;
             this.Type = 0;
@@ -207,7 +207,7 @@ namespace SecretProject.Class.TileStuff
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-                Portal portal = new Portal((int)Enum.Parse(typeof(Stages), keyFrom), (int)Enum.Parse(typeof(Stages), keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
+                Portal portal = new Portal((int)Enum.Parse(typeof(StagesEnum), keyFrom), (int)Enum.Parse(typeof(StagesEnum), keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
 
 
                 int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
@@ -222,9 +222,9 @@ namespace SecretProject.Class.TileStuff
                 }
 
 
-                if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
+                if (!Game1.PortalGraph.HasEdge((StagesEnum)portal.From, (StagesEnum)portal.To))
                 {
-                    Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
+                    Game1.PortalGraph.AddEdge((StagesEnum)portal.From, (StagesEnum)portal.To);
                 }
 
             }

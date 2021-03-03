@@ -32,7 +32,7 @@ using Penumbra;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class MainMenu : TmxStageBase
+    public class MainMenu : Stage
     {
 
         public enum MenuState
@@ -251,7 +251,7 @@ namespace SecretProject.Class.StageFolder
         {
             UnloadContent();
             
-            foreach (TmxStageBase location in Game1.AllStages) //initialize then unload all stages, except one the player starts in.
+            foreach (Stage location in Game1.AllStages) //initialize then unload all stages, except one the player starts in.
             {
                 if(location != Game1.PlayerHouse && location != Game1.ForestDungeon && location != Game1.DesertDungeon)
                 {
@@ -281,7 +281,7 @@ namespace SecretProject.Class.StageFolder
             if (StartGameInTown.isClicked)
             {
                 UnloadContent();
-                foreach (TmxStageBase stage in Game1.AllStages)
+                foreach (Stage stage in Game1.AllStages)
                 {
 
                     stage.LoadPreliminaryContent();
@@ -311,7 +311,7 @@ namespace SecretProject.Class.StageFolder
             else if (StartGameInUnderWorld.isClicked)
             {
                 UnloadContent();
-                foreach (TmxStageBase stage in Game1.AllStages)
+                foreach (Stage stage in Game1.AllStages)
                 {
 
                     stage.LoadPreliminaryContent();

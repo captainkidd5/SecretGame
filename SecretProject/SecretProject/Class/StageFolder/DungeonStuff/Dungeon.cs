@@ -15,7 +15,7 @@ using TiledSharp;
 
 namespace SecretProject.Class.StageFolder.DungeonStuff
 {
-    public class Dungeon : TmxStageBase
+    public class Dungeon : Stage
     {
         public static int MaxDungeonRooms = 100;
 
@@ -106,9 +106,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             Portal portal = new Portal((int)this.StageIdentifier, (int)Game1.HomeStead.StageIdentifier, 0, 32, false);
             this.AllPortals.Add(portal);
 
-            if (!Game1.PortalGraph.HasEdge((Stages)portal.From, (Stages)portal.To))
+            if (!Game1.PortalGraph.HasEdge((StagesEnum)portal.From, (StagesEnum)portal.To))
             {
-                Game1.PortalGraph.AddEdge((Stages)portal.From, (Stages)portal.To);
+                Game1.PortalGraph.AddEdge((StagesEnum)portal.From, (StagesEnum)portal.To);
             }
         }
 

@@ -13,7 +13,7 @@ namespace SecretProject.Class.LightStuff
     {
         Hull Hull { get; set; }
         void UpdateHullPosition();
-        void LoadPenumbra( TmxStageBase stage);
+        void LoadPenumbra( Stage stage);
 
     }
 }
