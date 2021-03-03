@@ -43,7 +43,7 @@ namespace SecretProject.Class.NPCStuff
         {
 
             Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(25, 12));
-            Elixir = new Character("Elixir", new Vector2(19, 26), graphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], StageHandler.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
+            Elixir = new Character("Elixir", new Vector2(19, 26), graphicsDevice, Game1.AllTextures.ElixirSpriteSheet, RouteManager.ElixirRouteSchedule, StageManager.ElixirHouse, false, ElixirQuests, AllTextures.ElixirPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -71,7 +71,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 dobbinPosition = Character.GetWorldPosition(new Vector2(18, 8));
-            Dobbin = new Character("Dobbin", new Vector2(5, 7), graphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], StageHandler.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
+            Dobbin = new Character("Dobbin", new Vector2(5, 7), graphicsDevice, Game1.AllTextures.DobbinSpriteSheet, RouteManager.DobbinRouteSchedule , StageManager.DobbinHouse, false, DobbinQuests, AllTextures.DobbinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -95,7 +95,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
-            Kaya = new Character("Kaya", new Vector2(51, 32), graphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], StageHandler.Town, false, KayaQuests, AllTextures.KayaPortrait)
+            Kaya = new Character("Kaya", new Vector2(51, 32), graphicsDevice, Game1.AllTextures.KayaSpriteSheet, RouteManager.KayaRouteSchedule, StageManager.Town, false, KayaQuests, AllTextures.KayaPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -129,7 +129,7 @@ namespace SecretProject.Class.NPCStuff
             };
 
             Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 15));
-            Julian = new Character("Julian", new Vector2(16, 15), graphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], StageHandler.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
+            Julian = new Character("Julian", new Vector2(16, 15), graphicsDevice, Game1.AllTextures.JulianSpriteSheet, RouteManager.JulianRouteSchedule, StageManager.JulianHouse, false, JulianQuests, AllTextures.JulianPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -152,7 +152,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(56, 28));
-            Sarah = new Character("Sarah", new Vector2(56, 28), graphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], StageHandler.Town, false, SarahQuests, AllTextures.SarahPortrait)
+            Sarah = new Character("Sarah", new Vector2(56, 28), graphicsDevice, Game1.AllTextures.SarahSpriteSheet, RouteManager.SarahRouteSchedule, StageManager.Town, false, SarahQuests, AllTextures.SarahPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -191,7 +191,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(49, 33));
-            Mippin = new Character("Mippin", new Vector2(49, 33), graphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], StageHandler.Town, false, MippinQuests, AllTextures.MippinPortrait)
+            Mippin = new Character("Mippin", new Vector2(49, 33), graphicsDevice, Game1.AllTextures.Mippin, RouteManager.MippinRouteSchedule, StageManager.Town, false, MippinQuests, AllTextures.MippinPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -214,7 +214,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 nedPosition = Character.GetWorldPosition(new Vector2(52, 15));
-            Ned = new Character("Ned", new Vector2(52, 15), graphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], StageHandler.Town, false, NedQuests, AllTextures.NedPortrait)
+            Ned = new Character("Ned", new Vector2(52, 15), graphicsDevice, Game1.AllTextures.Ned, RouteManager.NedRouteSchedule, StageManager.Town, false, NedQuests, AllTextures.NedPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -238,7 +238,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 tealPosition = Character.GetWorldPosition(new Vector2(55, 17));
-            Teal = new Character("Teal", new Vector2(55, 17), graphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], StageHandler.Town, false, TealQuests, AllTextures.TealPortrait)
+            Teal = new Character("Teal", new Vector2(55, 17), graphicsDevice, Game1.AllTextures.Teal, RouteManager.TealRouteSchedule, StageManager.Town, false, TealQuests, AllTextures.TealPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -261,7 +261,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(16, 26));
-            Marcus = new Character("Marcus", new Vector2(16, 26), graphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], StageHandler.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
+            Marcus = new Character("Marcus", new Vector2(16, 26), graphicsDevice, Game1.AllTextures.Marcus, RouteManager.MarcusRouteSchedule, StageManager.MarcusHouse, false, MarcusQuests, AllTextures.MarcusPotrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -285,7 +285,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 casparPosition = Character.GetWorldPosition(new Vector2(16, 14));
-            Caspar = new Character("Caspar", new Vector2(16, 14), graphicsDevice, Game1.AllTextures.Caspar, AllSchedules[9], StageHandler.CasparHouse, false, CasparQuests, AllTextures.CasparPortrait)
+            Caspar = new Character("Caspar", new Vector2(16, 14), graphicsDevice, Game1.AllTextures.Caspar, RouteManager.CasparRouteSchedule, StageManager.CasparHouse, false, CasparQuests, AllTextures.CasparPortrait)
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]

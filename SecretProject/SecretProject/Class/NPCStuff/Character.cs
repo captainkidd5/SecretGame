@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
 using SecretProject.Class.CollisionDetection;
@@ -24,7 +25,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
-    public class Character : INPC, ILightBlockable, ICollidable
+    public class Character : Component, INPC, ILightBlockable, ICollidable
     {
         public string Name { get; set; }
         public Vector2 Position { get; set; }
@@ -100,7 +101,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public Body CollisionBody { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stage currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
+        public Character(string name, GraphicsDevice graphics, ContentManager content,Vector2 position, Texture2D spriteSheet, RouteSchedule routeSchedule,
+            Stage currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null): base(graphics, content)
         {
             this.HomeStage = currentStageLocation;
 
@@ -919,6 +921,16 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
 
         public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Unload()
         {
             throw new NotImplementedException();
         }

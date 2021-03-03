@@ -245,7 +245,7 @@ namespace SecretProject.Class.StageFolder
             Player.LoadPenumbra(CurrentStage);
 
 
-            VelcroWorld.ProcessChanges();
+            Game1.VelcroWorld.ProcessChanges();
             Game1.GlobalClock.ProcessNewDayChanges();
 
         }
