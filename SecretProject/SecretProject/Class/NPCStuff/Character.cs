@@ -240,7 +240,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             return new Vector2(smallPosition.X * 16, smallPosition.Y * 16);
         }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null, QuestHandler questHandler = null)
+        public Character(string name, GraphicsDevice graphics, ContentManager content, Vector2 position, 
+            Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null, QuestHandler questHandler = null) : base(graphics, content)
         {
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
@@ -291,7 +292,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.Speed = this.BaseSpeed * Clock.ClockMultiplier;
             if (this.IsBasicNPC)
             {
-                UpdateBasicNPC(gameTime, mouse);
+                UpdateBasicNPC(gameTime);
                 return;
             }
             if (StageManager.CurrentStage == this.CurrentStageLocation)
@@ -327,7 +328,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             if (!this.DisableInteractions)
             {
-                CheckSpeechInteraction(mouse, this.FrameToSet);
+                CheckSpeechInteraction(this.FrameToSet);
             }
 
             if (this.IsMoving)
@@ -414,8 +415,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public bool InRangeOfPlayer { get; set; }
         
 
-        public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
+        public void CheckSpeechInteraction( int frameToSet)
         {
+            MouseManager mouse = Game1.MouseManager;
             if (InRangeOfPlayer)
             {
                 if (mouse.IsClicked)
