@@ -84,8 +84,8 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             if (this.Speed <= 0)
             {
                 this.Speed = 0;
-                // Game1.CurrentStage.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.CurrentStage.AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
-                Game1.CurrentStage.AllProjectiles.Remove(this);
+                // StageManager.CurrentStage.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, StageManager.CurrentStage.AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
+                StageManager.CurrentStage.AllProjectiles.Remove(this);
                 return;
             }
             this.PrimaryVelocity = new Vector2(Speed, Speed);
@@ -169,9 +169,9 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public virtual void Miss()
         {
             Game1.SoundManager.PlaySoundEffect(this.MissSound, true, .15f);
-            Game1.CurrentStage.ParticleEngine.ActivationTime = .05f;
-            Game1.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
-            Game1.CurrentStage.ParticleEngine.Color = Color.White;
+            StageManager.CurrentStage.ParticleEngine.ActivationTime = .05f;
+            StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
+            StageManager.CurrentStage.ParticleEngine.Color = Color.White;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

@@ -560,7 +560,7 @@ namespace SecretProject.Class.UI
         public void HandleSceneChanged(object sender, EventArgs eventArgs)
         {
             //this.TextBuilder.Reset();
-            //this.TextBuilder.StringToWrite = Game1.CurrentStage.StageName;
+            //this.TextBuilder.StringToWrite = StageManager.CurrentStage.StageName;
             //this.TextBuilder.Scale = 4f;
             //this.TextBuilder.Color = Color.Black;
             //this.TextBuilder.IsActive = true;

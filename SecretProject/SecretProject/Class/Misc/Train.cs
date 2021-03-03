@@ -112,7 +112,7 @@ namespace SecretProject.Class.Misc
 
             CollisionBody.IgnoreGravity = true;
             CollisionBody.Position = this.Position;
-            Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, Game1.CurrentStage.DebuggableShapes));
+            StageManager.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, StageManager.CurrentStage.DebuggableShapes));
         }
 
         public void Update(GameTime gameTime)

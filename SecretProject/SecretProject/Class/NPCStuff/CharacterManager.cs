@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.graphicsDevice;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.RouteStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Text;

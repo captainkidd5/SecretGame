@@ -117,7 +117,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
         //    this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
         //    List<ICollidable> returnObjects = new List<ICollidable>();
-        //    Game1.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
+        //    StageManager.CurrentStage.QuadTree.Retrieve(returnObjects, this.Collider);
         //    for (int i = 0; i < returnObjects.Count; i++)
         //    {
 
@@ -214,9 +214,9 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
         //                    this.IsImmuneToDamage = false;
         //                    //if (TimeBetweenAttacks.Run(gameTime))
         //                    //{
-        //                    //    Enemy rabbit = Enemy.GetEnemyFromType(EnemyType.Rabbit, null, this.Position, this.Graphics, Game1.CurrentStage.AllTiles.ChunkUnderPlayer, true);
+        //                    //    Enemy rabbit = Enemy.GetEnemyFromType(EnemyType.Rabbit, null, this.Position, this.Graphics, StageManager.CurrentStage.AllTiles.ChunkUnderPlayer, true);
         //                    //    rabbit.CurrentBehaviour = CurrentBehaviour.Chase;
-        //                    //    Game1.CurrentStage.Enemies.Add(rabbit);
+        //                    //    StageManager.CurrentStage.Enemies.Add(rabbit);
         //                    //    this.CurrentBehaviour = CurrentBehaviour.Chase;
         //                    //}
         //                }

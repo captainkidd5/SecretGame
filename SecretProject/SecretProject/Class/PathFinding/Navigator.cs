@@ -63,8 +63,8 @@ namespace SecretProject.Class.PathFinding
                 int currentTileY = Utility.GetSquareTile(entityPosition.Y);
                 Point newWanderPoint = GetNewWanderPoint(currentTileX, currentTileY);
 
-                if (newWanderPoint.X < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 && //if within map bounds.
-                    newWanderPoint.Y < Game1.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.Y > 0)
+                if (newWanderPoint.X < StageManager.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.X > 0 && //if within map bounds.
+                    newWanderPoint.Y < StageManager.CurrentStage.MapRectangle.Width / 16 - 2 && newWanderPoint.Y > 0)
                 {
                     if (this.Grid[newWanderPoint.X, newWanderPoint.Y] != 0)
                         TryFindNewPath(entityPosition, newWanderPoint);
@@ -102,7 +102,7 @@ namespace SecretProject.Class.PathFinding
         private bool MoveTowardsPointAndDecrementPath(GameTime gameTime, ref Vector2 position)
         {
             PathFinderNode node = this.CurrentPath[this.CurrentPath.Count - 1];
-            if (Game1.CurrentStage.AllTiles.PathGrid.Weight[node.X, node.Y] == (int)GridStatus.Clear)
+            if (StageManager.CurrentStage.AllTiles.PathGrid.Weight[node.X, node.Y] == (int)GridStatus.Clear)
             {
                 if (MoveTowardsVector(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16),ref position,  gameTime))
                 {

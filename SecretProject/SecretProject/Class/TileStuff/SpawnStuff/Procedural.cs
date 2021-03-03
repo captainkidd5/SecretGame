@@ -322,14 +322,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public void ExtendCliffs(TileManager TileManager)
         {
-           // if(Game1.CurrentStage == Game1.OverWorld)
+           // if(StageManager.CurrentStage == Game1.OverWorld)
           //  {
                 foreach(CliffHandler handler in this.TopCliffs)
                 {
                     handler.ExtendCliffs(TileManager);
                 }
             //}
-            //else if (Game1.CurrentStage == Game1.UnderWorld)
+            //else if (StageManager.CurrentStage == Game1.UnderWorld)
             //{
             //    foreach (CliffHandler handler in this.BottomCliffs)
             //    {

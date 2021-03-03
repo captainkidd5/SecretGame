@@ -139,11 +139,11 @@ namespace SecretProject.Class.MenuStuff
         public void ExitToMainMenu()
         {
 
-                Game1.CurrentStage.UnloadContent();
+                StageManager.CurrentStage.UnloadContent();
 
 
             Game1.mainMenu.LoadBackGround();
-            Game1.CurrentStage = Game1.mainMenu;
+            StageManager.CurrentStage = Game1.mainMenu;
 
             Game1.mainMenu.CurrentMenuState = StageFolder.MainMenu.MenuState.Primary;
             Game1.mainMenu.IsDrawn = true;

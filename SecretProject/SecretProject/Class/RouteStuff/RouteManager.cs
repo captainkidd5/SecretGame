@@ -33,10 +33,6 @@ namespace SecretProject.Class.RouteStuff
         /// Returns the dialogue skeleton which corresponds to the time. Skeleton will always default to the one which is greater or equal
         /// to the time given, but less than the next time slot. Will give the maximum time slot if less than the minimum
         /// </summary>
-        /// <param name="character"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <param name="time"></param>
         /// <returns></returns>
         public static Route RetrieveRoute(RouteSchedule routeSchedule, Month month, int day, string time)
         {

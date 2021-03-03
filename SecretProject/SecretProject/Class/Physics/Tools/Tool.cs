@@ -141,7 +141,7 @@ namespace SecretProject.Class.Physics.Tools
             CollisionBody.FixedRotation = false;
 
             CreateJoint(entityStaticBody);
-            Game1.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, Game1.CurrentStage.DebuggableShapes));
+            StageManager.CurrentStage.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, StageManager.CurrentStage.DebuggableShapes));
             Sprite.Position = CollisionBody.Position + Joint.LocalAnchorB;
         }
 

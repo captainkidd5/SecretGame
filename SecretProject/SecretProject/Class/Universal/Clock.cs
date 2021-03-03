@@ -136,7 +136,7 @@ namespace SecretProject.Class.Universal
         {
             if(!HasDirtBucketBeenUpdated)
             {
-                if(Game1.CurrentStage == Game1.Town)
+                if(StageManager.CurrentStage == Game1.Town)
                 {
                     ReplaceDirtTileManager();
                     HasDirtBucketBeenUpdated = true;

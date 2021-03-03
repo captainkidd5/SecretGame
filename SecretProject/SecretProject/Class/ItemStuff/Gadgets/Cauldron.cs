@@ -198,8 +198,8 @@ namespace SecretProject.Class.ItemStuff
                 if (IsEverySlotFilled())
                 {
                     this.IsCooking = true;
-                    Game1.CurrentStage.ParticleEngines.Add(this.SmokeParticleEngine);
-                    Game1.CurrentStage.ParticleEngines.Add(this.FireParticleEngine);
+                    StageManager.CurrentStage.ParticleEngines.Add(this.SmokeParticleEngine);
+                    StageManager.CurrentStage.ParticleEngines.Add(this.FireParticleEngine);
                 }
             }
             //if (this.IsCooking)
@@ -211,8 +211,8 @@ namespace SecretProject.Class.ItemStuff
             //    {
             //        this.CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
             //        this.IsCooking = false;
-            //        Game1.CurrentStage.ParticleEngines.Remove(this.SmokeParticleEngine);
-            //        Game1.CurrentStage.ParticleEngines.Remove(this.FireParticleEngine);
+            //        StageManager.CurrentStage.ParticleEngines.Remove(this.SmokeParticleEngine);
+            //        StageManager.CurrentStage.ParticleEngines.Remove(this.FireParticleEngine);
             //        this.SmokeParticleEngine.ClearParticles();
             //        this.FireParticleEngine.ClearParticles();
             //    }

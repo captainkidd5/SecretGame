@@ -209,7 +209,7 @@ namespace SecretProject.Class.UI
                     int teleportY = int.Parse(separatedString[2].ToLower());
 
                     Game1.Player.SetPosition(new Vector2(teleportX, teleportY));
-                    //if(Game1.CurrentStage == Game1.OverWorld)
+                    //if(StageManager.CurrentStage == Game1.OverWorld)
                     //{
                     //    Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
                     //}
@@ -254,7 +254,7 @@ namespace SecretProject.Class.UI
                     break;
                 case "addmob":
                     NPCType type = (NPCType)Enum.Parse(typeof(NPCType), separatedString[1].ToLower());
-                    Game1.CurrentStage.Enemies.AddRange(Game1.CurrentStage.NPCGenerator.SpawnTargetNPCPack(type, (TileManager)Game1.CurrentStage.AllTiles, 1, Game1.Player.position));
+                    StageManager.CurrentStage.Enemies.AddRange(StageManager.CurrentStage.NPCGenerator.SpawnTargetNPCPack(type, (TileManager)StageManager.CurrentStage.AllTiles, 1, Game1.Player.position));
                     break;
                 case "getmobs":
                     var mobValues = (NPCType[])Enum.GetValues(typeof(NPCType));

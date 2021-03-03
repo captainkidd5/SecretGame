@@ -567,12 +567,6 @@ namespace SecretProject
 
             Game1.Player.LockBounds = true;
 
-            if (!newLocation.IsLoaded)
-            {
-
-                newLocation.LoadContent(cam, AllSchedules);
-
-            }
             newLocation.TryLoadExistingStage();
             if (CurrentStage.DebuggableShapes != null)
             {
@@ -609,8 +603,6 @@ namespace SecretProject
 
 
             MouseManager.AttachMouseBody();
-
-            LoadCharacterBodies(CurrentStage, newLocation);
             Train.SwitchStage(CurrentStage.StageIdentifier, newLocation.StageIdentifier);
             CurrentStage = newLocation;
             CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));

@@ -192,22 +192,22 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             if (this.CurrentStageLocation == oldStage)
             {
-                Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
+                StageManager.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
             }
             else if (this.CurrentStageLocation == newStage)
             {
                 CreateBody();
                 CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, CurrentStageLocation.DebuggableShapes));
-                Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
+                StageManager.CurrentStage.Penumbra.Hulls.Add(this.Hull);
             }
         }
 
 
         private void CharacterChangeStage(Stage stageToSwitchTo)
         {
-            if (this.CurrentStageLocation == Game1.CurrentStage) //if leaving current stage.
+            if (this.CurrentStageLocation == StageManager.CurrentStage) //if leaving current stage.
             {
-                Game1.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
+                StageManager.CurrentStage.Penumbra.Hulls.Remove(this.Hull);
                 Game1.VelcroWorld.RemoveBody(this.CollisionBody);
                 Game1.VelcroWorld.ProcessChanges();
 
@@ -218,11 +218,11 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             this.CurrentStageLocation = stageToSwitchTo; // NOW we switch stages.
 
-            if (this.CurrentStageLocation == Game1.CurrentStage)
+            if (this.CurrentStageLocation == StageManager.CurrentStage)
             {
                 CreateBody();
                 CurrentStageLocation.DebuggableShapes.Add(new RectangleDebugger(CollisionBody, CurrentStageLocation.DebuggableShapes));
-                Game1.CurrentStage.Penumbra.Hulls.Add(this.Hull);
+                StageManager.CurrentStage.Penumbra.Hulls.Add(this.Hull);
             }
 
             CurrentStageLocation.CharactersPresent.Add(this);
@@ -292,7 +292,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 UpdateBasicNPC(gameTime, mouse);
                 return;
             }
-            if (Game1.CurrentStage == this.CurrentStageLocation)
+            if (StageManager.CurrentStage == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
                 UpdateHullPosition();
@@ -373,7 +373,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }
-            if (Game1.CurrentStage == this.CurrentStageLocation)
+            if (StageManager.CurrentStage == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
             }
@@ -660,14 +660,14 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                     {
                         if (nodeToEndAt != (int)this.CurrentStageLocation.StageIdentifier)
                         {
-                            Portal portalTo = Game1.GetStageFromEnum((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation.StageIdentifier);
+                            Portal portalTo = Game1.GetStageFromEnum((StagesEnum)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation.StageIdentifier);
                             if (portalTo != null)
                             {
 
 
 
 
-                                CharacterChangeStage(Game1.GetStageFromEnum((Stages)nodeToEndAt));
+                                CharacterChangeStage(Game1.GetStageFromEnum((StagesEnum)nodeToEndAt));
 
 
                                 this.Position = new Vector2(portalTo.PortalStart.X,
@@ -700,7 +700,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 {
                     Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
                      ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
-                    Point end = FindIntermediateStages(this.CurrentStageLocation, Game1.GetStageFromEnum((Stages)(route.StageToEndAt)));
+                    Point end = FindIntermediateStages(this.CurrentStageLocation, Game1.GetStageFromEnum((StagesEnum)(route.StageToEndAt)));
 
                     this.CurrentPath = finder.FindPath(start, end, this.Name);
                     if (this.CurrentPath == null)
@@ -860,9 +860,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
             }
-            Game1.CurrentStage.CharactersPresent.Remove(this);
+            StageManager.CurrentStage.CharactersPresent.Remove(this);
             this.CurrentStageLocation = this.HomeStage;
-            Game1.CurrentStage.CharactersPresent.Add(this);
+            StageManager.CurrentStage.CharactersPresent.Add(this);
 
 
         }

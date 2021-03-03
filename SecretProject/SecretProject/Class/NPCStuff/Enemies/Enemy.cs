@@ -305,7 +305,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 if (this.PossibleLoot[i].DidReceive())
                 {
-                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.CurrentStage.AllTiles.GetItems(positionToDrop));
+                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, StageManager.CurrentStage.AllTiles.GetItems(positionToDrop));
                 }
             }
 
@@ -331,9 +331,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-                Game1.CurrentStage.ParticleEngine.ActivationTime = .25f;
-                Game1.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
-                Game1.CurrentStage.ParticleEngine.Color = this.DamageColor;
+                StageManager.CurrentStage.ParticleEngine.ActivationTime = .25f;
+                StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
+                StageManager.CurrentStage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Hurt;
@@ -388,7 +388,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
-            Game1.CurrentStage.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
+            StageManager.CurrentStage.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

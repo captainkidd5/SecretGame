@@ -93,7 +93,7 @@ namespace SecretProject.Class.Misc
             switch((data as FunItemData).FunBoxElement)
             {
                 case FunBoxElement.bird:
-                    if(Game1.CurrentStage.LocationType == StageFolder.LocationType.Exterior)
+                    if(StageManager.CurrentStage.LocationType == StageFolder.LocationType.Exterior)
                     {
                         int amt = Game1.Utility.RNumber(1, 5);
                         for (int i = 0; i < amt; i++)

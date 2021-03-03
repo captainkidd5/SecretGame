@@ -82,7 +82,7 @@ namespace SecretProject.Class.Misc
             this.IsMoving = true;
             this.ColorMultiplier = 1f;
 
-            this.Navigator = new Navigator(this.EntityName, Game1.CurrentStage.AllTiles.PathGrid.Weight);
+            this.Navigator = new Navigator(this.EntityName, StageManager.CurrentStage.AllTiles.PathGrid.Weight);
         }
 
         private string GetName(int index)
@@ -184,7 +184,7 @@ namespace SecretProject.Class.Misc
             this.AnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.position.X - this.SourceRectangleHeight / 3.5f,
                 this.position.Y - this.SourceRectangleHeight / 1.5f),
                     .5f + (position.Y + SourceRectangleHeight- 8) * Utility.ForeGroundMultiplier);
-            if(Game1.CurrentStage.ShowBorders)
+            if(StageManager.CurrentStage.ShowBorders)
             {
              //   this.CircleCollider.DrawDebug(spriteBatch);
             }

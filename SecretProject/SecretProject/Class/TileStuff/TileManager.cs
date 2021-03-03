@@ -737,7 +737,7 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {
-            //if (Game1.CurrentStage == this.Stage)
+            //if (StageManager.CurrentStage == this.Stage)
             //{
             //    UpdateCropTile();
             //}

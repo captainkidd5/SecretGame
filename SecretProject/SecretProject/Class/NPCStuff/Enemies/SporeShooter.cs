@@ -5,6 +5,7 @@ using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -68,7 +69,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                  //   float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SporeShoot, true, .15f);
-                  //  Game1.CurrentStage.AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.CurrentStage.AllProjectiles,true, 2));
+                  //  StageManager.CurrentStage.AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, StageManager.CurrentStage.AllProjectiles,true, 2));
                     this.ShotsFiredDuringInterval++;
                     
                 }
@@ -80,7 +81,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                      
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
+        public override void Update(GameTime gameTime)
         {
 
             this.IsMoving = true;
@@ -92,7 +93,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             if (this.HitPoints <= 0)
             {
                 RollPeriodicDrop(this.Position);
-                enemies.Remove(this);
+                Pack.Remove(this);
                 return;
             }
 
@@ -183,7 +184,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, .5f + (Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
         }
@@ -195,9 +196,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-                Game1.CurrentStage.ParticleEngine.ActivationTime = .25f;
-                Game1.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
-                Game1.CurrentStage.ParticleEngine.Color = this.DamageColor;
+                StageManager.CurrentStage.ParticleEngine.ActivationTime = .25f;
+                StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
+                StageManager.CurrentStage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Flee;

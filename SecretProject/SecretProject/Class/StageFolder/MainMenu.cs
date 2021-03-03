@@ -311,13 +311,13 @@ namespace SecretProject.Class.StageFolder
             else if (StartGameInUnderWorld.isClicked)
             {
                 UnloadContent();
-                foreach (Stage stage in Game1.AllStages)
-                {
+                //foreach (Stage stage in Game1.AllStages)
+                //{
 
-                    stage.LoadPreliminaryContent();
+                //    stage.LoadPreliminaryContent();
 
 
-                }
+                //}
                 Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                 //Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                 CurrentMenuState = MenuState.Primary;
@@ -359,7 +359,7 @@ namespace SecretProject.Class.StageFolder
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
-        public override void Draw(GameTime gameTime, GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public override void Draw( SpriteBatch spriteBatch)
 
         {
 

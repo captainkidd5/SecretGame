@@ -769,7 +769,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Door);
                     if (mouse.IsClicked)
                     {
-                        //Portal portal = Game1.CurrentStage.AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
+                        //Portal portal = StageManager.CurrentStage.AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
                         //string announcementString = string.Empty;
                         //if (portal.To == (int)(Stages.Town))
                         //{
@@ -850,8 +850,8 @@ namespace SecretProject.Class.TileStuff
                             ReplaceTile((int)MapLayer.BackGround, i, j, newBackGroundGID, TileManager); //dirt
                             TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGID((GenerationType)newBackGroundGID);
                             WangManager.GroupReassignForTiling(newBackGroundGID, tilingTileManager.GeneratableTiles, tilingTileManager.TilingDictionary, (int)MapLayer.BackGround,
-                        i, j, Game1.CurrentStage.AllTiles.MapWidth, Game1.CurrentStage.AllTiles.MapWidth,
-                        (TileManager)Game1.CurrentStage.AllTiles);
+                        i, j, StageManager.CurrentStage.AllTiles.MapWidth, StageManager.CurrentStage.AllTiles.MapWidth,
+                        (TileManager)StageManager.CurrentStage.AllTiles);
 
                         }
                     }
@@ -917,7 +917,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         int soundInt = Game1.Utility.GetTileDestructionSound(info);
                         Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
-                        Game1.CurrentStage.ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                        StageManager.CurrentStage.ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                     }
                     else
                     {
@@ -966,7 +966,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
 
-                Game1.CurrentStage.ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                StageManager.CurrentStage.ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                 return true;
             }
             return false;
@@ -1081,18 +1081,18 @@ namespace SecretProject.Class.TileStuff
             {
                 TileManager.TileHitPoints.Remove(tile.TileKey);
             }
-            if (Game1.CurrentStage.Hulls.ContainsKey(tile.TileKey))
+            if (StageManager.CurrentStage.Hulls.ContainsKey(tile.TileKey))
             {
 
-                Hull hull = Game1.CurrentStage.Hulls[tile.TileKey];
-                Game1.CurrentStage.Hulls.Remove(tile.TileKey);
-                Game1.CurrentStage.Penumbra.Hulls.Remove(hull);
+                Hull hull = StageManager.CurrentStage.Hulls[tile.TileKey];
+                StageManager.CurrentStage.Hulls.Remove(tile.TileKey);
+                StageManager.CurrentStage.Penumbra.Hulls.Remove(hull);
             }
-            if (Game1.CurrentStage.Lights.ContainsKey(tile.TileKey))
+            if (StageManager.CurrentStage.Lights.ContainsKey(tile.TileKey))
             {
-                Light light = Game1.CurrentStage.Lights[tile.TileKey];
-                Game1.CurrentStage.Lights.Remove(tile.TileKey);
-                Game1.CurrentStage.Penumbra.Lights.Remove(light);
+                Light light = StageManager.CurrentStage.Lights[tile.TileKey];
+                StageManager.CurrentStage.Lights.Remove(tile.TileKey);
+                StageManager.CurrentStage.Penumbra.Lights.Remove(light);
             }
             //if tileset has loot value, then use that. otherwise check the loot xml data.
             Item itemToCheckForReassasignTiling;
@@ -1131,8 +1131,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     TilingTileManager tilingTileManager = Game1.Procedural.GetTilingTileManagerFromGenerationType(generationType);
                     WangManager.GroupReassignForTiling(tile.GID, tilingTileManager.GeneratableTiles, tilingTileManager.TilingDictionary, layer,
-                        x, y, Game1.CurrentStage.AllTiles.MapWidth, Game1.CurrentStage.AllTiles.MapWidth,
-                        (TileManager)Game1.CurrentStage.AllTiles);
+                        x, y, StageManager.CurrentStage.AllTiles.MapWidth, StageManager.CurrentStage.AllTiles.MapWidth,
+                        (TileManager)StageManager.CurrentStage.AllTiles);
                 }
             }
 

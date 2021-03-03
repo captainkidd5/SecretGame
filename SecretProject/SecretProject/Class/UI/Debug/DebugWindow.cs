@@ -84,7 +84,7 @@ namespace SecretProject.Class.UI
                 if (this.DebugButton1.isClicked)
                 {
 
-                    //Game1.CurrentStage.ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
+                    //StageManager.CurrentStage.ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     //Game1.GlobalClock.IncrementDay();
                     Game1.Player.Wardrobe.ChangeSkin(MainMenuStuff.CycleDirection.Forward);
 
@@ -138,7 +138,7 @@ namespace SecretProject.Class.UI
                 }
             }
         }
-        //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.CurrentStage.AllTiles).ToString()
+        //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(StageManager.CurrentStage.AllTiles).ToString()
 
 
         private string WriteDungeonGrid()
@@ -173,5 +173,5 @@ namespace SecretProject.Class.UI
                 spriteBatch.End();
             }
         }
-    }//+ Game1.CurrentStage.AllTiles.DebugTile.DestinationRectangle
+    }//+ StageManager.CurrentStage.AllTiles.DebugTile.DestinationRectangle
 }

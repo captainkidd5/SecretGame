@@ -401,7 +401,7 @@ namespace SecretProject.Class.StageFolder
 
 
             Game1.Player.UserInterface.Update(gameTime, player.Inventory);
-            if (Game1.CurrentStage != this)
+            if (StageManager.CurrentStage != this)
             {
                 return;
             }

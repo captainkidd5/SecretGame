@@ -261,7 +261,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public string RoomString { get; private set; }
         public override string GetDebugString()
         {
-            if (Game1.CurrentStage == Game1.ForestDungeon)
+            if (StageManager.CurrentStage == Game1.ForestDungeon)
             {
 
 

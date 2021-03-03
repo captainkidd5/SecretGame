@@ -149,7 +149,7 @@ namespace SecretProject.Class.SpriteFolder
                     else
                         this.InitialShuffDirection = Dir.Left;
                     this.StartShuff = true;
-                    Game1.CurrentStage.UpdatingGrassTufts.Add(this);
+                    StageManager.CurrentStage.UpdatingGrassTufts.Add(this);
                     Game1.Player.CurrentSpeed = Player.BaseSpeed * .25f;
                 }
             }
@@ -199,18 +199,18 @@ namespace SecretProject.Class.SpriteFolder
         public void SelfDestruct()
         {
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
-            Stage location = Game1.CurrentStage;
+            Stage location = StageManager.CurrentStage;
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;
             location.ParticleEngine.EmitterLocation = new Vector2(this.DestinationRectangle.X, this.DestinationRectangle.Y - 5);
             location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             if (Game1.Utility.RGenerator.Next(0, 5) < 2)
             {
-                location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
+                location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, StageManager.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
             }
             if (Game1.Utility.RNumber(0, 3) == 1)
             {
-                Game1.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X, this.Position.Y + 4));
+                StageManager.CurrentStage.FunBox.AddRandomGrassCreature(new Vector2(this.Position.X, this.Position.Y + 4));
             }
             
             if (this.TuftsIsPartOf != null)

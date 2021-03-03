@@ -13,7 +13,7 @@ namespace SecretProject.Class.Playable
     public class PlayerManager : Component, ISaveable
     {
 
-        public Player Player { get; set; }
+        public Player Player1 { get; set; }
         private SimpleTimer SimpleTimer { get; set; }
 
         public List<Player> Players { get; set; }
@@ -137,7 +137,7 @@ namespace SecretProject.Class.Playable
             portalJumpShirt = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Shirts/portalJumpShirt");
             portalJumpShoes = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Shoes/portalJumpShoes");
 
-            Player = new Player("NAME", new Vector2(630, 600), PlayerBase, 5, content, graphicsDevice) { Activate = true, IsDrawn = true };
+            Player1 = new Player("NAME", new Vector2(630, 600), PlayerBase, 5, content, graphicsDevice) { Activate = true, IsDrawn = true };
         }
 
         public void Save(BinaryWriter writer)

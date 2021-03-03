@@ -377,7 +377,7 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect FetchNewSong()
         {
-            if(Game1.CurrentStage == Game1.mainMenu)
+            if(StageManager.CurrentStage == Game1.mainMenu)
             {
                 return TitleSongs.FetchSong();
             }
@@ -452,11 +452,11 @@ namespace SecretProject.Class.SoundStuff
 
         public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
         {
-            if (Game1.CurrentStage != null)
+            if (StageManager.CurrentStage != null)
             {
 
 
-                if (Game1.CurrentStage.LocationType == locationType)
+                if (StageManager.CurrentStage.LocationType == locationType)
                 {
                     if (soundEffect.State == SoundState.Stopped)
                     {
