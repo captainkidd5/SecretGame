@@ -655,8 +655,10 @@ namespace SecretProject.Class.Playable
 
         public bool IsDrawn { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch, float layerDepth)
+        public void Draw(SpriteBatch spriteBatch)
         {
+            float layerDepth = .5f + (Rectangle.Y + Rectangle.Height) * Utility.ForeGroundMultiplier;
+
             if (this.IsDrawn)
             {
 

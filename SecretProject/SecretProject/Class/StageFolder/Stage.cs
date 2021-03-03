@@ -130,6 +130,7 @@ namespace SecretProject.Class.StageFolder
 
         protected IServiceProvider ServiceProvider { get; set; }
         public PlayerManager PlayerManager { get; }
+        public CharacterManager CharacterManager { get; }
         public PenumbraComponent Penumbra { get; set; }
 
         public Dictionary<string, Hull> Hulls { get; set; }
@@ -145,7 +146,7 @@ namespace SecretProject.Class.StageFolder
 
 
         public Stage(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
-            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, PlayerManager playerManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
+            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -172,6 +173,7 @@ namespace SecretProject.Class.StageFolder
             this.IsBasedOnPreloadedMap = isBasedOnPreloadedMap;
             this.ServiceProvider = service;
             PlayerManager = playerManager;
+            CharacterManager = characterManager;
             Penumbra = (PenumbraComponent)ServiceProvider.GetService(typeof(PenumbraComponent));
 
             this.Lights = new Dictionary<string, Light>();
@@ -441,13 +443,7 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                if (Game1.Flags.UpdateCharacters)
-                {
-                    foreach (Character character in Game1.AllCharacters)
-                    {
-                        character.Update(gameTime);
-                    }
-                }
+                CharacterManager.Update(gameTime);
 
 
 
@@ -533,7 +529,8 @@ namespace SecretProject.Class.StageFolder
                     AllProjectiles[p].Draw(spriteBatch);
                 }
                 Game1.Train.Draw(spriteBatch);
-                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Utility.ForeGroundMultiplier);
+            PlayerManager.Draw(spriteBatch);
+                er);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Draw(spriteBatch);
@@ -570,10 +567,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     this.AllTextToWrite[s].Draw(spriteBatch);
                 }
-                foreach (Character character in this.CharactersPresent)
-                {
-                    character.Draw(spriteBatch);
-                }
+            CharacterManager.Draw(spriteBatch);
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {

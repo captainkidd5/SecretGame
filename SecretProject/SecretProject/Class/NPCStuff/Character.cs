@@ -279,7 +279,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         //for normal, moving NPCS
         #region UPDATE METHODS
-        public virtual void Update(GameTime gameTime, MouseManager mouse)
+        public virtual void Update(GameTime gameTime)
         {
             this.IsMoving = false;
             if (IsBeingSpokenTo)
