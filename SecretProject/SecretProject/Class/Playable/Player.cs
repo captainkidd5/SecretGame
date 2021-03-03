@@ -223,21 +223,7 @@ namespace SecretProject.Class.Playable
 
             stage.Penumbra.Hulls.Add(Hull);
             Hull.Enabled = true;
-            //this.PenumbraLights = new List<Light>()
-            //{
-            //    new PointLight()
-            //    {
-            //        Position = position,
-            //        Scale = new Vector2(64),
-            //        ShadowType = ShadowType.Occluded,
-            //        Color = Color.FloralWhite,
 
-            //    },
-            // };
-            //for (int i = 0; i < this.PenumbraLights.Count; i++)
-            //{
-            //   // penumbra.Lights.Add(this.PenumbraLights[i]);
-            //};
         }
         private void OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 

@@ -47,7 +47,7 @@ namespace SecretProject.Class.StageFolder
 
 
         public string Name { get; private set; }
-        private readonly StageHandler stageHandler;
+        private readonly StageManager stageHandler;
         private readonly GraphicsDevice graphics;
         private readonly Camera2D camera;
         public LocationType LocationType { get; set; }
@@ -71,6 +71,8 @@ namespace SecretProject.Class.StageFolder
 
         public Dictionary<string, Body> AllObjects { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
+
+        private EnemyManager EnemyManager { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
 
@@ -146,7 +148,7 @@ namespace SecretProject.Class.StageFolder
 
 
         public Stage(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
-            int dialogueToRetrieve, int backDropNumber, IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
+             IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
         {
             this.StageName = name;
             this.LocationType = locationType;
@@ -154,8 +156,6 @@ namespace SecretProject.Class.StageFolder
 
             this.StageContentManager = new ContentManager(content.ServiceProvider);
             this.StageContentManager.RootDirectory = "Content";
-
-            this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
 
             this.CharactersPresent = new List<Character>();
@@ -181,9 +181,20 @@ namespace SecretProject.Class.StageFolder
 
             this.DebuggableShapes = new List<IDebuggableShape>();
             this.UpdatingGrassTufts = new List<GrassTuft>();
+            this.EnemyManager = new EnemyManager(Graphics, content);
         }
         public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
+        }
+
+        public override void Load()
+        {
+            EnemyManager.Load();
+        }
+
+        public override void Unload()
+        {
+            EnemyManager.Unload();
         }
 
         public virtual void AssignPath(string startPath)
@@ -258,7 +269,7 @@ namespace SecretProject.Class.StageFolder
             this.AllTiles.StartNew(this.IsBasedOnPreloadedMap);
         }
 
-        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        public virtual void LoadContent()
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
@@ -374,10 +385,8 @@ namespace SecretProject.Class.StageFolder
         {
             PlayerManager.Update(gameTime);
             player.CollideOccured = false;
-            for (int i = 0; i < this.Enemies.Count; i++)
-            {
-                this.Enemies[i].Update(gameTime, Cam.CameraScreenRectangle, this.Enemies);
-            }
+            EnemyManager.Update(gameTime);
+
 
             this.IsDark = Game1.GlobalClock.IsNight;
 
@@ -407,6 +416,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.TotalHours = 22;
 
             }
+            DrawPenumbra(gameTime);
             this.FunBox.Update(gameTime);
             this.TextBuilder.Update(gameTime);
             this.ParticleEngine.Update(gameTime);
@@ -423,7 +433,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
                 Game1.Train.Update(gameTime);
                 // 
-                Player.Update(gameTime, this.AllTiles.AllItems);
+                PlayerManager.Update(gameTime);
                 this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
@@ -433,7 +443,7 @@ namespace SecretProject.Class.StageFolder
                 foreach (Sprite spr in this.AllSprites)
                 {
 
-                    spr.Update(gameTime, mouse.WorldMousePosition);
+                    spr.Update(gameTime, Game1.MouseManager.WorldMousePosition);
 
                 }
 
@@ -492,7 +502,7 @@ namespace SecretProject.Class.StageFolder
                     }
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
-                        spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                        spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(Game1.MouseManager.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, Game1.MouseManager.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
                     }
                     spriteBatch.End();
                 }
@@ -516,21 +526,15 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.ParticleEngine.Draw(spriteBatch);
-                for (int i = 0; i < this.Enemies.Count; i++)
-                {
-                    this.Enemies[i].Draw(spriteBatch, this.Graphics);
-                    if (ShowBorders)
-                    {
-                        this.Enemies[i].DrawDebug(spriteBatch, .95f);
-                    }
-                }
+            EnemyManager.Draw(spriteBatch);
+
                 for (int p = 0; p < this.AllProjectiles.Count; p++)
                 {
                     AllProjectiles[p].Draw(spriteBatch);
                 }
                 Game1.Train.Draw(spriteBatch);
             PlayerManager.Draw(spriteBatch);
-                er);
+              
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Draw(spriteBatch);
@@ -543,15 +547,6 @@ namespace SecretProject.Class.StageFolder
                     {
                         character.DrawDebug(spriteBatch, .4f);
                     }
-                    //foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
-                    //{
-
-                    //    for (int j = 0; j < obj.Value.Count; j++)
-                    //    {
-                    //        obj.Value[j].DrawDebug(spriteBatch);
-                    //    }
-
-                    //}
 
                     for (int i = 0; i < this.DebuggableShapes.Count; i++)
                     {
@@ -591,7 +586,7 @@ namespace SecretProject.Class.StageFolder
                     Game1.MouseManager.DrawDebug(spriteBatch);
                 }
                 spriteBatch.End();
-                DrawPenumbra(gameTime);
+                
 
                 graphics.SetRenderTarget(null);
 
@@ -653,15 +648,7 @@ namespace SecretProject.Class.StageFolder
             throw new NotImplementedException();
         }
 
-        public override void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Unload()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 }

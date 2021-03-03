@@ -179,23 +179,23 @@ namespace SecretProject.Class.NPCStuff.Enemies
         }
 
 
-        public virtual void Update(GameTime gameTime, MouseManager mouse, Rectangle cameraRectangle, List<Enemy> enemies = null)
+        public virtual void Update(GameTime gameTime)
         {
-            this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(cameraRectangle);
+            this.DoesIntersectScreen = this.NPCHitBoxRectangle.Intersects(Game1.cam.CameraScreenRectangle);
             Navigator.HasReachedNextPoint = false;
             this.IsMoving = true;
             oldPrimaryVelocity = primaryVelocity;
             if (DoesIntersectScreen)
             {
-                if (TestDeath(enemies))
+                if (TestDeath(Pack))
                     return;
 
                 TestImmunity(gameTime);
                 primaryVelocity = new Vector2(.5f, .5f);
 
 
-                if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-                    mouse.ChangeMouseTexture(CursorType.Normal);
+                if (Game1.MouseManager.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
+                    Game1.MouseManager.ChangeMouseTexture(CursorType.Normal);
 
 
 
@@ -391,7 +391,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             Game1.CurrentStage.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (this.DoesIntersectScreen)
             {

@@ -273,10 +273,11 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-                if (this.Stage == Game1.Town || this.Stage == Game1.HomeStead)
-                {
-                    AddInitialGrassTufts();
-                }
+                //TODO
+                //if (this.Stage == Game1.Town || this.Stage == Game1.HomeStead)
+                //{
+                //    AddInitialGrassTufts();
+                //}
             }
 
             
@@ -401,7 +402,7 @@ namespace SecretProject.Class.TileStuff
         #region UPDATE
 
 
-        public void Update(GameTime gameTime, MouseManager mouse)
+        public void Update(GameTime gameTime)
         {
             int oldLightCount = this.NightTimeLights.Count;
             this.AbleToDrawTileSelector = false;
@@ -500,13 +501,13 @@ namespace SecretProject.Class.TileStuff
                                             {
                                                 if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"]))
                                                 {
-                                                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"])));
+                                                    Game1.MouseManager.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"])));
                                                     Game1.MouseManager.ToggleGeneralInteraction = true;
                                                 }
                                             }
 
 
-                                            if (mouse.IsClicked)
+                                            if (Game1.MouseManager.IsClicked)
                                             {
                                                 TileUtility.InteractWithDestructableTile(z, gameTime, mi, mj, this.AllTiles[z][mi, mj].DestinationRectangle, this);
 
@@ -521,7 +522,7 @@ namespace SecretProject.Class.TileStuff
                                             if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties.ContainsKey("action"))
                                             {
 
-                                                TileUtility.ActionHelper(z, mi, mj, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["action"], mouse, this);
+                                                TileUtility.ActionHelper(z, mi, mj, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["action"], Game1.MouseManager, this);
 
                                             }
                                         }
@@ -568,7 +569,7 @@ namespace SecretProject.Class.TileStuff
             }
             if (this.NightTimeLights.Count != oldLightCount)
             {
-                Game1.CurrentStage.AllNightLights = this.NightTimeLights;
+                Stage.AllNightLights = this.NightTimeLights;
             }
             if (this.GridItem != null)
             {
@@ -667,7 +668,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Color tileColor = Color.White;
-                            if (Game1.CurrentStage.ShowBorders)
+                            if (Stage.ShowBorders)
                             {
                                 if (this.Objects.ContainsKey(AllTiles[z][x, y].TileKey))
                                 {
@@ -736,10 +737,10 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleClockChange(object sender, EventArgs eventArgs)
         {
-            if (Game1.CurrentStage == this.Stage)
-            {
-                UpdateCropTile();
-            }
+            //if (Game1.CurrentStage == this.Stage)
+            //{
+            //    UpdateCropTile();
+            //}
 
         }
 

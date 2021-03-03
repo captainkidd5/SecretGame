@@ -98,7 +98,7 @@ namespace SecretProject
 
         public static int NPCSpawnCountLimit = 50;
 
-        public static StageHandler StageHandler { get; set; }
+        public static StageManager StageHandler { get; set; }
 
         public static bool IsFirstTimeStartup;
         public static bool AreGeneratableTilesLoaded;
@@ -112,7 +112,7 @@ namespace SecretProject
         //STAGES
         public static MainMenu mainMenu;
         
-        public static TurnDial TurnDial;
+        
         public static int PreviousStage = 0;
         public static bool freeze = false;
 
@@ -184,14 +184,6 @@ namespace SecretProject
 
         public PlayerManager PlayerManager { get; set; }
         //XMLDATA
-
-        
-
-        
-
-
-
-
 
         public static ItemHolder AllItems{ get; private set; }
         public static LootBank LootBank{ get; private set; }
@@ -267,7 +259,7 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
             PlayerManager = new PlayerManager( GraphicsDevice, HomeContentManager);
             CharacterManager = new CharacterManager(GraphicsDevice, HomeContentManager);
-            StageHandler = new StageHandler(this, GraphicsDevice,HomeContentManager, PlayerManager, CharacterManager);
+            StageHandler = new StageManager(this, GraphicsDevice,HomeContentManager, PlayerManager, CharacterManager);
             //set window dimensions
 
 
@@ -367,9 +359,6 @@ namespace SecretProject
             StageHandler.Load();
 
 
-            LoadPlayer();
-
-
             DebugWindow = new DebugWindow(this.GraphicsDevice, AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, this.GraphicsDevice);
 
             LoadItems();
@@ -453,7 +442,7 @@ namespace SecretProject
 
 
 
-            TurnDial = new TurnDial();
+            
         }
         private void LoadShops()
         {
