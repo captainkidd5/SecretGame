@@ -187,17 +187,7 @@ namespace SecretProject
 
         
 
-        public RouteSchedule DobbinRouteSchedule{ get; private set; }
-        public RouteSchedule ElixirRouteSchedule{ get; private set; }
-        public RouteSchedule KayaRouteSchedule{ get; private set; }
-        public RouteSchedule JulianRouteSchedule{ get; private set; }
-        public RouteSchedule SarahRouteSchedule{ get; private set; }
-        public RouteSchedule MippinRouteSchedule{ get; private set; }
-        public RouteSchedule NedRouteSchedule{ get; private set; }
-        public RouteSchedule TealRouteSchedule{ get; private set; }
-        public RouteSchedule MarcusRouteSchedule{ get; private set; }
-        public RouteSchedule CasparRouteSchedule{ get; private set; }
-        public static List<RouteSchedule> AllSchedules{ get; private set; }
+        
 
 
 
@@ -207,7 +197,6 @@ namespace SecretProject
         public static LootBank LootBank{ get; private set; }
         public static CropHolder AllCrops{ get; private set; }
 
-        public static DialogueManager DialogueLibrary{ get; private set; }
 
         public static CookingGuide AllCookingRecipes{ get; private set; }
 
@@ -358,7 +347,7 @@ namespace SecretProject
             
             //ORDER MATTERS!!!
 
-            LoadDialogue();
+
 
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
             AllCookingRecipes = this.Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
@@ -376,9 +365,7 @@ namespace SecretProject
 
 
             StageHandler.Load();
-            LoadQuests();
 
-            LoadSchedules();
 
             LoadPlayer();
 
@@ -454,32 +441,8 @@ namespace SecretProject
             LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
             MessageHolder = Content.Load<MessageHolder>("Item/Messages/Messages");
         }
-        private void LoadSchedules()
-        {
-            DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
-            ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
-            KayaRouteSchedule = this.Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
-            JulianRouteSchedule = this.Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
-            SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
-            MippinRouteSchedule = this.Content.Load<RouteSchedule>("Route/MippinRouteSchedule");
-            NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
-            TealRouteSchedule = this.Content.Load<RouteSchedule>("Route/TealRouteSchedule");
-            MarcusRouteSchedule = this.Content.Load<RouteSchedule>("Route/MarcusRouteSchedule");
-            CasparRouteSchedule = this.Content.Load<RouteSchedule>("Route/CasparRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,
-                JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule, MarcusRouteSchedule, CasparRouteSchedule };
-            for (int i = 0; i < AllSchedules.Count; i++)
-            {
-                foreach (Route route in AllSchedules[i].Routes)
-                {
-                    route.ProcessStageToEndAt();
-                }
-            }
-        }
-        private void LoadQuests()
-        {
-            
-        }
+
+
         /// <summary>
         /// Map must be physically placed in bin/content/bin/map
         /// </summary>
@@ -735,10 +698,6 @@ namespace SecretProject
             }
                 
 
-            
-
-
-
 
             if (!MouseManager.ToggleGeneralInteraction)
             {
@@ -765,8 +724,9 @@ namespace SecretProject
             }
             else
             {
-                StageHandler.Draw(spriteBatch,MainTarget, NightLightsTarget, DayLightsTarget);
-                //CurrentStage.Draw(gameTime, graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, spriteBatch, MouseManager, Player);
+                if (Globals.EnableVelcroDraw)
+                    DebugVelcro();
+                StageHandler.Draw(spriteBatch);
 
             }
            
@@ -777,28 +737,30 @@ namespace SecretProject
         }
         #endregion
 
-        public void LoadPlayer()
+        private void InitializeVelcro()
         {
-            // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
+            VelcroWorld = new World(new Vector2(0, 9.8f));
+            //TODO: Re-enable DEBUG VIEWS
+            if (VelcroDebugger == null)
+            {
+                VelcroDebugger = new DebugView(VelcroWorld);
 
-
-
-            //Player.PlayerMovementAnimations = new Sprite[5];
-            //for (int i = 0; i < Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
-            //{
-            //    Player.PlayerMovementAnimations[i] = Player.PlayerWardrobe.BasicMovementAnimations[0, i];
-            //}
-
-            //for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
-            //{
-            //    Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
-            //        (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
-            //    Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
-            //        (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
-
-            //}
+                VelcroDebugger.AppendFlags(DebugViewFlags.Shape);
+                VelcroDebugger.DefaultShapeColor = Color.LightPink;
+                VelcroDebugger.SleepingShapeColor = Color.MediumPurple;
+            }
         }
 
+        /// <summary>
+        /// Turn on to draw velcro physics shapes.
+        /// </summary>
+        private void DebugVelcro()
+        {
+            Matrix proj = Matrix.CreateOrthographicOffCenter(new Rectangle(-GraphicsDevice.Viewport.Width / 2 * (int)cam.Zoom,
+                -GraphicsDevice.Viewport.Height / 2 * (int)cam.Zoom, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), 1f, -1f);
+            Matrix view = cam.GetViewMatrix(Vector2.One);
+            VelcroDebugger.RenderDebugData(proj, view);
+        }
     }
 
 }

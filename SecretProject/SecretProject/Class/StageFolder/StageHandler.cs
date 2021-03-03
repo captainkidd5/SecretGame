@@ -272,6 +272,10 @@ namespace SecretProject.Class.StageFolder
             return Stages.Find(x => x.Name == name);
         }
 
+        public override void Unload()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

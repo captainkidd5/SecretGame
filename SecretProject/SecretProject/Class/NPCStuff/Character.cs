@@ -539,7 +539,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void OnHourIncreased(object sender, EventArgs e)
         {
 
-            this.CurrentRoute = RouteLibrary.RetrieveRoute(this.RouteSchedule, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+            this.CurrentRoute = RouteManager.RetrieveRoute(this.RouteSchedule, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
 
         }
         #endregion

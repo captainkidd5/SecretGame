@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.graphicsDevice;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.RouteStuff;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,12 @@ namespace SecretProject.Class.NPCStuff
 
 
         public DialogueManager DialogueManager { get; set; }
+
+        public RouteManager RouteManager { get; set; }
         public CharacterManager(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
             this.DialogueManager = new DialogueManager(graphicsDevice, content);
+            this.RouteManager = new RouteManager(graphicsDevice, content);
         }
 
         private void LoadCharacters()
@@ -367,6 +371,7 @@ namespace SecretProject.Class.NPCStuff
         public override void Load()
         {
             DialogueManager.Load();
+            RouteManager.Load();
             LoadCharacters();
            
         }
