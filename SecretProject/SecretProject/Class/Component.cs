@@ -27,7 +27,7 @@ namespace SecretProject.Class
 
         }
 
-        //public Template(GraphicsDevice graphics, ContentManager content) : base(stage, graphics, content)
+        //public Template(GraphicsDevice graphics, ContentManager content) : base(graphics, content)
         //{
         // }
     

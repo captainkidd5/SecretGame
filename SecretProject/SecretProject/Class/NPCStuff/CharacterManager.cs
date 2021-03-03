@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.graphicsDevice;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,12 @@ namespace SecretProject.Class.NPCStuff
         public static Character Marcus;
         public static Character Caspar;
         public static List<Character> AllCharacters;
+
+
+        public DialogueManager DialogueManager { get; set; }
         public CharacterManager(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
+            this.DialogueManager = new DialogueManager(graphicsDevice, content);
         }
 
         private void LoadCharacters()
@@ -361,7 +366,9 @@ namespace SecretProject.Class.NPCStuff
         }
         public override void Load()
         {
-            throw new NotImplementedException();
+            DialogueManager.Load();
+            LoadCharacters();
+           
         }
 
         public override void Unload()

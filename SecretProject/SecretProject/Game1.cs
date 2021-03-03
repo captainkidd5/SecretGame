@@ -185,18 +185,7 @@ namespace SecretProject
         public PlayerManager PlayerManager { get; set; }
         //XMLDATA
 
-        public DialogueHolder ElixirDialogue { get; set; }
-        public DialogueHolder DobbinDialogue { get; set; }
-        public DialogueHolder SnawDialogue { get; set; }
-        public DialogueHolder KayaDialogue{ get; private set; }
-        public DialogueHolder JulianDialogue{ get; private set; }
-        public DialogueHolder SarahDialogue{ get; private set; }
-        public DialogueHolder BusinessSnailDialogue{ get; private set; }
-        public DialogueHolder MippinDialogue{ get; private set; }
-        public DialogueHolder NedDialogue{ get; private set; }
-        public DialogueHolder TealDialogue{ get; private set; }
-        public DialogueHolder MarcusDialogue{ get; private set; }
-        public DialogueHolder CasparDialogue{ get; private set; }
+        
 
         public RouteSchedule DobbinRouteSchedule{ get; private set; }
         public RouteSchedule ElixirRouteSchedule{ get; private set; }
@@ -210,18 +199,7 @@ namespace SecretProject
         public RouteSchedule CasparRouteSchedule{ get; private set; }
         public static List<RouteSchedule> AllSchedules{ get; private set; }
 
-        public QuestHandler DobbinQuests{ get; private set; }
-        public QuestHandler ElixirQuests{ get; private set; }
-        public QuestHandler KayaQuests{ get; private set; }
-        public QuestHandler JulianQuests{ get; private set; }
-        public QuestHandler SarahQuests{ get; private set; }
-        public QuestHandler MippinQuests{ get; private set; }
-        public QuestHandler NedQuests{ get; private set; }
-        public QuestHandler TealQuests{ get; private set; }
-        public QuestHandler MarcusQuests{ get; private set; }
-        public QuestHandler SnawQuests{ get; private set; }
-        public QuestHandler BusinessSnailQuests{ get; private set; }
-        public QuestHandler CasparQuests{ get; private set; }
+
 
 
 
@@ -229,7 +207,7 @@ namespace SecretProject
         public static LootBank LootBank{ get; private set; }
         public static CropHolder AllCrops{ get; private set; }
 
-        public static DialogueLibrary DialogueLibrary{ get; private set; }
+        public static DialogueManager DialogueLibrary{ get; private set; }
 
         public static CookingGuide AllCookingRecipes{ get; private set; }
 
@@ -240,10 +218,6 @@ namespace SecretProject
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
 
-        //RENDERTARGETS
-        public RenderTarget2D MainTarget;
-        public RenderTarget2D NightLightsTarget;
-        public RenderTarget2D DayLightsTarget;
 
         //LIGHTING
         public static PenumbraComponent Penumbra;
@@ -381,9 +355,7 @@ namespace SecretProject
             IsFirstTimeStartup = true;
             SaveLoadManager = new SaveLoadManager();
             PresentationParameters = this.GraphicsDevice.PresentationParameters;
-            MainTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            NightLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            DayLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
+            
             //ORDER MATTERS!!!
 
             LoadDialogue();
@@ -441,11 +413,6 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            LoadCharacters();
-
-
-
-
 
             AllEvents = new List<IEvent>()
             {
@@ -477,35 +444,7 @@ namespace SecretProject
 
         }
 
-        private void LoadDialogue()
-        {
-            ElixirDialogue = this.Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
-            DobbinDialogue = this.Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
-            SnawDialogue = this.Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
-            KayaDialogue = this.Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
-            JulianDialogue = this.Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
-            SarahDialogue = this.Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
-            BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
-            MippinDialogue = this.Content.Load<DialogueHolder>("Dialogue/MippinDialogue");
-            NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
-            TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
-            MarcusDialogue = this.Content.Load<DialogueHolder>("Dialogue/MarcusDialogue");
-            CasparDialogue = this.Content.Load<DialogueHolder>("Dialogue/CasparDialogue");
 
-
-
-
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,
-                JulianDialogue, SarahDialogue,
-                BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue, MarcusDialogue,CasparDialogue };
-            foreach (DialogueHolder holder in tempListHolder)
-            {
-                holder.RemoveAllNewLines();
-            }
-            DialogueLibrary = new DialogueLibrary(tempListHolder);
-
-
-        }
         private void LoadItems()
         {
             ItemVault = new ItemBank();
@@ -539,17 +478,7 @@ namespace SecretProject
         }
         private void LoadQuests()
         {
-            DobbinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/DobbinQuests"));
-            ElixirQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/ElixirQuests"));
-            KayaQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/KayaQuests"));
-            JulianQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/JulianQuests"));
-            MippinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MippinQuests"));
-            TealQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/TealQuests"));
-            MarcusQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MarcusQuests"));
-            NedQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/NedQuests"));
-            SnawQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/SnawQuests"));
-            BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
-            CasparQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/CasparQuests"));
+            
         }
         /// <summary>
         /// Map must be physically placed in bin/content/bin/map
@@ -850,7 +779,6 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("NAME", new Vector2(630, 600), AllTextures.PlayerBase, 5, this.Content, graphics.GraphicsDevice) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
 
