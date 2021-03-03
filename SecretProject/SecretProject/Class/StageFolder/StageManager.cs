@@ -62,8 +62,8 @@ namespace SecretProject.Class.StageFolder
         private TurnDial TurnDial { get; set; }
 
         public MainMenu mainMenu;
-        public Stage Town;
-        public Stage ElixirHouse;
+        public static Stage Town;
+        public static Stage ElixirHouse;
 
 
         public static Stage JulianHouse;
@@ -108,33 +108,33 @@ namespace SecretProject.Class.StageFolder
             DayLightsTarget = new RenderTarget2D(graphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false, pp.BackBufferFormat, DepthFormat.Depth24);
             MasterSpriteSheet = content.Load<Texture2D>("maps/MasterSpriteSheet");
             TmxMap townMap = new TmxMap("Content/Map/Town.tmx");
-            Town = new Stage("Town", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, townMap, 1, 1, content.ServiceProvider, PlayerManager, CharacterManager)
+            Town = new Stage(this,"Town", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, townMap, 1, 1, content.ServiceProvider, PlayerManager, CharacterManager)
             { StageIdentifier = (int)StagesEnum.Town };
 
 
 
 
 
-            ElixirHouse = new Stage("ElixirHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/elixirShop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ElixirHouse };
-            JulianHouse = new Stage("JulianHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/JulianShop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.JulianHouse };
-            DobbinHouse = new Stage("DobbinHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/DobbinHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DobbinHouse };
-            PlayerHouse = new Stage("PlayerHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/PlayerHouseSmall.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.PlayerHouse };
-            GeneralStore = new Stage("GeneralStore", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/GeneralStore.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GeneralStore };
-            KayaHouse = new Stage("KayaHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/KayaHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.KayaHouse };
-            Cafe = new Stage("Cafe", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/Cafe.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.Cafe };
-            DobbinHouseUpper = new Stage("DobbinHouseUpper", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/DobbinHouseUpper.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DobbinHouseUpper };
-            MarcusHouse = new Stage("MarcusHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/MarcusHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MarcusHouse };
-            LightHouse = new Stage("LightHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/LightHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.LightHouse };
-            CasparHouse = new Stage("CasparHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/CasparHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.CasparHouse };
-            MountainTop = new Stage("MountainTop", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/MountainTop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MountainTop };
-            GisaardRanch = new Stage("GisaardRanch", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/GisaardRanch.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GisaardRanch };
-            HomeStead = new Stage("HomeStead", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.HomeStead };
+            ElixirHouse = new Stage(this, "ElixirHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/elixirShop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ElixirHouse };
+            JulianHouse = new Stage(this, "JulianHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/JulianShop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.JulianHouse };
+            DobbinHouse = new Stage(this, "DobbinHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/DobbinHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DobbinHouse };
+            PlayerHouse = new Stage(this, "PlayerHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/PlayerHouseSmall.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.PlayerHouse };
+            GeneralStore = new Stage(this, "GeneralStore", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/GeneralStore.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GeneralStore };
+            KayaHouse = new Stage(this, "KayaHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/KayaHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.KayaHouse };
+            Cafe = new Stage(this, "Cafe", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/Cafe.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.Cafe };
+            DobbinHouseUpper = new Stage(this, "DobbinHouseUpper", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/DobbinHouseUpper.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DobbinHouseUpper };
+            MarcusHouse = new Stage(this, "MarcusHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/MarcusHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MarcusHouse };
+            LightHouse = new Stage(this, "LightHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/LightHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.LightHouse };
+            CasparHouse = new Stage(this, "CasparHouse", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/CasparHouse.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.CasparHouse };
+            MountainTop = new Stage(this, "MountainTop", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/MountainTop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MountainTop };
+            GisaardRanch = new Stage(this, "GisaardRanch", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/GisaardRanch.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GisaardRanch };
+            HomeStead = new Stage(this, "HomeStead", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.HomeStead };
             ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ForestDungeon };
             DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DesertDungeon };
-            SippiDesert = new Stage("SippiDesert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/SippiDesert.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.SippiDesert };
-            TrainStation = new Stage("TrainStation", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/TrainStation.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.TrainStation };
-            RooltapCastle = new Stage("RuletapCastle", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/RooltapCastle.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.RooltapCastle };
-            ThroneRoom = new Stage("ThroneRoom", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/ThroneRoom.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ThroneRoom };
+            SippiDesert = new Stage(this, "SippiDesert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/SippiDesert.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.SippiDesert };
+            TrainStation = new Stage(this, "TrainStation", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/TrainStation.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.TrainStation };
+            RooltapCastle = new Stage(this, "RuletapCastle", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/RooltapCastle.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.RooltapCastle };
+            ThroneRoom = new Stage(this, "ThroneRoom", LocationType.Interior, graphicsDevice, content, InteriorSpriteSheet, new TmxMap("content/Map/ThroneRoom.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ThroneRoom };
             AllStages = new List<Stage>() { Town, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, LightHouse, CasparHouse, MountainTop, GisaardRanch, HomeStead, ForestDungeon, DesertDungeon, SippiDesert, TrainStation, RooltapCastle, ThroneRoom };
             TurnDial = new TurnDial();
         }
@@ -173,7 +173,7 @@ namespace SecretProject.Class.StageFolder
 
         public void SwitchStage(Stage stageToSwitchTo, Portal portal = null)
         {
-            Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
+            Game1.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
             IsFadingOut = true;
 

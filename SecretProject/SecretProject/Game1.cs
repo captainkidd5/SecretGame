@@ -144,7 +144,7 @@ namespace SecretProject
 
 
         //UI
-        public UserInterface userInterface;
+        public static UserInterface UserInterface;
 
         public static DebugWindow DebugWindow;
 
@@ -542,79 +542,8 @@ namespace SecretProject
         //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
 
 
-       
-
-        
-        public static void SwitchStage(Stage stageToSwitchTo, Portal portal = null)
-        {
-            Player.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
-
-            IsFadingOut = true;
-
-            VelcroWorld.Clear();
-
-
-            //VelcroWorld.ProcessChanges();
-
-            StageHandler.CurrentStage.UnloadContent();
-            UnloadPenumbraEntities();
-
-            if (CurrentStage == PlayerHouse)
-                stageToSwitchTo = TurnDial.CurrentLocation;
-
-            Stage newLocation = stageToSwitchTo;
-
-
-            Game1.Player.LockBounds = true;
-
-            newLocation.TryLoadExistingStage();
-            if (CurrentStage.DebuggableShapes != null)
-            {
-                CurrentStage.DebuggableShapes.Clear();
-            }
-            if (portal != null)
-            {
-                List<Portal> portalTest = stageToSwitchTo.AllPortals;
-                Portal tempPortal = stageToSwitchTo.AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
-                if (tempPortal != null)
-                {
-                    float x = tempPortal.PortalStart.X;
-                    float width = tempPortal.PortalStart.Width / 2;
-                    float y = tempPortal.PortalStart.Y;
-                    float safteyX = tempPortal.SafteyOffSetX;
-                    float safteyY = tempPortal.SafteyOffSetY;
-                    Player.CreateBody();
-                    Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
-                    cam.pos = Player.Position;
-
-                }
-                else
-                {
-                    Player.CreateBody();
-                }
-            }
-            else
-            {
-                Player.CreateBody();
-            }
-
-            Player.Wardrobe.UpdateForCreationMenu();
-
-
-
-            MouseManager.AttachMouseBody();
-            Train.SwitchStage(CurrentStage.StageIdentifier, newLocation.StageIdentifier);
-            CurrentStage = newLocation;
-            CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
-            CurrentStage.AllTiles.UpdateCropTile();
-           
-            Player.LoadPenumbra(CurrentStage);
-
-        
-            VelcroWorld.ProcessChanges();
-            Game1.GlobalClock.ProcessNewDayChanges();
-
-        }
+          
+      
 
         public static void PlayMovie(MovieName movieName)
         {

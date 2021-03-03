@@ -162,7 +162,7 @@ namespace SecretProject.Class.StageFolder
        
 
 
-        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public override void Update(GameTime gameTime)
         {
 
             Game1.isMyMouseVisible = true;
@@ -172,7 +172,7 @@ namespace SecretProject.Class.StageFolder
             }
             if (!Game1.freeze)
             {
-                Settings.Update(mouse);
+                Settings.Update();
                 if (Settings.isClicked)
                 {
                     this.CurrentMenuState = MenuState.Settings;
@@ -251,21 +251,21 @@ namespace SecretProject.Class.StageFolder
         {
             UnloadContent();
             
-            foreach (Stage location in Game1.AllStages) //initialize then unload all stages, except one the player starts in.
+            foreach (Stage location in StageManager.AllStages) //initialize then unload all stages, except one the player starts in.
             {
-                if(location != Game1.PlayerHouse && location != Game1.ForestDungeon && location != Game1.DesertDungeon)
+                if(location != StageManager.PlayerHouse && location != StageManager.ForestDungeon && location != StageManager.DesertDungeon)
                 {
                     location.StartNew();
                     location.UnloadContent();
                 }
                 
             }
-            Game1.PlayerHouse.StartNew();
-            Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-            Game1.ItemVault.LoadInteriorContent(Game1.PlayerHouse.AllTiles);
+            StageManager.PlayerHouse.StartNew();
+            Game1.ItemVault.LoadExteriorContent(StageManager.Town.AllTiles);
+            Game1.ItemVault.LoadInteriorContent(StageManager.PlayerHouse.AllTiles);
             CurrentMenuState = MenuState.Primary;
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
-            Game1.SwitchStage(Game1.PlayerHouse);
+            StageManager.SwitchStage(StageManager.PlayerHouse);
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.005f);
             Game1.Player.position = new Vector2(460, 660);
 
@@ -281,17 +281,17 @@ namespace SecretProject.Class.StageFolder
             if (StartGameInTown.isClicked)
             {
                 UnloadContent();
-                foreach (Stage stage in Game1.AllStages)
+                foreach (Stage stage in StageManager.AllStages)
                 {
 
                     stage.LoadPreliminaryContent();
 
 
                 }
-                Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                Game1.ItemVault.LoadInteriorContent(Game1.Town.AllTiles);
+                Game1.ItemVault.LoadExteriorContent(StageManager.Town.AllTiles);
+                Game1.ItemVault.LoadInteriorContent(StageManager.Town.AllTiles);
                 CurrentMenuState = MenuState.Primary;
-                Game1.SwitchStage(Game1.Town);
+                StageManager.SwitchStage(StageManager.Town);
             }
             else if (StartGameInWilderness.isClicked)
             {
@@ -318,7 +318,7 @@ namespace SecretProject.Class.StageFolder
 
 
                 //}
-                Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
+                Game1.ItemVault.LoadExteriorContent(StageManager.Town.AllTiles);
                 //Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                 CurrentMenuState = MenuState.Primary;
                // Game1.SwitchStage(0, Stages.UnderWorld);
@@ -359,7 +359,7 @@ namespace SecretProject.Class.StageFolder
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
-        public override void Draw( SpriteBatch spriteBatch)
+        public void Draw( SpriteBatch spriteBatch)
 
         {
 

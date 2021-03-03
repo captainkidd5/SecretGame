@@ -106,8 +106,9 @@ namespace SecretProject.Class.UI.ButtonStuff
         }
 
 
-        public virtual void Update(MouseManager mouse)
+        public virtual void Update()
         {
+            MouseManager mouse = Game1.MouseManager;
             this.wasJustReleased = false;
             this.isRightClicked = false;
             if (!mouse.IsClickedAndHeld)

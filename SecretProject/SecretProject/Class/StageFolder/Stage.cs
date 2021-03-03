@@ -99,7 +99,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsDark { get; set; }
         public List<LightSource> AllNightLights { get; set; }
         public List<LightSource> AllDayTimeLights { get; set; }
-
+        public StageManager StageManager { get; private set; }
 
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
@@ -141,15 +141,18 @@ namespace SecretProject.Class.StageFolder
         public List<IDebuggableShape> DebuggableShapes { get; set; }
 
         public List<GrassTuft> UpdatingGrassTufts { get; set; }
+
+        private Player Player { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public Stage(string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
+        public Stage(StageManager stageManager, string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
              IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(graphicsDevice,  content)
         {
+            StageManager = stageManager;
             this.StageName = name;
             this.LocationType = locationType;
 
@@ -182,6 +185,8 @@ namespace SecretProject.Class.StageFolder
             this.DebuggableShapes = new List<IDebuggableShape>();
             this.UpdatingGrassTufts = new List<GrassTuft>();
             this.EnemyManager = new EnemyManager(Graphics, content);
+
+            this.Player = PlayerManager.Player1;
         }
         public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
@@ -349,18 +354,18 @@ namespace SecretProject.Class.StageFolder
 
         #region UPDATE
 
-        public virtual void UpdatePortals(Player player, MouseManager mouse)
+        public virtual void UpdatePortals()
         {
             for (int p = 0; p < this.AllPortals.Count; p++)
             {
-                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart))
+                if (Player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart))
                 {
                     if (this.AllPortals[p].MustBeClicked)
                     {
-                        if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && mouse.IsClicked)
+                        if (Game1.MouseManager.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && Game1.MouseManager.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
+                            stageHandler.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -368,9 +373,9 @@ namespace SecretProject.Class.StageFolder
                     }
                     else
                     {
-                        if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
+                        if (Player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
                         {
-                            Game1.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
+                            stageHandler.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -384,13 +389,13 @@ namespace SecretProject.Class.StageFolder
         public virtual void Update(GameTime gameTime)
         {
             PlayerManager.Update(gameTime);
-            player.CollideOccured = false;
+
             EnemyManager.Update(gameTime);
 
 
             this.IsDark = Game1.GlobalClock.IsNight;
 
-            UpdatePortals(mouse);
+            UpdatePortals();
 
             Game1.MouseManager.ToggleGeneralInteraction = false;
 
@@ -400,7 +405,7 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            Game1.Player.UserInterface.Update(gameTime, player.Inventory);
+            Game1.Player.UserInterface.Update(gameTime, Player.Inventory);
             if (StageManager.CurrentStage != this)
             {
                 return;
@@ -412,7 +417,7 @@ namespace SecretProject.Class.StageFolder
             if (Game1.KeyboardManager.WasKeyPressed(Keys.F2))
             {
 
-                player.Position = new Vector2(400, 400);
+                Player.Position = new Vector2(400, 400);
                 Game1.GlobalClock.TotalHours = 22;
 
             }
@@ -434,7 +439,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Train.Update(gameTime);
                 // 
                 PlayerManager.Update(gameTime);
-                this.Cam.Follow(new Vector2(player.PlayerCamPos.X + 8, player.PlayerCamPos.Y + 16), this.MapRectangle);
+                this.Cam.Follow(new Vector2(Player.PlayerCamPos.X + 8, Player.PlayerCamPos.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);
