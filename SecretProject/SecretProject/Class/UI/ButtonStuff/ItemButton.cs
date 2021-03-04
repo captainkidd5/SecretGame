@@ -42,9 +42,9 @@ namespace SecretProject.Class.UI.ButtonStuff
             this.StringToWrite = string.Empty;
             this.CountNeeded = countNeeded;
         }
-        public override void Update(MouseManager mouseManager)
+        public override void Update()
         {
-            base.Update(mouseManager);
+            base.Update();
             this.TextPosition = new Vector2(this.Position.X, this.Position.Y + 32);
      
             UpdateString();

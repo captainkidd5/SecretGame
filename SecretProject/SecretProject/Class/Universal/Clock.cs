@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Weather;
@@ -49,7 +50,7 @@ namespace SecretProject.Class.Universal
 
         public Calendar Calendar { get; set; }
 
-        public Clock()
+        public Clock(StageManager stageManager, CharacterManager characterManager)
         {
             ClockPosition = Game1.Utility.ClockPosition;
             // UnpausedTime = TimeSpan.Zero;
@@ -62,8 +63,8 @@ namespace SecretProject.Class.Universal
             //IsNight = true;
             this.Calendar = new Calendar();
             AdjustClockText();
-
-
+            StageManager = stageManager;
+            CharacterManager = characterManager;
         }
         public virtual void OnDayChanged(Object sender, EventArgs e)
         {
@@ -109,10 +110,7 @@ namespace SecretProject.Class.Universal
 
             Game1.Player.UserInterface.LoadingScreen.BeginBlackTransition(.005f,4f, true);
             Game1.GlobalClock.TotalHours = 6;
-            foreach (Character character in Game1.AllCharacters)
-            {
-                character.ResetEndOfDay();
-            }
+            CharacterManager.ResetCharacters();
             AdjustClockText();
             Game1.Player.RestorePlayerToFull();
             HasDirtBucketBeenUpdated = false;
@@ -124,10 +122,12 @@ namespace SecretProject.Class.Universal
         /// </summary>
         private void ReplaceDirtTileManager()
         {
-            TileUtility.ReplaceTile(3, 67, 114, 5523, (TileManager)Game1.Town.AllTiles);
+            TileUtility.ReplaceTile(3, 67, 114, 5523, (TileManager)StageManager.Town.AllTiles);
 
         }
         public bool HasDirtBucketBeenUpdated { get; set; }
+        public StageManager StageManager { get; }
+        public CharacterManager CharacterManager { get; }
 
         /// <summary>
         /// Updates events which should occur on a new day. Will trigger every time stages are switched.
@@ -136,7 +136,7 @@ namespace SecretProject.Class.Universal
         {
             if(!HasDirtBucketBeenUpdated)
             {
-                if(StageManager.CurrentStage == Game1.Town)
+                if(StageManager.CurrentStage == StageManager.Town)
                 {
                     ReplaceDirtTileManager();
                     HasDirtBucketBeenUpdated = true;

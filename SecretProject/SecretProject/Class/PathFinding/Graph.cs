@@ -1,43 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using SecretProject.Class.StageFolder;
+using System.Collections.Generic;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.PathFinding
 {
     public class Graph
     {
-        public List<Stages>[] childNodes;
+        public List<StagesEnum>[] childNodes;
         public int Size { get { return childNodes.Length; } }
         public Graph(int size)
         {
-            childNodes = new List<Stages>[size];
+            childNodes = new List<StagesEnum>[size];
             for (int i = 0; i < size; i++)
             {
-                childNodes[i] = new List<Stages>();
+                childNodes[i] = new List<StagesEnum>();
             }
         }
 
-        public Graph(List<Stages>[] childNodes)
+        public Graph(List<StagesEnum>[] childNodes)
         {
             this.childNodes = childNodes;
         }
 
-        public void AddEdge(Stages baseNode, Stages nodeToConnect)
+        public void AddEdge(StagesEnum baseNode, StagesEnum nodeToConnect)
         {
             childNodes[(int)baseNode].Add(nodeToConnect);
         }
 
-        public void RemoveEdge(Stages baseNode, Stages nodeToConnect)
+        public void RemoveEdge(StagesEnum baseNode, StagesEnum nodeToConnect)
         {
             childNodes[(int)baseNode].Remove(nodeToConnect);
         }
 
-        public bool HasEdge(Stages baseNode, Stages nodeToConnect)
+        public bool HasEdge(StagesEnum baseNode, StagesEnum nodeToConnect)
         {
             bool hasEdge = childNodes[(int)baseNode].Contains(nodeToConnect);
             return hasEdge;
         }
 
-        public IList<Stages> GetSuccessors(int v)
+        public IList<StagesEnum> GetSuccessors(int v)
 
         {
             return childNodes[v];

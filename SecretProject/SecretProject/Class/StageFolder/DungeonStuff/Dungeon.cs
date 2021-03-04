@@ -30,7 +30,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected DungeonGraph DungeonGraph { get;  set; }
 
-        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber,service)
+        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content,
+            Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service)
+            : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber,service)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             InitializeRooms();
@@ -103,7 +105,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected virtual void AddFirstRoomPortal()
         {
-            Portal portal = new Portal((int)this.StageIdentifier, (int)Game1.HomeStead.StageIdentifier, 0, 32, false);
+            Portal portal = new Portal((int)this.StageIdentifier, (int)StageManager.HomeStead.StageIdentifier, 0, 32, false);
             this.AllPortals.Add(portal);
 
             if (!Game1.PortalGraph.HasEdge((StagesEnum)portal.From, (StagesEnum)portal.To))
@@ -210,11 +212,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
         }
 
-        public override void UpdatePortals(Player player, MouseManager mouse)
+        public override void UpdatePortals()
         {
             if(IsStartingRoom())
             {
-                base.UpdatePortals(player, mouse);
+                base.UpdatePortals();
             }
             
             List<DungeonPortal> portals = this.CurrentRoom.DungeonPortals;
@@ -222,7 +224,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             for (int p = 0; p < portals.Count; p++)
             {
 
-                if (player.Rectangle.Intersects(portals[p].InteractionRectangle))
+                if (PlayerManager.Player.Rectangle.Intersects(portals[p].InteractionRectangle))
                 {
                     //portalgraph logic here
 
@@ -233,9 +235,9 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
             }
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, mouse, player);
+            base.Update(gameTime);
         }
 
         public override void Save(BinaryWriter writer)
@@ -261,7 +263,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
         public string RoomString { get; private set; }
         public override string GetDebugString()
         {
-            if (StageManager.CurrentStage == Game1.ForestDungeon)
+            if (StageManager.CurrentStage == StageManager.ForestDungeon)
             {
 
 

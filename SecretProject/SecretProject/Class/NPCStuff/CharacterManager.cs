@@ -14,6 +14,8 @@ namespace SecretProject.Class.NPCStuff
 {
     public class CharacterManager : Component
     {
+
+        
         //NPCS
         public static Character Elixir;
         public static Character Dobbin;
@@ -30,17 +32,18 @@ namespace SecretProject.Class.NPCStuff
         public static Character Caspar;
         public static List<Character> AllCharacters;
 
-
+        private StageManager StageManager { get; set; }
         private DialogueManager DialogueManager { get; set; }
 
         private RouteManager RouteManager { get; set; }
 
         private QuestManager QuestManager { get; set; }
-        public CharacterManager(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
+        public CharacterManager(GraphicsDevice graphicsDevice, ContentManager content, StageManager stageManager) : base(graphicsDevice, content)
         {
             this.DialogueManager = new DialogueManager(graphicsDevice, content);
             this.RouteManager = new RouteManager(graphicsDevice, content);
             this.QuestManager = new QuestManager(graphicsDevice, content);
+            this.StageManager = stageManager;
         }
         private void LoadCharacters()
         {
@@ -120,13 +123,13 @@ namespace SecretProject.Class.NPCStuff
             Kaya.LoadLaterStuff(graphicsDevice);
 
             Snaw = new Character("Snaw", graphicsDevice, content, new Vector2(121, 67), content.Load<Texture2D>("NPC/Snaw/Snaw"),
-                3, content.Load<Texture2D>("NPC/Snaw/SnawPortrait"), SnawQuests)
+                3, content.Load<Texture2D>("NPC/Snaw/SnawPortrait"), QuestManager.SnawQuests)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 3,
-                CurrentStageLocation = Game1.Town,
+                CurrentStageLocation = StageManager.Town,
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
@@ -330,7 +333,7 @@ namespace SecretProject.Class.NPCStuff
             {
                 foreach (Character character in AllCharacters)
                 {
-                    if (character.CurrentStageLocation == CurrentStage)
+                    if (character.CurrentStageLocation == StageManager.CurrentStage)
                     {
                         stage.CharactersPresent.Add(character);
                     }
@@ -339,6 +342,14 @@ namespace SecretProject.Class.NPCStuff
             }
 
 
+        }
+
+        public void ResetCharacters()
+        {
+            foreach(Character character in AllCharacters)
+            {
+                character.ResetEndOfDay();
+            }
         }
 
         private static void LoadCharacterBodies(Stage oldStage, Stage newStage)

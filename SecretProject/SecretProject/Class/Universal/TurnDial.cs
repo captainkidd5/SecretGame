@@ -21,12 +21,12 @@ namespace SecretProject.Class.Universal
             this.CurrentIndex = 0;
             this.AvailableLocations = new List<Stage>()
             {
-                Game1.Town,
-                Game1.HomeStead,
-                Game1.SippiDesert
+                StageManager.Town,
+                StageManager.HomeStead,
+                StageManager.SippiDesert
 
             };
-            CurrentLocation = Game1.Town;
+            CurrentLocation = StageManager.Town;
         }
 
         public void CycleLocation(Dir direction, TileManager tileManager, int layer, int x, int y)

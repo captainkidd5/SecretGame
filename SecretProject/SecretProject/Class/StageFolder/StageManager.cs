@@ -108,7 +108,7 @@ namespace SecretProject.Class.StageFolder
             DayLightsTarget = new RenderTarget2D(graphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false, pp.BackBufferFormat, DepthFormat.Depth24);
             MasterSpriteSheet = content.Load<Texture2D>("maps/MasterSpriteSheet");
             TmxMap townMap = new TmxMap("Content/Map/Town.tmx");
-            Town = new Stage(this,"Town", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, townMap, 1, 1, content.ServiceProvider, PlayerManager, CharacterManager)
+            Town = new Stage(this,"Town", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, townMap, content.ServiceProvider, PlayerManager, CharacterManager)
             { StageIdentifier = (int)StagesEnum.Town };
 
 
@@ -175,7 +175,7 @@ namespace SecretProject.Class.StageFolder
         {
             Game1.UserInterface.LoadingScreen.BeginBlackTransition(.05f, 2f);
 
-            IsFadingOut = true;
+            Globals.IsFadingOut = true;
 
             Game1.VelcroWorld.Clear();
 
@@ -215,22 +215,22 @@ namespace SecretProject.Class.StageFolder
                     float y = tempPortal.PortalStart.Y;
                     float safteyX = tempPortal.SafteyOffSetX;
                     float safteyY = tempPortal.SafteyOffSetY;
-                    Player.CreateBody();
-                    Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
-                    cam.pos = Player.Position;
+                    PlayerManager.Player.CreateBody();
+                    PlayerManager.Player.SetPosition(new Vector2(x + width + safteyX, y + safteyY));
+                    Game1.cam.pos = PlayerManager.Player.Position;
 
                 }
                 else
                 {
-                    Player.CreateBody();
+                    PlayerManager.Player.CreateBody();
                 }
             }
             else
             {
-                Player.CreateBody();
+                PlayerManager.Player.CreateBody();
             }
 
-            Player.Wardrobe.UpdateForCreationMenu();
+            PlayerManager.Player.Wardrobe.UpdateForCreationMenu();
 
 
 
@@ -242,7 +242,7 @@ namespace SecretProject.Class.StageFolder
             CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
             CurrentStage.AllTiles.UpdateCropTile();
 
-            Player.LoadPenumbra(CurrentStage);
+            PlayerManager.Player.LoadPenumbra(CurrentStage);
 
 
             Game1.VelcroWorld.ProcessChanges();

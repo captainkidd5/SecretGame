@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI.ShopStuff
                 this.Pages[this.CurrentPage][i].Update(gameTime, mouse);
 
             }
-            this.FowardButton.Update(mouse);
+            this.FowardButton.Update();
 
             if (this.FowardButton.isClicked)
             {
@@ -122,7 +122,7 @@ namespace SecretProject.Class.UI.ShopStuff
             }
 
 
-            this.BackButton.Update(mouse);
+            this.BackButton.Update();
 
             if (this.BackButton.isClicked)
             {
@@ -135,7 +135,7 @@ namespace SecretProject.Class.UI.ShopStuff
 
 
 
-            redEsc.Update(mouse);
+            redEsc.Update();
 
 
             if (redEsc.isClicked)

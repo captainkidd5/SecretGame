@@ -27,7 +27,7 @@ namespace SecretProject.Class.UI
 
         public float Update(float valueToAffect)
         {
-            this.SliderButton.Update(Game1.MouseManager);
+            this.SliderButton.Update();
             if (this.SliderButton.isClickedAndHeld)
             {
                 if (Game1.MouseManager.UIPosition.X > Game1.MouseManager.OldMouseInterfacePosition.X)

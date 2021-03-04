@@ -115,7 +115,7 @@ namespace SecretProject.Class.UI
         {
             for (int i = 0; i < this.AllNonInventoryButtons.Count; i++)
             {
-                this.AllNonInventoryButtons[i].Update(mouse);
+                this.AllNonInventoryButtons[i].Update();
             }
             if (InGameMenu.IsHovered)
             {

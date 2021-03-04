@@ -186,7 +186,7 @@ namespace SecretProject.Class.StageFolder
             this.UpdatingGrassTufts = new List<GrassTuft>();
             this.EnemyManager = new EnemyManager(Graphics, content);
 
-            this.Player = PlayerManager.Player1;
+            this.Player = PlayerManager.Player;
         }
         public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {

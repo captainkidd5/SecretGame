@@ -98,7 +98,7 @@ namespace SecretProject
 
         public static int NPCSpawnCountLimit = 50;
 
-        public static StageManager StageHandler { get; set; }
+        public static StageManager StageManager { get; set; }
 
         public static bool IsFirstTimeStartup;
         public static bool AreGeneratableTilesLoaded;
@@ -258,8 +258,8 @@ namespace SecretProject
             HomeContentManager.RootDirectory = "Content";
             MainMenuContentManager.RootDirectory = "Content";
             PlayerManager = new PlayerManager( GraphicsDevice, HomeContentManager);
-            CharacterManager = new CharacterManager(GraphicsDevice, HomeContentManager);
-            StageHandler = new StageManager(this, GraphicsDevice,HomeContentManager, PlayerManager, CharacterManager);
+            CharacterManager = new CharacterManager(GraphicsDevice, HomeContentManager, StageManager);
+            StageManager = new StageManager(this, GraphicsDevice,HomeContentManager, PlayerManager, CharacterManager);
             //set window dimensions
 
 
@@ -322,7 +322,7 @@ namespace SecretProject
         /// <returns></returns>
         public static Stage GetStageFromEnum(StagesEnum stage)
         {
-            return StageHandler.GetStageFromEnum(stage);
+            return StageManager.GetStageFromEnum(stage);
         }
 
         private void LoadPhysics()
@@ -356,7 +356,7 @@ namespace SecretProject
             SoundManager = new SoundBoard(this, this.Content);
 
 
-            StageHandler.Load();
+            StageManager.Load();
 
 
             DebugWindow = new DebugWindow(this.GraphicsDevice, AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, this.GraphicsDevice);
@@ -376,7 +376,7 @@ namespace SecretProject
                 new CheckListRequirement("SuperBulb",1792, 1, "plant", false)
                 });
 
-            GlobalClock = new Clock();
+            GlobalClock = new Clock(StageManager,CharacterManager);
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, Content.ServiceProvider);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
@@ -604,7 +604,7 @@ namespace SecretProject
             else
             {
                 Game1.Player.UserInterface.CinematicMode = false;
-                StageHandler.Update(gameTime);
+                StageManager.Update(gameTime);
             }
                 
 
@@ -636,7 +636,7 @@ namespace SecretProject
             {
                 if (Globals.EnableVelcroDraw)
                     DebugVelcro();
-                StageHandler.Draw(spriteBatch);
+                StageManager.Draw(spriteBatch);
 
             }
            

@@ -150,7 +150,7 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Update(GameTime gameTime)
         {
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
 
 
             if (redEsc.isClicked)

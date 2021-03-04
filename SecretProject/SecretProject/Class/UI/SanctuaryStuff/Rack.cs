@@ -103,7 +103,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             for (int i = 0; i < this.RewardIcons.Count; i++)
             {
                 this.RewardIcons[i].Position = new Vector2(position.X + 48 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 120 + (32 * rackIndex * scale * (float)1.25f));
-                this.RewardIcons[i].Update(Game1.MouseManager);
+                this.RewardIcons[i].Update();
                 if (this.RewardIcons[i].IsHovered)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
