@@ -9,6 +9,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
@@ -331,9 +332,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-                StageManager.CurrentStage.ParticleEngine.ActivationTime = .25f;
-                StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
-                StageManager.CurrentStage.ParticleEngine.Color = this.DamageColor;
+                Stage.ParticleEngine.ActivationTime = .25f;
+                Stage.ParticleEngine.EmitterLocation = this.Position;
+                Stage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Hurt;

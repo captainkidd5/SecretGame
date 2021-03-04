@@ -86,7 +86,7 @@ namespace SecretProject.Class.StageFolder
         public ContentManager StageContentManager { get; set; }
         public GraphicsDevice Graphics { get; set; }
 
-        public ParticleEngine ParticleEngine { get; set; }
+        public static ParticleEngine ParticleEngine { get; set; }
 
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get; set; }
@@ -276,7 +276,7 @@ namespace SecretProject.Class.StageFolder
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
-            this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
             this.Cam.pos.X = Game1.Player.position.X;
             this.Cam.pos.Y = Game1.Player.position.Y;
@@ -421,7 +421,7 @@ namespace SecretProject.Class.StageFolder
             DrawPenumbra(gameTime);
             this.FunBox.Update(gameTime);
             this.TextBuilder.Update(gameTime);
-            this.ParticleEngine.Update(gameTime);
+            ParticleEngine.Update(gameTime);
             for(int i =0; i < this.UpdatingGrassTufts.Count;i++)
             {
                 this.UpdatingGrassTufts[i].Update(gameTime, UpdatingGrassTufts);
@@ -527,7 +527,7 @@ namespace SecretProject.Class.StageFolder
                     Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType); //1471
                 }
 
-                this.ParticleEngine.Draw(spriteBatch);
+                ParticleEngine.Draw(spriteBatch);
             EnemyManager.Draw(spriteBatch);
 
                 for (int p = 0; p < this.AllProjectiles.Count; p++)

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Factories;
@@ -169,9 +170,9 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public virtual void Miss()
         {
             Game1.SoundManager.PlaySoundEffect(this.MissSound, true, .15f);
-            StageManager.CurrentStage.ParticleEngine.ActivationTime = .05f;
-            StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
-            StageManager.CurrentStage.ParticleEngine.Color = Color.White;
+            Stage.ParticleEngine.ActivationTime = .05f;
+            Stage.ParticleEngine.EmitterLocation = this.CurrentPosition;
+            Stage.ParticleEngine.Color = Color.White;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

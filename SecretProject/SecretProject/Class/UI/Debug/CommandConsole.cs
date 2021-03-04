@@ -193,15 +193,15 @@ namespace SecretProject.Class.UI
                     string newString = separatedString[1].ToLower();
 
                    newString = char.ToUpper(newString[0]) + newString.Substring(1);
-                    Stages newStage = Stages.Town;
-                    if(Enum.TryParse(newString, out newStage))
-                    {
-                        StageManager.SwitchStage(Game1.GetStageFromEnum(newStage));
-                    }
-                    else
-                    {
-                        this.DisplayLog += "error: wasn't able to identify " + newString;
-                    }
+                  //  Stages newStage = Stages.Town;
+                    //if(Enum.TryParse(newString, out newStage))
+                    //{
+                    //    StageManager.SwitchStage(Game1.GetStageFromEnum(newStage));
+                    //}
+                    //else
+                    //{
+                    //    this.DisplayLog += "error: wasn't able to identify " + newString;
+                    //}
                     
                     break;
                 case "clear":
