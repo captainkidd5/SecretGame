@@ -208,7 +208,7 @@ namespace SecretProject.Class.StageFolder
 
                 }
             }
-            Back.Update(Game1.MouseManager);
+            Back.Update();
             if (Back.isClicked)
             {
                 ChooseGameMenu.MenuChoice = ChooseGameState.SaveSlotSelection;
@@ -222,7 +222,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in PrimaryButtons)
             {
-                button.Update(Game1.MouseManager);
+                button.Update();
             }
 
 
@@ -276,7 +276,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in DevPanelButtons)
             {
-                button.Update(Game1.MouseManager);
+                button.Update();
             }
             if (StartGameInTown.isClicked)
             {
@@ -330,7 +330,7 @@ namespace SecretProject.Class.StageFolder
         {
             foreach (Button button in this.SettingsButtons)
             {
-                button.Update(Game1.MouseManager);
+                button.Update();
             }
             if (FullScreen.isClicked)
             {

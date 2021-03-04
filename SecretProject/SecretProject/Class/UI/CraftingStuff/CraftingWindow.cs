@@ -59,14 +59,14 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public void Update(GameTime gameTime)
         {
-            this.RedEsc.Update(Game1.MouseManager);
+            this.RedEsc.Update();
             if (RedEsc.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             }
             for (int i = 0; i < CategoryTabs.Count; i++)
             {
-                CategoryTabs[i].TabButton.Update(Game1.MouseManager);
+                CategoryTabs[i].TabButton.Update();
                 if(CategoryTabs[i].TabButton.isClicked)
                 {
                     this.CurrentOpenTab = CategoryTabs[i];

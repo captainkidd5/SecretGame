@@ -43,7 +43,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public void Update(GameTime gameTime)
         {
-            this.ItemButton.Update(Game1.MouseManager);
+            this.ItemButton.Update();
             this.CanCraft = CheckIfCanCraft();
             if (this.ItemButton.isClicked)
             {

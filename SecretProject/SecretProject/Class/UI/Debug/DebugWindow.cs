@@ -141,10 +141,10 @@ namespace SecretProject.Class.UI
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(StageManager.CurrentStage.AllTiles).ToString()
 
 
-        private string WriteDungeonGrid()
-        {
-            return Game1.ForestDungeon.GetDebugString();
-        }
+        //private string WriteDungeonGrid()
+        //{
+        //    //return Game1.ForestDungeon.GetDebugString();
+        //}
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -156,7 +156,7 @@ namespace SecretProject.Class.UI
                 //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None,Utility.StandardButtonDepth);
                 //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + this.ElapsedMS + " \n \n " + " \n \n PlayerPositionX: " + Game1.Player.position.X + " \n \n cameraY: "
-                    + Game1.cam.Pos.Y + " \n \n Current Room: " + WriteDungeonGrid(), position, Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Utility.StandardTextDepth);
+                    + Game1.cam.Pos.Y + " \n \n Current Room: ", position, Color.White, 0f, Game1.Utility.Origin, 1.25f, SpriteEffects.None, Utility.StandardTextDepth);
 
 
                 this.DebugButton1.Draw(spriteBatch);

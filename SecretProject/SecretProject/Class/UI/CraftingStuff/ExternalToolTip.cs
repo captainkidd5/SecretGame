@@ -35,7 +35,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
         public void Update(GameTime gameTime)
         {
-            Button.Update(Game1.MouseManager);
+            Button.Update();
             if (Button.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;

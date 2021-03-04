@@ -56,7 +56,7 @@ namespace SecretProject.Class.UI.CraftingStuff
             {
 
 
-                this.RedEsc.Update(Game1.MouseManager);
+                this.RedEsc.Update();
                 if (RedEsc.isClicked)
                 {
                     this.IsActive = false;
@@ -64,7 +64,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
                 this.CurrentRecipe.UpdateToolTips(gameTime);
 
-                this.ItemToCraftButton.Update(Game1.MouseManager);
+                this.ItemToCraftButton.Update();
                 if(this.ItemToCraftButton.IsHovered)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
@@ -80,7 +80,7 @@ namespace SecretProject.Class.UI.CraftingStuff
 
                 if(this.CurrentRecipe.CanCraft)
                 {
-                    this.CraftButton.Update(Game1.MouseManager);
+                    this.CraftButton.Update();
                     if(this.CraftButton.isClicked)
                     {
                         CraftItem(this.CurrentRecipe);

@@ -40,7 +40,7 @@ namespace SecretProject.Class.UI.AlertStuff
 
         public override void Update(GameTime gameTime, List<Alert> alerts)
         {
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
             if (redEsc.isClicked)
             {
                 if (negativeAction != null)
@@ -50,8 +50,8 @@ namespace SecretProject.Class.UI.AlertStuff
                 alerts.Remove(this);
                 return;
             }
-            Yes.Update(Game1.MouseManager);
-            No.Update(Game1.MouseManager);
+            Yes.Update();
+            No.Update();
 
             if(Yes.isClicked)
             {

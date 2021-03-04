@@ -683,7 +683,7 @@ namespace SecretProject.Class.TileStuff
                             Portal portal = TileManager.Stage.AllPortals.Find(x => x.To == to && x.From == from);
 
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage(Game1.GetStageFromEnum((StagesEnum)to), portal);
+                            StageManager.SwitchStage(Game1.GetStageFromEnum((StagesEnum)to), portal);
                         }
                     }
                     break;
@@ -877,10 +877,10 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.UserInterface.AddAlert(AlertType.Normal, Game1.Utility.centerScreen,"Location changed!");
 
                         if (TileManager.AllTiles[z][i, j].GID == 1602)
-                            Game1.TurnDial.CycleLocation(Dir.Right, TileManager, z, i, j);
+                            StageManager.TurnDial.CycleLocation(Dir.Right, TileManager, z, i, j);
 
                         else
-                            Game1.TurnDial.CycleLocation(Dir.Left, TileManager, z,i,j);
+                            StageManager.TurnDial.CycleLocation(Dir.Left, TileManager, z,i,j);
 
 
                     }

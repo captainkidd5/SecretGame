@@ -45,7 +45,7 @@ namespace SecretProject.Class.UI
 
             Game1.isMyMouseVisible = true;
             Game1.freeze = true;
-            this.RedEsc.Update(mouse);
+            this.RedEsc.Update();
             if (this.RedEsc.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;

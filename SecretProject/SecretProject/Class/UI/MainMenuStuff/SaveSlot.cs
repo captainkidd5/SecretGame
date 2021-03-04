@@ -52,7 +52,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.MouseManager);
+            this.Button.Update();
             if(this.Button.isClicked)
             {
                 Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);

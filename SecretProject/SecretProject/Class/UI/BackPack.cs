@@ -7,6 +7,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -24,6 +25,7 @@ namespace SecretProject.Class.UI
 
         public GraphicsDevice Graphics { get; set; }
         public Inventory Inventory { get; set; }
+        public StageManager StageManager { get; }
         public int Capacity { get; set; }
         private Vector2 BigPosition { get; set; }
         public Vector2 SmallPosition { get; set; }
@@ -63,10 +65,11 @@ namespace SecretProject.Class.UI
 
         private Button ButtonHoveredLastFrame { get; set; }
 
-        public BackPack(GraphicsDevice graphics, Inventory Inventory)
+        public BackPack(GraphicsDevice graphics, Inventory Inventory, StageManager stageManager)
         {
             this.Graphics = graphics;
             this.Inventory = Inventory;
+            StageManager = stageManager;
             this.IsActive = true;
             this.LargeBackgroundSourceRectangle = new Rectangle(208, 576, 336, 112);
             this.SmallBackgroundSourceRectangle = new Rectangle(208, 688, 336, 32);
@@ -148,7 +151,7 @@ namespace SecretProject.Class.UI
                 ExpandButton.BackGroundSourceRectangle = this.ExpandedButtonRectangle;
 
             }
-            ExpandButton.Update(Game1.MouseManager);
+            ExpandButton.Update();
             if (ExpandButton.isClicked)
             {
                 this.Expanded = !this.Expanded;
@@ -288,7 +291,7 @@ namespace SecretProject.Class.UI
                 for (int i = 0; i < NumberOfSlotsToUpdate; i++)
                 {
                     Button itemButton = AllItemButtons[i];
-                    itemButton.Update(Game1.MouseManager);
+                    itemButton.Update();
 
                     if (itemButton.IsHovered)
                     {

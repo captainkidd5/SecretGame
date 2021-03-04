@@ -59,7 +59,7 @@ namespace SecretProject.Class.StageFolder
         private PlayerManager PlayerManager { get; }
         private CharacterManager CharacterManager { get; set; }
 
-        private TurnDial TurnDial { get; set; }
+        public static TurnDial TurnDial { get; set; }
 
         public MainMenu mainMenu;
         public static Stage Town;
@@ -129,8 +129,8 @@ namespace SecretProject.Class.StageFolder
             MountainTop = new Stage(this, "MountainTop", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/MountainTop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MountainTop };
             GisaardRanch = new Stage(this, "GisaardRanch", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/GisaardRanch.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GisaardRanch };
             HomeStead = new Stage(this, "HomeStead", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.HomeStead };
-            ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ForestDungeon };
-            DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DesertDungeon };
+           // ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ForestDungeon };
+           // DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DesertDungeon };
             SippiDesert = new Stage(this, "SippiDesert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/SippiDesert.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.SippiDesert };
             TrainStation = new Stage(this, "TrainStation", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/TrainStation.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.TrainStation };
             RooltapCastle = new Stage(this, "RuletapCastle", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/RooltapCastle.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.RooltapCastle };

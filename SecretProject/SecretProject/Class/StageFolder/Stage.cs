@@ -47,9 +47,7 @@ namespace SecretProject.Class.StageFolder
 
 
         public string Name { get; private set; }
-        private readonly StageManager stageHandler;
-        private readonly GraphicsDevice graphics;
-        private readonly Camera2D camera;
+
         public LocationType LocationType { get; set; }
         public StagesEnum StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
@@ -280,7 +278,6 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-            this.Cam = camera;
             this.Cam.pos.X = Game1.Player.position.X;
             this.Cam.pos.Y = Game1.Player.position.Y;
 
@@ -365,7 +362,7 @@ namespace SecretProject.Class.StageFolder
                         if (Game1.MouseManager.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart) && Game1.MouseManager.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            stageHandler.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
+                            StageManager.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -375,7 +372,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         if (Player.Rectangle.Intersects(this.AllPortals[p].PortalStart))
                         {
-                            stageHandler.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
+                            StageManager.SwitchStage(Game1.GetStageFromEnum((StagesEnum)this.AllPortals[p].To), this.AllPortals[p]);
                             OnSceneChanged();
                             SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
@@ -496,11 +493,11 @@ namespace SecretProject.Class.StageFolder
                 {
 
 
-                    graphics.SetRenderTarget(nightLightsTarget);
-                    //graphics.Clear(Color.White);
-                    graphics.Clear(new Color(50, 50, 50, 220));
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
-                    graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                graphicsDevice.SetRenderTarget(nightLightsTarget);
+                //graphics.Clear(Color.White);
+                graphicsDevice.Clear(new Color(50, 50, 50, 220));
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphicsDevice));
+                graphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllNightLights.Count; l++)
                     {
                         spriteBatch.Draw(this.AllNightLights[l].LightTexture, this.AllNightLights[l].Position, Color.White);
@@ -512,19 +509,19 @@ namespace SecretProject.Class.StageFolder
                     spriteBatch.End();
                 }
 
-                graphics.SetRenderTarget(mainTarget);
+            graphicsDevice.SetRenderTarget(mainTarget);
 
 
-                graphics.Clear(Color.Transparent);
+            graphicsDevice.Clear(Color.Transparent);
 
                 BeginPenumbra();
 
 
 
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphicsDevice));
 
-                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                graphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if (Game1.CurrentWeather != WeatherType.None)
                 {
                     Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType); //1471
@@ -591,9 +588,9 @@ namespace SecretProject.Class.StageFolder
                     Game1.MouseManager.DrawDebug(spriteBatch);
                 }
                 spriteBatch.End();
-                
 
-                graphics.SetRenderTarget(null);
+
+            graphicsDevice.SetRenderTarget(null);
 
 
 

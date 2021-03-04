@@ -52,7 +52,7 @@ namespace SecretProject.Class.UI
         public virtual void Update(GameTime gameTime, List<Alert> alerts)
         {
             Game1.freeze = true;
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
             if(redEsc.isClicked)
             {
                 Game1.freeze = false;

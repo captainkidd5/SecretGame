@@ -16,12 +16,14 @@ using System.Drawing;
 using System.IO;
 using SecretProject.Class.TileStuff.SpawnStuff.MazeStuff;
 using Color = Microsoft.Xna.Framework.Color;
+using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.UI
 {
     public class CommandConsole : IExclusiveInterfaceComponent
     {
         private GraphicsDevice Graphics { get; set; }
+        public StageManager StageManager { get; }
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -42,9 +44,10 @@ namespace SecretProject.Class.UI
         private Vector2 typeBoxPosition;
 
         private RasterizerState rasterizerState;
-        public CommandConsole(GraphicsDevice graphics)
+        public CommandConsole(GraphicsDevice graphics, StageManager stageManager)
         {
             this.Graphics = graphics;
+            StageManager = stageManager;
             this.AllCommands = new List<CommandWindowCommand>()
             {
                 new CommandWindowCommand("spawn", "spawn (int)[itemID], (int)[count]"),
@@ -193,7 +196,7 @@ namespace SecretProject.Class.UI
                     Stages newStage = Stages.Town;
                     if(Enum.TryParse(newString, out newStage))
                     {
-                        StageHandler.SwitchStage(Game1.GetStageFromEnum(newStage));
+                        StageManager.SwitchStage(Game1.GetStageFromEnum(newStage));
                     }
                     else
                     {
@@ -238,7 +241,7 @@ namespace SecretProject.Class.UI
                 case "swaproom":
                     int roomX = int.Parse(separatedString[1].ToLower());
                     int roomY = int.Parse(separatedString[2].ToLower());
-                    (Game1.ForestDungeon as Dungeon).SwitchRooms(roomX, roomY, Dir.Down);
+                    //(Game1.ForestDungeon as Dungeon).SwitchRooms(roomX, roomY, Dir.Down);
                     break;
                 case "camlock":
                     Game1.Player.LockBounds = !Game1.Player.LockBounds;

@@ -9,6 +9,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI.AlertStuff;
 using SecretProject.Class.UI.CraftingStuff;
 using SecretProject.Class.UI.QuestStuff;
@@ -61,6 +62,7 @@ namespace SecretProject.Class.UI
         public bool DrawTileSelector { get; set; } = true;
 
         public GraphicsDevice GraphicsDevice { get; set; }
+        public StageManager StageManager { get; }
         public Game1 Game { get; set; }
         public EscMenu Esc { get; set; }
 
@@ -116,14 +118,14 @@ namespace SecretProject.Class.UI
         {
 
         }
-        public UserInterface(Player player, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam)
+        public UserInterface(Player player, GraphicsDevice graphicsDevice, ContentManager content,StageManager stageManager)
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
-            this.BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
+            StageManager = stageManager;
+            this.BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory, stageManager);
             this.BottomBar = new ToolBar(graphicsDevice, this.BackPack, content);
             this.Esc = new EscMenu(graphicsDevice, content);
-            this.cam = cam;
             this.TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
             //this.CraftingMenu = new CraftingMenu(content, graphicsDevice);
@@ -145,7 +147,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
-            this.CommandConsole = new CommandConsole(this.GraphicsDevice);
+            this.CommandConsole = new CommandConsole(this.GraphicsDevice,stageManager);
             this.AllRisingText = new List<RisingText>();
 
 

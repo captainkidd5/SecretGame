@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,25 +22,27 @@ namespace SecretProject.Class.UI.ButtonStuff
         private Rectangle SourceRectangle;
         private Vector2 InfoBoxPosition;
 
-        public SunsetMushroom(GraphicsDevice graphics, Vector2 position)
+        public StageManager StageManager { get; }
+
+        public SunsetMushroom(GraphicsDevice graphics, Vector2 position, StageManager stageManager)
         {
             this.Graphics = graphics;
             this.Position = position;
-
+            StageManager = stageManager;
             this.SourceRectangle = new Rectangle(112, 320, 32, 32);
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, this.SourceRectangle, graphics, position, Controls.CursorType.Normal, 2f);
             this.InfoBoxPosition = new Vector2(this.Position.X - 64, this.Position.Y - 128);
         }
         private void Teleport()
         {
-            Game1.SwitchStage( Game1.Town);
+            StageManager.SwitchStage( StageManager.Town);
             Game1.Player.position = teleportPosition;
 
         }
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.MouseManager);
+            this.Button.Update();
             if(this.Button.IsHovered)
             {
                 InfoPopUp infoBox = new InfoPopUp("Press to return to the center of town", InfoBoxPosition);

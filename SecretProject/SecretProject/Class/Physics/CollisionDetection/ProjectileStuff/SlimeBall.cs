@@ -20,9 +20,9 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public override void Miss()
         {
             Game1.SoundManager.PlaySoundEffect(this.MissSound, true, .15f);
-            StageManager.CurrentStage.ParticleEngine.ActivationTime = .05f;
-            StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
-            StageManager.CurrentStage.ParticleEngine.Color = Color.Green;
+            //StageManager.CurrentStage.ParticleEngine.ActivationTime = .05f;
+            //StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.CurrentPosition;
+            //StageManager.CurrentStage.ParticleEngine.Color = Color.Green;
         }
     }
 }
