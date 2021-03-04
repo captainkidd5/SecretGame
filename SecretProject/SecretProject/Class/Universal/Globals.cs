@@ -24,6 +24,8 @@ namespace SecretProject.Class.Universal
         public static float PreferredAspect = (float)1280 / (float)720;
         public static Rectangle ScreenRectangle;
 
+        public static bool IsFadingOut = false;
+
         /// <summary>
         /// Will fill in black bars on the top and bottom of the screen (like movies do!) so that
         /// the aspect ratio is maintined.

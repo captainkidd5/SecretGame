@@ -104,12 +104,12 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public void Update(GameTime gameTime)
         {
-            RedEsc.Update(Game1.MouseManager);
+            RedEsc.Update();
             if(RedEsc.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             }
-            this.RepairButton.Update(Game1.MouseManager);
+            this.RepairButton.Update();
             if(this.RepairButton.isClicked)
             {
                 if(Game1.WorldQuestHolder.CheckIfRequirementsMet(this.WorldQuest))
@@ -130,7 +130,7 @@ namespace SecretProject.Class.UI.QuestStuff
 
             for(int i =0; i < this.ItemRequirementButtons.Count; i++)
             {
-                ItemRequirementButtons[i].Update(Game1.MouseManager);
+                ItemRequirementButtons[i].Update();
             }
 
             //if(this.Tile == null)

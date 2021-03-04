@@ -74,8 +74,8 @@ namespace SecretProject.Class.UI
                 }
                 base.Update(gameTime, Keys.F1);
                 this.ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
-                this.DebugButton1.Update(Game1.MouseManager);
-                this.DebugButton2.Update(Game1.MouseManager);
+                this.DebugButton1.Update();
+                this.DebugButton2.Update();
                 if (Game1.KeyboardManager.WasKeyPressed(Keys.G))
                 {
                     Game1.GlobalClock.IncrementDay();
@@ -96,14 +96,14 @@ namespace SecretProject.Class.UI
                 {
  
                 }
-                this.SpawnAnimalPack.Update(Game1.MouseManager);
+                this.SpawnAnimalPack.Update();
                 if (this.SpawnAnimalPack.isClicked)
                 {
                   //  Game1.OverWorld.Enemies.AddRange(Game1.OverWorld.AllTiles.ChunkUnderPlayer.NPCGenerator.SpawnNpcPack(GenerationType.Dirt, Game1.Player.position));
                 }
-                this.SpeedClockUp.Update(Game1.MouseManager);
-                this.SlowClockDown.Update(Game1.MouseManager);
-                this.IncrementDay.Update(Game1.MouseManager);
+                this.SpeedClockUp.Update();
+                this.SlowClockDown.Update();
+                this.IncrementDay.Update();
                 if (this.IncrementDay.isClicked)
                 {
                     Game1.GlobalClock.IncrementDay();
@@ -119,7 +119,7 @@ namespace SecretProject.Class.UI
 
                 for (int i = 0; i < this.WeatherButtons.Count; i++)
                 {
-                    this.WeatherButtons[i].Update(Game1.MouseManager);
+                    this.WeatherButtons[i].Update();
                 }
                 if (this.WeatherNone.isClicked)
                 {

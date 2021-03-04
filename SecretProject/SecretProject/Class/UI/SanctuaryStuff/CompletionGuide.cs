@@ -92,7 +92,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             for (int tab = 0; tab < this.CategoryTabs.Count; tab++)
             {
                 this.CategoryTabs[tab].Button.Position = new Vector2(this.DrawPosition.X + 64 * tab * this.BackGroundScale, this.DrawPosition.Y - 32 * this.BackGroundScale);
-                this.CategoryTabs[tab].Button.Update(Game1.MouseManager);
+                this.CategoryTabs[tab].Button.Update();
                 if (this.CategoryTabs[tab].Button.IsHovered)
                 {
                     this.CategoryTabs[tab].ButtonColorMultiplier = .5f;

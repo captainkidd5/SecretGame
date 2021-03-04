@@ -193,7 +193,7 @@ namespace SecretProject.Class.UI
                     Stages newStage = Stages.Town;
                     if(Enum.TryParse(newString, out newStage))
                     {
-                        Game1.SwitchStage(Game1.GetStageFromEnum(newStage));
+                        StageHandler.SwitchStage(Game1.GetStageFromEnum(newStage));
                     }
                     else
                     {

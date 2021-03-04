@@ -43,7 +43,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Update(GameTime gameTime)
         {
-            this.Button.Update(Game1.MouseManager);
+            this.Button.Update();
             if (this.IsActive && Game1.MouseManager.IsClicked && !this.Button.isClicked)
             {
                 this.IsActive = false;

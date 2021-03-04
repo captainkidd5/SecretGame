@@ -236,10 +236,9 @@ namespace SecretProject.Class.StageFolder
 
             Game1.MouseManager.AttachMouseBody();
 
-            LoadCharacterBodies(CurrentStage, newLocation);
-            Train.SwitchStage(CurrentStage.StageIdentifier, newLocation.StageIdentifier);
+           // LoadCharacterBodies(CurrentStage, newLocation);
+            //Train.SwitchStage(CurrentStage.StageIdentifier, newLocation.StageIdentifier);
             CurrentStage = newLocation;
-            CurrentStage.DebuggableShapes.Add(new RectangleDebugger(Player.LargeProximitySensor, CurrentStage.DebuggableShapes));
             CurrentStage.AllTiles.UpdateCropTile();
 
             PlayerManager.Player.LoadPenumbra(CurrentStage);

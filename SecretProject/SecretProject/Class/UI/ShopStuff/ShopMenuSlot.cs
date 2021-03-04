@@ -52,8 +52,8 @@ namespace SecretProject.Class.UI.ShopStuff
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            this.Button.Update(mouse);
-            this.GoldButton.Update(mouse);
+            this.Button.Update();
+            this.GoldButton.Update();
             this.Price = Game1.ItemVault.GetData(this.ItemID).Price;
             Vector2 infoBoxPosition = new Vector2(mouse.UIPosition.X + 64, mouse.UIPosition.Y + 64);
             if (Stock > 0)

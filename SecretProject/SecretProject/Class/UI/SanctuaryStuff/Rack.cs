@@ -64,22 +64,22 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 else if (Requirement.SanctuaryRewards[i].GIDUnlock != 0)
                 {
 
-                    RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
-             this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
-                    {
-                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
-                    });
+               //     RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
+           //  this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
+            //        {
+            //            ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
+            //        });
 
 
                 }
-                else if (Requirement.SanctuaryRewards[i].LootIndexUnlock != 0)
-                {
-                    RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
-             this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
-                    {
-                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
-                    });
-                }
+             //   else if (Requirement.SanctuaryRewards[i].LootIndexUnlock != 0)
+             //   {
+             //       RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
+             //this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
+             //       {
+             //           ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
+             //       });
+             //   }
                 buttonIndex++;
 
 
@@ -171,8 +171,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, baseY + 16), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
 
             //Item Image
-            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + Requirement.ImageLocation.X * (this.Scale - 1)), (int)baseY, 48, 48),
-                Requirement.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
+            //spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + Requirement.ImageLocation.X * (this.Scale - 1)), (int)baseY, 48, 48),
+            //    Requirement.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None,Utility.StandardButtonDepth + .03f);
 
             //separation line
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(position.X, baseY + 64), lineSeparationRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None,Utility.StandardButtonDepth + .03f);

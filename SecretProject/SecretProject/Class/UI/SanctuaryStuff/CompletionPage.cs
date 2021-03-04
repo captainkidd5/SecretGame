@@ -92,7 +92,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
 
             FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 104, position.Y - 16);
-            FinalRewardButton.Update(Game1.MouseManager);
+            FinalRewardButton.Update();
             if (FinalRewardButton.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
@@ -100,8 +100,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 Game1.Player.UserInterface.InfoBox.StringToWrite = FinalRewardButton.Description;
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.MouseManager.Position.X + 48, Game1.MouseManager.Position.Y + 48);
             }
-            ScrollUpButton.Update(Game1.MouseManager);
-            ScrollDownButton.Update(Game1.MouseManager);
+            ScrollUpButton.Update();
+            ScrollDownButton.Update();
             if (ScrollUpButton.isClicked)
             {
      

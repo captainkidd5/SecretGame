@@ -66,7 +66,7 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public void Update(GameTime gameTime)
         {
-            RedEsc.Update(Game1.MouseManager);
+            RedEsc.Update();
             if(RedEsc.isClicked)
             {
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleClose, true, .1f);
@@ -75,7 +75,7 @@ namespace SecretProject.Class.UI.QuestStuff
             }
             for(int i = 0; i < QuestButtons.Count; i++)
             {
-                QuestButtons[i].Update(Game1.MouseManager);
+                QuestButtons[i].Update();
                 if(QuestButtons[i].isClicked)
                 {
                     this.ActiveQuestPage = Quests[i];
@@ -84,7 +84,7 @@ namespace SecretProject.Class.UI.QuestStuff
             if(this.ActiveQuestPage != null)
             {
                 this.ActiveQuestPage.Update(gameTime);
-                this.BackButton.Update(Game1.MouseManager);
+                this.BackButton.Update();
                 if(this.BackButton.isClicked)
                 {
                     this.ActiveQuestPage = null;

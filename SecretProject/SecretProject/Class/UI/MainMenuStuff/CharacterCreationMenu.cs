@@ -146,7 +146,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void Update(GameTime gameTime)
         {
             this.WasClothingChanged = false;
-            this.StartNewGameButton.Update(Game1.MouseManager);
+            this.StartNewGameButton.Update();
             this.TypingWindow.Update(gameTime);
             this.PlayerName = TypingWindow.EnteredString;
             Game1.Player.Wardrobe.UpdateForCreationMenu();
@@ -167,7 +167,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
             for(int i =0; i < this.CustomizationButtons.Count; i++)
             {
-                this.CustomizationButtons[i].Update(Game1.MouseManager);
+                this.CustomizationButtons[i].Update();
             }
            
             if (HairFoward.isClicked)

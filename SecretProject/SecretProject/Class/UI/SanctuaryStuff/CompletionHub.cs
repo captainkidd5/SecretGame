@@ -37,7 +37,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Update(GameTime gameTime)
         {
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
             if (redEsc.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
