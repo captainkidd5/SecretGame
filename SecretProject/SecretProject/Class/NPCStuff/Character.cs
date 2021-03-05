@@ -91,6 +91,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
+        public DialogueManager DialogueManager { get; }
         public bool HasActiveQuest { get; set; }
         public bool HasBeenSpokenToAtLeastOnce { get; set; }
 
@@ -102,7 +103,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public Body CollisionBody { get; set; }
 
         public Character(string name, GraphicsDevice graphics, ContentManager content,Vector2 position, Texture2D spriteSheet, RouteSchedule routeSchedule,
-            Stage currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null): base(graphics, content)
+            Stage currentStageLocation, bool isBasicNPC, QuestHandler questHandler, DialogueManager dialogueManager, Texture2D characterPortraitTexture = null): base(graphics, content)
         {
             this.HomeStage = currentStageLocation;
 
@@ -136,7 +137,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             Game1.GlobalClock.HourChanged += OnHourIncreased;
 
             this.QuestHandler = questHandler;
-
+            DialogueManager = dialogueManager;
             this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
         }
         public void LoadLaterStuff(GraphicsDevice graphics)
@@ -369,7 +370,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
 
         //meant for non-moving, non-Primary NPCS
-        public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
+        public void UpdateBasicNPC(GameTime gameTime)
         {
             this.NPCAnimatedSprite[0].Update(gameTime);
             for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
@@ -386,7 +387,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             }
             if (!this.DisableInteractions)
             {
-                CheckBasicNPCSpeechInteraction(mouse, this.FrameToSet);
+                CheckBasicNPCSpeechInteraction(FrameToSet);
             }
 
         }
@@ -451,7 +452,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         }
 
 
-                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth,
+                        skeleton = DialogueManager.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth,
                             Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
                         if (HasBeenSpokenToAtLeastOnce)
                         {
@@ -504,16 +505,16 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
 
 
-        public void CheckBasicNPCSpeechInteraction(MouseManager mouse, int frameToSet)
+        public void CheckBasicNPCSpeechInteraction( int frameToSet)
         {
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
+            if (Game1.MouseManager.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
             {
-                mouse.ChangeMouseTexture(CursorType.Chat);
-                mouse.ToggleGeneralInteraction = true;
+                Game1.MouseManager.ChangeMouseTexture(CursorType.Chat);
+                Game1.MouseManager.ToggleGeneralInteraction = true;
                 Game1.isMyMouseVisible = false;
-                if (mouse.IsClicked)
+                if (Game1.MouseManager.IsClicked)
                 {
-                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                   // DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
                     // Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     if (skeleton.SelectableOptions != null)
                     {

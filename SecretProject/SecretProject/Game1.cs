@@ -367,7 +367,7 @@ namespace SecretProject
 
             Procedural = new Procedural();
             PlayerManager = new PlayerManager(graphics.GraphicsDevice, Content);
-            Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content, cam) { graphics = graphics.GraphicsDevice };
+            Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content,StageManager) { graphics = graphics.GraphicsDevice };
             SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
                 new List<CheckListRequirement>()
                 {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),

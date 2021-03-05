@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.CameraStuff
 {

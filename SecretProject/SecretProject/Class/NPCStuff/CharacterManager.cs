@@ -49,7 +49,7 @@ namespace SecretProject.Class.NPCStuff
         {
 
             Vector2 elixirPosition = Character.GetWorldPosition(new Vector2(25, 12));
-            Elixir = new Character("Elixir",graphicsDevice,content, new Vector2(19, 26), content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet"), RouteManager.ElixirRouteSchedule, StageManager.ElixirHouse, false, QuestManager.ElixirQuests, content.Load<Texture2D>("NPC/Elixir/elixirPortrait"))
+            Elixir = new Character("Elixir",graphicsDevice,content, new Vector2(19, 26), content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet"), RouteManager.ElixirRouteSchedule, StageManager.ElixirHouse, false, QuestManager.ElixirQuests, DialogueManager, content.Load<Texture2D>("NPC/Elixir/elixirPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -77,7 +77,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 dobbinPosition = Character.GetWorldPosition(new Vector2(18, 8));
-            Dobbin = new Character("Dobbin", graphicsDevice, content, new Vector2(5, 7), content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet"), RouteManager.DobbinRouteSchedule , StageManager.DobbinHouse, false, QuestManager.DobbinQuests, content.Load<Texture2D>("NPC/Dobbin/dobbinPortrait"))
+            Dobbin = new Character("Dobbin", graphicsDevice, content, new Vector2(5, 7), content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet"), RouteManager.DobbinRouteSchedule , StageManager.DobbinHouse, false, QuestManager.DobbinQuests, DialogueManager, content.Load<Texture2D>("NPC/Dobbin/dobbinPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -101,7 +101,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 kayaPosition = Character.GetWorldPosition(new Vector2(20, 19));
-            Kaya = new Character("Kaya", graphicsDevice, content, new Vector2(51, 32), content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet"), RouteManager.KayaRouteSchedule, StageManager.Town, false, QuestManager.KayaQuests, content.Load<Texture2D>("NPC/Kaya/KayaPortrait"))
+            Kaya = new Character("Kaya", graphicsDevice, content, new Vector2(51, 32), content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet"), RouteManager.KayaRouteSchedule, StageManager.Town, false, QuestManager.KayaQuests, DialogueManager, content.Load<Texture2D>("NPC/Kaya/KayaPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -135,7 +135,7 @@ namespace SecretProject.Class.NPCStuff
             };
 
             Vector2 julianPosition = Character.GetWorldPosition(new Vector2(16, 15));
-            Julian = new Character("Julian", graphicsDevice, content, new Vector2(16, 15), content.Load<Texture2D>("NPC/Julian/Julian"), RouteManager.JulianRouteSchedule, StageManager.JulianHouse, false, QuestManager.JulianQuests, content.Load<Texture2D>("NPC/Julian/julianPortrait"))
+            Julian = new Character("Julian", graphicsDevice, content, new Vector2(16, 15), content.Load<Texture2D>("NPC/Julian/Julian"), RouteManager.JulianRouteSchedule, StageManager.JulianHouse, false, QuestManager.JulianQuests, DialogueManager, content.Load<Texture2D>("NPC/Julian/julianPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -158,7 +158,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 sarahPosition = Character.GetWorldPosition(new Vector2(56, 28));
-            Sarah = new Character("Sarah", graphicsDevice, content, new Vector2(56, 28), content.Load<Texture2D>("NPC/Sarah/Sarah"), RouteManager.SarahRouteSchedule, StageManager.Town, false, QuestManager.SarahQuests, content.Load<Texture2D>("NPC/Sarah/SarahPortrait"))
+            Sarah = new Character("Sarah", graphicsDevice, content, new Vector2(56, 28), content.Load<Texture2D>("NPC/Sarah/Sarah"), RouteManager.SarahRouteSchedule, StageManager.Town, false, QuestManager.SarahQuests, DialogueManager, content.Load<Texture2D>("NPC/Sarah/SarahPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -197,7 +197,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 mippinPosition = Character.GetWorldPosition(new Vector2(49, 33));
-            Mippin = new Character("Mippin", graphicsDevice, content, new Vector2(49, 33), content.Load<Texture2D>("NPC/Mippin/mippin"), RouteManager.MippinRouteSchedule, StageManager.Town, false, QuestManager.MippinQuests, content.Load<Texture2D>("NPC/Mippin/mippinPortrait"))
+            Mippin = new Character("Mippin", graphicsDevice, content, new Vector2(49, 33), content.Load<Texture2D>("NPC/Mippin/mippin"), RouteManager.MippinRouteSchedule, StageManager.Town, false, QuestManager.MippinQuests, DialogueManager, content.Load<Texture2D>("NPC/Mippin/mippinPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -220,7 +220,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 nedPosition = Character.GetWorldPosition(new Vector2(52, 15));
-            Ned = new Character("Ned", graphicsDevice, content, new Vector2(52, 15), content.Load<Texture2D>("NPC/Ned/Ned"), RouteManager.NedRouteSchedule, StageManager.Town, false, QuestManager.NedQuests, content.Load<Texture2D>("NPC/Ned/NedPortrait"))
+            Ned = new Character("Ned", graphicsDevice, content, new Vector2(52, 15), content.Load<Texture2D>("NPC/Ned/Ned"), RouteManager.NedRouteSchedule, StageManager.Town, false, QuestManager.NedQuests, DialogueManager, content.Load<Texture2D>("NPC/Ned/NedPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -244,7 +244,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 tealPosition = Character.GetWorldPosition(new Vector2(55, 17));
-            Teal = new Character("Teal", graphicsDevice, content, new Vector2(55, 17), content.Load<Texture2D>("NPC/Teal/Teal"), RouteManager.TealRouteSchedule, StageManager.Town, false, QuestManager.TealQuests, content.Load<Texture2D>("NPC/Teal/TealPortrait"))
+            Teal = new Character("Teal", graphicsDevice, content, new Vector2(55, 17), content.Load<Texture2D>("NPC/Teal/Teal"), RouteManager.TealRouteSchedule, StageManager.Town, false, QuestManager.TealQuests, DialogueManager, content.Load<Texture2D>("NPC/Teal/TealPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -267,7 +267,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 marcusPosition = Character.GetWorldPosition(new Vector2(16, 26));
-            Marcus = new Character("Marcus", graphicsDevice, content, new Vector2(16, 26), content.Load<Texture2D>("NPC/Marcus/Marcus"), RouteManager.MarcusRouteSchedule, StageManager.MarcusHouse, false, QuestManager.MarcusQuests, content.Load<Texture2D>("NPC/Marcus/MarcusPortrait"))
+            Marcus = new Character("Marcus", graphicsDevice, content, new Vector2(16, 26), content.Load<Texture2D>("NPC/Marcus/Marcus"), RouteManager.MarcusRouteSchedule, StageManager.MarcusHouse, false, QuestManager.MarcusQuests, DialogueManager, content.Load<Texture2D>("NPC/Marcus/MarcusPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]
@@ -291,7 +291,7 @@ namespace SecretProject.Class.NPCStuff
 
 
             Vector2 casparPosition = Character.GetWorldPosition(new Vector2(16, 14));
-            Caspar = new Character("Caspar", graphicsDevice, content, new Vector2(16, 14), content.Load<Texture2D>("NPC/Caspar/Caspar"), RouteManager.CasparRouteSchedule, StageManager.CasparHouse, false, QuestManager.CasparQuests, content.Load<Texture2D>("NPC/Caspar/CasparPortrait"))
+            Caspar = new Character("Caspar", graphicsDevice, content, new Vector2(16, 14), content.Load<Texture2D>("NPC/Caspar/Caspar"), RouteManager.CasparRouteSchedule, StageManager.CasparHouse, false, QuestManager.CasparQuests, DialogueManager, content.Load<Texture2D>("NPC/Caspar/CasparPortrait"))
             {
                 FrameToSet = 0,
                 NPCAnimatedSprite = new Sprite[]

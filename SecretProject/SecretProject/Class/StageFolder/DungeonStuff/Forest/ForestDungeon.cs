@@ -53,7 +53,7 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected override void AddFirstRoomPortal()
         {
-            Portal portal = new Portal((int)this.StageIdentifier, (int)Game1.HomeStead.StageIdentifier, 0, 32, false);
+            Portal portal = new Portal((int)this.StageIdentifier, (int)StageManager.HomeStead.StageIdentifier, 0, 32, false);
             this.AllPortals.Add(portal);
 
             if (!Game1.PortalGraph.HasEdge((StagesEnum)portal.From, (StagesEnum)portal.To))
