@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace SecretProject.Class.UI
         CraftingMenu = 4
     }
 
-    public class ToolBar
+    public class ToolBar : Component
     {
 
         public Button InGameMenu { get; set; }
@@ -39,8 +40,7 @@ namespace SecretProject.Class.UI
 
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
-        GraphicsDevice graphicsDevice;
-        ContentManager content;
+
 
         public Vector2 BackGroundTexturePosition { get; set; }
 
@@ -53,16 +53,16 @@ namespace SecretProject.Class.UI
         public Rectangle GoldIconBackGroundSourceRectangle { get; set; }
         public Vector2 GoldIconPosition { get; set; }
         public float Scale { get; set; }
+        public StageManager StageManager { get; }
 
-        public ToolBar(GraphicsDevice graphicsDevice, BackPack backPack, ContentManager content)
+        //public Template(GraphicsDevice graphics, ContentManager content) : base(graphics, content)
+        //{
+        // }
+        public ToolBar(GraphicsDevice graphicsDevice,  ContentManager content, BackPack backPack, StageManager stageManager) : base(graphicsDevice, content)
         {
             this.IsActive = true;
             this.BackGroundTexturePosition = new Vector2(320, 635);
 
-
-            this.graphicsDevice = graphicsDevice;
-
-            this.content = content;
 
             //--------------------------------------
             //Initialize Textur
@@ -83,7 +83,7 @@ namespace SecretProject.Class.UI
             this.Scale = 2f;
 
 
-            this.SunsetMushroom = new SunsetMushroom(graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 196, Game1.PresentationParameters.BackBufferHeight * .9f));
+            this.SunsetMushroom = new SunsetMushroom(graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 196, Game1.PresentationParameters.BackBufferHeight * .9f), StageManager);
 
             this.AllNonInventoryButtons = new List<Button>()
             {
@@ -95,7 +95,7 @@ namespace SecretProject.Class.UI
             };
 
             TextBuilder = new TextBuilder("", .01f, 5);
-
+            StageManager = stageManager;
         }
 
 
@@ -207,6 +207,15 @@ namespace SecretProject.Class.UI
             }
         }
 
+        public override void Load()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Unload()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 

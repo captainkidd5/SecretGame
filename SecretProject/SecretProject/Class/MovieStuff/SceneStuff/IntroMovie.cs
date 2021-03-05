@@ -38,16 +38,14 @@ namespace SecretProject.Class.MovieStuff.SceneStuff
 
             string string00 = "The world was once peaceful.";
             string string01 = "Plants and animals lived in harmony with all who roamed the land.";
-            string string02 = " All nations shared one thing in common - a deep connection with nature. ";
-            string string03 = "The realm itself was a symbol of unity, and all who cared for it were met with kindness and prosperity. ";
+
 
 
             List<string> scene0Strings = new List<string>()
             {
                 string00,
                 string01,
-               // string02,
-               // string03
+
             };
             MovieText movieText0 = new MovieText(scene0Strings);
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;

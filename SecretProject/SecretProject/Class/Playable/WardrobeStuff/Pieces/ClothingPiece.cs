@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI.MainMenuStuff;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
 {
-    public class ClothingPiece : ISaveable
+    public class ClothingPiece : Component, ISaveable
     {
         public Texture2D Texture { get; set; }
 
@@ -32,8 +33,10 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         //COLORS
         public Color Color { get; set; }
 
-
-        public ClothingPiece(Color defaultColor)
+        //public Template(GraphicsDevice graphics, ContentManager content) : base(graphics, content)
+        //{
+        // }
+        public ClothingPiece(GraphicsDevice graphics, ContentManager content,Color defaultColor) : base(graphics, content)
         {
             this.Color = defaultColor;
         }
@@ -321,8 +324,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
             
         }
 
-        
+        public override void Load()
+        {
+            throw new NotImplementedException();
+        }
 
-       
+        public override void Unload()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

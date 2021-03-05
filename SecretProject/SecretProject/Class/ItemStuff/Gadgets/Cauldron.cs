@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
@@ -177,7 +178,7 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
 
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
 
 
             if (redEsc.isClicked)
@@ -190,7 +191,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
-            this.CookButton.Update(Game1.MouseManager);
+            this.CookButton.Update();
             //this.CookedItemSlot.Update(gameTime);
 
             if (this.CookButton.isClicked)

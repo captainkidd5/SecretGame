@@ -200,10 +200,10 @@ namespace SecretProject.Class.SpriteFolder
         {
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
             Stage location = StageManager.CurrentStage;
-            location.ParticleEngine.ActivationTime = .25f;
-            location.ParticleEngine.Color = Color.Green;
-            location.ParticleEngine.EmitterLocation = new Vector2(this.DestinationRectangle.X, this.DestinationRectangle.Y - 5);
-            location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
+            Stage.ParticleEngine.ActivationTime = .25f;
+            Stage.ParticleEngine.Color = Color.Green;
+            Stage.ParticleEngine.EmitterLocation = new Vector2(this.DestinationRectangle.X, this.DestinationRectangle.Y - 5);
+            Stage.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Utility.ForeGroundMultiplier + this.YOffSet;
             if (Game1.Utility.RGenerator.Next(0, 5) < 2)
             {
                 location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, StageManager.CurrentStage.AllTiles.GetItems(this.Position)), this.Position);
