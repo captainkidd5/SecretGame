@@ -336,17 +336,19 @@ namespace SecretProject
             IsFirstTimeStartup = true;
             SaveLoadManager = new SaveLoadManager();
             PresentationParameters = this.GraphicsDevice.PresentationParameters;
-            
+
             //ORDER MATTERS!!!
 
+            int portalGraphLength = Enum.GetNames(typeof(StagesEnum)).Length;
 
+            PortalGraph = new Graph(portalGraphLength);
 
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
             AllCookingRecipes = this.Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
             //TEXTURES
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
             AllTextures = new TextureBook(this.Content, spriteBatch);
-
+            GlobalClock = new Clock(StageManager, CharacterManager);
 
             //CONTROLS
             KeyboardManager = new KeyboardManager();
@@ -355,7 +357,7 @@ namespace SecretProject
             //SOUND
             SoundManager = new SoundBoard(this, this.Content);
 
-
+            Procedural = new Procedural();
             StageManager.Load();
 
 
@@ -365,7 +367,7 @@ namespace SecretProject
             WorldQuestHolder = new WorldQuestHolder();
 
 
-            Procedural = new Procedural();
+            
             PlayerManager = new PlayerManager(graphics.GraphicsDevice, Content);
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content,StageManager) { graphics = graphics.GraphicsDevice };
             SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
@@ -376,11 +378,11 @@ namespace SecretProject
                 new CheckListRequirement("SuperBulb",1792, 1, "plant", false)
                 });
 
-            GlobalClock = new Clock(StageManager,CharacterManager);
+            
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, Content.ServiceProvider);
             // Game1.SaveLoadManager.Load(graphics.GraphicsDevice, Game1.SaveLoadManager.MainMenuData, false);
-            PortalGraph = new Graph(Enum.GetNames(typeof(Stages)).Length);
+            
 
 
             LoadStages();

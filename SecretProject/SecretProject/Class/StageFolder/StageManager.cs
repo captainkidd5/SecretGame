@@ -106,7 +106,8 @@ namespace SecretProject.Class.StageFolder
             MainTarget = new RenderTarget2D(graphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false, pp.BackBufferFormat, DepthFormat.Depth24);
             NightLightsTarget = new RenderTarget2D(graphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false, pp.BackBufferFormat, DepthFormat.Depth24);
             DayLightsTarget = new RenderTarget2D(graphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false, pp.BackBufferFormat, DepthFormat.Depth24);
-            MasterSpriteSheet = content.Load<Texture2D>("maps/MasterSpriteSheet");
+            MasterSpriteSheet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            InteriorSpriteSheet = content.Load<Texture2D>("Map/InteriorSpritesheet1");
             TmxMap townMap = new TmxMap("Content/Map/Town.tmx");
             Town = new Stage(this,"Town", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, townMap, content.ServiceProvider, PlayerManager, CharacterManager)
             { StageIdentifier = (int)StagesEnum.Town };
@@ -129,8 +130,8 @@ namespace SecretProject.Class.StageFolder
             MountainTop = new Stage(this, "MountainTop", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/MountainTop.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.MountainTop };
             GisaardRanch = new Stage(this, "GisaardRanch", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/GisaardRanch.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.GisaardRanch };
             HomeStead = new Stage(this, "HomeStead", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.HomeStead };
-           // ForestDungeon = new ForestDungeon("Forest", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ForestDungeon };
-           // DesertDungeon = new DesertDungeon("Desert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DesertDungeon };
+            ForestDungeon = new ForestDungeon(this,"Forest", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.ForestDungeon };
+            DesertDungeon = new DesertDungeon(this,"Desert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/HomeStead.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.DesertDungeon };
             SippiDesert = new Stage(this, "SippiDesert", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/SippiDesert.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.SippiDesert };
             TrainStation = new Stage(this, "TrainStation", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/TrainStation.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.TrainStation };
             RooltapCastle = new Stage(this, "RuletapCastle", LocationType.Exterior, graphicsDevice, content, MasterSpriteSheet, new TmxMap("content/Map/RooltapCastle.tmx"), content.ServiceProvider, PlayerManager, CharacterManager) { StageIdentifier = StagesEnum.RooltapCastle };
