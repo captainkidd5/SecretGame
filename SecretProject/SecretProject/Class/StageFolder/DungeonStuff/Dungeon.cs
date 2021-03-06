@@ -30,15 +30,16 @@ namespace SecretProject.Class.StageFolder.DungeonStuff
 
         protected DungeonGraph DungeonGraph { get;  set; }
 
-        public Dungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content,
-            Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service)
-            : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber,service)
+        public Dungeon(StageManager stageManager, string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
+              IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(
+                   stageManager,  name,  locationType,  graphicsDevice,  content,  tileSet,  tmxMap,
+               service,  playerManager,  characterManager,  isBasedOnPreloadedMap = true)
         {
             this.Rooms = new DungeonRoom[MaxDungeonRooms, MaxDungeonRooms];
             InitializeRooms();
             this.Content = content;
             this.DungeonGraph = new DungeonGraph(this, 100);
-            this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, graphics);
+            this.NPCGenerator = new NPCGenerator((TileManager)this.AllTiles, graphicsDevice);
         }
 
         private bool IsStartingRoom()

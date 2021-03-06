@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
@@ -17,9 +18,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         public List<Color> Colors { get; set; }
         public int ColorIndex { get; set; }
 
-        public PantsPiece(Color defaultColor) : base(defaultColor)
+        public PantsPiece(GraphicsDevice graphics, ContentManager content, Texture2D texture, Color defaultColor) : base(graphics,content,texture,defaultColor)
         {
-            this.Texture = Game1.AllTextures.PantsAtlas;
             this.Color = Color.White;
             this.LayerDepth = .00000009f;
             this.SpriteEffects = SpriteEffects.None;

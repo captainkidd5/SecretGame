@@ -110,7 +110,7 @@ namespace SecretProject.Class.StageFolder
             
 
             //PLAY
-            this.ChooseGameMenu = new ChooseGameMenu(this.Graphics, 3f);
+            this.ChooseGameMenu = new ChooseGameMenu(game,this.Graphics, 3f);
 
 
 

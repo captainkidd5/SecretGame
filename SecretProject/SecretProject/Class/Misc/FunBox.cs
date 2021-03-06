@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Misc;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;

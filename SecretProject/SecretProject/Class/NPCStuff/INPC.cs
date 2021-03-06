@@ -15,14 +15,14 @@ namespace SecretProject.Class.NPCStuff
 
     public interface INPC : IEntity
     {
-        string Name { get; set; }
-        Sprite[] NPCAnimatedSprite { get; set; }
+        string Name { get; }
+        Sprite[] NPCAnimatedSprite { get;  }
         Rectangle NPCHitBoxRectangle { get; }
-        Texture2D Texture { get; set; }
-        Texture2D HitBoxTexture { get; set; }
+        Texture2D Texture { get; }
+        Texture2D HitBoxTexture { get; }
         float Speed { get; set; }
         bool IsMoving { get; set; }
-        Vector2 PrimaryVelocity { get; set; }
+        Vector2 PrimaryVelocity { get;  }
         Vector2 DirectionVector { get; set; }
 
         EmoticonType CurrentEmoticon { get; set; }

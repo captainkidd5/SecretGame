@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
@@ -21,9 +22,9 @@ namespace SecretProject.Class.Playable.WardrobeStuff
 
         public List<Color> SkinReplacementColors { get; set; }
 
-        public ArmsPiece(Color defaultColor) : base(defaultColor)
+        public ArmsPiece(GraphicsDevice graphics, ContentManager content,Texture2D texture, Color defaultColor) : base(graphics, content, texture, defaultColor)
         {
-            this.Texture = Game1.AllTextures.ArmsAtlas;
+
             this.Color = Color.Green;
             this.LayerDepth = .00000015f;
             this.SpriteEffects = SpriteEffects.None;

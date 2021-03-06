@@ -196,9 +196,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-                StageManager.CurrentStage.ParticleEngine.ActivationTime = .25f;
-                StageManager.CurrentStage.ParticleEngine.EmitterLocation = this.Position;
-                StageManager.CurrentStage.ParticleEngine.Color = this.DamageColor;
+                Stage.ParticleEngine.ActivationTime = .25f;
+                Stage.ParticleEngine.EmitterLocation = this.Position;
+                Stage.ParticleEngine.Color = this.DamageColor;
 
 
                 this.CurrentBehaviour = CurrentBehaviour.Flee;

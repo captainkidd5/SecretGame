@@ -146,7 +146,7 @@ namespace SecretProject.Class.ItemStuff
             //    this.SimpleTimer.Time = 0;
             //}
 
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
 
 
             if (redEsc.isClicked)

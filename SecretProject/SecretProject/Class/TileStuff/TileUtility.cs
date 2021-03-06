@@ -683,7 +683,7 @@ namespace SecretProject.Class.TileStuff
                             Portal portal = TileManager.Stage.AllPortals.Find(x => x.To == to && x.From == from);
 
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpen);
-                            StageManager.SwitchStage(Game1.GetStageFromEnum((StagesEnum)to), portal);
+                            Game1.StageManager.SwitchStage(Game1.GetStageFromEnum((StagesEnum)to), portal);
                         }
                     }
                     break;
@@ -917,7 +917,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         int soundInt = Game1.Utility.GetTileDestructionSound(info);
                         Game1.SoundManager.PlaySoundEffectFromInt(1, soundInt);
-                        StageManager.CurrentStage.ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
+                        Stage.ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                     }
                     else
                     {

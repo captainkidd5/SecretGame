@@ -11,6 +11,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.Misc

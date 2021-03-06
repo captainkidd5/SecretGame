@@ -23,6 +23,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
     {
         public ChooseGameState MenuChoice { get; set; }
         public Vector2 Position { get; set; }
+        public Game1 Game { get; }
         public float  Scale { get; set; }
         public Rectangle BackGroundSourceRectangle { get; private set; }
         public Rectangle ButtonSourceRectangle { get; set; }
@@ -34,9 +35,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public CharacterCreationMenu CharacterCreationMenu { get; set; }
 
-        public ChooseGameMenu(GraphicsDevice graphics, float scale)
+        public ChooseGameMenu(Game1 game, GraphicsDevice graphics, float scale)
         {
-            
+            Game = game;
             this.Scale = scale;
             this.BackGroundSourceRectangle = new Rectangle(304, 365, 112, 163);
             this.ButtonSourceRectangle = new Rectangle(1024, 64, 112, 48);
@@ -52,10 +53,10 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 FileStream fileStream = File.OpenRead(directoryString); //first file in each save should always be the primary save data, no rearranging. 
                 BinaryReader binaryReader = new BinaryReader(fileStream);
                 string saveName = binaryReader.ReadString();
-                this.AllSaveSlots.Add(new SaveSlot(graphics, i, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+                this.AllSaveSlots.Add(new SaveSlot(game,graphics, i, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100 * i), CursorType.Normal, this.Scale - 1, null), true, saveName));
             }
-            SaveSlot EmptySaveSlot = new SaveSlot(graphics, directoryCount, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+            SaveSlot EmptySaveSlot = new SaveSlot(game,graphics, directoryCount, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100 * directoryCount), CursorType.Normal, this.Scale - 1, null),false);
             this.AllSaveSlots.Add(EmptySaveSlot);
             this.MenuChoice = ChooseGameState.SaveSlotSelection;

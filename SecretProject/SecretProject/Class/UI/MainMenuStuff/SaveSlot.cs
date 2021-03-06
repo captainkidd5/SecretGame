@@ -29,7 +29,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public string UnChunkPath { get; set; }
         public string GameLocationPath { get; set; }
 
-        public SaveSlot(GraphicsDevice graphics, int id, Button button, bool occupied, string saveName = null)
+        public SaveSlot(Game1 game1,GraphicsDevice graphics, int id, Button button, bool occupied, string saveName = null)
         {
             this.Graphics = graphics;
             this.ID = id;
@@ -124,7 +124,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void AssignPaths()
         {
-            foreach (Stage stage in StageManager.AllStages)
+            foreach (Stage stage in Game1.StageManager.AllStages)
             {
 
 

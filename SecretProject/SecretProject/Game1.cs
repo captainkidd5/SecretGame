@@ -257,9 +257,7 @@ namespace SecretProject
             this.Content.RootDirectory = "Content";
             HomeContentManager.RootDirectory = "Content";
             MainMenuContentManager.RootDirectory = "Content";
-            PlayerManager = new PlayerManager( GraphicsDevice, HomeContentManager);
-            CharacterManager = new CharacterManager(GraphicsDevice, HomeContentManager, StageManager);
-            StageManager = new StageManager(this, GraphicsDevice,HomeContentManager, PlayerManager, CharacterManager);
+            
             //set window dimensions
 
 
@@ -290,7 +288,9 @@ namespace SecretProject
             this.IsMouseVisible = isMyMouseVisible;
             MouseManager = new MouseManager(cam, graphics.GraphicsDevice);
 
-
+            PlayerManager = new PlayerManager(GraphicsDevice, HomeContentManager);
+            CharacterManager = new CharacterManager(GraphicsDevice, HomeContentManager, StageManager);
+            StageManager = new StageManager(this, GraphicsDevice, HomeContentManager, PlayerManager, CharacterManager);
 
             //NETWORK
             if (EnableMultiplayer)

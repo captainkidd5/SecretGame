@@ -33,12 +33,14 @@ namespace SecretProject.Class.Playable.WardrobeStuff.Pieces
         //COLORS
         public Color Color { get; set; }
 
+
         //public Template(GraphicsDevice graphics, ContentManager content) : base(graphics, content)
         //{
         // }
-        public ClothingPiece(GraphicsDevice graphics, ContentManager content,Color defaultColor) : base(graphics, content)
+        public ClothingPiece(GraphicsDevice graphics, ContentManager content,Texture2D texture, Color defaultColor) : base(graphics, content)
         {
             this.Color = defaultColor;
+            this.Texture = texture;
         }
 
         public virtual void Cycle(CycleDirection direction)

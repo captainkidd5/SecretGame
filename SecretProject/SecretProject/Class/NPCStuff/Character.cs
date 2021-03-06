@@ -27,10 +27,10 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Character : Component, INPC, ILightBlockable, ICollidable
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
-        public Texture2D Texture { get; set; }
+        public Texture2D Texture { get; }
         public Texture2D HitBoxTexture { get; set; }
         public int NPCRectangleXOffSet { get; set; }
         public int NPCRectangleYOffSet { get; set; }

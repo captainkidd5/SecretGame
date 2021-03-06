@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
@@ -15,9 +16,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
     {
 
 
-        public HairPiece(Color defaultColor) : base(defaultColor)
+        public HairPiece(GraphicsDevice graphics, ContentManager content, Texture2D texture, Color defaultColor) : base(graphics, content, texture, defaultColor)
         {
-            this.Texture = Game1.AllTextures.HairAtlas;
             this.Color = Color.White;
             this.LayerDepth = .00000016f;
             this.SpriteEffects = SpriteEffects.None;

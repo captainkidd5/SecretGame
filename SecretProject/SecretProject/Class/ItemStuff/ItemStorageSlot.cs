@@ -70,7 +70,7 @@ namespace SecretProject.Class.ItemStuff
 
         public void Update(GameTime gameTime, StorageManager storageManager, Inventory destinationInventory, ItemStorageSlot storageSlotHovered, DragSlot dragSlot)
         {
-            this.Button.Update(Game1.MouseManager);
+            this.Button.Update();
             if (this.Button.IsHovered)
             {
 

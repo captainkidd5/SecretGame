@@ -145,7 +145,7 @@ namespace SecretProject.Class.Playable
         public Body LargeProximitySensor { get; set; }
 
 
-        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
+        public Player(string name, Vector2 position, int numberOfFrames, ContentManager content, GraphicsDevice graphics)
         {
             this.content = content;
             this.Name = name;
@@ -153,7 +153,7 @@ namespace SecretProject.Class.Playable
             this.Health = this.MaxHealth;
             this.Position = position;
             this.Graphics = graphics;
-            this.Texture = texture;
+            this.Texture = content.Load<Texture2D>("Player/PlayerParts/Base/base");
             this.FrameNumber = numberOfFrames;
 
             this.Inventory = new Inventory(30) { Money = 10000 };
@@ -171,7 +171,7 @@ namespace SecretProject.Class.Playable
             this.KnockBackTimer = new SimpleTimer(1f);
 
 
-            this.Wardrobe = new Wardrobe(graphics, position);
+            this.Wardrobe = new Wardrobe(graphics, content,position);
             this.Hull = Hull.CreateRectangle(this.Position, new Vector2(6, 6));
 
             this.CurrentSpeed = BaseSpeed;

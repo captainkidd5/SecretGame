@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Playable.WardrobeStuff.Pieces;
 using SecretProject.Class.SavingStuff;
@@ -20,9 +21,8 @@ namespace SecretProject.Class.Playable.WardrobeStuff
         public Color CurrentEyeColor { get; set; }
 
 
-        public EyePiece(Color defaultColor) : base(defaultColor)
+        public EyePiece(GraphicsDevice graphics, ContentManager content, Texture2D texture, Color defaultColor) : base(graphics, content,texture, defaultColor)
         {
-            this.Texture = Game1.AllTextures.EyesAtlas;
             this.Color = Color.White;
             this.LayerDepth = .00000010f;
             this.SpriteEffects = SpriteEffects.None;

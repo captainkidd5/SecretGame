@@ -124,7 +124,7 @@ namespace SecretProject.Class.UI
             this.content = content;
             StageManager = stageManager;
             this.BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory, stageManager);
-            this.BottomBar = new ToolBar(graphicsDevice, this.BackPack, content);
+            this.BottomBar = new ToolBar(graphicsDevice, content, this.BackPack, stageManager);
             this.Esc = new EscMenu(graphicsDevice, content);
             this.TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;

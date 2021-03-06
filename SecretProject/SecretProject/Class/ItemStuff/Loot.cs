@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.StageFolder;
 using System.Collections.Generic;
 
 namespace SecretProject.Class.ItemStuff

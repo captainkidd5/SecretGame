@@ -216,7 +216,7 @@ namespace SecretProject.Class.ItemStuff
             //}
             
 
-            redEsc.Update(Game1.MouseManager);
+            redEsc.Update();
 
 
             if (redEsc.isClicked)

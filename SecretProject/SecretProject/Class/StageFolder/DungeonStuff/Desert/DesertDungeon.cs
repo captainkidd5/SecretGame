@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Playable;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +15,11 @@ namespace SecretProject.Class.StageFolder.DungeonStuff.Desert
 {
     public class DesertDungeon : Dungeon
     {
-        public DesertDungeon(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, Texture2D tileSet, TmxMap tmxMap, int dialogueToRetrieve, int backDropNumber, IServiceProvider service) : base(name, locationType, graphics, content, tileSet, tmxMap, dialogueToRetrieve, backDropNumber, service)
-        {
+        public DesertDungeon(StageManager stageManager, string name, LocationType locationType, GraphicsDevice graphicsDevice, ContentManager content, Texture2D tileSet, TmxMap tmxMap,
+              IServiceProvider service, PlayerManager playerManager, CharacterManager characterManager, bool isBasedOnPreloadedMap = true) : base(
+                   stageManager, name, locationType, graphicsDevice, content, tileSet, tmxMap,
+               service, playerManager, characterManager, isBasedOnPreloadedMap = true)
+        { 
             this.Rooms = new ForestRoom[MaxDungeonRooms, MaxDungeonRooms];
         }
 
